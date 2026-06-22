@@ -1,0 +1,4 @@
+interface:
+  display_name: "CQ Hero Town Reference"
+  short_description: "Computer Use notes for CQ Hero Town"
+  default_prompt: "Use $cq-hero-town-reference to inspect CQ Hero Town window behavior and controls."

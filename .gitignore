@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+._*
+
+# Local environment
+.env
+.env.*
+!.env.example
+
+# Local raw asset drops
+tilesets/*
+!tilesets/.gdignore
+
+# Godot generated data
+.godot/
+.import/
+*.translation
+
+# Godot export credentials and local export presets
+export_presets.cfg
+export_credentials.cfg
+
+# Build/export output
+build/
+builds/
+dist/
+exports/
+
+# Logs
+*.log

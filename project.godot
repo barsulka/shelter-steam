@@ -1,0 +1,28 @@
+; Engine configuration file.
+; It is best edited using the Godot editor.
+;
+; Format:
+;   [section]
+;   param=value
+
+config_version=5
+
+[application]
+
+config/name="Shelter"
+run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.7")
+
+[display]
+
+window/size/viewport_width=960
+window/size/viewport_height=540
+window/size/transparent=true
+window/size/resizable=true
+window/per_pixel_transparency/allowed=true
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
+[rendering]
+
+viewport/transparent_background=true
