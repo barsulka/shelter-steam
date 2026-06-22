@@ -1,0 +1,87 @@
+Steam Vertical Slice capture log
+capture_dir=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2
+timing=fast
+labels=on
+
+Captured files:
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/01_initial_strip_qa_labels_on.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0001.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/02_initial_strip_player_prototype.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0002.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0003.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0004.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0005.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/03_bicycle_return_payload.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0006.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/04_unload_to_storage.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0007.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0008.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0009.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/05_storage_to_kitchen_carry.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0010.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0011.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0012.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0013.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/06_kitchen_food_mix.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0014.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/07_food_mix_to_packing_table.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0015.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0016.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0017.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0018.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/08_packing_table_food_bag.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0019.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/09_food_bag_to_van.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/09b_van_ready_confirm_delivery.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0020.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0021.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0022.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/10_postcard_reward.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0023.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0024.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/11_dog_card_slippers.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/12_ui_hidden_world_visible.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0025.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/13_readability_preview_216.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/14_readability_preview_144.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/screenshots/15_readability_preview_96.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0026.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/captures/video/vertical_slice_full_loop_short_frames/frame_0027.png
+
+Events:
+- 0.00 order_created
+- 0.50 player_confirmed_trip
+- 0.50 trip_task_created
+- 0.95 transport_left_strip
+- 0.95 trip_timer_started
+- 1.20 trip_timer_complete
+- 1.35 transport_returned
+- 1.45 payload_visible
+- 1.45 unload_task_created:oat_crate
+- 1.45 unload_task_created:pumpkin_crate
+- 1.80 resource_added_to_storage:oat_crate
+- 2.15 resource_added_to_storage:pumpkin_crate
+- 2.15 carry_task_created:oat_crate:storage->kitchen
+- 2.15 carry_task_created:pumpkin_crate:storage->kitchen
+- 2.15 carry_task_created:protein_packet:storage->kitchen
+- 2.50 resource_delivered_to_kitchen:oat_crate
+- 2.85 resource_delivered_to_kitchen:pumpkin_crate
+- 3.20 resource_delivered_to_kitchen:protein_packet
+- 3.20 kitchen_inputs_ready
+- 3.20 cook_task_created
+- 3.55 food_mix_created
+- 3.55 carry_task_created:food_mix:kitchen->packing_table
+- 3.55 carry_task_created:packaging_bag:storage->packing_table
+- 3.90 resource_delivered_to_packing_table:food_mix
+- 4.25 resource_delivered_to_packing_table:packaging_bag
+- 4.25 packing_inputs_ready
+- 4.25 pack_task_created
+- 4.60 food_bag_created
+- 4.60 load_van_task_created
+- 5.00 van_loaded
+- 5.30 player_confirmed_delivery
+- 5.30 delivery_task_created
+- 5.55 delivery_complete
+- 5.55 postcard_created
+- 5.55 reward_created
+- 6.05 reward_equipped

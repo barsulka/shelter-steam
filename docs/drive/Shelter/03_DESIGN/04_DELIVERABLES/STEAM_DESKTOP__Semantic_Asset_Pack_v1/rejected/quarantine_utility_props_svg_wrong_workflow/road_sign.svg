@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="96" viewBox="0 0 160 96">
+  <rect width="160" height="96" fill="none"/>
+  <rect x="72" y="38" width="10" height="42" rx="2" fill="#7a5a3a"/>
+  <rect x="34" y="18" width="92" height="30" rx="5" fill="#f3d28b" stroke="#5b4028" stroke-width="4"/>
+  <path d="M126 33 L142 33" stroke="#5b4028" stroke-width="4" stroke-linecap="round"/>
+  <path d="M34 33 L18 33" stroke="#5b4028" stroke-width="4" stroke-linecap="round"/>
+  <text x="80" y="38" text-anchor="middle" font-family="Arial" font-size="14" fill="#3c2a1c">ROAD</text>
+  <text x="80" y="91" text-anchor="middle" font-family="Arial" font-size="10" fill="#3c2a1c">road_sign</text>
+</svg>

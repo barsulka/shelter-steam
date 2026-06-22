@@ -1,0 +1,897 @@
+openapi: 3.1.0
+info:
+  title: Shelter Godot State Connector
+  version: 0.2.0
+  description: >
+    Dev-only HTTP contract exposed by the running Shelter Steam/Desktop Godot
+    Vertical Slice. Godot remains the source of truth; this API is a state view
+    and a narrow debug control surface for accepted design/runtime test actions.
+servers:
+  - url: http://127.0.0.1:8765
+    description: Local launcher default
+  - url: http://barsulka.eboshim.site:28765
+    description: Barsulka SSH reverse tunnel default
+tags:
+  - name: Observability
+  - name: Control
+  - name: Runtime Control
+security:
+  - ShelterStateTokenQuery: []
+  - ShelterStateTokenHeader: []
+paths:
+  /health:
+    get:
+      tags: [Observability]
+      summary: Public connector health
+      description: Does not require a token and does not expose tokenized URLs.
+      security: []
+      responses:
+        "200":
+          description: Connector health payload.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthResponse"
+  /schema:
+    get:
+      tags: [Observability]
+      summary: Connector schema notes and capabilities
+      responses:
+        "200":
+          description: Schema metadata.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SchemaResponse"
+        "401":
+          $ref: "#/components/responses/InvalidToken"
+  /state:
+    get:
+      tags: [Observability]
+      summary: Live game state snapshot
+      description: Snapshot is assembled from the running Godot state on request.
+      responses:
+        "200":
+          description: Live state snapshot.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/StateSnapshot"
+        "401":
+          $ref: "#/components/responses/InvalidToken"
+  /control:
+    get:
+      tags: [Control]
+      summary: HTML control page
+      description: >
+        Serves the self-contained dev page with Toggle, Screenshot, Record 10s
+        and Refresh. Runtime control endpoints are API-only and are not exposed
+        as broad generic commands on the page.
+      responses:
+        "200":
+          description: HTML control page.
+          content:
+            text/html:
+              schema:
+                type: string
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/capabilities:
+    get:
+      tags: [Control]
+      summary: Control command capabilities
+      responses:
+        "200":
+          description: Available control commands and current control status.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ControlCapabilities"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/ui/hide:
+    post:
+      tags: [Control]
+      summary: Hide the Godot game window
+      responses:
+        "200":
+          description: Hide command result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ControlCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/ui/show:
+    post:
+      tags: [Control]
+      summary: Show the Godot game window
+      responses:
+        "200":
+          description: Show command result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ControlCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/ui/toggle:
+    post:
+      tags: [Control]
+      summary: Toggle Godot game window visibility
+      responses:
+        "200":
+          description: Toggle command result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ControlCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/capture/screenshot:
+    post:
+      tags: [Control]
+      summary: Capture a viewport screenshot
+      description: Captures the current Godot viewport as an in-memory token-protected PNG.
+      responses:
+        "200":
+          description: Screenshot capture result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CaptureScreenshotResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/capture/video/start:
+    post:
+      tags: [Control]
+      summary: Start a short viewport frame-sequence capture
+      description: >
+        Starts a fixed 10 second, 2 FPS PNG-frame capture from the running
+        Godot viewport. Starting a new capture clears the previous frame
+        sequence from connector memory. This is not Godot Movie Maker MP4
+        output.
+      responses:
+        "200":
+          description: Frame-sequence capture status after starting.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CaptureVideoStatusResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/capture/video/status:
+    get:
+      tags: [Control]
+      summary: Read frame-sequence capture status
+      responses:
+        "200":
+          description: Current or last frame-sequence capture status.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CaptureVideoStatusResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/capture/files/{fileId}:
+    get:
+      tags: [Control]
+      summary: Download a captured in-memory PNG
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: screenshot_20260630_120000_123456.png
+      responses:
+        "200":
+          description: Captured PNG image.
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/fixtures:
+    get:
+      tags: [Runtime Control]
+      summary: List accepted local runtime fixtures
+      responses:
+        "200":
+          description: Fixture list.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/fixture/load:
+    post:
+      tags: [Runtime Control]
+      summary: Load a named accepted runtime fixture
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RuntimeFixtureLoadRequest"
+      responses:
+        "200":
+          description: Fixture import result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/speed:
+    post:
+      tags: [Runtime Control]
+      summary: Set dev-only runtime speed multiplier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RuntimeSpeedRequest"
+      responses:
+        "200":
+          description: Speed multiplier result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/state/export:
+    post:
+      tags: [Runtime Control]
+      summary: Export current local prototype runtime state as JSON
+      responses:
+        "200":
+          description: Runtime export result with state object and pretty JSON string.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/state/import:
+    post:
+      tags: [Runtime Control]
+      summary: Import local prototype runtime JSON state
+      description: Imports only the accepted prototype runtime JSON shape; this is not a generic filesystem write.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RuntimeStateImportRequest"
+      responses:
+        "200":
+          description: Runtime import result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/state/clear:
+    post:
+      tags: [Runtime Control]
+      summary: Clear current local prototype runtime state to the default first-day state
+      responses:
+        "200":
+          description: Runtime clear result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/save/write:
+    post:
+      tags: [Runtime Control]
+      summary: Write current local prototype runtime state to the dev local save file
+      responses:
+        "200":
+          description: Local save write result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/save/load:
+    post:
+      tags: [Runtime Control]
+      summary: Load the dev local save file into the running prototype
+      responses:
+        "200":
+          description: Local save load result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/save/erase:
+    post:
+      tags: [Runtime Control]
+      summary: Erase the dev local save file
+      responses:
+        "200":
+          description: Local save erase result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/route/start:
+    post:
+      tags: [Runtime Control]
+      summary: Start the accepted test route
+      responses:
+        "200":
+          description: Route start result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/dog/assign:
+    post:
+      tags: [Runtime Control]
+      summary: Assign a dog to an accepted activity or room
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RuntimeDogAssignRequest"
+      responses:
+        "200":
+          description: Dog assignment result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/research/start:
+    post:
+      tags: [Runtime Control]
+      summary: Start an accepted House of Curiosity research node
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RuntimeResearchStartRequest"
+      responses:
+        "200":
+          description: Research start result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/debug/tick:
+    post:
+      tags: [Runtime Control]
+      summary: Advance bounded debug simulation time
+      description: Clamps requested debug time to the accepted 0.05-30 second local prototype surface.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RuntimeDebugTickRequest"
+      responses:
+        "200":
+          description: Debug tick result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+  /control/connector/http/stop:
+    post:
+      tags: [Control]
+      summary: Stop the local HTTP connector
+      description: >
+        Stops the local HTTP listener after returning the response. The Godot
+        process and in-memory game state keep running. Used by
+        ./launch.sh --barsulka --stop.
+      responses:
+        "200":
+          description: Local HTTP connector stop result.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectorStopResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
+components:
+  securitySchemes:
+    ShelterStateTokenQuery:
+      type: apiKey
+      in: query
+      name: token
+      description: Ephemeral dev token passed in the URL query.
+    ShelterStateTokenHeader:
+      type: apiKey
+      in: header
+      name: X-Shelter-State-Token
+      description: Ephemeral dev token passed in a request header.
+  responses:
+    InvalidToken:
+      description: Invalid or missing token for state/schema endpoints.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+    MaskedNotFound:
+      description: Masked not_found response for missing or invalid control token.
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+  schemas:
+    ErrorResponse:
+      type: object
+      required: [ok, error]
+      properties:
+        ok:
+          type: boolean
+          const: false
+        error:
+          type: string
+        path:
+          type: string
+        token_required:
+          type: boolean
+      additionalProperties: true
+    HealthResponse:
+      type: object
+      required: [ok, connector, endpoints]
+      properties:
+        ok:
+          type: boolean
+          const: true
+        connector:
+          $ref: "#/components/schemas/ConnectorStatus"
+        endpoints:
+          type: object
+          additionalProperties:
+            type: string
+      additionalProperties: true
+    SchemaResponse:
+      type: object
+      required: [ok, schema_version, read_only, control_enabled]
+      properties:
+        ok:
+          type: boolean
+          const: true
+        schema_version:
+          type: string
+          example: shelter.godot_state_connector.v0.2
+        read_only:
+          type: boolean
+        control_enabled:
+          type: boolean
+        control:
+          $ref: "#/components/schemas/ControlCapabilities"
+        top_level:
+          type: array
+          items:
+            type: string
+        notes:
+          type: array
+          items:
+            type: string
+      additionalProperties: true
+    StateSnapshot:
+      type: object
+      required: [schema_version, connector, game, dogs, routes, production_chains, buildings, rooms, house_of_curiosity, economy, events, debug, order, tasks, resources, production_chain]
+      properties:
+        schema_version:
+          type: string
+          example: shelter.godot_state_connector.v0.2
+        connector:
+          $ref: "#/components/schemas/ConnectorStatus"
+        game:
+          $ref: "#/components/schemas/GameState"
+        dogs:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        routes:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        production_chains:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        buildings:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        rooms:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        house_of_curiosity:
+          type: object
+          additionalProperties: true
+        economy:
+          type: object
+          additionalProperties: true
+        events:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        debug:
+          type: object
+          additionalProperties: true
+        order:
+          type: object
+          description: Legacy Vertical Slice compatibility view.
+          additionalProperties: true
+        tasks:
+          type: array
+          description: Legacy Vertical Slice compatibility view.
+          items:
+            type: object
+            additionalProperties: true
+        resources:
+          type: object
+          description: Legacy Vertical Slice compatibility view.
+          additionalProperties: true
+        production_chain:
+          type: object
+          description: Legacy Vertical Slice compatibility view.
+          additionalProperties: true
+      additionalProperties: true
+    ConnectorStatus:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+        schema_version:
+          type: string
+        bind_host:
+          type: string
+        port:
+          type: integer
+        http_enabled:
+          type: boolean
+        file_enabled:
+          type: boolean
+        snapshot_file:
+          type: string
+        snapshot_interval_seconds:
+          type: number
+        token_required:
+          type: boolean
+        control_enabled:
+          type: boolean
+        control:
+          type: object
+          additionalProperties: true
+        endpoints:
+          type: object
+          additionalProperties:
+            type: string
+      additionalProperties: true
+    GameState:
+      type: object
+      properties:
+        product:
+          type: string
+        scene:
+          type: string
+        prototype:
+          type: string
+        elapsed_seconds:
+          type: number
+        tick_seconds:
+          type: number
+        timing_scale:
+          type: number
+        view_mode:
+          type: string
+        auto_play:
+          type: boolean
+        fast_mode:
+          type: boolean
+        chain_complete:
+          type: boolean
+        control_enabled:
+          type: boolean
+        ui_visible:
+          type: boolean
+        window_visible:
+          type: boolean
+        ui_hidden:
+          type: boolean
+      additionalProperties: true
+    ControlCapabilities:
+      type: object
+      required: [ok, enabled, token_required, commands, status]
+      properties:
+        ok:
+          type: boolean
+        enabled:
+          type: boolean
+        token_required:
+          type: boolean
+        commands:
+          type: array
+          items:
+            type: object
+            required: [id, method, path]
+            properties:
+              id:
+                type: string
+              method:
+                type: string
+              path:
+                type: string
+              description:
+                type: string
+            additionalProperties: true
+        status:
+          type: object
+          additionalProperties: true
+      additionalProperties: true
+    ControlCommandResponse:
+      type: object
+      required: [ok, command]
+      properties:
+        ok:
+          type: boolean
+        command:
+          type: string
+        changed:
+          type: boolean
+        applied:
+          type: boolean
+        ui_visible:
+          type: boolean
+        window_visible:
+          type: boolean
+        window_mode:
+          type: integer
+        window_position:
+          $ref: "#/components/schemas/Vector2i"
+        window_size:
+          $ref: "#/components/schemas/Vector2i"
+      additionalProperties: true
+    ConnectorStopResponse:
+      type: object
+      required: [ok, command, connector_http_enabled, game_process_running]
+      properties:
+        ok:
+          type: boolean
+          const: true
+        command:
+          type: string
+          example: connector.http.stop
+        changed:
+          type: boolean
+        connector_http_enabled:
+          type: boolean
+          const: false
+        game_process_running:
+          type: boolean
+          const: true
+      additionalProperties: true
+    CaptureScreenshotResponse:
+      type: object
+      required: [ok, command, capture_type]
+      properties:
+        ok:
+          type: boolean
+        command:
+          type: string
+          example: capture.screenshot
+        capture_type:
+          type: string
+          const: screenshot
+        file_id:
+          type: string
+        file_url:
+          type: string
+        content_type:
+          type: string
+          example: image/png
+        width:
+          type: integer
+        height:
+          type: integer
+        captured_at:
+          type: string
+      additionalProperties: true
+    CaptureVideoStatusResponse:
+      type: object
+      required: [ok, command, capture_type, recording_format, running, duration_seconds, fps, target_frames, frame_count]
+      properties:
+        ok:
+          type: boolean
+        command:
+          type: string
+          example: capture.video.status
+        capture_type:
+          type: string
+          const: frame_sequence
+        recording_format:
+          type: string
+          const: png_sequence
+        movie_file_available:
+          type: boolean
+          const: false
+        running:
+          type: boolean
+        capture_id:
+          type: string
+        started_at:
+          type: string
+        finished_at:
+          type: string
+        duration_seconds:
+          type: number
+          example: 10
+        fps:
+          type: number
+          example: 2
+        frame_interval_seconds:
+          type: number
+          example: 0.5
+        target_frames:
+          type: integer
+          example: 20
+        requested_frames:
+          type: integer
+        frame_count:
+          type: integer
+        progress:
+          type: number
+        frames:
+          type: array
+          items:
+            $ref: "#/components/schemas/CaptureFrame"
+        movie_maker_runtime_toggle_supported:
+          type: boolean
+          const: false
+        last_error:
+          type: string
+      additionalProperties: true
+    CaptureFrame:
+      type: object
+      required: [index, file_id, file_url, content_type, width, height, captured_at]
+      properties:
+        index:
+          type: integer
+        elapsed_seconds:
+          type: number
+        file_id:
+          type: string
+        file_url:
+          type: string
+        content_type:
+          type: string
+          example: image/png
+        width:
+          type: integer
+        height:
+          type: integer
+        captured_at:
+          type: string
+      additionalProperties: true
+    RuntimeCommandResponse:
+      type: object
+      required: [ok, command]
+      properties:
+        ok:
+          type: boolean
+        command:
+          type: string
+        schema_version:
+          type: string
+        error:
+          type: string
+      additionalProperties: true
+    RuntimeFixtureLoadRequest:
+      type: object
+      required: [fixture]
+      properties:
+        fixture:
+          type: string
+          example: house_of_curiosity_learning_session
+      additionalProperties: true
+    RuntimeSpeedRequest:
+      type: object
+      required: [multiplier]
+      properties:
+        multiplier:
+          type: integer
+          enum: [1, 2, 3, 5, 10]
+      additionalProperties: true
+    RuntimeStateImportRequest:
+      type: object
+      description: >
+        Exported local prototype runtime JSON. The accepted shape includes
+        `schema_version`, `runtime`, `world`, and `state_flags`; extra fields
+        are ignored by the prototype importer.
+      additionalProperties: true
+    RuntimeDogAssignRequest:
+      type: object
+      required: [dog_id, room_id, activity_group, activity_detail]
+      properties:
+        dog_id:
+          type: string
+          example: dog.labrador_intro
+        room_id:
+          type: string
+          example: room.house_of_curiosity.library
+        activity_group:
+          type: string
+          example: learning
+        activity_detail:
+          type: string
+          example: reading_book
+        activity_id:
+          type: string
+        place_id:
+          type: string
+          example: building.house_of_curiosity
+      additionalProperties: true
+    RuntimeResearchStartRequest:
+      type: object
+      required: [node_id]
+      properties:
+        node_id:
+          type: string
+          example: research.basket_check
+        room_id:
+          type: string
+          example: room.house_of_curiosity.classroom
+        dog_ids:
+          type: array
+          items:
+            type: string
+          example: [dog.dachshund_intro]
+      additionalProperties: true
+    RuntimeDebugTickRequest:
+      type: object
+      required: [seconds]
+      properties:
+        seconds:
+          type: number
+          minimum: 0.05
+          maximum: 30
+          example: 1.5
+      additionalProperties: true
+    Vector2i:
+      type: object
+      required: [x, y]
+      properties:
+        x:
+          type: integer
+        y:
+          type: integer
+      additionalProperties: false

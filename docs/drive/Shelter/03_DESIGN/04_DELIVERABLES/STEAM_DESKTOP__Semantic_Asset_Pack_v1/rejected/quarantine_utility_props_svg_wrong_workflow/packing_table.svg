@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="96" viewBox="0 0 160 96">
+  <rect width="160" height="96" fill="none"/>
+  <rect x="28" y="44" width="104" height="18" rx="3" fill="#d7b37a" stroke="#59402a" stroke-width="4"/>
+  <path d="M40 62 V84" stroke="#59402a" stroke-width="5" stroke-linecap="round"/>
+  <path d="M120 62 V84" stroke="#59402a" stroke-width="5" stroke-linecap="round"/>
+  <rect x="62" y="24" width="36" height="24" rx="4" fill="#f0e2be" stroke="#59402a" stroke-width="3"/>
+  <text x="80" y="39" text-anchor="middle" font-family="Arial" font-size="9" fill="#3c2a1c">PACK</text>
+  <text x="80" y="93" text-anchor="middle" font-family="Arial" font-size="10" fill="#3c2a1c">packing_table</text>
+</svg>

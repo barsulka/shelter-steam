@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="80" viewBox="0 0 128 80">
+  <rect width="128" height="80" fill="none"/>
+  <ellipse cx="58" cy="46" rx="34" ry="14" fill="#b8793d" stroke="#4a2c18" stroke-width="4"/>
+  <circle cx="92" cy="40" r="14" fill="#c88a4b" stroke="#4a2c18" stroke-width="4"/>
+  <circle cx="97" cy="37" r="2.5" fill="#111"/>
+  <ellipse cx="45" cy="64" rx="9" ry="4" fill="#94c7d8" stroke="#335866" stroke-width="2"/>
+  <ellipse cx="74" cy="64" rx="9" ry="4" fill="#94c7d8" stroke="#335866" stroke-width="2"/>
+  <text x="64" y="76" text-anchor="middle" font-family="Arial" font-size="10" fill="#3c2a1c">dachshund_slippers</text>
+</svg>

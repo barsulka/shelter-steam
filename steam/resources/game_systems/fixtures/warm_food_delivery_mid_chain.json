@@ -1,0 +1,133 @@
+{
+  "schema_version": "shelter.game_systems_runtime.v0.1",
+  "id": "warm_food_delivery_mid_chain",
+  "title": "Warm Food Delivery Mid-chain",
+  "description": "A local prototype state after the route returned and ingredients are available in Storage.",
+  "runtime": {
+    "debug_speed_multiplier": 1,
+    "active_fixture_id": "warm_food_delivery_mid_chain",
+    "active_save_file": "",
+    "dog_assignments": {},
+    "active_research": {},
+    "events": [
+      {
+        "id": "event.00001",
+        "time": 0.0,
+        "tag": "route",
+        "type": "fixture_route_returned",
+        "dog_ids": ["dog.dachshund_intro"],
+        "place_ids": ["object.road_sign", "transport.basket_bicycle"],
+        "building_ids": ["object.road_sign"],
+        "room_ids": [],
+        "chain_ids": ["chain.warm_food_delivery_intro"],
+        "research_ids": [],
+        "message": "Fixture starts after the bicycle returned with visible payload.",
+        "payload": {}
+      }
+    ],
+    "next_event_number": 2
+  },
+  "state": {
+    "elapsed_seconds": 3.5,
+    "timing_scale": 0.72,
+    "next_task_number": 1,
+    "current_step_index": -1,
+    "step_time": 0.0,
+    "dogs": {
+      "dachshund_intro": {
+        "id": "dachshund_intro",
+        "x": 222.0,
+        "visible": true,
+        "state": "idle",
+        "carried_resource": "",
+        "equipment": "",
+        "current_task": "",
+        "task_label": "IdleTask"
+      },
+      "labrador_intro": {
+        "id": "labrador_intro",
+        "x": 420.0,
+        "visible": true,
+        "state": "idle",
+        "carried_resource": "",
+        "equipment": "",
+        "current_task": "",
+        "task_label": "IdleTask"
+      }
+    },
+    "tokens": {
+      "oat_crate": {
+        "id": "oat_crate",
+        "resource_id": "oat_crate",
+        "location": "storage",
+        "visible": true,
+        "carried_by": "",
+        "from_payload": true
+      },
+      "pumpkin_crate": {
+        "id": "pumpkin_crate",
+        "resource_id": "pumpkin_crate",
+        "location": "storage",
+        "visible": true,
+        "carried_by": "",
+        "from_payload": true
+      },
+      "protein_packet": {
+        "id": "protein_packet",
+        "resource_id": "protein_packet",
+        "location": "storage",
+        "visible": true,
+        "carried_by": "",
+        "from_payload": false
+      },
+      "packaging_bag": {
+        "id": "packaging_bag",
+        "resource_id": "packaging_bag",
+        "location": "storage",
+        "visible": true,
+        "carried_by": "",
+        "from_payload": false
+      }
+    },
+    "inventories": {
+      "storage": {
+        "oat_crate": 1,
+        "pumpkin_crate": 1,
+        "protein_packet": 1,
+        "packaging_bag": 1
+      },
+      "kitchen_inputs": {},
+      "packing_table_inputs": {}
+    },
+    "task_queue": [],
+    "current_task": {},
+    "flags": {
+      "route_started": true,
+      "trip_payload_visible": true,
+      "kitchen_carries_enqueued": false,
+      "cook_enqueued": false,
+      "packing_carries_enqueued": false,
+      "pack_enqueued": false,
+      "load_van_enqueued": false,
+      "van_loaded": false,
+      "delivery_confirmed": false,
+      "delivery_complete": false,
+      "postcard_visible": false,
+      "postcard_claimed": false,
+      "reward_available": false,
+      "equip_task_created": false,
+      "slippers_equipped": false,
+      "chain_complete": false
+    },
+    "transport": {
+      "x": 222.0,
+      "visible": true,
+      "state": "waiting_for_unload",
+      "has_payload": false
+    },
+    "order": {
+      "state": "resources_available",
+      "delivery_state": "waiting_for_food_bag"
+    }
+  }
+}

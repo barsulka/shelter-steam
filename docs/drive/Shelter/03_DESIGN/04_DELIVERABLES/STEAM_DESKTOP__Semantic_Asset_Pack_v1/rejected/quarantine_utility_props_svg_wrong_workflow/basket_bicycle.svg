@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="96" viewBox="0 0 160 96">
+  <rect width="160" height="96" fill="none"/>
+  <circle cx="54" cy="68" r="16" fill="none" stroke="#334" stroke-width="5"/>
+  <circle cx="112" cy="68" r="16" fill="none" stroke="#334" stroke-width="5"/>
+  <path d="M54 68 L78 42 L92 68 L54 68 M78 42 H104 L112 68" fill="none" stroke="#334" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M104 40 L124 36 L130 50 L108 54 Z" fill="#d9b66b" stroke="#5b4028" stroke-width="4"/>
+  <path d="M76 42 L74 30 H88" fill="none" stroke="#334" stroke-width="4" stroke-linecap="round"/>
+  <text x="80" y="94" text-anchor="middle" font-family="Arial" font-size="10" fill="#202033">basket_bicycle</text>
+</svg>

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="112" viewBox="0 0 192 112">
+  <rect width="192" height="112" fill="none"/>
+  <rect x="28" y="38" width="136" height="52" rx="6" fill="#b98955" stroke="#5a3924" stroke-width="4"/>
+  <path d="M34 38 L54 20 H138 L158 38" fill="#d7a66b" stroke="#5a3924" stroke-width="4"/>
+  <rect x="48" y="54" width="32" height="24" fill="#e8c27d" stroke="#5a3924" stroke-width="3"/>
+  <rect x="86" y="54" width="32" height="24" fill="#e8c27d" stroke="#5a3924" stroke-width="3"/>
+  <text x="96" y="34" text-anchor="middle" font-family="Arial" font-size="14" fill="#3c2a1c">STORAGE</text>
+  <text x="96" y="106" text-anchor="middle" font-family="Arial" font-size="10" fill="#3c2a1c">storage_building</text>
+</svg>

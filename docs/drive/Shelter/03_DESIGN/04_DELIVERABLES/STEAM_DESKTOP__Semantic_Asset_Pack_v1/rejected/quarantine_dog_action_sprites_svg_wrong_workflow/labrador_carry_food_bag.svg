@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="96" viewBox="0 0 160 96">
+  <rect width="160" height="96" fill="none"/>
+  <ellipse cx="70" cy="52" rx="36" ry="17" fill="#d8b16a" stroke="#5a3d1f" stroke-width="4"/>
+  <circle cx="108" cy="44" r="17" fill="#e2bd78" stroke="#5a3d1f" stroke-width="4"/>
+  <path d="M36 68 Q52 38 68 68 Z" fill="#f0e2be" stroke="#5a3d1f" stroke-width="4"/>
+  <text x="52" y="63" text-anchor="middle" font-family="Arial" font-size="9" fill="#5a3d1f">FOOD</text>
+  <circle cx="114" cy="41" r="2.5" fill="#111"/>
+  <text x="80" y="93" text-anchor="middle" font-family="Arial" font-size="10" fill="#3c2a1c">labrador_carry_food_bag</text>
+</svg>

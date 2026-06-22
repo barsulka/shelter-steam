@@ -1,0 +1,146 @@
+{
+  "cell_size": 32,
+  "player_state": {
+    "zone_unlocked_cells": {
+      "backyard": 26,
+      "backyard_gate": 3,
+      "city": 80,
+      "city_gate": 3,
+      "countryside": 80
+    }
+  },
+  "zones": [
+    {
+      "id": "backyard",
+      "name": "Задний двор",
+      "base_cells": 26,
+      "max_cells": 104,
+      "buildable": true,
+      "ground_color": [0.55, 0.45, 0.30, 1.0]
+    },
+    {
+      "id": "backyard_gate",
+      "name": "Ворота",
+      "base_cells": 3,
+      "max_cells": 3,
+      "buildable": false,
+      "ground_color": [0.62, 0.51, 0.34, 1.0]
+    },
+    {
+      "id": "city",
+      "name": "Город",
+      "base_cells": 80,
+      "max_cells": 320,
+      "buildable": true,
+      "ground_color": [0.42, 0.40, 0.36, 1.0]
+    },
+    {
+      "id": "city_gate",
+      "name": "Ворота",
+      "base_cells": 3,
+      "max_cells": 3,
+      "buildable": false,
+      "ground_color": [0.62, 0.51, 0.34, 1.0]
+    },
+    {
+      "id": "countryside",
+      "name": "Загород",
+      "base_cells": 80,
+      "max_cells": 320,
+      "buildable": true,
+      "ground_color": [0.57, 0.47, 0.31, 1.0]
+    }
+  ],
+  "building_types": {
+    "gate": {
+      "name": "Деревянный пост",
+      "cells": 3,
+      "height": 92,
+      "shape": "asset_prop",
+      "fixed": true,
+      "allowed_zones": [],
+      "color": [0.55, 0.51, 0.45, 1.0],
+      "asset_source": [32, 165, 87, 91]
+    },
+    "town_hall": {
+      "name": "Ратуша",
+      "cells": 6,
+      "height": 104,
+      "shape": "asset_prop",
+      "fixed": false,
+      "allowed_zones": ["city"],
+      "color": [0.78, 0.37, 0.24, 1.0],
+      "asset_source": [32, 165, 87, 91]
+    },
+    "notice_board": {
+      "name": "Доска объявлений",
+      "cells": 3,
+      "height": 76,
+      "shape": "asset_prop",
+      "fixed": false,
+      "allowed_zones": ["backyard", "city"],
+      "color": [0.58, 0.40, 0.25, 1.0],
+      "asset_source": [189, 163, 68, 61]
+    },
+    "market_bench": {
+      "name": "Лавка",
+      "cells": 4,
+      "height": 58,
+      "shape": "asset_prop",
+      "fixed": false,
+      "allowed_zones": ["city", "countryside"],
+      "color": [0.56, 0.42, 0.28, 1.0],
+      "asset_source": [453, 89, 85, 39]
+    },
+    "garden_tree": {
+      "name": "Дерево",
+      "cells": 5,
+      "height": 152,
+      "shape": "asset_prop",
+      "fixed": false,
+      "allowed_zones": ["backyard", "countryside"],
+      "color": [0.34, 0.48, 0.22, 1.0],
+      "asset_source": [693, 471, 120, 138]
+    }
+  },
+  "building_instances": [
+    {
+      "id": "backyard_gate",
+      "type": "gate",
+      "zone": "backyard_gate",
+      "cell": 0,
+      "fixed": true
+    },
+    {
+      "id": "city_gate",
+      "type": "gate",
+      "zone": "city_gate",
+      "cell": 0,
+      "fixed": true
+    },
+    {
+      "id": "town_hall_1",
+      "type": "town_hall",
+      "zone": "city",
+      "cell": 14
+    },
+    {
+      "id": "notice_board_1",
+      "type": "notice_board",
+      "zone": "backyard",
+      "cell": 8
+    },
+    {
+      "id": "market_bench_1",
+      "type": "market_bench",
+      "zone": "city",
+      "cell": 34
+    },
+    {
+      "id": "garden_tree_1",
+      "type": "garden_tree",
+      "zone": "countryside",
+      "cell": 36
+    }
+  ]
+}

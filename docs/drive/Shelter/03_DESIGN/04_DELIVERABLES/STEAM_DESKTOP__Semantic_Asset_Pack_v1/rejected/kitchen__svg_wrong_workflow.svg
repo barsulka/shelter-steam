@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="112" viewBox="0 0 192 112">
+  <rect width="192" height="112" fill="none"/>
+  <rect x="30" y="36" width="132" height="54" rx="8" fill="#d77b61" stroke="#5a3028" stroke-width="4"/>
+  <path d="M48 36 L70 20 H122 L144 36" fill="#f0b08e" stroke="#5a3028" stroke-width="4"/>
+  <circle cx="64" cy="64" r="12" fill="#f4e0b8" stroke="#5a3028" stroke-width="3"/>
+  <rect x="96" y="55" width="40" height="22" rx="3" fill="#f4e0b8" stroke="#5a3028" stroke-width="3"/>
+  <text x="96" y="34" text-anchor="middle" font-family="Arial" font-size="14" fill="#3c1f1a">KITCHEN</text>
+  <text x="96" y="106" text-anchor="middle" font-family="Arial" font-size="10" fill="#3c1f1a">kitchen_building</text>
+</svg>

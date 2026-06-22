@@ -1,0 +1,151 @@
+{
+  "dogs": [
+    {
+      "dog_id": "DOG-PROT-001",
+      "public_name": "Bublik",
+      "source_type": "prototype",
+      "permissions_status": "not_required_prototype",
+      "morphology": {
+        "skeleton_family": "standard_medium",
+        "body_length": "medium",
+        "body_volume": "medium",
+        "chest": "medium",
+        "leg_length": "medium",
+        "leg_thickness": "medium",
+        "head_shape": "wedge_soft",
+        "muzzle_length": "medium",
+        "muzzle_width": "medium",
+        "ears": "one_up_one_floppy",
+        "ear_weight": "medium",
+        "tail": "curled_medium",
+        "fur": "medium",
+        "markings": ["white_chest", "left_eye_patch"]
+      },
+      "appearance": {
+        "base_coat": "warm_brown",
+        "secondary_coat": "cream",
+        "accent_marks": ["white_chest", "left_eye_patch"],
+        "accessories": ["soft_green_collar"]
+      },
+      "rig": {
+        "rig_version": "dog_rig_standard_v0",
+        "compatible_clip_sets": ["locomotion_basic_v0", "carry_basic_v0"],
+        "required_overrides": ["ear_secondary_motion_asymmetric", "tail_curl_socket"]
+      },
+      "animation_profile": {
+        "motion_preset": "curious_helper",
+        "walk_speed_multiplier": 1.05,
+        "step_frequency": 1.1,
+        "head_bob_amount": 0.8,
+        "tail_wag_amplitude": 1.2,
+        "tail_wag_frequency": 1.1,
+        "ear_bounce_amount": 1.0,
+        "look_around_frequency": 1.4,
+        "idle_fidget": "sniff",
+        "carrying_effort": "medium"
+      },
+      "production": {
+        "approval_status": "draft",
+        "notes": "Baseline mixed shelter dog for Dog Rig Spike v0."
+      }
+    },
+    {
+      "dog_id": "DOG-PROT-002",
+      "public_name": "Knopka",
+      "source_type": "prototype",
+      "permissions_status": "not_required_prototype",
+      "morphology": {
+        "skeleton_family": "short_long",
+        "body_length": "long",
+        "body_volume": "medium",
+        "chest": "medium",
+        "leg_length": "short",
+        "leg_thickness": "sturdy",
+        "head_shape": "soft_square",
+        "muzzle_length": "medium",
+        "muzzle_width": "medium",
+        "ears": "both_floppy",
+        "ear_weight": "heavy",
+        "tail": "straight_medium",
+        "fur": "short",
+        "markings": ["white_paws", "white_chest"]
+      },
+      "appearance": {
+        "base_coat": "dark_brown",
+        "secondary_coat": "cream",
+        "accent_marks": ["white_paws", "white_chest"],
+        "accessories": ["cream_bandana"]
+      },
+      "rig": {
+        "rig_version": "dog_rig_short_long_v0",
+        "compatible_clip_sets": ["locomotion_basic_v0", "carry_basic_v0"],
+        "required_overrides": ["short_leg_step_frequency_adjust", "low_mouth_socket"]
+      },
+      "animation_profile": {
+        "motion_preset": "happy_bouncy",
+        "walk_speed_multiplier": 0.95,
+        "step_frequency": 1.25,
+        "head_bob_amount": 1.05,
+        "tail_wag_amplitude": 1.4,
+        "tail_wag_frequency": 1.35,
+        "ear_bounce_amount": 1.25,
+        "look_around_frequency": 1.1,
+        "idle_fidget": "look_around",
+        "carrying_effort": "medium"
+      },
+      "production": {
+        "approval_status": "draft",
+        "notes": "Optional short-legged placeholder for future morphology stress test."
+      }
+    },
+    {
+      "dog_id": "DOG-PROT-003",
+      "public_name": "Mishka",
+      "source_type": "prototype",
+      "permissions_status": "not_required_prototype",
+      "morphology": {
+        "skeleton_family": "large_sturdy",
+        "body_length": "medium",
+        "body_volume": "sturdy",
+        "chest": "broad",
+        "leg_length": "medium_long",
+        "leg_thickness": "sturdy",
+        "head_shape": "blocky_soft",
+        "muzzle_length": "medium",
+        "muzzle_width": "broad",
+        "ears": "both_floppy",
+        "ear_weight": "heavy",
+        "tail": "fluffy_plume",
+        "fur": "medium",
+        "markings": ["white_chest", "mask"]
+      },
+      "appearance": {
+        "base_coat": "golden",
+        "secondary_coat": "white_warm",
+        "accent_marks": ["white_chest", "mask"],
+        "accessories": ["work_harness"]
+      },
+      "rig": {
+        "rig_version": "dog_rig_large_sturdy_v0",
+        "compatible_clip_sets": ["locomotion_basic_v0", "carry_basic_v0", "work_basic_v0"],
+        "required_overrides": ["heavy_body_step_timing", "broad_mouth_socket"]
+      },
+      "animation_profile": {
+        "motion_preset": "calm_worker",
+        "walk_speed_multiplier": 0.85,
+        "step_frequency": 0.85,
+        "head_bob_amount": 0.7,
+        "tail_wag_amplitude": 0.8,
+        "tail_wag_frequency": 0.7,
+        "ear_bounce_amount": 0.7,
+        "look_around_frequency": 0.7,
+        "idle_fidget": "none",
+        "carrying_effort": "high"
+      },
+      "production": {
+        "approval_status": "draft",
+        "notes": "Optional large calm placeholder for future morphology stress test."
+      }
+    }
+  ]
+}
