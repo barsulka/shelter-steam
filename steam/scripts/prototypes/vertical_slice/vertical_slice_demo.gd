@@ -11,6 +11,7 @@ const MIN_SIZE := Vector2i(720, 180)
 const WINDOW_MARGIN := 32
 const TICK_SECONDS := 0.05
 const PERFORMANCE_TICK_SECONDS := 0.5
+const MAX_TICK_STEPS_PER_FRAME := 4
 const WORLD_WIDTH := 1740.0
 const MOUSE_PASSTHROUGH_PADDING := 6.0
 const DEFAULT_TIMING_SCALE := 0.72
@@ -208,6 +209,9 @@ var _capture_frame_time := 0.0
 var _capture_frame_index := 0
 var _capture_finish_started := false
 var _capture_initializing := false
+
+var _tick_accumulator := 0.0
+var _perf_accumulator := 0.0
 
 var _route_started := false
 var _trip_payload_visible := false
@@ -467,24 +471,11 @@ func _read_user_args() -> void:
 func _load_textures() -> void:
     _textures.clear()
     for asset_id in ASSET_PATHS.keys():
-        _textures[asset_id] = _load_png_texture(str(ASSET_PATHS[asset_id]))
-
-
-func _load_png_texture(path: String) -> Texture2D:
-    var bytes := FileAccess.get_file_as_bytes(path)
-    if not bytes.is_empty():
-        var image := Image.new()
-        var error := image.load_png_from_buffer(bytes)
-        if error == OK:
-            return ImageTexture.create_from_image(image)
-        push_warning("Could not load Vertical Slice texture bytes: %s (%s)" % [path, error])
-
-    var resource := ResourceLoader.load(path)
-    if resource is Texture2D:
-        return resource as Texture2D
-
-    push_warning("Could not read Vertical Slice texture: %s" % path)
-    return null
+        var path := str(ASSET_PATHS[asset_id])
+        var texture := load(path) as Texture2D
+        if texture == null:
+            push_warning("Could not load Vertical Slice texture: %s" % path)
+        _textures[asset_id] = texture
 
 
 func _reset_world_state() -> void:
@@ -800,18 +791,24 @@ func _target_window_size() -> Vector2i:
 
 
 func _start_timers() -> void:
-    var tick := Timer.new()
-    tick.wait_time = TICK_SECONDS
-    tick.autostart = true
-    tick.timeout.connect(_on_tick)
-    add_child(tick)
-
-    var perf := Timer.new()
-    perf.wait_time = PERFORMANCE_TICK_SECONDS
-    perf.autostart = true
-    perf.timeout.connect(_on_performance_tick)
-    add_child(perf)
     _on_performance_tick()
+
+
+func _process(delta: float) -> void:
+    _tick_accumulator += delta
+    var tick_budget := MAX_TICK_STEPS_PER_FRAME
+    while _tick_accumulator >= TICK_SECONDS and tick_budget > 0:
+        _tick_accumulator -= TICK_SECONDS
+        _on_tick()
+        tick_budget -= 1
+    # Bound catch-up after long stalls so a backgrounded frame cannot run an unbounded tick burst.
+    if tick_budget == 0 and _tick_accumulator >= TICK_SECONDS:
+        _tick_accumulator = fmod(_tick_accumulator, TICK_SECONDS)
+
+    _perf_accumulator += delta
+    if _perf_accumulator >= PERFORMANCE_TICK_SECONDS:
+        _perf_accumulator -= PERFORMANCE_TICK_SECONDS
+        _on_performance_tick()
 
 
 func _start_auto_quit_timeout() -> void:
@@ -833,9 +830,11 @@ func _on_tick() -> void:
     _try_start_next_task()
     _update_idle_dogs()
     _run_auto_play(simulation_delta)
-    _update_ui()
-    _apply_mouse_passthrough()
-    queue_redraw()
+
+    if not _current_task.is_empty() or _auto_play or _capture_mode or _control_video_running:
+        _update_ui()
+        queue_redraw()
+
     _maybe_capture_timeline(TICK_SECONDS)
     _maybe_capture_control_video(TICK_SECONDS)
 
@@ -1767,6 +1766,8 @@ func _update_ui() -> void:
     _visibility_button.text = "Show UI" if _ui_hidden else "Hide UI"
     _semantic_button.text = "Labels" if _show_semantic_labels else "No labels"
 
+    _apply_mouse_passthrough()
+
 
 func _order_state_text() -> String:
     match _order_state:
@@ -2611,17 +2612,9 @@ func _save_control_viewport_png(file_id: String) -> Dictionary:
             "error_code": error,
         }
 
-    var bytes := FileAccess.get_file_as_bytes(path)
-    DirAccess.remove_absolute(path)
-    if bytes.is_empty():
-        return {
-            "ok": false,
-            "error": "capture_read_failed",
-        }
-
     var captured_at := Time.get_datetime_string_from_system(true)
     _control_capture_files[file_id] = {
-        "bytes": bytes,
+        "disk_path": path,
         "content_type": "image/png",
         "created_at": captured_at,
     }
@@ -2637,6 +2630,11 @@ func _save_control_viewport_png(file_id: String) -> Dictionary:
 
 func _capture_state_connector_screenshot(command: String) -> Dictionary:
     if _control_latest_screenshot_file_id != "":
+        if _control_capture_files.has(_control_latest_screenshot_file_id):
+            var old_meta := _control_capture_files[_control_latest_screenshot_file_id] as Dictionary
+            var old_path := str(old_meta.get("disk_path", ""))
+            if old_path != "" and FileAccess.file_exists(old_path):
+                DirAccess.remove_absolute(old_path)
         _control_capture_files.erase(_control_latest_screenshot_file_id)
 
     var result := _save_control_viewport_png(_control_capture_file_id("screenshot"))
@@ -2675,7 +2673,13 @@ func _start_state_connector_video_capture(command: String) -> Dictionary:
 func _clear_control_video_capture_memory() -> void:
     for frame in _control_video_frames:
         if frame is Dictionary:
-            _control_capture_files.erase(str((frame as Dictionary).get("file_id", "")))
+            var fid := str((frame as Dictionary).get("file_id", ""))
+            if _control_capture_files.has(fid):
+                var meta := _control_capture_files[fid] as Dictionary
+                var disk_path := str(meta.get("disk_path", ""))
+                if disk_path != "" and FileAccess.file_exists(disk_path):
+                    DirAccess.remove_absolute(disk_path)
+                _control_capture_files.erase(fid)
     _control_video_frames.clear()
 
 
@@ -2745,7 +2749,14 @@ func _capture_state_connector_file(payload: Dictionary) -> Dictionary:
         }
 
     var meta := _control_capture_files[file_id] as Dictionary
-    var bytes := meta.get("bytes", PackedByteArray()) as PackedByteArray
+    var disk_path := str(meta.get("disk_path", ""))
+    if disk_path == "" or not FileAccess.file_exists(disk_path):
+        return {
+            "ok": false,
+            "error": "capture_file_missing_on_disk",
+        }
+
+    var bytes := FileAccess.get_file_as_bytes(disk_path)
     if bytes.is_empty():
         return {
             "ok": false,
@@ -2912,7 +2923,9 @@ func _apply_runtime_import_payload(raw_payload: Dictionary) -> Dictionary:
 
     var payload := normalized.get("payload", {}) as Dictionary
     var state := payload.get("state", {}) as Dictionary
-    _systems_runtime.import_runtime_metadata(payload)
+    var import_result := _systems_runtime.import_runtime_metadata(payload)
+    if not bool(import_result.get("ok", false)):
+        return import_result
     _apply_runtime_portable_state(state)
     _repair_imported_runtime_state()
     _update_ui()

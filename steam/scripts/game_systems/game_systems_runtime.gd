@@ -14,6 +14,7 @@ var dog_assignments: Dictionary = {}
 var active_research: Dictionary = {}
 var _events: Array[Dictionary] = []
 var _next_event_number := 1
+var _events_cache: Array[Dictionary] = []
 
 
 func reset_runtime_state() -> void:
@@ -140,6 +141,7 @@ func advance_research_progress(delta_seconds: float) -> void:
 
 
 func build_state(context: Dictionary) -> Dictionary:
+    _events_cache = event_snapshots(500)
     var game := _game_state(context)
     var dogs := _dog_states(context)
     var routes := _route_states(context)
@@ -148,8 +150,9 @@ func build_state(context: Dictionary) -> Dictionary:
     var rooms := _room_states(buildings)
     var house := _house_of_curiosity_state(context)
     var economy := _economy_state(context)
-    var events := event_snapshots()
+    var events := _events_cache
     var debug := _debug_state(context)
+    _events_cache = []
 
     return {
         "game": game,
@@ -184,8 +187,14 @@ func export_state(portable_state: Dictionary) -> Dictionary:
     }
 
 
-func import_runtime_metadata(payload: Dictionary) -> void:
-    var runtime := payload.get("runtime", {}) as Dictionary
+func import_runtime_metadata(payload: Dictionary) -> Dictionary:
+    var runtime_raw: Variant = payload.get("runtime", {})
+    if runtime_raw != null and not (runtime_raw is Dictionary):
+        return {
+            "ok": false,
+            "error": "runtime_must_be_object",
+        }
+    var runtime: Dictionary = runtime_raw as Dictionary
     debug_speed_multiplier = int(runtime.get("debug_speed_multiplier", 1))
     if not (debug_speed_multiplier in SPEED_PRESETS):
         debug_speed_multiplier = 1
@@ -199,6 +208,7 @@ func import_runtime_metadata(payload: Dictionary) -> void:
         if item is Dictionary:
             _events.append((item as Dictionary).duplicate(true))
     _next_event_number = maxi(int(runtime.get("next_event_number", _events.size() + 1)), _events.size() + 1)
+    return {"ok": true}
 
 
 func parse_state_text(text: String) -> Dictionary:
@@ -230,12 +240,22 @@ func normalize_import_payload(payload: Dictionary) -> Dictionary:
         return normalize_import_payload(parsed["payload"] as Dictionary)
 
     if payload.has("schema_version") and payload.has("state"):
+        if not (payload["state"] is Dictionary):
+            return {
+                "ok": false,
+                "error": "state_must_be_object",
+            }
         return {
             "ok": true,
             "payload": payload,
         }
 
     if payload.has("state"):
+        if not (payload["state"] is Dictionary):
+            return {
+                "ok": false,
+                "error": "state_must_be_object",
+            }
         return {
             "ok": true,
             "payload": {
@@ -416,7 +436,8 @@ func _dog_states(context: Dictionary) -> Array[Dictionary]:
     var result: Array[Dictionary] = []
     var dog_defs := context.get("dog_defs", {}) as Dictionary
     var dogs := context.get("dogs", {}) as Dictionary
-    var recent_events := event_snapshots(40)
+    var cached := _events_cache if not _events_cache.is_empty() else event_snapshots(500)
+    var recent_events := cached.slice(maxi(cached.size() - 40, 0), cached.size())
     for internal_id in dog_defs.keys():
         var dog_def := dog_defs[internal_id] as Dictionary
         var dog := dogs.get(internal_id, {}) as Dictionary
@@ -1274,24 +1295,27 @@ func _dog_time_allocation(context: Dictionary) -> Dictionary:
 
 
 func _events_by_tags(tags: Array, limit: int) -> Array[Dictionary]:
+    var source := _events_cache if not _events_cache.is_empty() else event_snapshots(500)
     var result: Array[Dictionary] = []
-    for event in event_snapshots(500):
+    for event in source:
         if event.get("tag", "") in tags:
             result.append(event)
     return result.slice(maxi(result.size() - limit, 0), result.size())
 
 
 func _events_by_types(types: Array, limit: int) -> Array[Dictionary]:
+    var source := _events_cache if not _events_cache.is_empty() else event_snapshots(500)
     var result: Array[Dictionary] = []
-    for event in event_snapshots(500):
+    for event in source:
         if event.get("type", "") in types:
             result.append(event)
     return result.slice(maxi(result.size() - limit, 0), result.size())
 
 
 func _events_for_place(place_id: String, limit: int) -> Array[Dictionary]:
+    var source := _events_cache if not _events_cache.is_empty() else event_snapshots(500)
     var result: Array[Dictionary] = []
-    for event in event_snapshots(500):
+    for event in source:
         var places := event.get("place_ids", []) as Array
         var buildings := event.get("building_ids", []) as Array
         var rooms := event.get("room_ids", []) as Array

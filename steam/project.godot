@@ -22,7 +22,10 @@ window/size/resizable=true
 window/per_pixel_transparency/allowed=true
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/vsync/vsync_mode=1
 
 [rendering]
 
 viewport/transparent_background=true
+renderer/rendering_method="forward_plus"
+textures/vram_compression/import_etc2_astc=true

@@ -1,5 +1,65 @@
 # Codex Status
 
+## 2026-07-01 - Review fixes: import validation, export presets, accumulator, whitespace
+
+- Branch: `master`
+- Summary: Fixed 4 issues from code review and follow-up review:
+  1. `import_runtime_metadata()` result now checked in `_apply_runtime_import_payload()` — malformed runtime JSON returns error instead of silent success.
+  2. Removed `steam/export_presets.cfg` from `.gitignore` — export presets now tracked in git (credentials rule kept).
+  3. `_process()` accumulator now uses bounded `while` loop (max 4 ticks/frame) and drops only excess backlog beyond one tick interval when the budget is exhausted.
+  4. Removed trailing blank line in `project.godot`, updated macOS export preset keys to the current Godot format, and excluded `build/**` / `builds/**` from packaged resources.
+- Changed files:
+  - `steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - `steam/project.godot`
+  - `steam/export_presets.cfg`
+  - `.gitignore`
+  - `review.md`
+- Checks:
+  - Passed: `Godot --headless --path steam --check-only --script res://scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh runtime-foundation-smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh connector-control-smoke`
+  - Passed: live localhost malformed import rejected with `runtime_must_be_object`
+  - Passed: `cd steam && tools/check-godot.sh`
+  - Passed: `cd steam && Godot --headless --path . --export-release "Windows Desktop" build/review-windows/Shelter.exe` created `.exe` + `.pck`
+  - Passed: `cd steam && Godot --headless --path . --export-release "macOS" build/review-macos/Shelter.app` created universal ad-hoc signed `.app` with `CFBundleIdentifier=site.shelter.game`
+  - Passed: export logs did not include `res://build/` packaged resources after adding export excludes
+  - Passed: `git diff --check`
+
+## 2026-07-01 - Reliability, Performance & Modernization Refactor v1
+
+- Branch: `master`
+- Summary: Implemented 7 subtasks from `STEAM_DESKTOP__Codex_Brief__Reliability_Optimization_Refactor_v1.md`:
+  1. **Draw-call optimization**: `_on_tick()` no longer calls `_update_ui()`, `_apply_mouse_passthrough()`, and `queue_redraw()` unconditionally. These are only called when there's active work (task in progress, auto-play, capture). `_apply_mouse_passthrough()` moved from tick to `_update_ui()`.
+  2. **Texture loading**: Replaced manual `FileAccess.get_file_as_bytes()` + `Image.load_png_from_buffer()` with `load()` (ResourceLoader). Removed `_load_png_texture()` method.
+  3. **Video capture memory**: `_control_capture_files` now stores `disk_path` metadata instead of `PackedByteArray`. PNG files are written to disk and read on-demand during HTTP serving. Cleanup deletes files from disk.
+  4. **Import validation**: `normalize_import_payload()` validates `state` is Dictionary. `import_runtime_metadata()` validates `runtime` is Dictionary and returns `Dictionary` result. Added `_events_cache` to avoid ~14 redundant `event_snapshots(500)` calls per `build_state()`.
+  5. **Export profiles**: Created `steam/export_presets.cfg` with Windows Desktop (x86_64) and macOS (universal) profiles. Added VSync, renderer, and ETC2/ASTC settings to `project.godot`.
+  6. **Timer → _process()**: Replaced `Timer` nodes in `_start_timers()` with `_process()` accumulators (`_tick_accumulator`, `_perf_accumulator`).
+  7. **Game world module**: Created `steam/scripts/prototypes/vertical_slice/game_world_ref.gd` (ShelterGameWorldRef) — RefCounted class with core game logic (dogs, tokens, tasks, inventories, routes). Full integration into main file deferred to separate task.
+- Changed files:
+  - `steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - `steam/scripts/game_systems/game_systems_runtime.gd`
+  - `steam/project.godot`
+  - `steam/scripts/prototypes/vertical_slice/game_world_ref.gd` (new)
+  - `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Reliability_Optimization_Refactor_v1.md` (new)
+- Checks:
+  - Passed: `Godot --headless --path steam --check-only --script res://scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - Passed: `Godot --headless --path steam --check-only --script res://scripts/game_systems/game_systems_runtime.gd`
+  - Passed: `Godot --headless --path steam --check-only --script res://scripts/prototypes/vertical_slice/game_world_ref.gd`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh connector-control-smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh runtime-foundation-smoke`
+  - Passed: `cd steam && tools/check-godot.sh`
+  - Passed: `bash -n steam/launch.sh`
+  - Passed: `bash -n steam/tools/dev-vertical-slice.sh`
+- Known limitations:
+  - `game_world_ref.gd` is a standalone module; full integration into `vertical_slice_demo.gd` requires replacing ~200+ direct state accesses.
+  - `export_presets.cfg` was made trackable in the follow-up review fixes above; export credentials stay ignored.
+  - Windows export now succeeds from macOS; runtime behavior on a real Windows machine remains untested.
+- Next recommended step:
+  - Integrate `game_world_ref.gd` into `vertical_slice_demo.gd` with careful testing of each code path.
+
 ## 2026-07-01 - Steam launcher `--exit` and Bash 3.2 empty-array fix
 
 - Branch: `master`
