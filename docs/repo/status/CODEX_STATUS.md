@@ -1,5 +1,43 @@
 # Codex Status
 
+## 2026-07-02 - Shelter MCP documentation bridge update
+
+- Branch: `master`
+- Summary: Documented the sibling Shelter MCP repo as the preferred local dev / ChatGPT inspection bridge for Steam/Desktop workflows. The docs now explain that Shelter MCP replaces the old split workflow of a separate filesystem MCP tunnel plus separate game launch/control commands with one local MCP endpoint, while direct `steam/launch.sh`, Barsulka/Cloudflare and `tools/dev-vertical-slice.sh` remain low-level fallback/debug workflows.
+- Shelter MCP repo:
+  - Local path: `/Users/barsulka/GolandProjects/shelter/mcp`
+  - GitHub: `git@github.com:barsulka/shelter-mcp.git`
+- Documented setup:
+  - clone/open MCP repo;
+  - copy `.env.example` to `.env`;
+  - fill `.env`;
+  - run `./run.sh`.
+- Documented `run.sh` behavior:
+  - creates/updates `tunnel-client` profile from `.env`;
+  - does not reuse stale profile values;
+  - builds Go MCP binary;
+  - checks or installs `@modelcontextprotocol/server-filesystem`;
+  - runs `doctor --explain`;
+  - starts the tunnel.
+- Documented prerequisites:
+  - Go;
+  - node/npm;
+  - `tunnel-client`;
+  - local Shelter checkout;
+  - OpenAI tunnel/runtime API key.
+- Changed files:
+  - `PROJECTS_RULES.md`
+  - `AGENTS.md`
+  - `README.md`
+  - `steam/README.md`
+  - `docs/repo/dev/godot-state-connector.md`
+  - `docs/drive/Shelter/00_START_HERE/01_CURRENT_STATUS.md`
+  - `docs/repo/status/CODEX_STATUS.md`
+- Checks:
+  - Passed: read local MCP docs from `/Users/barsulka/GolandProjects/shelter/mcp/README.md`, `.env.example`, and `run.sh`.
+  - Passed: `rg` verification for Shelter MCP mentions across project rules, root README, Steam README, Godot connector docs, current status and Codex status.
+  - Passed: `git diff --check`.
+
 ## 2026-07-01 - Workbench Runtime Capture Harness v0
 
 - Branch: `master`

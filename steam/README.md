@@ -152,6 +152,32 @@ The capture bundle is written under `.runtime/workbench_capture_runs/<run_id>/`
 and includes `manifest.json`, `snapshots.jsonl`, `events.jsonl`,
 `stress_signals.jsonl`, `final_state.json`, and `run.log`.
 
+For ChatGPT / remote local-tool inspection, prefer Shelter MCP when it is
+configured:
+
+```text
+/Users/barsulka/GolandProjects/shelter/mcp
+git@github.com:barsulka/shelter-mcp.git
+```
+
+Shelter MCP is a sibling Go MCP server that wraps whitelisted Steam/Desktop dev
+commands, including `workbench-capture`, capture-run listing/reading/cleanup,
+local Godot State Connector control runtime start/stop, selected runtime control
+actions, and `fs_*` filesystem tools proxied from the official filesystem MCP.
+It replaces the older split workflow of a separate filesystem MCP tunnel plus
+separate game launch/control commands with one Shelter MCP endpoint. Direct
+`launch.sh` and `tools/dev-vertical-slice.sh` commands remain the low-level
+local fallback.
+
+Setup is done in the sibling repo by cloning it, copying `.env.example` to
+`.env`, filling the required values, then running `./run.sh`. The runner uses
+`.env` as the source of truth, creates or updates the `tunnel-client` profile
+from it, does not reuse stale profile values, builds the Go MCP binary, checks
+or installs `@modelcontextprotocol/server-filesystem`, runs
+`doctor --explain`, and starts the tunnel. Required external prerequisites are
+Go, node/npm, `tunnel-client`, this local Shelter checkout, and an OpenAI
+tunnel/runtime API key.
+
 Run the explicit dev-only control connector with Hide / Show window controls:
 
 ```sh
