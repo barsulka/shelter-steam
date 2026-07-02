@@ -137,6 +137,21 @@ tools/dev-vertical-slice.sh connector-smoke
 tools/dev-vertical-slice.sh runtime-foundation-smoke
 ```
 
+Run a file-based Workbench runtime capture for Game Designer review:
+
+```sh
+tools/dev-vertical-slice.sh workbench-capture \
+  --scenario=first_delivery_from_empty \
+  --game-seconds=180 \
+  --sample-every-game-seconds=10 \
+  --speed=100 \
+  --output-dir=.runtime/workbench_capture_runs/first_delivery_from_empty_v0
+```
+
+The capture bundle is written under `.runtime/workbench_capture_runs/<run_id>/`
+and includes `manifest.json`, `snapshots.jsonl`, `events.jsonl`,
+`stress_signals.jsonl`, `final_state.json`, and `run.log`.
+
 Run the explicit dev-only control connector with Hide / Show window controls:
 
 ```sh
@@ -239,6 +254,10 @@ The short video capture is a bounded 10 second PNG-frame sequence at 2 FPS,
 shown inline on the control page after recording. Captured PNG bytes live in
 connector memory; temporary PNG files are deleted immediately after encoding.
 This is not a default `--write-movie` recording of the whole game session.
+
+Workbench runtime capture uses the same dev-only runtime control surface and can
+set speed up to `100x` for local JSON capture/testing. `100x` is not a
+player-facing speed and must not be used as visual/readability/feel acceptance.
 
 The fallback snapshot file is written to `.runtime/godot_state_connector/state_snapshot.json`.
 Its default file write interval is 5 seconds and can be changed with

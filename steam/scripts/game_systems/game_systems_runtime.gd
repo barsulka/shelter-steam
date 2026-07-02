@@ -4,7 +4,7 @@ extends RefCounted
 const RUNTIME_SCHEMA_VERSION := "shelter.game_systems_runtime.v0.1"
 const FIXTURE_DIR := "res://resources/game_systems/fixtures"
 const LOCAL_SAVE_FILE := "res://.runtime/game_systems_runtime/local_save.json"
-const SPEED_PRESETS := [1, 2, 3, 5, 10]
+const SPEED_PRESETS := [1, 2, 3, 5, 10, 100]
 const HOUSE_OF_CURIOSITY_ID := "building.house_of_curiosity"
 
 var debug_speed_multiplier := 1

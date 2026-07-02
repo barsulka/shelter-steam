@@ -263,7 +263,7 @@ Do not add standalone simulation in shell/python.
 
 Preferred v0:
 
-1. set accepted speed multiplier, default `10`;
+1. set accepted speed multiplier, default `100` for file-based capture;
 2. for each sample interval, call bounded `runtime.debug.tick` enough to advance the desired game time;
 3. fetch `/state`;
 4. write JSONL line.
@@ -271,10 +271,12 @@ Preferred v0:
 Existing accepted speed multipliers are:
 
 ```text
-1 / 2 / 3 / 5 / 10
+1 / 2 / 3 / 5 / 10 / 100
 ```
 
-Do not expand speed multiplier to `100` unless the existing runtime architecture clearly supports it safely and docs are updated.
+`100x` is allowed only as a dev-only capture/testing preset. It must be visible
+in `/state.debug`, documented in repo docs/OpenAPI, and must not become
+player-facing or a normal feel-test speed.
 
 ### 4.2 About “100x” capture
 
@@ -284,16 +286,21 @@ The design need is:
 sample every 10 game seconds without waiting 10 real seconds
 ```
 
-This does not require final runtime speed `100x`.
+This now uses a dedicated dev-only runtime speed `100x`.
 
 It can be achieved by:
 
-- speed `10x`;
+- speed `100x`;
 - debug tick requests;
 - immediate state sampling;
 - no real-time sleep except minimal process/HTTP pacing.
 
-If Codex does add `100x`, it must be dev-only, documented as capture/testing-only, visible in `/state.debug`, and must not become player-facing or normal feel-test speed.
+Example expectation:
+
+- one hour of requested game time at `100x` should not require the human to
+  wait six real minutes just to get JSON review files;
+- actual wall-clock time will still include Godot startup, HTTP polling, JSON
+  writing and machine speed.
 
 ### 4.3 Guardrail
 
@@ -321,7 +328,7 @@ cd steam
   --fixture=first_day_empty_coop \
   --game-seconds=180 \
   --sample-every-game-seconds=10 \
-  --speed=10 \
+  --speed=100 \
   --output-dir=.runtime/workbench_capture_runs/first_delivery_from_empty_v0
 ```
 
@@ -352,7 +359,7 @@ scenario=first_delivery_from_empty
 fixture=derived from scenario
 game-seconds=180
 sample-every-game-seconds=10
-speed=10
+speed=100
 output-dir=.runtime/workbench_capture_runs/<timestamp>__<scenario>
 keep-running=false
 ```
@@ -407,7 +414,7 @@ Minimum checks:
 bash -n steam/tools/dev-vertical-slice.sh
 bash -n steam/launch.sh
 cd steam && tools/dev-vertical-slice.sh runtime-foundation-smoke
-cd steam && tools/dev-vertical-slice.sh workbench-capture --scenario=first_delivery_from_empty --game-seconds=30 --sample-every-game-seconds=10 --speed=10 --output-dir=.runtime/workbench_capture_runs/_smoke_first_delivery
+cd steam && tools/dev-vertical-slice.sh workbench-capture --scenario=first_delivery_from_empty --game-seconds=30 --sample-every-game-seconds=10 --speed=100 --output-dir=.runtime/workbench_capture_runs/_smoke_first_delivery
 python3 -m json.tool .runtime/workbench_capture_runs/_smoke_first_delivery/manifest.json >/dev/null
 python3 -m json.tool .runtime/workbench_capture_runs/_smoke_first_delivery/final_state.json >/dev/null
 python3 - <<'PY'
@@ -436,7 +443,7 @@ Codex should report:
 - output directory shape;
 - exact generated file names;
 - how to run smoke capture;
-- whether `100x` was implemented or intentionally avoided;
+- how `100x` is constrained as dev-only capture/testing speed;
 - tests run;
 - known limitations;
 - docs updated.
@@ -454,7 +461,7 @@ cd steam
   --fixture=first_day_empty_coop \
   --game-seconds=180 \
   --sample-every-game-seconds=10 \
-  --speed=10 \
+  --speed=100 \
   --output-dir=.runtime/workbench_capture_runs/first_delivery_from_empty_v0
 ```
 
@@ -478,3 +485,9 @@ and produce a runtime design review.
 - Created Codex brief for file-based Workbench Runtime Capture Harness.
 - Scope solves ChatGPT/local-file review workflow without Atlas/browser control.
 - Required live Godot source of truth, JSONL snapshots, event capture, manifest and three scenarios.
+
+### 2026-07-01 — v0 speed update
+
+- Updated brief to require `100x` as a dev-only capture/testing speed preset.
+- Kept guardrail that accelerated JSON capture is not visual/readability/player-feel acceptance.
+- Updated first-run and smoke examples from `--speed=10` to `--speed=100`.

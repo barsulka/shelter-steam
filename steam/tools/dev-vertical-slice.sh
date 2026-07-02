@@ -17,6 +17,89 @@ CONNECTOR_RUNTIME_SAVE_SMOKE_PORT="${STATE_CONNECTOR_RUNTIME_SAVE_SMOKE_PORT:-18
 CONNECTOR_INTERVAL="${STATE_CONNECTOR_INTERVAL:-5}"
 CONNECTOR_RUNTIME_DIR="$ROOT_DIR/.runtime/godot_state_connector"
 CONNECTOR_SNAPSHOT_FILE="$CONNECTOR_RUNTIME_DIR/state_snapshot.json"
+WORKBENCH_CAPTURE_VERSION="shelter.workbench_capture.v0"
+
+workbench_capture_usage() {
+    cat <<'EOF'
+Usage:
+  tools/dev-vertical-slice.sh workbench-capture [options]
+
+Options:
+  --scenario=first_delivery_from_empty|warm_food_delivery_mid_chain|house_of_curiosity_learning_session
+  --fixture=fixture_id
+  --game-seconds=180
+  --sample-every-game-seconds=10
+  --speed=1|2|3|5|10|100
+  --output-dir=.runtime/workbench_capture_runs/<run_id>
+  --keep-running
+  --port=8765
+  --token=...
+
+The harness uses live Godot connector/control endpoints as the source of truth.
+It writes manifest.json, snapshots.jsonl, events.jsonl, stress_signals.jsonl,
+final_state.json and run.log under the selected output directory.
+EOF
+}
+
+workbench_make_token() {
+    if [[ -n "${STATE_CONNECTOR_TOKEN:-}" ]]; then
+        printf '%s\n' "$STATE_CONNECTOR_TOKEN"
+        return
+    fi
+
+    if command -v uuidgen >/dev/null 2>&1; then
+        uuidgen
+        return
+    fi
+
+    if command -v openssl >/dev/null 2>&1; then
+        openssl rand -hex 24
+        return
+    fi
+
+    date "+%Y%m%d%H%M%S$RANDOM"
+}
+
+workbench_health_is_up() {
+    local base_url="$1"
+    local body
+
+    body="$(curl -fsS --max-time 2 "$base_url/health" 2>/dev/null || true)"
+    [[ "$body" == *'"schema_version": "shelter.godot_state_connector.v0.2"'* ]]
+}
+
+workbench_control_is_reachable() {
+    local base_url="$1"
+    local token="$2"
+
+    [[ -n "$token" ]] && curl -fsS --max-time 2 "$base_url/control?token=$token" >/dev/null 2>&1
+}
+
+workbench_redacted_command_line() {
+    local command="./tools/dev-vertical-slice.sh workbench-capture"
+    local arg
+    local redacted
+    local redact_next="false"
+
+    if (( ${#EXTRA_ARGS[@]} > 0 )); then
+        for arg in "${EXTRA_ARGS[@]}"; do
+            if [[ "$redact_next" == "true" ]]; then
+                redacted="<redacted>"
+                redact_next="false"
+            elif [[ "$arg" == "--token" ]]; then
+                redacted="--token"
+                redact_next="true"
+            elif [[ "$arg" == --token=* ]]; then
+                redacted="--token=<redacted>"
+            else
+                redacted="$arg"
+            fi
+            command="$command $redacted"
+        done
+    fi
+
+    printf '%s\n' "$command"
+}
 
 if [[ ! -x "$GODOT_BIN" ]]; then
     echo "Godot binary not found or not executable: $GODOT_BIN" >&2
@@ -497,6 +580,444 @@ PY
         cleanup_runtime_foundation_smoke
         echo "runtime-foundation-smoke passed on http://127.0.0.1:$CONNECTOR_RUNTIME_SMOKE_PORT/control"
         ;;
+    workbench-capture)
+        workbench_scenario="first_delivery_from_empty"
+        workbench_fixture=""
+        workbench_game_seconds="180"
+        workbench_sample_every_game_seconds="10"
+        workbench_speed="100"
+        workbench_output_dir=""
+        workbench_keep_running="false"
+        workbench_port="$CONNECTOR_PORT"
+        workbench_token="${STATE_CONNECTOR_TOKEN:-}"
+
+        if (( ${#EXTRA_ARGS[@]} > 0 )); then
+            for arg in "${EXTRA_ARGS[@]}"; do
+                case "$arg" in
+                    --scenario=*)
+                        workbench_scenario="${arg#--scenario=}"
+                        ;;
+                    --fixture=*)
+                        workbench_fixture="${arg#--fixture=}"
+                        ;;
+                    --game-seconds=*)
+                        workbench_game_seconds="${arg#--game-seconds=}"
+                        ;;
+                    --sample-every-game-seconds=*)
+                        workbench_sample_every_game_seconds="${arg#--sample-every-game-seconds=}"
+                        ;;
+                    --speed=*)
+                        workbench_speed="${arg#--speed=}"
+                        ;;
+                    --output-dir=*)
+                        workbench_output_dir="${arg#--output-dir=}"
+                        ;;
+                    --keep-running)
+                        workbench_keep_running="true"
+                        ;;
+                    --port=*)
+                        workbench_port="${arg#--port=}"
+                        ;;
+                    --token=*)
+                        workbench_token="${arg#--token=}"
+                        ;;
+                    -h|--help)
+                        workbench_capture_usage
+                        exit 0
+                        ;;
+                    *)
+                        echo "Unknown workbench-capture option: $arg" >&2
+                        workbench_capture_usage >&2
+                        exit 2
+                        ;;
+                esac
+            done
+        fi
+
+        case "$workbench_scenario" in
+            first_delivery_from_empty)
+                if [[ -z "$workbench_fixture" ]]; then
+                    workbench_fixture="first_day_empty_coop"
+                fi
+                ;;
+            warm_food_delivery_mid_chain)
+                if [[ -z "$workbench_fixture" ]]; then
+                    workbench_fixture="warm_food_delivery_mid_chain"
+                fi
+                ;;
+            house_of_curiosity_learning_session)
+                if [[ -z "$workbench_fixture" ]]; then
+                    workbench_fixture="house_of_curiosity_learning_session"
+                fi
+                ;;
+            *)
+                echo "Unsupported workbench scenario: $workbench_scenario" >&2
+                exit 2
+                ;;
+        esac
+
+        case "$workbench_speed" in
+            1|2|3|5|10|100)
+                ;;
+            *)
+                echo "Unsupported workbench speed: $workbench_speed (expected 1, 2, 3, 5, 10, or 100)" >&2
+                exit 2
+                ;;
+        esac
+
+        python3 - "$workbench_game_seconds" "$workbench_sample_every_game_seconds" <<'PY'
+import sys
+
+game_seconds = float(sys.argv[1])
+sample_every = float(sys.argv[2])
+if game_seconds <= 0:
+    raise SystemExit("--game-seconds must be > 0")
+if sample_every <= 0:
+    raise SystemExit("--sample-every-game-seconds must be > 0")
+PY
+
+        if [[ -z "$workbench_output_dir" ]]; then
+            workbench_timestamp="$(date -u +%Y%m%dT%H%M%SZ)"
+            workbench_output_dir=".runtime/workbench_capture_runs/${workbench_timestamp}__${workbench_scenario}"
+        fi
+
+        case "$workbench_output_dir" in
+            /*)
+                workbench_output_dir_abs="$workbench_output_dir"
+                ;;
+            *)
+                workbench_output_dir_abs="$ROOT_DIR/$workbench_output_dir"
+                ;;
+        esac
+
+        mkdir -p "$workbench_output_dir_abs"
+        workbench_base_url="http://127.0.0.1:$workbench_port"
+        workbench_run_id="$(basename "$workbench_output_dir_abs")"
+        workbench_command_line="$(workbench_redacted_command_line)"
+        workbench_log_file="$workbench_output_dir_abs/run.log"
+        workbench_godot_log="$(mktemp -t shelter-workbench-capture-godot.XXXXXX.log)"
+        workbench_started_godot="false"
+        workbench_godot_pid=""
+
+        cleanup_workbench_capture() {
+            if [[ "$workbench_started_godot" == "true" ]] && [[ "$workbench_keep_running" != "true" ]] && [[ -n "$workbench_godot_pid" ]] && kill -0 "$workbench_godot_pid" 2>/dev/null; then
+                kill "$workbench_godot_pid" 2>/dev/null || true
+                wait "$workbench_godot_pid" 2>/dev/null || true
+            fi
+            if [[ "$workbench_keep_running" != "true" ]]; then
+                rm -f "$workbench_godot_log"
+            fi
+        }
+        trap cleanup_workbench_capture EXIT
+
+        : > "$workbench_log_file"
+        {
+            echo "Workbench capture harness version: $WORKBENCH_CAPTURE_VERSION"
+            echo "Base URL: $workbench_base_url"
+            echo "Scenario: $workbench_scenario"
+            echo "Fixture: $workbench_fixture"
+            echo "Game seconds: $workbench_game_seconds"
+            echo "Sample every game seconds: $workbench_sample_every_game_seconds"
+            echo "Speed multiplier: $workbench_speed"
+        } >> "$workbench_log_file"
+
+        if workbench_health_is_up "$workbench_base_url"; then
+            if ! workbench_control_is_reachable "$workbench_base_url" "$workbench_token"; then
+                echo "A Shelter connector is already running at $workbench_base_url, but workbench-capture cannot access its control token." >&2
+                echo "Pass the token with --token=... or choose a free --port=..." >&2
+                exit 1
+            fi
+            echo "Reusing existing Shelter connector at $workbench_base_url" >> "$workbench_log_file"
+        else
+            if [[ -z "$workbench_token" ]]; then
+                workbench_token="$(workbench_make_token)"
+            fi
+            mkdir -p "$CONNECTOR_RUNTIME_DIR"
+            echo "Starting headless Godot connector/control for workbench capture..." >> "$workbench_log_file"
+            "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://scenes/prototypes/vertical_slice/vertical_slice_demo.tscn -- --vertical-fast --state-connector-control --state-connector-port="$workbench_port" --state-connector-token="$workbench_token" --state-connector-interval="$CONNECTOR_INTERVAL" >"$workbench_godot_log" 2>&1 &
+            workbench_godot_pid="$!"
+            workbench_started_godot="true"
+
+            for _ in $(seq 1 160); do
+                if workbench_health_is_up "$workbench_base_url"; then
+                    break
+                fi
+                if ! kill -0 "$workbench_godot_pid" 2>/dev/null; then
+                    sed -n '1,220p' "$workbench_godot_log" >&2
+                    exit 1
+                fi
+                sleep 0.1
+            done
+
+            if ! workbench_health_is_up "$workbench_base_url"; then
+                sed -n '1,220p' "$workbench_godot_log" >&2
+                echo "workbench-capture could not reach /health on port $workbench_port" >&2
+                exit 1
+            fi
+            if ! workbench_control_is_reachable "$workbench_base_url" "$workbench_token"; then
+                sed -n '1,220p' "$workbench_godot_log" >&2
+                echo "workbench-capture could not reach /control with its generated token" >&2
+                exit 1
+            fi
+        fi
+
+        WORKBENCH_BASE_URL="$workbench_base_url" \
+        WORKBENCH_TOKEN="$workbench_token" \
+        WORKBENCH_RUN_ID="$workbench_run_id" \
+        WORKBENCH_SCENARIO_ID="$workbench_scenario" \
+        WORKBENCH_FIXTURE_ID="$workbench_fixture" \
+        WORKBENCH_GAME_SECONDS="$workbench_game_seconds" \
+        WORKBENCH_SAMPLE_EVERY_GAME_SECONDS="$workbench_sample_every_game_seconds" \
+        WORKBENCH_SPEED="$workbench_speed" \
+        WORKBENCH_OUTPUT_DIR="$workbench_output_dir_abs" \
+        WORKBENCH_SCRIPT_VERSION="$WORKBENCH_CAPTURE_VERSION" \
+        WORKBENCH_REPO_ROOT="$REPO_DIR" \
+        WORKBENCH_STEAM_ROOT="$ROOT_DIR" \
+        WORKBENCH_COMMAND_LINE="$workbench_command_line" \
+        WORKBENCH_KEEP_RUNNING="$workbench_keep_running" \
+        WORKBENCH_STARTED_GODOT="$workbench_started_godot" \
+        python3 - <<'PY'
+import datetime as _datetime
+import json
+import math
+import os
+import pathlib
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+
+base_url = os.environ["WORKBENCH_BASE_URL"].rstrip("/")
+token = os.environ["WORKBENCH_TOKEN"]
+run_id = os.environ["WORKBENCH_RUN_ID"]
+scenario_id = os.environ["WORKBENCH_SCENARIO_ID"]
+fixture_id = os.environ["WORKBENCH_FIXTURE_ID"]
+requested_game_seconds = float(os.environ["WORKBENCH_GAME_SECONDS"])
+sample_every_game_seconds = float(os.environ["WORKBENCH_SAMPLE_EVERY_GAME_SECONDS"])
+speed_multiplier = int(os.environ["WORKBENCH_SPEED"])
+output_dir = pathlib.Path(os.environ["WORKBENCH_OUTPUT_DIR"])
+script_version = os.environ["WORKBENCH_SCRIPT_VERSION"]
+repo_root = os.environ["WORKBENCH_REPO_ROOT"]
+steam_root = os.environ["WORKBENCH_STEAM_ROOT"]
+command_line = os.environ["WORKBENCH_COMMAND_LINE"]
+keep_running = os.environ["WORKBENCH_KEEP_RUNNING"] == "true"
+started_godot = os.environ["WORKBENCH_STARTED_GODOT"] == "true"
+
+manifest_path = output_dir / "manifest.json"
+snapshots_path = output_dir / "snapshots.jsonl"
+events_path = output_dir / "events.jsonl"
+stress_path = output_dir / "stress_signals.jsonl"
+final_state_path = output_dir / "final_state.json"
+run_log_path = output_dir / "run.log"
+
+def utc_now():
+    return _datetime.datetime.now(_datetime.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+def append_log(message):
+    with run_log_path.open("a", encoding="utf-8") as handle:
+        handle.write(f"{utc_now()} {message}\n")
+
+def control_url(path):
+    separator = "&" if "?" in path else "?"
+    return f"{base_url}{path}{separator}{urllib.parse.urlencode({'token': token})}"
+
+def request(method, path, payload=None):
+    data = None
+    headers = {}
+    if payload is not None:
+        data = json.dumps(payload, ensure_ascii=False).encode("utf-8")
+        headers["Content-Type"] = "application/json"
+    req = urllib.request.Request(control_url(path), data=data, headers=headers, method=method)
+    try:
+        with urllib.request.urlopen(req, timeout=30) as response:
+            text = response.read().decode("utf-8")
+    except urllib.error.HTTPError as exc:
+        body = exc.read().decode("utf-8", errors="replace")
+        raise RuntimeError(f"{method} {path} failed with HTTP {exc.code}: {body}") from exc
+    return json.loads(text)
+
+def require_ok(response, label):
+    if not response.get("ok", False):
+        raise RuntimeError(f"{label} failed: {json.dumps(response, ensure_ascii=False)}")
+
+def write_jsonl(path, item):
+    with path.open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(item, ensure_ascii=False, separators=(",", ":")))
+        handle.write("\n")
+
+def advance_game_time(game_seconds):
+    debug_seconds_remaining = game_seconds / float(speed_multiplier)
+    tick_results = []
+    while debug_seconds_remaining > 1e-9:
+        chunk = min(30.0, debug_seconds_remaining)
+        if chunk < 0.05:
+            chunk = 0.05
+        response = request("POST", "/control/runtime/debug/tick", {"seconds": chunk})
+        require_ok(response, "runtime.debug.tick")
+        tick_results.append({
+            "requested_seconds": response.get("requested_seconds", chunk),
+            "effective_simulation_seconds": response.get("effective_simulation_seconds"),
+            "chain_state": response.get("chain_state"),
+        })
+        debug_seconds_remaining -= chunk
+    return tick_results
+
+output_dir.mkdir(parents=True, exist_ok=True)
+for path in (snapshots_path, events_path, stress_path):
+    path.write_text("", encoding="utf-8")
+
+created_at = utc_now()
+known_warnings = [
+    "Accelerated capture validates state transitions and causality, not desktop calmness, animation warmth, visual readability or player feel.",
+]
+if speed_multiplier == 100:
+    known_warnings.append("100x is dev-only capture/testing acceleration and must not be treated as a player-facing or normal feel-test speed.")
+if keep_running:
+    known_warnings.append("--keep-running was set; the connector process may remain active after the harness exits.")
+if not started_godot:
+    known_warnings.append("The harness reused an existing local connector and did not own the runtime lifecycle.")
+
+append_log("Listing runtime fixtures")
+fixtures_response = request("GET", "/control/runtime/fixtures")
+require_ok(fixtures_response, "runtime.fixtures.list")
+fixture_ids = {str(item.get("id", "")) for item in fixtures_response.get("fixtures", [])}
+if fixture_id not in fixture_ids:
+    raise RuntimeError(f"fixture {fixture_id!r} is not listed by the live runtime")
+
+append_log(f"Loading fixture {fixture_id}")
+load_response = request("POST", "/control/runtime/fixture/load", {"fixture": fixture_id})
+require_ok(load_response, "runtime.fixture.load")
+
+append_log(f"Setting speed multiplier to {speed_multiplier}x")
+speed_response = request("POST", "/control/runtime/speed", {"multiplier": speed_multiplier})
+require_ok(speed_response, "runtime.speed.set")
+
+setup_actions = [
+    {"action": "fixture.load", "fixture_id": fixture_id},
+    {"action": "runtime.speed.set", "speed_multiplier": speed_multiplier},
+]
+if scenario_id in {"first_delivery_from_empty", "warm_food_delivery_mid_chain"}:
+    append_log("Starting accepted test route")
+    route_response = request("POST", "/control/runtime/route/start")
+    require_ok(route_response, "runtime.route.start")
+    setup_actions.append({
+        "action": "runtime.route.start",
+        "route_id": route_response.get("route_id"),
+        "route_started": route_response.get("route_started"),
+    })
+elif scenario_id == "house_of_curiosity_learning_session":
+    setup_actions.append({
+        "action": "preserve_fixture_research_state",
+        "research_id": "research.soft_packing",
+    })
+
+expected_snapshot_count = int(math.ceil(requested_game_seconds / sample_every_game_seconds))
+current_game_time = 0.0
+seen_event_keys = set()
+events_written = 0
+stress_lines_written = 0
+last_state = None
+debug_tick_seconds_per_sample = sample_every_game_seconds / float(speed_multiplier)
+
+append_log(f"Capturing {expected_snapshot_count} samples")
+for sample_index in range(1, expected_snapshot_count + 1):
+    remaining_game_seconds = requested_game_seconds - current_game_time
+    game_delta = min(sample_every_game_seconds, remaining_game_seconds)
+    ticks = advance_game_time(game_delta)
+    current_game_time = min(requested_game_seconds, current_game_time + game_delta)
+    state = request("GET", "/state")
+    last_state = state
+    sample_wall_time = utc_now()
+    snapshot_record = {
+        "run_id": run_id,
+        "sample_index": sample_index,
+        "sample_game_time": current_game_time,
+        "sample_wall_time": sample_wall_time,
+        "scenario_id": scenario_id,
+        "fixture_id": fixture_id,
+        "debug_ticks": ticks,
+        "state": state,
+    }
+    write_jsonl(snapshots_path, snapshot_record)
+
+    for event in state.get("events", []):
+        event_key = str(event.get("id", "")) or json.dumps(event, sort_keys=True, ensure_ascii=False)
+        if event_key in seen_event_keys:
+            continue
+        seen_event_keys.add(event_key)
+        write_jsonl(events_path, {
+            "run_id": run_id,
+            "sample_index": sample_index,
+            "sample_game_time": current_game_time,
+            "sample_wall_time": sample_wall_time,
+            "scenario_id": scenario_id,
+            "fixture_id": fixture_id,
+            "event": event,
+        })
+        events_written += 1
+
+    if "stress_test_signals" in state:
+        write_jsonl(stress_path, {
+            "run_id": run_id,
+            "sample_index": sample_index,
+            "sample_game_time": current_game_time,
+            "sample_wall_time": sample_wall_time,
+            "scenario_id": scenario_id,
+            "fixture_id": fixture_id,
+            "stress_test_signals": state.get("stress_test_signals", {}),
+        })
+        stress_lines_written += 1
+
+if last_state is None:
+    last_state = request("GET", "/state")
+
+final_state_path.write_text(json.dumps(last_state, ensure_ascii=False, indent=2), encoding="utf-8")
+
+snapshot_count = sum(1 for _ in snapshots_path.open("r", encoding="utf-8"))
+if snapshot_count != expected_snapshot_count:
+    raise RuntimeError(f"expected {expected_snapshot_count} snapshots, wrote {snapshot_count}")
+
+manifest = {
+    "run_id": run_id,
+    "created_at": created_at,
+    "script_version": script_version,
+    "repo_root": repo_root,
+    "steam_root": steam_root,
+    "fixture_id": fixture_id,
+    "scenario_id": scenario_id,
+    "requested_game_seconds": requested_game_seconds,
+    "sample_every_game_seconds": sample_every_game_seconds,
+    "speed_multiplier": speed_multiplier,
+    "debug_tick_seconds_per_sample": debug_tick_seconds_per_sample,
+    "snapshot_count": snapshot_count,
+    "events_written": events_written,
+    "stress_signal_sample_count": stress_lines_written,
+    "state_schema_version": last_state.get("schema_version", ""),
+    "runtime_schema_version": (last_state.get("debug", {}) or {}).get("runtime_schema_version", ""),
+    "output_files": {
+        "manifest": "manifest.json",
+        "snapshots": "snapshots.jsonl",
+        "events": "events.jsonl",
+        "stress_signals": "stress_signals.jsonl",
+        "final_state": "final_state.json",
+        "run_log": "run.log",
+    },
+    "command_line": command_line,
+    "setup_actions": setup_actions,
+    "exit_status": "success",
+    "known_warnings": known_warnings,
+}
+manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+append_log(f"Capture complete: {snapshot_count} snapshots, {events_written} events")
+print(str(output_dir))
+PY
+
+        if [[ "$workbench_keep_running" == "true" ]] && [[ "$workbench_started_godot" == "true" ]]; then
+            disown "$workbench_godot_pid" 2>/dev/null || true
+            echo "workbench-capture left Godot running as pid $workbench_godot_pid"
+        fi
+        echo "workbench-capture output: $workbench_output_dir_abs"
+        ;;
     capture)
         rm -rf "$CAPTURE_DIR/captures/screenshots" "$CAPTURE_DIR/captures/video/vertical_slice_full_loop_short_frames" "$CAPTURE_DIR/captures/logs"
         exec "$GODOT_BIN" --path "$ROOT_DIR" --scene res://scenes/prototypes/vertical_slice/vertical_slice_demo.tscn -- --vertical-capture --vertical-capture-dir="$CAPTURE_DIR"
@@ -513,7 +1034,7 @@ PY
         echo "capture-smoke wrote $png_count PNG files in a temporary capture directory"
         ;;
     *)
-        echo "Usage: tools/dev-vertical-slice.sh [interactive|all|qa|player-prototype|perf|normal|autoplay|connector|connector-control|connector-tunnel|connector-control-tunnel|smoke|connector-smoke|connector-control-smoke|runtime-foundation-smoke|capture|capture-smoke] [--runtime-load-fixture=name|--runtime-load-save]" >&2
+        echo "Usage: tools/dev-vertical-slice.sh [interactive|all|qa|player-prototype|perf|normal|autoplay|connector|connector-control|connector-tunnel|connector-control-tunnel|smoke|connector-smoke|connector-control-smoke|runtime-foundation-smoke|workbench-capture|capture|capture-smoke] [--runtime-load-fixture=name|--runtime-load-save]" >&2
         exit 2
         ;;
 esac

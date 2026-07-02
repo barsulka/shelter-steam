@@ -270,7 +270,10 @@ Legacy compatibility groups are still present for existing Vertical Slice tools:
 - `production_chain`
 
 `debug.speed_multiplier` exposes the dev speed multiplier. Accepted values are
-`1`, `2`, `3`, `5`, and `10`; default is `1`.
+`1`, `2`, `3`, `5`, `10`, and `100`; default is `1`. The `100x` preset is
+reserved for local capture/testing workflows such as Workbench runtime capture;
+it is not a player-facing speed and must not be used as visual/readability/feel
+acceptance.
 
 Event log tags include:
 
@@ -331,6 +334,50 @@ curl -fsS -X POST "http://127.0.0.1:8765/control/runtime/debug/tick?token=$TOKEN
 
 `runtime.debug.tick` clamps requested local prototype debug time to 0.05-30
 seconds and applies the current dev speed multiplier.
+
+## Workbench Runtime Capture
+
+For Game Designer review through local files, use the dev-only capture harness:
+
+```sh
+cd steam
+tools/dev-vertical-slice.sh workbench-capture \
+  --scenario=first_delivery_from_empty \
+  --fixture=first_day_empty_coop \
+  --game-seconds=180 \
+  --sample-every-game-seconds=10 \
+  --speed=100 \
+  --output-dir=.runtime/workbench_capture_runs/first_delivery_from_empty_v0
+```
+
+The harness starts or reuses a local control-enabled Godot runtime, loads the
+accepted fixture, performs the scenario setup through whitelisted runtime
+control endpoints, advances bounded debug time, samples live `/state`, then
+writes a review bundle under:
+
+```text
+steam/.runtime/workbench_capture_runs/<run_id>/
+```
+
+Bundle files:
+
+```text
+manifest.json
+snapshots.jsonl
+events.jsonl
+stress_signals.jsonl
+final_state.json
+run.log
+```
+
+`snapshots.jsonl` stores full live `/state` payloads for v0. `events.jsonl`
+stores event-log deltas observed during the run with sample context.
+`stress_signals.jsonl` stores one signal record per sample when the state
+contains `stress_test_signals`.
+
+The capture harness redacts reusable token values from `manifest.json` and
+`run.log`. Generated bundles live under ignored `.runtime` storage and must not
+be committed.
 
 ## Snapshot File
 

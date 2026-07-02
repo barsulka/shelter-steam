@@ -1,5 +1,52 @@
 # Codex Status
 
+## 2026-07-01 - Workbench Runtime Capture Harness v0
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Workbench_Runtime_Capture_Harness_v0.md`
+- Summary: Added a dev-only file-based Workbench runtime capture harness for Steam Vertical Slice. `tools/dev-vertical-slice.sh workbench-capture` now starts or reuses a local control-enabled Godot runtime, loads an accepted fixture, applies scenario setup, advances bounded debug time, samples live `/state`, and writes review bundles under ignored `steam/.runtime/workbench_capture_runs/<run_id>/`.
+- Capture output files:
+  - `manifest.json`
+  - `snapshots.jsonl`
+  - `events.jsonl`
+  - `stress_signals.jsonl`
+  - `final_state.json`
+  - `run.log`
+- Scenario ids supported:
+  - `first_delivery_from_empty`
+  - `warm_food_delivery_mid_chain`
+  - `house_of_curiosity_learning_session`
+- 100x update:
+  - Added runtime speed preset `100` to `SPEED_PRESETS`.
+  - Documented `100x` as dev-only capture/testing acceleration in the brief, OpenAPI, connector docs, and Steam README.
+  - `100x` is not player-facing and must not be used as visual/readability/player-feel acceptance.
+- Changed files:
+  - `steam/tools/dev-vertical-slice.sh`
+  - `steam/scripts/game_systems/game_systems_runtime.gd`
+  - `steam/README.md`
+  - `docs/repo/api/godot-state-connector.openapi.yaml`
+  - `docs/repo/dev/godot-state-connector.md`
+  - `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Workbench_Runtime_Capture_Harness_v0.md`
+  - `docs/repo/status/CODEX_STATUS.md`
+- Checks:
+  - Passed: `bash -n steam/tools/dev-vertical-slice.sh`
+  - Passed: `bash -n steam/launch.sh`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh workbench-capture --help`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh workbench-capture --scenario=first_delivery_from_empty --game-seconds=30 --sample-every-game-seconds=10 --speed=100 --output-dir=.runtime/workbench_capture_runs/_smoke_first_delivery`
+  - Passed: JSON parse for `_smoke_first_delivery/manifest.json` and `_smoke_first_delivery/final_state.json`
+  - Passed: JSONL parse/count assertions for `_smoke_first_delivery` (`3` snapshots, `14` event records, `3` stress signal records)
+  - Passed: small `workbench-capture` scenario checks for `warm_food_delivery_mid_chain` and `house_of_curiosity_learning_session`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh runtime-foundation-smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh smoke`
+  - Passed: OpenAPI YAML parse and `RuntimeSpeedRequest` enum assertion including `100`
+  - Passed: `Godot --headless --path steam --check-only --script res://scripts/game_systems/game_systems_runtime.gd`
+  - Passed: `Godot --headless --path steam --check-only --script res://scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - Passed: `cd steam && tools/check-godot.sh`
+- Known limitations:
+  - Generated capture bundles are intentionally ignored under `.runtime` and must not be committed.
+  - Accelerated JSON capture validates state transitions and causality only; visual warmth, readability, animation feel and desktop calmness still require real-speed/visual review.
+  - Connector-backed capture commands should not be run in parallel on the same port unless each run gets a separate `--port`.
+
 ## 2026-07-01 - Review fixes: import validation, export presets, accumulator, whitespace
 
 - Branch: `master`

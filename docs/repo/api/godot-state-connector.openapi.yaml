@@ -230,6 +230,10 @@ paths:
     post:
       tags: [Runtime Control]
       summary: Set dev-only runtime speed multiplier
+      description: >
+        Accepted multipliers are 1, 2, 3, 5, 10, and 100. The 100x preset is
+        intended only for local capture/testing workflows and is not a
+        player-facing or normal feel-test speed.
       requestBody:
         required: true
         content:
@@ -829,7 +833,7 @@ components:
       properties:
         multiplier:
           type: integer
-          enum: [1, 2, 3, 5, 10]
+          enum: [1, 2, 3, 5, 10, 100]
       additionalProperties: true
     RuntimeStateImportRequest:
       type: object
