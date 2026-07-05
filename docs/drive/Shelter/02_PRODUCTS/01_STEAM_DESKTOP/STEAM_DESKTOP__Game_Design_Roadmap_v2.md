@@ -126,7 +126,7 @@ The next visible product proof should answer:
 
 ### R-17 — Runtime Foundation Acceptance via File-Based Evidence
 
-Статус: active next.
+Статус: done / accepted through file-based runtime evidence.
 
 Цель:
 
@@ -141,7 +141,7 @@ The next visible product proof should answer:
 
 ### R-18 — Workbench Runtime Capture Harness v0
 
-Статус: Codex brief prepared.
+Статус: done / implemented and accepted for Game Designer state-review.
 
 Цель:
 
@@ -165,7 +165,7 @@ steam/.runtime/workbench_capture_runs/<run_id>/final_state.json
 
 ### R-19 — Snapshot-Based Design Review Pack v1
 
-Статус: after R-18.
+Статус: done / first full-dispatch runtime review recorded.
 
 Цель:
 
@@ -189,7 +189,7 @@ docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Runtime_Capture_Review__<scenar
 
 ### R-20 — First Day MVP Contract v1
 
-Статус: after first runtime review.
+Статус: done / First Day MVP v1 design contract recorded.
 
 Цель:
 
@@ -215,7 +215,7 @@ STEAM_DESKTOP__First_Day_MVP_v1.md
 
 ### R-21 — First Systems Implementation Slice v1
 
-Статус: after R-20.
+Статус: Codex brief prepared.
 
 Цель:
 
@@ -374,6 +374,23 @@ Every runtime review should check:
 ---
 
 ## 7. Changelog
+
+### 2026-07-05 — R-21 Codex brief prepared
+
+- R-21 Codex implementation brief created: `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__First_Day_MVP_Runtime_Polish_v1.md`.
+- Next action: run Codex with reasoning level `очень высокий`.
+
+### 2026-07-05 — R-20 closed, R-21 activated
+
+- R-20 First Day MVP Contract completed in `docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_MVP_v1.md`.
+- Next active task is R-21: prepare Codex implementation brief for First Day MVP Runtime Polish v1.
+
+### 2026-07-05 — R-17..R-19 closed, R-20 activated
+
+- R-17 Runtime Foundation Acceptance closed through file-based runtime evidence.
+- R-18 Workbench Runtime Capture Harness implemented and accepted for Game Designer state-review.
+- R-19 Snapshot-Based Design Review completed in `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Runtime_Capture_Review__First_Delivery_Dispatch_v1.md`.
+- Next active Game Designer task is R-20: `STEAM_DESKTOP__First_Day_MVP_v1.md`.
 
 ### 2026-07-01 — v2 created
 

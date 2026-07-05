@@ -192,6 +192,7 @@ POST http://127.0.0.1:8765/control/runtime/save/write?token=...
 POST http://127.0.0.1:8765/control/runtime/save/load?token=...
 POST http://127.0.0.1:8765/control/runtime/save/erase?token=...
 POST http://127.0.0.1:8765/control/runtime/route/start?token=...
+POST http://127.0.0.1:8765/control/runtime/delivery/confirm?token=...
 POST http://127.0.0.1:8765/control/runtime/dog/assign?token=...
 POST http://127.0.0.1:8765/control/runtime/research/start?token=...
 POST http://127.0.0.1:8765/control/runtime/debug/tick?token=...
@@ -333,6 +334,17 @@ reserved for local capture/testing workflows such as Workbench runtime capture;
 it is not a player-facing speed and must not be used as visual/readability/feel
 acceptance.
 
+`game.first_day` exposes the accepted First Day MVP runtime proof fields for
+Workbench review: `postcard_life_moment_seen`, `first_reward_available`,
+`first_reward_equipped`, `first_memory_added`, `memory_text`,
+`next_day_hint_available` and `next_day_hint_text`. These are state evidence for
+the first delivery contract, not a new progression system.
+
+After the first delivery completes, the Food Bag token is no longer reported as
+available in `resources.inventories.delivery_van_endpoint`. Its token remains in
+the snapshot for review with `location=delivered_to_shelter`,
+`visible=false` and `semantic_state=delivered`.
+
 Event log tags include:
 
 ```text
@@ -347,8 +359,12 @@ economy
 habit_progression
 helper_effect
 blocked_state
+story
 debug
 ```
+
+Dev-only `runtime.debug.tick` events must stay tagged as `debug`; they are not
+production-chain evidence and should not inflate `production_events_recent`.
 
 Runtime action examples:
 
@@ -376,6 +392,8 @@ curl -fsS -X POST "http://127.0.0.1:8765/control/runtime/save/load?token=$TOKEN"
 curl -fsS -X POST "http://127.0.0.1:8765/control/runtime/save/erase?token=$TOKEN"
 
 curl -fsS -X POST "http://127.0.0.1:8765/control/runtime/route/start?token=$TOKEN"
+
+curl -fsS -X POST "http://127.0.0.1:8765/control/runtime/delivery/confirm?token=$TOKEN"
 
 curl -fsS -X POST "http://127.0.0.1:8765/control/runtime/dog/assign?token=$TOKEN" \
   -H 'Content-Type: application/json' \
@@ -408,6 +426,20 @@ tools/dev-vertical-slice.sh workbench-capture \
   --output-dir=.runtime/workbench_capture_runs/first_delivery_from_empty_v0
 ```
 
+To capture the accepted full first delivery path through the player dispatch
+confirmation, use:
+
+```sh
+cd steam
+tools/dev-vertical-slice.sh workbench-capture \
+  --scenario=first_delivery_with_dispatch_confirmation \
+  --fixture=first_day_empty_coop \
+  --game-seconds=420 \
+  --sample-every-game-seconds=10 \
+  --speed=100 \
+  --output-dir=.runtime/workbench_capture_runs/first_delivery_with_dispatch_confirmation_v0
+```
+
 The harness starts or reuses a local control-enabled Godot runtime, loads the
 accepted fixture, performs the scenario setup through whitelisted runtime
 control endpoints, advances bounded debug time, samples live `/state`, then
@@ -432,6 +464,13 @@ run.log
 stores event-log deltas observed during the run with sample context.
 `stress_signals.jsonl` stores one signal record per sample when the state
 contains `stress_test_signals`.
+
+For `first_delivery_with_dispatch_confirmation`, `manifest.json` contains both
+`dispatch_confirmation_proof` and `first_day_mvp_proof`. The first proof covers
+the accepted dispatch-confirmation path; the second additionally checks high
+level dog-action events, first-day postcard/memory/next-day-hint state, delivered
+Food Bag semantics, legacy `production_chain` consistency and debug event
+tagging.
 
 The capture harness redacts reusable token values from `manifest.json` and
 `run.log`. Generated bundles live under ignored `.runtime` storage and must not
@@ -583,6 +622,10 @@ For the current Vertical Slice, learned abilities are exported as an empty place
   bounded dev-only viewport capture.
 - runtime mutation commands are local prototype/dev-test commands only, not
   player-facing cheats and not final production save tooling.
+- `runtime.delivery.confirm` is limited to `order.first_warm_delivery` at the
+  accepted `ready_to_dispatch` / `waiting_for_player_confirmation` state and
+  returns a validation error instead of mutating arbitrary order/task/resource
+  state.
 - the capture API stores PNG bytes in connector memory and uses only deleted
   temporary PNG files as an encoding bridge; it does not produce MP4 files and
   does not enable Godot Movie Maker in the normal launcher.

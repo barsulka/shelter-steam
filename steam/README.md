@@ -259,6 +259,7 @@ POST /control/runtime/save/write
 POST /control/runtime/save/load
 POST /control/runtime/save/erase
 POST /control/runtime/route/start
+POST /control/runtime/delivery/confirm
 POST /control/runtime/dog/assign
 POST /control/runtime/research/start
 POST /control/runtime/debug/tick
@@ -284,6 +285,24 @@ This is not a default `--write-movie` recording of the whole game session.
 Workbench runtime capture uses the same dev-only runtime control surface and can
 set speed up to `100x` for local JSON capture/testing. `100x` is not a
 player-facing speed and must not be used as visual/readability/feel acceptance.
+The accepted full first-delivery capture scenario is:
+
+```sh
+tools/dev-vertical-slice.sh workbench-capture \
+  --scenario=first_delivery_with_dispatch_confirmation \
+  --fixture=first_day_empty_coop \
+  --game-seconds=420 \
+  --sample-every-game-seconds=10 \
+  --speed=100 \
+  --output-dir=.runtime/workbench_capture_runs/first_delivery_with_dispatch_confirmation_v0
+```
+
+That scenario confirms dispatch through the narrow
+`POST /control/runtime/delivery/confirm` action only after the live runtime has
+reached `ready_to_dispatch` / `waiting_for_player_confirmation`.
+Its `manifest.json` includes `first_day_mvp_proof`, which checks high-level dog
+action events, first-day postcard/memory/next-day-hint state, delivered Food Bag
+semantics, legacy `production_chain` consistency and clean debug event tagging.
 
 The fallback snapshot file is written to `.runtime/godot_state_connector/state_snapshot.json`.
 Its default file write interval is 5 seconds and can be changed with

@@ -25,7 +25,7 @@ Usage:
   tools/dev-vertical-slice.sh workbench-capture [options]
 
 Options:
-  --scenario=first_delivery_from_empty|warm_food_delivery_mid_chain|house_of_curiosity_learning_session
+  --scenario=first_delivery_from_empty|first_delivery_with_dispatch_confirmation|warm_food_delivery_mid_chain|house_of_curiosity_learning_session
   --fixture=fixture_id
   --game-seconds=180
   --sample-every-game-seconds=10
@@ -640,6 +640,11 @@ PY
                     workbench_fixture="first_day_empty_coop"
                 fi
                 ;;
+            first_delivery_with_dispatch_confirmation)
+                if [[ -z "$workbench_fixture" ]]; then
+                    workbench_fixture="first_day_empty_coop"
+                fi
+                ;;
             warm_food_delivery_mid_chain)
                 if [[ -z "$workbench_fixture" ]]; then
                     workbench_fixture="warm_food_delivery_mid_chain"
@@ -862,6 +867,112 @@ def advance_game_time(game_seconds):
         debug_seconds_remaining -= chunk
     return tick_results
 
+def first_warm_delivery_chain(state):
+    for chain in state.get("production_chains", []):
+        if chain.get("id") == "chain.warm_food_delivery_intro":
+            return chain
+    return {}
+
+def resource_token(state, internal_resource_id):
+    resources = state.get("resources", {}) or {}
+    for token in resources.get("tokens", []) or []:
+        if token.get("internal_resource_id") == internal_resource_id:
+            return token
+    economy_token = (((state.get("economy", {}) or {}).get("things", {}) or {}).get("tokens", {}) or {}).get(internal_resource_id)
+    if isinstance(economy_token, dict):
+        return economy_token
+    return {}
+
+def legacy_chain_statuses(state):
+    statuses = {}
+    for stage in state.get("production_chain", []) or []:
+        if isinstance(stage, dict):
+            statuses[str(stage.get("id", ""))] = str(stage.get("status", ""))
+    return statuses
+
+def is_ready_to_confirm_dispatch(state):
+    order = state.get("order", {}) or {}
+    chain = first_warm_delivery_chain(state)
+    return (
+        order.get("id") == "order.first_warm_delivery"
+        and order.get("delivery_state") == "ready_to_send"
+        and order.get("van_loaded") is True
+        and order.get("delivery_confirmed") is False
+        and chain.get("state") == "ready_to_dispatch"
+        and chain.get("current_step") == "player_confirms_dispatch"
+        and chain.get("blocked_reason") == "waiting_for_player_confirmation"
+        and chain.get("player_confirmation_required") is True
+    )
+
+def dispatch_capture_proof(state):
+    order = state.get("order", {}) or {}
+    game = state.get("game", {}) or {}
+    chain = first_warm_delivery_chain(state)
+    event_types = [event.get("type") for event in state.get("events", [])]
+    return {
+        "order.delivery_confirmed": order.get("delivery_confirmed") is True,
+        "order.postcard_visible": order.get("postcard_visible") is True,
+        "order.reward_available": order.get("reward_available") is True,
+        "game.chain_complete": game.get("chain_complete") is True,
+        "production_chain.state": chain.get("state", ""),
+        "production_chain.completed": chain.get("state") == "completed",
+        "event.player_confirmed_delivery": "player_confirmed_delivery" in event_types,
+        "event.postcard_created": "postcard_created" in event_types,
+        "event.reward_created": "reward_created" in event_types,
+    }
+
+def first_day_mvp_proof(state):
+    proof = dispatch_capture_proof(state)
+    game = state.get("game", {}) or {}
+    first_day = game.get("first_day", {}) or {}
+    events = state.get("events", []) or []
+    event_types = [event.get("type") for event in events]
+    event_tags = {event.get("type"): event.get("tag") for event in events}
+    food_bag = resource_token(state, "food_bag")
+    resources = state.get("resources", {}) or {}
+    inventories = resources.get("inventories", {}) or {}
+    van_inventory = inventories.get("delivery_van_endpoint", {}) or {}
+    legacy_statuses = legacy_chain_statuses(state)
+    dog_action_events = [
+        event for event in events
+        if event.get("tag") == "dog_action"
+        and str(event.get("type", "")).startswith("dog_")
+    ]
+    debug_time_events = [
+        event for event in events
+        if str(event.get("type", "")).startswith("debug_time_advanced")
+    ]
+    stress_signals = state.get("stress_test_signals", {}) or {}
+    proof.update({
+        "first_day.postcard_life_moment_seen": first_day.get("postcard_life_moment_seen") is True,
+        "first_day.first_reward_equipped": first_day.get("first_reward_equipped") is True,
+        "first_day.first_memory_added": first_day.get("first_memory_added") is True,
+        "first_day.next_day_hint_available": first_day.get("next_day_hint_available") is True,
+        "event.dog_noticed_postcard": "dog_noticed_postcard" in event_types,
+        "event.dog_received_reward": "dog_received_reward" in event_types,
+        "event.first_day_memory_added": "first_day_memory_added" in event_types,
+        "event.next_day_hint_available": "next_day_hint_available" in event_types,
+        "event.dog_equipped_first_reward": "dog_equipped_first_reward" in event_types,
+        "dog_action.high_level_count_ok": len(dog_action_events) >= 8,
+        "stress.dog_action_events_recent_positive": int(stress_signals.get("dog_action_events_recent", 0)) > 0,
+        "food_bag.not_in_delivery_van": food_bag.get("location") != "delivery_van_endpoint" and int(van_inventory.get("food_bag", 0)) == 0,
+        "food_bag.hidden_after_delivery": food_bag.get("visible") is False,
+        "food_bag.semantic_delivered": food_bag.get("semantic_state") == "delivered",
+        "food_bag.location": food_bag.get("location", ""),
+        "legacy.trip.complete": legacy_statuses.get("trip") == "complete",
+        "legacy.unload_to_storage.complete": legacy_statuses.get("unload_to_storage") == "complete",
+        "legacy.cook_food_mix.complete": legacy_statuses.get("cook_food_mix") == "complete",
+        "legacy.pack_food_bag.complete": legacy_statuses.get("pack_food_bag") == "complete",
+        "legacy.delivery.complete": legacy_statuses.get("delivery") == "complete",
+        "legacy.equip_comfortable_slippers.complete": legacy_statuses.get("equip_comfortable_slippers") == "complete",
+        "debug_time_advanced.events_tagged_debug": bool(debug_time_events) and all(event.get("tag") == "debug" for event in debug_time_events),
+        "debug_time_advanced.not_production_chain": all(event.get("tag") != "production_chain" for event in debug_time_events),
+        "event_tags.dog_noticed_postcard": event_tags.get("dog_noticed_postcard", ""),
+        "event_tags.first_day_memory_added": event_tags.get("first_day_memory_added", ""),
+        "event_tags.next_day_hint_available": event_tags.get("next_day_hint_available", ""),
+    })
+    return proof
+
 output_dir.mkdir(parents=True, exist_ok=True)
 for path in (snapshots_path, events_path, stress_path):
     path.write_text("", encoding="utf-8")
@@ -896,7 +1007,7 @@ setup_actions = [
     {"action": "fixture.load", "fixture_id": fixture_id},
     {"action": "runtime.speed.set", "speed_multiplier": speed_multiplier},
 ]
-if scenario_id in {"first_delivery_from_empty", "warm_food_delivery_mid_chain"}:
+if scenario_id in {"first_delivery_from_empty", "first_delivery_with_dispatch_confirmation", "warm_food_delivery_mid_chain"}:
     append_log("Starting accepted test route")
     route_response = request("POST", "/control/runtime/route/start")
     require_ok(route_response, "runtime.route.start")
@@ -918,6 +1029,8 @@ events_written = 0
 stress_lines_written = 0
 last_state = None
 debug_tick_seconds_per_sample = sample_every_game_seconds / float(speed_multiplier)
+dispatch_ready_observed = False
+dispatch_confirmation_response = None
 
 append_log(f"Capturing {expected_snapshot_count} samples")
 for sample_index in range(1, expected_snapshot_count + 1):
@@ -968,10 +1081,47 @@ for sample_index in range(1, expected_snapshot_count + 1):
         })
         stress_lines_written += 1
 
+    if (
+        scenario_id == "first_delivery_with_dispatch_confirmation"
+        and dispatch_confirmation_response is None
+        and is_ready_to_confirm_dispatch(state)
+    ):
+        dispatch_ready_observed = True
+        append_log(f"Sample {sample_index} reached ready_to_dispatch; confirming dispatch through runtime.delivery.confirm")
+        dispatch_confirmation_response = request("POST", "/control/runtime/delivery/confirm")
+        require_ok(dispatch_confirmation_response, "runtime.delivery.confirm")
+        setup_actions.append({
+            "action": "runtime.delivery.confirm",
+            "sample_index": sample_index,
+            "sample_game_time": current_game_time,
+            "delivery_confirmed": dispatch_confirmation_response.get("delivery_confirmed"),
+            "chain_state": dispatch_confirmation_response.get("chain_state"),
+        })
+
 if last_state is None:
     last_state = request("GET", "/state")
 
 final_state_path.write_text(json.dumps(last_state, ensure_ascii=False, indent=2), encoding="utf-8")
+
+dispatch_proof = None
+first_day_proof = None
+if scenario_id == "first_delivery_with_dispatch_confirmation":
+    if not dispatch_ready_observed or dispatch_confirmation_response is None:
+        raise RuntimeError("first_delivery_with_dispatch_confirmation did not observe ready_to_dispatch before confirmation")
+    dispatch_proof = dispatch_capture_proof(last_state)
+    first_day_proof = first_day_mvp_proof(last_state)
+    failed_dispatch_proof = [
+        key for key, value in dispatch_proof.items()
+        if key != "production_chain.state" and value is not True
+    ]
+    if failed_dispatch_proof:
+        raise RuntimeError(f"dispatch confirmation capture did not reach final proof values: {failed_dispatch_proof}; proof={json.dumps(dispatch_proof, ensure_ascii=False)}")
+    failed_first_day_proof = [
+        key for key, value in first_day_proof.items()
+        if isinstance(value, bool) and value is not True
+    ]
+    if failed_first_day_proof:
+        raise RuntimeError(f"first-day MVP capture did not reach final proof values: {failed_first_day_proof}; proof={json.dumps(first_day_proof, ensure_ascii=False)}")
 
 snapshot_count = sum(1 for _ in snapshots_path.open("r", encoding="utf-8"))
 if snapshot_count != expected_snapshot_count:
@@ -1004,6 +1154,8 @@ manifest = {
     },
     "command_line": command_line,
     "setup_actions": setup_actions,
+    "dispatch_confirmation_proof": dispatch_proof,
+    "first_day_mvp_proof": first_day_proof,
     "exit_status": "success",
     "known_warnings": known_warnings,
 }

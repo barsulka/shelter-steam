@@ -1,5 +1,124 @@
 # Codex Status
 
+## 2026-07-05 - First Day MVP runtime polish v1
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__First_Day_MVP_Runtime_Polish_v1.md`
+- Summary: Polished First Day MVP runtime evidence without expanding design scope. Debug tick events now remain tagged as `debug`, high-level dog-action events are emitted through the warm-food chain, the post-delivery postcard/memory/next-day-hint moment is exposed under `game.first_day`, and the delivered Food Bag leaves the van inventory with `location=delivered_to_shelter`, `visible=false`, `semantic_state=delivered`.
+- Legacy compatibility: Final legacy `production_chain` stages now stay `complete` after resources are transformed or delivered, matching authoritative `production_chains[chain.warm_food_delivery_intro]`.
+- Workbench proof:
+  - Output: `steam/.runtime/workbench_capture_runs/_smoke_first_day_mvp_runtime_polish/`
+  - `snapshot_count=42`, `events_written=106`
+  - `first_day_mvp_proof` confirms dispatch completion, postcard/reward state, `dog_noticed_postcard`, `dog_received_reward`, `first_day_memory_added`, `next_day_hint_available`, `dog_equipped_first_reward`, high-level dog-action count, delivered Food Bag semantics, clean debug tagging, and final legacy chain consistency.
+  - Final signals: `dog_action_events_recent=28`, `story_events_recent=6`, `production_events_recent=13`, `chains_with_invisible_conversion=0`.
+- Changed files:
+  - `steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - `steam/scripts/game_systems/game_systems_runtime.gd`
+  - `steam/tools/dev-vertical-slice.sh`
+  - `steam/README.md`
+  - `docs/repo/api/godot-state-connector.openapi.yaml`
+  - `docs/repo/dev/godot-state-connector.md`
+  - `docs/repo/status/CODEX_STATUS.md`
+- Checks:
+  - Passed: `bash -n steam/tools/dev-vertical-slice.sh`
+  - Passed: `bash -n steam/launch.sh`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh workbench-capture --help`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh workbench-capture --scenario=first_delivery_with_dispatch_confirmation --fixture=first_day_empty_coop --game-seconds=420 --sample-every-game-seconds=10 --speed=100 --output-dir=.runtime/workbench_capture_runs/_smoke_first_day_mvp_runtime_polish`
+  - Passed: JSON parse and proof assertions for `_smoke_first_day_mvp_runtime_polish/manifest.json`, `final_state.json`, `snapshots.jsonl`, `events.jsonl`, and `stress_signals.jsonl`
+  - Passed: regression captures for `first_delivery_from_empty`, `warm_food_delivery_mid_chain`, and `house_of_curiosity_learning_session`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh runtime-foundation-smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh connector-control-smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh smoke`
+  - Passed: `cd steam && tools/check-godot.sh`
+  - Passed: OpenAPI YAML parse and `FirstDayState` schema assertion
+  - Passed: `git diff --check`
+- Known limitations:
+  - Generated capture bundles remain ignored under `steam/.runtime/` and must not be committed.
+  - Accelerated `100x` JSON capture validates state transitions and causality only; visual warmth/readability/player feel still require visual review.
+  - No new dogs, production chains, House of Curiosity loop, mood/energy penalties, monetization, gacha, reroll, broad dev controls or visual-direction decisions were added.
+
+## 2026-07-05 - Shelter MCP dispatch whitelist and output schemas v0
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Workbench_Dispatch_Whitelist_And_Output_Schemas_v0.md`
+- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- Summary: Updated Shelter MCP so the already implemented Steam/Desktop dispatch-confirmation runtime path is available through the local MCP bridge. `workbench_capture` now accepts `first_delivery_with_dispatch_confirmation`, and `control_shelter_game` exposes the narrow `runtime_delivery_confirm` action for `POST /control/runtime/delivery/confirm`.
+- Output schemas: Confirmed `github.com/modelcontextprotocol/go-sdk v1.6.1` supports `Tool.OutputSchema`. First-party Shelter MCP handlers now return concrete output structs instead of `any`, allowing `mcp.AddTool` to publish explicit output schemas for `list_shelter_dev_commands`, `run_shelter_dev_command`, `list_workbench_runs`, `get_workbench_run_artifacts`, `clear_workbench_runs`, `start_shelter_control_connector`, `stop_shelter_control_connector`, `control_shelter_game`, and `list_shelter_upstreams`.
+- Runtime capture proof:
+  - Output: `steam/.runtime/workbench_capture_runs/first_delivery_with_dispatch_confirmation_v0_mcp/`
+  - Manifest `dispatch_confirmation_proof` confirms `order.delivery_confirmed=true`, `order.postcard_visible=true`, `order.reward_available=true`, `game.chain_complete=true`, `production_chain.state=completed`, `production_chain.completed=true`, `event.player_confirmed_delivery=true`, `event.postcard_created=true`, and `event.reward_created=true`.
+- Changed files in MCP repo:
+  - `README.md`
+  - `internal/sheltermcp/commands.go`
+  - `internal/sheltermcp/control.go`
+  - `internal/sheltermcp/process.go`
+  - `internal/sheltermcp/server_test.go`
+  - `internal/sheltermcp/upstreams.go`
+  - `internal/sheltermcp/workbench.go`
+- Changed files in Shelter repo:
+  - `docs/repo/status/CODEX_STATUS.md`
+- Checks:
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./... -run Test`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && SHELTER_MCP_REAL_WORKBENCH_CAPTURE=1 SHELTER_STEAM_ROOT=/Users/barsulka/GolandProjects/shelter/shelter/steam go test ./internal/sheltermcp -run TestRealWorkbenchCaptureDispatchScenarioThroughMCP -count=1 -v`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: manifest proof assertions for `dispatch_confirmation_proof`.
+- Known limitations:
+  - Generated capture bundles remain ignored under `steam/.runtime/` and must not be committed.
+  - The capture validates state transitions and causality only; visual warmth/readability/player feel still require visual review.
+
+## 2026-07-03 - Dispatch confirmation Workbench capture path v0
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Dispatch_Confirmation_Capture_Path_v0.md`
+- Summary: Added an accepted dev-only Workbench capture path for the full first Warm Food Delivery through player dispatch confirmation. `workbench-capture` now supports `first_delivery_with_dispatch_confirmation`, records a `ready_to_dispatch` / `waiting_for_player_confirmation` snapshot before confirming, calls the narrow token-protected `runtime.delivery.confirm` control action, then continues sampling until postcard, reward and chain completion are observable.
+- New endpoint/action:
+  - `POST /control/runtime/delivery/confirm`
+  - Command id: `runtime.delivery.confirm`
+  - Scope: only `order.first_warm_delivery` when `delivery_state=ready_to_send`, `van_loaded=true`, production chain state is `ready_to_dispatch`, current step is `player_confirms_dispatch`, and `blocked_reason=waiting_for_player_confirmation`.
+  - Invalid state returns `ok:false` with validation details; no generic command execution, arbitrary order/task/resource mutation or broad cheat control was added.
+- Smoke output:
+  - `steam/.runtime/workbench_capture_runs/_smoke_first_delivery_dispatch/`
+  - Generated files: `manifest.json`, `snapshots.jsonl`, `events.jsonl`, `stress_signals.jsonl`, `final_state.json`, `run.log`
+- Dispatch smoke proof:
+  - `snapshot_count=42`
+  - ready snapshot before confirm: sample `20`, game time `200.0`, blocked reason `waiting_for_player_confirmation`
+  - `order.delivery_confirmed=true`
+  - `order.postcard_visible=true`
+  - `order.reward_available=true`
+  - `game.chain_complete=true`
+  - `production_chain.state=completed`
+  - event log contains `player_confirmed_delivery`, `postcard_created`, `reward_created`, and `reward_equipped`
+- Changed files:
+  - `steam/tools/dev-vertical-slice.sh`
+  - `steam/scripts/dev_tools/godot_state_connector.gd`
+  - `steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - `steam/README.md`
+  - `docs/repo/api/godot-state-connector.openapi.yaml`
+  - `docs/repo/dev/godot-state-connector.md`
+  - `docs/repo/status/CODEX_STATUS.md`
+- Checks:
+  - Passed: `bash -n steam/tools/dev-vertical-slice.sh`
+  - Passed: `bash -n steam/launch.sh`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh workbench-capture --help`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh workbench-capture --scenario=first_delivery_with_dispatch_confirmation --fixture=first_day_empty_coop --game-seconds=420 --sample-every-game-seconds=10 --speed=100 --output-dir=.runtime/workbench_capture_runs/_smoke_first_delivery_dispatch`
+  - Passed: JSON parse for `_smoke_first_delivery_dispatch/manifest.json` and `_smoke_first_delivery_dispatch/final_state.json`
+  - Passed: JSONL parse/proof assertions for `_smoke_first_delivery_dispatch`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh workbench-capture --scenario=first_delivery_from_empty --game-seconds=30 --sample-every-game-seconds=10 --speed=100 --output-dir=.runtime/workbench_capture_runs/_smoke_first_delivery_regression`
+  - Passed: small regression captures for `warm_food_delivery_mid_chain` and `house_of_curiosity_learning_session`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh runtime-foundation-smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh connector-control-smoke`
+  - Passed: OpenAPI YAML parse and `/control/runtime/delivery/confirm` path assertion
+  - Passed: `Godot --headless --path steam --check-only --script res://scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - Passed: `Godot --headless --path steam --check-only --script res://scripts/dev_tools/godot_state_connector.gd`
+  - Passed: `cd steam && tools/check-godot.sh`
+  - Passed: `git diff --check`
+- Known limitations:
+  - Generated capture bundles remain ignored under `steam/.runtime/` and must not be committed.
+  - Accelerated 100x JSON capture validates state transitions and causality only; visual warmth, readability, animation feel and desktop calmness still require real-speed/visual review.
+  - The dispatch action intentionally enables only a narrow dev follow-up for the accepted capture path after valid dispatch confirmation; normal player UI flow remains unchanged.
+
 ## 2026-07-02 - Shelter MCP documentation bridge update
 
 - Branch: `master`

@@ -347,6 +347,26 @@ paths:
                 $ref: "#/components/schemas/RuntimeCommandResponse"
         "404":
           $ref: "#/components/responses/MaskedNotFound"
+  /control/runtime/delivery/confirm:
+    post:
+      tags: [Runtime Control]
+      summary: Confirm the accepted first delivery dispatch
+      description: >
+        Dev-only narrow action that confirms `order.first_warm_delivery` only
+        when the live runtime is already waiting at `ready_to_dispatch` /
+        `player_confirms_dispatch`, the van is loaded, and player confirmation
+        is required. Invalid state returns `ok: false` with validation details;
+        the endpoint does not accept arbitrary order, task or resource
+        mutation.
+      responses:
+        "200":
+          description: Dispatch confirmation result or dev validation error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RuntimeCommandResponse"
+        "404":
+          $ref: "#/components/responses/MaskedNotFound"
   /control/runtime/dog/assign:
     post:
       tags: [Runtime Control]
@@ -624,6 +644,8 @@ components:
           type: boolean
         chain_complete:
           type: boolean
+        first_day:
+          $ref: "#/components/schemas/FirstDayState"
         control_enabled:
           type: boolean
         ui_visible:
@@ -632,6 +654,38 @@ components:
           type: boolean
         ui_hidden:
           type: boolean
+      additionalProperties: true
+    FirstDayState:
+      type: object
+      description: First Day MVP runtime evidence exposed for Workbench review.
+      properties:
+        order_id:
+          type: string
+          example: order.first_warm_delivery
+        postcard_life_moment_seen:
+          type: boolean
+        first_reward_available:
+          type: boolean
+        first_reward_equipped:
+          type: boolean
+        first_memory_added:
+          type: boolean
+        memory_id:
+          type: string
+          nullable: true
+          example: memory.first_warm_delivery
+        memory_text:
+          type: string
+          example: Помнит первую тёплую поставку
+        next_day_hint_available:
+          type: boolean
+        next_day_hint_id:
+          type: string
+          nullable: true
+          example: hint.first_day_next_day
+        next_day_hint_text:
+          type: string
+          example: Завтра можно осторожно продолжить заботу о приюте.
       additionalProperties: true
     ControlCapabilities:
       type: object

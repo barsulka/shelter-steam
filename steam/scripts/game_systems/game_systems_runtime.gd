@@ -602,8 +602,8 @@ func _economy_state(context: Dictionary) -> Dictionary:
         "life": {
             "dog_time_allocation": _dog_time_allocation(context),
             "inspiration_events": _events_by_tags(["research"], 20),
-            "comfort_events": _events_by_types(["reward_created", "reward_equipped"], 20),
-            "story_events": _events_by_types(["postcard_created", "delivery_complete"], 20),
+            "comfort_events": _events_by_types(["reward_created", "reward_equipped", "dog_received_reward", "dog_equipped_first_reward"], 20),
+            "story_events": _events_by_types(["postcard_created", "delivery_complete", "dog_noticed_postcard", "first_day_memory_added", "next_day_hint_available"], 20),
             "relationship_events": _events_by_tags(["helper_effect"], 20),
         },
         "cadence": {
@@ -631,7 +631,7 @@ func _stress_test_signals(dogs: Array[Dictionary], chains: Array[Dictionary], ev
     return {
         "dog_action_events_recent": _count_events_by_tag(events, "dog_action"),
         "production_events_recent": _count_events_by_tag(events, "production_chain"),
-        "story_events_recent": _count_events_by_types(events, ["postcard_created", "delivery_complete", "reward_created"]),
+        "story_events_recent": _count_events_by_types(events, ["postcard_created", "delivery_complete", "reward_created", "dog_noticed_postcard", "first_day_memory_added", "next_day_hint_available"]),
         "raw_inventory_growth_recent": _count_events_by_types(events, ["resource_added_to_storage:oat_crate", "resource_added_to_storage:pumpkin_crate", "food_mix_created", "food_bag_created"]),
         "blocked_states_recent": _count_events_by_tag(events, "blocked_state"),
         "room_activity_events_recent": _count_events_by_tag(events, "room"),
@@ -642,6 +642,10 @@ func _stress_test_signals(dogs: Array[Dictionary], chains: Array[Dictionary], ev
 
 
 func _default_tag_for_event(event_type: String) -> String:
+    if event_type.contains("debug") or event_type.contains("runtime"):
+        return "debug"
+    if event_type.contains("postcard") or event_type.contains("memory") or event_type.contains("next_day_hint"):
+        return "story"
     if event_type.contains("trip") or event_type.contains("transport") or event_type.contains("route"):
         return "route"
     if event_type.contains("carry") or event_type.contains("moving") or event_type.contains("left_strip") or event_type.contains("returned"):
@@ -658,8 +662,6 @@ func _default_tag_for_event(event_type: String) -> String:
         return "helper_effect"
     if event_type.contains("blocked"):
         return "blocked_state"
-    if event_type.contains("debug") or event_type.contains("runtime"):
-        return "debug"
     return "dog_action"
 
 

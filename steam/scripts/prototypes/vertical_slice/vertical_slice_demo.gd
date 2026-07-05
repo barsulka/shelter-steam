@@ -228,7 +228,11 @@ var _postcard_claimed := false
 var _reward_available := false
 var _equip_task_created := false
 var _slippers_equipped := false
+var _first_day_postcard_life_moment_seen := false
+var _first_day_first_memory_added := false
+var _first_day_next_day_hint_available := false
 var _chain_complete := false
+var _runtime_dispatch_confirmation_followup := false
 
 var _transport_x := 230.0
 var _transport_visible := true
@@ -525,7 +529,11 @@ func _reset_world_state() -> void:
     _reward_available = false
     _equip_task_created = false
     _slippers_equipped = false
+    _first_day_postcard_life_moment_seen = false
+    _first_day_first_memory_added = false
+    _first_day_next_day_hint_available = false
     _chain_complete = false
+    _runtime_dispatch_confirmation_followup = false
     _task_queue.clear()
     _current_task.clear()
     _current_step_index = -1
@@ -830,6 +838,7 @@ func _on_tick() -> void:
     _try_start_next_task()
     _update_idle_dogs()
     _run_auto_play(simulation_delta)
+    _run_runtime_dispatch_confirmation_followup()
 
     if not _current_task.is_empty() or _auto_play or _capture_mode or _control_video_running:
         _update_ui()
@@ -878,6 +887,24 @@ func _run_auto_play(delta: float) -> void:
         _auto_action_gate = 0.2
 
 
+func _run_runtime_dispatch_confirmation_followup() -> void:
+    if not _runtime_dispatch_confirmation_followup:
+        return
+    if not _delivery_confirmed:
+        _runtime_dispatch_confirmation_followup = false
+        return
+    if _chain_complete:
+        _runtime_dispatch_confirmation_followup = false
+        return
+    if not _current_task.is_empty():
+        return
+
+    if _postcard_visible and not _postcard_claimed:
+        _claim_reward_pressed()
+    elif _reward_available and not _equip_task_created:
+        _equip_slippers_pressed()
+
+
 func _update_idle_dogs() -> void:
     for dog_id in _dogs.keys():
         var dog := _dogs[dog_id] as Dictionary
@@ -924,6 +951,19 @@ func _claim_reward_pressed() -> void:
     _reward_available = true
     _order_state = "reward_claimed"
     _emit_event("reward_created")
+    _emit_event("dog_received_reward", {
+        "tag": "dog_action",
+        "dog_ids": ["dog.dachshund_intro"],
+        "place_ids": ["ui.postcard_card"],
+        "building_ids": ["ui.postcard_card"],
+        "chain_ids": ["chain.warm_food_delivery_intro"],
+        "message": "Такса получила первые удобные тапочки за тёплую поставку",
+        "payload": {
+            "reward_id": "equipment.comfortable_slippers",
+            "order_id": "order.first_warm_delivery",
+            "moment_id": "first_day_reward_received",
+        },
+    })
     _update_ui()
 
 
@@ -1176,7 +1216,9 @@ func _handle_task_completed(task: Dictionary) -> void:
             _postcard_visible = true
             _order_state = "completed"
             _delivery_state = "delivered"
+            _mark_food_bag_delivered()
             _emit_event("postcard_created")
+            _record_first_day_post_delivery_moment()
         "EquipItemTask":
             _chain_complete = true
             print("vertical_slice_complete=true")
@@ -1198,6 +1240,10 @@ func _run_step_operation(operation: String, task: Dictionary) -> void:
             _transport_visible = false
             _set_dog_visible(str(task.get("assigned_dog_id", "")), false)
             _emit_event("transport_left_strip")
+            _emit_task_dog_action("dog_departed_with_bicycle", task, "Такса уехала за первой тёплой поставкой", {
+                "activity_detail": "route_departure",
+                "transport_id": "transport.basket_bicycle",
+            })
         "trip_timer_started":
             _transport_state = "away"
             _emit_event("trip_timer_started")
@@ -1211,6 +1257,11 @@ func _run_step_operation(operation: String, task: Dictionary) -> void:
         "transport_returned":
             _transport_state = "waiting_for_unload"
             _emit_event("transport_returned")
+            _emit_task_dog_action("dog_returned_with_payload", task, "Такса вернулась с корзиной продуктов", {
+                "activity_detail": "route_return_with_payload",
+                "transport_id": "transport.basket_bicycle",
+                "resources": ["resource.oat_crate", "resource.pumpkin_crate"],
+            })
         "create_trip_payload":
             _create_trip_payload()
         "pickup_resource":
@@ -1219,10 +1270,16 @@ func _run_step_operation(operation: String, task: Dictionary) -> void:
             _place_resource_for_task(task)
         "start_cooking":
             _order_state = "production_in_progress"
+            _emit_task_dog_action("dog_started_cooking", task, "Лабрадор начал готовить food mix", {
+                "activity_detail": "cooking_food_mix",
+            })
         "complete_cooking":
             _complete_cooking()
         "start_packing":
             _order_state = "production_in_progress"
+            _emit_task_dog_action("dog_started_packing", task, "Лабрадор начал собирать Food Bag", {
+                "activity_detail": "packing_food_bag",
+            })
         "complete_packing":
             _complete_packing()
         "start_delivery":
@@ -1570,6 +1627,9 @@ func _pickup_resource_for_task(task: Dictionary) -> void:
     var dog := _dogs[dog_id] as Dictionary
     dog["carried_resource"] = resource_id
     dog["state"] = "carrying_item"
+    _emit_task_dog_action("dog_picked_up_resource", task, _dog_action_resource_message(task, "picked_up"), {
+        "activity_detail": "resource_pickup",
+    })
 
 
 func _place_resource_for_task(task: Dictionary) -> void:
@@ -1592,16 +1652,28 @@ func _place_resource_for_task(task: Dictionary) -> void:
         "UnloadTask":
             _increment_inventory(_storage_inventory, resource_id)
             _emit_event("resource_added_to_storage:%s" % resource_id)
+            _emit_task_dog_action("dog_delivered_resource", task, _dog_action_resource_message(task, "delivered"), {
+                "activity_detail": "unload_to_storage",
+            })
         "CarryTask":
             if target == "kitchen":
                 _increment_inventory(_kitchen_inputs, resource_id)
                 _emit_event("resource_delivered_to_kitchen:%s" % resource_id)
+                _emit_task_dog_action("dog_delivered_resource", task, _dog_action_resource_message(task, "delivered"), {
+                    "activity_detail": "carry_to_kitchen",
+                })
             elif target == "packing_table":
                 _increment_inventory(_packing_inputs, resource_id)
                 _emit_event("resource_delivered_to_packing_table:%s" % resource_id)
+                _emit_task_dog_action("dog_delivered_resource", task, _dog_action_resource_message(task, "delivered"), {
+                    "activity_detail": "carry_to_packing_table",
+                })
         "LoadVanTask":
             _delivery_state = "ready_to_send"
             _emit_event("van_loaded")
+            _emit_task_dog_action("dog_loaded_van", task, "Лабрадор загрузил Food Bag в фургон", {
+                "activity_detail": "load_delivery_van",
+            })
 
 
 func _complete_cooking() -> void:
@@ -1610,6 +1682,10 @@ func _complete_cooking() -> void:
     _hide_token("protein_packet")
     _create_resource_token("food_mix", "kitchen", false)
     _emit_event("food_mix_created")
+    _emit_task_dog_action("dog_created_food_mix", _current_task, "Лабрадор приготовил food mix", {
+        "activity_detail": "food_mix_created",
+        "resource_id": "resource.food_mix",
+    })
 
 
 func _complete_packing() -> void:
@@ -1617,6 +1693,10 @@ func _complete_packing() -> void:
     _hide_token("packaging_bag")
     _create_resource_token("food_bag", "packing_table", false)
     _emit_event("food_bag_created")
+    _emit_task_dog_action("dog_created_food_bag", _current_task, "Лабрадор собрал Food Bag для первой поставки", {
+        "activity_detail": "food_bag_created",
+        "resource_id": "resource.food_bag",
+    })
 
 
 func _complete_equipment() -> void:
@@ -1625,6 +1705,19 @@ func _complete_equipment() -> void:
     dog["state"] = "equipped_with_slippers"
     _slippers_equipped = true
     _emit_event("reward_equipped")
+    _emit_event("dog_equipped_first_reward", {
+        "tag": "dog_action",
+        "dog_ids": ["dog.dachshund_intro"],
+        "place_ids": ["ui.postcard_card"],
+        "building_ids": ["ui.postcard_card"],
+        "chain_ids": ["chain.warm_food_delivery_intro"],
+        "message": "Такса надела первые удобные тапочки",
+        "payload": {
+            "reward_id": "equipment.comfortable_slippers",
+            "order_id": "order.first_warm_delivery",
+            "moment_id": "first_day_reward_equipped",
+        },
+    })
 
 
 func _hide_token(resource_id: String) -> void:
@@ -1635,6 +1728,68 @@ func _hide_token(resource_id: String) -> void:
     token["visible"] = false
     token["location"] = "consumed"
     token["carried_by"] = ""
+
+
+func _mark_food_bag_delivered() -> void:
+    if not _tokens.has("food_bag"):
+        return
+
+    var token := _tokens["food_bag"] as Dictionary
+    token["visible"] = false
+    token["location"] = "delivered_to_shelter"
+    token["carried_by"] = ""
+    token["semantic_state"] = "delivered"
+    token["delivery_id"] = "order.first_warm_delivery"
+    token["delivered_at_seconds"] = snappedf(_elapsed, 0.001)
+
+
+func _record_first_day_post_delivery_moment() -> void:
+    if not _first_day_postcard_life_moment_seen:
+        _first_day_postcard_life_moment_seen = true
+        _emit_event("dog_noticed_postcard", {
+            "tag": "dog_action",
+            "dog_ids": ["dog.dachshund_intro", "dog.labrador_intro"],
+            "place_ids": ["ui.postcard_card", "object.delivery_van_endpoint"],
+            "building_ids": ["ui.postcard_card", "object.delivery_van_endpoint"],
+            "chain_ids": ["chain.warm_food_delivery_intro"],
+            "message": "Собаки заметили открытку после первой тёплой поставки",
+            "payload": {
+                "order_id": "order.first_warm_delivery",
+                "moment_id": "first_day_post_delivery_postcard",
+            },
+        })
+
+    if not _first_day_first_memory_added:
+        _first_day_first_memory_added = true
+        _emit_event("first_day_memory_added", {
+            "tag": "helper_effect",
+            "dog_ids": ["dog.dachshund_intro"],
+            "place_ids": ["ui.postcard_card"],
+            "building_ids": ["ui.postcard_card"],
+            "chain_ids": ["chain.warm_food_delivery_intro"],
+            "message": "Такса запомнила первую тёплую поставку",
+            "payload": {
+                "memory_id": "memory.first_warm_delivery",
+                "memory_text": "Помнит первую тёплую поставку",
+                "order_id": "order.first_warm_delivery",
+            },
+        })
+
+    if not _first_day_next_day_hint_available:
+        _first_day_next_day_hint_available = true
+        _emit_event("next_day_hint_available", {
+            "tag": "story",
+            "dog_ids": ["dog.dachshund_intro", "dog.labrador_intro"],
+            "place_ids": ["ui.postcard_card"],
+            "building_ids": ["ui.postcard_card"],
+            "chain_ids": ["chain.warm_food_delivery_intro"],
+            "message": "В состоянии доступна мягкая подсказка следующего дня",
+            "payload": {
+                "hint_id": "hint.first_day_next_day",
+                "hint_text": "Завтра можно осторожно продолжить заботу о приюте.",
+                "order_id": "order.first_warm_delivery",
+            },
+        })
 
 
 func _maybe_enqueue_kitchen_carries() -> void:
@@ -2387,12 +2542,90 @@ func _merged_mouse_intervals(intervals: Array[Dictionary]) -> Array[Dictionary]:
     return merged
 
 
-func _emit_event(event_name: String) -> void:
-    var event := _systems_runtime.emit_event(_elapsed, event_name, _event_details(event_name))
+func _emit_event(event_name: String, details_override: Dictionary = {}) -> void:
+    var details := _event_details(event_name)
+    details = _merge_event_details(details, details_override)
+    var event := _systems_runtime.emit_event(_elapsed, event_name, details)
     _last_event = str(event.get("type", event_name))
     var line := "%.2f %s" % [float(event.get("time", _elapsed)), event_name]
     _event_log.append(line)
     print("vertical_slice_event=%s" % event_name)
+
+
+func _merge_event_details(base: Dictionary, override: Dictionary) -> Dictionary:
+    var merged := base.duplicate(true)
+    if override.is_empty():
+        return merged
+
+    for key in override.keys():
+        if str(key) == "payload" and override[key] is Dictionary:
+            var payload := (merged.get("payload", {}) as Dictionary).duplicate(true)
+            for payload_key in (override[key] as Dictionary).keys():
+                payload[payload_key] = (override[key] as Dictionary)[payload_key]
+            merged["payload"] = payload
+        else:
+            merged[key] = override[key]
+    return merged
+
+
+func _emit_task_dog_action(event_name: String, task: Dictionary, message: String, payload_override: Dictionary = {}) -> void:
+    if task.is_empty():
+        return
+
+    _emit_event(event_name, _task_dog_action_details(task, message, payload_override))
+
+
+func _task_dog_action_details(task: Dictionary, message: String, payload_override: Dictionary = {}) -> Dictionary:
+    var dog_ids: Array[String] = []
+    var dog_key: Variant = _dog_key_from_internal(str(task.get("assigned_dog_id", "")))
+    if dog_key != null:
+        dog_ids.append(str(dog_key))
+
+    var place_ids: Array[String] = []
+    var source_key: Variant = _object_key_from_internal(str(task.get("source_object_id", "")))
+    var target_key: Variant = _object_key_from_internal(str(task.get("target_object_id", "")))
+    if source_key != null:
+        place_ids.append(str(source_key))
+    if target_key != null and not (str(target_key) in place_ids):
+        place_ids.append(str(target_key))
+
+    var payload := {
+        "task_id": str(task.get("id", "")),
+        "task_type": str(task.get("type", "")),
+        "order_id": str(task.get("order_id", "order.first_warm_delivery")),
+    }
+    var resource_id := str(task.get("resource_id", ""))
+    if resource_id != "":
+        payload["internal_resource_id"] = resource_id
+        payload["resource_id"] = _resource_key_from_internal(resource_id)
+    for payload_key in payload_override.keys():
+        payload[payload_key] = payload_override[payload_key]
+
+    return {
+        "tag": "dog_action",
+        "dog_ids": dog_ids,
+        "place_ids": place_ids,
+        "building_ids": place_ids,
+        "chain_ids": ["chain.warm_food_delivery_intro"],
+        "message": message,
+        "payload": payload,
+    }
+
+
+func _dog_action_resource_message(task: Dictionary, action: String) -> String:
+    var dog_label := "Собака"
+    var dog_id := str(task.get("assigned_dog_id", ""))
+    if _dogs.has(dog_id):
+        var dog := _dogs[dog_id] as Dictionary
+        dog_label = str((DOG_DEFS[dog_id] as Dictionary).get("public_name", dog.get("id", dog_id)))
+
+    var resource_label := str(task.get("resource_id", "resource"))
+    if RESOURCE_DEFS.has(resource_label):
+        resource_label = str((RESOURCE_DEFS[resource_label] as Dictionary).get("name", resource_label))
+
+    if action == "picked_up":
+        return "%s взяла %s" % [dog_label, resource_label]
+    return "%s доставила %s" % [dog_label, resource_label]
 
 
 func _prepare_capture_directories() -> void:
@@ -2882,6 +3115,9 @@ func _runtime_flags() -> Dictionary:
         "reward_available": _reward_available,
         "equip_task_created": _equip_task_created,
         "slippers_equipped": _slippers_equipped,
+        "first_day_postcard_life_moment_seen": _first_day_postcard_life_moment_seen,
+        "first_day_first_memory_added": _first_day_first_memory_added,
+        "first_day_next_day_hint_available": _first_day_next_day_hint_available,
         "chain_complete": _chain_complete,
     }
 
@@ -2982,6 +3218,9 @@ func _apply_runtime_portable_state(state: Dictionary) -> void:
     _reward_available = bool(flags.get("reward_available", _reward_available))
     _equip_task_created = bool(flags.get("equip_task_created", _equip_task_created))
     _slippers_equipped = bool(flags.get("slippers_equipped", _slippers_equipped))
+    _first_day_postcard_life_moment_seen = bool(flags.get("first_day_postcard_life_moment_seen", _first_day_postcard_life_moment_seen))
+    _first_day_first_memory_added = bool(flags.get("first_day_first_memory_added", _first_day_first_memory_added))
+    _first_day_next_day_hint_available = bool(flags.get("first_day_next_day_hint_available", _first_day_next_day_hint_available))
     _chain_complete = bool(flags.get("chain_complete", _chain_complete))
 
     var transport := state.get("transport", {}) as Dictionary
@@ -2993,6 +3232,7 @@ func _apply_runtime_portable_state(state: Dictionary) -> void:
     var order := state.get("order", {}) as Dictionary
     _order_state = str(order.get("state", _order_state))
     _delivery_state = str(order.get("delivery_state", _delivery_state))
+    _runtime_dispatch_confirmation_followup = false
 
 
 func _repair_imported_runtime_state() -> void:
@@ -3122,6 +3362,8 @@ func _handle_state_connector_control(command: String, _payload: Dictionary) -> D
             return _control_runtime_save_erase(command)
         "runtime.route.start":
             return _control_runtime_route_start(command)
+        "runtime.delivery.confirm":
+            return _control_runtime_delivery_confirm(command)
         "runtime.dog.assign":
             return _control_runtime_dog_assign(command, _payload)
         "runtime.research.start":
@@ -3345,6 +3587,78 @@ func _control_runtime_route_start(command: String) -> Dictionary:
     }
 
 
+func _control_runtime_delivery_confirm(command: String) -> Dictionary:
+    var validation := _runtime_delivery_confirm_validation()
+    if not bool(validation.get("valid", false)):
+        return {
+            "ok": false,
+            "command": command,
+            "error": "dispatch_confirmation_invalid_state",
+            "validation": validation,
+        }
+
+    _confirm_delivery_pressed()
+    _runtime_dispatch_confirmation_followup = true
+    return {
+        "ok": true,
+        "command": command,
+        "order_id": "order.first_warm_delivery",
+        "route_id": "route.oat_farm_intro",
+        "chain_id": "chain.warm_food_delivery_intro",
+        "delivery_confirmed": _delivery_confirmed,
+        "post_dispatch_followup_enabled": _runtime_dispatch_confirmation_followup,
+        "order_state": _order_state,
+        "delivery_state": _delivery_state,
+        "chain_state": _systems_runtime.build_state(_runtime_context())["production_chains"][0]["state"],
+    }
+
+
+func _runtime_delivery_confirm_validation() -> Dictionary:
+    var runtime_state := _systems_runtime.build_state(_runtime_context())
+    var chains := runtime_state.get("production_chains", []) as Array
+    var chain: Dictionary = {}
+    if not chains.is_empty() and chains[0] is Dictionary:
+        chain = chains[0] as Dictionary
+
+    var problems: Array[String] = []
+    if str(chain.get("id", "")) != "chain.warm_food_delivery_intro":
+        problems.append("unexpected_chain")
+    if not _route_started:
+        problems.append("route_not_started")
+    if not _van_loaded:
+        problems.append("van_not_loaded")
+    if _delivery_confirmed:
+        problems.append("delivery_already_confirmed")
+    if _delivery_state != "ready_to_send":
+        problems.append("delivery_state_not_ready_to_send")
+    if _order_state != "loaded":
+        problems.append("order_not_loaded")
+    if str(chain.get("state", "")) != "ready_to_dispatch":
+        problems.append("chain_not_ready_to_dispatch")
+    if str(chain.get("current_step", "")) != "player_confirms_dispatch":
+        problems.append("chain_not_waiting_for_player_dispatch_step")
+    if str(chain.get("blocked_reason", "")) != "waiting_for_player_confirmation":
+        problems.append("chain_not_waiting_for_player_confirmation")
+    if not bool(chain.get("player_confirmation_required", false)):
+        problems.append("player_confirmation_not_required")
+
+    return {
+        "valid": problems.is_empty(),
+        "problems": problems,
+        "order_id": "order.first_warm_delivery",
+        "route_id": "route.oat_farm_intro",
+        "chain_id": str(chain.get("id", "")),
+        "order_state": _order_state,
+        "delivery_state": _delivery_state,
+        "van_loaded": _van_loaded,
+        "delivery_confirmed": _delivery_confirmed,
+        "chain_state": str(chain.get("state", "")),
+        "current_step": str(chain.get("current_step", "")),
+        "blocked_reason": chain.get("blocked_reason", null),
+        "player_confirmation_required": bool(chain.get("player_confirmation_required", false)),
+    }
+
+
 func _control_runtime_dog_assign(command: String, payload: Dictionary) -> Dictionary:
     var dog_id := _normalize_dog_id(str(payload.get("dog_id", payload.get("dog", ""))))
     var room_id := str(payload.get("room_id", payload.get("room", "room.house_of_curiosity.classroom")))
@@ -3387,10 +3701,22 @@ func _control_runtime_debug_tick(command: String, payload: Dictionary) -> Dictio
         _try_start_next_task()
         _update_idle_dogs()
         _run_auto_play(simulation_delta)
+        _run_runtime_dispatch_confirmation_followup()
         remaining -= step
     _update_ui()
     queue_redraw()
-    _emit_event("debug_time_advanced:%.2f" % requested_seconds)
+    _emit_event("debug_time_advanced:%.2f" % requested_seconds, {
+        "tag": "debug",
+        "chain_ids": [],
+        "dog_ids": [],
+        "place_ids": [],
+        "building_ids": [],
+        "message": "Dev-only runtime debug tick advanced simulation time",
+        "payload": {
+            "requested_seconds": requested_seconds,
+            "effective_simulation_seconds": requested_seconds * float(_systems_runtime.debug_speed_multiplier),
+        },
+    })
     return {
         "ok": true,
         "command": command,
@@ -3433,10 +3759,26 @@ func _state_game_snapshot() -> Dictionary:
         "auto_play": _auto_play,
         "fast_mode": _fast_mode,
         "chain_complete": _chain_complete,
+        "first_day": _state_first_day_snapshot(),
         "control_enabled": _state_connector_control_enabled,
         "ui_visible": _state_connector_window_visible,
         "window_visible": _state_connector_window_visible,
         "ui_hidden": _ui_hidden,
+    }
+
+
+func _state_first_day_snapshot() -> Dictionary:
+    return {
+        "order_id": "order.first_warm_delivery",
+        "postcard_life_moment_seen": _first_day_postcard_life_moment_seen,
+        "first_reward_available": _reward_available,
+        "first_reward_equipped": _slippers_equipped,
+        "first_memory_added": _first_day_first_memory_added,
+        "memory_id": "memory.first_warm_delivery" if _first_day_first_memory_added else null,
+        "memory_text": "Помнит первую тёплую поставку" if _first_day_first_memory_added else "",
+        "next_day_hint_available": _first_day_next_day_hint_available,
+        "next_day_hint_id": "hint.first_day_next_day" if _first_day_next_day_hint_available else null,
+        "next_day_hint_text": "Завтра можно осторожно продолжить заботу о приюте." if _first_day_next_day_hint_available else "",
     }
 
 
@@ -3696,7 +4038,7 @@ func _state_token_snapshots() -> Array[Dictionary]:
         if not _tokens.has(resource_id):
             continue
         var token := _tokens[resource_id] as Dictionary
-        result.append({
+        var snapshot := {
             "id": str(token.get("id", resource_id)),
             "resource": _resource_key_from_internal(resource_id),
             "internal_resource_id": resource_id,
@@ -3704,18 +4046,42 @@ func _state_token_snapshots() -> Array[Dictionary]:
             "visible": bool(token.get("visible", true)),
             "carried_by": _dog_key_from_internal(str(token.get("carried_by", ""))),
             "from_payload": bool(token.get("from_payload", false)),
-        })
+        }
+        if token.has("semantic_state"):
+            snapshot["semantic_state"] = str(token.get("semantic_state", ""))
+        if token.has("delivery_id"):
+            snapshot["delivery_id"] = str(token.get("delivery_id", ""))
+        if token.has("delivered_at_seconds"):
+            snapshot["delivered_at_seconds"] = float(token.get("delivered_at_seconds", 0.0))
+        result.append(snapshot)
     return result
 
 
 func _state_chain_snapshot() -> Array[Dictionary]:
+    var storage_done := (
+        (_inventory_count(_storage_inventory, "oat_crate") > 0 and _inventory_count(_storage_inventory, "pumpkin_crate") > 0)
+        or _kitchen_carries_enqueued
+        or _cook_enqueued
+        or _packing_carries_enqueued
+        or _pack_enqueued
+        or _load_van_enqueued
+        or _van_loaded
+        or _delivery_confirmed
+        or _delivery_complete
+        or _postcard_visible
+        or _chain_complete
+    )
+    var kitchen_carry_done := _cook_enqueued or _packing_carries_enqueued or _pack_enqueued or _load_van_enqueued or _van_loaded or _delivery_confirmed or _delivery_complete or _postcard_visible or _chain_complete
+    var cooking_done := _token_at("food_mix", "kitchen") or _packing_carries_enqueued or _pack_enqueued or _load_van_enqueued or _van_loaded or _delivery_confirmed or _delivery_complete or _postcard_visible or _chain_complete
+    var packing_carry_done := _pack_enqueued or _load_van_enqueued or _van_loaded or _delivery_confirmed or _delivery_complete or _postcard_visible or _chain_complete
+    var packing_done := _token_at("food_bag", "packing_table") or _load_van_enqueued or _van_loaded or _delivery_confirmed or _delivery_complete or _postcard_visible or _chain_complete
     return [
         {"id": "trip", "status": _stage_status(_route_started, _trip_payload_visible, "waiting_for_player_route_confirmation")},
-        {"id": "unload_to_storage", "status": _stage_status(_trip_payload_visible, _inventory_count(_storage_inventory, "oat_crate") > 0 and _inventory_count(_storage_inventory, "pumpkin_crate") > 0)},
-        {"id": "carry_to_kitchen", "status": _stage_status(_kitchen_carries_enqueued, _cook_enqueued)},
-        {"id": "cook_food_mix", "status": _stage_status(_cook_enqueued, _token_at("food_mix", "kitchen") or _packing_carries_enqueued)},
-        {"id": "carry_to_packing_table", "status": _stage_status(_packing_carries_enqueued, _pack_enqueued)},
-        {"id": "pack_food_bag", "status": _stage_status(_pack_enqueued, _token_at("food_bag", "packing_table") or _load_van_enqueued)},
+        {"id": "unload_to_storage", "status": _stage_status(_trip_payload_visible, storage_done)},
+        {"id": "carry_to_kitchen", "status": _stage_status(_kitchen_carries_enqueued, kitchen_carry_done)},
+        {"id": "cook_food_mix", "status": _stage_status(_cook_enqueued, cooking_done)},
+        {"id": "carry_to_packing_table", "status": _stage_status(_packing_carries_enqueued, packing_carry_done)},
+        {"id": "pack_food_bag", "status": _stage_status(_pack_enqueued, packing_done)},
         {"id": "load_delivery_van", "status": _stage_status(_load_van_enqueued, _van_loaded)},
         {"id": "player_confirm_delivery", "status": "complete" if _delivery_confirmed else ("waiting_for_player_confirmation" if _van_loaded else "waiting")},
         {"id": "delivery", "status": _stage_status(_delivery_confirmed, _delivery_complete)},

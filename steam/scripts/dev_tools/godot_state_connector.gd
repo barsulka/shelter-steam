@@ -293,6 +293,8 @@ func _respond_to_http_request(peer: StreamPeerTCP, raw_request: String) -> void:
             _send_json(peer, 200, _run_control_command("runtime.fixture.load", request))
         "/control/runtime/route/start":
             _send_json(peer, 200, _run_control_command("runtime.route.start", request))
+        "/control/runtime/delivery/confirm":
+            _send_json(peer, 200, _run_control_command("runtime.delivery.confirm", request))
         "/control/runtime/dog/assign":
             _send_json(peer, 200, _run_control_command("runtime.dog.assign", request))
         "/control/runtime/research/start":
@@ -632,7 +634,7 @@ func _control_capabilities_payload() -> Dictionary:
                 "id": "runtime.speed.set",
                 "method": "POST",
                 "path": "/control/runtime/speed",
-                "description": "Set dev-only runtime speed multiplier to 1, 2, 3, 5, or 10.",
+                "description": "Set dev-only runtime speed multiplier to 1, 2, 3, 5, 10, or 100.",
             },
             {
                 "id": "runtime.state.export",
@@ -675,6 +677,12 @@ func _control_capabilities_payload() -> Dictionary:
                 "method": "POST",
                 "path": "/control/runtime/route/start",
                 "description": "Start an accepted test route.",
+            },
+            {
+                "id": "runtime.delivery.confirm",
+                "method": "POST",
+                "path": "/control/runtime/delivery/confirm",
+                "description": "Confirm the accepted first delivery dispatch only when the runtime is waiting at ready_to_dispatch.",
             },
             {
                 "id": "runtime.dog.assign",
@@ -736,6 +744,7 @@ func _run_control_command(command: String, request := {}) -> Dictionary:
         "runtime.save.load",
         "runtime.save.erase",
         "runtime.route.start",
+        "runtime.delivery.confirm",
         "runtime.dog.assign",
         "runtime.research.start",
         "runtime.debug.tick",
