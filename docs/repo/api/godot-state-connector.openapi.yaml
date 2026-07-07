@@ -685,7 +685,7 @@ components:
           example: hint.first_day_next_day
         next_day_hint_text:
           type: string
-          example: Завтра можно осторожно продолжить заботу о приюте.
+          example: Завтра можно придумать, как паковать ещё аккуратнее.
       additionalProperties: true
     ControlCapabilities:
       type: object

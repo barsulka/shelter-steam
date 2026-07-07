@@ -152,6 +152,30 @@ The capture bundle is written under `.runtime/workbench_capture_runs/<run_id>/`
 and includes `manifest.json`, `snapshots.jsonl`, `events.jsonl`,
 `stress_signals.jsonl`, `final_state.json`, and `run.log`.
 
+Create the persistent First Day MVP visible/player-feel review pack:
+
+```sh
+tools/dev-vertical-slice.sh first-day-visible-capture
+tools/dev-vertical-slice.sh first-day-art-ux-capture
+```
+
+The current Art / UX visual-language pack is written under
+`../docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/`
+and includes named screenshots, a normal-speed PNG-frame sequence, a short
+postcard/slippers PNG-frame sequence, README, `CAPTURE_MANIFEST_v3.md`, and
+matching Workbench state proof artifacts. This v3 pass keeps First Day gameplay
+unchanged and shifts prototype readability toward object/state cues for dog
+roles, payload flow, van readiness, postcard board, Такса-owned slippers, and
+the next-day note.
+
+The previous readability pack remains available under
+`../docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v2/`
+and includes named screenshots, a PNG-frame sequence, README,
+`CAPTURE_MANIFEST_v2.md`, and matching Workbench state proof artifacts. The
+v2 pass adds prototype-level strip cues for first driver/helper roles,
+route/payload/van/postcard/reward/next-day readability, and review-only marker
+events. This is review evidence only, not final visual acceptance.
+
 For ChatGPT / remote local-tool inspection, prefer Shelter MCP when it is
 configured:
 

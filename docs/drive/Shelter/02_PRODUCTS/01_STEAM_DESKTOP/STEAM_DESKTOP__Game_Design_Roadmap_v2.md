@@ -215,24 +215,127 @@ STEAM_DESKTOP__First_Day_MVP_v1.md
 
 ### R-21 — First Systems Implementation Slice v1
 
-Статус: Codex brief prepared.
+Статус: done / accepted at runtime-evidence level.
 
 Цель:
 
-- prepare Codex implementation brief for the smallest playable systems expansion after Runtime Foundation.
+- implement the smallest playable systems polish after First Day MVP contract.
 
-Likely scope candidates:
+Accepted result:
 
-1. Warm Food Delivery loop from empty fixture to completed delivery with richer runtime events.
-2. House of Curiosity minimal room assignment and one research unlock.
-3. Dog habit opportunity proof: `Проверяет корзинку` or `Ровный узелок`.
-4. Basic economy-of-life events: story/postcard/inspiration placeholder events.
+```text
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Runtime_Review__First_Day_MVP_Runtime_Polish_v1.md
+```
 
-No exact scope should be locked before R-19 review.
+R-21 accepted:
 
-### R-22 — Workbench Follow-up Features
+- clean debug event noise;
+- high-level dog action events;
+- post-delivery dog/life moment;
+- delivered Food Bag semantic;
+- legacy production_chain consistency;
+- expanded Workbench `first_day_mvp_proof`.
 
-Статус: after R-19/R-20 priorities.
+### R-22 — First Day Visible / Player-Feel Review Pack v1
+
+Статус: done / visible review recorded, PASS with watchpoints.
+
+Цель:
+
+- проверить First Day MVP не через 100x JSON proof, а через real-speed / low-speed visible capture and human review;
+- answer whether the first day reads as a calm dog co-op and not only as a correct state machine.
+
+Output:
+
+```text
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Visible_Review__First_Day_MVP_v1.md
+```
+
+Проверить:
+
+- видны ли собаки как персонажи;
+- читаются ли route / unload / carry / kitchen / packing / van states;
+- не доминирует ли UI/debug над strip;
+- ощущается ли открытка как тёплый момент;
+- понятна ли награда `Удобные тапочки`;
+- не выглядит ли next-day hint как tutorial pressure;
+- где нужны Art Director / UX follow-ups.
+
+### R-23 — First Day UX / Visual Readability Fix Contract v1
+
+Статус: done / visible readability fix reviewed, PASS.
+
+Цель:
+
+- turn R-22 visible review watchpoints into a focused UX/visual readability fix contract before expanding gameplay scope.
+
+Output:
+
+```text
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_UX_Readability_Fix_Requirements_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__First_Day_Visible_Readability_Fix_v1.md
+```
+
+Focus:
+
+- reduce dependency on UI text for understanding dog actions;
+- make dog identity/action readability stronger;
+- make postcard moment more embodied;
+- make next-day hint visibly present and gentle;
+- improve main-strip state cues for route, payload, van, postcard and reward;
+- keep House of Curiosity as tease only.
+
+### R-24 — First Day Art Director / UX Review Handoff v1
+
+Статус: done / Art UX v3 accepted as prototype visual-language pass.
+
+Цель:
+
+- передать v2 capture pack and R-23 Game Designer review to Art Director / UX;
+- решить, какие prototype readability cues оставить временно, какие требуют визуального/UX redesign, and whether a low-speed player-feel capture is needed before the next Codex pass.
+
+Output:
+
+```text
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Art_UX_Handoff__First_Day_MVP_v2.md
+```
+
+Focus:
+
+- dog identity / action silhouette and motion language;
+- driver/helper readability;
+- postcard board / attention cue;
+- slippers world marker;
+- next-day hint presentation;
+- 96px / compact strip readability;
+- whether to run low-speed capture before next visual fix.
+
+### R-25 — First Day MVP Lock / Next Scope Decision v1
+
+Статус: done / First Day MVP locked, next scope A selected.
+
+Цель:
+
+- consolidate Game Designer, Runtime, Visible Review and Art/UX v3 results into a First Day MVP lock decision;
+- decide whether the next slice should be First Week / longer retention, Workbench follow-up tooling, or one focused real-speed player-feel check.
+
+Output candidate:
+
+```text
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md
+```
+
+Decision inputs:
+
+- `docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_MVP_v1.md`
+- `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Runtime_Review__First_Day_MVP_Runtime_Polish_v1.md`
+- `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Visible_Review__First_Day_MVP_v2.md`
+- `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Art_UX_Review__First_Day_MVP_v3.md`
+- `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/`
+
+### R-26 — Workbench Follow-up Features
+
+Статус: after R-25 decision.
 
 Candidate briefs:
 
@@ -242,15 +345,36 @@ Candidate briefs:
 - Stress Dashboard v0;
 - Capture + State Bundle v1 with optional PNG frames.
 
-Priority should come from actual review pain.
+Priority should come from actual review pain, not from tooling ambition.
 
-### R-23 — First Week / Long-Term Loop Direction
+### R-27 — First Week / Long-Term Loop Direction
 
-Статус: later.
+Статус: done / First Week direction v1 recorded.
 
 Цель:
 
-- after First Day MVP is playable and inspectable, design the first longer retention layer.
+- design Day 2 / First Week direction after First Day MVP lock;
+- answer why the player returns tomorrow after the first warm delivery.
+
+Output:
+
+```text
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md
+```
+
+### R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
+
+Статус: active next.
+
+Цель:
+
+- prepare Codex implementation brief for the first Day 2 slice: return moment, second warm delivery variation, yesterday's postcard/slippers/memory, packing note and first curiosity question boundary.
+
+Output:
+
+```text
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
+```
 
 Candidate topics:
 
@@ -374,6 +498,56 @@ Every runtime review should check:
 ---
 
 ## 7. Changelog
+
+### 2026-07-06 — R-27 First Week direction recorded, R-28 activated
+
+- R-27 direction recorded in `docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md`.
+- Direction: Day 2 should show that yesterday mattered, not add a big new system immediately.
+- Next active task: R-28 Codex brief for Day 2 Return And Second Warm Delivery.
+
+### 2026-07-06 — R-25 locked First Day MVP, R-27 activated
+
+- R-25 decision recorded in `docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md`.
+- Decision: First Day MVP locked at prototype/product-language level.
+- Next scope selected by user and recorded: A — First Week / longer retention.
+- R-27 activated as First Week / Long-Term Loop Direction.
+
+### 2026-07-06 — R-24 Art/UX v3 accepted, R-25 activated
+
+- Art Director / UX review recorded in `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Art_UX_Review__First_Day_MVP_v3.md`.
+- Verdict: PASS as First Day Art/UX Visual Language Pass; no blocking v4 required before the next roadmap step.
+- v3 capture pack exists at `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/`.
+- R-25 activated as First Day MVP Lock / Next Scope Decision v1.
+
+### 2026-07-05 — R-23 visible readability fix reviewed, R-24 activated
+
+- R-23 v2 visible review recorded in `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Visible_Review__First_Day_MVP_v2.md`.
+- v2 capture pack verified at `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v2/`.
+- Verdict: PASS for Game Designer prototype readability; final Art Director / UX and real-speed player-feel acceptance remain pending.
+- R-24 activated as First Day Art Director / UX Review Handoff v1.
+
+### 2026-07-05 — R-23 requirements and Codex brief prepared
+
+- R-23 requirements recorded in `docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_UX_Readability_Fix_Requirements_v1.md`.
+- R-23 Codex brief prepared in `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__First_Day_Visible_Readability_Fix_v1.md`.
+- Scope kept narrow: dog/action readability, main-strip cues, postcard gesture, slippers visibility and gentle next-day hint. No First Week or full House of Curiosity expansion.
+
+### 2026-07-05 — R-22 visible review recorded, R-23 activated
+
+- R-22 visible review recorded in `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Visible_Review__First_Day_MVP_v1.md`.
+- Verdict: PASS with watchpoints; final visual/player-feel acceptance remains pending.
+- R-23 activated as First Day UX / Visual Readability Fix Contract v1 before First Week / House of Curiosity expansion.
+
+### 2026-07-05 — R-22 Codex brief prepared
+
+- R-22 Codex brief created: `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__First_Day_MVP_Visible_Review_Capture_Pack_v1.md`.
+- Next action: run Codex with reasoning level `очень высокий` to produce persistent visible capture pack.
+
+### 2026-07-05 — R-21 accepted, R-22 activated
+
+- R-21 First Day MVP Runtime Polish accepted at runtime-evidence level in `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Runtime_Review__First_Day_MVP_Runtime_Polish_v1.md`.
+- R-22 changed to visible/player-feel review because 100x JSON proof cannot validate warmth, readability, animation feel or desktop calmness.
+- Next active task: R-22 First Day Visible / Player-Feel Review Pack v1.
 
 ### 2026-07-05 — R-21 Codex brief prepared
 

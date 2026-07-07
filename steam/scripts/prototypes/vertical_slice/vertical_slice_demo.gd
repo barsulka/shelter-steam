@@ -18,6 +18,7 @@ const DEFAULT_TIMING_SCALE := 0.72
 const FAST_TIMING_SCALE := 0.16
 const CAPTURE_FRAME_INTERVAL := 0.25
 const DEFAULT_CAPTURE_DIR := "../docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2"
+const FIRST_DAY_NEXT_DAY_HINT_TEXT := "Завтра можно придумать, как паковать ещё аккуратнее."
 const CONTROL_CAPTURE_DIR := "res://.runtime/godot_state_connector/control_capture"
 const CONTROL_VIDEO_CAPTURE_SECONDS := 10.0
 const CONTROL_VIDEO_CAPTURE_FPS := 2.0
@@ -200,6 +201,8 @@ var _timing_scale := DEFAULT_TIMING_SCALE
 var _auto_action_gate := 0.0
 var _capture_mode := false
 var _capture_smoke := false
+var _first_day_visible_capture := false
+var _first_day_art_ux_capture := false
 var _capture_dir := DEFAULT_CAPTURE_DIR
 var _captured_files: Array[String] = []
 var _captured_moments: Dictionary = {}
@@ -207,6 +210,7 @@ var _capture_busy := false
 var _pending_captures: Array[Dictionary] = []
 var _capture_frame_time := 0.0
 var _capture_frame_index := 0
+var _capture_moment_frame_index := 0
 var _capture_finish_started := false
 var _capture_initializing := false
 
@@ -376,6 +380,7 @@ func _draw() -> void:
     _draw_dog_action_lanes(baseline)
     _draw_dogs(baseline)
     _draw_resource_tokens(baseline)
+    _draw_first_day_readability_cues(baseline)
     _draw_world_state_labels(baseline)
 
 
@@ -391,6 +396,23 @@ func _read_user_args() -> void:
             _auto_play = true
             _fast_mode = true
             _timing_scale = FAST_TIMING_SCALE
+            _auto_quit = false
+            _capture_initializing = true
+        elif arg == "--vertical-first-day-visible-capture":
+            _capture_mode = true
+            _first_day_visible_capture = true
+            _auto_play = true
+            _fast_mode = true
+            _timing_scale = FAST_TIMING_SCALE
+            _auto_quit = false
+            _capture_initializing = true
+        elif arg == "--vertical-first-day-art-ux-capture":
+            _capture_mode = true
+            _first_day_visible_capture = true
+            _first_day_art_ux_capture = true
+            _auto_play = true
+            _fast_mode = false
+            _timing_scale = DEFAULT_TIMING_SCALE
             _auto_quit = false
             _capture_initializing = true
         elif arg == "--vertical-capture-smoke":
@@ -873,8 +895,9 @@ func _run_auto_play(delta: float) -> void:
         _start_route_pressed()
         _auto_action_gate = 0.2
     elif _van_loaded and not _delivery_confirmed:
-        if _capture_mode and not _captured_moments.has("09b_van_ready_confirm_delivery"):
-            _schedule_capture("09b_van_ready_confirm_delivery")
+        var confirm_moment := _capture_moment_id("09b_van_ready_confirm_delivery", "12_van_ready_confirm_delivery", "12_van_ready_object_state")
+        if _capture_mode and not _captured_moments.has(confirm_moment):
+            _schedule_capture(confirm_moment)
             _auto_action_gate = 0.25
             return
         _confirm_delivery_pressed()
@@ -1211,6 +1234,19 @@ func _handle_task_completed(task: Dictionary) -> void:
             _van_loaded = true
             _delivery_state = "ready_to_send"
             _order_state = "loaded"
+            _emit_event("van_ready_object_state_visible", {
+                "tag": "story",
+                "dog_ids": ["dog.labrador_intro"],
+                "place_ids": ["object.delivery_van_endpoint"],
+                "building_ids": ["object.delivery_van_endpoint"],
+                "chain_ids": ["chain.warm_food_delivery_intro"],
+                "message": "Фургон показывает готовность через открытый кузов и видимый Food Bag",
+                "payload": {
+                    "order_id": "order.first_warm_delivery",
+                    "resource_id": "resource.food_bag",
+                    "moment_id": "first_day_van_ready_object_state",
+                },
+            })
         "DeliveryTask":
             _delivery_complete = true
             _postcard_visible = true
@@ -1693,6 +1729,19 @@ func _complete_packing() -> void:
     _hide_token("packaging_bag")
     _create_resource_token("food_bag", "packing_table", false)
     _emit_event("food_bag_created")
+    _emit_event("packing_table_food_bag_state_visible", {
+        "tag": "story",
+        "dog_ids": ["dog.labrador_intro"],
+        "place_ids": ["object.packing_table"],
+        "building_ids": ["object.packing_table"],
+        "chain_ids": ["chain.warm_food_delivery_intro"],
+        "message": "Packing table показывает готовый Food Bag как физический объект",
+        "payload": {
+            "order_id": "order.first_warm_delivery",
+            "resource_id": "resource.food_bag",
+            "moment_id": "first_day_packing_table_food_bag_state",
+        },
+    })
     _emit_task_dog_action("dog_created_food_bag", _current_task, "Лабрадор собрал Food Bag для первой поставки", {
         "activity_detail": "food_bag_created",
         "resource_id": "resource.food_bag",
@@ -1716,6 +1765,32 @@ func _complete_equipment() -> void:
             "reward_id": "equipment.comfortable_slippers",
             "order_id": "order.first_warm_delivery",
             "moment_id": "first_day_reward_equipped",
+        },
+    })
+    _emit_event("first_reward_world_marker_shown", {
+        "tag": "story",
+        "dog_ids": ["dog.dachshund_intro"],
+        "place_ids": ["dog.dachshund_intro"],
+        "building_ids": [],
+        "chain_ids": ["chain.warm_food_delivery_intro"],
+        "message": "В мире появился prototype-маркер, что Удобные тапочки принадлежат Таксе",
+        "payload": {
+            "reward_id": "equipment.comfortable_slippers",
+            "recipient_dog_id": "dog.dachshund_intro",
+            "moment_id": "first_day_reward_world_marker",
+        },
+    })
+    _emit_event("slippers_equipped_world_state_visible", {
+        "tag": "story",
+        "dog_ids": ["dog.dachshund_intro"],
+        "place_ids": ["dog.dachshund_intro"],
+        "building_ids": [],
+        "chain_ids": ["chain.warm_food_delivery_intro"],
+        "message": "Удобные тапочки видны как личный предмет на лапах Таксы",
+        "payload": {
+            "reward_id": "equipment.comfortable_slippers",
+            "recipient_dog_id": "dog.dachshund_intro",
+            "moment_id": "first_day_slippers_equipped_world_state",
         },
     })
 
@@ -1758,6 +1833,30 @@ func _record_first_day_post_delivery_moment() -> void:
                 "moment_id": "first_day_post_delivery_postcard",
             },
         })
+        _emit_event("postcard_world_marker_shown", {
+            "tag": "story",
+            "dog_ids": ["dog.dachshund_intro", "dog.labrador_intro"],
+            "place_ids": ["ui.postcard_card", "object.delivery_van_endpoint"],
+            "building_ids": ["ui.postcard_card", "object.delivery_van_endpoint"],
+            "chain_ids": ["chain.warm_food_delivery_intro"],
+            "message": "Открытка получила видимый marker на main strip",
+            "payload": {
+                "order_id": "order.first_warm_delivery",
+                "moment_id": "first_day_postcard_world_marker",
+            },
+        })
+        _emit_event("postcard_board_state_visible", {
+            "tag": "story",
+            "dog_ids": ["dog.dachshund_intro", "dog.labrador_intro"],
+            "place_ids": ["object.delivery_van_endpoint"],
+            "building_ids": ["object.delivery_van_endpoint"],
+            "chain_ids": ["chain.warm_food_delivery_intro"],
+            "message": "Открытка появилась на доске в мире, а собаки сделали короткую паузу",
+            "payload": {
+                "order_id": "order.first_warm_delivery",
+                "moment_id": "first_day_postcard_board_state",
+            },
+        })
 
     if not _first_day_first_memory_added:
         _first_day_first_memory_added = true
@@ -1786,8 +1885,34 @@ func _record_first_day_post_delivery_moment() -> void:
             "message": "В состоянии доступна мягкая подсказка следующего дня",
             "payload": {
                 "hint_id": "hint.first_day_next_day",
-                "hint_text": "Завтра можно осторожно продолжить заботу о приюте.",
+                "hint_text": FIRST_DAY_NEXT_DAY_HINT_TEXT,
                 "order_id": "order.first_warm_delivery",
+            },
+        })
+        _emit_event("next_day_hint_world_marker_shown", {
+            "tag": "story",
+            "dog_ids": ["dog.dachshund_intro", "dog.labrador_intro"],
+            "place_ids": ["object.packing_table"],
+            "building_ids": ["object.packing_table"],
+            "chain_ids": ["chain.warm_food_delivery_intro"],
+            "message": "На main strip появилась мягкая заметка следующего дня",
+            "payload": {
+                "hint_id": "hint.first_day_next_day",
+                "hint_text": FIRST_DAY_NEXT_DAY_HINT_TEXT,
+                "moment_id": "first_day_next_day_world_marker",
+            },
+        })
+        _emit_event("next_day_note_object_visible", {
+            "tag": "story",
+            "dog_ids": ["dog.dachshund_intro", "dog.labrador_intro"],
+            "place_ids": ["object.packing_table"],
+            "building_ids": ["object.packing_table"],
+            "chain_ids": ["chain.warm_food_delivery_intro"],
+            "message": "Мягкая подсказка следующего дня видна как маленькая заметка у packing table",
+            "payload": {
+                "hint_id": "hint.first_day_next_day",
+                "order_id": "order.first_warm_delivery",
+                "moment_id": "first_day_next_day_note_object",
             },
         })
 
@@ -2054,11 +2179,36 @@ func _draw_packing_table_placeholder(baseline: float) -> void:
     var scale := _zoom()
     var table_size := Vector2(154.0, 52.0) * scale
     var rect := Rect2(center_x - table_size.x * 0.5, baseline - table_size.y - (13.0 * scale), table_size.x, table_size.y)
-    draw_rect(rect, Color(0.43, 0.29, 0.18, 0.92), true)
-    draw_rect(Rect2(rect.position + Vector2(10.0, 8.0) * scale, Vector2(rect.size.x - 20.0 * scale, 13.0 * scale)), Color(0.64, 0.48, 0.30, 0.98), true)
-    draw_rect(Rect2(rect.position + Vector2(18.0, 26.0) * scale, Vector2(34.0, 17.0) * scale), Color(0.72, 0.50, 0.30, 0.92), true)
-    draw_rect(Rect2(rect.position + Vector2(rect.size.x - 52.0 * scale, 25.0 * scale), Vector2(30.0, 22.0) * scale), Color(0.58, 0.74, 0.50, 0.92), true)
-    draw_line(rect.position + Vector2(60.0, 35.0) * scale, rect.position + Vector2(rect.size.x - 60.0 * scale, 35.0 * scale), Color(0.92, 0.82, 0.55, 0.95), maxf(1.0, 2.0 * scale))
+    draw_rect(rect, Color(0.42, 0.28, 0.17, 0.94), true)
+    draw_rect(Rect2(rect.position + Vector2(0.0, -4.0) * scale, Vector2(rect.size.x, 12.0 * scale)), Color(0.64, 0.47, 0.29, 0.98), true)
+    draw_rect(Rect2(rect.position + Vector2(12.0, 41.0) * scale, Vector2(8.0, 25.0) * scale), Color(0.30, 0.20, 0.13, 0.92), true)
+    draw_rect(Rect2(rect.end - Vector2(20.0, 11.0) * scale, Vector2(8.0, 25.0) * scale), Color(0.30, 0.20, 0.13, 0.92), true)
+
+    var has_food_mix := int(_packing_inputs.get("food_mix", 0)) > 0 or _token_at("food_mix", "packing_table")
+    var has_packaging := int(_packing_inputs.get("packaging_bag", 0)) > 0 or _token_at("packaging_bag", "packing_table")
+    var bag_ready := _token_at("food_bag", "packing_table") or _van_loaded or _delivery_confirmed or _delivery_complete
+
+    if has_food_mix:
+        var bowl_center := rect.position + Vector2(43.0, 28.0) * scale
+        draw_circle(bowl_center, 15.0 * scale, Color(0.72, 0.50, 0.30, 0.94))
+        draw_circle(bowl_center + Vector2(0.0, -4.0) * scale, 10.0 * scale, Color(0.86, 0.66, 0.42, 0.92))
+        draw_line(bowl_center + Vector2(-17.0, -2.0) * scale, bowl_center + Vector2(17.0, -2.0) * scale, Color(0.34, 0.20, 0.12, 0.78), maxf(1.0, 1.3 * scale))
+
+    if has_packaging:
+        var folded := Rect2(rect.position + Vector2(84.0, 20.0) * scale, Vector2(28.0, 23.0) * scale)
+        draw_rect(folded, Color(0.73, 0.82, 0.78, 0.92), true)
+        draw_line(folded.position + Vector2(4.0, 5.0) * scale, folded.end - Vector2(4.0, 5.0) * scale, Color(0.36, 0.47, 0.40, 0.75), maxf(1.0, scale))
+        draw_line(folded.position + Vector2(folded.size.x - 4.0 * scale, 5.0 * scale), folded.position + Vector2(4.0 * scale, folded.size.y - 5.0 * scale), Color(0.36, 0.47, 0.40, 0.75), maxf(1.0, scale))
+
+    if bag_ready:
+        var bag := Rect2(rect.position + Vector2(112.0, 12.0) * scale, Vector2(32.0, 36.0) * scale)
+        draw_rect(bag, Color(0.58, 0.74, 0.50, 0.96), true)
+        draw_rect(Rect2(bag.position + Vector2(10.0, -6.0) * scale, Vector2(12.0, 8.0) * scale), Color(0.70, 0.84, 0.60, 0.96), true)
+        draw_line(bag.position + Vector2(6.0, 12.0) * scale, bag.position + Vector2(bag.size.x - 6.0 * scale, 12.0 * scale), Color(0.22, 0.36, 0.22, 0.78), maxf(1.0, scale))
+        draw_circle(bag.position + Vector2(16.0, 24.0) * scale, 4.0 * scale, Color(0.84, 0.92, 0.67, 0.88))
+    elif has_food_mix and has_packaging:
+        draw_line(rect.position + Vector2(67.0, 33.0) * scale, rect.position + Vector2(84.0, 33.0) * scale, Color(0.92, 0.82, 0.55, 0.88), maxf(1.0, 2.0 * scale))
+
     draw_rect(rect, Color(0.86, 0.76, 0.52, 0.95), false, maxf(1.0, 2.0 * scale))
 
 
@@ -2079,8 +2229,22 @@ func _draw_transport(baseline: float) -> void:
     else:
         draw_rect(Rect2(center_x - 38.0 * _zoom(), bottom_y - 30.0 * _zoom(), 76.0 * _zoom(), 30.0 * _zoom()), Color(0.54, 0.40, 0.26, 0.94), true)
 
+    var scale := _zoom()
+    if _transport_state == "preparing":
+        draw_line(Vector2(center_x - 30.0 * scale, bottom_y - 45.0 * scale), Vector2(center_x + 23.0 * scale, bottom_y - 54.0 * scale), Color(0.74, 0.88, 0.96, 0.72), maxf(1.0, 1.5 * scale))
+        draw_circle(Vector2(center_x + 31.0 * scale, bottom_y - 55.0 * scale), 4.0 * scale, Color(0.74, 0.88, 0.96, 0.82))
+    elif _transport_state == "returning":
+        draw_line(Vector2(center_x - 47.0 * scale, bottom_y - 9.0 * scale), Vector2(center_x - 68.0 * scale, bottom_y - 5.0 * scale), Color(0.82, 0.74, 0.54, 0.42), maxf(1.0, scale))
+        draw_line(Vector2(center_x - 42.0 * scale, bottom_y - 20.0 * scale), Vector2(center_x - 62.0 * scale, bottom_y - 17.0 * scale), Color(0.82, 0.74, 0.54, 0.36), maxf(1.0, scale))
+
     if _transport_has_payload:
-        draw_circle(Vector2(center_x + 18.0 * _zoom(), bottom_y - 52.0 * _zoom()), 8.0 * _zoom(), Color(0.86, 0.64, 0.34, 0.86))
+        var crate_a := Rect2(center_x + 6.0 * scale, bottom_y - 61.0 * scale, 19.0 * scale, 16.0 * scale)
+        var crate_b := Rect2(center_x + 25.0 * scale, bottom_y - 58.0 * scale, 17.0 * scale, 14.0 * scale)
+        draw_rect(crate_a, Color(0.79, 0.67, 0.42, 0.94), true)
+        draw_rect(crate_b, Color(0.91, 0.54, 0.24, 0.94), true)
+        draw_rect(crate_a, Color(0.22, 0.14, 0.08, 0.72), false, maxf(1.0, scale))
+        draw_rect(crate_b, Color(0.22, 0.14, 0.08, 0.72), false, maxf(1.0, scale))
+        draw_line(crate_a.position + Vector2(0.0, crate_a.size.y * 0.42), crate_a.position + Vector2(crate_a.size.x, crate_a.size.y * 0.42), Color(0.22, 0.14, 0.08, 0.52), maxf(1.0, scale))
 
 
 func _draw_resource_tokens(baseline: float) -> void:
@@ -2190,16 +2354,23 @@ func _draw_dog(dog_id: String, dog: Dictionary, baseline: float) -> void:
     var state := str(dog.get("state", "idle"))
     var scale := _zoom()
 
-    var body_length := 62.0 if dog_id == "dachshund_intro" else 68.0
-    var body_height := 23.0 if dog_id == "dachshund_intro" else 30.0
-    var leg_height := 12.0 if dog_id == "dachshund_intro" else 18.0
+    var body_length := 76.0 if dog_id == "dachshund_intro" else 68.0
+    var body_height := 19.0 if dog_id == "dachshund_intro" else 34.0
+    var leg_height := 9.0 if dog_id == "dachshund_intro" else 18.0
     var head_radius := 13.0 if dog_id == "dachshund_intro" else 16.0
 
     var bob := 0.0
-    if state in ["walking", "moving_to_transport", "carrying_item", "returning_with_transport"]:
-        bob = sin(_elapsed * 10.0) * 2.0 * scale
+    if state in ["walking", "moving_to_transport", "carrying_item", "returning_with_transport", "leaving_with_transport", "preparing_transport"]:
+        var bob_frequency := 12.5 if dog_id == "dachshund_intro" else 5.8
+        var bob_height := 2.4 if dog_id == "dachshund_intro" else 1.1
+        bob = sin(_elapsed * bob_frequency) * bob_height * scale
+    elif dog_id == "dachshund_intro" and _slippers_equipped:
+        bob = sin(_elapsed * 2.4) * 0.8 * scale
 
     center.y += bob
+    if dog_id == "dachshund_intro" and state == "preparing_transport":
+        center.x += 3.0 * scale
+        center.y += 2.0 * scale
     var body_rect := Rect2(
         center.x - (body_length * 0.5 * scale),
         center.y - (body_height * 0.5 * scale),
@@ -2219,18 +2390,63 @@ func _draw_dog(dog_id: String, dog: Dictionary, baseline: float) -> void:
     if dog_id == "dachshund_intro" and _slippers_equipped:
         for i in 4:
             var slipper_x := center.x - (body_length * 0.35 * scale) + (i * body_length * 0.23 * scale)
-            draw_rect(Rect2(slipper_x - 2.0 * scale, center.y + (body_height * 0.32 + leg_height) * scale, 9.0 * scale, 4.0 * scale), Color(0.67, 0.79, 0.82, 1.0), true)
+            var slipper_rect := Rect2(slipper_x - 3.0 * scale, center.y + (body_height * 0.32 + leg_height - 1.0) * scale, 11.0 * scale, 5.0 * scale)
+            draw_rect(slipper_rect, Color(0.67, 0.79, 0.82, 1.0), true)
+            draw_rect(slipper_rect, Color(0.14, 0.22, 0.24, 0.76), false, maxf(1.0, scale))
 
     var tail_start := center + Vector2(-body_length * 0.55 * scale, -5.0 * scale)
     var tail_end := tail_start + Vector2(-15.0 * scale, -8.0 * scale + sin(_elapsed * 7.0) * 3.0 * scale)
     draw_line(tail_start, tail_end, base_color.darkened(0.12), maxf(2.0, 3.0 * scale))
 
+    _draw_dog_object_language(dog_id, center, body_rect, body_length, body_height, leg_height, state, scale, base_color, secondary)
+
     draw_rect(body_rect.grow(1.5 * scale), Color(0.08, 0.06, 0.04, 0.70), false, maxf(1.0, scale))
-    _draw_dog_action_badge(center, state, scale)
+    if _show_semantic_labels:
+        _draw_dog_action_badge(center, state, scale)
+        _draw_dog_role_marker(dog_id, center, scale)
 
     if _show_semantic_labels:
         var label := "%s | %s" % [str(dog_def["public_name"]), _dog_action_label(state)]
         draw_string(ThemeDB.fallback_font, center + Vector2(-42.0 * scale, -35.0 * scale), label, HORIZONTAL_ALIGNMENT_LEFT, -1.0, 10.0 * scale, Color(0.96, 0.93, 0.78, 1.0))
+
+
+func _draw_dog_object_language(
+        dog_id: String,
+        center: Vector2,
+        body_rect: Rect2,
+        body_length: float,
+        body_height: float,
+        leg_height: float,
+        state: String,
+        scale: float,
+        base_color: Color,
+        secondary: Color
+) -> void:
+    if dog_id == "dachshund_intro":
+        var strap_start := body_rect.position + Vector2(body_rect.size.x * 0.28, body_rect.size.y * 0.28)
+        var strap_end := body_rect.position + Vector2(body_rect.size.x * 0.62, body_rect.size.y * 0.72)
+        draw_line(strap_start, strap_end, Color(0.16, 0.11, 0.08, 0.62), maxf(1.0, 2.0 * scale))
+
+        if state in ["moving_to_transport", "preparing_transport", "leaving_with_transport", "returning_with_transport"] or (not _route_started and _transport_visible):
+            var bike_center := Vector2(_world_to_screen_x(_transport_x), center.y - 18.0 * scale)
+            draw_line(center + Vector2(body_length * 0.45, -5.0) * scale, bike_center + Vector2(-20.0, -6.0) * scale, Color(0.68, 0.84, 0.92, 0.66), maxf(1.0, 1.5 * scale))
+            draw_line(center + Vector2(body_length * 0.37, 8.0) * scale, bike_center + Vector2(-26.0, 9.0) * scale, Color(0.30, 0.22, 0.16, 0.58), maxf(1.0, scale))
+
+        if _slippers_equipped:
+            var paw_y := center.y + (body_height * 0.32 + leg_height + 4.0) * scale
+            draw_line(Vector2(center.x - 35.0 * scale, paw_y), Vector2(center.x + 34.0 * scale, paw_y), Color(0.70, 0.88, 0.92, 0.34), maxf(1.0, 2.0 * scale))
+            draw_circle(center + Vector2(28.0, 3.0) * scale, 4.0 * scale, Color(0.82, 0.95, 0.98, 0.60))
+    else:
+        var chest := Rect2(center + Vector2(-16.0, -10.0) * scale, Vector2(24.0, 25.0) * scale)
+        draw_rect(chest, Color(0.78, 0.84, 0.68, 0.48), true)
+        draw_line(chest.position + Vector2(4.0, 2.0) * scale, chest.position + Vector2(chest.size.x - 4.0 * scale, 2.0 * scale), Color(0.34, 0.42, 0.30, 0.62), maxf(1.0, scale))
+
+        if state in ["carrying_item", "unloading", "loading"]:
+            draw_line(center + Vector2(12.0, body_height * 0.14) * scale, center + Vector2(31.0, -2.0) * scale, base_color.darkened(0.20), maxf(2.0, 3.0 * scale))
+            draw_line(center + Vector2(7.0, body_height * 0.14 + 6.0) * scale, center + Vector2(31.0, 8.0) * scale, base_color.darkened(0.20), maxf(2.0, 3.0 * scale))
+        elif state in ["helping_kitchen", "packing"]:
+            draw_circle(center + Vector2(27.0, -2.0) * scale, 4.0 * scale, secondary.lightened(0.12))
+            draw_line(center + Vector2(17.0, 8.0) * scale, center + Vector2(31.0, 4.0) * scale, base_color.darkened(0.20), maxf(2.0, 3.0 * scale))
 
 
 func _draw_dog_action_badge(center: Vector2, state: String, scale: float) -> void:
@@ -2254,6 +2470,195 @@ func _draw_dog_action_badge(center: Vector2, state: String, scale: float) -> voi
         draw_line(badge_center + Vector2(5.0, 0.0) * scale, badge_center + Vector2(0.0, 5.0) * scale, Color(0.98, 0.91, 0.74, 0.95), maxf(1.0, 2.0 * scale))
     else:
         draw_circle(badge_center, 3.8 * scale, Color(0.98, 0.91, 0.74, 0.95))
+
+
+func _draw_dog_role_marker(dog_id: String, center: Vector2, scale: float) -> void:
+    if dog_id == "dachshund_intro":
+        var marker := center + Vector2(-8.0, -47.0) * scale
+        _draw_world_badge(marker, "водитель", Color(0.22, 0.42, 0.58, 0.88), Color(0.78, 0.90, 0.98, 0.95), 70.0, 8.5)
+        var wheel_center := marker + Vector2(-26.0, -1.0) * scale
+        draw_circle(wheel_center, 5.5 * scale, Color(0.96, 0.96, 0.88, 0.92), false, maxf(1.0, 1.3 * scale))
+        draw_circle(wheel_center + Vector2(13.0, 0.0) * scale, 5.5 * scale, Color(0.96, 0.96, 0.88, 0.92), false, maxf(1.0, 1.3 * scale))
+        draw_line(wheel_center + Vector2(0.0, -5.5) * scale, wheel_center + Vector2(13.0, -5.5) * scale, Color(0.96, 0.96, 0.88, 0.92), maxf(1.0, scale))
+        if not _route_started and _transport_visible:
+            var transport_center := Vector2(_world_to_screen_x(_transport_x), center.y - 8.0 * scale)
+            draw_line(center + Vector2(34.0, -22.0) * scale, transport_center + Vector2(-24.0, -22.0) * scale, Color(0.62, 0.82, 0.96, 0.58), maxf(1.0, scale))
+    elif dog_id == "labrador_intro":
+        var marker := center + Vector2(0.0, -54.0) * scale
+        _draw_world_badge(marker, "помощник", Color(0.38, 0.47, 0.30, 0.88), Color(0.88, 0.95, 0.72, 0.95), 76.0, 8.5)
+        var carry_center := marker + Vector2(-30.0, 0.0) * scale
+        draw_rect(Rect2(carry_center - Vector2(4.0, 3.0) * scale, Vector2(8.0, 6.0) * scale), Color(0.96, 0.92, 0.72, 0.92), true)
+        draw_line(carry_center + Vector2(-9.0, 7.0) * scale, carry_center + Vector2(9.0, 7.0) * scale, Color(0.96, 0.92, 0.72, 0.92), maxf(1.0, scale))
+
+
+func _draw_first_day_readability_cues(baseline: float) -> void:
+    var scale := _zoom()
+    _draw_route_ready_cue(baseline, scale)
+    _draw_payload_returned_cue(baseline, scale)
+    _draw_van_dispatch_cue(baseline, scale)
+    _draw_postcard_world_cue(baseline, scale)
+    _draw_reward_world_cue(baseline, scale)
+    _draw_next_day_world_cue(baseline, scale)
+
+
+func _draw_route_ready_cue(baseline: float, scale: float) -> void:
+    var road_sign := Vector2(_world_to_screen_x(_anchor_x("road_sign")), baseline - 83.0 * scale)
+    var bicycle := Vector2(_world_to_screen_x(_transport_x), baseline - 72.0 * scale)
+    if not _route_started:
+        var route_slip := Rect2(road_sign + Vector2(-16.0, -31.0) * scale, Vector2(34.0, 24.0) * scale)
+        draw_rect(route_slip, Color(0.86, 0.78, 0.56, 0.92), true)
+        draw_rect(route_slip, Color(0.32, 0.24, 0.16, 0.78), false, maxf(1.0, scale))
+        draw_line(route_slip.position + Vector2(6.0, 7.0) * scale, route_slip.position + Vector2(27.0, 7.0) * scale, Color(0.33, 0.27, 0.16, 0.70), maxf(1.0, scale))
+        draw_line(route_slip.position + Vector2(9.0, 15.0) * scale, route_slip.position + Vector2(24.0, 15.0) * scale, Color(0.33, 0.27, 0.16, 0.54), maxf(1.0, scale))
+        draw_line(road_sign + Vector2(19.0, -2.0) * scale, bicycle + Vector2(-22.0, 3.0) * scale, Color(0.66, 0.84, 0.96, 0.42), maxf(1.0, 1.5 * scale))
+        if _show_semantic_labels:
+            _draw_arrow(road_sign + Vector2(20.0, 5.0) * scale, bicycle + Vector2(-18.0, 2.0) * scale, Color(0.66, 0.84, 0.96, 0.72), maxf(1.0, 2.0 * scale))
+            _draw_world_badge(road_sign + Vector2(10.0, -23.0) * scale, "Овсяная ферма", Color(0.20, 0.32, 0.39, 0.86), Color(0.72, 0.89, 0.98, 0.95), 116.0, 8.2)
+    elif _transport_state in ["away", "returning", "waiting_for_unload"] or _trip_payload_visible:
+        draw_circle(road_sign + Vector2(13.0, -26.0) * scale, 8.0 * scale, Color(0.78, 0.92, 0.72, 0.72))
+        draw_line(road_sign + Vector2(8.0, -26.0) * scale, road_sign + Vector2(12.0, -21.0) * scale, Color(0.24, 0.36, 0.30, 0.88), maxf(1.0, 2.0 * scale))
+        draw_line(road_sign + Vector2(12.0, -21.0) * scale, road_sign + Vector2(20.0, -31.0) * scale, Color(0.24, 0.36, 0.30, 0.88), maxf(1.0, 2.0 * scale))
+        if _show_semantic_labels:
+            _draw_world_badge(road_sign + Vector2(18.0, -23.0) * scale, "маршрут пройден", Color(0.24, 0.36, 0.30, 0.78), Color(0.78, 0.92, 0.72, 0.90), 116.0, 8.2)
+
+
+func _draw_payload_returned_cue(baseline: float, scale: float) -> void:
+    if not _trip_payload_visible or not _transport_visible:
+        return
+
+    var center := Vector2(_world_to_screen_x(_transport_x), baseline - 76.0 * scale)
+    draw_circle(center, 34.0 * scale, Color(0.95, 0.78, 0.38, 0.14))
+    draw_circle(center, 34.0 * scale, Color(0.95, 0.78, 0.38, 0.62), false, maxf(1.0, 1.5 * scale))
+    if _show_semantic_labels:
+        _draw_world_badge(center + Vector2(6.0, -31.0) * scale, "груз вернулся", Color(0.42, 0.31, 0.18, 0.84), Color(0.96, 0.82, 0.52, 0.94), 106.0, 8.2)
+        _draw_arrow(center + Vector2(28.0, 18.0) * scale, Vector2(_world_to_screen_x(_anchor_x("storage")) - 54.0 * scale, baseline - 58.0 * scale), Color(0.92, 0.78, 0.46, 0.54), maxf(1.0, scale))
+
+
+func _draw_van_dispatch_cue(baseline: float, scale: float) -> void:
+    if not _van_loaded:
+        return
+
+    var van_center := Vector2(_world_to_screen_x(_anchor_x("delivery_van_endpoint")), baseline - 78.0 * scale)
+    var color := Color(0.54, 0.78, 0.52, 0.78) if not _delivery_confirmed else Color(0.64, 0.74, 0.86, 0.62)
+    draw_circle(van_center, 42.0 * scale, Color(color.r, color.g, color.b, 0.14))
+    draw_circle(van_center, 42.0 * scale, color, false, maxf(1.0, 1.7 * scale))
+    var hatch := Rect2(van_center + Vector2(-64.0, -24.0) * scale, Vector2(52.0, 38.0) * scale)
+    draw_rect(hatch, Color(0.23, 0.30, 0.34, 0.78), true)
+    draw_line(hatch.position + Vector2(0.0, 0.0), hatch.position + Vector2(-13.0, -15.0) * scale, Color(0.68, 0.75, 0.78, 0.86), maxf(1.0, 2.0 * scale))
+    if not _delivery_confirmed:
+        var bag := Rect2(hatch.position + Vector2(16.0, 7.0) * scale, Vector2(23.0, 27.0) * scale)
+        draw_rect(bag, Color(0.58, 0.74, 0.50, 0.96), true)
+        draw_rect(Rect2(bag.position + Vector2(7.0, -5.0) * scale, Vector2(9.0, 7.0) * scale), Color(0.70, 0.84, 0.60, 0.96), true)
+        draw_line(bag.position + Vector2(4.0, 10.0) * scale, bag.position + Vector2(bag.size.x - 4.0 * scale, 10.0 * scale), Color(0.22, 0.36, 0.22, 0.78), maxf(1.0, scale))
+    else:
+        draw_line(hatch.position + Vector2(13.0, 18.0) * scale, hatch.position + Vector2(40.0, 18.0) * scale, Color(0.72, 0.80, 0.84, 0.45), maxf(1.0, scale))
+    if _show_semantic_labels:
+        if not _delivery_confirmed:
+            _draw_world_badge(van_center + Vector2(0.0, -42.0) * scale, "фургон готов", Color(0.22, 0.40, 0.24, 0.86), Color(0.82, 0.95, 0.70, 0.96), 106.0, 8.4)
+        else:
+            _draw_world_badge(van_center + Vector2(0.0, -42.0) * scale, "доставлено", Color(0.24, 0.33, 0.44, 0.82), Color(0.78, 0.88, 0.98, 0.92), 88.0, 8.4)
+
+
+func _draw_postcard_world_cue(baseline: float, scale: float) -> void:
+    if not _postcard_visible:
+        return
+
+    var board_center := Vector2(_world_to_screen_x(_anchor_x("delivery_van_endpoint") + 112.0), baseline - 43.0 * scale)
+    var board_size := Vector2(96.0, 48.0) * scale
+    var rect := Rect2(board_center - board_size * 0.5, board_size)
+    draw_rect(rect, Color(0.60, 0.45, 0.30, 0.92), true)
+    draw_rect(rect, Color(0.28, 0.18, 0.12, 0.84), false, maxf(1.0, 1.5 * scale))
+    var postcard := Rect2(rect.position + Vector2(15.0, 8.0) * scale, Vector2(65.0, 31.0) * scale)
+    draw_rect(postcard, Color(0.92, 0.84, 0.64, 0.98), true)
+    draw_rect(postcard, Color(0.32, 0.22, 0.15, 0.70), false, maxf(1.0, scale))
+    draw_circle(postcard.position + Vector2(52.0, 8.0) * scale, 3.0 * scale, Color(0.72, 0.46, 0.38, 0.86))
+    draw_line(postcard.position + Vector2(9.0, 11.0) * scale, postcard.position + Vector2(42.0, 11.0) * scale, Color(0.36, 0.22, 0.14, 0.66), maxf(1.0, scale))
+    draw_line(postcard.position + Vector2(10.0, 21.0) * scale, postcard.position + Vector2(46.0, 21.0) * scale, Color(0.36, 0.22, 0.14, 0.50), maxf(1.0, scale))
+    if _show_semantic_labels:
+        _draw_world_badge(board_center + Vector2(0.0, -36.0) * scale, "открытка", Color(0.42, 0.30, 0.20, 0.82), Color(0.96, 0.82, 0.60, 0.94), 78.0, 8.4)
+
+    if _first_day_postcard_life_moment_seen:
+        for dog_id in ["dachshund_intro", "labrador_intro"]:
+            if not _dogs.has(dog_id):
+                continue
+            var dog := _dogs[dog_id] as Dictionary
+            if not bool(dog.get("visible", true)):
+                continue
+            var dog_center := Vector2(_world_to_screen_x(float(dog.get("x", 0.0))), baseline - 70.0 * scale)
+            draw_circle(dog_center, 4.0 * scale, Color(0.98, 0.91, 0.68, 0.88))
+            draw_circle(dog_center + Vector2(8.0, -7.0) * scale, 2.6 * scale, Color(0.98, 0.91, 0.68, 0.72))
+            draw_line(dog_center + Vector2(10.0, -1.0) * scale, board_center + Vector2(-28.0, -5.0) * scale, Color(0.96, 0.82, 0.56, 0.30), maxf(1.0, scale))
+
+
+func _draw_reward_world_cue(baseline: float, scale: float) -> void:
+    if not _slippers_equipped or not _dogs.has("dachshund_intro"):
+        return
+
+    var dog := _dogs["dachshund_intro"] as Dictionary
+    if not bool(dog.get("visible", true)):
+        return
+
+    var dog_center := Vector2(_world_to_screen_x(float(dog.get("x", 0.0))), baseline - 34.0 * scale)
+    var marker_center := dog_center + Vector2(22.0, -68.0) * scale
+    draw_circle(dog_center + Vector2(10.0, 20.0) * scale, 22.0 * scale, Color(0.72, 0.90, 0.96, 0.16))
+    _draw_slippers_icon(dog_center + Vector2(19.0, 22.0) * scale, scale * 1.25, Color(0.68, 0.84, 0.88, 0.96))
+    if _show_semantic_labels:
+        _draw_world_badge(marker_center, "тапочки Таксы", Color(0.22, 0.36, 0.40, 0.88), Color(0.74, 0.91, 0.96, 0.96), 116.0, 8.2)
+        _draw_slippers_icon(marker_center + Vector2(-42.0, 0.0) * scale, scale, Color(0.68, 0.84, 0.88, 0.96))
+        draw_line(marker_center + Vector2(18.0, 9.0) * scale, dog_center + Vector2(10.0, 8.0) * scale, Color(0.72, 0.90, 0.96, 0.42), maxf(1.0, scale))
+
+
+func _draw_next_day_world_cue(baseline: float, scale: float) -> void:
+    if not _first_day_next_day_hint_available:
+        return
+
+    var note_center := Vector2(_world_to_screen_x(_anchor_x("packing_table") + 112.0), baseline - 47.0 * scale)
+    var note_size := Vector2(82.0 if not _show_semantic_labels else 214.0, 48.0) * scale
+    var rect := Rect2(note_center - note_size * 0.5, note_size)
+    draw_rect(rect, Color(0.74, 0.80, 0.62, 0.92), true)
+    draw_rect(rect, Color(0.20, 0.30, 0.20, 0.82), false, maxf(1.0, 1.5 * scale))
+    var fold := PackedVector2Array([
+        rect.end - Vector2(15.0, 0.0) * scale,
+        rect.end,
+        rect.end - Vector2(0.0, 15.0) * scale,
+    ])
+    draw_colored_polygon(fold, Color(0.58, 0.68, 0.56, 0.92))
+    if _show_semantic_labels:
+        draw_string(ThemeDB.fallback_font, rect.position + Vector2(10.0, 17.0) * scale, "Завтра: паковать", HORIZONTAL_ALIGNMENT_LEFT, rect.size.x - 20.0 * scale, 8.2 * scale, Color(0.24, 0.32, 0.20, 1.0))
+        draw_string(ThemeDB.fallback_font, rect.position + Vector2(10.0, 32.0) * scale, "ещё аккуратнее.", HORIZONTAL_ALIGNMENT_LEFT, rect.size.x - 20.0 * scale, 8.2 * scale, Color(0.24, 0.32, 0.20, 1.0))
+    else:
+        draw_line(rect.position + Vector2(10.0, 14.0) * scale, rect.position + Vector2(56.0, 14.0) * scale, Color(0.24, 0.32, 0.20, 0.58), maxf(1.0, scale))
+        draw_line(rect.position + Vector2(12.0, 25.0) * scale, rect.position + Vector2(48.0, 25.0) * scale, Color(0.24, 0.32, 0.20, 0.46), maxf(1.0, scale))
+        draw_circle(rect.position + Vector2(61.0, 34.0) * scale, 3.0 * scale, Color(0.24, 0.32, 0.20, 0.48))
+
+
+func _draw_world_badge(center: Vector2, text: String, fill: Color, outline: Color, width: float, font_size: float) -> void:
+    var scale := _zoom()
+    var rect := Rect2(center.x - width * 0.5 * scale, center.y - 9.0 * scale, width * scale, 18.0 * scale)
+    draw_rect(rect, fill, true)
+    draw_rect(rect, outline, false, maxf(1.0, scale))
+    draw_string(ThemeDB.fallback_font, rect.position + Vector2(5.0, 13.0) * scale, text, HORIZONTAL_ALIGNMENT_LEFT, rect.size.x - 10.0 * scale, font_size * scale, Color(0.98, 0.96, 0.84, 1.0))
+
+
+func _draw_slippers_icon(center: Vector2, scale: float, color: Color) -> void:
+    draw_rect(Rect2(center + Vector2(-7.0, -3.5) * scale, Vector2(12.0, 5.0) * scale), color, true)
+    draw_rect(Rect2(center + Vector2(1.0, 2.0) * scale, Vector2(12.0, 5.0) * scale), color.darkened(0.08), true)
+    draw_rect(Rect2(center + Vector2(-7.0, -3.5) * scale, Vector2(12.0, 5.0) * scale), Color(0.14, 0.22, 0.24, 0.74), false, maxf(1.0, scale))
+    draw_rect(Rect2(center + Vector2(1.0, 2.0) * scale, Vector2(12.0, 5.0) * scale), Color(0.14, 0.22, 0.24, 0.74), false, maxf(1.0, scale))
+
+
+func _draw_arrow(from_pos: Vector2, to_pos: Vector2, color: Color, width: float) -> void:
+    if from_pos.distance_to(to_pos) < 1.0:
+        return
+
+    var direction := (to_pos - from_pos).normalized()
+    var side := Vector2(-direction.y, direction.x)
+    draw_line(from_pos, to_pos, color, width)
+    var arrow_points := PackedVector2Array()
+    arrow_points.append(to_pos)
+    arrow_points.append(to_pos - direction * 10.0 * _zoom() + side * 5.0 * _zoom())
+    arrow_points.append(to_pos - direction * 10.0 * _zoom() - side * 5.0 * _zoom())
+    draw_colored_polygon(arrow_points, color)
 
 
 func _dog_action_color(state: String) -> Color:
@@ -2634,6 +3039,8 @@ func _prepare_capture_directories() -> void:
     DirAccess.make_dir_recursive_absolute(_capture_video_dir())
     DirAccess.make_dir_recursive_absolute(_capture_log_dir())
     DirAccess.make_dir_recursive_absolute(_capture_frame_dir())
+    if _first_day_art_ux_capture:
+        DirAccess.make_dir_recursive_absolute(_capture_frame_dir("postcard_slippers"))
     print("vertical_slice_capture_dir=%s" % _capture_root())
 
 
@@ -2650,6 +3057,10 @@ func _begin_capture_initial_sequence() -> void:
     await get_tree().process_frame
     _schedule_capture("02_initial_strip_player_prototype")
     await _wait_for_capture_idle()
+
+    if _first_day_visible_capture:
+        _schedule_capture("03_route_prep_dachshund_bicycle" if _first_day_art_ux_capture else "03_first_route_ready")
+        await _wait_for_capture_idle()
 
     _capture_initializing = false
     _auto_action_gate = 0.12
@@ -2670,26 +3081,35 @@ func _maybe_capture_timeline(delta: float) -> void:
         get_tree().quit(0)
         return
 
+    if _first_day_visible_capture and _has_current_task("TripTask", "in_progress") and _current_step_has("move_transport_to", "offscreen_left"):
+        _schedule_capture("04_dog_departure_bicycle")
     if _trip_payload_visible:
-        _schedule_capture("03_bicycle_return_payload")
+        _schedule_capture(_capture_moment_id("03_bicycle_return_payload", "05_bicycle_return_payload", "05_bicycle_return_payload_objects"))
     if _has_current_task("UnloadTask", "moving_to_target") or _has_current_task("UnloadTask", "completing"):
-        _schedule_capture("04_unload_to_storage")
+        _schedule_capture(_capture_moment_id("04_unload_to_storage", "06_unload_to_storage"))
     if _has_carry_task("storage", "kitchen"):
-        _schedule_capture("05_storage_to_kitchen_carry")
+        _schedule_capture(_capture_moment_id("05_storage_to_kitchen_carry", "07_storage_to_kitchen_carry", "07_storage_to_kitchen_carry_object"))
     if _has_current_task("CookTask", "in_progress") or _token_at("food_mix", "kitchen"):
-        _schedule_capture("06_kitchen_food_mix")
+        _schedule_capture(_capture_moment_id("06_kitchen_food_mix", "08_kitchen_food_mix"))
     if _has_carry_task("kitchen", "packing_table", "food_mix"):
-        _schedule_capture("07_food_mix_to_packing_table")
+        _schedule_capture(_capture_moment_id("07_food_mix_to_packing_table", "09_food_mix_to_packing_table"))
     if _token_at("food_bag", "packing_table"):
-        _schedule_capture("08_packing_table_food_bag")
+        _schedule_capture(_capture_moment_id("08_packing_table_food_bag", "10_packing_table_food_bag", "10_packing_table_food_bag_state"))
     if _has_current_task("LoadVanTask", "moving_to_target") or _has_current_task("LoadVanTask", "completing"):
-        _schedule_capture("09_food_bag_to_van")
+        _schedule_capture(_capture_moment_id("09_food_bag_to_van", "11_food_bag_to_van"))
     if _van_loaded and not _delivery_confirmed:
-        _schedule_capture("09b_van_ready_confirm_delivery")
+        _schedule_capture(_capture_moment_id("09b_van_ready_confirm_delivery", "12_van_ready_confirm_delivery", "12_van_ready_object_state"))
     if _postcard_visible:
-        _schedule_capture("10_postcard_reward")
+        _schedule_capture(_capture_moment_id("10_postcard_reward", "13_delivery_complete_postcard_moment", "13_delivery_complete_postcard_board"))
+    if _first_day_art_ux_capture and (_postcard_visible or _reward_available or _slippers_equipped):
+        _capture_moment_frame_index += 1
+        _schedule_capture("postcard_slippers_%04d" % _capture_moment_frame_index, true, 0, "postcard_slippers")
+    if _first_day_visible_capture and _first_day_postcard_life_moment_seen:
+        _schedule_capture("14_dogs_notice_postcard_hidden_ui" if _first_day_art_ux_capture else "14_dog_noticed_postcard", false, 0, "", _first_day_art_ux_capture)
     if _slippers_equipped:
-        _schedule_capture("11_dog_card_slippers")
+        _schedule_capture(_capture_moment_id("11_dog_card_slippers", "15_dog_card_memory_slippers", "15_slippers_equip_dachshund_hidden_ui"), false, 0, "", _first_day_art_ux_capture)
+    if _first_day_visible_capture and _first_day_next_day_hint_available:
+        _schedule_capture("16_next_day_note_hidden_ui" if _first_day_art_ux_capture else "16_next_day_hint", false, 0, "", _first_day_art_ux_capture)
 
 
 func _begin_capture_finish_sequence() -> void:
@@ -2697,7 +3117,9 @@ func _begin_capture_finish_sequence() -> void:
         return
 
     _capture_finish_started = true
-    _schedule_capture("11_dog_card_slippers")
+    _schedule_capture(_capture_moment_id("11_dog_card_slippers", "15_dog_card_memory_slippers", "15_slippers_equip_dachshund_hidden_ui"), false, 0, "", _first_day_art_ux_capture)
+    if _first_day_visible_capture:
+        _schedule_capture("16_next_day_note_hidden_ui" if _first_day_art_ux_capture else "16_next_day_hint", false, 0, "", _first_day_art_ux_capture)
     _finish_capture_sequence.call_deferred()
 
 
@@ -2709,11 +3131,11 @@ func _finish_capture_sequence() -> void:
     _ui_hidden = true
     _update_ui()
     queue_redraw()
-    _schedule_capture("12_ui_hidden_world_visible")
+    _schedule_capture(_capture_moment_id("12_ui_hidden_world_visible", "17_ui_hidden_world_visible"))
     await get_tree().create_timer(0.35).timeout
-    _schedule_capture("13_readability_preview_216", false, 216)
-    _schedule_capture("14_readability_preview_144", false, 144)
-    _schedule_capture("15_readability_preview_96", false, 96)
+    _schedule_capture(_capture_moment_id("13_readability_preview_216", "18_readability_preview_216"), false, 216)
+    _schedule_capture(_capture_moment_id("14_readability_preview_144", "19_readability_preview_144"), false, 144)
+    _schedule_capture(_capture_moment_id("15_readability_preview_96", "20_readability_preview_96"), false, 96)
     await _wait_for_capture_idle()
 
     _ui_hidden = false
@@ -2728,7 +3150,7 @@ func _finish_capture_sequence() -> void:
     get_tree().quit(0)
 
 
-func _schedule_capture(moment_id: String, video_frame := false, preview_height := 0) -> void:
+func _schedule_capture(moment_id: String, video_frame := false, preview_height := 0, frame_group := "", force_ui_hidden := false) -> void:
     if not _capture_mode:
         return
     if not video_frame and _captured_moments.has(moment_id):
@@ -2741,9 +3163,17 @@ func _schedule_capture(moment_id: String, video_frame := false, preview_height :
         "moment_id": moment_id,
         "video_frame": video_frame,
         "preview_height": preview_height,
+        "frame_group": frame_group,
+        "force_ui_hidden": force_ui_hidden,
     })
     if not _capture_busy:
         _process_next_capture.call_deferred()
+
+
+func _capture_moment_id(default_id: String, first_day_id: String, art_ux_id := "") -> String:
+    if _first_day_art_ux_capture and art_ux_id != "":
+        return art_ux_id
+    return first_day_id if _first_day_visible_capture else default_id
 
 
 func _process_next_capture() -> void:
@@ -2755,19 +3185,30 @@ func _process_next_capture() -> void:
     var moment_id := str(item["moment_id"])
     var video_frame := bool(item["video_frame"])
     var preview_height := int(item.get("preview_height", 0))
+    var frame_group := str(item.get("frame_group", ""))
+    var force_ui_hidden := bool(item.get("force_ui_hidden", false))
+    var previous_ui_hidden := _ui_hidden
+    if force_ui_hidden and not _ui_hidden:
+        _ui_hidden = true
+        _update_ui()
+        queue_redraw()
     await get_tree().process_frame
     await get_tree().process_frame
 
     var image := get_viewport().get_texture().get_image()
     if image == null or image.is_empty():
         push_error("Could not capture viewport image for %s" % moment_id)
+        if force_ui_hidden:
+            _ui_hidden = previous_ui_hidden
+            _update_ui()
+            queue_redraw()
         _capture_busy = false
         if not _pending_captures.is_empty():
             _process_next_capture.call_deferred()
         return
 
     var file_name := "%s.png" % moment_id
-    var path := "%s/%s" % [_capture_frame_dir() if video_frame else _capture_screenshot_dir(), file_name]
+    var path := "%s/%s" % [_capture_frame_dir(frame_group) if video_frame else _capture_screenshot_dir(), file_name]
     if preview_height > 0 and image.get_height() > 0:
         var preview_width := maxi(1, int(round(float(image.get_width()) * (float(preview_height) / float(image.get_height())))))
         image.resize(preview_width, preview_height, Image.INTERPOLATE_LANCZOS)
@@ -2777,6 +3218,11 @@ func _process_next_capture() -> void:
     else:
         _captured_files.append(path)
         print("vertical_slice_capture=%s" % path)
+
+    if force_ui_hidden:
+        _ui_hidden = previous_ui_hidden
+        _update_ui()
+        queue_redraw()
 
     _capture_busy = false
     if not _pending_captures.is_empty():
@@ -2792,6 +3238,12 @@ func _write_capture_log() -> void:
     var lines: Array[String] = []
     lines.append("Steam Vertical Slice capture log")
     lines.append("capture_dir=%s" % _capture_root())
+    var profile := "vertical_slice_art_qa"
+    if _first_day_art_ux_capture:
+        profile = "first_day_art_ux_visual_language_pass_v1"
+    elif _first_day_visible_capture:
+        profile = "first_day_mvp_visible_review_v2"
+    lines.append("capture_profile=%s" % profile)
     lines.append("timing=%s" % ("fast" if _fast_mode else "normal"))
     lines.append("labels=%s" % ("on" if _show_semantic_labels else "off"))
     lines.append("")
@@ -3055,7 +3507,13 @@ func _capture_video_dir() -> String:
     return "%s/captures/video" % _capture_root()
 
 
-func _capture_frame_dir() -> String:
+func _capture_frame_dir(frame_group := "") -> String:
+    if _first_day_art_ux_capture:
+        if frame_group == "postcard_slippers":
+            return "%s/postcard_slippers_moment_1x" % _capture_video_dir()
+        return "%s/first_day_mvp_visible_loop_frames_1x" % _capture_video_dir()
+    if _first_day_visible_capture:
+        return "%s/first_day_mvp_visible_loop_frames" % _capture_video_dir()
     return "%s/vertical_slice_full_loop_short_frames" % _capture_video_dir()
 
 
@@ -3778,7 +4236,7 @@ func _state_first_day_snapshot() -> Dictionary:
         "memory_text": "Помнит первую тёплую поставку" if _first_day_first_memory_added else "",
         "next_day_hint_available": _first_day_next_day_hint_available,
         "next_day_hint_id": "hint.first_day_next_day" if _first_day_next_day_hint_available else null,
-        "next_day_hint_text": "Завтра можно осторожно продолжить заботу о приюте." if _first_day_next_day_hint_available else "",
+        "next_day_hint_text": FIRST_DAY_NEXT_DAY_HINT_TEXT if _first_day_next_day_hint_available else "",
     }
 
 

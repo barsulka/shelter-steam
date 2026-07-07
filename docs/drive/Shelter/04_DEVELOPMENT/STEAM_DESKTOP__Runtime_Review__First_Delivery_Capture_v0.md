@@ -102,13 +102,7 @@ WATCH:
 
 Нужен Codex follow-up: добавить accepted dispatch-confirmation path для capture.
 
-Codex brief подготовлен:
-
-```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Dispatch_Confirmation_Capture_Path_v0.md
-```
-
-Варианты реализации в brief:
+Варианты:
 
 1. Узкий whitelisted runtime action для подтверждения первой отправки.
 2. Новый scenario `first_delivery_with_dispatch_confirmation`, который проходит до `ready_to_dispatch`, подтверждает отправку и доснимает postcard/reward/chain_complete.

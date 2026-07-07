@@ -340,6 +340,20 @@ Workbench review: `postcard_life_moment_seen`, `first_reward_available`,
 `next_day_hint_available` and `next_day_hint_text`. These are state evidence for
 the first delivery contract, not a new progression system.
 
+The current visible-readability v2 capture also emits review-only story events
+for main-strip prototype markers: `postcard_world_marker_shown`,
+`next_day_hint_world_marker_shown`, and `first_reward_world_marker_shown`.
+These events are evidence that the capture showed a postcard marker, a gentle
+next-day note and Такса-owned slippers cue; they are not new gameplay systems.
+
+The Art / UX visual-language v3 capture keeps those compatibility events and
+adds review-only object/state evidence events:
+`packing_table_food_bag_state_visible`, `van_ready_object_state_visible`,
+`postcard_board_state_visible`, `next_day_note_object_visible`, and
+`slippers_equipped_world_state_visible`. These are event-log proof for visual
+review captures only; they do not add mechanics, progression, economy, or
+production chains.
+
 After the first delivery completes, the Food Bag token is no longer reported as
 available in `resources.inventories.delivery_van_endpoint`. Its token remains in
 the snapshot for review with `location=delivered_to_shelter`,
@@ -469,8 +483,8 @@ For `first_delivery_with_dispatch_confirmation`, `manifest.json` contains both
 `dispatch_confirmation_proof` and `first_day_mvp_proof`. The first proof covers
 the accepted dispatch-confirmation path; the second additionally checks high
 level dog-action events, first-day postcard/memory/next-day-hint state, delivered
-Food Bag semantics, legacy `production_chain` consistency and debug event
-tagging.
+Food Bag semantics, legacy `production_chain` consistency, review-only
+marker/object-state evidence events, and debug event tagging.
 
 The capture harness redacts reusable token values from `manifest.json` and
 `run.log`. Generated bundles live under ignored `.runtime` storage and must not

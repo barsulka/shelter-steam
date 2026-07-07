@@ -1,0 +1,227 @@
+Steam Vertical Slice capture log
+capture_dir=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3
+capture_profile=first_day_art_ux_visual_language_pass_v1
+timing=normal
+labels=on
+
+Captured files:
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/01_initial_strip_qa_labels_on.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0001.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/02_initial_strip_player_prototype.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/03_route_prep_dachshund_bicycle.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0002.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0003.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0004.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0005.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0006.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/04_dog_departure_bicycle.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0007.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0008.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0009.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0010.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0011.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0012.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0013.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0014.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0015.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0016.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0017.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/05_bicycle_return_payload_objects.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0018.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0019.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/06_unload_to_storage.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0020.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0021.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0022.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0023.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0024.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0025.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0026.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0027.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0028.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0029.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0030.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/07_storage_to_kitchen_carry_object.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0031.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0032.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0033.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0034.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0035.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0036.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0037.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0038.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0039.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0040.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0041.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0042.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0043.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0044.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0045.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0046.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0047.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/08_kitchen_food_mix.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0048.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0049.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0050.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0051.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0052.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0053.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/09_food_mix_to_packing_table.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0054.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0055.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0056.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0057.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0058.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0059.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0060.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0061.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0062.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0063.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0064.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0065.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0066.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0067.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0068.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/10_packing_table_food_bag_state.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0069.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0070.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/11_food_bag_to_van.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0071.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0072.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0073.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/12_van_ready_object_state.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0074.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0075.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0076.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0077.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0078.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/13_delivery_complete_postcard_board.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0001.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/14_dogs_notice_postcard_hidden_ui.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/16_next_day_note_hidden_ui.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0002.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0079.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0003.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0004.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0005.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0006.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0007.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0080.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0008.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0009.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0010.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0011.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0012.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0081.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0013.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0014.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0015.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0016.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0017.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0082.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0018.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0019.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0020.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0021.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0022.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/15_slippers_equip_dachshund_hidden_ui.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0083.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0023.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/17_ui_hidden_world_visible.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0024.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0025.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0026.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0027.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0084.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0028.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0029.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0030.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/18_readability_preview_216.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/19_readability_preview_144.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/screenshots/20_readability_preview_96.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0031.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0032.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0085.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0033.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0034.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0035.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0036.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0037.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/first_day_mvp_visible_loop_frames_1x/frame_0086.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0038.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0039.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0040.png
+- /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/video/postcard_slippers_moment_1x/postcard_slippers_0041.png
+
+Events:
+- 0.00 order_created
+- 0.55 player_confirmed_trip
+- 0.55 trip_task_created
+- 2.20 transport_left_strip
+- 2.20 dog_departed_with_bicycle
+- 2.20 trip_timer_started
+- 3.35 trip_timer_complete
+- 4.00 transport_returned
+- 4.00 dog_returned_with_payload
+- 4.30 payload_visible
+- 4.30 unload_task_created:oat_crate
+- 4.30 unload_task_created:pumpkin_crate
+- 4.70 dog_picked_up_resource
+- 5.80 resource_added_to_storage:oat_crate
+- 5.80 dog_delivered_resource
+- 6.20 dog_picked_up_resource
+- 7.30 resource_added_to_storage:pumpkin_crate
+- 7.30 dog_delivered_resource
+- 7.30 carry_task_created:oat_crate:storage->kitchen
+- 7.30 carry_task_created:pumpkin_crate:storage->kitchen
+- 7.30 carry_task_created:protein_packet:storage->kitchen
+- 7.70 dog_picked_up_resource
+- 8.70 resource_delivered_to_kitchen:oat_crate
+- 8.70 dog_delivered_resource
+- 9.10 dog_picked_up_resource
+- 10.10 resource_delivered_to_kitchen:pumpkin_crate
+- 10.10 dog_delivered_resource
+- 10.50 dog_picked_up_resource
+- 11.50 resource_delivered_to_kitchen:protein_packet
+- 11.50 dog_delivered_resource
+- 11.50 kitchen_inputs_ready
+- 11.50 cook_task_created
+- 11.85 dog_started_cooking
+- 12.90 food_mix_created
+- 12.90 dog_created_food_mix
+- 12.90 carry_task_created:food_mix:kitchen->packing_table
+- 12.90 carry_task_created:packaging_bag:storage->packing_table
+- 13.30 dog_picked_up_resource
+- 14.30 resource_delivered_to_packing_table:food_mix
+- 14.30 dog_delivered_resource
+- 14.70 dog_picked_up_resource
+- 15.70 resource_delivered_to_packing_table:packaging_bag
+- 15.70 dog_delivered_resource
+- 15.70 packing_inputs_ready
+- 15.70 pack_task_created
+- 16.05 dog_started_packing
+- 17.00 food_bag_created
+- 17.00 packing_table_food_bag_state_visible
+- 17.00 dog_created_food_bag
+- 17.00 load_van_task_created
+- 17.40 dog_picked_up_resource
+- 18.45 van_loaded
+- 18.45 dog_loaded_van
+- 18.45 van_ready_object_state_visible
+- 18.75 player_confirmed_delivery
+- 18.75 delivery_task_created
+- 19.65 delivery_complete
+- 19.65 postcard_created
+- 19.65 dog_noticed_postcard
+- 19.65 postcard_world_marker_shown
+- 19.65 postcard_board_state_visible
+- 19.65 first_day_memory_added
+- 19.65 next_day_hint_available
+- 19.65 next_day_hint_world_marker_shown
+- 19.65 next_day_note_object_visible
+- 19.65 reward_created
+- 19.65 dog_received_reward
+- 20.75 reward_equipped
+- 20.75 dog_equipped_first_reward
+- 20.75 first_reward_world_marker_shown
+- 20.75 slippers_equipped_world_state_visible

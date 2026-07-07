@@ -1,0 +1,102 @@
+{
+  "run_id": "_first_day_visible_capture_state",
+  "created_at": "2026-07-05T19:42:55Z",
+  "script_version": "shelter.workbench_capture.v0",
+  "repo_root": "/Users/barsulka/GolandProjects/shelter/shelter",
+  "steam_root": "/Users/barsulka/GolandProjects/shelter/shelter/steam",
+  "fixture_id": "first_day_empty_coop",
+  "scenario_id": "first_delivery_with_dispatch_confirmation",
+  "requested_game_seconds": 420.0,
+  "sample_every_game_seconds": 10.0,
+  "speed_multiplier": 100,
+  "debug_tick_seconds_per_sample": 0.1,
+  "snapshot_count": 42,
+  "events_written": 106,
+  "stress_signal_sample_count": 42,
+  "state_schema_version": "shelter.godot_state_connector.v0.2",
+  "runtime_schema_version": "shelter.game_systems_runtime.v0.1",
+  "output_files": {
+    "manifest": "manifest.json",
+    "snapshots": "snapshots.jsonl",
+    "events": "events.jsonl",
+    "stress_signals": "stress_signals.jsonl",
+    "final_state": "final_state.json",
+    "run_log": "run.log"
+  },
+  "command_line": "./tools/dev-vertical-slice.sh workbench-capture --scenario=first_delivery_with_dispatch_confirmation --fixture=first_day_empty_coop --game-seconds=420 --sample-every-game-seconds=10 --speed=100 --output-dir=/Users/barsulka/GolandProjects/shelter/shelter/steam/.runtime/workbench_capture_runs/_first_day_visible_capture_state",
+  "setup_actions": [
+    {
+      "action": "fixture.load",
+      "fixture_id": "first_day_empty_coop"
+    },
+    {
+      "action": "runtime.speed.set",
+      "speed_multiplier": 100
+    },
+    {
+      "action": "runtime.route.start",
+      "route_id": "route.oat_farm_intro",
+      "route_started": true
+    },
+    {
+      "action": "runtime.delivery.confirm",
+      "sample_index": 20,
+      "sample_game_time": 200.0,
+      "delivery_confirmed": true,
+      "chain_state": "dispatched"
+    }
+  ],
+  "dispatch_confirmation_proof": {
+    "order.delivery_confirmed": true,
+    "order.postcard_visible": true,
+    "order.reward_available": true,
+    "game.chain_complete": true,
+    "production_chain.state": "completed",
+    "production_chain.completed": true,
+    "event.player_confirmed_delivery": true,
+    "event.postcard_created": true,
+    "event.reward_created": true
+  },
+  "first_day_mvp_proof": {
+    "order.delivery_confirmed": true,
+    "order.postcard_visible": true,
+    "order.reward_available": true,
+    "game.chain_complete": true,
+    "production_chain.state": "completed",
+    "production_chain.completed": true,
+    "event.player_confirmed_delivery": true,
+    "event.postcard_created": true,
+    "event.reward_created": true,
+    "first_day.postcard_life_moment_seen": true,
+    "first_day.first_reward_equipped": true,
+    "first_day.first_memory_added": true,
+    "first_day.next_day_hint_available": true,
+    "event.dog_noticed_postcard": true,
+    "event.dog_received_reward": true,
+    "event.first_day_memory_added": true,
+    "event.next_day_hint_available": true,
+    "event.dog_equipped_first_reward": true,
+    "dog_action.high_level_count_ok": true,
+    "stress.dog_action_events_recent_positive": true,
+    "food_bag.not_in_delivery_van": true,
+    "food_bag.hidden_after_delivery": true,
+    "food_bag.semantic_delivered": true,
+    "food_bag.location": "delivered_to_shelter",
+    "legacy.trip.complete": true,
+    "legacy.unload_to_storage.complete": true,
+    "legacy.cook_food_mix.complete": true,
+    "legacy.pack_food_bag.complete": true,
+    "legacy.delivery.complete": true,
+    "legacy.equip_comfortable_slippers.complete": true,
+    "debug_time_advanced.events_tagged_debug": true,
+    "debug_time_advanced.not_production_chain": true,
+    "event_tags.dog_noticed_postcard": "dog_action",
+    "event_tags.first_day_memory_added": "helper_effect",
+    "event_tags.next_day_hint_available": "story"
+  },
+  "exit_status": "success",
+  "known_warnings": [
+    "Accelerated capture validates state transitions and causality, not desktop calmness, animation warmth, visual readability or player feel.",
+    "100x is dev-only capture/testing acceleration and must not be treated as a player-facing or normal feel-test speed."
+  ]
+}

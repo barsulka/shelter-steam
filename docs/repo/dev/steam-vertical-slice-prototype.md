@@ -70,6 +70,8 @@ Art QA capture:
 cd steam
 tools/dev-vertical-slice.sh capture
 tools/dev-vertical-slice.sh capture-smoke
+tools/dev-vertical-slice.sh first-day-visible-capture
+tools/dev-vertical-slice.sh first-day-art-ux-capture
 ```
 
 Capture output:
@@ -79,6 +81,41 @@ docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE
 ```
 
 `capture` runs the visible macOS Godot window with deterministic autoplay and fast timings, then saves named viewport screenshots and a PNG-frame sequence fallback under the capture output directory. `capture-smoke` verifies that capture path creation and PNG writing work in a temporary `_capture_smoke_tmp/` directory, then removes that temporary directory so the delivered capture pack is not overwritten.
+
+`first-day-visible-capture` creates the persistent First Day MVP visible review
+pack under:
+
+```text
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v2/
+```
+
+It runs a visible macOS capture pass for named screenshots and
+`first_day_mvp_visible_loop_frames/`, then runs a matching Workbench
+`first_delivery_with_dispatch_confirmation` state-proof pass and copies
+`manifest.json`, `final_state.json`, `events.jsonl` and `stress_signals.jsonl`
+into `captures/state/`. The command is review evidence only; it does not claim
+final visual or player-feel acceptance.
+
+`first-day-art-ux-capture` creates the current Art / UX visual-language pass
+pack under:
+
+```text
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/
+```
+
+It runs the visible macOS capture at normal prototype speed, writes named
+screenshots, `first_day_mvp_visible_loop_frames_1x/`,
+`postcard_slippers_moment_1x/`, `README.md`, `CAPTURE_MANIFEST_v3.md`, and the
+same Workbench `first_delivery_with_dispatch_confirmation` state proof under
+`captures/state/`. The command is still prototype evidence only: it does not
+claim final visual acceptance, final palette/style/UI look, or production art
+quality.
+
+The v2 capture pass is a focused First Day readability iteration. It keeps the
+same gameplay scope and adds only prototype-level main-strip cues: Такса as the
+first driver, Лабрадор as the helper, route/payload/van/postcard/reward/next-day
+markers, an embodied postcard-board attention cue, a personal slippers marker
+for Такса, and review-only marker events in Workbench proof.
 
 The v1 capture pack remains available as the pre-fix Art QA baseline:
 
@@ -176,6 +213,17 @@ Art QA fix pass v1 improves these Level 0 placeholders without choosing producti
 - The Packing Table placeholder has stronger work-surface/packing semantics while staying a Utility Prop.
 - Dog silhouettes are larger and draw action badges/lanes for carry, unload, kitchen, packing, loading, route and reward states.
 - Carried resources are drawn above the dog/action layer so the attached payload remains easier to read.
+- First Day readability pass v2 adds non-final world badges and markers for
+  driver/helper roles, route readiness, returned payload, van dispatch readiness,
+  postcard board, Такса-owned slippers and the gentle next-day note. These are
+  prototype cues only, not final UI/art direction.
+- First Day Art / UX visual-language pass v3 keeps the same gameplay scope and
+  moves more readability into object/state cues: Такса works near the bicycle as
+  the first driver, Лабрадор has calmer helper poses, the Packing Table and Van
+  visibly change object state, the postcard lives on a board, Такса's slippers
+  are drawn on her paws, and the next-day hint is a small physical note. QA
+  labels and cards remain available, but hidden-UI screenshots are required for
+  review.
 
 ## UI / Controls
 

@@ -1,5 +1,213 @@
 # Codex Status
 
+## 2026-07-07 - Shelter MCP repo diff, patch and markdown editing tools v1
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Repo_Diff_Patch_And_Doc_Editing_Tools_v1.md`
+- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- Summary: Added safe typed Shelter MCP tools for repo/document review workflows without adding generic shell access. The new tools cover git status, bounded git diff, review diff with simple risk flags, patch dry-run/apply via fixed `git apply` args, markdown section editing by unique heading, deterministic Shelter bootstrap context bundling, and sha256-guarded file writes.
+- Tools added:
+  - `git_status`
+  - `git_diff`
+  - `git_diff_for_review`
+  - `apply_patch`
+  - `insert_section_after_heading`
+  - `replace_section`
+  - `append_changelog_entry`
+  - `read_shelter_bootstrap_context`
+  - `write_file_if_unchanged`
+- Safety notes:
+  - Repo selection is enum-only: `shelter` or `mcp`.
+  - Paths must be relative and stay inside the selected git root.
+  - Git execution uses fixed `git status`, `git diff`, and `git apply` argument lists, not shell text or arbitrary git options.
+  - Risky write tools default to `dry_run=true`.
+  - `.git`, `.env`, common key/certificate extensions, and obvious secrets-looking paths are denied for diff/patch/write content.
+- Changed files in MCP repo:
+  - `.env.example`
+  - `README.md`
+  - `internal/sheltermcp/config.go`
+  - `internal/sheltermcp/server.go`
+  - `internal/sheltermcp/server_test.go`
+  - `internal/sheltermcp/repo_tools.go`
+  - `internal/sheltermcp/repo_tools_test.go`
+- Changed files in Shelter repo:
+  - `docs/repo/status/CODEX_STATUS.md`
+- Checks:
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && gofmt -w internal/sheltermcp/config.go internal/sheltermcp/server.go internal/sheltermcp/repo_tools.go internal/sheltermcp/server_test.go internal/sheltermcp/repo_tools_test.go`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && git diff --check`
+- Known limitations:
+  - `git_diff` does not embed untracked file contents; it reports untracked files through status and diff review metadata.
+  - Patch path parsing is intentionally conservative and optimized for normal unified diffs.
+  - `read_shelter_bootstrap_context` is deterministic file bundling only; it does not summarize or replace reading task-specific deep docs.
+
+## 2026-07-06 - First Day Art / UX visual language pass v1 implemented
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__First_Day_Art_UX_Visual_Language_Pass_v1.md`
+- Summary: Implemented the narrow First Day Art / UX Visual Language Pass without changing gameplay, economy, balance, progression, dogs, routes, chains, House of Curiosity scope, monetization, timers, FOMO, D-010, or final art direction. The prototype now carries more meaning through object/state cues instead of cards/labels/badges/arrows: Такса reads more as the bicycle-side first driver, Лабрадор reads more as a calm helper, the packing table and van visibly change state, the postcard lives on a world board, the next-day hint is a small physical note, and Такса's slippers are visible on her paws.
+- Output:
+  - Pack: `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/`
+  - Command: `cd steam && tools/dev-vertical-slice.sh first-day-art-ux-capture`
+  - Screenshots: `20` required named PNGs under `captures/screenshots/`
+  - Full loop normal-speed frame sequence: `86` PNG frames under `captures/video/first_day_mvp_visible_loop_frames_1x/`
+  - Postcard/slippers normal-speed frame sequence: `41` PNG frames under `captures/video/postcard_slippers_moment_1x/`
+  - State proof: `captures/state/manifest.json`, `final_state.json`, `events.jsonl`, `stress_signals.jsonl`
+  - Pack docs: `README.md`, `CAPTURE_MANIFEST_v3.md`
+- State proof:
+  - `manifest.exit_status=success`
+  - `snapshot_count=42`, `events_written=114`, `stress_signal_sample_count=42`
+  - `first_day_mvp_proof` confirms dispatch completion, postcard/reward state, chain completion, first-day memory/reward/hint state, delivered Food Bag semantics, legacy chain consistency, clean debug tagging, high-level dog action events, and the v3 object/state evidence events.
+  - New v3 review-only proof keys are true: `event.packing_table_food_bag_state_visible`, `event.van_ready_object_state_visible`, `event.postcard_board_state_visible`, `event.next_day_note_object_visible`, `event.slippers_equipped_world_state_visible`.
+- Changed files:
+  - `steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - `steam/tools/dev-vertical-slice.sh`
+  - `steam/README.md`
+  - `docs/repo/dev/steam-vertical-slice-prototype.md`
+  - `docs/repo/dev/godot-state-connector.md`
+  - `docs/repo/status/CODEX_STATUS.md`
+  - `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/README.md`
+  - `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/CAPTURE_MANIFEST_v3.md`
+  - generated PNG/state/log artifacts under `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/captures/`
+- Checks:
+  - Passed: `bash -n steam/tools/dev-vertical-slice.sh`
+  - Passed: `bash -n steam/launch.sh`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh capture-smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh first-day-art-ux-capture`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh connector-control-smoke`
+  - Passed: `cd steam && tools/check-godot.sh`
+  - Passed: `python3 -m json.tool` for v3 `captures/state/manifest.json` and `captures/state/final_state.json`
+  - Passed: v3 PNG/header/proof validation in `first-day-art-ux-capture` (`20` screenshots, `86` loop frames, `41` postcard/slippers frames)
+  - Passed: `sips` dimension check for `20_readability_preview_96.png` (`1282x96`)
+  - Passed: `git diff --check`
+- Known limitations:
+  - This is still prototype visual-language evidence, not production art or final visual acceptance.
+  - QA cards/labels remain available for inspection; the new hidden-UI screenshots are the mandatory check surface for world-only readability.
+  - `100x` Workbench state proof remains debug/state evidence only and must not be treated as visual warmth/readability/player-feel proof.
+  - OpenAPI endpoints were not changed; only review-only event taxonomy and capture docs were updated.
+  - Shelter MCP whitelist was not changed because this brief explicitly kept MCP whitelist changes out of scope unless separately requested.
+
+## 2026-07-06 - First Day Art / UX visual language pass brief prepared
+
+- Branch: `master`
+- Source request: User asked Codex to prepare the next First Day Art / UX Visual Language Pass after R-23 Game Designer PASS and Art Director / UX handoff.
+- Summary: Restored project context from local docs, read the R-23 visible review and temporary Art / UX handoff, and created the next Codex implementation brief. The prepared scope keeps First Day gameplay unchanged and focuses on moving meaning from UI/cards/labels/badges/arrows into object state, dog pose, simple movement and world moments.
+- Output:
+  - Brief: `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__First_Day_Art_UX_Visual_Language_Pass_v1.md`
+  - Status: prepared, awaiting explicit user confirmation before implementation.
+- Prepared implementation direction:
+  - Такса as first driver through silhouette, bicycle proximity, route-prep and return behavior.
+  - Лабрадор as calm helper through slower grounded movement, idle/work poses and careful carry/packing cues.
+  - Payload/resource flow through physical object movement and station states.
+  - Van-ready as loaded/prepared object state.
+  - Postcard moment as world board + dog attention/pause.
+  - `Удобные тапочки` as physically attached to Такса.
+  - Next-day hint as a gentle physical note, not a tutorial popup.
+  - Mandatory hidden-UI and 96px composition/silhouette checks.
+- Proposed capture output after implementation:
+  - `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/`
+  - Proposed command: `cd steam && tools/dev-vertical-slice.sh first-day-art-ux-capture`
+  - Must include 1x/low-speed visible frames, postcard/slippers moment frames, hidden UI screenshots, compact previews and matching state proof.
+- Checks:
+  - Passed: `git diff --check`
+- Known limitations:
+  - Implementation has not started yet.
+  - No code, gameplay, capture command, state contract or API behavior was changed in this preparation step.
+  - Shelter MCP whitelist was not changed.
+
+## 2026-07-06 - First Day visible readability capture pack v2
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__First_Day_Visible_Readability_Fix_v1.md`
+- Summary: Implemented a narrow prototype readability pass for the First Day MVP visible strip without expanding gameplay scope. The strip now has non-final world cues for Такса as first driver, Лабрадор as helper, route readiness, returned payload, van dispatch readiness, postcard board, Такса-owned slippers, and a gentle next-day note. Post-delivery proof now includes review-only marker events for postcard, next-day hint, and first reward world markers.
+- Output:
+  - Pack: `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v2/`
+  - Command: `cd steam && tools/dev-vertical-slice.sh first-day-visible-capture`
+  - Screenshots: `20` required named PNGs under `captures/screenshots/`
+  - Frame sequence: `28` PNG frames under `captures/video/first_day_mvp_visible_loop_frames/`
+  - State proof: `captures/state/manifest.json`, `final_state.json`, `events.jsonl`, `stress_signals.jsonl`
+- State proof:
+  - `manifest.exit_status=success`
+  - `snapshot_count=42`, `events_written=109`
+  - Existing `first_day_mvp_proof` still confirms dispatch completion, postcard/reward state, chain completion, D-010 reward/memory state, next-day hint state, delivered Food Bag semantics, clean debug tagging, and final legacy chain consistency.
+  - New review-only proof keys are true: `event.postcard_world_marker_shown`, `event.next_day_hint_world_marker_shown`, `event.first_reward_world_marker_shown`.
+  - Final `game.first_day.next_day_hint_text`: `Завтра можно придумать, как паковать ещё аккуратнее.`
+- Changed files:
+  - `steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - `steam/tools/dev-vertical-slice.sh`
+  - `steam/README.md`
+  - `docs/repo/dev/steam-vertical-slice-prototype.md`
+  - `docs/repo/dev/godot-state-connector.md`
+  - `docs/repo/api/godot-state-connector.openapi.yaml`
+  - `docs/repo/status/CODEX_STATUS.md`
+  - `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v2/README.md`
+  - `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v2/CAPTURE_MANIFEST_v2.md`
+  - generated PNG/state/log artifacts under `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v2/captures/`
+- Checks:
+  - Passed: `bash -n steam/tools/dev-vertical-slice.sh`
+  - Passed: `bash -n steam/launch.sh`
+  - Passed: `Godot --headless --path steam --check-only --script res://scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh capture-smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh first-day-visible-capture`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh connector-control-smoke`
+  - Passed: `cd steam && tools/check-godot.sh`
+  - Passed: `python3 -m json.tool` for v2 `captures/state/manifest.json` and `captures/state/final_state.json`
+  - Passed: PNG count/header/proof validation (`20` screenshots, `28` frames)
+  - Passed: `sips` dimension check for full-size and 96 px preview PNGs
+  - Passed: OpenAPI YAML parse and `FirstDayState.next_day_hint_text` example assertion
+  - Passed: `git diff --check`
+- Known limitations:
+  - This is still fast deterministic visible capture, not real-speed player-feel proof.
+  - The readability cues are prototype markers only; no final art direction, palette, UI look, production asset pipeline, new dog, route, chain or full House of Curiosity loop was added.
+  - Some post-delivery top-card UI can overlap the world; `17_ui_hidden_world_visible.png` is included to review strip-only readability.
+  - Human Game Designer / Art Director / UX review is still required; no final visual acceptance is claimed.
+  - Shelter MCP whitelist was not changed.
+
+## 2026-07-05 - First Day MVP visible review capture pack v1
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__First_Day_MVP_Visible_Review_Capture_Pack_v1.md`
+- Summary: Created a persistent visible/player-feel review capture pack for the current First Day MVP after Runtime Polish v1, without changing gameplay contracts. The new `first-day-visible-capture` command runs a visible macOS Godot capture pass for named screenshots and a PNG-frame sequence, then runs a matching Workbench state-proof pass and copies `manifest.json`, `final_state.json`, `events.jsonl`, and `stress_signals.jsonl` into the persistent pack.
+- Output:
+  - Pack: `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v1/`
+  - Command: `cd steam && tools/dev-vertical-slice.sh first-day-visible-capture`
+  - Screenshots: `20` required named PNGs under `captures/screenshots/`
+  - Frame sequence: `27` PNG frames under `captures/video/first_day_mvp_visible_loop_frames/`
+  - State proof: `captures/state/manifest.json`, `final_state.json`, `events.jsonl`, `stress_signals.jsonl`
+- State proof:
+  - `manifest.exit_status=success`
+  - `snapshot_count=42`, `events_written=106`
+  - `first_day_mvp_proof` is present and confirms dispatch completion, first-day postcard/memory/reward/hint state, delivered Food Bag semantics, clean debug tagging, and final legacy chain consistency.
+- Changed files:
+  - `steam/tools/dev-vertical-slice.sh`
+  - `steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd`
+  - `steam/README.md`
+  - `docs/repo/dev/steam-vertical-slice-prototype.md`
+  - `docs/repo/status/CODEX_STATUS.md`
+  - `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v1/README.md`
+  - `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v1/CAPTURE_MANIFEST_v1.md`
+  - generated PNG/state/log artifacts under `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v1/captures/`
+- Checks:
+  - Passed: `bash -n steam/tools/dev-vertical-slice.sh`
+  - Passed: `bash -n steam/launch.sh`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh capture-smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh first-day-visible-capture`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh smoke`
+  - Passed: `cd steam && tools/dev-vertical-slice.sh connector-control-smoke`
+  - Passed: `cd steam && tools/check-godot.sh`
+  - Passed: `python3 -m json.tool` for `captures/state/manifest.json` and `captures/state/final_state.json`
+  - Passed: PNG listing/count validation (`20` screenshots, `27` frames)
+  - Passed: `sips` dimension check for full-size and 96 px preview PNGs
+  - Passed: `git diff --check`
+- Known limitations:
+  - This is fast deterministic visible capture and matching state proof, not real-speed player-feel proof.
+  - Human Game Designer / Art Director / UX review is still required; no final visual acceptance is claimed.
+  - Placeholder art remains prototype semantics; no new art direction or production art decision was made.
+  - Shelter MCP whitelist was not updated in this Steam-only task. Follow-up is needed if `first-day-visible-capture` should be callable through MCP `run_shelter_dev_command`.
+
 ## 2026-07-05 - First Day MVP runtime polish v1
 
 - Branch: `master`

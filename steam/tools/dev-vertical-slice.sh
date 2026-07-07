@@ -9,6 +9,10 @@ MODE="${1:-interactive}"
 EXTRA_ARGS=("${@:2}")
 CAPTURE_DIR="$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2"
 SMOKE_CAPTURE_DIR="$CAPTURE_DIR/_capture_smoke_tmp"
+FIRST_DAY_VISIBLE_CAPTURE_DIR="$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v2"
+FIRST_DAY_VISIBLE_STATE_TMP_DIR="$ROOT_DIR/.runtime/workbench_capture_runs/_first_day_visible_capture_state_v2"
+FIRST_DAY_ART_UX_CAPTURE_DIR="$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3"
+FIRST_DAY_ART_UX_STATE_TMP_DIR="$ROOT_DIR/.runtime/workbench_capture_runs/_first_day_art_ux_capture_state_v3"
 CONNECTOR_PORT="${STATE_CONNECTOR_PORT:-8765}"
 CONNECTOR_SMOKE_PORT="${STATE_CONNECTOR_SMOKE_PORT:-18765}"
 CONNECTOR_CONTROL_SMOKE_PORT="${STATE_CONNECTOR_CONTROL_SMOKE_PORT:-18766}"
@@ -953,6 +957,14 @@ def first_day_mvp_proof(state):
         "event.first_day_memory_added": "first_day_memory_added" in event_types,
         "event.next_day_hint_available": "next_day_hint_available" in event_types,
         "event.dog_equipped_first_reward": "dog_equipped_first_reward" in event_types,
+        "event.postcard_world_marker_shown": "postcard_world_marker_shown" in event_types,
+        "event.next_day_hint_world_marker_shown": "next_day_hint_world_marker_shown" in event_types,
+        "event.first_reward_world_marker_shown": "first_reward_world_marker_shown" in event_types,
+        "event.packing_table_food_bag_state_visible": "packing_table_food_bag_state_visible" in event_types,
+        "event.van_ready_object_state_visible": "van_ready_object_state_visible" in event_types,
+        "event.postcard_board_state_visible": "postcard_board_state_visible" in event_types,
+        "event.next_day_note_object_visible": "next_day_note_object_visible" in event_types,
+        "event.slippers_equipped_world_state_visible": "slippers_equipped_world_state_visible" in event_types,
         "dog_action.high_level_count_ok": len(dog_action_events) >= 8,
         "stress.dog_action_events_recent_positive": int(stress_signals.get("dog_action_events_recent", 0)) > 0,
         "food_bag.not_in_delivery_van": food_bag.get("location") != "delivery_van_endpoint" and int(van_inventory.get("food_bag", 0)) == 0,
@@ -970,6 +982,14 @@ def first_day_mvp_proof(state):
         "event_tags.dog_noticed_postcard": event_tags.get("dog_noticed_postcard", ""),
         "event_tags.first_day_memory_added": event_tags.get("first_day_memory_added", ""),
         "event_tags.next_day_hint_available": event_tags.get("next_day_hint_available", ""),
+        "event_tags.postcard_world_marker_shown": event_tags.get("postcard_world_marker_shown", ""),
+        "event_tags.next_day_hint_world_marker_shown": event_tags.get("next_day_hint_world_marker_shown", ""),
+        "event_tags.first_reward_world_marker_shown": event_tags.get("first_reward_world_marker_shown", ""),
+        "event_tags.packing_table_food_bag_state_visible": event_tags.get("packing_table_food_bag_state_visible", ""),
+        "event_tags.van_ready_object_state_visible": event_tags.get("van_ready_object_state_visible", ""),
+        "event_tags.postcard_board_state_visible": event_tags.get("postcard_board_state_visible", ""),
+        "event_tags.next_day_note_object_visible": event_tags.get("next_day_note_object_visible", ""),
+        "event_tags.slippers_equipped_world_state_visible": event_tags.get("slippers_equipped_world_state_visible", ""),
     })
     return proof
 
@@ -1174,6 +1194,318 @@ PY
         rm -rf "$CAPTURE_DIR/captures/screenshots" "$CAPTURE_DIR/captures/video/vertical_slice_full_loop_short_frames" "$CAPTURE_DIR/captures/logs"
         exec "$GODOT_BIN" --path "$ROOT_DIR" --scene res://scenes/prototypes/vertical_slice/vertical_slice_demo.tscn -- --vertical-capture --vertical-capture-dir="$CAPTURE_DIR"
         ;;
+    first-day-visible-capture)
+        rm -rf \
+            "$FIRST_DAY_VISIBLE_CAPTURE_DIR/captures/screenshots" \
+            "$FIRST_DAY_VISIBLE_CAPTURE_DIR/captures/video/first_day_mvp_visible_loop_frames" \
+            "$FIRST_DAY_VISIBLE_CAPTURE_DIR/captures/logs" \
+            "$FIRST_DAY_VISIBLE_CAPTURE_DIR/captures/state" \
+            "$FIRST_DAY_VISIBLE_STATE_TMP_DIR"
+        mkdir -p "$FIRST_DAY_VISIBLE_CAPTURE_DIR"
+
+        "$GODOT_BIN" --path "$ROOT_DIR" --scene res://scenes/prototypes/vertical_slice/vertical_slice_demo.tscn -- --vertical-first-day-visible-capture --vertical-capture-dir="$FIRST_DAY_VISIBLE_CAPTURE_DIR"
+
+        "$ROOT_DIR/tools/dev-vertical-slice.sh" workbench-capture \
+            --scenario=first_delivery_with_dispatch_confirmation \
+            --fixture=first_day_empty_coop \
+            --game-seconds=420 \
+            --sample-every-game-seconds=10 \
+            --speed=100 \
+            --output-dir="$FIRST_DAY_VISIBLE_STATE_TMP_DIR"
+
+        mkdir -p "$FIRST_DAY_VISIBLE_CAPTURE_DIR/captures/state"
+        cp "$FIRST_DAY_VISIBLE_STATE_TMP_DIR/manifest.json" "$FIRST_DAY_VISIBLE_CAPTURE_DIR/captures/state/manifest.json"
+        cp "$FIRST_DAY_VISIBLE_STATE_TMP_DIR/final_state.json" "$FIRST_DAY_VISIBLE_CAPTURE_DIR/captures/state/final_state.json"
+        cp "$FIRST_DAY_VISIBLE_STATE_TMP_DIR/events.jsonl" "$FIRST_DAY_VISIBLE_CAPTURE_DIR/captures/state/events.jsonl"
+        cp "$FIRST_DAY_VISIBLE_STATE_TMP_DIR/stress_signals.jsonl" "$FIRST_DAY_VISIBLE_CAPTURE_DIR/captures/state/stress_signals.jsonl"
+
+        python3 - "$FIRST_DAY_VISIBLE_CAPTURE_DIR" <<'PY'
+import json
+import pathlib
+import sys
+
+root = pathlib.Path(sys.argv[1])
+screenshots = root / "captures" / "screenshots"
+frames = root / "captures" / "video" / "first_day_mvp_visible_loop_frames"
+state_dir = root / "captures" / "state"
+
+required_screenshots = [
+    "01_initial_strip_qa_labels_on.png",
+    "02_initial_strip_player_prototype.png",
+    "03_first_route_ready.png",
+    "04_dog_departure_bicycle.png",
+    "05_bicycle_return_payload.png",
+    "06_unload_to_storage.png",
+    "07_storage_to_kitchen_carry.png",
+    "08_kitchen_food_mix.png",
+    "09_food_mix_to_packing_table.png",
+    "10_packing_table_food_bag.png",
+    "11_food_bag_to_van.png",
+    "12_van_ready_confirm_delivery.png",
+    "13_delivery_complete_postcard_moment.png",
+    "14_dog_noticed_postcard.png",
+    "15_dog_card_memory_slippers.png",
+    "16_next_day_hint.png",
+    "17_ui_hidden_world_visible.png",
+    "18_readability_preview_216.png",
+    "19_readability_preview_144.png",
+    "20_readability_preview_96.png",
+]
+
+def assert_png(path):
+    data = path.read_bytes()
+    if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+        raise RuntimeError(f"{path} is not a PNG")
+
+missing = [name for name in required_screenshots if not (screenshots / name).is_file()]
+if missing:
+    raise RuntimeError(f"missing required screenshots: {missing}")
+for name in required_screenshots:
+    assert_png(screenshots / name)
+
+frame_files = sorted(frames.glob("frame_*.png"))
+if len(frame_files) < 20:
+    raise RuntimeError(f"expected at least 20 frame PNGs, found {len(frame_files)}")
+for path in frame_files:
+    assert_png(path)
+
+manifest = json.loads((state_dir / "manifest.json").read_text())
+final_state = json.loads((state_dir / "final_state.json").read_text())
+proof = manifest.get("first_day_mvp_proof") or {}
+required_truthy = [
+    "order.delivery_confirmed",
+    "order.postcard_visible",
+    "order.reward_available",
+    "game.chain_complete",
+    "first_day.postcard_life_moment_seen",
+    "first_day.first_reward_equipped",
+    "first_day.first_memory_added",
+    "first_day.next_day_hint_available",
+    "food_bag.hidden_after_delivery",
+    "food_bag.semantic_delivered",
+    "event.postcard_world_marker_shown",
+    "event.next_day_hint_world_marker_shown",
+    "event.first_reward_world_marker_shown",
+]
+failed = [key for key in required_truthy if proof.get(key) is not True]
+if failed:
+    raise RuntimeError(f"first_day_mvp_proof failed keys: {failed}")
+if proof.get("food_bag.location") != "delivered_to_shelter":
+    raise RuntimeError(f"unexpected food_bag.location proof: {proof.get('food_bag.location')!r}")
+if final_state.get("game", {}).get("first_day", {}).get("next_day_hint_available") is not True:
+    raise RuntimeError("final_state game.first_day.next_day_hint_available is not true")
+
+print(f"first-day-visible-capture ok: {len(required_screenshots)} screenshots, {len(frame_files)} frames")
+PY
+
+        echo "first-day-visible-capture output: $FIRST_DAY_VISIBLE_CAPTURE_DIR"
+        ;;
+    first-day-art-ux-capture)
+        rm -rf \
+            "$FIRST_DAY_ART_UX_CAPTURE_DIR/captures/screenshots" \
+            "$FIRST_DAY_ART_UX_CAPTURE_DIR/captures/video/first_day_mvp_visible_loop_frames_1x" \
+            "$FIRST_DAY_ART_UX_CAPTURE_DIR/captures/video/postcard_slippers_moment_1x" \
+            "$FIRST_DAY_ART_UX_CAPTURE_DIR/captures/logs" \
+            "$FIRST_DAY_ART_UX_CAPTURE_DIR/captures/state" \
+            "$FIRST_DAY_ART_UX_STATE_TMP_DIR"
+        mkdir -p "$FIRST_DAY_ART_UX_CAPTURE_DIR"
+
+        "$GODOT_BIN" --path "$ROOT_DIR" --scene res://scenes/prototypes/vertical_slice/vertical_slice_demo.tscn -- --vertical-first-day-art-ux-capture --vertical-capture-dir="$FIRST_DAY_ART_UX_CAPTURE_DIR"
+
+        "$ROOT_DIR/tools/dev-vertical-slice.sh" workbench-capture \
+            --scenario=first_delivery_with_dispatch_confirmation \
+            --fixture=first_day_empty_coop \
+            --game-seconds=420 \
+            --sample-every-game-seconds=10 \
+            --speed=100 \
+            --output-dir="$FIRST_DAY_ART_UX_STATE_TMP_DIR"
+
+        mkdir -p "$FIRST_DAY_ART_UX_CAPTURE_DIR/captures/state"
+        cp "$FIRST_DAY_ART_UX_STATE_TMP_DIR/manifest.json" "$FIRST_DAY_ART_UX_CAPTURE_DIR/captures/state/manifest.json"
+        cp "$FIRST_DAY_ART_UX_STATE_TMP_DIR/final_state.json" "$FIRST_DAY_ART_UX_CAPTURE_DIR/captures/state/final_state.json"
+        cp "$FIRST_DAY_ART_UX_STATE_TMP_DIR/events.jsonl" "$FIRST_DAY_ART_UX_CAPTURE_DIR/captures/state/events.jsonl"
+        cp "$FIRST_DAY_ART_UX_STATE_TMP_DIR/stress_signals.jsonl" "$FIRST_DAY_ART_UX_CAPTURE_DIR/captures/state/stress_signals.jsonl"
+
+        python3 - "$FIRST_DAY_ART_UX_CAPTURE_DIR" <<'PY'
+import json
+import pathlib
+import sys
+
+root = pathlib.Path(sys.argv[1])
+screenshots = root / "captures" / "screenshots"
+frames = root / "captures" / "video" / "first_day_mvp_visible_loop_frames_1x"
+moment_frames = root / "captures" / "video" / "postcard_slippers_moment_1x"
+state_dir = root / "captures" / "state"
+log_path = root / "captures" / "logs" / "capture_run_log.txt"
+
+required_screenshots = [
+    "01_initial_strip_qa_labels_on.png",
+    "02_initial_strip_player_prototype.png",
+    "03_route_prep_dachshund_bicycle.png",
+    "04_dog_departure_bicycle.png",
+    "05_bicycle_return_payload_objects.png",
+    "06_unload_to_storage.png",
+    "07_storage_to_kitchen_carry_object.png",
+    "08_kitchen_food_mix.png",
+    "09_food_mix_to_packing_table.png",
+    "10_packing_table_food_bag_state.png",
+    "11_food_bag_to_van.png",
+    "12_van_ready_object_state.png",
+    "13_delivery_complete_postcard_board.png",
+    "14_dogs_notice_postcard_hidden_ui.png",
+    "15_slippers_equip_dachshund_hidden_ui.png",
+    "16_next_day_note_hidden_ui.png",
+    "17_ui_hidden_world_visible.png",
+    "18_readability_preview_216.png",
+    "19_readability_preview_144.png",
+    "20_readability_preview_96.png",
+]
+
+def assert_png(path):
+    data = path.read_bytes()
+    if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+        raise RuntimeError(f"{path} is not a PNG")
+
+missing = [name for name in required_screenshots if not (screenshots / name).is_file()]
+if missing:
+    raise RuntimeError(f"missing required v3 screenshots: {missing}")
+for name in required_screenshots:
+    assert_png(screenshots / name)
+
+frame_files = sorted(frames.glob("frame_*.png"))
+if len(frame_files) < 20:
+    raise RuntimeError(f"expected at least 20 1x frame PNGs, found {len(frame_files)}")
+for path in frame_files:
+    assert_png(path)
+
+moment_frame_files = sorted(moment_frames.glob("postcard_slippers_*.png"))
+if len(moment_frame_files) < 3:
+    raise RuntimeError(f"expected at least 3 postcard/slippers frame PNGs, found {len(moment_frame_files)}")
+for path in moment_frame_files:
+    assert_png(path)
+
+manifest = json.loads((state_dir / "manifest.json").read_text())
+final_state = json.loads((state_dir / "final_state.json").read_text())
+events_lines = (state_dir / "events.jsonl").read_text().splitlines()
+stress_lines = (state_dir / "stress_signals.jsonl").read_text().splitlines()
+if not events_lines:
+    raise RuntimeError("events.jsonl is empty")
+if not stress_lines:
+    raise RuntimeError("stress_signals.jsonl is empty")
+for line in events_lines[:3] + stress_lines[:3]:
+    json.loads(line)
+
+proof = manifest.get("first_day_mvp_proof") or {}
+required_truthy = [
+    "order.delivery_confirmed",
+    "order.postcard_visible",
+    "order.reward_available",
+    "game.chain_complete",
+    "first_day.postcard_life_moment_seen",
+    "first_day.first_reward_equipped",
+    "first_day.first_memory_added",
+    "first_day.next_day_hint_available",
+    "food_bag.hidden_after_delivery",
+    "food_bag.semantic_delivered",
+    "event.postcard_world_marker_shown",
+    "event.next_day_hint_world_marker_shown",
+    "event.first_reward_world_marker_shown",
+    "event.packing_table_food_bag_state_visible",
+    "event.van_ready_object_state_visible",
+    "event.postcard_board_state_visible",
+    "event.next_day_note_object_visible",
+    "event.slippers_equipped_world_state_visible",
+]
+failed = [key for key in required_truthy if proof.get(key) is not True]
+if failed:
+    raise RuntimeError(f"first_day_mvp_proof failed keys: {failed}")
+if proof.get("food_bag.location") != "delivered_to_shelter":
+    raise RuntimeError(f"unexpected food_bag.location proof: {proof.get('food_bag.location')!r}")
+if final_state.get("game", {}).get("first_day", {}).get("next_day_hint_available") is not True:
+    raise RuntimeError("final_state game.first_day.next_day_hint_available is not true")
+
+log_text = log_path.read_text(encoding="utf-8")
+if "capture_profile=first_day_art_ux_visual_language_pass_v1" not in log_text:
+    raise RuntimeError("capture log does not declare v3 art/ux profile")
+if "timing=normal" not in log_text:
+    raise RuntimeError("capture log does not declare normal timing")
+
+readme = f"""# Steam First Day MVP Visible Review v3
+
+Persistent capture pack for the First Day Art / UX Visual Language Pass prototype evidence.
+
+This pack is not final art acceptance. It records the current prototype after the pass that moves meaning from cards, labels, badges, arrows and marker text toward object, state and animation language.
+
+## Contents
+
+- `captures/screenshots/` - named PNG screenshots for the main First Day beats, hidden UI checks and compact previews.
+- `captures/video/first_day_mvp_visible_loop_frames_1x/` - PNG frame sequence captured at normal player-facing prototype speed.
+- `captures/video/postcard_slippers_moment_1x/` - short PNG frame sequence around the postcard, next-day note and slippers moment.
+- `captures/state/manifest.json` - Workbench 100x state proof manifest. This is debug/state proof only, not visual feel evidence.
+- `captures/state/final_state.json` - final connector state.
+- `captures/state/events.jsonl` - event proof.
+- `captures/state/stress_signals.jsonl` - stress signal samples.
+- `captures/logs/capture_run_log.txt` - visual capture run log.
+
+## Counts
+
+- Named screenshots: {len(required_screenshots)}
+- Full loop 1x frames: {len(frame_files)}
+- Postcard/slippers 1x frames: {len(moment_frame_files)}
+- Workbench snapshots: {manifest.get("snapshot_count")}
+- Workbench events: {manifest.get("events_written")}
+- Stress signal samples: {manifest.get("stress_signal_sample_count")}
+
+## Command
+
+```bash
+cd steam
+tools/dev-vertical-slice.sh first-day-art-ux-capture
+```
+"""
+manifest_md = f"""# Capture Manifest v3
+
+- Capture profile: `first_day_art_ux_visual_language_pass_v1`
+- Scenario: `{manifest.get("scenario_id")}`
+- Fixture: `{manifest.get("fixture_id")}`
+- State proof speed: `{manifest.get("speed_multiplier")}x`
+- Visual frame sequence: `captures/video/first_day_mvp_visible_loop_frames_1x/`
+- Postcard/slippers frame sequence: `captures/video/postcard_slippers_moment_1x/`
+- Named screenshots: `{len(required_screenshots)}`
+- Full-loop frames: `{len(frame_files)}`
+- Postcard/slippers frames: `{len(moment_frame_files)}`
+- State manifest: `captures/state/manifest.json`
+- Final state: `captures/state/final_state.json`
+- Events: `captures/state/events.jsonl`
+- Stress signals: `captures/state/stress_signals.jsonl`
+
+## Required Named Screenshots
+
+{chr(10).join(f'- `{name}`' for name in required_screenshots)}
+
+## Object / State Proof Keys
+
+{chr(10).join(f'- `{key}`' for key in required_truthy)}
+
+## Notes
+
+- The 100x Workbench run is debug/state proof only.
+- This capture does not claim final visual acceptance, final palette, final style, or production art quality.
+- Hidden UI screenshots are included to check that the world remains legible without cards.
+"""
+(root / "README.md").write_text(readme, encoding="utf-8")
+(root / "CAPTURE_MANIFEST_v3.md").write_text(manifest_md, encoding="utf-8")
+
+print(
+    "first-day-art-ux-capture ok: "
+    f"{len(required_screenshots)} screenshots, "
+    f"{len(frame_files)} 1x frames, "
+    f"{len(moment_frame_files)} postcard/slippers frames"
+)
+PY
+
+        echo "first-day-art-ux-capture output: $FIRST_DAY_ART_UX_CAPTURE_DIR"
+        ;;
     capture-smoke)
         rm -rf "$SMOKE_CAPTURE_DIR"
         "$GODOT_BIN" --path "$ROOT_DIR" --scene res://scenes/prototypes/vertical_slice/vertical_slice_demo.tscn -- --vertical-capture-smoke --vertical-capture-dir="$SMOKE_CAPTURE_DIR"
@@ -1186,7 +1518,7 @@ PY
         echo "capture-smoke wrote $png_count PNG files in a temporary capture directory"
         ;;
     *)
-        echo "Usage: tools/dev-vertical-slice.sh [interactive|all|qa|player-prototype|perf|normal|autoplay|connector|connector-control|connector-tunnel|connector-control-tunnel|smoke|connector-smoke|connector-control-smoke|runtime-foundation-smoke|workbench-capture|capture|capture-smoke] [--runtime-load-fixture=name|--runtime-load-save]" >&2
+        echo "Usage: tools/dev-vertical-slice.sh [interactive|all|qa|player-prototype|perf|normal|autoplay|connector|connector-control|connector-tunnel|connector-control-tunnel|smoke|connector-smoke|connector-control-smoke|runtime-foundation-smoke|workbench-capture|capture|first-day-visible-capture|first-day-art-ux-capture|capture-smoke] [--runtime-load-fixture=name|--runtime-load-save]" >&2
         exit 2
         ;;
 esac
