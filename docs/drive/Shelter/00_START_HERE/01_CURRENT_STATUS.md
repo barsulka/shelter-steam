@@ -214,6 +214,8 @@ Important active decisions:
 
 Use `SUPERSEDED_MAP.md` before historical digging.
 
+Use `EVIDENCE_READ_POLICY.md` before reading capture packs, old review packs, archive docs or completed briefs.
+
 Do not read by default:
 
 - old capture PNG folders;
@@ -255,6 +257,18 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## Changelog
+
+### 2026-07-07 — evidence read policy
+
+- Added `EVIDENCE_READ_POLICY.md` as central policy for capture packs, old review packs, archive docs and completed briefs.
+- Clarified that evidence/history should not be read during bootstrap.
+- Avoided editing blocked historical pack files directly.
+
+### 2026-07-07 — open questions refresh
+
+- Updated `03_OPEN_QUESTIONS.md` into an active living register.
+- Moved obsolete first-product, Steam engine and Godot technical-spike questions to resolved traceability.
+- Reframed current active questions around First Week / Day 2, documentation governance, Browser/Mobile/Shared Platform and Charity/Legal/Trust.
 
 ### 2026-07-07 — documentation governance update
 

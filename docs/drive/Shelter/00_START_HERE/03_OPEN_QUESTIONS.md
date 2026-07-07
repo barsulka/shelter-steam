@@ -1,66 +1,499 @@
-# Открытые вопросы
+# 03_OPEN_QUESTIONS — Shelter
 
-Обновлено: 2026-06-25
+Обновлено: 2026-07-07
+Статус: active knowledge / open questions register
+Владелец: Project Manager / Producer
+Назначение: хранить вопросы, которые ещё не превращены в решения, specs или current-context docs.
 
-Этот документ хранит вопросы, которые ещё не превращены в решения. После решения вопрос переносится в `02_DECISIONS` или в релевантный продуктовый документ. Не удалять историю без необходимости: лучше разделять вопросы на закрытые, частично закрытые и открытые.
+---
 
-## Закрытые вопросы
+## 0. Правило ведения
 
-- Desktop/Steam: основной движок выбран — Godot. См. `02_DECISIONS`, D-007.  
-- Browser Extension: на уровне product loop принята схема D-008 — “спонсорская ферма → производство корма → отправка фургона в приют”. Спонсорский/ad block помогает копить ресурс отправки без guilt pressure; детали реальной отчётности остаются открытыми.  
-- Steam/Desktop: на уровне core structure принята схема D-009 — горизонтальный собачий производственный кооператив, а не классическая ферма, ужатая в полоску.  
-- Dogs: принято системное правило D-010 — врождённые/неизменяемые особенности отделяются от изменяемых/экипируемых/приобретённых особенностей.  
-- Visual Direction: D-011 принят как основной визуальный кандидат Cozy Modular Diorama для проверки через style board и readability test.  
-- Shared World: принято D-012 — Browser Extension и Steam/Desktop являются двумя разными частями одного собачьего мира; Browser — настоящая ферма, Steam — кооператив/мастерская. На MVP связь narrative-only, без обязательной технической синхронизации.  
-- Steam resource trips: принято D-013 — в Steam/Desktop не делаем классический видимый crop farming как ядро; сырьевые ресурсы добываются через off-screen поездки собак на фермерские локации, транспорт, таймеры и физическую выгрузку ящиков.  
-- Роли референсов для Steam/Desktop зафиксированы: Crusaders Quest: Hero Town — интерфейсная ДНК; Rusty’s Retirement — ритм медленных физических действий; Yog-Sothoth’s Yard — комнаты и декор.
+Этот документ — living register, а не история всех обсуждений.
 
-## Частично закрытые вопросы
+После решения вопрос должен быть перенесён или отражён в:
 
-- Как показываем связь между действием в продукте и реальной помощью собакам? Для Browser Extension на уровне loop принят принцип D-008: sponsorship/ad block помогает копить ресурс отправки. Открыто: точная юридическая, финансовая и публичная отчётность.  
-- Нужен ли отдельный платный косметический слой? Для Steam это future/open вопрос; рекламная монетизация в Steam запрещена в текущем дизайне. Для Browser Extension реклама допустима только этично, без блокировки core gameplay и без давления.  
-- Какая визуальная база у проекта? Для Steam/Desktop частично принято: sidescroll production strip + уютные комнаты/декор + видимые медленные действия + транспортные поездки. Для Browser Extension частично принято: top-down new-tab idle farm. D-011 задаёт визуальный кандидат, но финальная art bible всё ещё нужна.  
-- Будет ли общий бэкенд, общий контент или общая экономика между продуктами? D-012 закрывает MVP-уровень: обязательной синхронизации нет, связь narrative-only. Открыто: soft connection и real sync после проверки интереса.
+```text
+00_START_HERE/02_DECISIONS.md
+00_START_HERE/01_CURRENT_STATUS.md
+релевантном product/design/dev doc
+релевантном current-context doc
+handoff, если нужна история рассуждения
+```
 
-## Всё ещё открытые вопросы
+Не удалять важную историю без необходимости. Но новые сессии должны видеть в первую очередь **активные** вопросы, а не давно закрытые.
 
-### Продукт
+Статусы:
 
-- Какой продукт прототипируем первым: Steam/Desktop, Browser Extension или оба параллельно?  
-- Какая минимальная версия нужна для первого теста интереса пользователей?  
-- Какой MVP-scope у Steam/Desktop с учётом D-012/D-013: кооператив/мастерская, транспорт, маршруты, кладовая, выгрузка ресурсов?  
-- Какой MVP-scope у Browser Extension с учётом D-012: настоящая ферма как часть общего мира, но без обязательной синхронизации со Steam?  
-- Какие маршруты поездок нужны в MVP Steam: Цветочная ферма, Льняные поля, Овсяная ферма или меньше?  
-- Какой минимальный набор транспорта нужен в MVP Steam?  
-- Какие категории наград поездок допустимы в MVP, чтобы рандом оставался приятным и не превращался в гачу?
+- `open` — вопрос действительно открыт;
+- `partially_resolved` — часть решения принята, часть ещё требует работы;
+- `resolved` — вопрос закрыт и должен жить в decisions/spec/current-context;
+- `deferred` — вопрос сознательно отложен;
+- `needs_research` — нужен web/legal/platform/market research.
 
-### Разработка
+---
 
-- Какой стек выбираем для браузерного расширения?  
-- Какой стек выбираем для мобильной версии?  
-- Какие части можно или нужно шарить между продуктами: контент, экономика, API, отчётность, ассеты?  
-- Когда и при каких условиях переходить от narrative-only связи к soft connection?  
-- Нужен ли общий аккаунт, и если да — на каком этапе?  
-- Для Steam/Desktop нужен technical spike по Godot: прозрачное окно, always-on-top, click-through/скрытие интерфейса, горизонтальная лента, зоны/блоки, транспортные поездки, таймеры и физическая выгрузка ресурсов.
+## 1. Active open questions — сейчас важны
 
-### Благотворительность и доверие
+### 1.1 Steam/Desktop — ближайший продуктовый scope
 
-- Какая точная модель благотворительной отчётности?  
-- Какая точная модель отношений с реальными приютами?  
-- Нужны ли партнёрские приюты на старте или сначала делаем прототип без реальных переводов?  
-- Как формулируем charity claims так, чтобы они были честными, проверяемыми и юридически безопасными?
+#### OQ-Steam-001 — Готов ли First Week / Day 2 direction к реализации?
 
-### Browser Extension: юридическая и платформенная проверка
+Статус: `open`
+Владелец: Producer / Game Designer
 
-- Privacy, consent и персональные данные.  
-- Рекламные SDK и допустимые форматы рекламы.  
-- Chrome Web Store policies.  
-- Product placement / sponsorship disclosure.  
-- Charity reporting и claims.
+Текущий контекст:
 
-### Дизайн
+```text
+First Day MVP закрыт на уровне prototype/product-language proof.
+Следующий выбранный scope: First Week / Day 2 / longer retention.
+```
 
-- Как должны выглядеть собаки, работники, здания и состояния приюта/кооператива/фермы?  
-- Как визуально связать Browser-ферму и Steam-кооператив через фургончики, велосипеды, ящики, открытки и общий язык ассетов?  
-- Какие элементы Yog-Sothoth’s Yard берём только как комнатно-декоративный референс, а какие не берём?  
-- Как art direction разделяет Steam/Desktop sidescroll strip и Browser Extension top-down farm, чтобы продукты были родственными, но не одинаковыми?
+Открытый вопрос:
+
+> Утверждаем ли `STEAM_DESKTOP__First_Week_Direction_v1.md` как следующий executable slice для Codex brief?
+
+Кандидат следующего brief:
+
+```text
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Second_Day_Return_And_Second_Order_v1.md
+```
+
+Sources:
+
+```text
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md
+```
+
+---
+
+#### OQ-Steam-002 — Где граница First Week и чего НЕ добавляем?
+
+Статус: `open`
+Владелец: Producer / Game Designer
+
+Нужно явно удержать scope:
+
+- Day 2 return moment;
+- second order availability;
+- persistence of yesterday’s postcard, slippers and memory;
+- first gentle repeatable direction;
+- optional curiosity note as hint, not full system.
+
+Открыто:
+
+- входит ли в ближайший executable slice полное завершение второй поставки;
+- нужен ли второй маршрут или достаточно второй вариации заказа;
+- когда подключать House of Curiosity как систему, а не как намёк;
+- какие state assertions считаются достаточными для Day 2 proof.
+
+---
+
+#### OQ-Steam-003 — Что считается production art gate после prototype visual-language pass?
+
+Статус: `open`
+Владелец: Art Director / Producer
+
+Текущий статус:
+
+```text
+STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3: PASS as First Day Art/UX Visual Language Pass.
+NOT production art. NOT final visual style. NOT shipping UX. NOT final animation polish.
+```
+
+Открыто:
+
+- когда нужен отдельный production visual style pass;
+- какие критерии отличают prototype readability от production readability;
+- нужен ли отдельный `ART_DIRECTION__CURRENT_CONTEXT.md` перед следующей большой art-сессией;
+- какие old capture packs остаются evidence-only.
+
+Sources:
+
+```text
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Art_UX_Review__First_Day_MVP_v3.md
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/
+docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
+```
+
+---
+
+### 1.2 Documentation / Knowledge Base
+
+#### OQ-Docs-001 — Какие старые docs нужно пометить metadata/read_policy?
+
+Статус: `open`
+Владелец: Project Manager / Knowledge Base Maintainer
+
+После принятия `05_DOCUMENTATION_GOVERNANCE.md` нужно постепенно размечать старые документы.
+
+Открыто:
+
+- какие capture pack README помечать первыми как `evidence`;
+- какие old briefs помечать как `handoff-history` или `superseded`;
+- нужно ли физически переносить что-то в `99_ARCHIVE`, или достаточно `SUPERSEDED_MAP.md`;
+- нужно ли делать это вручную или через будущий MCP `knowledge_gc_report`.
+
+Source:
+
+```text
+docs/drive/Shelter/00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
+docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
+```
+
+---
+
+#### OQ-Docs-002 — Нужны ли отдельные current-context docs для Art Direction и Game Design?
+
+Статус: `open`
+Владелец: Project Manager / Art Director / Game Designer
+
+Текущие current-context docs существуют для:
+
+```text
+STEAM_DESKTOP__CURRENT_CONTEXT.md
+CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+CODEX_CURRENT_STATUS.md
+```
+
+Открыто:
+
+- нужен ли `ART_DIRECTION__CURRENT_CONTEXT.md` перед production art / visual style pass;
+- нужен ли `GAME_DESIGN__CURRENT_CONTEXT.md` перед полноценной First Week / retention веткой;
+- достаточно ли пока Steam current-context как объединённого входа.
+
+---
+
+#### OQ-Docs-003 — Нужно ли split/архивирование `CODEX_STATUS.md` по месяцам?
+
+Статус: `deferred`
+Владелец: Project Manager / Codex
+
+Текущий статус:
+
+```text
+CODEX_CURRENT_STATUS.md — current dev status.
+CODEX_STATUS.md — detailed chronological history.
+```
+
+Открыто позже:
+
+- когда `CODEX_STATUS.md` станет технически слишком тяжёлым;
+- нужен ли `CODEX_HISTORY_2026_07.md` и monthly split;
+- как не потерять ссылочность старых handoff и briefs.
+
+---
+
+### 1.3 Browser Extension / Mobile / Shared Platform
+
+#### OQ-Browser-001 — Browser Extension MVP scope
+
+Статус: `open`
+Владелец: Producer / Game Designer / future Tech Lead
+
+Принято:
+
+```text
+D-008 — Browser Extension core loop.
+D-012 — Browser Farm and Steam Co-op are different parts of one world; MVP link is narrative-only.
+```
+
+Открыто:
+
+- какой минимальный Browser Extension MVP scope;
+- какой стек расширения;
+- какой UX допустим в Chrome Web Store;
+- какие данные собираются и зачем;
+- какие sponsor/ad mechanics допустимы без давления;
+- как формулируется связь “посмотрел рекламу — помог собакам” юридически и этически безопасно.
+
+Requires:
+
+```text
+web/platform/legal research before implementation
+```
+
+---
+
+#### OQ-Mobile-001 — Mobile product scope and stack
+
+Статус: `deferred`
+Владелец: Producer / future Tech Lead
+
+Открыто:
+
+- нужен ли mobile раньше Steam validation;
+- является ли mobile отдельной idle/farm game или downstream-адаптацией общей идеи;
+- какой стек выбирать;
+- какие shared assets/content/contracts нужны.
+
+Пока не блокирует Steam/Desktop.
+
+---
+
+#### OQ-Shared-001 — Общая экономика, аккаунт и синхронизация между продуктами
+
+Статус: `partially_resolved`
+Владелец: Producer / future Tech Lead
+
+Принято:
+
+```text
+D-012 закрывает MVP-уровень: обязательной технической синхронизации между Browser и Steam нет, связь narrative-only.
+```
+
+Открыто:
+
+- когда и при каких условиях переходить от narrative-only связи к soft connection;
+- нужен ли общий аккаунт;
+- какие части можно шарить: контент, экономика, API, отчётность, ассеты;
+- когда появляется общий backend;
+- какие риски у charity reporting / trust layer.
+
+---
+
+### 1.4 Charity / Legal / Trust
+
+#### OQ-Charity-001 — Благотворительная отчётность и real-world claims
+
+Статус: `needs_research`
+Владелец: Producer / Legal-Finance / specialist review
+
+Открыто:
+
+- точная модель благотворительной отчётности;
+- точная модель отношений с реальными приютами;
+- нужны ли партнёрские приюты на старте или сначала делаем прототип без реальных переводов;
+- как формулировать charity claims честно, проверяемо и юридически безопасно;
+- какие disclaimers нужны для ads/sponsorship/donations/subscriptions.
+
+Правило:
+
+```text
+Не выдумывать юридические, финансовые и благотворительные утверждения. Нужны web research and specialist review.
+```
+
+---
+
+#### OQ-Platform-001 — Browser Extension platform/legal checks
+
+Статус: `needs_research`
+Владелец: Producer / future Tech Lead / specialist review
+
+Открыто:
+
+- privacy, consent and personal data;
+- advertising SDK and ad formats;
+- Chrome Web Store policies;
+- sponsorship / product placement disclosure;
+- charity reporting and claims.
+
+Блокирует Browser Extension implementation brief.
+
+---
+
+## 2. Partially resolved questions — не читать как blockers
+
+### PRQ-001 — Steam MVP scope
+
+Статус: `partially_resolved`
+
+Было открыто:
+
+> Какой MVP-scope у Steam/Desktop с учётом D-012/D-013?
+
+Текущее состояние:
+
+```text
+First Day MVP закрыт на уровне prototype/product-language proof.
+Next scope: First Week / Day 2.
+```
+
+Не блокирует текущий вход. Остаток вопроса перенесён в OQ-Steam-001 / OQ-Steam-002.
+
+---
+
+### PRQ-002 — Визуальная база проекта
+
+Статус: `partially_resolved`
+
+Принято:
+
+- D-011 — Cozy Modular Diorama as candidate;
+- Steam/Desktop — sidescroll production strip;
+- Browser Extension — top-down new-tab idle farm direction;
+- First Day v3 visual-language pass accepted as prototype proof.
+
+Открыто:
+
+- final art bible;
+- production visual style;
+- cross-product visual language;
+- exact split between Steam sidescroll and Browser top-down farm.
+
+Остаток вопроса перенесён в OQ-Steam-003 and future Art Direction current context.
+
+---
+
+### PRQ-003 — Реальная связь продукта и помощи собакам
+
+Статус: `partially_resolved`
+
+Принято:
+
+```text
+D-008 defines Browser loop principle.
+D-020 defines ethical project philosophy.
+```
+
+Открыто:
+
+- legal/financial reporting;
+- public transparency;
+- partner shelters;
+- exact claims and disclosures.
+
+Остаток вопроса перенесён в OQ-Charity-001 and OQ-Platform-001.
+
+---
+
+## 3. Resolved questions — retained for traceability
+
+### RQ-001 — Какой продукт прототипируем первым?
+
+Статус: `resolved`
+
+Решение:
+
+```text
+Active product focus: Steam/Desktop.
+```
+
+Sources:
+
+```text
+docs/drive/Shelter/00_START_HERE/01_CURRENT_STATUS.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
+```
+
+---
+
+### RQ-002 — Steam/Desktop engine
+
+Статус: `resolved`
+
+Решение:
+
+```text
+D-007 — Godot.
+```
+
+---
+
+### RQ-003 — Browser Extension core loop
+
+Статус: `resolved at product-loop level`
+
+Решение:
+
+```text
+D-008 — sponsorship/ad block helps accumulate sending resource without guilt pressure.
+```
+
+Details of platform/legal/reporting remain open in OQ-Browser-001 / OQ-Platform-001 / OQ-Charity-001.
+
+---
+
+### RQ-004 — Steam/Desktop core structure
+
+Статус: `resolved`
+
+Решение:
+
+```text
+D-009 — horizontal dog production co-op, not a classical farm compressed into a strip.
+```
+
+---
+
+### RQ-005 — Dog traits model
+
+Статус: `resolved`
+
+Решение:
+
+```text
+D-010 — innate/unchangeable traits are separated from changeable/equippable/acquired traits.
+```
+
+---
+
+### RQ-006 — Steam resource trips vs visible crop farming
+
+Статус: `resolved`
+
+Решение:
+
+```text
+D-013 — Steam/Desktop does not use classical visible crop farming as core; raw resources arrive through off-screen dog trips, transport, timers and physical unloading.
+```
+
+---
+
+### RQ-007 — Steam technical spike for Godot window/runtime/tooling
+
+Статус: `resolved at prototype/tooling level`
+
+Решение:
+
+Godot prototype and dev tooling exist:
+
+- companion / transparent strip demos;
+- Vertical Slice prototype;
+- Godot State Connector;
+- Godot Control Connector;
+- Workbench Runtime Capture Harness;
+- First Day MVP runtime proof;
+- Shelter MCP local bridge.
+
+Sources:
+
+```text
+docs/repo/status/CODEX_CURRENT_STATUS.md
+docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+```
+
+---
+
+### RQ-008 — Documentation bloat handling
+
+Статус: `resolved as process`
+
+Решение:
+
+```text
+Current Memory first.
+Knowledge by task.
+History only for evidence / regression / archaeology.
+```
+
+Sources:
+
+```text
+docs/drive/Shelter/00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
+docs/drive/Shelter/00_START_HERE/BOOTSTRAP_CONTEXT.md
+docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
+```
+
+---
+
+## 4. Changelog
+
+### 2026-07-07 — PM cleanup / current open questions refresh
+
+- Reorganized file into active open questions, partially resolved questions and resolved traceability items.
+- Closed obsolete questions about first product focus, Steam engine and Godot technical spike.
+- Reframed Steam MVP questions around First Week / Day 2 executable slice.
+- Reframed documentation bloat work around governance, Knowledge GC and MCP Knowledge Layer.

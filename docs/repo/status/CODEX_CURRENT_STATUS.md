@@ -73,6 +73,7 @@ Shelter MCP:
 - safe repo tools: `git_status`, `git_diff`, `git_diff_for_review`;
 - safe patch/edit tools: `apply_patch`, markdown section editing, marker replacement, sha256 guarded writes;
 - deterministic bootstrap/context bundling via `read_shelter_bootstrap_context` with priority-first order and diagnostics.
+- deterministic knowledge access tools: `find_current_context`, `list_active_docs`, `classify_doc_path`, `explain_superseded`, `knowledge_gc_report`.
 
 ---
 
@@ -127,6 +128,11 @@ Expected reasoning level:
 ---
 
 ## 6. Changelog
+
+### 2026-07-07 — Shelter MCP knowledge service v1
+
+- Added deterministic Shelter MCP knowledge access tools for Current Memory / Knowledge / History routing.
+- PM/docs bootstrap now treats `05_DOCUMENTATION_GOVERNANCE.md` as a first-class docs bootstrap document.
 
 ### 2026-07-07 — v1 created
 

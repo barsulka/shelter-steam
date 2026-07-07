@@ -1,5 +1,45 @@
 # Codex Status
 
+## 2026-07-07 - Shelter MCP knowledge access service v1
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Knowledge_Service_And_PM_Docs_Bootstrap_v1.md`
+- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- Summary: Evolved Shelter MCP into a small deterministic knowledge access service for Shelter documentation without adding generic shell access, arbitrary git commands, broader filesystem roots, network calls, AI summarization, vector search, embeddings, or write behavior in the new knowledge tools. PM/docs bootstrap now includes `05_DOCUMENTATION_GOVERNANCE.md` as a first-class document alongside `BOOTSTRAP_CONTEXT.md`, `000_ROLE_PROJECT_MANAGER.md`, and `SUPERSEDED_MAP.md`.
+- Tools added:
+  - `find_current_context`
+  - `list_active_docs`
+  - `classify_doc_path`
+  - `explain_superseded`
+  - `knowledge_gc_report`
+- Tool changed:
+  - `read_shelter_bootstrap_context`: `role=project_manager, area=docs` includes `05_DOCUMENTATION_GOVERNANCE.md`; low byte budgets report explicit `budget exceeded` diagnostics.
+- Safety notes:
+  - New knowledge tools are static catalog/path-rule tools over local Shelter docs and bounded known docs directories.
+  - `knowledge_gc_report` is read-only and does not modify, archive, move, delete, summarize, embed, or search arbitrary content.
+  - Existing repo root validation, denied secrets-looking paths, fixed git args, and dry-run write defaults remain unchanged.
+- Changed files in MCP repo:
+  - `README.md`
+  - `internal/sheltermcp/knowledge_catalog.go`
+  - `internal/sheltermcp/knowledge_tools.go`
+  - `internal/sheltermcp/knowledge_tools_test.go`
+  - `internal/sheltermcp/repo_tools.go`
+  - `internal/sheltermcp/repo_tools_test.go`
+  - `internal/sheltermcp/server.go`
+  - `internal/sheltermcp/server_test.go`
+- Changed files in Shelter repo:
+  - `docs/repo/status/CODEX_CURRENT_STATUS.md`
+  - `docs/repo/status/CODEX_STATUS.md`
+- Checks:
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && gofmt -w internal/sheltermcp/knowledge_catalog.go internal/sheltermcp/knowledge_tools.go internal/sheltermcp/knowledge_tools_test.go internal/sheltermcp/repo_tools.go internal/sheltermcp/repo_tools_test.go internal/sheltermcp/server.go internal/sheltermcp/server_test.go`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && git diff --check`
+- Known limitations:
+  - The knowledge catalog is intentionally static and v1-scoped; browser/mobile current-context entries return clear missing-context notes until those docs exist.
+  - Superseded/classification rules are simple path rules from `SUPERSEDED_MAP.md`, not semantic inference.
+  - GC report scans known documentation paths by filename/path only; it does not parse or summarize document contents.
+
 ## 2026-07-07 - Shelter MCP bootstrap and repo tools polish v2
 
 - Branch: `master`
