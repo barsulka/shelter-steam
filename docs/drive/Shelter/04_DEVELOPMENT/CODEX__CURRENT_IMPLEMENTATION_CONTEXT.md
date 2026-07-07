@@ -18,11 +18,19 @@ README.md
 steam/AGENTS.md
 steam/README.md
 docs/repo/adr/README.md
+docs/repo/status/CODEX_CURRENT_STATUS.md
 ```
 
 Then read relevant accepted ADRs and the active task brief.
 
-This file is a compressed state map. It does not replace implementation briefs, ADRs, `steam/README.md` or latest `CODEX_STATUS.md` entries.
+This file is a compressed implementation context map. It does not replace implementation briefs, ADRs, `steam/README.md` or detailed history in `CODEX_STATUS.md`.
+
+Important status split:
+
+```text
+docs/repo/status/CODEX_CURRENT_STATUS.md — current dev status, read on bootstrap.
+docs/repo/status/CODEX_STATUS.md — detailed chronological history, do not read in full by default.
+```
 
 ---
 
@@ -128,14 +136,21 @@ Implemented across completed Codex tasks:
 - First Day MVP runtime polish.
 - First Day visible review capture pack v1/v2/v3.
 - First Day Art/UX visual-language pass v1.
+- Shelter MCP repo/document tooling v1/v2.
 
-Latest detailed status remains in:
+Current short dev status:
+
+```text
+docs/repo/status/CODEX_CURRENT_STATUS.md
+```
+
+Detailed chronological dev history:
 
 ```text
 docs/repo/status/CODEX_STATUS.md
 ```
 
-Use its top/latest entries first. Do not read the whole file by default.
+Use current status first. Do not read the whole history log by default.
 
 ---
 

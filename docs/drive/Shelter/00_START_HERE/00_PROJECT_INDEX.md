@@ -35,11 +35,21 @@
 ```text
 00_START_HERE/BOOTSTRAP_CONTEXT.md
 00_START_HERE/SUPERSEDED_MAP.md
+00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
 02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
 04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+docs/repo/status/CODEX_CURRENT_STATUS.md
 ```
 
-Эти документы говорят, что сейчас актуально, а что является историей/evidence/superseded.
+Эти документы говорят, что сейчас актуально, а что является Knowledge, History, evidence или superseded.
+
+Главное правило документации:
+
+```text
+Current Memory читается на входе.
+Knowledge читается по задаче.
+History читается только для evidence/regression/archaeology.
+```
 
 ---
 
@@ -165,6 +175,8 @@ Use:
 ---
 
 ## Последняя передача контекста
+
+2026-07-07: `06_SESSIONS_AND_HANDOFFS/producer/2026-07-07__producer_handoff__documentation_governance_and_gc.md` — producer/PM handoff по Documentation Governance, Current / Knowledge / History and Knowledge GC.
 
 2026-07-07: `06_SESSIONS_AND_HANDOFFS/producer/2026-07-07__producer_handoff__documentation_compression_bootstrap_layer.md` — producer-handoff по сжатию документации, Bootstrap Context, Superseded Map и current-context layer.
 

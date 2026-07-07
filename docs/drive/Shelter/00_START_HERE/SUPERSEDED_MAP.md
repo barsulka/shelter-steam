@@ -9,19 +9,27 @@
 
 ## 0. Правило чтения
 
-Документы Shelter делятся по статусу:
+Документация Shelter делится на три слоя:
 
-| Статус | Значение | Читать на bootstrap? |
-| --- | --- | --- |
-| `active` | живой источник истины | да, если релевантно |
-| `current-summary` | сжатый входной контекст | да |
-| `reference` | справочник / deep doc | только по задаче |
-| `evidence` | proof, captures, manifests, logs | нет, только для проверки |
-| `handoff-history` | история сессий | только последний релевантный |
-| `superseded` | заменено новым документом / решением | нет |
-| `archive` | исторический материал | нет |
+```text
+Current Memory — короткая текущая правда для bootstrap.
+Knowledge — активные решения, specs, references and ADRs по задаче.
+History — handoff, completed briefs, capture packs, evidence and long logs.
+```
 
-Если документ не размечен явно, определяй его статус по этому map и по актуальному current-context документу.
+Документы Shelter также получают статус:
+
+| Статус | Слой | Значение | Читать на bootstrap? |
+| --- | --- | --- | --- |
+| `active` | Knowledge | живой источник истины | да, если релевантно |
+| `current-summary` | Current Memory | сжатый входной контекст | да |
+| `reference` | Knowledge | справочник / deep doc | только по задаче |
+| `evidence` | History | proof, captures, manifests, logs | нет, только для проверки |
+| `handoff-history` | History | история сессий | только последний релевантный |
+| `superseded` | History | заменено новым документом / решением | нет |
+| `archive` | History | исторический материал | нет |
+
+Если документ не размечен явно, определяй его статус по этому map, `05_DOCUMENTATION_GOVERNANCE.md` и актуальному current-context документу.
 
 ---
 
@@ -29,15 +37,17 @@
 
 Эти документы читать первыми вместо длинной истории:
 
-| Документ | Статус | Роль |
-| --- | --- | --- |
-| `00_START_HERE/BOOTSTRAP_CONTEXT.md` | current-summary | общий вход |
-| `00_START_HERE/01_CURRENT_STATUS.md` | active | текущая картина проекта |
-| `00_START_HERE/02_DECISIONS.md` | active | принятые решения |
-| `00_START_HERE/03_PROJECT_PHILOSOPHY.md` | active | философия / constitution |
-| `00_START_HERE/03_OPEN_QUESTIONS.md` | active | живые вопросы |
-| `02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md` | current-summary | Steam/Desktop текущий контекст |
-| `04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md` | current-summary | текущий dev/Codex контекст |
+| Документ | Статус | Слой | Роль |
+| --- | --- | --- | --- |
+| `00_START_HERE/BOOTSTRAP_CONTEXT.md` | current-summary | Current Memory | общий вход |
+| `00_START_HERE/01_CURRENT_STATUS.md` | active | Current Memory | текущая картина проекта |
+| `00_START_HERE/02_DECISIONS.md` | active | Knowledge | принятые решения |
+| `00_START_HERE/03_PROJECT_PHILOSOPHY.md` | active | Knowledge | философия / constitution |
+| `00_START_HERE/03_OPEN_QUESTIONS.md` | active | Knowledge | живые вопросы |
+| `00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md` | active | Knowledge | правила документации и GC |
+| `02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md` | current-summary | Current Memory | Steam/Desktop текущий контекст |
+| `04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md` | current-summary | Current Memory | текущий dev/Codex контекст |
+| `docs/repo/status/CODEX_CURRENT_STATUS.md` | current-summary | Current Memory | короткий dev-status |
 
 ---
 
@@ -117,6 +127,12 @@ Do not use for new decisions.
 ---
 
 ## 6. Changelog
+
+### 2026-07-07 — documentation governance alignment
+
+- Added Current Memory / Knowledge / History layer model.
+- Added `05_DOCUMENTATION_GOVERNANCE.md` and `CODEX_CURRENT_STATUS.md` to current entry points.
+- Clarified status-to-layer mapping.
 
 ### 2026-07-07 — v1 created
 

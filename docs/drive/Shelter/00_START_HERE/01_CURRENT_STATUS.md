@@ -57,11 +57,21 @@ docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.m
 ```text
 docs/drive/Shelter/00_START_HERE/BOOTSTRAP_CONTEXT.md
 docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
+docs/drive/Shelter/00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
 docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
 docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+docs/repo/status/CODEX_CURRENT_STATUS.md
 ```
 
 Новые сессии не должны восстанавливать проект через все старые briefs, capture packs, handoff и длинный `CODEX_STATUS.md`.
+
+Документация теперь делится на три слоя:
+
+```text
+Current Memory — короткая текущая правда для bootstrap.
+Knowledge — активные решения, specs, references and ADRs по задаче.
+History — handoff, completed briefs, capture packs, evidence and long logs.
+```
 
 Стандартный порядок входа:
 
@@ -71,7 +81,8 @@ docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
 4. `00_START_HERE/BOOTSTRAP_CONTEXT.md`
 5. role-doc
 6. релевантный current-context документ
-7. deep docs только по задаче
+7. deep Knowledge docs только по задаче
+8. History только для evidence / regression / archaeology
 
 ---
 
@@ -244,6 +255,12 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## Changelog
+
+### 2026-07-07 — documentation governance update
+
+- Added `05_DOCUMENTATION_GOVERNANCE.md` and `CODEX_CURRENT_STATUS.md` to the compressed context layer.
+- Recorded Current Memory / Knowledge / History as the default reading model.
+- Clarified that History is not read by default.
 
 ### 2026-07-07 — documentation compression / current status refresh
 

@@ -1,5 +1,38 @@
 # Codex Status
 
+## 2026-07-07 - Shelter MCP bootstrap and repo tools polish v2
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Bootstrap_And_Repo_Tools_Polish_v2.md`
+- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- Summary: Polished the v1 Shelter MCP repo/document tools for daily ChatGPT, Codex and PM work without adding generic shell access or expanding MCP permissions. `read_shelter_bootstrap_context` now uses priority-first ordering so compressed/current-context docs and role docs are considered before long root docs, and it reports per-file diagnostics and byte budget usage. `git_diff_for_review` now supports `focus=all|docs|code|mixed`, returns diff/omitted paths, and includes lightweight review stats with file-category counts plus fixed-args `git diff --numstat` insertions/deletions. Markdown editing gained `replace_between_markers`, and missing-heading errors now return `closest_headings`.
+- Tools changed:
+  - `read_shelter_bootstrap_context`: priority-first bundle order, `included_bytes`, `remaining_budget`, `per_file_sizes`, `bootstrap_summary`.
+  - `git_diff_for_review`: `focus`, `review_stats`, `diff_paths`, `omitted_paths`.
+  - `insert_section_after_heading` / `replace_section`: actionable closest-heading suggestions when the requested heading is missing.
+- Tool added:
+  - `replace_between_markers`
+- Safety notes:
+  - No generic shell, arbitrary git command, commit/push/reset/checkout, or expanded filesystem permission was added.
+  - Existing repo enum, relative-path containment, denied secrets-looking paths, bounded output, and dry-run defaults remain in place.
+- Changed files in MCP repo:
+  - `README.md`
+  - `internal/sheltermcp/repo_tools.go`
+  - `internal/sheltermcp/repo_tools_test.go`
+  - `internal/sheltermcp/server.go`
+  - `internal/sheltermcp/server_test.go`
+- Changed files in Shelter repo:
+  - `docs/repo/status/CODEX_STATUS.md`
+- Checks:
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && gofmt -w internal/sheltermcp/repo_tools.go internal/sheltermcp/repo_tools_test.go internal/sheltermcp/server.go internal/sheltermcp/server_test.go`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && git diff --check`
+- Known limitations:
+  - Focus filters are intentionally simple extension/path heuristics, not semantic classification.
+  - `git_diff_for_review` numstat covers tracked diff paths; untracked files remain visible through status metadata rather than embedded diff content.
+  - `read_shelter_bootstrap_context` still performs deterministic file bundling only and does not summarize.
+
 ## 2026-07-07 - Shelter MCP repo diff, patch and markdown editing tools v1
 
 - Branch: `master`

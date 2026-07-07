@@ -146,8 +146,24 @@ Read these instead of reconstructing context from many old docs:
 ```text
 docs/drive/Shelter/00_START_HERE/BOOTSTRAP_CONTEXT.md
 docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
+docs/drive/Shelter/00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
 docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
 docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+docs/repo/status/CODEX_CURRENT_STATUS.md
+```
+
+Documentation memory is layered:
+
+```text
+Current Memory — short current truth for bootstrap.
+Knowledge — active decisions, specs, references and ADRs read by task.
+History — handoff, completed briefs, capture packs, evidence and long logs.
+```
+
+Default rule:
+
+```text
+Read Current Memory first. Read Knowledge only for the concrete task. Read History only for evidence, regression or archaeology.
 ```
 
 Role docs:
@@ -313,6 +329,12 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## 10. Changelog
+
+### 2026-07-07 — documentation governance layer
+
+- Added `05_DOCUMENTATION_GOVERNANCE.md` and `CODEX_CURRENT_STATUS.md` to current-context entry points.
+- Added Current Memory / Knowledge / History reading rule.
+- Clarified that History should only be read for evidence, regression or archaeology.
 
 ### 2026-07-07 — v1 created
 

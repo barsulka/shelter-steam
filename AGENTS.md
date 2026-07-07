@@ -72,7 +72,7 @@ Steam нельзя смешивать с Browser Extension. Никаких Chrom
 1. `PROJECTS_RULES.md`
 2. `AGENTS.md`
 3. `README.md`
-4. `docs/repo/status/CODEX_STATUS.md`
+4. `docs/repo/status/CODEX_CURRENT_STATUS.md`
 5. `docs/repo/adr/README.md`
 6. документы внутри `docs/`
 7. README/AGENTS конкретного подпроекта
@@ -80,6 +80,12 @@ Steam нельзя смешивать с Browser Extension. Никаких Chrom
 Перед технической реализацией Codex должен проверить `docs/repo/adr/README.md` и прочитать все релевантные `Accepted` ADR. Это особенно обязательно перед изменениями архитектуры, runtime-state, save/snapshot/connector-контрактов, платформенного поведения, dev tooling или подпроектных границ.
 
 Если документы противоречат друг другу — не угадывай. Сообщи пользователю о конфликте и предложи, какой документ обновить.
+
+## Documentation governance
+
+Для защиты от раздувания документации используй `docs/drive/Shelter/00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md`.
+
+Default reading model: Current Memory first, Knowledge by task, History only for evidence/regression/archaeology. Не восстанавливай проект через все старые briefs, capture packs, handoff и long logs.
 
 ## Роли и границы решений
 
