@@ -1,7 +1,8 @@
 # STEAM_DESKTOP — Game Systems Roadmap Remaining Snapshot
 
 Дата: 2026-06-30
-Статус: snapshot after R-13
+Статус: archive / historical snapshot after R-13
+Read policy: do not use as active roadmap; read only for historical comparison of the R-13 → R-15/R-16 transition.
 
 ## Done
 

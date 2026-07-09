@@ -1,5 +1,41 @@
 # Codex Status
 
+## 2026-07-07 - Shelter MCP Knowledge API v2
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Knowledge_API_v2.md`
+- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- Summary: Extended Shelter MCP Knowledge Layer from "which docs should I read?" to deterministic Knowledge API v2 for accepted decisions, open questions, roadmaps, latest handoff and task-specific reading context.
+- Tools added:
+  - `list_decisions`
+  - `get_decision`
+  - `list_open_questions`
+  - `list_roadmaps`
+  - `latest_handoff`
+  - `knowledge_task_context`
+- Safety notes:
+  - New v2 tools are read-only and deterministic.
+  - Implementation uses static catalogs and simple bounded local path checks only.
+  - No generic shell, broad repo search, network calls, AI summarization, embeddings, vector DB, write behavior, or expanded filesystem scope was added.
+- Changed files in MCP repo:
+  - `README.md`
+  - `internal/sheltermcp/knowledge_catalog.go`
+  - `internal/sheltermcp/knowledge_tools.go`
+  - `internal/sheltermcp/knowledge_tools_test.go`
+  - `internal/sheltermcp/server.go`
+- Changed files in Shelter repo:
+  - `docs/repo/status/CODEX_CURRENT_STATUS.md`
+  - `docs/repo/status/CODEX_STATUS.md`
+  - `docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md`
+- Checks:
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && gofmt -w internal/sheltermcp/knowledge_catalog.go internal/sheltermcp/knowledge_tools.go internal/sheltermcp/knowledge_tools_test.go internal/sheltermcp/server.go`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && git diff --check`
+- Known limitations:
+  - v2 knowledge content is intentionally cataloged, not parsed as broad search.
+  - Roadmaps and handoff coverage are scoped to currently known active docs and latest relevant handoff entries.
+
 ## 2026-07-07 - Shelter MCP knowledge access service v1
 
 - Branch: `master`

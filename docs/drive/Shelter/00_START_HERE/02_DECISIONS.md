@@ -1,460 +1,845 @@
-# 02_DECISIONS
+# 02_DECISIONS — Shelter Decision Log
 
-Обновлено: 2026-06-30
+Обновлено: 2026-07-07
+Статус: active knowledge / decision log
+Владелец: Producer / Project Manager
+Назначение: хранить принятые долгоживущие решения Shelter. История обсуждений, handoff и evidence живут в History-документах.
 
-## Принятые решения
+---
 
-### D-001 — Google Drive — база знаний проекта
+## 0. Read policy
 
-Продуктовые документы, исследования, дизайн, логи сессий, финансовые и благотворительные планы хранятся в Google Drive в папке `Shelter/`.
+Этот документ — источник принятых решений, но не полный исторический журнал.
 
-### D-002 — GitHub repo — главный источник для разработки
+Default use:
 
-Код, dev-документация, архитектурные заметки, инструкции сборки/тестов и рабочий статус Codex должны храниться в GitHub-репозитории. Drive может хранить зеркало или ссылку на dev-статус, но для Codex главными остаются документы внутри repo.
+```text
+Read by task when decisions are needed.
+For quick entry, use BOOTSTRAP_CONTEXT.md and current-context docs first.
+For implementation history, use CODEX_CURRENT_STATUS.md / CODEX_STATUS.md and relevant handoff.
+```
 
-### D-003 — Серьёзные сессии начинаются с `00_PROJECT_INDEX`
+Правило cleanup:
 
-Любая новая серьёзная ChatGPT-сессия должна начинаться с чтения:
+- не менять смысл решений без нового explicit product/process decision;
+- не добавлять новые решения из cleanup-сессии;
+- если старое решение уточнено новым решением, не удалять его, а указывать relationship;
+- если подробная история важна, ссылаться на source docs / handoff вместо раздувания decision entry.
 
-1. `00_PROJECT_INDEX`  
-2. `01_CURRENT_STATUS`  
-3. `02_DECISIONS`  
-4. релевантные документы роли и продукта  
-5. последнюю релевантную передачу контекста
+---
 
-### D-004 — Для Codex нужен `AGENTS.md`
+## 1. Decision index
 
-В будущем repo должен быть `AGENTS.md` с ограничениями проекта, правилами источников, dev-процессом, ожиданиями по тестам и обязанностями по документации.
+| ID | Title | Kind | Area | Status |
+| --- | --- | --- | --- | --- |
+| D-001 | Google Drive / local knowledge base | process | docs | accepted |
+| D-002 | GitHub repo as development source of truth | process | dev/docs | accepted |
+| D-003 | Serious sessions start from local project docs | process | docs | accepted / updated by governance |
+| D-004 | Codex requires `AGENTS.md` | process | Codex | accepted |
+| D-005 | Shelter tone and ethics | ethics/product | all | accepted |
+| D-006 | Three-product family | product | all | accepted |
+| D-007 | Steam/Desktop engine: Godot | technical/product | Steam | accepted |
+| D-008 | Browser Extension core loop | product/game design | Browser | accepted |
+| D-009 | Steam/Desktop horizontal dog production co-op | product/game design | Steam | accepted |
+| D-010 | Dog traits: innate vs changeable | game design | all/Steam | accepted |
+| D-011 | Visual Direction Candidate A: Cozy Modular Diorama | art/product | all/Steam/Browser | accepted as candidate |
+| D-012 | Shared World: Browser Farm supplies Steam Co-op | product/world | Steam/Browser | accepted |
+| D-013 | Steam resource trips replace visible crop farming | product/game design | Steam | accepted |
+| D-014 | Role boundaries and working roadmaps | process | all roles | accepted |
+| D-015 | Cross-role collaboration via RFC documents | process | all roles | accepted |
+| D-016 | Steam Vertical Slice: Codex implementation boundaries | process/dev | Steam/Codex | accepted |
+| D-017 | Codex tasks require brief files in `04_DEVELOPMENT/` | process/dev | Codex | accepted |
+| D-018 | Vertical Slice gameplay proof is enough for Game Designer systems branch | product/process | Steam | accepted |
+| D-019 | Game Design Systems Workbench over live Godot runtime | technical/process | Steam/Codex | accepted |
+| D-020 | Project Philosophy / Shelter Constitution | philosophy/product | all | accepted |
 
-### D-005 — Тон и этика продукта
+---
 
-Shelter — добрый, спокойный проект вокруг собак и приютов. Не добавлять в проект давление на пользователя, эксплуатационные механики или агрессивные игровые приёмы. Монетизация и благотворительные сценарии должны быть прозрачными, добровольными и уважительными.
+## 2. Accepted decisions
 
-### D-006 — Начальный набор продуктов
+### D-001 — Google Drive / local knowledge base
 
-Проект состоит из трёх возможных продуктов:
+Дата: early project setup
+Kind: `process`
+Area: `docs`
+Status: `accepted`
 
-1. Desktop/Steam idle-игра.  
-2. Мобильная idle/farm-игра.  
-3. Браузерное расширение: «посмотри рекламу → накорми собак».
+Summary:
 
-## Предложено, но ещё не зафиксировано
+> Product documents, research, design, session logs, financial/charity plans and long-term project memory live in the Shelter knowledge base.
 
-- Точный стек для мобильной версии и браузерного расширения.  
-- Будут ли desktop/mobile/browser одной общей кодовой базой или тремя почти отдельными реализациями.  
-- Точная модель отчётности по благотворительности.  
-- Точная модель отношений с реальными приютами.
+Decision:
 
-### D-007 — Steam/Desktop: основной движок — Godot
+Shelter keeps long-lived knowledge in local/project documentation. Google Drive was the original project knowledge-base metaphor, and the local repository mirror is now the operational source for AI sessions that can read/write project files.
 
-Для Desktop/Steam idle-игры принимаем Godot как основной движок разработки.
+Current relationship:
 
-Причина решения: текущая продуктовая форма — простая тёплая idle/farm-игра для Windows/macOS, потенциально с минималистичной always-on-top полоской/полем, настоящей прозрачностью, кнопкой скрытия интерфейса и медленными видимыми действиями персонажей. Godot подходит как лёгкий, открытый и достаточно гибкий 2D/desktop-first стек без лишней сложности и без лицензионного риска Unity/Unreal для маленькой команды.
+```text
+Local Shelter repo is the working source of truth for this ChatGPT/Codex workflow.
+```
 
-Базовая технологическая гипотеза:  
-- Godot 4.x как игровой движок.  
-- GDScript для основной игровой логики на старте.  
-- C# или GDExtension только там, где появится реальная необходимость: Steamworks, системные window APIs, производительные подсистемы, нативная интеграция Windows/macOS.  
-- Steam-версию развиваем отдельно от браузерного расширения; общий слой между продуктами возможен на уровне дизайна экономики, контента, API и отчётности, но не как обязательная единая кодовая база.
+Related:
 
-Статус: принято как CTO/product decision для Steam/Desktop-ветки. Требует дальнейшего технического spike: прозрачное окно, always-on-top, click-through/скрытие интерфейса, Steamworks, сохранения, сборки Windows/macOS.
+```text
+PROJECTS_RULES.md
+AGENTS.md
+00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
+```
 
-### D-008 — Browser Extension: core loop “спонсорская ферма → производство корма → отправка фургона в приют”
+---
 
-Дата: 2026-06-24.
+### D-002 — GitHub repo as development source of truth
 
-Для Chrome new-tab extension принимаем базовый core loop: пользователь открывает новую вкладку, видит search bar, крупный sponsorship/ad block и живую top-down idle-ферму. Ферма сама производит корм, собаки выполняют видимые мирные работы, спонсорский блок этично помогает копить ресурс отправки, а пользователь короткими визитами собирает результат, выбирает улучшения, помогает собаке или отправляет фургон в приют.
+Kind: `process`
+Area: `dev/docs`
+Status: `accepted`
 
-Композиция loop:  
-- Основной скелет: спонсорская ферма → производство корма → отправка фургона в приют.  
-- Целевой слой: мягкие заявки приютов.  
-- Эмоциональный слой: собаки с ролями, характерами, домиками и навыками.  
-- Долгосрочный слой: визуальный рост фермы, новые здания, декор, зоны.  
-- Микро-визиты: одно необязательное доброе действие на 5–20 секунд.
+Summary:
 
-Этические ограничения: реклама не блокирует core gameplay, не использует guilt pressure, не формулируется как “посмотри рекламу, иначе собаки пострадают”. Правильный тон: “Спасибо, этот просмотр помогает отправлять корм.” Юридическая, privacy, ads SDK, Chrome Web Store и благотворительная отчётность остаются отдельной проверкой.
+> Code, development docs, ADRs, build/test instructions and Codex working status live in the repository.
 
-Статус: принято пользователем как основной core loop browser-extension ветки.
+Decision:
 
-### D-009 — Steam/Desktop: core structure — горизонтальный собачий производственный кооператив
+Development truth lives in the Git repository. Codex must read and edit local repo files directly. ChatGPT uses Shelter MCP / filesystem bridge to read and update the same local documents.
 
-Дата: 2026-06-24.
+Related:
 
-Для Steam/Desktop-ветки принимаем базовую механическую структуру: не классическая ферма и не холодная фабрика, а горизонтальный собачий производственный кооператив в sidescroll always-on-top полоске для Windows/macOS.
+```text
+README.md
+AGENTS.md
+docs/repo/status/CODEX_CURRENT_STATUS.md
+docs/repo/adr/README.md
+```
 
-Основная формула: cozy idle production strip + dog community sim.
+---
 
-Игровое ядро: собаки живут в уютном кооперативе, выращивают и получают мирные ингредиенты, готовят корм в маленьком заводике, фасуют его, складируют мешки и отправляют фургоном в партнёрские приюты. Игрок не микроменеджит каждое действие, а мягко организует систему: строит зоны, задаёт приоритеты, выбирает рецепты, назначает подходящих собак, улучшает процессы, украшает комнаты и наблюдает за медленной физической работой.
+### D-003 — Serious sessions start from local project docs
 
-Скелет механик:  
-- Производственная линия: сад/теплица → кладовая ингредиентов → кухня → миксер → сушилка/пресс → фасовка → склад мешков → погрузка/фургон.  
-- Эмоциональный слой: собаки-жители с именами, характерами, любимыми работами, комнатами, idle-анимациями и историями.  
-- Целевой слой: мягкие плановые поставки в приюты, письма, открытки и благодарности без guilt pressure.  
-- Долгосрочный слой: новые здания, исследования, рецепты, маршруты, тележки, декор, комнаты и раскрытие собак.
+Kind: `process`
+Area: `docs`
+Status: `accepted / updated by documentation governance`
 
-Ферма остаётся важной частью игры как источник мирных ингредиентов, но не является единственным ядром. Заводик/кооператив — основная форма, потому что он лучше работает в горизонтальной полоске и даёт видимые процессы.
+Summary:
 
-Запрещено: бои, PvP, монстры, боссы, paid gacha, рекламная монетизация в Steam, скотобойня, жестокие мясные цепочки, манипулятивная благотворительность, таймеры вины и эксплуатационный вайб “собак-рабочих”.
+> Serious Shelter sessions must restore context from local documents, not chat memory.
 
-Статус: принято пользователем как основное product/game-design решение для Steam/Desktop-ветки.
+Decision:
 
-### D-010 — Dogs: врождённые и изменяемые особенности
+A new serious session starts from local project docs and the relevant role/current-context docs.
 
-Дата: 2026-06-24.
+Current reading model:
 
-Для всех продуктов Shelter, начиная со Steam/Desktop-ветки, принимаем разделение особенностей собак на два слоя:
+```text
+Current Memory first.
+Knowledge by task.
+History only for evidence / regression / archaeology.
+```
 
-1. Врождённые / неизменяемые особенности.  
-Это свойства, с которыми собака появляется в игре. Они являются частью её личности и идентичности. Игрок не может их удалить, отобрать, заменить или “перековать”. Пример: собака родилась с особенностью “быстрые лапки” — эта особенность остаётся с ней навсегда.
+Current entry sources:
 
-2. Изменяемые / экипируемые / приобретённые особенности.  
-Это внешние или заработанные модификаторы: предметы, уют комнаты, обучение, любимые инструменты, временные привычки, тапочки, ошейники, рабочие аксессуары, декорные эффекты. Их можно добавлять, менять, улучшать или снимать без разрушения личности собаки. Пример: собаке с “быстрыми лапками” можно дать “удобные тапочки”, и она станет ещё быстрее.
+```text
+PROJECTS_RULES.md
+AGENTS.md
+README.md
+docs/drive/Shelter/00_START_HERE/BOOTSTRAP_CONTEXT.md
+role doc
+relevant current-context doc
+```
 
-Дизайн-правило: изменяемые особенности должны усиливать, оттенять или временно направлять врождённую индивидуальность собаки, но не стирать её. Собака — не набор оптимизируемых статов, а персонаж.
+Related:
 
-Пример допустимой особенности: “счастливчик” — повышает шанс редкого/легендарного результата в мирных производственных процессах, например при выращивании редкого плода, создании особого декора или приготовлении необычной партии корма. Это не боевая удача и не paid gacha.
+```text
+00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
+00_START_HERE/SUPERSEDED_MAP.md
+00_START_HERE/EVIDENCE_READ_POLICY.md
+```
 
-Статус: принято пользователем как системное правило для дизайна собак и прогрессии особенностей.
+---
+
+### D-004 — Codex requires `AGENTS.md`
+
+Kind: `process`
+Area: `Codex`
+Status: `accepted`
+
+Summary:
+
+> Codex must work under repo-level agent rules, not just chat instructions.
+
+Decision:
+
+The repo must contain `AGENTS.md` with project constraints, source-of-truth rules, dev process, test/check expectations, documentation duties and role boundaries.
+
+Related:
+
+```text
+AGENTS.md
+000_ROLE_CODEX.md
+```
+
+---
+
+### D-005 — Shelter tone and ethics
+
+Kind: `ethics/product`
+Area: `all`
+Status: `accepted`
+
+Summary:
+
+> Shelter is kind, calm, ethical and dog-first. Monetization and charity must never pressure the user.
+
+Decision:
+
+Shelter must not use guilt pressure, manipulative charity prompts, exploitative mechanics, aggressive FOMO or hostile monetization. Charity/monetization scenarios must be transparent, voluntary and respectful.
+
+Forbidden patterns:
+
+```text
+battles, PvP, bosses, monsters, paid gacha, aggressive FOMO, guilt pressure, forced donation framing, dark patterns
+```
+
+Related:
+
+```text
+03_PROJECT_PHILOSOPHY.md
+04_SHELTER_STRESS_TESTS.md
+```
+
+---
+
+### D-006 — Three-product family
+
+Kind: `product`
+Area: `all`
+Status: `accepted`
+
+Summary:
+
+> Shelter is a family of three possible products: Steam/Desktop, Mobile and Browser Extension.
+
+Decision:
+
+Initial product family:
+
+1. Desktop/Steam idle game for Windows/macOS.
+2. Mobile idle/farm game.
+3. Browser Extension: “посмотри рекламу → накорми собак”.
+
+Current focus:
+
+```text
+Steam/Desktop is the active product focus.
+```
+
+Related:
+
+```text
+01_CURRENT_STATUS.md
+STEAM_DESKTOP__CURRENT_CONTEXT.md
+03_OPEN_QUESTIONS.md
+```
+
+---
+
+### D-007 — Steam/Desktop engine: Godot
+
+Kind: `technical/product`
+Area: `Steam`
+Status: `accepted`
+
+Summary:
+
+> Godot is the engine for the Steam/Desktop Windows/macOS game.
+
+Decision:
+
+Steam/Desktop uses Godot 4.x as the primary game engine. Start with GDScript for core gameplay logic. Use C# or GDExtension only where real need appears: Steamworks, native OS window APIs, performance-sensitive systems or platform integration.
+
+Rationale:
+
+Godot fits a small 2D desktop-first idle game with possible always-on-top strip/window behavior, transparency, UI hiding and slow visible character actions, without the licensing/production complexity of heavier engines.
+
+Current relationship:
+
+```text
+Godot prototype and tooling already exist.
+```
+
+Related:
+
+```text
+docs/repo/adr/0001-use-godot-for-steam-desktop.md
+CODEX_CURRENT_STATUS.md
+CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+```
+
+---
+
+### D-008 — Browser Extension core loop
+
+Дата: 2026-06-24
+Kind: `product/game design`
+Area: `Browser`
+Status: `accepted at product-loop level`
+
+Summary:
+
+> Browser Extension uses a calm new-tab farm loop where sponsorship/ad block helps accumulate sending resources without guilt pressure.
+
+Decision:
+
+Browser Extension core loop:
+
+```text
+sponsored farm → food production → van delivery to shelter
+```
+
+The user opens a new tab, sees search/new-tab utility, a calm sponsorship/ad block and a living top-down idle farm. The farm produces food; dogs perform peaceful visible work; sponsor/ad interactions help accumulate delivery resources; user can make short visits, collect results, choose improvements and send a van to a shelter.
+
+Ethical constraints:
+
+- ads do not block core gameplay;
+- no guilt pressure;
+- no “watch this or dogs suffer” framing;
+- correct tone is gratitude and transparency.
+
+Still open:
+
+```text
+privacy, ad SDKs, Chrome Web Store rules, charity reporting, claims and partner-shelter model
+```
+
+Related:
+
+```text
+03_OPEN_QUESTIONS.md
+```
+
+---
+
+### D-009 — Steam/Desktop horizontal dog production co-op
+
+Дата: 2026-06-24
+Kind: `product/game design`
+Area: `Steam`
+Status: `accepted`
+
+Summary:
+
+> Steam/Desktop is a cozy idle production strip + dog community sim, not a classical farm or cold factory.
+
+Decision:
+
+Steam/Desktop is a horizontal sidescroll always-on-top dog production cooperative for Windows/macOS.
+
+Core formula:
+
+```text
+cozy idle production strip + dog community sim
+```
+
+The player gently organizes a living cooperative: zones, priorities, recipes, dog assignments, process improvements, decorations and rooms. Dogs visibly live and work: moving, carrying, cooking, packing, loading, resting, interacting and returning from trips.
+
+Main layers:
+
+- production line / cooperative work;
+- dogs as named residents with characters and preferences;
+- planned gentle deliveries to shelters;
+- letters, postcards and gratitude without guilt pressure;
+- long-term growth through buildings, recipes, research, routes, transport, rooms and dog stories.
+
+Forbidden:
+
+```text
+combat, PvP, monsters, bosses, paid gacha, Steam ad monetization, slaughter/meat-cruelty chains, manipulative charity, guilt timers, exploitative dog-worker framing
+```
+
+Related:
+
+```text
+STEAM_DESKTOP__CURRENT_CONTEXT.md
+03_PROJECT_PHILOSOPHY.md
+```
+
+---
+
+### D-010 — Dog traits: innate vs changeable
+
+Дата: 2026-06-24
+Kind: `game design`
+Area: `all/Steam`
+Status: `accepted`
+
+Summary:
+
+> A dog is a character, not a rerollable stat bundle. Innate traits are permanent; equipment/acquired traits are changeable.
+
+Decision:
+
+Dog characteristics are split into:
+
+1. **Innate / unchangeable traits** — part of identity. The player cannot remove, reroll, replace or “reforge” them.
+2. **Changeable / equippable / acquired traits** — items, room comfort, training, favorite tools, habits, slippers, collars, work accessories, decorative effects and learned memories.
+
+Design rule:
+
+Changeable traits can strengthen, tint or guide innate individuality, but must not erase it.
+
+Example:
+
+```text
+A dog with “fast paws” remains fast-pawed; comfortable slippers can make that trait more expressive.
+```
+
+Related:
+
+```text
+STEAM_DESKTOP__CURRENT_CONTEXT.md
+```
+
+---
 
 ### D-011 — Visual Direction Candidate A: Cozy Modular Diorama
 
-Дата: 2026-06-25.
+Дата: 2026-06-25
+Kind: `art/product`
+Area: `all/Steam/Browser`
+Status: `accepted as candidate, not final art bible`
 
-Для Shelter принимаем Cozy Modular Diorama как основное визуальное направление-кандидат для проверки и разработки style board.
+Summary:
 
-Формула направления: уютная модульная собачья диорама — маленький кооператив из комнат, теплиц, кухонь, складов, домиков и фургонов, где собаки-жители медленно и видимо делают доброе общее дело.
+> Cozy Modular Diorama is the main visual direction candidate, pending style board, readability and production-cost validation.
 
-Направление должно поддерживать две проекции:  
-1. Steam/Desktop: side/cutaway модули для горизонтальной always-on-top production strip.  
-2. Browser Extension: top-down / 3⁄4 ферма для Chrome new-tab idle farm.
+Decision:
 
-Статус решения: кандидат принят как основное направление для проверки, но не финализирован как окончательный визуальный стиль всей группы продуктов.
+Shelter uses Cozy Modular Diorama as the primary candidate direction: a small modular dog cooperative of rooms, greenhouses, kitchens, storage, dog houses and vans where dog residents visibly do kind shared work.
 
-До финального утверждения обязательны:  
-- style board;  
-- readability test для Steam-полоски на высотах 96 px, 144 px и 216 px;  
-- проверка стоимости производства ассетов;  
-- проверка совместимости Steam + Browser;  
-- проверка, что стиль поддерживает большое количество пород и индивидуальность собак.
+It must support two projections:
 
-Комната собаки принимается как главный визуальный носитель личности: характер, привязанность, визуальная радость, маленькие мягкие бонусы и поводы возвращаться. Комната не должна становиться обязательной min-max системой силы. Нельзя превращать её в модель “без редкого декора собака неэффективна”.
+1. Steam/Desktop — side/cutaway modules for horizontal always-on-top production strip.
+2. Browser Extension — top-down / 3⁄4 farm for Chrome new-tab idle farm.
 
-Для ключевых собак, зданий и материалов визуальная идентичность проектируется так, чтобы её можно было перевести в две проекции. На MVP допускаются упрощения: не все ассеты обязаны сразу иметь полноценные версии для обеих проекций.
+Required before final visual lock:
 
-Для Browser Extension sponsorship/ad block предварительно трактуется как спокойная “доска партнёра” / sponsor card, встроенная в new-tab layout без давления, guilt pressure и блокировки core gameplay. Это не относится к Steam/Desktop, где рекламная монетизация не проектируется как core loop.
+- style board;
+- readability tests at 96 px, 144 px and 216 px for Steam strip;
+- production cost check;
+- Steam + Browser compatibility check;
+- support for many breeds and dog individuality.
 
-Стиль нельзя финализировать, пока он не прошёл readability test в Steam-полоске на 96, 144 и 216 px.
+Dog room rule:
 
-Статус: принято пользователем как продюсерское решение-кандидат. Мяч передан Art Director / Visual Designer на реализацию style board и readability test.
+Dog rooms are a key visual carrier of personality, affection, joy and small reasons to return. They must not become a hard min-max power system.
+
+Overlay asset taxonomy update:
+
+Before generating or assigning overlay assets, classify each as:
+
+1. **Building** — rare large strip anchor.
+2. **Utility Prop** — functional object / pause / support prop; must not become a house.
+3. **Dog Action Sprite** — readable dog action with object.
+
+Rule:
+
+```text
+Buildings are rare anchors. Most visible work should be utility props and dog actions, not a dense village of tiny houses.
+```
+
+Related:
+
+```text
+D-011_Cozy_Modular_Diorama_Candidate_A.md
+D-011_Steam_Overlay_Main_Strip_v1_Rules.md
+DOG_VISUAL_LANGUAGE_v1.md
+```
+
+---
 
 ### D-012 — Shared World: Browser Farm supplies Steam Co-op
 
-Дата: 2026-06-25.
+Дата: 2026-06-25
+Kind: `product/world`
+Area: `Steam/Browser`
+Status: `accepted`
 
-Steam/Desktop и Browser Extension принимаются как две разные части одного собачьего мира, а не как две версии одной и той же фермы.
+Summary:
 
-Формула мира:  
-- Browser Extension — настоящая top-down ферма в новой вкладке браузера, где выращиваются, собираются и подготавливаются ресурсы.  
-- Steam/Desk
+> Browser Extension and Steam/Desktop are two parts of one dog world, not two versions of the same game. MVP connection is narrative-only.
 
-Дополнение от 2026-06-25: после Asset Pack 1 v1 принимается дополнительное правило для Steam Overlay Main Strip.
+Decision:
 
-Перед генерацией или постановкой любого overlay-ассета он должен быть классифицирован как один из трёх типов:
+Shelter products share a world:
 
-1. **Building / здание** — редкий крупный якорь полоски: dog house, kitchen, storage, delivery van endpoint.  
-2. **Utility Prop / функциональный объект** — вспомогательный объект или вертикальная/горизонтальная пауза: мельница, водяная станция, насос, бак, тележка, компост, указатель, фонарь. Utility Props запрещено превращать в домики.  
-3. **Dog Action Sprite / действие собаки** — отдельная читаемая собака с объектом: несёт мешок, везёт тележку, поливает, красит доску, клеит ярлык.
+- Browser Extension — real top-down farm in a new tab where resources are grown, gathered and prepared.
+- Steam/Desktop — horizontal dog cooperative/workshop where resources arrive, are processed into food/help goods and sent to shelters.
 
-Правило: в main overlay здания — редкие якоря. Всё остальное должно быть маленькими функциональными объектами и действиями собак. Если каждая функция превращается в домик, нижняя полоса снова становится плотной декоративной деревней и нарушает D-011.
+Visual/world connection:
 
-Asset Pack 1 v1 получает статус: useful exploration, not approved production pack. Prompt system работает по тону, палитре и dog-centered направлению, но требует усиленного запрета “Utility Props must not become houses”.  
-top — горизонтальный собачий кооператив/мастерская в sidescroll always-on-top полоске, куда ресурсы приезжают и где из них делают корм, аксессуары, одежду, лежанки, игрушки, наборы помощи и отправки в приюты.
+Dog bicycles, cargo bikes, trailers, small vans, trucks, crates, postcards and shared asset language connect farms, cooperative and shelters.
 
-Визуальная и смысловая связь: между фермерскими локациями, кооперативом и приютами ездят собачьи велосипеды, грузовые велосипеды, велосипеды с прицепом, маленькие фургоны и грузовички.
+MVP rule:
 
-MVP-правило: на старте связь между Steam/Desktop и Browser Extension должна быть narrative-only. Steam не должен требовать установленного браузерного расширения, а Browser Extension не должен быть обязательным условием прогресса в Steam.
+```text
+Connection is narrative-only.
+Steam must not require the Browser Extension.
+Browser Extension must not be required for Steam progress.
+```
 
-Возможная эволюция связи:  
-1. MVP: narrative link — в Steam собаки ездят “на ферму”, в Browser игрок видит ту самую ферму, но технически продукты независимы.  
-2. Позже: soft connection — открытки, косметические ящики, наклейки, имена фургончиков, общий альбом собак, мягкие отчёты вроде “сегодня твоя ферма отправила 12 ящиков в кооператив”.  
-3. Только после доказанного интереса: real sync — общий аккаунт, реальные поставки ресурсов, cross-product events.
+Possible evolution:
 
-Запрещено: жёстко связывать прогресс Steam с установкой Browser Extension, наказывать пользователя за игру только в один продукт или превращать cross-product связь в обязательную воронку.
+1. Narrative link — products are independent, but refer to the same world.
+2. Soft connection — postcards, cosmetic crates, stickers, van names, dog album, light reports.
+3. Real sync only after proven interest — shared account, resource deliveries, cross-product events.
 
-Статус: принято как product/world-structure решение для связки Steam/Desktop и Browser Extension.
+Forbidden:
+
+```text
+mandatory cross-product funnel, punishment for using only one product, hard-gated progress across products
+```
+
+---
 
 ### D-013 — Steam resource trips replace visible crop farming
 
-Дата: 2026-06-25.
+Дата: 2026-06-25
+Kind: `product/game design`
+Area: `Steam`
+Status: `accepted`
 
-В Steam/Desktop не реализуем классический фермерский цикл “посадил → полил → подождал → собрал” как видимое ядро игры. Для sidescroll idle-полоски сырьевые ресурсы добываются через off-screen поездки собак на внешние фермерские локации.
+Summary:
 
-Steam/Desktop остаётся кооперативом/мастерской, а не грядочной фермой. Видимые зоны Steam могут включать парники, цветы, комнатные растения или декоративные мини-уголки, но основной сырьевой farming вынесен за пределы полоски.
+> Steam/Desktop does not use classical visible crop farming as core. Raw resources arrive through off-screen dog trips and physical unloading.
 
-Базовая механика поездок:  
-- на краю Steam-полоски есть дорожный знак и транспорт;  
-- игрок выбирает маршрут, водителя, возможных пассажиров и транспорт;  
-- транспорт уезжает за край экрана;  
-- у дорожного столба появляется таймер;  
-- по возвращении собаки физически выгружают ящики в кладовую, а награда не падает в инвентарь мгновенно.
+Decision:
 
-Прогрессия транспорта:  
-велосипед с корзинкой → грузовой велосипед → велосипед с прицепом → маленький фургон → грузовичок.
+Steam/Desktop is a cooperative/workshop, not a visible crop-farming strip.
 
-Маршрут + транспорт + собака + пассажиры + особенности определяют длительность, вместимость, категории наград и шанс дополнительных находок. Примеры маршрутов: Цветочная ферма, Льняные поля, Овсяная ферма.
+Base trip loop:
 
-Рандомная награда допустима, если это не paid gacha: нельзя продавать попытки за деньги, делать платный reroll, давить на игрока или превращать редкую находку в обязательную боль. Игрок должен примерно понимать возможные категории наград; редкие находки — радость, а не обязательный прогресс.
+1. At strip edge, there is a road sign and transport.
+2. Player chooses route, driver, optional passengers and transport.
+3. Transport leaves screen.
+4. Timer appears near the road sign.
+5. Dogs return and physically unload crates into storage.
 
-D-010 обязательно применяется к поездкам: врождённые особенности собак задают личный стиль и склонности, а экипировка вроде шлемика, шлейки, корзинки, ошейника, жилета или удобных тапочек может усиливать роль собаки, но не стирать её характер.
+Transport progression:
 
-Статус: принято как product/game-design решение для Steam/Desktop-ветки.
+```text
+basket bicycle → cargo bicycle → bicycle with trailer → small van → truck
+```
+
+Route + transport + dog + passengers + traits affect duration, capacity, reward categories and possible extra finds.
+
+Random rewards rule:
+
+Randomness is allowed only as joy, not paid gacha or pain. No paid attempts, paid rerolls, pressure, or rare finds that become mandatory progression blockers.
+
+D-010 applies to trips: equipment can enhance role expression but not erase dog identity.
+
+---
 
 ### D-014 — Role boundaries and working roadmaps
 
-Дата: 2026-06-29.
+Дата: 2026-06-29
+Kind: `process`
+Area: `all roles`
+Status: `accepted`
 
-Для AI-ролей Shelter принято уточнение границ ответственности и правило рабочих roadmaps.
+Summary:
 
-Game Designer отвечает за mechanics, core loop, economy structures, resources, production chains, progression, dog traits, research, balance requirements, player goals, retention, pacing и UX-logic. Game Designer может касаться визуала только как gameplay constraints: какие действия и состояния должны быть видимы, какие сущности должны различаться и какие анимации нужны для понимания механики. Game Designer не выбирает финальный art style, не пишет prompts, не ведёт art bible, не выбирает palette и не проектирует asset pipeline.
+> Roles have explicit boundaries, and working roadmaps guide series of tasks without becoming product decisions by themselves.
 
-Art Director отвечает за visual direction, style board, art bible, UI look, asset style, palette, silhouette/readability, visual references, prompts, animation visual language, asset production rules и visual QA. Art Director может возвращать gameplay constraints, если визуальное решение не читается или ломает production scope, но не меняет core loop, economy, task flow или product scope без proposal / decision.
+Decision:
 
-Producer отвечает за продуктовую рамку, приоритеты, scope, role boundaries, product decisions и cross-role alignment. Project Manager отвечает за синхронизацию документов, decision log, open questions, handoff и контроль того, чтобы roadmaps не подменяли product decisions, art bible, game-design contracts или dev status.
+Role boundaries:
 
-Для Game Designer, Art Director, Codex и Project Manager новая серия задач должна начинаться с проверки актуального roadmap своей зоны или с создания/обновления roadmap, если последовательность задач ещё не зафиксирована. Producer может утверждать или менять roadmaps, если они затрагивают приоритеты, MVP / Vertical Slice scope, sequence of critical work или cross-role dependencies, но не обязан начинать каждую продюсерскую сессию с отдельного roadmap-документа.
+- Producer — product frame, priorities, scope, product decisions, ethical boundaries and cross-role alignment.
+- Project Manager — docs sync, decision log, open questions, handoff, role-boundary control and roadmap hygiene.
+- Game Designer — mechanics, economy structures, resources, production chains, progression, dog traits, balance, player goals, retention and UX logic.
+- Art Director — visual direction, style board, art bible, UI look, asset style, palette, readability, prompts, animation visual language and visual QA.
+- Codex — implementation, local repo changes, tests/checks, dev docs/status and technical constraints.
 
-Roadmap — живой рабочий план, а не библия и не самостоятельный product decision. Пункты roadmap можно переносить, разделять, объединять, уточнять или удалять только с явным обоснованием: новое product decision, результат прототипирования, техническое ограничение, проблема readability / production scope, изменение приоритета, конфликт документов, новая зависимость или изменение MVP / Vertical Slice scope. Существенные изменения фиксируются в changelog roadmap-документа, handoff или decision/update note.
+Roadmap rule:
 
-Статус: принято как process / role-boundary decision и отражено в role-documents, `PROJECTS_RULES.md` и `AGENTS.md`.
+Roadmap is a living work plan, not a bible and not a product decision by itself. Major roadmap changes need a reason and should be reflected in changelog, handoff or update note.
+
+Related:
+
+```text
+000_ROLE_*.md
+KNOWLEDGE_BASE_ROADMAP.md
+```
+
+---
 
 ### D-015 — Cross-role collaboration via RFC documents
 
-Дата: 2026-06-29.
+Дата: 2026-06-29
+Kind: `process`
+Area: `all roles`
+Status: `accepted`
 
-Для Shelter принят процесс межролевых обсуждений через локальные документы, а не через копирование длинных промтов между чатами.
+Summary:
 
-Введён `04_COLLABORATION_PROTOCOL`, который описывает три уровня коллегиальной работы:
+> Cross-role work should happen through local RFC documents, not copied long chat prompts.
 
-1. **Quick Role Check** — короткая проверка одной или двух ролей по маленькому вопросу.
-2. **Cross-role RFC** — отдельный общий документ для обсуждения между Game Designer, Art Director, Codex, Producer и PM.
-3. **Decision Council** — более строгий формат для решений, которые могут менять product scope, Vertical Slice scope, art direction, technical direction, monetization, charity promises или relationship between products.
+Decision:
 
-Главное правило: AI-сессия может подготовить draft synthesis, но не должна считать это настоящей позицией другой роли. Роль считается высказавшейся только если она заполнила свою секцию RFC или Producer явно принял решение.
+Shelter uses `04_COLLABORATION_PROTOCOL.md` with three collaboration levels:
 
-RFC сам по себе не является решением. Результат становится решением только после Producer synthesis / user acceptance и записи в долгоживущие документы: `02_DECISIONS`, product docs, role docs, `AGENTS.md`, status или relevant handoff.
+1. Quick Role Check.
+2. Cross-role RFC.
+3. Decision Council.
 
-Первый созданный RFC: `06_SESSIONS_AND_HANDOFFS/cross_role_sessions/2026-06-29__cross_role_rfc__codex_task_boundaries_steam_vertical_slice.md`. Его цель — согласовать, какие задачи Codex может делать самостоятельно в Steam Vertical Slice, а какие должен возвращать Game Designer, Art Director или Producer.
+A draft synthesis is not another role’s real position. A role has spoken only when it fills its section or Producer explicitly accepts a decision.
 
-Статус: принято как process decision. Первый RFC создан в статусе draft / role review needed.
+RFC is not a decision by itself. It becomes decision only after Producer synthesis / user acceptance and updates to long-lived docs.
+
+First RFC:
+
+```text
+06_SESSIONS_AND_HANDOFFS/cross_role_sessions/2026-06-29__cross_role_rfc__codex_task_boundaries_steam_vertical_slice.md
+```
+
+---
 
 ### D-016 — Steam Vertical Slice: Codex implementation boundaries
 
-Дата: 2026-06-29.
+Дата: 2026-06-29
+Kind: `process/dev`
+Area: `Steam/Codex`
+Status: `accepted`
 
-Для Steam/Desktop Vertical Slice принято implementation-boundary решение по первому Cross-role RFC:
+Summary:
 
-`06_SESSIONS_AND_HANDOFFS/cross_role_sessions/2026-06-29__cross_role_rfc__codex_task_boundaries_steam_vertical_slice.md`
+> Codex implements contracts and may use technical judgement for prototype implementation, but must not silently change gameplay, product, visual or ethical meaning.
 
-Роли Game Designer, Art Director и Codex заполнили свои секции. Producer synthesis принял их как совместимые.
+Decision:
 
-Принятое правило:
+Codex may independently choose internal Godot structure, scene/script split, data representation, deterministic prototype scheduler/state machine, dev-only debug tools, semantic labels, smoke commands, timing compression for debug/review, neutral placeholders and bug fixes where implementation diverges from written contracts.
 
-> Codex implements contracts and may use technical judgement for prototype implementation, debug tooling and neutral placeholders. Codex must not silently change gameplay contracts, visible physical steps, object taxonomy, visual direction, player-facing UI meaning, product scope or ethical boundaries.
+Codex must return questions to:
 
-Codex может самостоятельно:
+- Game Designer — mechanics, task flow, resources, player actions, visible cause-and-effect, Dog Card meaning, acceptance criteria.
+- Art Director — final style, palette, UI look, dog look, asset taxonomy, unapproved assets, readability problems hiding gameplay meaning.
+- Producer — Vertical Slice scope, product features, monetization, charity claims, Browser Extension dependency, cross-product behavior or shortcuts affecting intended player experience.
 
-- выбирать внутреннюю Godot-структуру реализации, scene/script split и data representation;
-- делать deterministic prototype scheduler / state machine;
-- добавлять dev-only debug overlay, state log, semantic labels и smoke commands;
-- сжимать timings для debug / smoke / prototype review, если visible steps остаются читаемыми;
-- использовать approved semantic placeholders и neutral labeled placeholders для missing assets;
-- создавать Steam-local mirrors approved semantic assets с source mapping manifest;
-- исправлять баги, где implementation расходится с written contracts.
+This does not add scope. It clarifies implementation boundaries for locked Steam Vertical Slice.
 
-Codex должен вернуть вопрос Game Designer, если требуется изменить mechanics, task flow, resources, player actions, visible cause-and-effect, Dog Card meaning или acceptance criteria.
+Related:
 
-Codex должен вернуть вопрос Art Director, если требуется выбрать final visual style, palette, UI look, dog look, production asset style, изменить asset taxonomy, использовать unclear/unapproved assets или продолжать при readability problem, скрывающей gameplay meaning.
+```text
+STEAM_DESKTOP__Codex_Implementation_Brief__Vertical_Slice_v1.md
+cross-role RFC on Codex task boundaries
+```
 
-Codex должен вернуть вопрос Producer, если требуется изменить Vertical Slice scope, product feature, monetization, charity claim, Browser Extension dependency, cross-product behavior или принять shortcut, меняющий intended player experience.
+---
 
-Уточнение по ассетам: `approved/utility_props/packing_table.png` сейчас отсутствует. Packing Table остаётся обязательным Utility Prop в gameplay scope, но Codex должен использовать labeled Utility Prop placeholder до появления approved semantic asset. Food Mix и Food Bag сейчас имеют combined composite; если gameplay step требует различия Food Mix -> Food Bag, Codex должен использовать separate labeled semantic tokens.
+### D-017 — Codex tasks require brief files in `04_DEVELOPMENT/`
 
-Это решение не добавляет новый scope. Оно уточняет границы реализации уже locked Steam Vertical Slice.
+Дата: 2026-06-29
+Kind: `process/dev`
+Area: `Codex`
+Status: `accepted`
 
-Статус: принято как Steam Vertical Slice implementation-boundary decision. `STEAM_DESKTOP__Codex_Implementation_Brief__Vertical_Slice_v1.md` синхронизирован с этим решением.
+Summary:
 
-### D-017 — Codex tasks must be assigned through 04_DEVELOPMENT brief files
+> Significant Codex tasks must be assigned through brief files, not chat-only instructions.
 
-Дата: 2026-06-29.
+Decision:
 
-Для Shelter принято обязательное process rule: вся постановка значимых задач Codex должна оформляться через отдельные brief-файлы в директории:
+All significant Codex tasks must be described in a brief file under:
 
 ```text
 docs/drive/Shelter/04_DEVELOPMENT/
 ```
 
-Нельзя ставить Codex dev-задачу только сообщением в чате, устным пересказом или ссылкой на обсуждение. Чат может содержать короткую команду запуска, но источником задачи должен быть brief-файл.
+Chat may contain the short launch prompt, but the task source is the brief file.
 
-Любая AI-сессия, которая готовит задачу для Codex, обязана в финальном ответе пользователю указать:
+A Codex brief should include:
 
-1. путь до brief-файла;
-2. рекомендуемый уровень рассуждений для запуска Codex.
+- goal;
+- mandatory sources;
+- scope / out of scope;
+- acceptance criteria;
+- stop conditions;
+- expected changed areas;
+- checks;
+- status-doc update requirements;
+- recommended reasoning level.
 
-Допустимые уровни рассуждений:
-
-- низкий;
-- средний;
-- высокий;
-- очень высокий.
-
-Brief-файл для Codex должен по возможности содержать: цель задачи, обязательные источники, scope / out of scope, acceptance criteria, stop conditions, ожидаемые зоны изменений, проверки и требования к обновлению `docs/repo/status/CODEX_STATUS.md`.
-
-Статус: принято как process decision. Правило отражено в `04_COLLABORATION_PROTOCOL.md`, `AGENTS.md` и `000_ROLE_CODEX.md`.
-
-### D-018 — Steam Vertical Slice gameplay proof is enough for Game Designer systems branch
-
-Дата: 2026-06-29.
-
-Для Steam/Desktop принято разделение Vertical Slice proof на два слоя:
-
-1. **Gameplay proof** — loop, task chain, resource flow, player agency, D-010 trait/equipment separation and game-system contract.
-2. **Visual proof** — readability, visual hierarchy, dog silhouettes, placeholder quality, strip composition, UI look, production-art readiness and final visual/usability acceptance.
-
-Producer decision: текущий Vertical Slice считается достаточно доказанным на уровне gameplay proof, чтобы Game Designer не блокировался ожиданием финального visual pass и мог перейти к новой ветке systems design.
-
-Это не означает, что Vertical Slice полностью принят как финальный visual/product slice. Visual proof остаётся открытым и передаётся Art Director как его critical path.
-
-Game Designer critical path переносится в:
+Related:
 
 ```text
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Game_Systems_Roadmap_v1.md
+04_COLLABORATION_PROTOCOL.md
+AGENTS.md
+000_ROLE_CODEX.md
 ```
 
-Art Director продолжает вести:
+---
 
-- final visual acceptance / usability / readability approval Vertical Slice;
-- Capture Pack v2 review;
-- readability 216 / 144 / 96;
-- dog/action silhouettes;
-- placeholder quality;
-- UI visual hierarchy;
-- strip composition;
-- Dog Shape Pack v1 and production art pipeline.
+### D-018 — Vertical Slice gameplay proof is enough for Game Designer systems branch
 
-Update от 2026-06-29: направление standalone Systems Simulator отменено и заменено на Godot State Connector v0.
+Дата: 2026-06-29
+Kind: `product/process`
+Area: `Steam`
+Status: `accepted`
 
-Причина: standalone simulator создаёт риск второй независимой модели мира. Для Shelter правильнее сделать интерфейс к реально запущенной Godot-игре, где Godot остаётся source of truth для task flow, dogs, resources, queues and events.
+Summary:
 
-Active Codex brief:
+> Steam Vertical Slice gameplay proof is enough to unblock Game Designer systems work; visual proof remains Art Director critical path.
 
-```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Godot_State_Connector_v0.md
-```
+Decision:
 
-Archived superseded brief:
+Vertical Slice proof is split into:
+
+1. Gameplay proof — loop, task chain, resource flow, player agency, D-010 trait/equipment separation and system contracts.
+2. Visual proof — readability, visual hierarchy, dog silhouettes, placeholder quality, strip composition, UI look, production-art readiness and final visual/usability acceptance.
+
+Producer decision:
+
+Gameplay proof is sufficient for Game Designer to continue systems design. This does not mean final visual/product acceptance.
+
+Update:
+
+Standalone Systems Simulator direction is cancelled and replaced by Godot State Connector / Workbench over live Godot.
+
+Superseded:
 
 ```text
 docs/drive/Shelter/99_ARCHIVE/STEAM_DESKTOP__Codex_Brief__Systems_Simulator_v0__SUPERSEDED_BY_GODOT_STATE_CONNECTOR.md
 ```
 
-Recommended Codex reasoning level: очень высокий.
+Related:
 
-Статус: принято как product/process decision. `STEAM_DESKTOP__Game_Design_Roadmap_v1.md`, `STEAM_DESKTOP__Game_Systems_Roadmap_v1.md`, role-documents Game Designer / Art Director and current status updated. Godot State Connector v0 accepted as replacement for Systems Simulator v0.
+```text
+D-019
+CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+```
+
+---
 
 ### D-019 — Game Design Systems Workbench over live Godot runtime
 
-Дата: 2026-06-30.
+Дата: 2026-06-30
+Kind: `technical/process`
+Area: `Steam/Codex`
+Status: `accepted`
 
-Для Steam/Desktop принято уточнение systems-direction: Game Designer открывает новую ветку Game Systems, а internal design laboratory развивается как **Game Design Systems Workbench поверх реально запущенной Godot-игры**, а не как standalone simulator.
-
-Принцип:
+Summary:
 
 > Godot runtime is the source of truth. Workbench observes and controls accepted dev surfaces; it does not simulate Shelter independently.
 
-Основание решения:
+Decision:
 
-- Vertical Slice уже имеет product/game contracts, scope lock, task flow, object contract, playtest checklist and playable prototype.
-- Codex уже реализовал Godot State Connector, Godot Control Connector and Viewport Capture API.
-- Эти инструменты дают более правильную основу для design inspection, чем отдельный HTML/backend simulator.
-- Standalone simulator создаёт риск второй независимой модели мира.
+Game Design Systems Workbench develops on top of the live Godot game, using accepted dev surfaces such as State Connector, Control Connector, Viewport Capture API, inspection views and explicitly accepted whitelisted controls.
 
-Game Designer critical path теперь фиксируется как:
+Rationale:
 
-1. R-09 — Dog Progression Model.
-2. R-10 — Ability Source Loop.
-3. R-11 — Ability Catalog.
-4. R-12 — Buildings & Production Chains.
-5. R-13 — Laboratory / Research Tree.
-6. R-14 — Activities Catalog.
-7. R-15 — Economy & Balance Foundations.
-8. R-16 — Game Design Systems Workbench.
+Existing Godot State Connector / Control Connector / capture tools are a safer foundation than a standalone simulator, which risks creating a second independent world model.
 
-Game Design Systems Workbench должен развиваться через accepted Codex briefs и расширять:
+Future Workbench expansions may expose dogs, traits, abilities, equipment, activities, buildings, levels, queues, inputs/outputs, upgrades, research, economy and game event log only after Game Designer fixes the relevant systems contracts.
 
-- State Connector `/state`;
-- Control Connector / control page;
-- Viewport Capture API;
-- design-facing inspection views;
-- strictly whitelisted dev controls where explicitly accepted.
+Related:
 
-Будущие Workbench expansions могут добавлять в `/state` dogs, innate traits, acquired abilities, equipment, current activities, buildings, levels, queues, inputs, outputs, upgrades, activities, research, economy and game event log — но только после того, как Game Designer зафиксирует соответствующие systems contracts.
+```text
+docs/repo/adr/0002-game-state-as-source-of-truth.md
+CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+```
 
-Visual acceptance Vertical Slice остаётся задачей Art Director and is not a blocker for Game Designer systems work.
-
-Статус: принято как product/process decision. `STEAM_DESKTOP__Game_Systems_Roadmap_v1.md` обновлён под R-09..R-16 and Workbench-over-Godot direction.
+---
 
 ### D-020 — Project Philosophy / Shelter Constitution
 
-Дата: 2026-06-30.
+Дата: 2026-06-30
+Kind: `philosophy/product/ethics`
+Area: `all`
+Status: `accepted`
 
-Для Shelter принят верхнеуровневый мировоззренческий документ:
+Summary:
+
+> Most idle games make the warehouse richer. Shelter makes life richer.
+
+Decision:
+
+Project Philosophy / Shelter Constitution lives in:
 
 ```text
 docs/drive/Shelter/00_START_HERE/03_PROJECT_PHILOSOPHY.md
 ```
 
-Это не game-design spec, не механика, не art bible и не balance document. Это project-wide philosophy / constitution, применимая ко всем продуктовым, дизайнерским, техническим, визуальным, монетизационным и благотворительным решениям Shelter.
+Core principle:
 
-Главный принцип:
+> Shelter makes life richer, not the warehouse.
 
-> Большинство idle-игр делают богаче склад.
->
-> Shelter делает богаче жизнь.
+Expanded direction:
 
-Расширенная формулировка:
+Shelter is not primarily about optimizing production. It is about creating a place where dogs can live well, make friends, learn, rest and help each other. Production, economy, research, progression and monetization exist only to make this life richer, warmer and more interesting.
 
-> Shelter — это не игра про оптимизацию производства.
->
-> Shelter — это игра про создание места, где собакам хорошо жить, дружить, учиться, отдыхать и помогать друг другу.
->
-> Производство, экономика, исследования, развитие, прогрессия и даже монетизация существуют только затем, чтобы эта жизнь становилась богаче, интереснее и уютнее.
+Main filter:
 
-Главный фильтр:
+> Any system must first explain how it makes cooperative life more interesting, and only then what game bonuses it creates.
 
-> Любая система должна сначала объяснять, как она делает жизнь кооператива интереснее, и только потом — какие игровые бонусы она создаёт. Не наоборот.
+Three-layer model:
 
-Ключевые принципы:
+1. **Core** — without this Shelter stops being Shelter: routes, production, delivery, dog progression, cooperative, research, buildings.
+2. **Depth** — without this the game works, but is less alive: rooms, library, House of Curiosity, coziness, relationships, stories, postcards, tea after a trip, mentorship.
+3. **Atmosphere** — small world gestures that add love without changing the main loop.
 
-- Shelter — это производственный кооператив, в котором живут собаки.
-- Производство — ядро; жизнь собак делает это ядро живым, а не заменяет его.
-- Игрок не управляет каждой собакой. Игрок заботится о кооперативе, а собаки живут своей жизнью внутри него.
-- Здания ничего не делают сами. Они создают места, где собаки могут жить, работать, учиться, отдыхать и помогать друг другу.
-- Idle в Shelter означает: это жизнь собачек, которая течёт своим чередом, а мы можем за ней наблюдать и чуть-чуть ей управлять.
+Test:
 
-D-020 update от 2026-06-30:
+> If we remove this system completely, does the game remain a game?
 
-Project Philosophy дополнена guardrail против превращения Shelter в бытовой симулятор / тамагочи.
+If no — core. If yes, but less warm — depth. If almost nothing changes except feeling — atmosphere.
 
-Принята трёхслойная модель:
+Related:
 
-1. **Ядро игры** — без этого Shelter перестаёт быть Shelter: маршруты, производство, доставка, развитие собак, кооператив, исследования, здания.
-2. **Углубление** — без этого игра остаётся рабочей, но менее живой: комнаты, библиотека, Дом любопытства, уют, отношения, истории, открытки, чай после дороги, наставничество.
-3. **Атмосфера** — не влияет на основной игровой цикл, но делает мир любимым: посмотреть в окно, поправить коврик, понюхать дерево, принести игрушку, посидеть рядом, небольшие жесты между собаками.
+```text
+03_PROJECT_PHILOSOPHY.md
+04_SHELTER_STRESS_TESTS.md
+```
 
-Тест новой идеи:
+---
 
-> Если мы полностью уберём эту систему, игра останется игрой?
+## 3. Open / proposed items not fixed here
 
-Если нет — это ядро. Если да, но станет менее тёплой — это углубление. Если почти ничего не изменится, кроме атмосферы — это атмосферная система.
+These are not decisions in this file. Track them in:
 
-Статус: принято как project philosophy / constitution. Документ добавлен в `00_PROJECT_INDEX` and current status.
+```text
+03_OPEN_QUESTIONS.md
+```
+
+Examples:
+
+- exact stack for Browser Extension;
+- exact stack for Mobile;
+- common backend/account/economy timing;
+- charity reporting and partner-shelter model;
+- legal/platform checks for ads, privacy, Chrome Web Store and claims;
+- production art gate and future Art Direction current context;
+- First Week / Day 2 implementation readiness.
+
+---
+
+## 4. Changelog
+
+### 2026-07-07 — decision log cleanup
+
+- Converted `02_DECISIONS.md` into a structured decision log.
+- Added metadata, read policy and decision index.
+- Preserved D-001..D-020 meanings while reducing historical narrative.
+- Moved open/proposed items to `03_OPEN_QUESTIONS.md` references.
+- Normalized D-012 and moved the overlay asset taxonomy update into D-011 where it belongs.
+
+### 2026-06-30 — D-020 accepted
+
+- Project Philosophy / Shelter Constitution accepted.
+
+### 2026-06-29 — process and implementation-boundary decisions
+
+- Role boundaries, RFC workflow, Codex task briefs, Vertical Slice proof split and Workbench-over-Godot direction accepted.
+
+### 2026-06-24/25 — initial product decisions
+
+- Initial product family, Godot, Browser loop, Steam co-op, dog trait model, visual direction candidate, shared world and resource trips accepted.

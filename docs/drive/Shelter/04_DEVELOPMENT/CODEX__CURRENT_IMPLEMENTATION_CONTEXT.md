@@ -137,6 +137,7 @@ Implemented across completed Codex tasks:
 - First Day visible review capture pack v1/v2/v3.
 - First Day Art/UX visual-language pass v1.
 - Shelter MCP repo/document tooling v1/v2.
+- Shelter MCP Knowledge API v2 for decisions, open questions, roadmaps, latest handoff and task context.
 
 Current short dev status:
 
@@ -281,6 +282,10 @@ Suggested reasoning level for Codex if assigned:
 ---
 
 ## 10. Changelog
+
+### 2026-07-07 — Shelter MCP Knowledge API v2
+
+- Added current-context note that Shelter MCP now exposes deterministic Knowledge API v2 tools for decisions, open questions, roadmaps, latest handoff and task-specific reading context.
 
 ### 2026-07-07 — v1 created
 

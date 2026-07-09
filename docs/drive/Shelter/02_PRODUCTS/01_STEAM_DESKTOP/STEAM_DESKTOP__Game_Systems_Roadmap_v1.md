@@ -1,8 +1,9 @@
 # STEAM_DESKTOP — Game Systems Roadmap v1
 
 Дата: 2026-06-30
-Роль документа: Game Systems Roadmap / Working Plan
-Статус: active working roadmap
+Роль документа: Game Systems Roadmap / Completed Systems Contract Roadmap
+Статус: completed reference / history
+Read policy: do not use as current active roadmap; read when inspecting R-09..R-16 systems contracts or Workbench origins.
 Продукт: Steam/Desktop idle always-on-top strip
 Роль-владелец: Game Designer / Systems Designer
 

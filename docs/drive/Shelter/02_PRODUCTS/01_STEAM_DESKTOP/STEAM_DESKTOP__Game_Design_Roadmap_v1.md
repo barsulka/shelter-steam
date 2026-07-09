@@ -1,8 +1,9 @@
 # STEAM_DESKTOP — Game Design Roadmap v1
 
 Дата: 2026-06-29
-Роль документа: Game Design Roadmap / Working Plan
-Статус: redirected to systems branch
+Роль документа: Game Design Roadmap / Historical Working Plan
+Статус: history / redirected to systems branch
+Read policy: do not use as active roadmap; read only for roadmap history or transition context.
 Продукт: Steam/Desktop idle always-on-top strip
 Роль-владелец: Game Designer / Systems Designer
 

@@ -59,6 +59,8 @@ docs/drive/Shelter/00_START_HERE/BOOTSTRAP_CONTEXT.md
 docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 docs/drive/Shelter/00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
 docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/GAME_DESIGN__CURRENT_CONTEXT.md
+docs/drive/Shelter/03_DESIGN/ART_DIRECTION__CURRENT_CONTEXT.md
 docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
 docs/repo/status/CODEX_CURRENT_STATUS.md
 ```
@@ -216,6 +218,8 @@ Use `SUPERSEDED_MAP.md` before historical digging.
 
 Use `EVIDENCE_READ_POLICY.md` before reading capture packs, old review packs, archive docs or completed briefs.
 
+Use `../06_SESSIONS_AND_HANDOFFS/HANDOFF_INDEX.md` before reading old handoff history.
+
 Do not read by default:
 
 - old capture PNG folders;
@@ -257,6 +261,16 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## Changelog
+
+### 2026-07-07 — role current contexts
+
+- Added `GAME_DESIGN__CURRENT_CONTEXT.md` and `ART_DIRECTION__CURRENT_CONTEXT.md` to the compressed context layer.
+- These role current contexts reduce the need to read old roadmaps, capture packs and handoff for Game Design / Art Direction sessions.
+
+### 2026-07-07 — handoff index
+
+- Added `06_SESSIONS_AND_HANDOFFS/HANDOFF_INDEX.md` as the current entry point before reading old handoff history.
+- Reinforced that handoff is History and should not be read on bootstrap by default.
 
 ### 2026-07-07 — evidence read policy
 

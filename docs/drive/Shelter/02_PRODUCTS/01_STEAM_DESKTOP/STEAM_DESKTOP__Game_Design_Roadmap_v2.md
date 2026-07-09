@@ -1,8 +1,9 @@
 # STEAM_DESKTOP — Game Design Roadmap v2
 
 Дата: 2026-07-01  
-Роль документа: Game Design Roadmap / Working Plan  
-Статус: draft working roadmap  
+Роль документа: Game Design Roadmap / Active Working Plan  
+Статус: active current roadmap  
+Read policy: use as the current Steam/Desktop game-design roadmap; older roadmap docs are history/reference.  
 Продукт: Steam/Desktop idle always-on-top strip  
 Роль-владелец: Game Designer / Systems Designer
 
@@ -20,6 +21,37 @@
 ```
 
 Этот документ не заменяет продуктовую библию и не утверждает новые механики сверх уже принятых документов. Он задаёт порядок ближайших работ Game Designer.
+
+---
+
+## 0.1 Current navigation
+
+Current active roadmap:
+
+```text
+STEAM_DESKTOP__Game_Design_Roadmap_v2.md
+```
+
+Current active task:
+
+```text
+R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
+```
+
+Current product status:
+
+```text
+First Day MVP locked at prototype/product-language level.
+Next selected scope: First Week / Day 2 / longer retention.
+```
+
+Do not use as active roadmap:
+
+```text
+STEAM_DESKTOP__Game_Design_Roadmap_v1.md — history / redirected to systems branch.
+STEAM_DESKTOP__Game_Systems_Roadmap_v1.md — completed systems-contract reference.
+STEAM_DESKTOP__Game_Systems_Roadmap_v1.remaining_snapshot.md — archive snapshot.
+```
 
 ---
 
@@ -498,6 +530,12 @@ Every runtime review should check:
 ---
 
 ## 7. Changelog
+
+### 2026-07-07 — roadmap cleanup / active roadmap marker
+
+- Marked v2 as the active current Steam/Desktop game-design roadmap.
+- Added current navigation block with R-28 as the current active task.
+- Clarified that v1 is history, Game Systems Roadmap v1 is completed reference, and remaining snapshot is archive.
 
 ### 2026-07-06 — R-27 First Week direction recorded, R-28 activated
 

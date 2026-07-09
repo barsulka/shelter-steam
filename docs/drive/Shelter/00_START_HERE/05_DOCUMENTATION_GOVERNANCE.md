@@ -163,14 +163,14 @@ read_shelter_bootstrap_context(role=..., area=..., max_bytes=...)
 
 ```text
 STEAM_DESKTOP__CURRENT_CONTEXT.md
+GAME_DESIGN__CURRENT_CONTEXT.md
+ART_DIRECTION__CURRENT_CONTEXT.md
 CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
 ```
 
 Future candidates:
 
 ```text
-ART_DIRECTION__CURRENT_CONTEXT.md
-GAME_DESIGN__CURRENT_CONTEXT.md
 BROWSER_EXTENSION__CURRENT_CONTEXT.md
 MOBILE__CURRENT_CONTEXT.md
 ```
@@ -233,6 +233,27 @@ docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
 - `CODEX_STATUS.md` отвечает на вопрос “какие dev-события были в истории?”;
 - старые записи `CODEX_STATUS.md` не читаются на bootstrap;
 - monthly/yearly history split допустим позже, если файл станет слишком тяжёлым технически.
+
+---
+
+## 5.5 Handoff rule
+
+Handoff documents are History, not Current Memory.
+
+Default rule:
+
+```text
+Do not read all handoff on bootstrap.
+Read only the latest relevant handoff when current-context docs are insufficient.
+```
+
+Use the handoff index before opening old session history:
+
+```text
+docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/HANDOFF_INDEX.md
+```
+
+If a handoff contains an accepted decision, that decision must also be reflected in `02_DECISIONS.md`, current-context docs, product docs or status docs.
 
 ---
 
@@ -306,6 +327,17 @@ future: knowledge_gc_report(area)
 ---
 
 ## 10. Changelog
+
+### 2026-07-07 — role current contexts created
+
+- Moved `GAME_DESIGN__CURRENT_CONTEXT.md` and `ART_DIRECTION__CURRENT_CONTEXT.md` from future candidates to current-context examples.
+- Browser Extension and Mobile current-context docs remain future candidates.
+
+### 2026-07-07 — handoff index rule
+
+- Added handoff rule: handoff documents are History, not Current Memory.
+- Added `06_SESSIONS_AND_HANDOFFS/HANDOFF_INDEX.md` as the entry point before opening old session history.
+- Clarified that accepted decisions from handoff must be reflected in decision/current/product/status docs.
 
 ### 2026-07-07 — v1 created
 

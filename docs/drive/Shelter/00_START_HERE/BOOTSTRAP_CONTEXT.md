@@ -148,6 +148,8 @@ docs/drive/Shelter/00_START_HERE/BOOTSTRAP_CONTEXT.md
 docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 docs/drive/Shelter/00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
 docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/GAME_DESIGN__CURRENT_CONTEXT.md
+docs/drive/Shelter/03_DESIGN/ART_DIRECTION__CURRENT_CONTEXT.md
 docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
 docs/repo/status/CODEX_CURRENT_STATUS.md
 ```
@@ -247,6 +249,7 @@ Read:
 ```text
 000_ROLE_GAME_DESIGNER.md
 STEAM_DESKTOP__CURRENT_CONTEXT.md
+GAME_DESIGN__CURRENT_CONTEXT.md
 STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md
 STEAM_DESKTOP__First_Week_Direction_v1.md
 ```
@@ -260,6 +263,7 @@ Read:
 ```text
 000_ROLE_ART_DIRECTOR.md
 STEAM_DESKTOP__CURRENT_CONTEXT.md
+ART_DIRECTION__CURRENT_CONTEXT.md
 STEAM_DESKTOP__Art_UX_Review__First_Day_MVP_v3.md
 D-011_Cozy_Modular_Diorama_Candidate_A.md
 ```
@@ -329,6 +333,11 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## 10. Changelog
+
+### 2026-07-07 — Game Design and Art Direction current contexts
+
+- Added `GAME_DESIGN__CURRENT_CONTEXT.md` and `ART_DIRECTION__CURRENT_CONTEXT.md` to active current-context entry points.
+- Updated role-specific entry points for Game Designer and Art Director.
 
 ### 2026-07-07 — documentation governance layer
 
