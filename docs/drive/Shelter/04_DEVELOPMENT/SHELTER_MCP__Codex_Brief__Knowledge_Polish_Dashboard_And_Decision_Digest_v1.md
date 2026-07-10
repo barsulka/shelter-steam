@@ -5,7 +5,7 @@
 Владелец: Producer / Project Manager / Codex
 Режим Codex: `/goal`
 Reasoning: высокий
-Implementation repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+Implementation repo: `mcp`
 Shelter repo: `/Users/barsulka/GolandProjects/shelter/shelter`
 Roadmap source: `docs/drive/Shelter/00_START_HERE/KNOWLEDGE_BASE_POLISH_ROADMAP.md`
 

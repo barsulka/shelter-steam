@@ -5,7 +5,7 @@
 Роль-владелец: Producer / Codex
 Рекомендуемый режим Codex: `/goal`
 Рекомендуемый уровень рассуждений: высокий
-Репозиторий для реализации: `/Users/barsulka/GolandProjects/shelter/mcp`
+Репозиторий для реализации: `mcp`
 Связанный Shelter repo: `/Users/barsulka/GolandProjects/shelter/shelter`
 
 ---
@@ -38,10 +38,10 @@ Codex must read these before implementation:
 /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/00_START_HERE/BOOTSTRAP_CONTEXT.md
 /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
-/Users/barsulka/GolandProjects/shelter/mcp/README.md
+mcp/README.md
 ```
 
-Also inspect relevant MCP source files in `/Users/barsulka/GolandProjects/shelter/mcp` before editing.
+Also inspect relevant MCP source files in `mcp` before editing.
 
 ---
 
@@ -61,7 +61,7 @@ Default safe roots for this task:
 
 ```text
 /Users/barsulka/GolandProjects/shelter/shelter
-/Users/barsulka/GolandProjects/shelter/mcp
+mcp
 ```
 
 Implementation should preserve the existing Shelter MCP safety shape:
@@ -405,10 +405,9 @@ Do not implement:
 Likely MCP repo areas to inspect/edit:
 
 ```text
-/Users/barsulka/GolandProjects/shelter/mcp/cmd/shelter-mcp
-/Users/barsulka/GolandProjects/shelter/mcp/internal/...
-/Users/barsulka/GolandProjects/shelter/mcp/README.md
-/Users/barsulka/GolandProjects/shelter/mcp/.env.example if config changes are needed
+mcp/cmd/shelter-mcp
+mcp/internal/...
+mcp/README.md
 ```
 
 Actual layout may differ; inspect before editing.
@@ -417,7 +416,6 @@ If new configuration is needed, prefer explicit environment variables with safe 
 
 ```text
 SHELTER_MCP_REPO_ROOT=/Users/barsulka/GolandProjects/shelter/shelter
-SHELTER_MCP_SELF_ROOT=/Users/barsulka/GolandProjects/shelter/mcp
 ```
 
 But do not break existing `.env` / `run.sh` behavior.

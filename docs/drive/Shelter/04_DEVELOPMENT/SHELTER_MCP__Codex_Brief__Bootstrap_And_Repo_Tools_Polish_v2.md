@@ -5,7 +5,7 @@
 Роль-владелец: Producer / Codex
 Рекомендуемый режим Codex: `/goal`
 Рекомендуемый уровень рассуждений: высокий
-Репозиторий для реализации: `/Users/barsulka/GolandProjects/shelter/mcp`
+Репозиторий для реализации: `mcp`
 Связанный Shelter repo: `/Users/barsulka/GolandProjects/shelter/shelter`
 
 ---
@@ -38,9 +38,9 @@ Codex must read these before implementation:
 /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
 /Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Repo_Diff_Patch_And_Doc_Editing_Tools_v1.md
-/Users/barsulka/GolandProjects/shelter/mcp/README.md
-/Users/barsulka/GolandProjects/shelter/mcp/internal/sheltermcp/repo_tools.go
-/Users/barsulka/GolandProjects/shelter/mcp/internal/sheltermcp/repo_tools_test.go
+mcp/README.md
+mcp/internal/sheltermcp/repo_tools.go
+mcp/internal/sheltermcp/repo_tools_test.go
 ```
 
 Also inspect relevant MCP source files before editing.

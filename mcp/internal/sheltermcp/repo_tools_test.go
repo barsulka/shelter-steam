@@ -17,7 +17,7 @@ func TestGitStatusDiffAndApplyPatchDryRun(t *testing.T) {
 	runGitTestCommand(t, root, "commit", "-m", "initial")
 	writeFile(t, filepath.Join(root, "docs", "note.md"), "# Note\n\nnew\n")
 
-	app := App{cfg: Config{RepoRoot: root, SelfRepoRoot: root}}
+	app := App{cfg: Config{RepoRoot: root}}
 	ctx := context.Background()
 
 	status, err := app.gitStatus(ctx, "shelter")
@@ -71,13 +71,23 @@ func TestGitStatusDiffAndApplyPatchDryRun(t *testing.T) {
 	}
 }
 
+func TestMCPRepoIDIsRejectedAsASeparateRepository(t *testing.T) {
+	root := newGitRepo(t)
+	app := App{cfg: Config{RepoRoot: root}}
+
+	_, err := app.resolveRepo("mcp")
+	if err == nil || !strings.Contains(err.Error(), "use repo shelter and paths under mcp/") {
+		t.Fatalf("expected explicit monorepo-path error, got %v", err)
+	}
+}
+
 func TestMarkdownSectionToolsWriteAndRejectAmbiguousHeading(t *testing.T) {
 	root := newGitRepo(t)
 	path := filepath.Join(root, "CHANGELOG.md")
 	writeFile(t, path, "# Project\n\n## Changelog\n\n### Old\n\n- old\n\n## Notes\n\nx\n")
 
 	write := false
-	app := App{cfg: Config{RepoRoot: root, SelfRepoRoot: root}}
+	app := App{cfg: Config{RepoRoot: root}}
 	out, err := app.editMarkdownSection("shelter", "CHANGELOG.md", &write, func(text string) (string, error) {
 		return appendChangelogEntry(text, "### 2026-07-07 - Added repo tools", "- git diff helpers")
 	})
@@ -107,7 +117,7 @@ func TestMarkdownSectionToolsWriteAndRejectAmbiguousHeading(t *testing.T) {
 
 func TestApplyPatchRejectsDeniedPath(t *testing.T) {
 	root := newGitRepo(t)
-	app := App{cfg: Config{RepoRoot: root, SelfRepoRoot: root}}
+	app := App{cfg: Config{RepoRoot: root}}
 	patch := strings.Join([]string{
 		"diff --git a/.env b/.env",
 		"new file mode 100644",
@@ -130,7 +140,7 @@ func TestBootstrapContextPrioritizesCurrentDocsUnderLowBudgets(t *testing.T) {
 	writeFile(t, filepath.Join(root, "AGENTS.md"), "# Agents\n\n"+strings.Repeat("agents\n", 9000))
 	writeFile(t, filepath.Join(root, "README.md"), "# Readme\n\n"+strings.Repeat("readme\n", 9000))
 
-	app := App{cfg: Config{RepoRoot: root, SelfRepoRoot: root}}
+	app := App{cfg: Config{RepoRoot: root}}
 
 	codex, err := app.readShelterBootstrapContext(ReadShelterBootstrapContextInput{
 		Role:     "codex",
@@ -171,7 +181,7 @@ func TestBootstrapContextPrioritizesCurrentDocsUnderLowBudgets(t *testing.T) {
 func TestProjectManagerDocsBootstrapIncludesGovernanceDoc(t *testing.T) {
 	root := t.TempDir()
 	createBootstrapFixture(t, root)
-	app := App{cfg: Config{RepoRoot: root, SelfRepoRoot: root}}
+	app := App{cfg: Config{RepoRoot: root}}
 
 	out, err := app.readShelterBootstrapContext(ReadShelterBootstrapContextInput{
 		Role:     "project_manager",
@@ -224,7 +234,7 @@ func TestGitDiffForReviewFocusAndStats(t *testing.T) {
 	writeFile(t, filepath.Join(root, "internal", "main.go"), "package main\n\nfunc main() { println(\"hi\") }\n")
 	writeFile(t, filepath.Join(root, "captures", "frame.png"), "new-image\n")
 
-	app := App{cfg: Config{RepoRoot: root, SelfRepoRoot: root}}
+	app := App{cfg: Config{RepoRoot: root}}
 	_, out, err := app.GitDiffForReview(context.Background(), nil, GitDiffForReviewInput{
 		Repo:  "shelter",
 		Focus: "docs",
@@ -255,7 +265,7 @@ func TestReplaceBetweenMarkersAndClosestHeadingErrors(t *testing.T) {
 	writeFile(t, path, "# Project\n\n## Follow-up\n\nold\n\n<!-- START: daily -->\nold body\n<!-- END: daily -->\n")
 
 	write := false
-	app := App{cfg: Config{RepoRoot: root, SelfRepoRoot: root}}
+	app := App{cfg: Config{RepoRoot: root}}
 	out, err := app.editMarkdownSection("shelter", "README.md", &write, func(text string) (string, error) {
 		return replaceBetweenMarkers(text, "<!-- START: daily -->", "<!-- END: daily -->", "new body\n- item")
 	})

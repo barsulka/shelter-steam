@@ -17,14 +17,14 @@ Example: if a dog slowly walks from one world anchor to another, that movement s
 
 This v0.2 connector now reads a first extracted runtime scaffold in `steam/scripts/game_systems/game_systems_runtime.gd`, while the current Vertical Slice task loop still lives in `vertical_slice_demo.gd`. UI, JSON exports, local saves and HTTP responses remain views over the running Godot state.
 
-## Preferred Shelter MCP Bridge
+## Local Shelter MCP adapter
 
-For ChatGPT / remote local-tool inspection, the preferred bridge is now the
-sibling Shelter MCP repo:
+ChatGPT Work/Codex reads the monorepo checkout directly. Shelter MCP is an
+optional local domain-specific adapter when external inspection/control tools
+are useful:
 
 ```text
-/Users/barsulka/GolandProjects/shelter/mcp
-git@github.com:barsulka/shelter-mcp.git
+mcp/
 ```
 
 Shelter MCP is a local Go MCP server for Shelter Steam/Desktop dev workflows. It
@@ -34,46 +34,17 @@ does not expose a generic shell. It exposes whitelisted MCP tools for:
 - listing, reading and clearing workbench capture runs;
 - starting and stopping a local Godot State Connector control runtime;
 - whitelisted runtime control actions through the connector HTTP API;
-- `fs_*` filesystem tools proxied to official
-  `@modelcontextprotocol/server-filesystem`.
+- bounded deterministic project-knowledge navigation where useful.
 
-This replaces the older split inspection shape:
+It is not a generic shell or source of gameplay
+truth. Godot remains runtime truth; repository documents remain project truth.
 
-```text
-separate filesystem MCP tunnel
-+ separate game launcher / connector commands
-```
+Direct `steam/launch.sh`, `tools/dev-vertical-slice.sh`, Barsulka and Cloudflare
+flows remain separate runtime/debug workflows.
 
-with one Shelter MCP endpoint. Direct `steam/launch.sh`,
-`tools/dev-vertical-slice.sh`, Barsulka and Cloudflare flows remain low-level
-local fallback/debug workflows, but future Codex/ChatGPT sessions should prefer
-Shelter MCP when remote/local tool access is needed.
-
-Setup:
-
-```sh
-cd /Users/barsulka/GolandProjects/shelter/mcp
-cp .env.example .env
-# fill .env
-./run.sh
-```
-
-`run.sh` uses `.env` as the source of truth. It creates or updates the
-`tunnel-client` profile from `.env`, does not reuse stale values from an old
-profile, builds `.runtime/bin/shelter-mcp`, checks or installs
-`@modelcontextprotocol/server-filesystem`, runs `doctor --explain`, and then
-starts the tunnel.
-
-Required external prerequisites:
-
-- Go;
-- node/npm;
-- `tunnel-client`;
-- local Shelter checkout;
-- OpenAI tunnel/runtime API key with the required tunnel permissions.
-
-Keep `.env`, tunnel profile metadata, generated binaries, logs, tokens and
-capture outputs out of Git.
+The current local setup is project-scoped `.codex/config.toml` plus
+`mcp/run.sh` over STDIO. Keep local env files, generated binaries, logs, tokens
+and capture outputs out of Git.
 
 ## Launch
 

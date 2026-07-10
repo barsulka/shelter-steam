@@ -124,7 +124,7 @@ PASS with watchpoints
 
 ### 2.3 Blocker / tooling gap
 
-ChatGPT can read local docs and runtime snapshot files through local file server.
+ChatGPT Work and Codex read local docs and runtime snapshot files directly from the current checkout.
 
 ChatGPT currently cannot reliably:
 

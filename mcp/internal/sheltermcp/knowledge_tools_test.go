@@ -1,13 +1,14 @@
 package sheltermcp
 
 import (
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
 )
 
 func TestFindCurrentContextForCoreAreas(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 	tests := []struct {
 		area string
 		want []string
@@ -55,7 +56,7 @@ func TestFindCurrentContextForCoreAreas(t *testing.T) {
 }
 
 func TestListActiveDocsByLayer(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	current, err := app.listActiveDocs(ListActiveDocsInput{Area: "docs", Layer: "current"})
 	if err != nil {
@@ -80,7 +81,7 @@ func TestListActiveDocsByLayer(t *testing.T) {
 }
 
 func TestClassifyDocPathKnownAndUnknown(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	known, err := app.classifyDocPath(ClassifyDocPathInput{Path: docBootstrapContext})
 	if err != nil {
@@ -100,7 +101,7 @@ func TestClassifyDocPathKnownAndUnknown(t *testing.T) {
 }
 
 func TestExplainSupersededOldCaptureAndUnknown(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	out, err := app.explainSuperseded(ExplainSupersededInput{
 		Path: "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v1/README.md",
@@ -150,7 +151,7 @@ func TestKnowledgeGCReportReturnsHistoryEvidenceCandidates(t *testing.T) {
 		filepath.Join(root, "docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Old_v1.md"),
 		"# Old brief\n",
 	)
-	app := App{cfg: Config{RepoRoot: root, SelfRepoRoot: root}}
+	app := App{cfg: Config{RepoRoot: root}}
 
 	out, err := app.knowledgeGCReport(KnowledgeGCReportInput{Area: "docs", MaxEntries: 100})
 	if err != nil {
@@ -174,7 +175,7 @@ func TestKnowledgeGCReportReturnsHistoryEvidenceCandidates(t *testing.T) {
 }
 
 func TestListDecisionsForSteamAndBrowser(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	steam, err := app.listDecisions(ListDecisionsInput{Area: "steam", Kind: "all"})
 	if err != nil {
@@ -203,7 +204,7 @@ func TestListDecisionsForSteamAndBrowser(t *testing.T) {
 }
 
 func TestGetDecisionD020AndUnknown(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	out, err := app.getDecision(GetDecisionInput{ID: "D-020"})
 	if err != nil {
@@ -228,8 +229,19 @@ func TestGetDecisionD020AndUnknown(t *testing.T) {
 	}
 }
 
+func TestGetDecisionD021(t *testing.T) {
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
+	out, err := app.getDecision(GetDecisionInput{ID: "D-021"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !out.OK || out.Decision == nil || !strings.Contains(out.Decision.Summary, "local STDIO") {
+		t.Fatalf("expected current D-021 local MCP decision, got %+v", out)
+	}
+}
+
 func TestListOpenQuestionsForSteamAndDocs(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	steam, err := app.listOpenQuestions(ListOpenQuestionsInput{Area: "steam", Status: "open"})
 	if err != nil {
@@ -246,10 +258,13 @@ func TestListOpenQuestionsForSteamAndDocs(t *testing.T) {
 	if !openQuestionListContains(docs.Questions, "OQ-Docs-001") {
 		t.Fatalf("docs open questions missing OQ-Docs-001: %+v", docs.Questions)
 	}
+	if openQuestionListContains(docs.Questions, "OQ-Docs-002") {
+		t.Fatalf("resolved OQ-Docs-002 must not be returned as active: %+v", docs.Questions)
+	}
 }
 
 func TestListRoadmapsDocsIncludesKnowledgeBaseRoadmap(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	out, err := app.listRoadmaps(ListRoadmapsInput{Area: "docs"})
 	if err != nil {
@@ -263,10 +278,10 @@ func TestListRoadmapsDocsIncludesKnowledgeBaseRoadmap(t *testing.T) {
 func TestLatestHandoffProducerDocs(t *testing.T) {
 	root := t.TempDir()
 	writeFile(t,
-		filepath.Join(root, "docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/producer/2026-07-07__producer_handoff__documentation_governance_and_gc.md"),
-		"# Producer / PM Handoff\n",
+		filepath.Join(root, filepath.FromSlash(docWorkflowMigrationHandoff)),
+		"# ChatGPT Work and local MCP handoff\n",
 	)
-	app := App{cfg: Config{RepoRoot: root, SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: root}}
 
 	out, err := app.latestHandoff(LatestHandoffInput{Role: "producer", Area: "docs"})
 	if err != nil {
@@ -275,8 +290,8 @@ func TestLatestHandoffProducerDocs(t *testing.T) {
 	if !out.OK || out.Handoff == nil {
 		t.Fatalf("expected latest handoff, got %+v", out)
 	}
-	if out.Handoff.Date != "2026-07-07" || !strings.Contains(out.Handoff.Path, "documentation_governance_and_gc") {
-		t.Fatalf("expected 2026-07-07 docs/governance handoff, got %+v", out.Handoff)
+	if out.Handoff.Date != "2026-07-10" || out.Handoff.Path != docWorkflowMigrationHandoff {
+		t.Fatalf("expected current migration handoff, got %+v", out.Handoff)
 	}
 	if !out.Handoff.Available {
 		t.Fatalf("expected handoff to be marked available: %+v", out.Handoff)
@@ -284,7 +299,7 @@ func TestLatestHandoffProducerDocs(t *testing.T) {
 }
 
 func TestKnowledgeTaskContextProjectManagerDocsCleanup(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	out, err := app.knowledgeTaskContext(KnowledgeTaskContextInput{
 		Role: "project_manager",
@@ -305,7 +320,7 @@ func TestKnowledgeTaskContextProjectManagerDocsCleanup(t *testing.T) {
 }
 
 func TestDecisionDigestSteamAndBrowser(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	steam, err := app.decisionDigest(DecisionDigestInput{Area: "steam"})
 	if err != nil {
@@ -339,10 +354,10 @@ func TestDecisionDigestSteamAndBrowser(t *testing.T) {
 func TestShelterStatusSteamAndDocs(t *testing.T) {
 	root := t.TempDir()
 	writeFile(t,
-		filepath.Join(root, "docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/producer/2026-07-07__producer_pm_handoff__knowledge_base_phase_2_cleanup.md"),
-		"# Phase 2 cleanup handoff\n",
+		filepath.Join(root, filepath.FromSlash(docWorkflowMigrationHandoff)),
+		"# ChatGPT Work and local MCP handoff\n",
 	)
-	app := App{cfg: Config{RepoRoot: root, SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: root}}
 
 	steam, err := app.shelterStatus(ShelterStatusInput{Area: "steam"})
 	if err != nil {
@@ -362,19 +377,141 @@ func TestShelterStatusSteamAndDocs(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.Contains(docs.Dashboard.CurrentPhase, "Knowledge Base Polish Roadmap") {
-		t.Fatalf("docs status should include Knowledge Base Polish Roadmap: %+v", docs.Dashboard)
+	if !strings.Contains(docs.Dashboard.CurrentPhase, "D-021") {
+		t.Fatalf("docs status should include completed D-021 migration: %+v", docs.Dashboard)
 	}
 	if docs.Dashboard.CurrentRoadmap != docKnowledgeBasePolishRoadmap {
 		t.Fatalf("docs status should point to polish roadmap: %+v", docs.Dashboard)
 	}
-	if docs.Dashboard.LatestHandoff == nil || !strings.Contains(docs.Dashboard.LatestHandoff.Path, "knowledge_base_phase_2_cleanup") {
-		t.Fatalf("docs status should include phase 2 cleanup handoff: %+v", docs.Dashboard.LatestHandoff)
+	if docs.Dashboard.LatestHandoff == nil || docs.Dashboard.LatestHandoff.Path != docWorkflowMigrationHandoff {
+		t.Fatalf("docs status should include current migration handoff: %+v", docs.Dashboard.LatestHandoff)
 	}
 }
 
+func TestKnowledgeCatalogMatchesRepositorySources(t *testing.T) {
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatal(err)
+	}
+	root, ok := findMonorepoAncestor(wd)
+	if !ok {
+		t.Fatal("could not locate monorepo root")
+	}
+	if err := validateKnowledgeCatalog(root); err != nil {
+		t.Fatal(err)
+	}
+}
+
+func TestKnowledgeCatalogRejectsDecisionContentDrift(t *testing.T) {
+	for _, tc := range []struct {
+		name        string
+		old         string
+		replacement string
+	}{
+		{"title", "### D-021 — ChatGPT Work local project and Shelter MCP boundary", "### D-021 — Drifted decision title"},
+		{"area", "Area: `docs/Codex/MCP`", "Area: `drifted`"},
+		{"summary", "Work/Codex работает с файлами напряму", "Work/Codex uses a drifted summary"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			root := copyKnowledgeValidationFixture(t)
+			replaceFixtureText(t, root, docDecisions, tc.old, tc.replacement)
+			if err := validateKnowledgeCatalog(root); err == nil {
+				t.Fatal("expected decision content drift to fail validation")
+			}
+		})
+	}
+}
+
+func TestKnowledgeCatalogRejectsOpenQuestionContentDrift(t *testing.T) {
+	for _, tc := range []struct {
+		name        string
+		old         string
+		replacement string
+	}{
+		{"title", "#### OQ-Docs-001 — Какие старые docs нужно пометить metadata/read_policy?", "#### OQ-Docs-001 — Drifted title"},
+		{"owner", "Владелец: Project Manager / Knowledge Base Maintainer", "Владелец: Drifted Owner"},
+		{"summary", "нужно постепенно размечать старые документы", "drifted open-question summary"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			root := copyKnowledgeValidationFixture(t)
+			replaceFixtureText(t, root, docOpenQuestions, tc.old, tc.replacement)
+			if err := validateKnowledgeCatalog(root); err == nil {
+				t.Fatal("expected open-question content drift to fail validation")
+			}
+		})
+	}
+}
+
+func TestKnowledgeCatalogRejectsRoadmapStateDrift(t *testing.T) {
+	for _, tc := range []struct {
+		name        string
+		old         string
+		replacement string
+	}{
+		{"status", "Catalog status: active short roadmap", "Catalog status: drifted"},
+		{"current_phase", "Catalog current phase: D-021 local Work/Codex migration complete; compact MCP knowledge remains optional and source-validated.", "Catalog current phase: drifted"},
+		{"next_step", "Catalog next step: Return to Day 2 product work; keep Current Memory and catalog validation green.", "Catalog next step: drifted"},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			root := copyKnowledgeValidationFixture(t)
+			replaceFixtureText(t, root, docKnowledgeBasePolishRoadmap, tc.old, tc.replacement)
+			if err := validateKnowledgeCatalog(root); err == nil {
+				t.Fatal("expected roadmap state drift to fail validation")
+			}
+		})
+	}
+}
+
+func copyKnowledgeValidationFixture(t *testing.T) string {
+	t.Helper()
+	wd, err := os.Getwd()
+	if err != nil {
+		t.Fatal(err)
+	}
+	sourceRoot, ok := findMonorepoAncestor(wd)
+	if !ok {
+		t.Fatal("could not locate source monorepo root")
+	}
+	fixtureRoot := t.TempDir()
+	paths := map[string]bool{
+		docDecisions:                  true,
+		docOpenQuestions:              true,
+		docKnowledgeBasePolishRoadmap: true,
+		docHandoffIndex:               true,
+		docWorkflowMigrationHandoff:   true,
+	}
+	for _, roadmap := range roadmapCatalog() {
+		paths[roadmap.Path] = true
+	}
+	for path := range paths {
+		data, err := os.ReadFile(filepath.Join(sourceRoot, filepath.FromSlash(path)))
+		if err != nil {
+			t.Fatalf("read fixture source %s: %v", path, err)
+		}
+		writeFile(t, filepath.Join(fixtureRoot, filepath.FromSlash(path)), string(data))
+	}
+	if err := validateKnowledgeCatalog(fixtureRoot); err != nil {
+		t.Fatalf("baseline fixture must validate: %v", err)
+	}
+	return fixtureRoot
+}
+
+func replaceFixtureText(t *testing.T, root, path, old, replacement string) {
+	t.Helper()
+	abs := filepath.Join(root, filepath.FromSlash(path))
+	data, err := os.ReadFile(abs)
+	if err != nil {
+		t.Fatal(err)
+	}
+	text := string(data)
+	if strings.Count(text, old) != 1 {
+		t.Fatalf("expected one fixture match for %q in %s, got %d", old, path, strings.Count(text, old))
+	}
+	writeFile(t, abs, strings.Replace(text, old, replacement, 1))
+}
+
 func TestOpenQuestionsDigestSteamAndBrowser(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	steam, err := app.openQuestionsDigest(OpenQuestionsDigestInput{Area: "steam", Status: "all"})
 	if err != nil {
@@ -398,7 +535,7 @@ func TestOpenQuestionsDigestSteamAndBrowser(t *testing.T) {
 }
 
 func TestCurrentEntryDigestGameDesignerSteam(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir(), SelfRepoRoot: t.TempDir()}}
+	app := App{cfg: Config{RepoRoot: t.TempDir()}}
 
 	out, err := app.currentEntryDigest(CurrentEntryDigestInput{Role: "game_designer", Area: "steam"})
 	if err != nil {

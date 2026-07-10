@@ -1,6 +1,7 @@
 # SUPERSEDED_MAP — Shelter document compression map
 
 Дата создания: 2026-07-07
+Обновлено: 2026-07-10
 Статус: active current-summary / documentation governance
 Владелец: Project Manager / Knowledge Base Maintainer
 Назначение: явно отделить актуальные документы от исторических, superseded и evidence-документов, чтобы новые сессии не перечитывали устаревшие материалы.
@@ -127,6 +128,11 @@ Do not use for new decisions.
 ---
 
 ## 6. Changelog
+
+### 2026-07-10 — local Work/Codex workflow
+
+- Recorded the project-scoped local Work/Codex and Shelter MCP setup.
+- Linked the completed D-021 local MCP implementation brief.
 
 ### 2026-07-07 — documentation governance alignment
 

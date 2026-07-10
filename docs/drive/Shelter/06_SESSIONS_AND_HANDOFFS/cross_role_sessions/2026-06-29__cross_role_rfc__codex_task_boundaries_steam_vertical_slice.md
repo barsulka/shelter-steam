@@ -610,7 +610,7 @@ This decision does not add product scope. It clarifies how to implement the alre
 ```text
 Ты — Game Designer / Systems Designer проекта Shelter.
 
-Открой через локальный файлсервер:
+Открой напрямую из локального checkout:
 docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/cross_role_sessions/2026-06-29__cross_role_rfc__codex_task_boundaries_steam_vertical_slice.md
 
 Прочитай sources из раздела 2 и заполни только секцию `Game Designer position`.
@@ -623,7 +623,7 @@ docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/cross_role_sessions/2026-06-29__cros
 ```text
 Ты — Art Director / Visual Designer проекта Shelter.
 
-Открой через локальный файлсервер:
+Открой напрямую из локального checkout:
 docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/cross_role_sessions/2026-06-29__cross_role_rfc__codex_task_boundaries_steam_vertical_slice.md
 
 Прочитай sources из раздела 2 и заполни только секцию `Art Director position`.
@@ -649,7 +649,7 @@ docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/cross_role_sessions/2026-06-29__cros
 ```text
 Ты — Producer проекта Shelter.
 
-Открой через локальный файлсервер:
+Открой напрямую из локального checkout:
 docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/cross_role_sessions/2026-06-29__cross_role_rfc__codex_task_boundaries_steam_vertical_slice.md
 
 После заполнения секций Game Designer, Art Director и Codex прочитай их позиции, заполни `Producer synthesis` и реши, какие документы обновлять.

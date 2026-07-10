@@ -1,6 +1,7 @@
 # BOOTSTRAP_CONTEXT — Shelter compressed entry point
 
 Дата создания: 2026-07-07
+Обновлено: 2026-07-10
 Статус: active bootstrap / current-summary
 Владелец: Producer / Project Manager
 Назначение: быстрый вход новой AI-сессии в актуальный контекст Shelter без чтения всей истории.
@@ -67,6 +68,18 @@ docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_MVP_Loc
 docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md
 ```
 
+### Current working environment
+
+По D-021 проект работает как локальный ChatGPT Work/Codex project поверх текущего checkout монорепозитория:
+
+```text
+Work/Codex -> direct local filesystem access to this checkout.
+Shelter MCP -> optional local domain-specific runtime/inspection adapter in mcp/.
+Shelter MCP setup -> project-scoped `.codex/config.toml` + `mcp/run.sh` over STDIO.
+```
+
+Отдельные ролевые задачи не считаются общей памятью. Их долговременная синхронизация идёт через Current Memory, Knowledge, RFC, brief и handoff.
+
 ---
 
 ## 3. Steam/Desktop current state
@@ -124,7 +137,7 @@ Implemented / available:
 - Godot State Connector.
 - Godot Control Connector.
 - Workbench Runtime Capture Harness.
-- Shelter MCP sibling repo as preferred local ChatGPT/dev inspection bridge.
+- Shelter MCP source under `mcp/`; project-scoped local STDIO setup is complete.
 - First Day MVP runtime proof.
 - First Day visible review capture packs v1/v2/v3.
 - First Day Art/UX visual-language pass v1 implemented and accepted as prototype pass.
@@ -203,6 +216,7 @@ Important accepted decisions:
 - D-014..D-017 — role boundaries, collaboration protocol, Codex brief rule.
 - D-018..D-019 — gameplay proof / visual proof split; Workbench over live Godot runtime.
 - D-020 — Project Philosophy / Shelter Constitution.
+- D-021 — local ChatGPT Work/Codex checkout and Shelter MCP boundary.
 
 ---
 
@@ -288,6 +302,12 @@ Codex work must be assigned through a brief file in:
 docs/drive/Shelter/04_DEVELOPMENT/
 ```
 
+Current workflow migration brief:
+
+```text
+docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md
+```
+
 ### Project Manager / Knowledge Base Maintainer
 
 Read:
@@ -300,11 +320,17 @@ SUPERSEDED_MAP.md
 02_DECISIONS.md
 ```
 
-PM focus now: keep current-context layer fresh, avoid letting status docs become historical dumps, mark superseded/evidence docs clearly.
+PM focus now: preserve the completed D-021 local Work/Codex migration, keep the current-context layer fresh and return to the product roadmap.
 
 ---
 
 ## 9. Current best next steps
+
+Workflow / Codex:
+
+```text
+D-021 local Work/Codex migration is complete. Use the checkout directly for files and the optional local Shelter MCP only for bounded knowledge/runtime/inspection tools.
+```
 
 Product / Game Design:
 
@@ -333,6 +359,12 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## 10. Changelog
+
+### 2026-07-10 — ChatGPT Work migration wave
+
+- Added D-021 local Work/Codex working environment and explicit Shelter MCP boundary.
+- Linked the completed local Work/Codex and Shelter MCP migration brief.
+- Kept Steam product priority and all product/game/art decisions unchanged.
 
 ### 2026-07-07 — Game Design and Art Direction current contexts
 

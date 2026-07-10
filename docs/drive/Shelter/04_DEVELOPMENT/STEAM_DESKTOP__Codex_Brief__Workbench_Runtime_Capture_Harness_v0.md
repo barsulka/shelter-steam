@@ -14,7 +14,7 @@
 Главная проблема:
 
 - Godot runtime foundation уже умеет отдавать `/state`, fixtures, export/import, debug tick and runtime controls;
-- ChatGPT в текущем рабочем режиме может читать локальные файлы через local file server;
+- ChatGPT Work/Codex может читать локальные файлы напряму из checkout;
 - ChatGPT не может надёжно нажимать browser control page и выполнять token-protected HTTP POST к live connector;
 - значит нужен repeatable shell workflow, который запускается человеком локально and writes review bundles into ignored `.runtime` directory.
 

@@ -61,7 +61,6 @@ func TestServerListsExpectedTools(t *testing.T) {
 		"start_shelter_control_connector",
 		"stop_shelter_control_connector",
 		"get_workbench_run_artifacts",
-		"list_shelter_upstreams",
 		"git_status",
 		"git_diff",
 		"git_diff_for_review",
@@ -83,6 +82,56 @@ func TestServerListsExpectedTools(t *testing.T) {
 			t.Fatalf("tool %q was not listed", name)
 		}
 		assertObjectSchema(t, name, "output", tool.OutputSchema)
+	}
+	for _, name := range []string{
+		"list_shelter_dev_commands",
+		"list_workbench_runs",
+		"get_workbench_run_artifacts",
+		"git_status",
+		"git_diff",
+		"git_diff_for_review",
+		"read_shelter_bootstrap_context",
+		"find_current_context",
+		"list_decisions",
+		"decision_digest",
+		"get_decision",
+		"list_open_questions",
+		"open_questions_digest",
+		"list_roadmaps",
+		"latest_handoff",
+		"knowledge_task_context",
+		"shelter_status",
+		"current_entry_digest",
+		"list_active_docs",
+		"classify_doc_path",
+		"explain_superseded",
+		"knowledge_gc_report",
+	} {
+		tool := tools[name]
+		if tool == nil || tool.Annotations == nil || !tool.Annotations.ReadOnlyHint {
+			t.Fatalf("read-only tool %q must advertise readOnlyHint", name)
+		}
+		if tool.Annotations.DestructiveHint == nil || *tool.Annotations.DestructiveHint {
+			t.Fatalf("read-only tool %q must advertise destructiveHint=false", name)
+		}
+	}
+	for _, name := range []string{
+		"run_shelter_dev_command",
+		"clear_workbench_runs",
+		"start_shelter_control_connector",
+		"stop_shelter_control_connector",
+		"control_shelter_game",
+		"apply_patch",
+		"insert_section_after_heading",
+		"replace_section",
+		"append_changelog_entry",
+		"replace_between_markers",
+		"write_file_if_unchanged",
+	} {
+		tool := tools[name]
+		if tool == nil || tool.Annotations == nil || tool.Annotations.ReadOnlyHint {
+			t.Fatalf("state-changing tool %q must advertise readOnlyHint=false", name)
+		}
 	}
 
 	call, err := clientSession.CallTool(ctx, &mcp.CallToolParams{
@@ -214,7 +263,6 @@ func TestRealWorkbenchCaptureDispatchScenarioThroughMCP(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	cfg.FilesystemProxyEnabled = false
 
 	ctx := context.Background()
 	clientTransport, serverTransport := mcp.NewInMemoryTransports()

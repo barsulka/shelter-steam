@@ -29,7 +29,7 @@ Game Designer / Systems Designer для Steam/Desktop ветки Shelter.
 - `docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__MVP_State_Machine_and_UX_Flow_v0.md`
 - `docs/repo/dev/companion-field-tech-demo.md`
 
-Не удалось прочитать через файлсервер:
+Не удалось прочитать в той сессии:
 
 - `steam/AGENTS.md` — вызов был заблокирован системой безопасности инструмента.
 - design handoff-файлы от 2026-06-25 — вызовы были заблокированы системой безопасности инструмента.

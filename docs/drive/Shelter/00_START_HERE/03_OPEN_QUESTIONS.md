@@ -1,6 +1,6 @@
 # 03_OPEN_QUESTIONS — Shelter
 
-Обновлено: 2026-07-07
+Обновлено: 2026-07-10
 Статус: active knowledge / open questions register
 Владелец: Project Manager / Producer
 Назначение: хранить вопросы, которые ещё не превращены в решения, specs или current-context docs.
@@ -107,7 +107,7 @@ NOT production art. NOT final visual style. NOT shipping UX. NOT final animation
 
 - когда нужен отдельный production visual style pass;
 - какие критерии отличают prototype readability от production readability;
-- нужен ли отдельный `ART_DIRECTION__CURRENT_CONTEXT.md` перед следующей большой art-сессией;
+- какие дополнительные production-art sections понадобятся в существующем `ART_DIRECTION__CURRENT_CONTEXT.md` перед следующей большой art-сессией;
 - какие old capture packs остаются evidence-only.
 
 Sources:
@@ -142,27 +142,6 @@ Source:
 docs/drive/Shelter/00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
 docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 ```
-
----
-
-#### OQ-Docs-002 — Нужны ли отдельные current-context docs для Art Direction и Game Design?
-
-Статус: `open`
-Владелец: Project Manager / Art Director / Game Designer
-
-Текущие current-context docs существуют для:
-
-```text
-STEAM_DESKTOP__CURRENT_CONTEXT.md
-CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
-CODEX_CURRENT_STATUS.md
-```
-
-Открыто:
-
-- нужен ли `ART_DIRECTION__CURRENT_CONTEXT.md` перед production art / visual style pass;
-- нужен ли `GAME_DESIGN__CURRENT_CONTEXT.md` перед полноценной First Week / retention веткой;
-- достаточно ли пока Steam current-context как объединённого входа.
 
 ---
 
@@ -456,7 +435,7 @@ Godot prototype and dev tooling exist:
 - Godot Control Connector;
 - Workbench Runtime Capture Harness;
 - First Day MVP runtime proof;
-- Shelter MCP local bridge.
+- Shelter MCP runtime/capture adapter capability; active local boundary is D-021.
 
 Sources:
 
@@ -489,7 +468,33 @@ docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 
 ---
 
+### RQ-009 — Нужны ли отдельные current-context docs для Art Direction и Game Design?
+
+Статус: `resolved 2026-07-07; register corrected 2026-07-10`
+
+Решение:
+
+```text
+GAME_DESIGN__CURRENT_CONTEXT.md and ART_DIRECTION__CURRENT_CONTEXT.md exist and are active current-summary entry points.
+```
+
+Sources:
+
+```text
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/GAME_DESIGN__CURRENT_CONTEXT.md
+docs/drive/Shelter/03_DESIGN/ART_DIRECTION__CURRENT_CONTEXT.md
+docs/drive/Shelter/00_START_HERE/BOOTSTRAP_CONTEXT.md
+```
+
+---
+
 ## 4. Changelog
+
+### 2026-07-10 — migration-wave GC
+
+- Moved stale OQ-Docs-002 to resolved traceability because both role current-context docs already exist.
+- Updated MCP wording to the D-021 local domain-adapter boundary.
+- Removed the obsolete question about creating `ART_DIRECTION__CURRENT_CONTEXT.md` while preserving the real production-art follow-up.
 
 ### 2026-07-07 — PM cleanup / current open questions refresh
 

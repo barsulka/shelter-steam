@@ -1,6 +1,7 @@
 # HANDOFF_INDEX — Shelter
 
 Дата создания: 2026-07-07
+Обновлено: 2026-07-10
 Статус: active handoff index / current-summary for history layer
 Владелец: Project Manager / Knowledge Base Maintainer
 Назначение: указывать, какие handoff/RFC документы читать последними по роли/области, не заставляя новые сессии перечитывать всю историю.
@@ -34,6 +35,7 @@ docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.m
 
 | Role / area | Latest useful handoff | Read when |
 | --- | --- | --- |
+| Codex / local Shelter MCP | `codex/2026-07-10__codex_handoff__chatgpt_work_local_mcp_migration.md` | continuing local MCP implementation or validating project-scoped setup |
 | Producer / PM / Knowledge Base Phase 2 cleanup | `producer/2026-07-07__producer_pm_handoff__knowledge_base_phase_2_cleanup.md` | continuing after decisions/roadmaps/handoff/current-context cleanup |
 | Producer / PM / docs governance | `producer/2026-07-07__producer_handoff__documentation_governance_and_gc.md` | reviewing original documentation governance / Knowledge GC decision |
 | Producer / PM / documentation compression | `producer/2026-07-07__producer_handoff__documentation_compression_bootstrap_layer.md` | investigating how bootstrap/current-context layer was created |
@@ -89,6 +91,10 @@ status docs
 ---
 
 ## 4. Changelog
+
+### 2026-07-10 — ChatGPT Work migration handoff
+
+- Added the D-021 workflow/PM migration handoff as the latest entry for local Work/Codex and MCP transition work.
 
 ### 2026-07-07 — Phase 2 cleanup handoff added
 

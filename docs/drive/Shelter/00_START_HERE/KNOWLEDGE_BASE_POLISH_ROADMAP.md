@@ -1,6 +1,7 @@
 # KNOWLEDGE_BASE_POLISH_ROADMAP — Shelter
 
 Дата создания: 2026-07-09
+Обновлено: 2026-07-10
 Статус: active short roadmap
 Владелец: Project Manager / Producer
 Назначение: короткий roadmap по устранению оставшихся проблем входа в документацию после Phase 2 cleanup.
@@ -15,9 +16,17 @@
 2. Current-context docs нужно стандартизировать по единому шаблону.
 3. `01_CURRENT_STATUS.md` может снова начать разрастаться в “второй README”.
 4. Верхний слой уже включает несколько документов: `BOOTSTRAP_CONTEXT`, `01_CURRENT_STATUS`, current-context docs, `KNOWLEDGE_BASE_ROADMAP`.
-5. Дальше больше пользы даст не перекладывание Markdown, а MCP/Knowledge API, который отдаёт компактные рабочие ответы.
+5. Compact MCP/Knowledge tools уже существуют, но их статический catalog может дрейфовать от source docs и не должен становиться второй памятью проекта.
 
 Этот roadmap фиксирует план, чтобы исправлять это постепенно и не уходить в бесконечную документационную полировку.
+
+Authoritative compact-catalog state:
+
+```text
+Catalog status: active short roadmap
+Catalog current phase: D-021 local Work/Codex migration complete; compact MCP knowledge remains optional and source-validated.
+Catalog next step: Return to Day 2 product work; keep Current Memory and catalog validation green.
+```
 
 ---
 
@@ -36,7 +45,7 @@ Fix entry friction, not history.
 ```text
 1. сделать верхний вход коротким;
 2. стандартизировать current-context;
-3. дать MCP компактные summary/dashboard tools;
+3. использовать MCP compact tools только как optional bounded navigator с source-validation/derivation;
 4. вернуться к продуктовой работе Day 2.
 ```
 
@@ -44,7 +53,7 @@ Fix entry friction, not history.
 
 ## 2. Phase P1 — Decision Catalog / compact decision layer
 
-Статус: `next for Codex + PM review`
+Статус: `implemented; source/catalog drift guardrail active`
 
 Проблема:
 
@@ -54,10 +63,11 @@ Fix entry friction, not history.
 
 Создать компактный decision entry layer.
 
-Preferred implementation:
+Implemented shape:
 
-- Codex/MCP: расширить `get_decision` / `list_decisions` или добавить compact output mode.
-- Docs: не дробить `02_DECISIONS.md` прямо сейчас, а создать/поддерживать короткий catalog-source только если MCP static catalog недостаточен.
+- MCP exposes compact decision/dashboard tools.
+- `02_DECISIONS.md` remains the source document.
+- Source/catalog fingerprints and exact roadmap-state validation prevent silent static-catalog drift.
 
 Possible docs artifact:
 
@@ -75,7 +85,7 @@ Fresh session can get all active decisions as compact summaries without opening 
 
 ## 3. Phase P2 — Current-context template standardization
 
-Статус: `PM task`
+Статус: `completed 2026-07-09`
 
 Проблема:
 
@@ -115,7 +125,7 @@ All active current-context docs share a recognizable structure and preserve exis
 
 ## 4. Phase P3 — Current Status guardrail
 
-Статус: `PM task`
+Статус: `completed 2026-07-09`
 
 Проблема:
 
@@ -141,7 +151,7 @@ Definition of Done:
 
 ## 5. Phase P4 — Producer Dashboard / top entry
 
-Статус: `Codex candidate + PM docs candidate`
+Статус: `implemented in MCP; optional convenience only under D-021`
 
 Проблема:
 
@@ -184,13 +194,13 @@ A fresh Producer session can ask “where are we now?” and get a compact answe
 
 ---
 
-## 6. Phase P5 — Knowledge API as project operating system
+## 6. Phase P5 — Bounded knowledge navigation inside local MCP
 
-Статус: `future Codex`
+Статус: `direction corrected by D-021`
 
 Direction:
 
-Shelter MCP becomes a project operating system layer, not just a file server.
+Shelter MCP remains a local domain-specific runtime/inspection adapter. Knowledge tools may provide bounded deterministic navigation, but the local repository documents — not MCP — are the project memory and source of truth.
 
 Future candidates:
 
@@ -215,31 +225,45 @@ no network
 no generic shell
 ```
 
+Additional D-021 constraint:
+
+```text
+No manually maintained duplicate truth without validation.
+Source documents win on drift.
+```
+
 ---
 
 ## 7. Current immediate split
 
 ### Codex next
 
-Create MCP/tooling support for compact decision/dashboard entry.
+Keep the completed local Work/Codex + MCP migration validation green.
 
 Brief:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Knowledge_Polish_Dashboard_And_Decision_Digest_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md
 ```
 
 ### PM / Producer next
 
-Start with Phase P2/P3:
+Migration-wave PM work is complete. Ongoing maintenance:
 
-1. Standardize current-context docs shape where safe.
-2. Add explicit anti-bloat boundary to `01_CURRENT_STATUS.md`.
-3. Avoid major product/doc restructuring.
+1. Keep D-021 and Current Memory synchronized.
+2. Keep active documentation aligned with direct checkout access.
+3. Run Knowledge GC when a concrete drift signal appears; preserve product/game/art decisions.
 
 ---
 
 ## 8. Changelog
+
+### 2026-07-10 — D-021 roadmap correction
+
+- Marked decision/dashboard tools and current-context guardrails as implemented.
+- Fixed the MCP direction as optional bounded navigation over source documents.
+- Completed static-catalog drift prevention and the ChatGPT Work/local MCP migration.
+- Kept Day 2 as the unchanged product follow-up.
 
 ### 2026-07-09 — P2/P3 started
 

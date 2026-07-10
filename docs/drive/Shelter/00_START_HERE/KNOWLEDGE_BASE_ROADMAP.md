@@ -1,9 +1,10 @@
 # KNOWLEDGE_BASE_ROADMAP — Shelter
 
 Дата создания: 2026-07-07
+Обновлено: 2026-07-10
 Статус: active roadmap
 Владелец: Project Manager / Producer
-Назначение: рабочий roadmap эволюции базы знаний Shelter и MCP knowledge layer.
+Назначение: рабочий roadmap эволюции базы знаний Shelter и optional MCP knowledge navigation.
 
 ---
 
@@ -16,7 +17,15 @@
 Главное направление:
 
 ```text
-Документация Shelter перестаёт быть набором Markdown-файлов и становится управляемой базой знаний с Current Memory, Knowledge, History и MCP knowledge access layer.
+Локальные source documents образуют управляемую базу знаний с Current Memory, Knowledge и History. MCP может давать bounded deterministic navigation, но не становится отдельной проектной памятью.
+```
+
+Authoritative compact-catalog state:
+
+```text
+Catalog status: active roadmap
+Catalog current phase: MCP Knowledge API v2 and source/catalog drift guardrail implemented.
+Catalog next step: Keep Current Memory fresh and return to Day 2 product work.
 ```
 
 ---
@@ -27,7 +36,7 @@
 
 ### Branch A — Codex / MCP Knowledge API
 
-Codex развивает Shelter MCP как deterministic knowledge access service:
+Codex поддерживает bounded deterministic knowledge navigation внутри local domain-specific Shelter MCP:
 
 - без generic shell;
 - без arbitrary git commands;
@@ -86,7 +95,7 @@ New Shelter sessions can enter through Current Memory instead of reading old bri
 
 ## 3. Phase 2 — Core Knowledge Cleanup
 
-Статус: `active`
+Статус: `completed 2026-07-10; maintenance only`
 
 Цель:
 
@@ -94,7 +103,7 @@ New Shelter sessions can enter through Current Memory instead of reading old bri
 
 ### 2.1 Decisions cleanup
 
-Статус: `next`
+Статус: `completed 2026-07-07; D-021 added 2026-07-10`
 
 Target:
 
@@ -120,7 +129,7 @@ Definition of Done:
 
 ### 2.2 Roadmaps cleanup
 
-Статус: `planned`
+Статус: `completed initial pass 2026-07-07`
 
 Target candidates:
 
@@ -146,7 +155,7 @@ Active roadmap docs answer: what next, why, and what is out of scope.
 
 ### 2.3 Handoff cleanup
 
-Статус: `planned`
+Статус: `completed initial pass 2026-07-07`
 
 Target:
 
@@ -171,7 +180,7 @@ New sessions know which handoff to read, and old handoff are treated as History.
 
 ### 2.4 Current Context expansion
 
-Статус: `planned`
+Статус: `Art/Game Design contexts completed; Browser/Mobile deferred until active`
 
 Candidate docs:
 
@@ -198,7 +207,7 @@ Each active domain can be entered through one short current-context document ins
 
 ## 4. Phase 3 — MCP Knowledge API v2
 
-Статус: `ready for Codex brief`
+Статус: `implemented; source/catalog drift guardrail active`
 
 Цель:
 
@@ -236,7 +245,7 @@ A session can ask MCP for decisions/open questions/roadmaps/handoff relevant to 
 
 ## 5. Phase 4 — Knowledge GC v2
 
-Статус: `future`
+Статус: `future/optional after migration; no automatic writes`
 
 Цель:
 
@@ -261,7 +270,7 @@ PM can run a deterministic report that suggests what to update next without modi
 
 ## 6. Phase 5 — Producer Dashboard
 
-Статус: `future`
+Статус: `implemented as optional MCP convenience`
 
 Цель:
 
@@ -297,30 +306,36 @@ Producer can get a compact project status from MCP and then open only relevant s
 
 ### Codex next
 
-Implement MCP Knowledge API v2 from brief:
+Keep the completed local Work/Codex + Shelter MCP migration validation green:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Knowledge_API_v2.md
+docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md
 ```
 
 ### PM / Producer next
 
-Start Phase 2.1:
+Migration-wave GC is complete. Preserve the corrected access boundary and continue product work:
 
 ```text
-Clean up docs/drive/Shelter/00_START_HERE/02_DECISIONS.md
+Source docs are truth; MCP is an optional local domain adapter/navigation helper.
 ```
 
 Focus:
 
-- improve readability;
-- preserve decisions;
-- remove/relocate history only if clearly safe;
-- update changelog.
+- keep Current Memory fresh;
+- validate static MCP catalogs against source docs;
+- avoid new documentation restructuring without a concrete friction signal.
 
 ---
 
 ## 8. Changelog
+
+### 2026-07-10 — D-021 migration correction
+
+- Made local source documents, not MCP, the project-memory source of truth.
+- Updated completed Phase 2/3/Producer Dashboard statuses.
+- Completed the local Work/Codex + MCP migration and activated source/catalog drift validation.
+- Preserved bounded read-only knowledge navigation as an optional MCP capability.
 
 ### 2026-07-09 — polish roadmap created
 

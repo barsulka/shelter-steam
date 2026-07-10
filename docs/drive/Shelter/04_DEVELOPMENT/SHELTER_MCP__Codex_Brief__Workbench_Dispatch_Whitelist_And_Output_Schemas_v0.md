@@ -17,7 +17,6 @@
 control_shelter_game
 start_shelter_control_connector
 stop_shelter_control_connector
-list_shelter_upstreams
 ```
 
 Но whitelist внутри `list_shelter_dev_commands` и `run_shelter_dev_command(workbench_capture)` всё ещё не знает новый scenario:
@@ -47,7 +46,7 @@ POST /control/runtime/delivery/confirm
 Основной MCP repo:
 
 ```text
-/Users/barsulka/GolandProjects/shelter/mcp
+mcp
 ```
 
 Основной Shelter repo:
@@ -58,12 +57,12 @@ POST /control/runtime/delivery/confirm
 
 Перед началом прочитать:
 
-- `/Users/barsulka/GolandProjects/shelter/mcp/README.md`
-- `/Users/barsulka/GolandProjects/shelter/mcp/internal/sheltermcp/commands.go`
-- `/Users/barsulka/GolandProjects/shelter/mcp/internal/sheltermcp/control.go`
-- `/Users/barsulka/GolandProjects/shelter/mcp/internal/sheltermcp/server.go`
-- `/Users/barsulka/GolandProjects/shelter/mcp/internal/sheltermcp/server_test.go`
-- `/Users/barsulka/GolandProjects/shelter/mcp/internal/sheltermcp/workbench.go`
+- `mcp/README.md`
+- `mcp/internal/sheltermcp/commands.go`
+- `mcp/internal/sheltermcp/control.go`
+- `mcp/internal/sheltermcp/server.go`
+- `mcp/internal/sheltermcp/server_test.go`
+- `mcp/internal/sheltermcp/workbench.go`
 - `/Users/barsulka/GolandProjects/shelter/shelter/docs/repo/status/CODEX_STATUS.md`
 - `/Users/barsulka/GolandProjects/shelter/shelter/docs/repo/dev/godot-state-connector.md`
 - `/Users/barsulka/GolandProjects/shelter/shelter/docs/repo/api/godot-state-connector.openapi.yaml`
@@ -77,7 +76,7 @@ POST /control/runtime/delivery/confirm
 Update MCP workbench scenario whitelist in:
 
 ```text
-/Users/barsulka/GolandProjects/shelter/mcp/internal/sheltermcp/commands.go
+mcp/internal/sheltermcp/commands.go
 ```
 
 Add:
@@ -120,7 +119,7 @@ and return success metadata.
 Update MCP control actions in:
 
 ```text
-/Users/barsulka/GolandProjects/shelter/mcp/internal/sheltermcp/control.go
+mcp/internal/sheltermcp/control.go
 ```
 
 Add a narrow whitelisted action for:
@@ -147,7 +146,7 @@ Do not add generic mutation or broad cheat actions.
 
 The ChatGPT interface reports that some Shelter MCP commands recommend adding output schemas.
 
-Please add explicit output schemas for first-party Shelter MCP tools where supported by the Go MCP SDK version used in `/Users/barsulka/GolandProjects/shelter/mcp`.
+Please add explicit output schemas for first-party Shelter MCP tools where supported by the Go MCP SDK version used in `mcp`.
 
 Priority tools:
 
@@ -159,7 +158,6 @@ Priority tools:
 - `start_shelter_control_connector` -> existing output struct
 - `stop_shelter_control_connector` -> existing output struct
 - `control_shelter_game` -> `ControlShelterGameOutput`
-- `list_shelter_upstreams` -> existing output struct
 
 If the current SDK does not support explicit output schema on `mcp.Tool`, document that clearly in README/status and do not hack around it.
 
@@ -246,7 +244,7 @@ house_of_curiosity_learning_session
 Run in MCP repo:
 
 ```sh
-cd /Users/barsulka/GolandProjects/shelter/mcp
+cd mcp
 go test ./...
 go test ./... -run Test
 ```
@@ -280,7 +278,7 @@ Do not commit `.runtime`.
 
 Codex should report:
 
-- files changed in `/Users/barsulka/GolandProjects/shelter/mcp`;
+- files changed in `mcp`;
 - whether output schemas were added or why not;
 - updated whitelist values;
 - tests run;

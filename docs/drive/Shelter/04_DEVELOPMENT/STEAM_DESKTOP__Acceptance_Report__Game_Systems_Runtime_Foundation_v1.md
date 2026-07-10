@@ -303,7 +303,7 @@ Live URL issue:
 
 - Attempted to open the provided Barsulka URL from assistant tools.
 - Result: hostname resolution failed in this environment.
-- Local file server can read snapshots, but cannot execute HTTP POST commands against the connector.
+- Direct checkout access can read snapshots, but does not itself execute HTTP POST commands against the connector.
 
 If live test passes, Runtime Foundation v1 can be accepted.
 
@@ -343,7 +343,7 @@ Then send the printed `/state?token=...` and `/control?token=...` URLs.
 
 - Attempted to use provided Barsulka control URL.
 - Assistant environment could not resolve `barsulka.eboshim.site`.
-- Read updated local snapshot via local file server and confirmed v0.2 runtime groups are present.
+- Read the updated local snapshot directly from the checkout and confirmed v0.2 runtime groups are present.
 - Full acceptance remains blocked on actual HTTP control access or user-provided command outputs.
 
 ### 2026-06-30 — v1 created

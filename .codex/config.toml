@@ -1,0 +1,92 @@
+[mcp_servers.shelter]
+command = "/bin/sh"
+args = ["-c", 'exec "$(git rev-parse --show-toplevel)/mcp/run.sh"']
+cwd = "."
+enabled = true
+required = false
+startup_timeout_sec = 30
+tool_timeout_sec = 600
+default_tools_approval_mode = "prompt"
+enabled_tools = [
+  "list_shelter_dev_commands",
+  "run_shelter_dev_command",
+  "list_workbench_runs",
+  "get_workbench_run_artifacts",
+  "clear_workbench_runs",
+  "start_shelter_control_connector",
+  "stop_shelter_control_connector",
+  "control_shelter_game",
+  "read_shelter_bootstrap_context",
+  "find_current_context",
+  "list_decisions",
+  "decision_digest",
+  "get_decision",
+  "list_open_questions",
+  "open_questions_digest",
+  "list_roadmaps",
+  "latest_handoff",
+  "knowledge_task_context",
+  "shelter_status",
+  "current_entry_digest",
+  "list_active_docs",
+  "classify_doc_path",
+  "explain_superseded",
+  "knowledge_gc_report",
+]
+
+[mcp_servers.shelter.tools.list_shelter_dev_commands]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.list_workbench_runs]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.get_workbench_run_artifacts]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.read_shelter_bootstrap_context]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.find_current_context]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.list_decisions]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.decision_digest]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.get_decision]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.list_open_questions]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.open_questions_digest]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.list_roadmaps]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.latest_handoff]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.knowledge_task_context]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.shelter_status]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.current_entry_digest]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.list_active_docs]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.classify_doc_path]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.explain_superseded]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.knowledge_gc_report]
+approval_mode = "approve"

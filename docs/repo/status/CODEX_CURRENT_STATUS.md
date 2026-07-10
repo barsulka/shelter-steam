@@ -1,6 +1,7 @@
 # CODEX_CURRENT_STATUS
 
 Дата создания: 2026-07-07
+Обновлено: 2026-07-10
 Статус: current-summary
 Владелец: Codex / Project Manager
 Назначение: короткий текущий dev-status entry point. Не является историческим журналом.
@@ -43,7 +44,9 @@ Next selected product scope: First Week / Day 2 / longer retention.
 Current tooling state:
 
 ```text
-Shelter MCP is the preferred local ChatGPT/dev inspection bridge.
+ChatGPT Work/Codex reads this checkout directly.
+Shelter MCP under mcp/ is an optional local domain-specific runtime/inspection adapter.
+Project-scoped local STDIO setup is complete.
 ```
 
 ---
@@ -69,7 +72,6 @@ Shelter MCP:
 - workbench capture management;
 - local Godot connector/control runtime management;
 - whitelisted runtime control actions;
-- proxied `fs_*` filesystem tools;
 - safe repo tools: `git_status`, `git_diff`, `git_diff_for_review`;
 - safe patch/edit tools: `apply_patch`, markdown section editing, marker replacement, sha256 guarded writes;
 - deterministic bootstrap/context bundling via `read_shelter_bootstrap_context` with priority-first order and diagnostics.
@@ -108,10 +110,22 @@ docs/drive/Shelter/04_DEVELOPMENT/
 - Capture packs are evidence/history, not default bootstrap context.
 - `CODEX_STATUS.md` is a historical log and should not be read in full by default.
 - MCP repo/document tools are safe helpers, not a generic shell.
+- Static MCP knowledge summaries are guarded by startup/test validation; source documents win.
+- Read-only MCP knowledge/inspection tools run non-interactively through explicit per-tool approval; runtime-changing tools still require prompt approval.
 
 ---
 
 ## 5. Current next likely dev step
+
+Completed workflow/tooling brief:
+
+```text
+docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md
+```
+
+This brief completed workflow, MCP/config and dev documentation. No Godot/runtime behavior changed.
+
+Current product follow-up:
 
 If Producer accepts First Week / Day 2 as implementation-ready, next likely brief:
 
@@ -128,6 +142,13 @@ Expected reasoning level:
 ---
 
 ## 6. Changelog
+
+### 2026-07-10 — D-021 workflow migration
+
+- Switched current access truth from MCP bridge to direct local Work/Codex checkout.
+- Reclassified Shelter MCP as a local domain-specific adapter and completed project-scoped STDIO setup.
+- Completed the dedicated migration brief and project-scoped local STDIO setup.
+- Corrective audit added full source/catalog content locks, exact roadmap-state validation, safe per-tool approvals and a nested-cwd `codex exec` smoke.
 
 ### 2026-07-09 — Shelter MCP knowledge polish dashboard
 

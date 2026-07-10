@@ -1,10 +1,53 @@
 # Codex Status
 
+## 2026-07-10 - ChatGPT Work and local Shelter MCP migration completed
+
+- Branch: `master`.
+- Source: D-021 and `SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md`.
+- Local setup:
+  - project-scoped `.codex/config.toml`;
+  - portable `mcp/run.sh` with STDIO default and optional loopback HTTP debug mode;
+  - automatic monorepo/Steam root derivation with bounded local overrides.
+- Tool boundary:
+  - Work-facing allowlist contains Shelter dev/runtime/capture/control and bounded knowledge tools;
+  - generic filesystem integration and its upstream process/config/tests were removed completely;
+  - generic shell remains absent;
+  - repo/document helpers remain outside the Work allowlist.
+- Monorepo semantics:
+  - `shelter` is the only repo id;
+  - `repo: "mcp"` is rejected with an explicit `mcp/` path instruction.
+- Knowledge guardrail:
+  - added D-021 and removed resolved OQ-Docs-002 from compact output;
+  - corrected roadmap/latest handoff state;
+  - startup/test validation now locks decision/open-question source blocks and returned catalog content;
+  - roadmap status/current phase/next step are compared exactly with authoritative source fields;
+  - negative fixtures prove loud failure for decision title/area/summary, open-question title/owner/summary and all roadmap-state fields;
+  - source Markdown always wins over compact output.
+- Approval/launcher correction:
+  - read-only knowledge/inspection tools have ToolAnnotations and explicit per-tool approval;
+  - runtime-changing/destructive tools remain prompt-gated;
+  - project launcher resolves the monorepo root from both root and `mcp/`;
+  - actual non-interactive `codex exec` invoked `shelter/get_decision` without an approval override.
+- Cleanup:
+  - removed obsolete setup code and documentation, including historical setup references requested by the user;
+  - removed the obsolete bootstrap artifact;
+  - normalized completed MCP briefs to the monorepo `mcp/` path.
+- Checks:
+  - passed `cd mcp && go test -count=1 ./...`;
+  - passed `cd mcp && go test -race -count=1 ./...`;
+  - passed `cd mcp && go vet ./...`;
+  - passed `sh -n mcp/run.sh`;
+  - passed STDIO initialize/list-tools and knowledge calls;
+  - passed launcher smoke from repository root and `mcp/`;
+  - passed actual project-config `codex exec` MCP call from `mcp/`;
+  - passed `git diff --check` and legacy-reference scan.
+- Scope safety: no Godot/runtime implementation or product/game/art contract changed; the user-requested `steam/README.md` cleanup is documentation-only.
+
 ## 2026-07-09 - Shelter MCP knowledge polish dashboard
 
 - Branch: `master`
 - Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Knowledge_Polish_Dashboard_And_Decision_Digest_v1.md`
-- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- MCP path: `mcp/`
 - Summary: Added compact deterministic fresh-session entry tools on top of Knowledge API v2: decision digest, area dashboard, open-question digest and current-entry digest.
 - Tools added:
   - `decision_digest`
@@ -25,10 +68,10 @@
   - `docs/repo/status/CODEX_CURRENT_STATUS.md`
   - `docs/repo/status/CODEX_STATUS.md`
 - Checks:
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && gofmt -w internal/sheltermcp/knowledge_catalog.go internal/sheltermcp/knowledge_tools.go internal/sheltermcp/knowledge_tools_test.go internal/sheltermcp/server.go`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && git diff --check`
+  - Passed: `cd mcp && gofmt -w internal/sheltermcp/knowledge_catalog.go internal/sheltermcp/knowledge_tools.go internal/sheltermcp/knowledge_tools_test.go internal/sheltermcp/server.go`
+  - Passed: `cd mcp && go test ./...`
+  - Passed: `cd mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd mcp && git diff --check`
 - Known limitations:
   - Dashboard content is intentionally static-catalog based, not generated from broad Markdown search.
   - Browser and Mobile dashboards remain compact because their current-context docs are not registered yet.
@@ -37,7 +80,7 @@
 
 - Branch: `master`
 - Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Knowledge_API_v2.md`
-- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- MCP path: `mcp/`
 - Summary: Extended Shelter MCP Knowledge Layer from "which docs should I read?" to deterministic Knowledge API v2 for accepted decisions, open questions, roadmaps, latest handoff and task-specific reading context.
 - Tools added:
   - `list_decisions`
@@ -61,10 +104,10 @@
   - `docs/repo/status/CODEX_STATUS.md`
   - `docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md`
 - Checks:
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && gofmt -w internal/sheltermcp/knowledge_catalog.go internal/sheltermcp/knowledge_tools.go internal/sheltermcp/knowledge_tools_test.go internal/sheltermcp/server.go`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && git diff --check`
+  - Passed: `cd mcp && gofmt -w internal/sheltermcp/knowledge_catalog.go internal/sheltermcp/knowledge_tools.go internal/sheltermcp/knowledge_tools_test.go internal/sheltermcp/server.go`
+  - Passed: `cd mcp && go test ./...`
+  - Passed: `cd mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd mcp && git diff --check`
 - Known limitations:
   - v2 knowledge content is intentionally cataloged, not parsed as broad search.
   - Roadmaps and handoff coverage are scoped to currently known active docs and latest relevant handoff entries.
@@ -73,7 +116,7 @@
 
 - Branch: `master`
 - Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Knowledge_Service_And_PM_Docs_Bootstrap_v1.md`
-- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- MCP path: `mcp/`
 - Summary: Evolved Shelter MCP into a small deterministic knowledge access service for Shelter documentation without adding generic shell access, arbitrary git commands, broader filesystem roots, network calls, AI summarization, vector search, embeddings, or write behavior in the new knowledge tools. PM/docs bootstrap now includes `05_DOCUMENTATION_GOVERNANCE.md` as a first-class document alongside `BOOTSTRAP_CONTEXT.md`, `000_ROLE_PROJECT_MANAGER.md`, and `SUPERSEDED_MAP.md`.
 - Tools added:
   - `find_current_context`
@@ -100,10 +143,10 @@
   - `docs/repo/status/CODEX_CURRENT_STATUS.md`
   - `docs/repo/status/CODEX_STATUS.md`
 - Checks:
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && gofmt -w internal/sheltermcp/knowledge_catalog.go internal/sheltermcp/knowledge_tools.go internal/sheltermcp/knowledge_tools_test.go internal/sheltermcp/repo_tools.go internal/sheltermcp/repo_tools_test.go internal/sheltermcp/server.go internal/sheltermcp/server_test.go`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && git diff --check`
+  - Passed: `cd mcp && gofmt -w internal/sheltermcp/knowledge_catalog.go internal/sheltermcp/knowledge_tools.go internal/sheltermcp/knowledge_tools_test.go internal/sheltermcp/repo_tools.go internal/sheltermcp/repo_tools_test.go internal/sheltermcp/server.go internal/sheltermcp/server_test.go`
+  - Passed: `cd mcp && go test ./...`
+  - Passed: `cd mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd mcp && git diff --check`
 - Known limitations:
   - The knowledge catalog is intentionally static and v1-scoped; browser/mobile current-context entries return clear missing-context notes until those docs exist.
   - Superseded/classification rules are simple path rules from `SUPERSEDED_MAP.md`, not semantic inference.
@@ -113,7 +156,7 @@
 
 - Branch: `master`
 - Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Bootstrap_And_Repo_Tools_Polish_v2.md`
-- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- MCP path: `mcp/`
 - Summary: Polished the v1 Shelter MCP repo/document tools for daily ChatGPT, Codex and PM work without adding generic shell access or expanding MCP permissions. `read_shelter_bootstrap_context` now uses priority-first ordering so compressed/current-context docs and role docs are considered before long root docs, and it reports per-file diagnostics and byte budget usage. `git_diff_for_review` now supports `focus=all|docs|code|mixed`, returns diff/omitted paths, and includes lightweight review stats with file-category counts plus fixed-args `git diff --numstat` insertions/deletions. Markdown editing gained `replace_between_markers`, and missing-heading errors now return `closest_headings`.
 - Tools changed:
   - `read_shelter_bootstrap_context`: priority-first bundle order, `included_bytes`, `remaining_budget`, `per_file_sizes`, `bootstrap_summary`.
@@ -133,10 +176,10 @@
 - Changed files in Shelter repo:
   - `docs/repo/status/CODEX_STATUS.md`
 - Checks:
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && gofmt -w internal/sheltermcp/repo_tools.go internal/sheltermcp/repo_tools_test.go internal/sheltermcp/server.go internal/sheltermcp/server_test.go`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && git diff --check`
+  - Passed: `cd mcp && gofmt -w internal/sheltermcp/repo_tools.go internal/sheltermcp/repo_tools_test.go internal/sheltermcp/server.go internal/sheltermcp/server_test.go`
+  - Passed: `cd mcp && go test ./...`
+  - Passed: `cd mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd mcp && git diff --check`
 - Known limitations:
   - Focus filters are intentionally simple extension/path heuristics, not semantic classification.
   - `git_diff_for_review` numstat covers tracked diff paths; untracked files remain visible through status metadata rather than embedded diff content.
@@ -146,7 +189,7 @@
 
 - Branch: `master`
 - Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Repo_Diff_Patch_And_Doc_Editing_Tools_v1.md`
-- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- MCP path: `mcp/`
 - Summary: Added safe typed Shelter MCP tools for repo/document review workflows without adding generic shell access. The new tools cover git status, bounded git diff, review diff with simple risk flags, patch dry-run/apply via fixed `git apply` args, markdown section editing by unique heading, deterministic Shelter bootstrap context bundling, and sha256-guarded file writes.
 - Tools added:
   - `git_status`
@@ -165,7 +208,6 @@
   - Risky write tools default to `dry_run=true`.
   - `.git`, `.env`, common key/certificate extensions, and obvious secrets-looking paths are denied for diff/patch/write content.
 - Changed files in MCP repo:
-  - `.env.example`
   - `README.md`
   - `internal/sheltermcp/config.go`
   - `internal/sheltermcp/server.go`
@@ -175,10 +217,10 @@
 - Changed files in Shelter repo:
   - `docs/repo/status/CODEX_STATUS.md`
 - Checks:
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && gofmt -w internal/sheltermcp/config.go internal/sheltermcp/server.go internal/sheltermcp/repo_tools.go internal/sheltermcp/server_test.go internal/sheltermcp/repo_tools_test.go`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && git diff --check`
+  - Passed: `cd mcp && gofmt -w internal/sheltermcp/config.go internal/sheltermcp/server.go internal/sheltermcp/repo_tools.go internal/sheltermcp/server_test.go internal/sheltermcp/repo_tools_test.go`
+  - Passed: `cd mcp && go test ./...`
+  - Passed: `cd mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd mcp && git diff --check`
 - Known limitations:
   - `git_diff` does not embed untracked file contents; it reports untracked files through status and diff review metadata.
   - Patch path parsing is intentionally conservative and optimized for normal unified diffs.
@@ -391,9 +433,9 @@
 
 - Branch: `master`
 - Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Workbench_Dispatch_Whitelist_And_Output_Schemas_v0.md`
-- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- MCP path: `mcp/`
 - Summary: Updated Shelter MCP so the already implemented Steam/Desktop dispatch-confirmation runtime path is available through the local MCP bridge. `workbench_capture` now accepts `first_delivery_with_dispatch_confirmation`, and `control_shelter_game` exposes the narrow `runtime_delivery_confirm` action for `POST /control/runtime/delivery/confirm`.
-- Output schemas: Confirmed `github.com/modelcontextprotocol/go-sdk v1.6.1` supports `Tool.OutputSchema`. First-party Shelter MCP handlers now return concrete output structs instead of `any`, allowing `mcp.AddTool` to publish explicit output schemas for `list_shelter_dev_commands`, `run_shelter_dev_command`, `list_workbench_runs`, `get_workbench_run_artifacts`, `clear_workbench_runs`, `start_shelter_control_connector`, `stop_shelter_control_connector`, `control_shelter_game`, and `list_shelter_upstreams`.
+- Output schemas: Confirmed `github.com/modelcontextprotocol/go-sdk v1.6.1` supports `Tool.OutputSchema`. First-party Shelter MCP handlers return concrete output structs instead of `any`.
 - Runtime capture proof:
   - Output: `steam/.runtime/workbench_capture_runs/first_delivery_with_dispatch_confirmation_v0_mcp/`
   - Manifest `dispatch_confirmation_proof` confirms `order.delivery_confirmed=true`, `order.postcard_visible=true`, `order.reward_available=true`, `game.chain_complete=true`, `production_chain.state=completed`, `production_chain.completed=true`, `event.player_confirmed_delivery=true`, `event.postcard_created=true`, and `event.reward_created=true`.
@@ -403,15 +445,14 @@
   - `internal/sheltermcp/control.go`
   - `internal/sheltermcp/process.go`
   - `internal/sheltermcp/server_test.go`
-  - `internal/sheltermcp/upstreams.go`
   - `internal/sheltermcp/workbench.go`
 - Changed files in Shelter repo:
   - `docs/repo/status/CODEX_STATUS.md`
 - Checks:
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./... -run Test`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && SHELTER_MCP_REAL_WORKBENCH_CAPTURE=1 SHELTER_STEAM_ROOT=/Users/barsulka/GolandProjects/shelter/shelter/steam go test ./internal/sheltermcp -run TestRealWorkbenchCaptureDispatchScenarioThroughMCP -count=1 -v`
-  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd mcp && go test ./...`
+  - Passed: `cd mcp && go test ./... -run Test`
+  - Passed: `cd mcp && SHELTER_MCP_REAL_WORKBENCH_CAPTURE=1 SHELTER_STEAM_ROOT=/Users/barsulka/GolandProjects/shelter/shelter/steam go test ./internal/sheltermcp -run TestRealWorkbenchCaptureDispatchScenarioThroughMCP -count=1 -v`
+  - Passed: `cd mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
   - Passed: manifest proof assertions for `dispatch_confirmation_proof`.
 - Known limitations:
   - Generated capture bundles remain ignored under `steam/.runtime/` and must not be committed.
@@ -468,44 +509,6 @@
   - Generated capture bundles remain ignored under `steam/.runtime/` and must not be committed.
   - Accelerated 100x JSON capture validates state transitions and causality only; visual warmth, readability, animation feel and desktop calmness still require real-speed/visual review.
   - The dispatch action intentionally enables only a narrow dev follow-up for the accepted capture path after valid dispatch confirmation; normal player UI flow remains unchanged.
-
-## 2026-07-02 - Shelter MCP documentation bridge update
-
-- Branch: `master`
-- Summary: Documented the sibling Shelter MCP repo as the preferred local dev / ChatGPT inspection bridge for Steam/Desktop workflows. The docs now explain that Shelter MCP replaces the old split workflow of a separate filesystem MCP tunnel plus separate game launch/control commands with one local MCP endpoint, while direct `steam/launch.sh`, Barsulka/Cloudflare and `tools/dev-vertical-slice.sh` remain low-level fallback/debug workflows.
-- Shelter MCP repo:
-  - Local path: `/Users/barsulka/GolandProjects/shelter/mcp`
-  - GitHub: `git@github.com:barsulka/shelter-mcp.git`
-- Documented setup:
-  - clone/open MCP repo;
-  - copy `.env.example` to `.env`;
-  - fill `.env`;
-  - run `./run.sh`.
-- Documented `run.sh` behavior:
-  - creates/updates `tunnel-client` profile from `.env`;
-  - does not reuse stale profile values;
-  - builds Go MCP binary;
-  - checks or installs `@modelcontextprotocol/server-filesystem`;
-  - runs `doctor --explain`;
-  - starts the tunnel.
-- Documented prerequisites:
-  - Go;
-  - node/npm;
-  - `tunnel-client`;
-  - local Shelter checkout;
-  - OpenAI tunnel/runtime API key.
-- Changed files:
-  - `PROJECTS_RULES.md`
-  - `AGENTS.md`
-  - `README.md`
-  - `steam/README.md`
-  - `docs/repo/dev/godot-state-connector.md`
-  - `docs/drive/Shelter/00_START_HERE/01_CURRENT_STATUS.md`
-  - `docs/repo/status/CODEX_STATUS.md`
-- Checks:
-  - Passed: read local MCP docs from `/Users/barsulka/GolandProjects/shelter/mcp/README.md`, `.env.example`, and `run.sh`.
-  - Passed: `rg` verification for Shelter MCP mentions across project rules, root README, Steam README, Godot connector docs, current status and Codex status.
-  - Passed: `git diff --check`.
 
 ## 2026-07-01 - Workbench Runtime Capture Harness v0
 

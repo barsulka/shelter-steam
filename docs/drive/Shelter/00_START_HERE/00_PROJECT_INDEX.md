@@ -126,11 +126,15 @@ Steam project:
 steam/
 ```
 
-Preferred local ChatGPT/dev bridge:
+Active local working model (D-021):
 
 ```text
-/Users/barsulka/GolandProjects/shelter/mcp
+ChatGPT Work / Codex -> direct access to the current checkout.
+mcp/ -> optional local domain-specific runtime/inspection adapter.
+MCP setup -> `.codex/config.toml` + `mcp/run.sh` over local STDIO.
 ```
+
+The D-021 MCP/config migration is complete.
 
 Codex / dev sessions should read:
 
@@ -176,6 +180,8 @@ Use:
 
 ## Последняя передача контекста
 
+2026-07-10: `06_SESSIONS_AND_HANDOFFS/codex/2026-07-10__codex_handoff__chatgpt_work_local_mcp_migration.md` — implementation handoff по локальному ChatGPT Work/Codex и Shelter MCP.
+
 2026-07-07: `06_SESSIONS_AND_HANDOFFS/producer/2026-07-07__producer_handoff__documentation_governance_and_gc.md` — producer/PM handoff по Documentation Governance, Current / Knowledge / History and Knowledge GC.
 
 2026-07-07: `06_SESSIONS_AND_HANDOFFS/producer/2026-07-07__producer_handoff__documentation_compression_bootstrap_layer.md` — producer-handoff по сжатию документации, Bootstrap Context, Superseded Map и current-context layer.
@@ -191,6 +197,12 @@ Use:
 ---
 
 ## Changelog
+
+### 2026-07-10 — ChatGPT Work migration wave
+
+- Recorded the D-021 local Work/Codex access model.
+- Classified `mcp/` as an optional domain-specific adapter and linked the migration handoff.
+- Kept product scope unchanged.
 
 ### 2026-07-07 — bootstrap/current-context update
 

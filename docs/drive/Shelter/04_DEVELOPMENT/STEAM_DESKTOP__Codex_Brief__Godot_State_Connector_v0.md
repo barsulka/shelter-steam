@@ -15,7 +15,7 @@ Recommended Codex reasoning level: **очень высокий**
 Цель v0 — дать Game Designer / Producer / Codex / ChatGPT способ inspect-ить состояние игры через live read-only запросы и периодический file snapshot:
 
 - через локальный HTTP endpoint;
-- через JSON snapshot-файл как fallback для локального файлсервера;
+- через JSON snapshot-файл для прямого локального чтения;
 - позже, при явном включении, через tunnel-ready URL, если ChatGPT-сессии удобнее открыть ссылку.
 
 ## 1. Producer approval note

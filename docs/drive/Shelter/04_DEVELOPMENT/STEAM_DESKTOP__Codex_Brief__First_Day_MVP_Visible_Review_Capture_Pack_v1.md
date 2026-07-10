@@ -118,7 +118,7 @@ The command should:
 6. not mutate gameplay contracts;
 7. not create final visual acceptance claims.
 
-If adding a new helper command requires MCP whitelist follow-up, document that in `CODEX_STATUS.md`; do not modify the sibling MCP repo unless this brief explicitly expands to that repo. This brief is primarily for the Shelter/Steam repo.
+If adding a new helper command requires MCP whitelist follow-up, document that in `CODEX_STATUS.md`; do not modify the monorepo `mcp/` path unless this brief explicitly expands to that repo. This brief is primarily for the Shelter/Steam repo.
 
 ---
 

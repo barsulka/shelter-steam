@@ -1,6 +1,6 @@
 # 01_CURRENT_STATUS
 
-Обновлено: 2026-07-07
+Обновлено: 2026-07-10
 Статус: active current status
 Владелец: Producer / Project Manager
 
@@ -88,6 +88,22 @@ History — handoff, completed briefs, capture packs, evidence and long logs.
 
 ---
 
+## Рабочая среда ChatGPT Work / Codex
+
+По D-021 активный рабочий путь Shelter:
+
+```text
+ChatGPT Work и Codex читают/меняют текущий локальный checkout напрямую.
+Shelter MCP в mcp/ — optional local domain-specific runtime/inspection adapter.
+Shelter MCP подключается локально по STDIO через project-scoped config.
+```
+
+Отдельные задачи/роли синхронизируются через локальные документы, RFC, brief и handoff. Память соседней задачи не считается источником проектной правды.
+
+Технический переход MCP/config завершён: актуальны `.codex/config.toml` и `mcp/run.sh`.
+
+---
+
 ## Boundary — this is not a full index
 
 `01_CURRENT_STATUS.md` отвечает на вопрос:
@@ -102,7 +118,7 @@ History — handoff, completed briefs, capture packs, evidence and long logs.
 
 - добавлять сюда только project-wide current truth;
 - не дублировать long decision details, roadmap history, capture evidence, handoff lists or completed Codex logs;
-- для маршрутизации использовать `BOOTSTRAP_CONTEXT.md`, current-context docs and MCP knowledge tools;
+- для маршрутизации использовать `BOOTSTRAP_CONTEXT.md` и current-context docs; локальные MCP knowledge tools допустимы как вспомогательный навигатор, но не источник истины;
 - для history/evidence использовать `SUPERSEDED_MAP.md`, `EVIDENCE_READ_POLICY.md` and `HANDOFF_INDEX.md`.
 
 ---
@@ -166,7 +182,7 @@ Implemented / available:
 - Godot State Connector.
 - Godot Control Connector.
 - Workbench Runtime Capture Harness.
-- Shelter MCP preferred local bridge.
+- Shelter MCP source under `mcp/`; D-021 local STDIO domain-adapter migration complete.
 - First Day MVP runtime proof.
 - First Day visible review capture packs v1/v2/v3.
 - First Day Art/UX visual-language pass v1 implemented and accepted as prototype pass.
@@ -215,6 +231,7 @@ Important active decisions:
 - D-018 — gameplay proof / visual proof split; no standalone simulator.
 - D-019 — Game Design Systems Workbench over live Godot runtime.
 - D-020 — Project Philosophy / Shelter Constitution.
+- D-021 — local ChatGPT Work/Codex checkout and Shelter MCP boundary.
 
 ---
 
@@ -253,6 +270,12 @@ Do not read by default:
 
 ## Следующий лучший шаг
 
+Workflow / Codex:
+
+```text
+D-021 local Work/Codex migration is complete. Preserve the direct-checkout / optional Shelter MCP boundary and keep its validation green; start new Codex implementation only from a separately accepted brief.
+```
+
 Product / Game Design:
 
 ```text
@@ -281,11 +304,11 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 
 ## Changelog
 
-### 2026-07-09 — Project Settings bootstrap update
+### 2026-07-10 — ChatGPT Work migration wave
 
-- Added `PROJECT_SETTINGS_BOOTSTRAP_TEXT_v1.md` with ready-to-paste thin ChatGPT Project Settings text.
-- Updated `PROJECTS_RULES.md` to reference thin Project Settings bootstrap, Shelter MCP Knowledge tools, current-context reading model and `HANDOFF_INDEX.md`.
-- Clarified that `CODEX_STATUS.md` is history, while `CODEX_CURRENT_STATUS.md` is the short dev entry point.
+- Recorded D-021 as current process truth: direct local checkout for Work/Codex and local domain-specific MCP.
+- Completed the dedicated technical migration and activated local STDIO validation.
+- Preserved the existing Steam product focus and Day 2 direction.
 
 ### 2026-07-09 — current status anti-bloat boundary
 
@@ -336,4 +359,4 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 
 ### 2026-07-02 — Shelter MCP update
 
-- Shelter MCP documented as preferred local dev / ChatGPT inspection bridge.
+- Shelter MCP documented as a local domain-specific adapter.

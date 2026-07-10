@@ -1,6 +1,6 @@
 # 02_DECISIONS — Shelter Decision Log
 
-Обновлено: 2026-07-07
+Обновлено: 2026-07-10
 Статус: active knowledge / decision log
 Владелец: Producer / Project Manager
 Назначение: хранить принятые долгоживущие решения Shelter. История обсуждений, handoff и evidence живут в History-документах.
@@ -52,6 +52,7 @@ For implementation history, use CODEX_CURRENT_STATUS.md / CODEX_STATUS.md and re
 | D-018 | Vertical Slice gameplay proof is enough for Game Designer systems branch | product/process | Steam | accepted |
 | D-019 | Game Design Systems Workbench over live Godot runtime | technical/process | Steam/Codex | accepted |
 | D-020 | Project Philosophy / Shelter Constitution | philosophy/product | all | accepted |
+| D-021 | ChatGPT Work local project and Shelter MCP boundary | process/dev tooling | docs/Codex/MCP | accepted |
 
 ---
 
@@ -100,7 +101,7 @@ Summary:
 
 Decision:
 
-Development truth lives in the Git repository. Codex must read and edit local repo files directly. ChatGPT uses Shelter MCP / filesystem bridge to read and update the same local documents.
+Development truth lives in the Git repository. ChatGPT Work and Codex read and edit the current local checkout directly. Shelter MCP's local domain-specific boundary is defined by D-021.
 
 Related:
 
@@ -802,6 +803,51 @@ Related:
 
 ---
 
+### D-021 — ChatGPT Work local project and Shelter MCP boundary
+
+Дата: 2026-07-10
+Kind: `process/dev tooling`
+Area: `docs/Codex/MCP`
+Status: `accepted`
+
+Summary:
+
+> Shelter работает как локальный проект ChatGPT Work/Codex, открытый на checkout монорепозитория. Work/Codex работает с файлами напрямую; Shelter MCP остаётся локальным domain-specific runtime/inspection adapter.
+
+Decision:
+
+1. Локальный checkout Shelter — единая рабочая среда и источник проектной правды для ChatGPT Work и Codex.
+2. ChatGPT Work используется для ролевых, продуктовых, исследовательских и документационных задач; Codex — для реализации, проверок и технических изменений. Обе поверхности обязаны восстанавливать контекст из одних и тех же локальных документов.
+3. Передача долговременного результата между отдельными задачами/ролями происходит через Current Memory, Knowledge, RFC, Codex brief и handoff, а не через предположение о доступе к памяти соседней сессии.
+4. Shelter MCP живёт внутри монорепозитория в `mcp/` и нужен только там, где полезен локальный domain-specific adapter: запуск разрешённых dev-команд, runtime/capture inspection и control, а также ограниченная навигация по знаниям.
+5. Shelter MCP не является generic shell, основным файловым доступом или отдельным источником истины. При расхождении его digest/catalog с source documents приоритет у source documents.
+6. Shelter MCP подключается через project-scoped `.codex/config.toml` и локальный STDIO launcher `mcp/run.sh`.
+7. Если сессия запущена без доступа к локальному checkout, она не должна выполнять source-bound работу по Shelter и обязана запросить локальный доступ.
+
+Transition status:
+
+```text
+Process decision: accepted and active.
+Documentation migration: completed 2026-07-10.
+Technical MCP/config setup: completed 2026-07-10.
+```
+
+Non-effect:
+
+Это решение не меняет product, game design, art direction, Godot runtime contracts или Vertical Slice scope.
+
+Related:
+
+```text
+PROJECTS_RULES.md
+AGENTS.md
+README.md
+00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
+04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md
+```
+
+---
+
 ## 3. Open / proposed items not fixed here
 
 These are not decisions in this file. Track them in:
@@ -817,12 +863,18 @@ Examples:
 - common backend/account/economy timing;
 - charity reporting and partner-shelter model;
 - legal/platform checks for ads, privacy, Chrome Web Store and claims;
-- production art gate and future Art Direction current context;
+- production art gate and future production-style requirements;
 - First Week / Day 2 implementation readiness.
 
 ---
 
 ## 4. Changelog
+
+### 2026-07-10 — D-021 accepted
+
+- Зафиксирован переход к локальному проекту ChatGPT Work/Codex поверх текущего checkout.
+- Разделены прямой файловый доступ Work/Codex и локальный domain-specific Shelter MCP.
+- Техническая очистка вынесена в отдельный Codex brief без изменения product/game/art решений.
 
 ### 2026-07-07 — decision log cleanup
 

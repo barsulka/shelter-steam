@@ -39,11 +39,13 @@ type ListDecisionsInput struct {
 }
 
 type ListDecisionsOutput struct {
-	OK        bool                `json:"ok"`
-	Area      string              `json:"area"`
-	Kind      string              `json:"kind"`
-	Decisions []KnowledgeDecision `json:"decisions"`
-	Error     string              `json:"error,omitempty"`
+	OK           bool                `json:"ok"`
+	Area         string              `json:"area"`
+	Kind         string              `json:"kind"`
+	Decisions    []KnowledgeDecision `json:"decisions"`
+	SourcePath   string              `json:"source_path"`
+	SourcePolicy string              `json:"source_policy"`
+	Error        string              `json:"error,omitempty"`
 }
 
 func (a *App) ListDecisions(_ context.Context, _ *mcp.CallToolRequest, input ListDecisionsInput) (*mcp.CallToolResult, ListDecisionsOutput, error) {
@@ -68,10 +70,12 @@ func (a *App) listDecisions(input ListDecisionsInput) (ListDecisionsOutput, erro
 		return out, err
 	}
 	out = ListDecisionsOutput{
-		OK:        true,
-		Area:      area,
-		Kind:      kind,
-		Decisions: decisionsFor(area, kind),
+		OK:           true,
+		Area:         area,
+		Kind:         kind,
+		Decisions:    decisionsFor(area, kind),
+		SourcePath:   docDecisions,
+		SourcePolicy: "Source Markdown always wins over compact catalog output.",
 	}
 	return out, nil
 }
@@ -114,7 +118,7 @@ func (a *App) decisionDigest(input DecisionDigestInput) (DecisionDigestOutput, e
 		MaxItems:       maxItems,
 		Digest:         decisionDigestFor(area, maxItems),
 		SourcePath:     docDecisions,
-		ReadFullPolicy: "Open full 02_DECISIONS.md only when exact decision wording is needed.",
+		ReadFullPolicy: "Source Markdown always wins; open 02_DECISIONS.md for authoritative wording.",
 	}
 	return out, nil
 }
@@ -174,11 +178,13 @@ type ListOpenQuestionsInput struct {
 }
 
 type ListOpenQuestionsOutput struct {
-	OK        bool           `json:"ok"`
-	Area      string         `json:"area"`
-	Status    string         `json:"status"`
-	Questions []OpenQuestion `json:"questions"`
-	Error     string         `json:"error,omitempty"`
+	OK           bool           `json:"ok"`
+	Area         string         `json:"area"`
+	Status       string         `json:"status"`
+	Questions    []OpenQuestion `json:"questions"`
+	SourcePath   string         `json:"source_path"`
+	SourcePolicy string         `json:"source_policy"`
+	Error        string         `json:"error,omitempty"`
 }
 
 func (a *App) ListOpenQuestions(_ context.Context, _ *mcp.CallToolRequest, input ListOpenQuestionsInput) (*mcp.CallToolResult, ListOpenQuestionsOutput, error) {
@@ -203,10 +209,12 @@ func (a *App) listOpenQuestions(input ListOpenQuestionsInput) (ListOpenQuestions
 		return out, err
 	}
 	out = ListOpenQuestionsOutput{
-		OK:        true,
-		Area:      area,
-		Status:    status,
-		Questions: openQuestionsFor(area, status),
+		OK:           true,
+		Area:         area,
+		Status:       status,
+		Questions:    openQuestionsFor(area, status),
+		SourcePath:   docOpenQuestions,
+		SourcePolicy: "Source Markdown always wins over compact catalog output.",
 	}
 	return out, nil
 }
@@ -252,7 +260,7 @@ func (a *App) openQuestionsDigest(input OpenQuestionsDigestInput) (OpenQuestions
 		Status:         status,
 		Digest:         openQuestionsDigestFor(area, status),
 		SourcePath:     docOpenQuestions,
-		ReadFullPolicy: "Open full 03_OPEN_QUESTIONS.md only when exact question wording or sources are needed.",
+		ReadFullPolicy: "Source Markdown always wins; open 03_OPEN_QUESTIONS.md for authoritative wording and status.",
 	}
 	return out, nil
 }
@@ -262,10 +270,11 @@ type ListRoadmapsInput struct {
 }
 
 type ListRoadmapsOutput struct {
-	OK       bool               `json:"ok"`
-	Area     string             `json:"area"`
-	Roadmaps []KnowledgeRoadmap `json:"roadmaps"`
-	Error    string             `json:"error,omitempty"`
+	OK           bool               `json:"ok"`
+	Area         string             `json:"area"`
+	Roadmaps     []KnowledgeRoadmap `json:"roadmaps"`
+	SourcePolicy string             `json:"source_policy"`
+	Error        string             `json:"error,omitempty"`
 }
 
 func (a *App) ListRoadmaps(_ context.Context, _ *mcp.CallToolRequest, input ListRoadmapsInput) (*mcp.CallToolResult, ListRoadmapsOutput, error) {
@@ -285,9 +294,10 @@ func (a *App) listRoadmaps(input ListRoadmapsInput) (ListRoadmapsOutput, error) 
 		return out, err
 	}
 	out = ListRoadmapsOutput{
-		OK:       true,
-		Area:     area,
-		Roadmaps: roadmapsFor(area),
+		OK:           true,
+		Area:         area,
+		Roadmaps:     roadmapsFor(area),
+		SourcePolicy: "Cataloged roadmap files are authoritative; source Markdown always wins.",
 	}
 	return out, nil
 }
@@ -303,6 +313,7 @@ type LatestHandoffOutput struct {
 	Area           string             `json:"area"`
 	Handoff        *KnowledgeHandoff  `json:"handoff,omitempty"`
 	MatchedHandoff []KnowledgeHandoff `json:"matched_handoffs,omitempty"`
+	SourcePolicy   string             `json:"source_policy"`
 	Error          string             `json:"error,omitempty"`
 }
 
@@ -345,6 +356,7 @@ func (a *App) latestHandoff(input LatestHandoffInput) (LatestHandoffOutput, erro
 		Area:           area,
 		Handoff:        &handoff,
 		MatchedHandoff: matches,
+		SourcePolicy:   "HANDOFF_INDEX and handoff source Markdown always win over compact catalog output.",
 	}, nil
 }
 

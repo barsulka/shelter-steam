@@ -1,6 +1,7 @@
 # CODEX — Current Implementation Context
 
 Дата создания: 2026-07-07
+Обновлено: 2026-07-10
 Статус: active current-summary
 Владелец: Codex / Project Manager
 Назначение: короткий актуальный dev/Codex вход без перечитывания всего `CODEX_STATUS.md` и старых brief-файлов.
@@ -40,7 +41,8 @@ Current truth:
 
 ```text
 Godot runtime is source of truth.
-Shelter MCP is preferred local bridge.
+ChatGPT Work/Codex reads the local checkout directly.
+Shelter MCP is an optional local domain-specific runtime/inspection adapter.
 First Day MVP is locked at prototype/product-language level.
 Next likely implementation direction: Day 2 / First Week slice.
 ```
@@ -50,13 +52,13 @@ Active roadmap / current task:
 ```text
 Product roadmap: STEAM_DESKTOP__Game_Design_Roadmap_v2.md
 Current product task: R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
-Current MCP task in parallel: Knowledge polish / dashboard and decision digest tools
+Completed workflow/MCP task: ChatGPT Work And Local MCP Migration v1
 ```
 
 Current decisions:
 
 ```text
-D-007, D-016, D-017, D-018, D-019, D-020
+D-007, D-016, D-017, D-018, D-019, D-020, D-021
 ```
 
 Active open questions:
@@ -102,13 +104,17 @@ Steam/Godot project:
 steam/
 ```
 
-Preferred local ChatGPT/dev bridge:
+Local Work/Codex source access:
 
 ```text
-/Users/barsulka/GolandProjects/shelter/mcp
+/Users/barsulka/GolandProjects/shelter/shelter
 ```
 
-Shelter MCP is the preferred bridge for ChatGPT inspection/dev workflows. It exposes whitelisted Shelter tools and proxied `fs_*` filesystem access. It is not a generic shell.
+Shelter MCP source now lives under `mcp/` in the monorepo. Its accepted role is a local domain-specific adapter for whitelisted dev commands, Godot runtime/capture inspection and control, plus bounded knowledge navigation. It is not a generic shell.
+
+```text
+Local setup: .codex/config.toml + mcp/run.sh over STDIO.
+```
 
 ---
 
@@ -192,6 +198,8 @@ Implemented across completed Codex tasks:
 - First Day Art/UX visual-language pass v1.
 - Shelter MCP repo/document tooling v1/v2.
 - Shelter MCP Knowledge API v2 for decisions, open questions, roadmaps, latest handoff and task context.
+
+MCP knowledge output is validated against source documents at startup; source documents always win.
 
 Current short dev status:
 
@@ -297,6 +305,16 @@ Do not reconstruct current state by reading every old brief.
 
 ## 9. Next likely implementation direction
 
+Completed workflow/tooling slice:
+
+```text
+SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md
+```
+
+The task completed local MCP/config/docs boundaries without changing Godot/runtime behavior or product/game/art contracts.
+
+Current product follow-up:
+
 Potential next implementation slice if Producer accepts the First Week / Day 2 direction:
 
 ```text
@@ -336,6 +354,13 @@ Suggested reasoning level for Codex if assigned:
 ---
 
 ## 10. Changelog
+
+### 2026-07-10 — ChatGPT Work and local MCP migration context
+
+- Made direct local checkout access the current Work/Codex path.
+- Reclassified `mcp/` as an optional local domain-specific adapter under D-021.
+- Completed the dedicated workflow migration brief without changing the Day 2 product direction.
+- Corrective audit closed content-drift and non-interactive approval gaps without touching Godot/runtime or product contracts.
 
 ### 2026-07-09 — standard current-context navigation
 

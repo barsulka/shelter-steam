@@ -120,13 +120,13 @@ superseded docs
 8. History only if needed for evidence/regression/archaeology
 ```
 
-Если доступен Shelter MCP, предпочтительно использовать:
+Если локальный Shelter MCP уже настроен, его knowledge tools можно использовать как необязательный навигатор:
 
 ```text
 read_shelter_bootstrap_context(role=..., area=..., max_bytes=...)
 ```
 
-Этот инструмент должен отдавать Current Memory первым и не заставлять AI-сессию читать весь архив.
+Основной путь ChatGPT Work/Codex — прямое чтение локальных source documents. MCP-инструмент должен отдавать Current Memory первым и не заставлять AI-сессию читать весь архив, но его digest/catalog не заменяет source document и проигрывает ему при drift.
 
 ---
 
@@ -311,13 +311,13 @@ Knowledge GC задаёт вопросы:
 
 ---
 
-## 9. MCP Knowledge Layer direction
+## 9. Shelter MCP knowledge boundary
 
-С появлением Shelter MCP задача сжатия документации меняется.
+По D-021 Shelter MCP — локальный domain-specific runtime/inspection adapter с необязательной bounded knowledge navigation.
 
 Не нужно бесконечно ужимать все документы вручную. Нужно оптимизировать маршруты чтения.
 
-MCP должен развиваться как safe knowledge access layer:
+Knowledge tools могут оставаться safe convenience layer:
 
 ```text
 read_shelter_bootstrap_context(role, area)
@@ -330,11 +330,19 @@ future: knowledge_gc_report(area)
 
 Правило:
 
-> Документация может расти как History/Knowledge, но AI-сессии должны получать маленький актуальный срез через Current Memory и MCP.
+> Source documents остаются истиной. ChatGPT Work/Codex читает их напрямую; MCP может быстро найти маленький актуальный срез, но не должен создавать вторую вручную поддерживаемую память.
+
+Static summaries/catalogs внутри MCP допустимы только если они выводятся из source docs или валидируются против них. Drift такого каталога — технический дефект, а не новое решение проекта.
 
 ---
 
 ## 10. Changelog
+
+### 2026-07-10 — D-021 access and MCP boundary
+
+- Made direct local source-document access the primary ChatGPT Work/Codex path.
+- Reframed MCP Knowledge Layer as optional bounded navigation inside a domain-specific local adapter.
+- Added source-over-digest precedence and static-catalog drift guardrail.
 
 ### 2026-07-09 — current-context template
 

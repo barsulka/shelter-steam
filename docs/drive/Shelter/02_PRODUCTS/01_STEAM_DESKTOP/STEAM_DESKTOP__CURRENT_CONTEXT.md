@@ -277,7 +277,7 @@ High-level implemented capabilities:
 - Godot State Connector.
 - Godot Control Connector.
 - Workbench Runtime Capture Harness.
-- Shelter MCP preferred local bridge.
+- Shelter MCP runtime/capture adapter capability; active local setup transition is tracked by D-021 and the dedicated workflow brief.
 - Capture pack generation for visual review.
 
 Codex tasks must be assigned through brief files in:

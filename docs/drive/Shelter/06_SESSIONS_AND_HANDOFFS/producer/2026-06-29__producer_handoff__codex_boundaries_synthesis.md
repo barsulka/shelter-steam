@@ -49,7 +49,7 @@ Codex должен вернуть вопрос:
 
 ## Открытые вопросы
 
-- В самом RFC Producer synthesis записан, но из-за блокировки локального файлсервера на одном точечном edit статусная строка вверху файла могла остаться `accepted / docs update in progress`, хотя фактически D-016 и implementation brief уже обновлены.
+- В самом RFC Producer synthesis записан, но из-за блокировки одного точечного edit статусная строка вверху файла могла остаться `accepted / docs update in progress`, хотя фактически D-016 и implementation brief уже обновлены.
 - Следующий Codex task должен обновить `docs/repo/status/CODEX_STATUS.md` после реализации или при старте dev-серии.
 - После первой playable implementation нужен playtest checklist / readability review.
 

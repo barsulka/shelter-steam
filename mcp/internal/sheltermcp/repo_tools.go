@@ -49,7 +49,7 @@ type RiskFlag struct {
 }
 
 type GitStatusInput struct {
-	Repo string `json:"repo" jsonschema:"repo id: shelter or mcp"`
+	Repo string `json:"repo" jsonschema:"monorepo id: shelter"`
 }
 
 type GitStatusOutput struct {
@@ -75,7 +75,7 @@ func (a *App) GitStatus(ctx context.Context, _ *mcp.CallToolRequest, input GitSt
 }
 
 type GitDiffInput struct {
-	Repo     string   `json:"repo" jsonschema:"repo id: shelter or mcp"`
+	Repo     string   `json:"repo" jsonschema:"monorepo id: shelter"`
 	Paths    []string `json:"paths,omitempty" jsonschema:"optional relative paths to include"`
 	Staged   bool     `json:"staged,omitempty" jsonschema:"if true, return staged diff via git diff --cached"`
 	MaxBytes int      `json:"max_bytes,omitempty" jsonschema:"maximum diff bytes to return; default 60000, hard cap 250000"`
@@ -105,7 +105,7 @@ func (a *App) GitDiff(ctx context.Context, _ *mcp.CallToolRequest, input GitDiff
 }
 
 type GitDiffForReviewInput struct {
-	Repo             string   `json:"repo" jsonschema:"repo id: shelter or mcp"`
+	Repo             string   `json:"repo" jsonschema:"monorepo id: shelter"`
 	Paths            []string `json:"paths,omitempty" jsonschema:"optional relative paths to include"`
 	MaxBytes         int      `json:"max_bytes,omitempty" jsonschema:"maximum diff bytes to return; default 80000, hard cap 250000"`
 	IncludeRiskFlags bool     `json:"include_risk_flags,omitempty" jsonschema:"include simple path/status risk heuristics"`
@@ -214,7 +214,7 @@ func (a *App) GitDiffForReview(ctx context.Context, _ *mcp.CallToolRequest, inpu
 }
 
 type ApplyPatchInput struct {
-	Repo   string `json:"repo" jsonschema:"repo id: shelter or mcp"`
+	Repo   string `json:"repo" jsonschema:"monorepo id: shelter"`
 	Patch  string `json:"patch" jsonschema:"unified diff text to apply"`
 	DryRun *bool  `json:"dry_run,omitempty" jsonschema:"defaults to true; when false applies the patch after git apply --check"`
 }
@@ -242,7 +242,7 @@ func (a *App) ApplyPatch(ctx context.Context, _ *mcp.CallToolRequest, input Appl
 }
 
 type InsertSectionAfterHeadingInput struct {
-	Repo     string `json:"repo" jsonschema:"repo id: shelter or mcp"`
+	Repo     string `json:"repo" jsonschema:"monorepo id: shelter"`
 	Path     string `json:"path" jsonschema:"relative markdown file path"`
 	Heading  string `json:"heading" jsonschema:"exact markdown heading line, for example ## Target"`
 	Markdown string `json:"markdown" jsonschema:"markdown to insert after the matched section"`
@@ -250,7 +250,7 @@ type InsertSectionAfterHeadingInput struct {
 }
 
 type ReplaceSectionInput struct {
-	Repo     string `json:"repo" jsonschema:"repo id: shelter or mcp"`
+	Repo     string `json:"repo" jsonschema:"monorepo id: shelter"`
 	Path     string `json:"path" jsonschema:"relative markdown file path"`
 	Heading  string `json:"heading" jsonschema:"exact markdown heading line to replace"`
 	Markdown string `json:"markdown" jsonschema:"replacement markdown, normally including the same heading"`
@@ -258,7 +258,7 @@ type ReplaceSectionInput struct {
 }
 
 type AppendChangelogEntryInput struct {
-	Repo          string `json:"repo" jsonschema:"repo id: shelter or mcp"`
+	Repo          string `json:"repo" jsonschema:"monorepo id: shelter"`
 	Path          string `json:"path" jsonschema:"relative markdown file path"`
 	EntryHeading  string `json:"entry_heading" jsonschema:"new changelog entry heading"`
 	EntryMarkdown string `json:"entry_markdown" jsonschema:"markdown body for the changelog entry"`
@@ -266,7 +266,7 @@ type AppendChangelogEntryInput struct {
 }
 
 type ReplaceBetweenMarkersInput struct {
-	Repo        string `json:"repo" jsonschema:"repo id: shelter or mcp"`
+	Repo        string `json:"repo" jsonschema:"monorepo id: shelter"`
 	Path        string `json:"path" jsonschema:"relative markdown file path"`
 	StartMarker string `json:"start_marker" jsonschema:"unique line marker that starts the editable block"`
 	EndMarker   string `json:"end_marker" jsonschema:"unique line marker that ends the editable block"`
@@ -378,7 +378,7 @@ func (a *App) ReadShelterBootstrapContext(_ context.Context, _ *mcp.CallToolRequ
 }
 
 type WriteFileIfUnchangedInput struct {
-	Repo           string `json:"repo" jsonschema:"repo id: shelter or mcp"`
+	Repo           string `json:"repo" jsonschema:"monorepo id: shelter"`
 	Path           string `json:"path" jsonschema:"relative file path"`
 	ExpectedSHA256 string `json:"expected_sha256" jsonschema:"sha256 of current file content"`
 	Content        string `json:"content" jsonschema:"new file content"`
@@ -414,9 +414,9 @@ func (a *App) resolveRepo(repo string) (RepoInfo, error) {
 	case "shelter", "":
 		return validateGitRepo("shelter", a.cfg.RepoRoot)
 	case "mcp":
-		return validateGitRepo("mcp", a.cfg.SelfRepoRoot)
+		return RepoInfo{}, fmt.Errorf("repo id mcp was removed because mcp/ is a monorepo path; use repo shelter and paths under mcp/")
 	default:
-		return RepoInfo{}, fmt.Errorf("unsupported repo %q; expected shelter or mcp", repo)
+		return RepoInfo{}, fmt.Errorf("unsupported repo %q; expected shelter", repo)
 	}
 }
 

@@ -15,7 +15,7 @@
 - `CAPTURE_MANIFEST_v1.md`
 - `captures/logs/capture_run_log.txt`
 
-PNG image read через локальный файлсервер был заблокирован, поэтому image-level visual verdict не сделан.
+PNG image read был заблокирован в той сессии, поэтому image-level visual verdict не сделан.
 
 ## Ключевые выводы
 
@@ -52,7 +52,7 @@ Runtime coverage подтверждает, что Vertical Slice loop можно
 
 ## Следующий лучший шаг
 
-Врубить/обновить локальный файлсервер или предоставить доступ к PNG, затем сделать image-level Art QA.
+Предоставить доступ к PNG в локальном checkout, затем сделать image-level Art QA.
 
 После visual review — вероятный следующий Codex brief:
 

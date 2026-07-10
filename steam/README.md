@@ -81,7 +81,7 @@ prototype diagnostics, smoke checks, capture modes, or compatibility helpers.
 
 ## Project Layout
 
-- `project.godot` - Godot project settings.
+- `project.godot` - Godot project configuration.
 - `launch.sh` - main manual game entry point with local connector/control server.
 - `.agents/skills/` - repo-local Codex skills for this product.
 - `scenes/` - Godot scenes.
@@ -176,31 +176,23 @@ v2 pass adds prototype-level strip cues for first driver/helper roles,
 route/payload/van/postcard/reward/next-day readability, and review-only marker
 events. This is review evidence only, not final visual acceptance.
 
-For ChatGPT / remote local-tool inspection, prefer Shelter MCP when it is
-configured:
+ChatGPT Work/Codex reads the monorepo checkout directly. Shelter MCP is useful
+only when domain-specific Steam inspection/control is needed and its local
+adapter is configured:
 
 ```text
-/Users/barsulka/GolandProjects/shelter/mcp
-git@github.com:barsulka/shelter-mcp.git
+../mcp/
 ```
 
-Shelter MCP is a sibling Go MCP server that wraps whitelisted Steam/Desktop dev
-commands, including `workbench-capture`, capture-run listing/reading/cleanup,
+Shelter MCP is a local Go MCP server inside the monorepo that wraps whitelisted
+Steam/Desktop dev commands, including `workbench-capture`, capture-run listing/reading/cleanup,
 local Godot State Connector control runtime start/stop, selected runtime control
-actions, and `fs_*` filesystem tools proxied from the official filesystem MCP.
-It replaces the older split workflow of a separate filesystem MCP tunnel plus
-separate game launch/control commands with one Shelter MCP endpoint. Direct
-`launch.sh` and `tools/dev-vertical-slice.sh` commands remain the low-level
-local fallback.
+actions, and bounded knowledge navigation. It is not the primary filesystem
+path or a generic shell. Direct `launch.sh` and `tools/dev-vertical-slice.sh`
+commands remain valid local dev workflows.
 
-Setup is done in the sibling repo by cloning it, copying `.env.example` to
-`.env`, filling the required values, then running `./run.sh`. The runner uses
-`.env` as the source of truth, creates or updates the `tunnel-client` profile
-from it, does not reuse stale profile values, builds the Go MCP binary, checks
-or installs `@modelcontextprotocol/server-filesystem`, runs
-`doctor --explain`, and starts the tunnel. Required external prerequisites are
-Go, node/npm, `tunnel-client`, this local Shelter checkout, and an OpenAI
-tunnel/runtime API key.
+The project-scoped local setup is `.codex/config.toml` plus `mcp/run.sh` over
+STDIO from the monorepo.
 
 Run the explicit dev-only control connector with Hide / Show window controls:
 

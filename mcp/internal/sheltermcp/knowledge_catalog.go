@@ -44,6 +44,8 @@ const (
 	docKnowledgeBaseRoadmap       = "docs/drive/Shelter/00_START_HERE/KNOWLEDGE_BASE_ROADMAP.md"
 	docKnowledgeBasePolishRoadmap = "docs/drive/Shelter/00_START_HERE/KNOWLEDGE_BASE_POLISH_ROADMAP.md"
 	docSteamGameRoadmapV2         = "docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Game_Design_Roadmap_v2.md"
+	docWorkflowMigrationBrief     = "docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md"
+	docWorkflowMigrationHandoff   = "docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/codex/2026-07-10__codex_handoff__chatgpt_work_local_mcp_migration.md"
 )
 
 var validKnowledgeAreas = map[string]bool{
@@ -466,6 +468,7 @@ func decisionCatalog() []KnowledgeDecision {
 		{ID: "D-018", Title: "Vertical Slice gameplay proof unlocks systems branch", Kind: "process", Status: "accepted", Summary: "Steam Vertical Slice gameplay proof is enough for Game Designer systems work; visual proof remains separate and Art Director-owned.", SourcePath: docDecisions, Areas: []string{"steam", "mcp", "docs"}},
 		{ID: "D-019", Title: "Game Design Systems Workbench over live Godot", Kind: "technical", Status: "accepted", Summary: "Game Design Systems Workbench observes and controls accepted surfaces of the live Godot runtime; it must not become a standalone simulator.", SourcePath: docDecisions, Areas: []string{"steam", "mcp", "docs"}},
 		{ID: "D-020", Title: "Project Philosophy / Shelter Constitution", Kind: "ethics", Status: "accepted", Summary: "Project Philosophy / Constitution: Shelter makes life richer, not the warehouse; every system must first enrich the dogs' cooperative life.", SourcePath: docDecisions, Areas: []string{"all"}},
+		{ID: "D-021", Title: "ChatGPT Work local project and Shelter MCP boundary", Kind: "process", Status: "accepted", Summary: "Work/Codex reads the monorepo checkout directly; Shelter MCP is an optional local STDIO domain-specific runtime/inspection adapter, and source documents win over compact MCP output.", SourcePath: docDecisions, Areas: []string{"docs", "mcp", "generic"}},
 	}
 }
 
@@ -475,7 +478,6 @@ func openQuestionCatalog() []OpenQuestion {
 		{ID: "OQ-Steam-002", Title: "First Week scope boundary", Area: "steam", Status: "open", Owner: "Producer / Game Designer", Summary: "Hold the Day 2 / First Week boundary and decide what not to add to the next executable slice.", SourcePath: docOpenQuestions},
 		{ID: "OQ-Steam-003", Title: "Production art gate after prototype visual-language pass", Area: "steam", Status: "open", Owner: "Art Director / Producer", Summary: "Define when prototype readability becomes production visual style work and which evidence remains history-only.", SourcePath: docOpenQuestions},
 		{ID: "OQ-Docs-001", Title: "Which old docs need metadata/read_policy?", Area: "docs", Status: "open", Owner: "Project Manager / Knowledge Base Maintainer", Summary: "Choose which old capture packs, briefs and docs should be marked evidence, handoff-history or superseded first.", SourcePath: docOpenQuestions, Sources: []string{docGovernance, docSupersededMap}},
-		{ID: "OQ-Docs-002", Title: "Need current-context docs for Art Direction and Game Design?", Area: "docs", Status: "open", Owner: "Project Manager / Art Director / Game Designer", Summary: "Decide whether Art Direction and Game Design need their own current-context documents or Steam current-context is enough for now.", SourcePath: docOpenQuestions},
 		{ID: "OQ-Docs-003", Title: "Split or archive CODEX_STATUS.md by month?", Area: "docs", Status: "deferred", Owner: "Project Manager / Codex", Summary: "Deferred question about when the detailed Codex history log becomes too large and needs monthly splitting.", SourcePath: docOpenQuestions, Sources: []string{docCodexCurrentStatus, docCodexStatus}},
 		{ID: "OQ-Browser-001", Title: "Browser Extension MVP scope", Area: "browser", Status: "open", Owner: "Producer / Game Designer / future Tech Lead", Summary: "Define minimal Browser Extension MVP scope, stack, UX, data handling, sponsorship mechanics and safe claims.", SourcePath: docOpenQuestions, Sources: []string{docDecisions}},
 		{ID: "OQ-Mobile-001", Title: "Mobile product scope and stack", Area: "mobile", Status: "deferred", Owner: "Producer / future Tech Lead", Summary: "Decide whether mobile comes before Steam validation, how separate it is and which stack/shared contracts it needs.", SourcePath: docOpenQuestions},
@@ -487,14 +489,15 @@ func openQuestionCatalog() []OpenQuestion {
 
 func roadmapCatalog() []KnowledgeRoadmap {
 	return []KnowledgeRoadmap{
-		{ID: "knowledge_base_polish_roadmap", Title: "Knowledge Base Polish Roadmap", Path: docKnowledgeBasePolishRoadmap, Areas: []string{"docs", "mcp"}, Status: "active short roadmap", CurrentPhase: "Decision Catalog / dashboard entry polish, current-context template standardization, and current-status guardrails.", NextStep: "Implement decision digest and dashboard MCP tools, then continue PM current-context/status polish.", Owner: "Project Manager / Producer"},
-		{ID: "knowledge_base_roadmap", Title: "Knowledge Base Roadmap", Path: docKnowledgeBaseRoadmap, Areas: []string{"docs", "mcp"}, Status: "active roadmap", CurrentPhase: "MCP Knowledge API v2 implemented; Knowledge polish roadmap now tracks remaining fresh-session entry friction.", NextStep: "Use Knowledge Base Polish Roadmap for immediate decision/dashboard/current-context polish.", Owner: "Project Manager / Producer"},
-		{ID: "steam_game_design_roadmap_v2", Title: "Steam Desktop Game Design Roadmap v2", Path: docSteamGameRoadmapV2, Areas: []string{"steam", "game_design"}, Status: "active roadmap", CurrentPhase: "First Week / Day 2 and longer retention direction after First Day MVP prototype proof.", NextStep: "Prepare or approve R-28 Day 2 Return And Second Warm Delivery Codex brief v1.", Owner: "Game Designer / Producer"},
+		{ID: "knowledge_base_polish_roadmap", Title: "Knowledge Base Polish Roadmap", Path: docKnowledgeBasePolishRoadmap, Areas: []string{"docs", "mcp"}, Status: "active short roadmap", CurrentPhase: "D-021 local Work/Codex migration complete; compact MCP knowledge remains optional and source-validated.", NextStep: "Return to Day 2 product work; keep Current Memory and catalog validation green.", Owner: "Project Manager / Producer"},
+		{ID: "knowledge_base_roadmap", Title: "Knowledge Base Roadmap", Path: docKnowledgeBaseRoadmap, Areas: []string{"docs", "mcp"}, Status: "active roadmap", CurrentPhase: "MCP Knowledge API v2 and source/catalog drift guardrail implemented.", NextStep: "Keep Current Memory fresh and return to Day 2 product work.", Owner: "Project Manager / Producer"},
+		{ID: "steam_game_design_roadmap_v2", Title: "Steam Desktop Game Design Roadmap v2", Path: docSteamGameRoadmapV2, Areas: []string{"steam", "game_design"}, Status: "active current roadmap", CurrentPhase: "First Day MVP locked at prototype/product-language level. Next selected scope: First Week / Day 2 / longer retention.", NextStep: "R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1", Owner: "Game Designer / Producer"},
 	}
 }
 
 func handoffCatalog() []KnowledgeHandoff {
 	return []KnowledgeHandoff{
+		{Date: "2026-07-10", Title: "ChatGPT Work And Local Shelter MCP Migration", Path: docWorkflowMigrationHandoff, Roles: []string{"codex", "project_manager", "producer"}, Areas: []string{"docs", "mcp"}, Summary: "Implementation handoff for local STDIO setup, lean Work tool surface, monorepo semantics and source-catalog drift validation.", SourceType: "static-catalog-validated", priority: 200},
 		{Date: "2026-07-07", Title: "Knowledge Base Phase 2 Cleanup", Path: "docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/producer/2026-07-07__producer_pm_handoff__knowledge_base_phase_2_cleanup.md", Roles: []string{"producer", "project_manager"}, Areas: []string{"docs", "mcp"}, Summary: "Latest Producer/PM handoff for decisions, roadmaps, handoff index and current-context cleanup after Phase 2.", SourceType: "static-catalog", priority: 120},
 		{Date: "2026-07-07", Title: "Documentation Governance And Knowledge GC", Path: "docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/producer/2026-07-07__producer_handoff__documentation_governance_and_gc.md", Roles: []string{"producer", "project_manager"}, Areas: []string{"docs", "mcp"}, Summary: "Background docs/governance handoff for documentation governance, Knowledge GC and PM cleanup rules.", SourceType: "static-catalog", priority: 100},
 		{Date: "2026-07-07", Title: "Documentation Compression / Bootstrap Layer", Path: "docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/producer/2026-07-07__producer_handoff__documentation_compression_bootstrap_layer.md", Roles: []string{"producer", "project_manager"}, Areas: []string{"docs"}, Summary: "Producer handoff for Current Memory, Knowledge, History and bootstrap-layer compression.", SourceType: "static-catalog", priority: 90},
@@ -836,12 +839,12 @@ func statusDashboardFor(root, area string) ShelterStatusDashboard {
 		return ShelterStatusDashboard{
 			Area:           area,
 			CurrentFocus:   "Documentation / Knowledge Base",
-			CurrentScope:   "Fresh-session entry polish after Phase 2 cleanup",
-			CurrentPhase:   "Knowledge Base Polish Roadmap",
+			CurrentScope:   "Direct local source access with optional bounded MCP knowledge navigation",
+			CurrentPhase:   "D-021 local Work/Codex and Shelter MCP migration completed.",
 			CurrentRoadmap: docKnowledgeBasePolishRoadmap,
-			CurrentTask:    "Decision digest / dashboard plus current-context template and current-status guardrail",
+			CurrentTask:    "Keep compact catalog output source-validated; return implementation focus to the Day 2 product follow-up.",
 			ActiveDecisions: pickDecisionDigestIDs([]string{
-				"D-001", "D-002", "D-003", "D-014", "D-015", "D-017", "D-020",
+				"D-001", "D-002", "D-003", "D-014", "D-015", "D-017", "D-020", "D-021",
 			}),
 			ActiveOpenQuestions: openQuestionsDigestFor("docs", "all"),
 			BlockedByOrRisks: []string{
@@ -854,27 +857,27 @@ func statusDashboardFor(root, area string) ShelterStatusDashboard {
 				docCurrentStatus,
 				docKnowledgeBasePolishRoadmap,
 			},
-			NextBestStep: "Use MCP digest/dashboard tools for fresh sessions, then continue current-context template standardization.",
+			NextBestStep: "Use source documents directly; use MCP digests only as a validated convenience layer.",
 			Notes: []string{
 				"Fix entry friction, not history.",
-				"Do not split 02_DECISIONS.md unless static MCP catalog stops being enough.",
+				"Source documents always win over compact MCP digests and catalogs.",
 			},
 		}
 	case "mcp":
 		handoff, _ := latestHandoffFor(root, "codex", "mcp")
 		return ShelterStatusDashboard{
 			Area:           area,
-			CurrentFocus:   "Shelter MCP knowledge and safe dev bridge",
-			CurrentScope:   "Knowledge polish tools over existing Knowledge API v2",
-			CurrentPhase:   "MCP Knowledge API is evolving into compact fresh-session entry tools.",
+			CurrentFocus:   "Local Shelter MCP domain-specific runtime/inspection adapter",
+			CurrentScope:   "Whitelisted dev/runtime/capture/control tools plus optional bounded knowledge navigation",
+			CurrentPhase:   "Project-scoped local STDIO setup is complete.",
 			CurrentRoadmap: docKnowledgeBasePolishRoadmap,
-			CurrentTask:    "decision_digest, shelter_status, open_questions_digest, current_entry_digest",
+			CurrentTask:    "D-021 technical migration completed; maintain source-validation guardrails.",
 			ActiveDecisions: pickDecisionDigestIDs([]string{
-				"D-002", "D-004", "D-017", "D-019", "D-020",
+				"D-002", "D-004", "D-017", "D-019", "D-020", "D-021",
 			}),
 			ActiveOpenQuestions: openQuestionsDigestFor("docs", "all"),
 			BlockedByOrRisks: []string{
-				"Knowledge tools must remain read-only, deterministic, bounded and static-catalog/simple-rule based.",
+				"Knowledge tools must remain read-only, deterministic, bounded and validated against source documents.",
 			},
 			LatestHandoff: latestHandoffPtr(handoff),
 			ReadFirst: []string{
@@ -882,9 +885,10 @@ func statusDashboardFor(root, area string) ShelterStatusDashboard {
 				docCodexCurrentStatus,
 				docCodexImplementation,
 			},
-			NextBestStep: "Keep MCP knowledge tools compact and avoid broad search or summarization.",
+			NextBestStep: "Keep the Work-facing tool allowlist domain-specific and run catalog validation after source-doc changes.",
 			Notes: []string{
 				"Shelter MCP is not a generic shell.",
+				"Source documents always win over compact MCP digests and catalogs.",
 			},
 		}
 	case "browser":

@@ -6,6 +6,7 @@ This repository is organized as a small monorepo:
 
 - `steam/` — Windows/macOS Desktop/Steam Godot game.
 - `chrome/` — placeholder workspace for the future Browser Extension.
+- `mcp/` — local Shelter-specific MCP runtime/inspection adapter.
 - `docs/` — shared project documentation and long-term local memory.
 
 ## Core Documents
@@ -21,12 +22,9 @@ This repository is organized as a small monorepo:
 
 - `steam/` — Godot desktop game workspace.
 - `chrome/` — empty future Browser Extension workspace.
+- `mcp/` — local Go MCP server for Workbench, Godot control and bounded knowledge navigation.
 - `docs/` — product, design, development, API, ADR, status, and handoff documentation.
 - `tilesets/` — shared or imported visual/game assets when relevant.
-
-Sibling local tooling repo:
-
-- `/Users/barsulka/GolandProjects/shelter/mcp` — Shelter MCP, a local Go MCP server for Steam/Desktop dev and ChatGPT inspection workflows. GitHub: `git@github.com:barsulka/shelter-mcp.git`.
 
 ## Working With Documentation
 
@@ -34,22 +32,11 @@ The local repository is the source of truth for project documentation.
 
 Concrete access rules:
 
-- Codex reads and edits documentation directly through the local filesystem of the current checkout.
-- ChatGPT reads and edits documentation through a connected local bridge. The preferred Shelter bridge is Shelter MCP when configured; its `fs_*` tools proxy the official filesystem MCP. The older `локальный файлсервер` remains a fallback.
+- ChatGPT Work and Codex in the desktop local project read and edit the current checkout directly.
+- Codex CLI / IDE also use the current checkout directly.
 - Other AI tools must use their available local-file access mechanism.
 
-Shelter MCP replaces the older split workflow of one filesystem MCP tunnel plus separate game launch/control commands with one local MCP endpoint. It exposes only whitelisted Shelter tools, including Workbench Runtime Capture, local Godot State Connector control runtime start/stop, runtime control actions, capture-run management, and proxied `fs_*` filesystem tools.
-
-Setup lives in the sibling repo:
-
-```sh
-cd /Users/barsulka/GolandProjects/shelter/mcp
-cp .env.example .env
-# fill .env
-./run.sh
-```
-
-`run.sh` builds the Go MCP binary, creates or updates the `tunnel-client` profile from `.env`, avoids reusing stale profile values, checks or installs `@modelcontextprotocol/server-filesystem`, runs `doctor --explain`, then starts the tunnel. Required external prerequisites: Go, node/npm, `tunnel-client`, a local Shelter checkout, and an OpenAI tunnel/runtime API key.
+Shelter MCP is a local STDIO domain-specific adapter for whitelisted Workbench Runtime Capture, Godot connector/control, capture management and bounded knowledge navigation. The project-scoped setup lives in `.codex/config.toml`; `mcp/run.sh` is the portable local launcher.
 
 Start significant work by reading `PROJECTS_RULES.md`, then `AGENTS.md`, then the relevant documents in `docs/` or the target subproject. For technical implementation, check `docs/repo/adr/README.md` and read the relevant accepted ADRs before changing code or runtime contracts.
 
