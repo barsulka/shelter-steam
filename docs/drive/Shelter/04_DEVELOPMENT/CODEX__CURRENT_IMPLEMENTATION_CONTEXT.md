@@ -34,6 +34,60 @@ docs/repo/status/CODEX_STATUS.md — detailed chronological history, do not read
 
 ---
 
+## Standard navigation
+
+Current truth:
+
+```text
+Godot runtime is source of truth.
+Shelter MCP is preferred local bridge.
+First Day MVP is locked at prototype/product-language level.
+Next likely implementation direction: Day 2 / First Week slice.
+```
+
+Active roadmap / current task:
+
+```text
+Product roadmap: STEAM_DESKTOP__Game_Design_Roadmap_v2.md
+Current product task: R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
+Current MCP task in parallel: Knowledge polish / dashboard and decision digest tools
+```
+
+Current decisions:
+
+```text
+D-007, D-016, D-017, D-018, D-019, D-020
+```
+
+Active open questions:
+
+```text
+OQ-Steam-001, OQ-Steam-002, OQ-Docs-001
+```
+
+Read next by task:
+
+```text
+Product implementation: GAME_DESIGN__CURRENT_CONTEXT.md + active Codex brief
+MCP implementation: relevant Shelter MCP brief in 04_DEVELOPMENT
+Architecture: docs/repo/adr/README.md
+Detailed history: CODEX_STATUS.md latest entry only by default
+```
+
+Do not read by default:
+
+```text
+old completed briefs, full CODEX_STATUS.md, old runtime captures, superseded simulator docs
+```
+
+Next best step:
+
+```text
+Run Codex only from a current brief and update current/status docs after completion.
+```
+
+---
+
 ## 1. Current repo / tooling shape
 
 Repository root:
@@ -282,6 +336,11 @@ Suggested reasoning level for Codex if assigned:
 ---
 
 ## 10. Changelog
+
+### 2026-07-09 — standard current-context navigation
+
+- Added Standard navigation block following `CURRENT_CONTEXT_TEMPLATE.md`.
+- Made implementation truth, active product/MCP tasks, decisions, open questions and read-next guidance visible near the top.
 
 ### 2026-07-07 — Shelter MCP Knowledge API v2
 

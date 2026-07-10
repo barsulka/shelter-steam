@@ -159,6 +159,14 @@ read_shelter_bootstrap_context(role=..., area=..., max_bytes=...)
 
 Для каждого активного направления должен быть один короткий current-context документ.
 
+Template source:
+
+```text
+docs/drive/Shelter/00_START_HERE/CURRENT_CONTEXT_TEMPLATE.md
+```
+
+Existing current-context docs may use a short `Standard navigation` block instead of a disruptive full rewrite.
+
 Примеры:
 
 ```text
@@ -327,6 +335,11 @@ future: knowledge_gc_report(area)
 ---
 
 ## 10. Changelog
+
+### 2026-07-09 — current-context template
+
+- Added `CURRENT_CONTEXT_TEMPLATE.md` as the standard shape for current-context docs.
+- Clarified that existing current-context docs may use a short Standard navigation block instead of disruptive full rewrites.
 
 ### 2026-07-07 — role current contexts created
 

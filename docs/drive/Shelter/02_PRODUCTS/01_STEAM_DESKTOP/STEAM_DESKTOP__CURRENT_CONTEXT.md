@@ -23,6 +23,58 @@ README.md
 
 ---
 
+## Standard navigation
+
+Current truth:
+
+```text
+Steam/Desktop = cozy idle production strip + dog community sim.
+First Day MVP locked at prototype/product-language level.
+Next selected scope: First Week / Day 2 / longer retention.
+```
+
+Active roadmap / current task:
+
+```text
+Active roadmap: STEAM_DESKTOP__Game_Design_Roadmap_v2.md
+Current task: R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
+```
+
+Current decisions:
+
+```text
+D-007, D-009, D-010, D-011, D-012, D-013, D-018, D-019, D-020
+```
+
+Active open questions:
+
+```text
+OQ-Steam-001, OQ-Steam-002, OQ-Steam-003
+```
+
+Read next by task:
+
+```text
+Game Design: GAME_DESIGN__CURRENT_CONTEXT.md
+Art/UX: ART_DIRECTION__CURRENT_CONTEXT.md
+Implementation: CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+Evidence/history: EVIDENCE_READ_POLICY.md and HANDOFF_INDEX.md first
+```
+
+Do not read by default:
+
+```text
+old captures, old completed briefs, old handoff, full CODEX_STATUS.md, superseded simulator docs
+```
+
+Next best step:
+
+```text
+Prepare/approve Day 2 Return And Second Warm Delivery brief.
+```
+
+---
+
 ## 1. Product frame
 
 Steam/Desktop — Windows/macOS Godot game в формате горизонтальной always-on-top sidescroll полоски.
@@ -327,6 +379,11 @@ Do not expand into:
 ---
 
 ## 11. Changelog
+
+### 2026-07-09 — standard current-context navigation
+
+- Added Standard navigation block following `CURRENT_CONTEXT_TEMPLATE.md`.
+- Made current truth, active roadmap/task, decisions, open questions, read-next guidance and do-not-read defaults visible near the top.
 
 ### 2026-07-07 — v1 created
 

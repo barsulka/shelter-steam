@@ -88,6 +88,25 @@ History — handoff, completed briefs, capture packs, evidence and long logs.
 
 ---
 
+## Boundary — this is not a full index
+
+`01_CURRENT_STATUS.md` отвечает на вопрос:
+
+```text
+Где проект находится сейчас?
+```
+
+Он не должен становиться полным индексом всех документов.
+
+Правило поддержки:
+
+- добавлять сюда только project-wide current truth;
+- не дублировать long decision details, roadmap history, capture evidence, handoff lists or completed Codex logs;
+- для маршрутизации использовать `BOOTSTRAP_CONTEXT.md`, current-context docs and MCP knowledge tools;
+- для history/evidence использовать `SUPERSEDED_MAP.md`, `EVIDENCE_READ_POLICY.md` and `HANDOFF_INDEX.md`.
+
+---
+
 ## Steam/Desktop — актуальный статус
 
 Steam/Desktop — Godot 4.x desktop game для Windows/macOS в формате горизонтальной always-on-top sidescroll полоски.
@@ -261,6 +280,24 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## Changelog
+
+### 2026-07-09 — Project Settings bootstrap update
+
+- Added `PROJECT_SETTINGS_BOOTSTRAP_TEXT_v1.md` with ready-to-paste thin ChatGPT Project Settings text.
+- Updated `PROJECTS_RULES.md` to reference thin Project Settings bootstrap, Shelter MCP Knowledge tools, current-context reading model and `HANDOFF_INDEX.md`.
+- Clarified that `CODEX_STATUS.md` is history, while `CODEX_CURRENT_STATUS.md` is the short dev entry point.
+
+### 2026-07-09 — current status anti-bloat boundary
+
+- Added explicit boundary that `01_CURRENT_STATUS.md` is not a full document index.
+- Clarified that routing should live in `BOOTSTRAP_CONTEXT.md`, current-context docs and MCP knowledge tools.
+- Clarified that history/evidence should be reached through `SUPERSEDED_MAP.md`, `EVIDENCE_READ_POLICY.md` and `HANDOFF_INDEX.md`.
+
+### 2026-07-09 — knowledge polish roadmap
+
+- Added `KNOWLEDGE_BASE_POLISH_ROADMAP.md` as the short roadmap for remaining fresh-session entry friction.
+- Codex next: MCP decision digest / project dashboard tools.
+- PM next: current-context template standardization and `01_CURRENT_STATUS.md` anti-bloat guardrails.
 
 ### 2026-07-07 — role current contexts
 

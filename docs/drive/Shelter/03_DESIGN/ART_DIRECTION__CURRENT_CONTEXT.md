@@ -28,6 +28,56 @@ then task-specific visual docs / evidence
 
 ---
 
+## Standard navigation
+
+Current truth:
+
+```text
+First Day v3 passed as prototype visual-language evidence.
+It is not production art, final style, shipping UX or final animation polish.
+```
+
+Active roadmap / current task:
+
+```text
+No active Art Direction implementation task is assigned right now.
+Support next Game Design slice: Day 2 / second warm delivery when scoped.
+```
+
+Current decisions:
+
+```text
+D-005, D-009, D-011, D-012, D-013, D-020
+```
+
+Active open questions:
+
+```text
+OQ-Steam-003 — production art gate after prototype visual-language pass
+```
+
+Read next by task:
+
+```text
+Current evidence: STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3 and Art_UX_Review v3
+Visual direction: D-011 docs and DOG_VISUAL_LANGUAGE_v1.md
+Evidence/history: EVIDENCE_READ_POLICY.md and HANDOFF_INDEX.md first
+```
+
+Do not read by default:
+
+```text
+old capture packs v1/v2, old Vertical Slice Art QA packs, old design handoff, full CODEX_STATUS.md
+```
+
+Next best step:
+
+```text
+Wait for assigned Art Direction task or support Day 2 visual continuity after product/game-design scope is ready.
+```
+
+---
+
 ## 1. Current visual/product status
 
 Current accepted state:
@@ -225,6 +275,11 @@ Do not start these automatically unless assigned. Current game-design next slice
 ---
 
 ## 9. Changelog
+
+### 2026-07-09 — standard current-context navigation
+
+- Added Standard navigation block following `CURRENT_CONTEXT_TEMPLATE.md`.
+- Made visual current truth, Art/UX watchpoints, relevant decisions, open question and evidence routing visible near the top.
 
 ### 2026-07-07 — v1 created
 

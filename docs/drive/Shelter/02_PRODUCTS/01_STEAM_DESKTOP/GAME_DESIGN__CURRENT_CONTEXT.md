@@ -28,6 +28,56 @@ then task-specific docs
 
 ---
 
+## Standard navigation
+
+Current truth:
+
+```text
+Game Design focus: Day 2 / First Week after locked First Day MVP.
+Day 2 should show that yesterday mattered.
+```
+
+Active roadmap / current task:
+
+```text
+Active roadmap: STEAM_DESKTOP__Game_Design_Roadmap_v2.md
+Current task: R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
+```
+
+Current decisions:
+
+```text
+D-009, D-010, D-012, D-013, D-018, D-019, D-020
+```
+
+Active open questions:
+
+```text
+OQ-Steam-001, OQ-Steam-002, OQ-Steam-003
+```
+
+Read next by task:
+
+```text
+Day 2 scope: STEAM_DESKTOP__First_Week_Direction_v1.md
+Implementation brief: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md when created
+Systems details: read R-09..R-16 docs only when needed
+```
+
+Do not read by default:
+
+```text
+old roadmaps, old capture packs, old handoff, full CODEX_STATUS.md
+```
+
+Next best step:
+
+```text
+Approve or prepare the narrow Day 2 implementation brief.
+```
+
+---
+
 ## 1. Current product state
 
 Steam/Desktop current product formula:
@@ -264,6 +314,11 @@ no full new system
 ---
 
 ## 11. Changelog
+
+### 2026-07-09 — standard current-context navigation
+
+- Added Standard navigation block following `CURRENT_CONTEXT_TEMPLATE.md`.
+- Made Day 2 current truth, R-28, decisions, open questions and read-next guidance visible near the top.
 
 ### 2026-07-07 — v1 created
 

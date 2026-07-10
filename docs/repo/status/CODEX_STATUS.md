@@ -1,5 +1,38 @@
 # Codex Status
 
+## 2026-07-09 - Shelter MCP knowledge polish dashboard
+
+- Branch: `master`
+- Source brief: `docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Knowledge_Polish_Dashboard_And_Decision_Digest_v1.md`
+- Sibling repo: `/Users/barsulka/GolandProjects/shelter/mcp`
+- Summary: Added compact deterministic fresh-session entry tools on top of Knowledge API v2: decision digest, area dashboard, open-question digest and current-entry digest.
+- Tools added:
+  - `decision_digest`
+  - `shelter_status`
+  - `open_questions_digest`
+  - `current_entry_digest`
+- Safety notes:
+  - New tools are read-only, deterministic and bounded.
+  - Implementation uses existing static catalogs and simple rules only.
+  - No generic shell, broad repo search, network calls, AI summarization, embeddings, vector DB, write behavior, product/game/art decision changes or expanded filesystem scope was added.
+- Changed files in MCP repo:
+  - `README.md`
+  - `internal/sheltermcp/knowledge_catalog.go`
+  - `internal/sheltermcp/knowledge_tools.go`
+  - `internal/sheltermcp/knowledge_tools_test.go`
+  - `internal/sheltermcp/server.go`
+- Changed files in Shelter repo:
+  - `docs/repo/status/CODEX_CURRENT_STATUS.md`
+  - `docs/repo/status/CODEX_STATUS.md`
+- Checks:
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && gofmt -w internal/sheltermcp/knowledge_catalog.go internal/sheltermcp/knowledge_tools.go internal/sheltermcp/knowledge_tools_test.go internal/sheltermcp/server.go`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go test ./...`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp`
+  - Passed: `cd /Users/barsulka/GolandProjects/shelter/mcp && git diff --check`
+- Known limitations:
+  - Dashboard content is intentionally static-catalog based, not generated from broad Markdown search.
+  - Browser and Mobile dashboards remain compact because their current-context docs are not registered yet.
+
 ## 2026-07-07 - Shelter MCP Knowledge API v2
 
 - Branch: `master`

@@ -322,6 +322,11 @@ Focus:
 
 ## 8. Changelog
 
+### 2026-07-09 — polish roadmap created
+
+- Added `KNOWLEDGE_BASE_POLISH_ROADMAP.md` for the remaining fresh-session entry friction.
+- Next polish split: Codex works on MCP decision digest / dashboard tools; PM standardizes current-context docs and adds `01_CURRENT_STATUS.md` anti-bloat guardrails.
+
 ### 2026-07-07 — Phase 2 cleanup handoff completed
 
 - Created final handoff `producer/2026-07-07__producer_pm_handoff__knowledge_base_phase_2_cleanup.md`.
