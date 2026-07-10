@@ -1,0 +1,12 @@
+.DS_Store
+
+# Local secrets and tunnel runtime.
+.env
+tunnel-client
+shelter-mcp-test/
+
+# Build/runtime output.
+/.runtime/
+/shelter-mcp
+*.log
+coverage.out
