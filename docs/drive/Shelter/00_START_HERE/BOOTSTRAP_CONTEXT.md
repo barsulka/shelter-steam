@@ -1,7 +1,7 @@
 # BOOTSTRAP_CONTEXT — Shelter compressed entry point
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-10
+Обновлено: 2026-07-12
 Статус: active bootstrap / current-summary
 Владелец: Producer / Project Manager
 Назначение: быстрый вход новой AI-сессии в актуальный контекст Shelter без чтения всей истории.
@@ -54,12 +54,13 @@ Shelter — группа тёплых, спокойных, этичных при
 
 ```text
 First Day MVP закрыт на уровне prototype/product-language proof.
-Следующий выбранный scope: First Week / Day 2 / longer retention.
+D-022 Day 2 same-chain Warm Food Delivery variation завершена на уровне prototype/product-language/runtime-evidence.
+R-29 закрыт / PASS.
 ```
 
-Главный следующий вопрос:
+Текущая граница следующей работы:
 
-> Зачем игрок возвращается завтра после первой тёплой поставки?
+> Новый executable product/game scope после R-29 не выбран. Текущие world/room/dog визуальные исследования остаются отдельным preview R&D и не становятся скрытым продолжением Day 2.
 
 Источник:
 
@@ -141,6 +142,7 @@ Implemented / available:
 - First Day MVP runtime proof.
 - First Day visible review capture packs v1/v2/v3.
 - First Day Art/UX visual-language pass v1 implemented and accepted as prototype pass.
+- Day 2 return + complete second warm delivery runtime/evidence proof implemented and accepted; R-29 closed / PASS.
 
 Latest dev status source:
 
@@ -217,6 +219,7 @@ Important accepted decisions:
 - D-018..D-019 — gameplay proof / visual proof split; Workbench over live Godot runtime.
 - D-020 — Project Philosophy / Shelter Constitution.
 - D-021 — local ChatGPT Work/Codex checkout and Shelter MCP boundary.
+- D-022 — complete same-chain Day 2 Warm Food Delivery executable scope lock.
 
 ---
 
@@ -254,7 +257,7 @@ STEAM_DESKTOP__CURRENT_CONTEXT.md
 02_DECISIONS.md
 ```
 
-Producer focus now: protect scope, confirm next product priority, decide whether First Week / Day 2 direction is ready to become implementation brief.
+Producer focus now: keep R-29 closed, evaluate current preview R&D evidence and choose any successor scope only through a separate explicit decision.
 
 ### Game Designer
 
@@ -268,7 +271,7 @@ STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md
 STEAM_DESKTOP__First_Week_Direction_v1.md
 ```
 
-Game Designer focus now: Day 2 / First Week retention, second order direction, memory/reward follow-up, House of Curiosity boundary.
+Game Designer focus now: preserve the accepted Day 2 causality and use the proposed dog-action/activity vocabulary as a coverage map, not automatic implementation scope.
 
 ### Art Director / UX
 
@@ -282,7 +285,7 @@ STEAM_DESKTOP__Art_UX_Review__First_Day_MVP_v3.md
 D-011_Cozy_Modular_Diorama_Candidate_A.md
 ```
 
-Art/UX focus now: no blocking v4 readability pass. Future work is production visual style and motion/personality polish after product language is locked.
+Art/UX focus now: evaluate current world/room/dog preview R&D without promoting it to production art, final style, runtime scope or asset approval.
 
 ### Codex / Development
 
@@ -320,7 +323,7 @@ SUPERSEDED_MAP.md
 02_DECISIONS.md
 ```
 
-PM focus now: preserve the completed D-021 local Work/Codex migration, keep the current-context layer fresh and return to the product roadmap.
+PM focus now: preserve the completed D-021 boundary and R-29 closeout, keep Current Memory synchronized and coordinate preview R&D handbacks without inferring a successor slice.
 
 ---
 
@@ -335,13 +338,13 @@ D-021 local Work/Codex migration is complete. Use the checkout directly for file
 Product / Game Design:
 
 ```text
-Turn First Week Direction v1 into a narrow next implementation brief only if Producer accepts the Day 2 direction as the next executable slice.
+D-022 is implemented and accepted; R-29 is closed / PASS. Do not infer a successor executable slice from current preview R&D.
 ```
 
-Suggested next Codex brief direction from First Week Direction v1:
+Completed Codex brief:
 
 ```text
-STEAM_DESKTOP__Codex_Brief__Second_Day_Return_And_Second_Order_v1.md
+STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
 ```
 
 Reasoning level if assigned to Codex:
@@ -359,6 +362,17 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## 10. Changelog
+
+### 2026-07-12 — R-29 closed / Day 2 accepted
+
+- Recorded the accepted Day 2 runtime/evidence result and R-29 closeout.
+- Removed the completed Day 2 brief as the current implementation task.
+- Kept world/room/dog visual work as separate preview R&D and intentionally left the next executable scope unselected.
+
+### 2026-07-11 — D-022 Day 2 scope lock
+
+- Accepted the complete same-chain Day 2 slice and made its canonical brief the next implementation entry point.
+- Closed the Day 2 readiness/boundary questions while leaving production art and platform readiness separate.
 
 ### 2026-07-10 — ChatGPT Work migration wave
 

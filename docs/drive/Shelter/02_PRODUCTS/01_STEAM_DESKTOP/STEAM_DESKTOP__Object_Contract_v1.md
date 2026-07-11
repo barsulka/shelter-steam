@@ -1,8 +1,9 @@
 # STEAM_DESKTOP — Object Contract v1
 
 Дата: 2026-06-28  
+Обновлено: 2026-07-11
 Роль документа: Game Design / Domain Model / Dev-facing Object Contract  
-Статус: draft v1  
+Статус: active v1 / D-022 Day 2 scenario addendum accepted
 Продукт: Steam/Desktop idle always-on-top strip  
 Обязателен для: Game Designer, Art Director, Codex  
 Основано на: `STEAM_DESKTOP__Vertical_Slice_Contract_v1.md`, D-009, D-010, D-011, D-012, D-013
@@ -114,9 +115,10 @@ Art taxonomy из D-011 обязательна:
 - Food Mix
 - Food Bag
 
-### Order
+### Orders
 
 - First Warm Delivery
+- Second Warm Delivery / Careful Pack (accepted Day 2 fixture scenario only)
 
 ### Tasks
 
@@ -243,6 +245,13 @@ Vertical Slice starting supplies:
 
 - Protein Packet x1;
 - Packaging Bag x1.
+
+The accepted `second_day_after_first_delivery` fixture also starts with exactly the same two units as deterministic existing stock:
+
+- Protein Packet x1;
+- Packaging Bag x1.
+
+For Day 2 this is a static fixture precondition after immutable First Day history. Storage MUST NOT generate, refill or replenish these resources, and no save/economy/route-reward rule is implied.
 
 After trip unload:
 
@@ -381,7 +390,8 @@ Packing Table contains:
 - delivered Food Mix;
 - delivered Packaging Bag;
 - current PackTask;
-- Food Bag output.
+- Food Bag output;
+- existing packing-note world cue as a presentation anchor only.
 
 ### Consumes
 
@@ -421,7 +431,8 @@ Packing Table MUST:
 - wait for Food Mix and Packaging Bag;
 - run PackTask when inputs are ready;
 - produce visible Food Bag;
-- expose Food Bag for LoadVanTask.
+- expose Food Bag for LoadVanTask;
+- in the accepted Day 2 scenario, render the optional question on its existing note cue only after the active Order publishes `day2_curiosity_question_revealed(order_id)`.
 
 ### Not Responsible For
 
@@ -431,7 +442,8 @@ Packing Table is not responsible for:
 - full decor workshop functionality;
 - toy crafting;
 - future care pack crafting;
-- order completion logic.
+- order completion logic;
+- owning Day 2 response/research state.
 
 ---
 
@@ -446,8 +458,9 @@ Packing Table is not responsible for:
 Delivery Van Endpoint contains:
 
 - loaded Food Bag;
-- linked First Warm Delivery state;
-- delivery ready state.
+- linked active Order state;
+- delivery ready state;
+- existing Van-side postcard-board world cue as a presentation anchor only.
 
 ### Consumes
 
@@ -460,8 +473,8 @@ Delivery Van Endpoint consumes:
 Delivery Van Endpoint produces:
 
 - DeliveryTask;
-- completed delivery event;
-- Postcard trigger.
+- `delivery_complete(active_order.id)`;
+- First Day Postcard trigger for `order.first_warm_delivery` only.
 
 ### Visible States
 
@@ -486,7 +499,10 @@ Delivery Van Endpoint MUST:
 - become ready only after Food Bag is visibly loaded;
 - wait for player confirmation;
 - resolve delivery calmly;
-- trigger Postcard Card.
+- for `order.first_warm_delivery`, trigger the existing Postcard Card / Comfortable Slippers flow;
+- for `order.second_warm_delivery_careful_pack`, emit only the physical `delivery_complete(order_id)` and render the Order-owned progress-note state on the existing board cue after `day2_progress_note_revealed(order_id)`.
+
+The Day 2 branch MUST NOT emit `postcard_created`, `reward_created` or create EquipItemTask. The board cue renders state; it does not own the response, create a reward surface or become a new UI/object system.
 
 ### Not Responsible For
 
@@ -631,6 +647,8 @@ Labrador SHOULD be preferred for:
 - kitchen support;
 - Food Bag carry if visually appropriate.
 
+For `order.second_warm_delivery_careful_pack`, the existing PackTask MUST be assigned deterministically to Labrador. Its `labrador_packing_care_moment(order_id)` cue/event occurs only in PackTask `in_progress`; no second/overlay task, habit, quality state or numerical bonus is created.
+
 ### Not Responsible For
 
 Labrador is not responsible for:
@@ -771,13 +789,15 @@ Resources MUST NOT:
 
 ---
 
-## 14. First Warm Delivery
+## 14. Order objects
+
+### 14.1 First Warm Delivery
 
 **Category:** Order.  
 **Role:** first soft goal.  
 **Purpose:** guide the player through the first complete co-op loop.
 
-### Contains
+#### Contains
 
 First Warm Delivery contains:
 
@@ -804,13 +824,13 @@ Reward:
 - Postcard;
 - Comfortable Slippers.
 
-### Consumes
+#### Consumes
 
 Order consumes completion events, not resources directly.
 
 Resources are consumed by Kitchen, Packing Table and Delivery Van Endpoint.
 
-### Produces
+#### Produces
 
 Order produces:
 
@@ -819,7 +839,7 @@ Order produces:
 - Postcard;
 - Comfortable Slippers reward.
 
-### Visible States
+#### Visible States
 
 - offered;
 - missing_resources;
@@ -832,13 +852,13 @@ Order produces:
 - completed;
 - reward_claimed.
 
-### Player Interaction
+#### Player Interaction
 
 Player MUST be able to open Order Card.
 
 Order Card MUST gently suggest the next action.
 
-### Not Responsible For
+#### Not Responsible For
 
 Order is not responsible for:
 
@@ -847,6 +867,105 @@ Order is not responsible for:
 - showing guilt pressure;
 - long-term quest system;
 - real charity promise.
+
+### 14.2 Second Warm Delivery / Careful Pack
+
+**Category:** Order.
+**Role:** accepted Day 2 same-chain variation and owner of its non-reward completion response state.
+**Id:** `order.second_warm_delivery_careful_pack`.
+**Purpose:** prove that the familiar Warm Food Delivery loop can repeat with one careful-packing beat while First Day remains visible.
+
+#### Contains
+
+The active Order contains:
+
+```text
+id: order.second_warm_delivery_careful_pack
+title: Аккуратная тёплая поставка
+status: offered | route_suggested | missing_resources | resources_available | production_in_progress | packed | loaded | sent | completed
+delivery_state: idle | ready_to_send | sending | delivered
+delivery_confirmed: false at fixture load
+completed: false at fixture load
+postcard_created: false throughout Day 2
+reward_created: false throughout Day 2
+equip_task_created: false throughout Day 2
+```
+
+The status order is exact:
+
+```text
+offered
+-> route_suggested
+-> missing_resources
+-> resources_available
+-> production_in_progress
+-> packed
+-> loaded
+-> sent
+-> completed
+```
+
+`sent` begins only after player confirmation creates DeliveryTask and sets `delivery_confirmed=true`. `completed` begins only after `delivery_complete(order_id)`.
+
+#### Historical boundary
+
+`first_day_history` is a separate immutable fixture/capture container and MUST preserve the First Day completed order, postcard, reward, chain, life-moment, equipped slippers, Dachshund memory, next-day hint and packing-note facts. The active Day 2 Order MUST NOT reuse those historical flags as its active state.
+
+The only active chain run is:
+
+```text
+active_chain.template_id: chain.warm_food_delivery_intro
+active_chain.run_id: run.day2.second_warm_delivery
+active_chain.route_id: route.oat_farm_intro
+active_chain.transport_id: transport.basket_bicycle
+```
+
+This is existing-chain reuse, not a new chain family. Legacy flags MAY only project the active state one way and MUST NOT overwrite history.
+
+Its state sequence is:
+
+```text
+not_started -> route_selected -> trip_active -> payload_returned -> unloading -> stored
+-> inputs_to_kitchen -> cooking -> food_mix_ready -> moving_to_packing -> packing_ready
+-> packing -> food_bag_ready -> loading_van -> ready_to_dispatch -> dispatched -> completed
+```
+
+`active_chain.current_step` starts as `none` and exposes the exact active step.
+
+#### Consumes
+
+The Order consumes task/object completion events tagged with its exact `order_id`; it never consumes resources directly or performs production work.
+
+#### Produces
+
+The active Order produces:
+
+- suggested next action and exact status progression;
+- completion state only after DeliveryTask emits `delivery_complete(order_id)`;
+- `day2_progress_note_revealed(order_id)`;
+- after the progress note is visible, `day2_curiosity_question_revealed(order_id)`;
+- calm quiet-end state.
+
+The active Order owns this non-reward response state. The existing Van-side postcard-board cue renders the progress note; the existing Packing Table note cue renders `Как паковать мягче?`. Neither anchor owns the response or gains production responsibility.
+
+#### Required task/object behavior
+
+- Every task/event in the run MUST carry `order_id=order.second_warm_delivery_careful_pack`.
+- Existing Road Sign, Basket Bicycle, Storage, Kitchen, Packing Table and Delivery Van Endpoint responsibilities remain unchanged.
+- PackTask is the existing type, assigned to `dog.labrador_intro` for this run, and emits the careful-packing cue only in `in_progress`.
+- The second order MUST NOT produce Postcard Card, Comfortable Slippers, `postcard_created`, `reward_created` or EquipItemTask.
+- First Warm Delivery retains its existing postcard/reward/equip behavior without change.
+
+#### Not Responsible For
+
+The Day 2 Order is not responsible for:
+
+- spawning or replenishing Protein Packet / Packaging Bag;
+- generating route cargo;
+- performing tasks or moving resources;
+- save/persistence/calendar/day rollover;
+- research, habit, quality, economy, reward or UI systems;
+- new route, chain, resource, station, room or production responsibility.
 
 ---
 
@@ -917,7 +1036,10 @@ Each task SHOULD have:
 - carried resource, optional;
 - animation tag;
 - status;
-- priority.
+- priority;
+- `order_id` for every order-bound task.
+
+Every accepted Day 2 task and capture event MUST use the active order id. TripTask, LoadVanTask and DeliveryTask MUST NOT retain a hardcoded First Day order id in the Day 2 run.
 
 ### Task Statuses
 
@@ -1048,3 +1170,11 @@ After this object contract, the next design task SHOULD be:
 Purpose:
 
 Define exact task sequencing, task ownership, priority rules and blocked-state behavior for the first vertical slice.
+
+## 21. Changelog
+
+### 2026-07-11 — D-022 Day 2 scenario addendum
+
+- Added the accepted second Order object while preserving every First Warm Delivery responsibility.
+- Defined deterministic fixture stock as existing stock rather than replenishment, parameterized object/task events by active order id and fixed Labrador as Day 2 PackTask assignee.
+- Assigned non-reward response state to Active Order and kept the existing Van-side board and Packing Table note as presentation anchors only.

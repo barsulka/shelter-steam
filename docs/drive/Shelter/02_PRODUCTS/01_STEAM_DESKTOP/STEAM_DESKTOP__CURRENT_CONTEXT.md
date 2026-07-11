@@ -1,6 +1,7 @@
 # STEAM_DESKTOP — Current Context
 
 Дата создания: 2026-07-07
+Обновлено: 2026-07-12
 Статус: active current-summary
 Владелец: Producer / Game Designer / Project Manager
 Назначение: короткий актуальный вход в Steam/Desktop контекст без перечитывания всей истории design, Codex, captures и handoff.
@@ -30,26 +31,27 @@ Current truth:
 ```text
 Steam/Desktop = cozy idle production strip + dog community sim.
 First Day MVP locked at prototype/product-language level.
-Next selected scope: First Week / Day 2 / longer retention.
+D-022 Day 2 same-chain Warm Food Delivery variation is complete at prototype/product-language/runtime-evidence level.
+R-29 is closed / PASS.
 ```
 
 Active roadmap / current task:
 
 ```text
 Active roadmap: STEAM_DESKTOP__Game_Design_Roadmap_v2.md
-Current task: R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
+Current task: none accepted after R-29 closeout
 ```
 
 Current decisions:
 
 ```text
-D-007, D-009, D-010, D-011, D-012, D-013, D-018, D-019, D-020
+D-007, D-009, D-010, D-011, D-012, D-013, D-018, D-019, D-020, D-022
 ```
 
 Active open questions:
 
 ```text
-OQ-Steam-001, OQ-Steam-002, OQ-Steam-003
+OQ-Steam-003
 ```
 
 Read next by task:
@@ -70,7 +72,7 @@ old captures, old completed briefs, old handoff, full CODEX_STATUS.md, supersede
 Next best step:
 
 ```text
-Prepare/approve Day 2 Return And Second Warm Delivery brief.
+No successor executable slice is accepted. Select any next implementation only through a separate product/role decision and Codex brief.
 ```
 
 ---
@@ -111,6 +113,7 @@ Active decisions:
 - D-018 — Vertical Slice gameplay proof is enough for Game Designer systems branch; visual proof is separate.
 - D-019 — Game Design Systems Workbench over live Godot runtime; no standalone simulator.
 - D-020 — Shelter makes life richer, not the warehouse.
+- D-022 — one complete same-chain Day 2 Warm Food Delivery variation was the accepted executable slice; it is now implemented and R-29 is closed.
 
 Read decision details in:
 
@@ -122,11 +125,12 @@ docs/drive/Shelter/00_START_HERE/02_DECISIONS.md
 
 ## 3. Current Steam status
 
-Current state as of 2026-07-07:
+Current state as of 2026-07-12:
 
 ```text
 First Day MVP is locked at prototype/product-language level.
-Next selected scope: First Week / Day 2 / longer retention.
+Day 2 is complete at prototype/product-language/runtime-evidence level; R-29 is closed / PASS.
+No successor executable scope is selected.
 ```
 
 Important caveat:
@@ -223,13 +227,14 @@ Do not create blocking v4 readability pass unless a new concrete visual/product 
 
 ---
 
-## 6. Current next scope: First Week / Day 2
+## 6. Completed Day 2 scope and retained boundary
 
-Accepted next direction:
+Accepted Day 2 direction, now implemented:
 
 ```text
 Day 2 should not add a big new system immediately.
 Day 2 should show that yesterday mattered.
+One complete second Warm Food Delivery on the existing route/resource/station chain is mandatory proof.
 ```
 
 First Week means:
@@ -252,6 +257,15 @@ Preferred retention pattern:
 ```text
 memory -> small behavior change -> new order variation -> gentle improvement opportunity -> optional curiosity note
 ```
+
+Accepted completion boundary:
+
+```text
+fixture return -> full visible production chain -> Labrador careful-pack cue -> visible Van load
+-> player-confirmed DeliveryTask -> small progress note -> optional post-completion question -> quiet end state
+```
+
+Production save/calendar, new route/chain/resources/stations, active habit/research/economy, production dog pipeline and platform semantics remain out of scope.
 
 Source:
 
@@ -350,13 +364,13 @@ docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 Recommended next product/design step:
 
 ```text
-Producer confirms whether First Week Direction v1 is ready to become the next implementation slice.
+R-29 is closed. Sheet A and Sheet B are also closed as PREVIEW_RESEARCH_ONLY Art `WARN` evidence with no root contract failure. Review these results and the proposed dog pipeline work only as evidence; do not promote any result into an executable slice without a separate decision and brief.
 ```
 
-If accepted, prepare a narrow Codex brief, likely:
+Completed canonical brief:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Second_Day_Return_And_Second_Order_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
 ```
 
 Suggested Codex reasoning level:
@@ -379,6 +393,17 @@ Do not expand into:
 ---
 
 ## 11. Changelog
+
+### 2026-07-12 — R-29 closed / Day 2 accepted
+
+- Recorded the Producer closeout after canonical Day 2 and First Day regression evidence passed.
+- Removed R-29 from the current-task slot and intentionally left the successor unselected.
+- Preserved production art, room, save/calendar and platform work as separate gates.
+
+### 2026-07-11 — D-022 Day 2 scope accepted
+
+- Closed readiness/boundary questions and moved the current task from brief preparation to implementation/evidence review.
+- Kept production art, dog-pipeline architecture and desktop-platform readiness as separate gates.
 
 ### 2026-07-09 — standard current-context navigation
 

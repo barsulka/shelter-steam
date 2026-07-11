@@ -13,6 +13,8 @@ FIRST_DAY_VISIBLE_CAPTURE_DIR="$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVER
 FIRST_DAY_VISIBLE_STATE_TMP_DIR="$ROOT_DIR/.runtime/workbench_capture_runs/_first_day_visible_capture_state_v2"
 FIRST_DAY_ART_UX_CAPTURE_DIR="$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3"
 FIRST_DAY_ART_UX_STATE_TMP_DIR="$ROOT_DIR/.runtime/workbench_capture_runs/_first_day_art_ux_capture_state_v3"
+DAY2_VISIBLE_CAPTURE_DIR="$ROOT_DIR/.runtime/workbench_capture_runs/day2_return_and_second_delivery_v1"
+DAY2_VISIBLE_STATE_DIR="$DAY2_VISIBLE_CAPTURE_DIR/state"
 CONNECTOR_PORT="${STATE_CONNECTOR_PORT:-8765}"
 CONNECTOR_SMOKE_PORT="${STATE_CONNECTOR_SMOKE_PORT:-18765}"
 CONNECTOR_CONTROL_SMOKE_PORT="${STATE_CONNECTOR_CONTROL_SMOKE_PORT:-18766}"
@@ -29,7 +31,7 @@ Usage:
   tools/dev-vertical-slice.sh workbench-capture [options]
 
 Options:
-  --scenario=first_delivery_from_empty|first_delivery_with_dispatch_confirmation|warm_food_delivery_mid_chain|house_of_curiosity_learning_session
+  --scenario=first_delivery_from_empty|first_delivery_with_dispatch_confirmation|warm_food_delivery_mid_chain|house_of_curiosity_learning_session|second_warm_delivery_after_first_day
   --fixture=fixture_id
   --game-seconds=180
   --sample-every-game-seconds=10
@@ -41,7 +43,8 @@ Options:
 
 The harness uses live Godot connector/control endpoints as the source of truth.
 It writes manifest.json, snapshots.jsonl, events.jsonl, stress_signals.jsonl,
-final_state.json and run.log under the selected output directory.
+fixture_initial_state.json, return_state.json, final_state.json and run.log under
+the selected output directory.
 EOF
 }
 
@@ -560,6 +563,7 @@ assert {item["id"] for item in fixtures["fixtures"]} >= {
     "first_day_empty_coop",
     "warm_food_delivery_mid_chain",
     "house_of_curiosity_learning_session",
+    "second_day_after_first_delivery",
 }
 assert load("speed.json")["speed_multiplier"] == 5
 assert load("state_speed.json")["debug"]["speed_multiplier"] == 5
@@ -657,6 +661,11 @@ PY
             house_of_curiosity_learning_session)
                 if [[ -z "$workbench_fixture" ]]; then
                     workbench_fixture="house_of_curiosity_learning_session"
+                fi
+                ;;
+            second_warm_delivery_after_first_day)
+                if [[ -z "$workbench_fixture" ]]; then
+                    workbench_fixture="second_day_after_first_delivery"
                 fi
                 ;;
             *)
@@ -817,7 +826,14 @@ snapshots_path = output_dir / "snapshots.jsonl"
 events_path = output_dir / "events.jsonl"
 stress_path = output_dir / "stress_signals.jsonl"
 final_state_path = output_dir / "final_state.json"
+fixture_initial_state_path = output_dir / "fixture_initial_state.json"
+return_state_path = output_dir / "return_state.json"
 run_log_path = output_dir / "run.log"
+expected_order_id = (
+    "order.second_warm_delivery_careful_pack"
+    if scenario_id == "second_warm_delivery_after_first_day"
+    else "order.first_warm_delivery"
+)
 
 def utc_now():
     return _datetime.datetime.now(_datetime.timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
@@ -895,10 +911,10 @@ def legacy_chain_statuses(state):
     return statuses
 
 def is_ready_to_confirm_dispatch(state):
-    order = state.get("order", {}) or {}
+    order = state.get("active_order", {}) or state.get("order", {}) or {}
     chain = first_warm_delivery_chain(state)
     return (
-        order.get("id") == "order.first_warm_delivery"
+        order.get("id") == expected_order_id
         and order.get("delivery_state") == "ready_to_send"
         and order.get("van_loaded") is True
         and order.get("delivery_confirmed") is False
@@ -946,12 +962,24 @@ def first_day_mvp_proof(state):
         event for event in events
         if str(event.get("type", "")).startswith("debug_time_advanced")
     ]
+    first_day_order_event_types = {
+        "player_confirmed_trip", "trip_task_created", "trip_returned_with_payload",
+        "resource_added_to_storage", "resource_delivered_to_kitchen",
+        "food_mix_created", "resource_delivered_to_packing_table",
+        "food_bag_created", "van_loaded", "player_confirmed_delivery",
+        "delivery_task_created", "delivery_complete", "postcard_created",
+        "reward_created", "reward_equipped",
+    }
+    first_day_order_events = [event for event in events if event.get("type") in first_day_order_event_types]
+    first_day_task_events = [event for event in events if event.get("type") == "task_created"]
     stress_signals = state.get("stress_test_signals", {}) or {}
     proof.update({
         "first_day.postcard_life_moment_seen": first_day.get("postcard_life_moment_seen") is True,
         "first_day.first_reward_equipped": first_day.get("first_reward_equipped") is True,
         "first_day.first_memory_added": first_day.get("first_memory_added") is True,
         "first_day.next_day_hint_available": first_day.get("next_day_hint_available") is True,
+        "first_day.required_events_order_id": bool(first_day_order_events) and all((event.get("payload") or {}).get("order_id") == "order.first_warm_delivery" for event in first_day_order_events),
+        "first_day.tasks_order_id": bool(first_day_task_events) and all((event.get("payload") or {}).get("order_id") == "order.first_warm_delivery" for event in first_day_task_events),
         "event.dog_noticed_postcard": "dog_noticed_postcard" in event_types,
         "event.dog_received_reward": "dog_received_reward" in event_types,
         "event.first_day_memory_added": "first_day_memory_added" in event_types,
@@ -993,6 +1021,218 @@ def first_day_mvp_proof(state):
     })
     return proof
 
+def day2_scenario_proof(fixture_state, return_snapshot, final_state, captured_events, observed_tasks):
+    expected_history = {
+        "order_id": "order.first_warm_delivery",
+        "delivery_confirmed": True,
+        "postcard_visible": True,
+        "reward_available": True,
+        "chain_complete": True,
+        "postcard_life_moment_seen": True,
+        "first_reward_equipped": True,
+        "first_memory_added": True,
+        "next_day_hint_available": True,
+        "dachshund": {
+            "slippers_equipped": True,
+            "memory_id": "memory.first_warm_delivery",
+            "memory_text": "Помнит первую тёплую поставку",
+        },
+        "packing_note_visible": True,
+    }
+    expected_initial_order = {
+        "id": "order.second_warm_delivery_careful_pack",
+        "title": "Аккуратная тёплая поставка",
+        "status": "offered",
+        "delivery_state": "idle",
+        "delivery_confirmed": False,
+        "completed": False,
+        "postcard_created": False,
+        "reward_created": False,
+        "equip_task_created": False,
+    }
+    expected_initial_chain = {
+        "template_id": "chain.warm_food_delivery_intro",
+        "run_id": "run.day2.second_warm_delivery",
+        "state": "not_started",
+        "current_step": "none",
+        "route_id": "route.oat_farm_intro",
+        "transport_id": "transport.basket_bicycle",
+    }
+    expected_initial_day2 = {
+        "return_moment_seen": False,
+        "yesterday_postcard_visible": True,
+        "dachshund_slippers_visible": True,
+        "dachshund_memory_inspectable": True,
+        "packing_note_visible": True,
+        "second_order_available": True,
+        "return_has_no_urgent_prompt": True,
+        "absence_penalty_applied": False,
+        "labrador_packing_care_moment_seen": False,
+        "second_delivery_completed": False,
+        "second_feedback_visible": False,
+        "curiosity_question_available": False,
+        "curiosity_is_optional_hint": False,
+        "quiet_end_state_reached": False,
+    }
+    expected_return_order = {
+        **expected_initial_order,
+        "status_history": ["offered"],
+        "route_started": False,
+        "van_loaded": False,
+    }
+    expected_return_chain = {
+        **expected_initial_chain,
+        "state_history": ["not_started"],
+    }
+    expected_return_day2 = {
+        **expected_initial_day2,
+        "return_moment_seen": True,
+    }
+    expected_return_storage = {
+        "oat_crate": 0,
+        "pumpkin_crate": 0,
+        "protein_packet": 1,
+        "food_mix": 0,
+        "packaging_bag": 1,
+        "food_bag": 0,
+    }
+    expected_order_history = [
+        "offered", "route_suggested", "missing_resources", "resources_available",
+        "production_in_progress", "packed", "loaded", "sent", "completed",
+    ]
+    expected_chain_history = [
+        "not_started", "route_selected", "trip_active", "payload_returned", "unloading",
+        "stored", "inputs_to_kitchen", "cooking", "food_mix_ready", "moving_to_packing",
+        "packing_ready", "packing", "food_bag_ready", "loading_van", "ready_to_dispatch",
+        "dispatched", "completed",
+    ]
+    required_event_types = [
+        "player_confirmed_trip", "trip_task_created", "trip_returned_with_payload",
+        "resource_added_to_storage", "resource_delivered_to_kitchen", "food_mix_created",
+        "resource_delivered_to_packing_table", "labrador_packing_care_moment",
+        "food_bag_created", "van_loaded", "player_confirmed_delivery",
+        "delivery_task_created", "delivery_complete", "day2_progress_note_revealed",
+        "day2_curiosity_question_revealed",
+    ]
+    event_types = [str(event.get("type", "")) for event in captured_events]
+    event_indices = {
+        event_type: next((index for index, event in enumerate(captured_events) if event.get("type") == event_type), -1)
+        for event_type in required_event_types
+    }
+    required_events = [event for event in captured_events if event.get("type") in required_event_types]
+    storage_events = [event for event in captured_events if event.get("type") == "resource_added_to_storage"]
+    kitchen_events = [event for event in captured_events if event.get("type") == "resource_delivered_to_kitchen"]
+    packing_events = [event for event in captured_events if event.get("type") == "resource_delivered_to_packing_table"]
+    trip_event = next((event for event in captured_events if event.get("type") == "trip_returned_with_payload"), {})
+    care_event = next((event for event in captured_events if event.get("type") == "labrador_packing_care_moment"), {})
+    mix_event = next((event for event in captured_events if event.get("type") == "food_mix_created"), {})
+    bag_event = next((event for event in captured_events if event.get("type") == "food_bag_created"), {})
+    van_event = next((event for event in captured_events if event.get("type") == "van_loaded"), {})
+    status_events = [event for event in captured_events if event.get("type") == "active_order_status_changed"]
+    resources_available_index = next((index for index, event in enumerate(captured_events) if event.get("type") == "active_order_status_changed" and (event.get("payload") or {}).get("to") == "resources_available"), -1)
+    sent_status_index = next((index for index, event in enumerate(captured_events) if event.get("type") == "active_order_status_changed" and (event.get("payload") or {}).get("to") == "sent"), -1)
+    storage_event_indices = [index for index, event in enumerate(captured_events) if event.get("type") == "resource_added_to_storage"]
+    forbidden_event_types = {"postcard_created", "reward_created", "reward_equipped", "dog_received_reward", "dog_equipped_first_reward"}
+    created_task_events = [event for event in captured_events if event.get("type") == "task_created"]
+    created_task_types = {str((event.get("payload") or {}).get("task_type", "")) for event in created_task_events}
+    expected_task_types = {"TripTask", "UnloadTask", "CarryTask", "CookTask", "PackTask", "LoadVanTask", "DeliveryTask"}
+
+    fixture_order = fixture_state.get("active_order", {}) or {}
+    fixture_chain = fixture_state.get("active_chain", {}) or {}
+    fixture_day2 = fixture_state.get("day2", {}) or {}
+    fixture_inventory = ((fixture_state.get("inventories", {}) or {}).get("storage", {}) or {})
+    fixture_tokens = fixture_state.get("tokens", {}) or {}
+    return_day2 = return_snapshot.get("day2", {}) or {}
+    return_resources = return_snapshot.get("resources", {}) or {}
+    return_storage = ((return_resources.get("inventories", {}) or {}).get("storage", {}) or {})
+    return_tokens = return_resources.get("tokens", []) or []
+    normalized_return_tokens = {
+        str(token.get("internal_resource_id", "")): {
+            "location": token.get("location"),
+            "visible": token.get("visible"),
+            "from_payload": token.get("from_payload"),
+            "carried_by": token.get("carried_by"),
+        }
+        for token in return_tokens
+        if isinstance(token, dict)
+    }
+    expected_return_tokens = {
+        "protein_packet": {
+            "location": "storage",
+            "visible": True,
+            "from_payload": False,
+            "carried_by": None,
+        },
+        "packaging_bag": {
+            "location": "storage",
+            "visible": True,
+            "from_payload": False,
+            "carried_by": None,
+        },
+    }
+    return_tasks = return_snapshot.get("tasks", []) or []
+    final_order = final_state.get("active_order", {}) or {}
+    final_chain = final_state.get("active_chain", {}) or {}
+    final_day2 = final_state.get("day2", {}) or {}
+    food_bag = resource_token(final_state, "food_bag")
+
+    proof = {
+        "fixture.first_day_history_exact": fixture_state.get("first_day_history") == expected_history,
+        "fixture.active_order_exact": all(fixture_order.get(key) == value for key, value in expected_initial_order.items()),
+        "fixture.active_chain_exact": all(fixture_chain.get(key) == value for key, value in expected_initial_chain.items()),
+        "fixture.day2_initial_exact": fixture_day2 == expected_initial_day2,
+        "fixture.storage_exact": fixture_inventory == {"protein_packet": 1, "packaging_bag": 1},
+        "fixture.tokens_exact": set(fixture_tokens) == {"protein_packet", "packaging_bag"},
+        "return.first_day_history_exact": return_snapshot.get("first_day_history") == expected_history,
+        "return.active_order_exact": (return_snapshot.get("active_order") or {}) == expected_return_order,
+        "return.active_chain_exact": (return_snapshot.get("active_chain") or {}) == expected_return_chain,
+        "return.day2_exact": return_day2 == expected_return_day2,
+        "return.storage_exact": return_storage == expected_return_storage,
+        "return.tokens_exact": normalized_return_tokens == expected_return_tokens and len(return_tokens) == 2,
+        "return.no_non_idle_tasks": bool(return_tasks) and all(task.get("type") == "IdleTask" for task in return_tasks),
+        "continuity.first_day_history_immutable": final_state.get("first_day_history") == expected_history,
+        "order.status_history": final_order.get("status_history", []),
+        "order.status_history_exact": final_order.get("status_history", []) == expected_order_history,
+        "chain.state_history": final_chain.get("state_history", []),
+        "chain.state_history_exact": final_chain.get("state_history", []) == expected_chain_history,
+        "order.completed": final_order.get("status") == "completed" and final_order.get("completed") is True,
+        "order.delivery_state_delivered": final_order.get("delivery_state") == "delivered",
+        "order.delivery_confirmed": final_order.get("delivery_confirmed") is True,
+        "order.no_postcard": final_order.get("postcard_created") is False,
+        "order.no_reward": final_order.get("reward_created") is False,
+        "order.no_equip_task": final_order.get("equip_task_created") is False,
+        "chain.completed": final_chain.get("state") == "completed" and final_chain.get("current_step") == "complete",
+        "day2.care_seen": final_day2.get("labrador_packing_care_moment_seen") is True,
+        "day2.second_delivery_completed": final_day2.get("second_delivery_completed") is True,
+        "day2.second_feedback_visible": final_day2.get("second_feedback_visible") is True,
+        "day2.curiosity_question_available": final_day2.get("curiosity_question_available") is True,
+        "day2.curiosity_is_optional_hint": final_day2.get("curiosity_is_optional_hint") is True,
+        "day2.quiet_end_state_reached": final_day2.get("quiet_end_state_reached") is True,
+        "events.required_present": all(event_indices[event_type] >= 0 for event_type in required_event_types),
+        "events.required_order": [event_indices[event_type] for event_type in required_event_types] == sorted(event_indices[event_type] for event_type in required_event_types),
+        "events.required_order_ids": bool(required_events) and all((event.get("payload") or {}).get("order_id") == expected_order_id for event in required_events),
+        "events.storage_oat_pumpkin": {str((event.get("payload") or {}).get("resource_id", "")) for event in storage_events} == {"oat_crate", "pumpkin_crate"},
+        "events.storage_before_resources_available": bool(storage_event_indices) and resources_available_index > max(storage_event_indices),
+        "events.kitchen_resources": {str((event.get("payload") or {}).get("resource_id", "")) for event in kitchen_events} == {"oat_crate", "pumpkin_crate", "protein_packet"},
+        "events.packing_resources": {str((event.get("payload") or {}).get("resource_id", "")) for event in packing_events} == {"food_mix", "packaging_bag"},
+        "events.trip_payload_exact": (trip_event.get("payload") or {}).get("route_id") == "route.oat_farm_intro" and (trip_event.get("payload") or {}).get("payload") == ["oat_crate", "pumpkin_crate"],
+        "events.food_mix_exact": (mix_event.get("payload") or {}).get("resource_id") == "food_mix",
+        "events.food_bag_exact": (bag_event.get("payload") or {}).get("resource_id") == "food_bag",
+        "events.van_food_bag_exact": (van_event.get("payload") or {}).get("resource_id") == "food_bag",
+        "events.care_in_progress_labrador": (care_event.get("payload") or {}).get("task_status") == "in_progress" and (care_event.get("payload") or {}).get("assigned_dog_id") == "dog.labrador_intro",
+        "events.confirm_then_delivery_task_then_sent_then_complete": 0 <= event_indices["player_confirmed_delivery"] < event_indices["delivery_task_created"] < sent_status_index < event_indices["delivery_complete"],
+        "events.feedback_after_delivery_complete": event_indices["delivery_complete"] < event_indices["day2_progress_note_revealed"] < event_indices["day2_curiosity_question_revealed"],
+        "events.forbidden_absent": forbidden_event_types.isdisjoint(event_types),
+        "tasks.required_types_created": expected_task_types.issubset(created_task_types),
+        "tasks.all_day2_order_id": bool(created_task_events) and all((event.get("payload") or {}).get("order_id") == expected_order_id for event in created_task_events),
+        "tasks.no_equip_item": "EquipItemTask" not in created_task_types,
+        "tasks.observed_order_ids": bool(observed_tasks) and all(task.get("order_id") == expected_order_id for task in observed_tasks.values()),
+        "food_bag.delivered": food_bag.get("location") == "delivered_to_shelter" and food_bag.get("semantic_state") == "delivered" and food_bag.get("delivery_id") == expected_order_id,
+        "no_research_started": not (final_state.get("house_of_curiosity", {}) or {}).get("active_research"),
+        "status_transition_events_exact": [str((event.get("payload") or {}).get("to", "")) for event in status_events] == expected_order_history[1:],
+    }
+    return proof
+
 output_dir.mkdir(parents=True, exist_ok=True)
 for path in (snapshots_path, events_path, stress_path):
     path.write_text("", encoding="utf-8")
@@ -1019,15 +1259,29 @@ append_log(f"Loading fixture {fixture_id}")
 load_response = request("POST", "/control/runtime/fixture/load", {"fixture": fixture_id})
 require_ok(load_response, "runtime.fixture.load")
 
+fixture_source_path = pathlib.Path(steam_root) / "resources" / "game_systems" / "fixtures" / f"{fixture_id}.json"
+fixture_payload = json.loads(fixture_source_path.read_text(encoding="utf-8"))
+fixture_initial_state = fixture_payload.get("state", {}) or {}
+fixture_initial_state_path.write_text(json.dumps(fixture_initial_state, ensure_ascii=False, indent=2), encoding="utf-8")
+return_state = request("GET", "/state")
+return_state_path.write_text(json.dumps(return_state, ensure_ascii=False, indent=2), encoding="utf-8")
+
 append_log(f"Setting speed multiplier to {speed_multiplier}x")
 speed_response = request("POST", "/control/runtime/speed", {"multiplier": speed_multiplier})
 require_ok(speed_response, "runtime.speed.set")
 
 setup_actions = [
-    {"action": "fixture.load", "fixture_id": fixture_id},
+    {
+        "action": "fixture.load",
+        "fixture_id": fixture_id,
+        "active_order_id": load_response.get("active_order_id"),
+        "active_chain_run_id": load_response.get("active_chain_run_id"),
+    },
+    {"action": "capture.fixture_initial_state", "output": "fixture_initial_state.json"},
+    {"action": "capture.return_state", "output": "return_state.json"},
     {"action": "runtime.speed.set", "speed_multiplier": speed_multiplier},
 ]
-if scenario_id in {"first_delivery_from_empty", "first_delivery_with_dispatch_confirmation", "warm_food_delivery_mid_chain"}:
+if scenario_id in {"first_delivery_from_empty", "first_delivery_with_dispatch_confirmation", "warm_food_delivery_mid_chain", "second_warm_delivery_after_first_day"}:
     append_log("Starting accepted test route")
     route_response = request("POST", "/control/runtime/route/start")
     require_ok(route_response, "runtime.route.start")
@@ -1045,6 +1299,8 @@ elif scenario_id == "house_of_curiosity_learning_session":
 expected_snapshot_count = int(math.ceil(requested_game_seconds / sample_every_game_seconds))
 current_game_time = 0.0
 seen_event_keys = set()
+captured_events = []
+observed_tasks = {}
 events_written = 0
 stress_lines_written = 0
 last_state = None
@@ -1078,6 +1334,7 @@ for sample_index in range(1, expected_snapshot_count + 1):
         if event_key in seen_event_keys:
             continue
         seen_event_keys.add(event_key)
+        captured_events.append(event)
         write_jsonl(events_path, {
             "run_id": run_id,
             "sample_index": sample_index,
@@ -1088,6 +1345,11 @@ for sample_index in range(1, expected_snapshot_count + 1):
             "event": event,
         })
         events_written += 1
+
+    for task in state.get("tasks", []) or []:
+        if task.get("type") == "IdleTask":
+            continue
+        observed_tasks[str(task.get("id", ""))] = task
 
     if "stress_test_signals" in state:
         write_jsonl(stress_path, {
@@ -1102,7 +1364,7 @@ for sample_index in range(1, expected_snapshot_count + 1):
         stress_lines_written += 1
 
     if (
-        scenario_id == "first_delivery_with_dispatch_confirmation"
+        scenario_id in {"first_delivery_with_dispatch_confirmation", "second_warm_delivery_after_first_day"}
         and dispatch_confirmation_response is None
         and is_ready_to_confirm_dispatch(state)
     ):
@@ -1125,6 +1387,7 @@ final_state_path.write_text(json.dumps(last_state, ensure_ascii=False, indent=2)
 
 dispatch_proof = None
 first_day_proof = None
+day2_proof = None
 if scenario_id == "first_delivery_with_dispatch_confirmation":
     if not dispatch_ready_observed or dispatch_confirmation_response is None:
         raise RuntimeError("first_delivery_with_dispatch_confirmation did not observe ready_to_dispatch before confirmation")
@@ -1142,6 +1405,59 @@ if scenario_id == "first_delivery_with_dispatch_confirmation":
     ]
     if failed_first_day_proof:
         raise RuntimeError(f"first-day MVP capture did not reach final proof values: {failed_first_day_proof}; proof={json.dumps(first_day_proof, ensure_ascii=False)}")
+elif scenario_id == "second_warm_delivery_after_first_day":
+    if not dispatch_ready_observed or dispatch_confirmation_response is None:
+        raise RuntimeError("second_warm_delivery_after_first_day did not observe ready_to_dispatch before confirmation")
+    day2_proof = day2_scenario_proof(fixture_initial_state, return_state, last_state, captured_events, observed_tasks)
+
+    export_response = request("POST", "/control/runtime/state/export")
+    require_ok(export_response, "runtime.state.export for unapproved-order guard")
+    unapproved_order_state = json.loads(json.dumps(export_response.get("state", {})))
+    portable_state = unapproved_order_state.get("state", {})
+    portable_order = portable_state.get("active_order", {})
+    portable_order.update({
+        "id": "order.unapproved_probe",
+        "status": "loaded",
+        "delivery_state": "ready_to_send",
+        "delivery_confirmed": False,
+        "completed": False,
+    })
+    portable_chain = portable_state.get("active_chain", {})
+    portable_chain.update({
+        "state": "ready_to_dispatch",
+        "current_step": "player_confirms_dispatch",
+    })
+    portable_flags = portable_state.get("flags", {})
+    portable_flags.update({
+        "route_started": True,
+        "van_loaded": True,
+        "delivery_confirmed": False,
+        "delivery_complete": False,
+        "chain_complete": False,
+        "postcard_visible": False,
+    })
+    portable_state["order"] = {
+        "state": "loaded",
+        "delivery_state": "ready_to_send",
+    }
+    import_response = request("POST", "/control/runtime/state/import", unapproved_order_state)
+    require_ok(import_response, "runtime.state.import for unapproved-order guard")
+    unapproved_order_response = request("POST", "/control/runtime/delivery/confirm")
+    unapproved_order_problems = (unapproved_order_response.get("validation") or {}).get("problems", [])
+    day2_proof["control.unapproved_order_confirm_rejected"] = (
+        unapproved_order_response.get("ok") is False
+        and unapproved_order_response.get("error") == "dispatch_confirmation_invalid_state"
+        and unapproved_order_problems == ["unexpected_order"]
+    )
+    setup_actions.append({
+        "action": "runtime.delivery.confirm.unapproved_order_guard",
+        "order_id": "order.unapproved_probe",
+        "rejected": unapproved_order_response.get("ok") is False,
+        "validation_problems": unapproved_order_problems,
+    })
+    failed_day2_proof = [key for key, value in day2_proof.items() if isinstance(value, bool) and value is not True]
+    if failed_day2_proof:
+        raise RuntimeError(f"Day 2 capture proof failed keys: {failed_day2_proof}; proof={json.dumps(day2_proof, ensure_ascii=False)}")
 
 snapshot_count = sum(1 for _ in snapshots_path.open("r", encoding="utf-8"))
 if snapshot_count != expected_snapshot_count:
@@ -1170,12 +1486,15 @@ manifest = {
         "events": "events.jsonl",
         "stress_signals": "stress_signals.jsonl",
         "final_state": "final_state.json",
+        "fixture_initial_state": "fixture_initial_state.json",
+        "return_state": "return_state.json",
         "run_log": "run.log",
     },
     "command_line": command_line,
     "setup_actions": setup_actions,
     "dispatch_confirmation_proof": dispatch_proof,
     "first_day_mvp_proof": first_day_proof,
+    "day2_scenario_proof": day2_proof,
     "exit_status": "success",
     "known_warnings": known_warnings,
 }
@@ -1189,6 +1508,95 @@ PY
             echo "workbench-capture left Godot running as pid $workbench_godot_pid"
         fi
         echo "workbench-capture output: $workbench_output_dir_abs"
+        ;;
+    day-2-visible-capture)
+        rm -rf "$DAY2_VISIBLE_CAPTURE_DIR"
+        mkdir -p "$DAY2_VISIBLE_CAPTURE_DIR"
+
+        "$GODOT_BIN" --path "$ROOT_DIR" --scene res://scenes/prototypes/vertical_slice/vertical_slice_demo.tscn -- --vertical-day-2-visible-capture --vertical-capture-dir="$DAY2_VISIBLE_CAPTURE_DIR"
+
+        "$ROOT_DIR/tools/dev-vertical-slice.sh" workbench-capture \
+            --scenario=second_warm_delivery_after_first_day \
+            --fixture=second_day_after_first_delivery \
+            --game-seconds=24 \
+            --sample-every-game-seconds=0.2 \
+            --speed=1 \
+            --output-dir="$DAY2_VISIBLE_STATE_DIR"
+
+        python3 - "$DAY2_VISIBLE_CAPTURE_DIR" <<'PY'
+import json
+import pathlib
+import struct
+import sys
+
+root = pathlib.Path(sys.argv[1])
+screenshots = root / "captures" / "screenshots"
+frames = root / "captures" / "video" / "day2_return_and_second_delivery_frames_1x"
+state_dir = root / "state"
+log_path = root / "captures" / "logs" / "capture_run_log.txt"
+required_screenshots = [
+    "01_day2_return_moment.png",
+    "02_day2_labrador_packing_care.png",
+    "03_day2_van_ready.png",
+    "04_day2_player_confirmed_dispatch.png",
+    "05_day2_second_delivery_progress_note.png",
+    "06_day2_curiosity_question_quiet_end.png",
+]
+
+def png_size(path):
+    data = path.read_bytes()
+    if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+        raise RuntimeError(f"{path} is not a PNG")
+    return struct.unpack(">II", data[16:24])
+
+missing = [name for name in required_screenshots if not (screenshots / name).is_file()]
+if missing:
+    raise RuntimeError(f"missing required Day 2 screenshots: {missing}")
+sizes = {name: png_size(screenshots / name) for name in required_screenshots}
+if len(set(sizes.values())) != 1:
+    raise RuntimeError(f"Day 2 native screenshots have inconsistent sizes: {sizes}")
+
+frame_files = sorted(frames.glob("frame_*.png"))
+if len(frame_files) < 8:
+    raise RuntimeError(f"expected at least 8 Day 2 native 1x frames, found {len(frame_files)}")
+for path in frame_files:
+    png_size(path)
+
+manifest = json.loads((state_dir / "manifest.json").read_text(encoding="utf-8"))
+final_state = json.loads((state_dir / "final_state.json").read_text(encoding="utf-8"))
+proof = manifest.get("day2_scenario_proof") or {}
+failed = [key for key, value in proof.items() if isinstance(value, bool) and value is not True]
+if failed:
+    raise RuntimeError(f"Day 2 state proof failed keys: {failed}")
+if final_state.get("active_order", {}).get("status") != "completed":
+    raise RuntimeError("Day 2 final active order is not completed")
+if final_state.get("day2", {}).get("quiet_end_state_reached") is not True:
+    raise RuntimeError("Day 2 final quiet end state was not reached")
+
+log_text = log_path.read_text(encoding="utf-8")
+if "capture_profile=day2_return_and_second_warm_delivery_v1" not in log_text:
+    raise RuntimeError("Day 2 capture log does not declare the expected profile")
+if "timing=normal" not in log_text:
+    raise RuntimeError("Day 2 native capture did not use normal timing")
+
+readme = f"""# Day 2 Return And Second Warm Delivery v1
+
+Ignored local prototype/product-language evidence for the accepted Day 2 continuation.
+
+- Native 1x named screenshots: {len(required_screenshots)} at {next(iter(sizes.values()))[0]}x{next(iter(sizes.values()))[1]}.
+- Native normal-speed frame sequence: {len(frame_files)} PNG frames.
+- State proof: `state/manifest.json` (`24` requested game seconds, `0.2` sample interval, `1x` debug speed).
+- Final state: `state/final_state.json`.
+- Fixture initial state: `state/fixture_initial_state.json`.
+- Return state before route start: `state/return_state.json`.
+
+This is prototype/product-language evidence, not production art, final animation, shipping UX or desktop-platform acceptance.
+"""
+(root / "README.md").write_text(readme, encoding="utf-8")
+print(f"day-2-visible-capture ok: {len(required_screenshots)} screenshots, {len(frame_files)} native frames")
+PY
+
+        echo "day-2-visible-capture output: $DAY2_VISIBLE_CAPTURE_DIR"
         ;;
     capture)
         rm -rf "$CAPTURE_DIR/captures/screenshots" "$CAPTURE_DIR/captures/video/vertical_slice_full_loop_short_frames" "$CAPTURE_DIR/captures/logs"
@@ -1518,7 +1926,7 @@ PY
         echo "capture-smoke wrote $png_count PNG files in a temporary capture directory"
         ;;
     *)
-        echo "Usage: tools/dev-vertical-slice.sh [interactive|all|qa|player-prototype|perf|normal|autoplay|connector|connector-control|connector-tunnel|connector-control-tunnel|smoke|connector-smoke|connector-control-smoke|runtime-foundation-smoke|workbench-capture|capture|first-day-visible-capture|first-day-art-ux-capture|capture-smoke] [--runtime-load-fixture=name|--runtime-load-save]" >&2
+        echo "Usage: tools/dev-vertical-slice.sh [interactive|all|qa|player-prototype|perf|normal|autoplay|connector|connector-control|connector-tunnel|connector-control-tunnel|smoke|connector-smoke|connector-control-smoke|runtime-foundation-smoke|workbench-capture|day-2-visible-capture|capture|first-day-visible-capture|first-day-art-ux-capture|capture-smoke] [--runtime-load-fixture=name|--runtime-load-save]" >&2
         exit 2
         ;;
 esac

@@ -1,6 +1,7 @@
 # ART_DIRECTION__CURRENT_CONTEXT — Shelter Steam/Desktop
 
 Дата создания: 2026-07-07
+Обновлено: 2026-07-12
 Статус: current-summary / art-direction current context
 Владелец: Art Director / Producer / Project Manager
 Продукт: Steam/Desktop idle always-on-top strip
@@ -35,13 +36,16 @@ Current truth:
 ```text
 First Day v3 passed as prototype visual-language evidence.
 It is not production art, final style, shipping UX or final animation polish.
+Day 2 / R-29 is complete at prototype/product-language/runtime-evidence level.
+World/room Sheet A and Sheet B are closed as PREVIEW_RESEARCH_ONLY Art WARN, with no root contract failure and no production approval.
 ```
 
 Active roadmap / current task:
 
 ```text
 No active Art Direction implementation task is assigned right now.
-Support next Game Design slice: Day 2 / second warm delivery when scoped.
+The proposed Visual Production Roadmap and World/Room Asset Vocabulary are planning/coverage documents, not an asset order.
+Sheet A/B preview loops are closed; no Sheet C, repair, import, runtime binding or production wave is authorized.
 ```
 
 Current decisions:
@@ -61,6 +65,7 @@ Read next by task:
 ```text
 Current evidence: STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3 and Art_UX_Review v3
 Visual direction: D-011 docs and DOG_VISUAL_LANGUAGE_v1.md
+World/room planning: STEAM_DESKTOP__Visual_Production_Roadmap_v1.md and STEAM_DESKTOP__World_And_Room_Asset_Vocabulary_v1.md
 Evidence/history: EVIDENCE_READ_POLICY.md and HANDOFF_INDEX.md first
 ```
 
@@ -73,7 +78,7 @@ old capture packs v1/v2, old Vertical Slice Art QA packs, old design handoff, fu
 Next best step:
 
 ```text
-Wait for assigned Art Direction task or support Day 2 visual continuity after product/game-design scope is ready.
+No successor task is selected. If separately authorized, the nearest room-production prerequisite is an authored identical-layer modular-shell spike for Dog House and Kitchen; this is not started automatically.
 ```
 
 ---
@@ -100,7 +105,8 @@ Current product state:
 
 ```text
 First Day MVP locked at prototype/product-language proof level.
-Next selected scope: First Week / Day 2 / longer retention.
+Day 2 / R-29 closed at prototype/product-language/runtime-evidence level.
+No next executable scope is selected.
 ```
 
 ---
@@ -180,7 +186,15 @@ motion/personality polish
 production visual style and asset consistency
 ```
 
-These are not blockers for Day 2 game-design scope, but they matter before production art / shipping UX.
+These did not block the completed Day 2 proof, but they remain relevant before production art / shipping UX.
+
+World/room preview result:
+
+```text
+Sheet A — Art WARN: broad ground/fence/parked-Bicycle grammar is reviewable; production terrain/material/import remains unproven.
+Sheet B — Art WARN: compatible Dog House/Kitchen room grammar and broad occupancy/function readability are reviewable;
+reusable modular reconstruction, family clearance, action readability, import/runtime and final style remain unproven.
+```
 
 ---
 
@@ -263,18 +277,24 @@ HANDOFF_INDEX.md
 Current likely future Art Direction tasks:
 
 ```text
-production visual style pass
-motion/personality polish pass
-compact-strip readability pass
-asset production rules / art bible draft
-Day 2 visual continuity review after implementation proof
+authored modular-shell R&D spike for Dog House + Kitchen, only if explicitly authorized
+world-layer or room-detail visual support for a separately accepted Codex brief
+dog Stage A layered-source / motion proof after accepted action and anchor prerequisites
+later production visual style, material grammar and asset-production rules
 ```
 
-Do not start these automatically unless assigned. Current game-design next slice is Day 2 / second warm delivery; Art Direction should support it when the product/game-design scope is ready.
+Do not start these automatically. Sheet A/B are evidence, not a hidden successor slice or production commitment.
 
 ---
 
 ## 9. Changelog
+
+### 2026-07-12 — world/room planning and preview wave closed
+
+- Added the two proposed Art planning/coverage documents to current navigation.
+- Recorded Sheet A and Sheet B formal Art `WARN` outcomes with no root contract failure.
+- Kept production terrain, reusable room shell, dog-family contact, runtime, taxonomy and final style as separate future gates.
+- Left the next executable scope unselected and prohibited automatic Sheet C / import / implementation continuation.
 
 ### 2026-07-09 — standard current-context navigation
 

@@ -350,14 +350,15 @@ paths:
   /control/runtime/delivery/confirm:
     post:
       tags: [Runtime Control]
-      summary: Confirm the accepted first delivery dispatch
+      summary: Confirm the accepted active warm-delivery dispatch
       description: >
-        Dev-only narrow action that confirms `order.first_warm_delivery` only
-        when the live runtime is already waiting at `ready_to_dispatch` /
-        `player_confirms_dispatch`, the van is loaded, and player confirmation
-        is required. Invalid state returns `ok: false` with validation details;
-        the endpoint does not accept arbitrary order, task or resource
-        mutation.
+        Dev-only narrow action that confirms the accepted active order
+        (`order.first_warm_delivery` or
+        `order.second_warm_delivery_careful_pack`) only when the live runtime is
+        already waiting at `ready_to_dispatch` / `player_confirms_dispatch`,
+        the van is loaded, and player confirmation is required. Invalid state
+        returns `ok: false` with validation details; the endpoint does not
+        accept an arbitrary order id or arbitrary task/resource mutation.
       responses:
         "200":
           description: Dispatch confirmation result or dev validation error.
@@ -523,7 +524,7 @@ components:
       additionalProperties: true
     StateSnapshot:
       type: object
-      required: [schema_version, connector, game, dogs, routes, production_chains, buildings, rooms, house_of_curiosity, economy, events, debug, order, tasks, resources, production_chain]
+      required: [schema_version, connector, game, first_day_history, active_order, active_chain, day2, dogs, routes, production_chains, buildings, rooms, house_of_curiosity, economy, events, debug, order, tasks, resources, production_chain]
       properties:
         schema_version:
           type: string
@@ -532,6 +533,14 @@ components:
           $ref: "#/components/schemas/ConnectorStatus"
         game:
           $ref: "#/components/schemas/GameState"
+        first_day_history:
+          $ref: "#/components/schemas/FirstDayHistory"
+        active_order:
+          $ref: "#/components/schemas/ActiveWarmDeliveryOrder"
+        active_chain:
+          $ref: "#/components/schemas/ActiveWarmDeliveryChain"
+        day2:
+          $ref: "#/components/schemas/Day2State"
         dogs:
           type: array
           items:
@@ -646,6 +655,8 @@ components:
           type: boolean
         first_day:
           $ref: "#/components/schemas/FirstDayState"
+        day2:
+          $ref: "#/components/schemas/Day2State"
         control_enabled:
           type: boolean
         ui_visible:
@@ -686,6 +697,140 @@ components:
         next_day_hint_text:
           type: string
           example: Завтра можно придумать, как паковать ещё аккуратнее.
+      additionalProperties: true
+    FirstDayHistory:
+      type: object
+      description: Immutable completed First Day history for deterministic Day 2 fixture evidence.
+      required: [order_id, delivery_confirmed, postcard_visible, reward_available, chain_complete, postcard_life_moment_seen, first_reward_equipped, first_memory_added, next_day_hint_available, dachshund, packing_note_visible]
+      properties:
+        order_id:
+          type: string
+          example: order.first_warm_delivery
+        delivery_confirmed:
+          type: boolean
+        postcard_visible:
+          type: boolean
+        reward_available:
+          type: boolean
+        chain_complete:
+          type: boolean
+        postcard_life_moment_seen:
+          type: boolean
+        first_reward_equipped:
+          type: boolean
+        first_memory_added:
+          type: boolean
+        next_day_hint_available:
+          type: boolean
+        dachshund:
+          type: object
+          required: [slippers_equipped, memory_id, memory_text]
+          properties:
+            slippers_equipped:
+              type: boolean
+            memory_id:
+              type: string
+              nullable: true
+              example: memory.first_warm_delivery
+            memory_text:
+              type: string
+              example: Помнит первую тёплую поставку
+          additionalProperties: true
+        packing_note_visible:
+          type: boolean
+      additionalProperties: true
+    ActiveWarmDeliveryOrder:
+      type: object
+      description: Authoritative active accepted warm-delivery order; separate from First Day history.
+      required: [id, title, status, delivery_state, delivery_confirmed, completed, postcard_created, reward_created, equip_task_created]
+      properties:
+        id:
+          type: string
+          enum: [order.first_warm_delivery, order.second_warm_delivery_careful_pack]
+        title:
+          type: string
+        status:
+          type: string
+        status_history:
+          type: array
+          items:
+            type: string
+        delivery_state:
+          type: string
+        delivery_confirmed:
+          type: boolean
+        completed:
+          type: boolean
+        postcard_created:
+          type: boolean
+        reward_created:
+          type: boolean
+        equip_task_created:
+          type: boolean
+        route_started:
+          type: boolean
+        van_loaded:
+          type: boolean
+      additionalProperties: true
+    ActiveWarmDeliveryChain:
+      type: object
+      description: Authoritative active run of the existing warm-delivery chain template.
+      required: [template_id, run_id, state, current_step, route_id, transport_id]
+      properties:
+        template_id:
+          type: string
+          example: chain.warm_food_delivery_intro
+        run_id:
+          type: string
+          example: run.day2.second_warm_delivery
+        state:
+          type: string
+        state_history:
+          type: array
+          items:
+            type: string
+        current_step:
+          type: string
+        route_id:
+          type: string
+          example: route.oat_farm_intro
+        transport_id:
+          type: string
+          example: transport.basket_bicycle
+      additionalProperties: true
+    Day2State:
+      type: object
+      description: Deterministic Day 2 return, careful-packing and quiet-completion evidence flags.
+      required: [return_moment_seen, yesterday_postcard_visible, dachshund_slippers_visible, dachshund_memory_inspectable, packing_note_visible, second_order_available, return_has_no_urgent_prompt, absence_penalty_applied, labrador_packing_care_moment_seen, second_delivery_completed, second_feedback_visible, curiosity_question_available, curiosity_is_optional_hint, quiet_end_state_reached]
+      properties:
+        return_moment_seen:
+          type: boolean
+        yesterday_postcard_visible:
+          type: boolean
+        dachshund_slippers_visible:
+          type: boolean
+        dachshund_memory_inspectable:
+          type: boolean
+        packing_note_visible:
+          type: boolean
+        second_order_available:
+          type: boolean
+        return_has_no_urgent_prompt:
+          type: boolean
+        absence_penalty_applied:
+          type: boolean
+        labrador_packing_care_moment_seen:
+          type: boolean
+        second_delivery_completed:
+          type: boolean
+        second_feedback_visible:
+          type: boolean
+        curiosity_question_available:
+          type: boolean
+        curiosity_is_optional_hint:
+          type: boolean
+        quiet_end_state_reached:
+          type: boolean
       additionalProperties: true
     ControlCapabilities:
       type: object

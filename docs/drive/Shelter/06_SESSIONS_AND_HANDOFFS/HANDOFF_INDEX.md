@@ -1,7 +1,7 @@
 # HANDOFF_INDEX — Shelter
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-10
+Обновлено: 2026-07-12
 Статус: active handoff index / current-summary for history layer
 Владелец: Project Manager / Knowledge Base Maintainer
 Назначение: указывать, какие handoff/RFC документы читать последними по роли/области, не заставляя новые сессии перечитывать всю историю.
@@ -35,6 +35,8 @@ docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.m
 
 | Role / area | Latest useful handoff | Read when |
 | --- | --- | --- |
+| Art Direction / world and room preview R&D | `design/2026-07-12__art_direction_handoff__world_room_preview_planning_wave.md` | reviewing Sheet A/B evidence boundaries, planning a world/room proof or checking why preview assets are not production-approved |
+| Producer / PM / Day 2 scope lock | `producer/2026-07-11__producer_pm_handoff__day_2_scope_lock_and_work_wave.md` | continuing D-022 implementation/review or reconstructing the cross-role scope decision |
 | Codex / local Shelter MCP | `codex/2026-07-10__codex_handoff__chatgpt_work_local_mcp_migration.md` | continuing local MCP implementation or validating project-scoped setup |
 | Producer / PM / Knowledge Base Phase 2 cleanup | `producer/2026-07-07__producer_pm_handoff__knowledge_base_phase_2_cleanup.md` | continuing after decisions/roadmaps/handoff/current-context cleanup |
 | Producer / PM / docs governance | `producer/2026-07-07__producer_handoff__documentation_governance_and_gc.md` | reviewing original documentation governance / Knowledge GC decision |
@@ -91,6 +93,15 @@ status docs
 ---
 
 ## 4. Changelog
+
+### 2026-07-12 — world/room preview R&D handoff
+
+- Added the closed Sheet A/B Art planning and preview wave as the latest Art Direction world/room handoff.
+- Kept its external bundles in History/evidence rather than Current Memory or production Knowledge.
+
+### 2026-07-11 — Day 2 scope-lock handoff
+
+- Added the D-022 cross-role handoff as the latest Producer/PM entry for Day 2 implementation and review.
 
 ### 2026-07-10 — ChatGPT Work migration handoff
 

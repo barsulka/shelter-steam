@@ -1,6 +1,6 @@
 # 03_OPEN_QUESTIONS — Shelter
 
-Обновлено: 2026-07-10
+Обновлено: 2026-07-11
 Статус: active knowledge / open questions register
 Владелец: Project Manager / Producer
 Назначение: хранить вопросы, которые ещё не превращены в решения, specs или current-context docs.
@@ -36,60 +36,6 @@ handoff, если нужна история рассуждения
 ## 1. Active open questions — сейчас важны
 
 ### 1.1 Steam/Desktop — ближайший продуктовый scope
-
-#### OQ-Steam-001 — Готов ли First Week / Day 2 direction к реализации?
-
-Статус: `open`
-Владелец: Producer / Game Designer
-
-Текущий контекст:
-
-```text
-First Day MVP закрыт на уровне prototype/product-language proof.
-Следующий выбранный scope: First Week / Day 2 / longer retention.
-```
-
-Открытый вопрос:
-
-> Утверждаем ли `STEAM_DESKTOP__First_Week_Direction_v1.md` как следующий executable slice для Codex brief?
-
-Кандидат следующего brief:
-
-```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Second_Day_Return_And_Second_Order_v1.md
-```
-
-Sources:
-
-```text
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md
-```
-
----
-
-#### OQ-Steam-002 — Где граница First Week и чего НЕ добавляем?
-
-Статус: `open`
-Владелец: Producer / Game Designer
-
-Нужно явно удержать scope:
-
-- Day 2 return moment;
-- second order availability;
-- persistence of yesterday’s postcard, slippers and memory;
-- first gentle repeatable direction;
-- optional curiosity note as hint, not full system.
-
-Открыто:
-
-- входит ли в ближайший executable slice полное завершение второй поставки;
-- нужен ли второй маршрут или достаточно второй вариации заказа;
-- когда подключать House of Curiosity как систему, а не как намёк;
-- какие state assertions считаются достаточными для Day 2 proof.
-
----
 
 #### OQ-Steam-003 — Что считается production art gate после prototype visual-language pass?
 
@@ -488,7 +434,53 @@ docs/drive/Shelter/00_START_HERE/BOOTSTRAP_CONTEXT.md
 
 ---
 
+### OQ-Steam-001 — Готов ли First Week / Day 2 direction к реализации?
+
+Статус: `resolved 2026-07-11`
+
+Решение:
+
+```text
+First Week Direction v1 принят как направление.
+Следующий executable slice сужен до Day 2 Return + одной полностью завершаемой вариации существующей Warm Food Delivery.
+```
+
+Source of decision:
+
+```text
+D-022 — Steam/Desktop Day 2 executable scope lock
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md
+```
+
+---
+
+### OQ-Steam-002 — Где граница First Week и чего НЕ добавляем?
+
+Статус: `resolved 2026-07-11`
+
+Решение:
+
+- full end-to-end completion обязательна;
+- используются та же route/resource family/Basket Bicycle/stations;
+- persistence доказывается fixture/capture, без production save/calendar;
+- packing note видна на return; optional curiosity question появляется только после completion;
+- завершение даёт небольшую progress note, не вторую полноценную postcard/reward cadence;
+- active soft choice, habit/research/economy/quality system, новые route/chain/resource/station и production art/platform work не входят.
+
+Canonical brief:
+
+```text
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
+```
+
+---
+
 ## 4. Changelog
+
+### 2026-07-11 — Day 2 scope questions resolved
+
+- Closed OQ-Steam-001 and OQ-Steam-002 through D-022 and the accepted Day 2 scope package.
+- Normalized the canonical brief filename and retained OQ-Steam-003 as the independent production-art question.
 
 ### 2026-07-10 — migration-wave GC
 

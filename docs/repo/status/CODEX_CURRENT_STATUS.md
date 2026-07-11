@@ -1,7 +1,7 @@
 # CODEX_CURRENT_STATUS
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-10
+Обновлено: 2026-07-12
 Статус: current-summary
 Владелец: Codex / Project Manager
 Назначение: короткий текущий dev-status entry point. Не является историческим журналом.
@@ -38,7 +38,8 @@ Current product state:
 
 ```text
 First Day MVP locked at prototype/product-language level.
-Next selected product scope: First Week / Day 2 / longer retention.
+D-022 Day 2 same-chain Warm Food Delivery variation is implemented and verified at prototype/product-language/runtime-evidence level.
+R-29 is closed / PASS after PM/Producer review.
 ```
 
 Current tooling state:
@@ -47,6 +48,8 @@ Current tooling state:
 ChatGPT Work/Codex reads this checkout directly.
 Shelter MCP under mcp/ is an optional local domain-specific runtime/inspection adapter.
 Project-scoped local STDIO setup is complete.
+GitHub Actions CI for the MCP is defined; its first remote run is pending.
+Current D-022/OQ/R-29 source changes make MCP startup fail loud on knowledge catalog drift; direct checkout remains available.
 ```
 
 ---
@@ -65,6 +68,8 @@ Steam/Desktop / Godot:
 - First Day MVP runtime proof.
 - First Day visible review capture packs v1/v2/v3.
 - First Day Art/UX visual-language pass v1 accepted as prototype pass.
+- Day 2 deterministic continuation fixture and complete second warm-delivery scenario.
+- Day 2 exact order/chain/event assertions plus six native 1x product-language moments.
 
 Shelter MCP:
 
@@ -76,6 +81,7 @@ Shelter MCP:
 - safe patch/edit tools: `apply_patch`, markdown section editing, marker replacement, sha256 guarded writes;
 - deterministic bootstrap/context bundling via `read_shelter_bootstrap_context` with priority-first order and diagnostics.
 - deterministic knowledge access tools: `find_current_context`, `list_decisions`, `decision_digest`, `get_decision`, `list_open_questions`, `open_questions_digest`, `list_roadmaps`, `latest_handoff`, `knowledge_task_context`, `shelter_status`, `current_entry_digest`, `list_active_docs`, `classify_doc_path`, `explain_superseded`, `knowledge_gc_report`.
+- GitHub Actions CI runs MCP unit/race tests, vet, build and launcher syntax checks on every push and pull request.
 
 ---
 
@@ -112,6 +118,9 @@ docs/drive/Shelter/04_DEVELOPMENT/
 - MCP repo/document tools are safe helpers, not a generic shell.
 - Static MCP knowledge summaries are guarded by startup/test validation; source documents win.
 - Read-only MCP knowledge/inspection tools run non-interactively through explicit per-tool approval; runtime-changing tools still require prompt approval.
+- The first GitHub Actions run must still verify hosted-runner/action availability; CI never starts Godot/runtime or MCP control operations.
+- Reconcile the current D-022/OQ/R-29 knowledge drift or decouple knowledge health from runtime availability in a separate accepted MCP task.
+- Day 2 native evidence uses existing semantic placeholders; it is not production dog art, final animation or final world readability acceptance.
 
 ---
 
@@ -125,12 +134,10 @@ docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_An
 
 This brief completed workflow, MCP/config and dev documentation. No Godot/runtime behavior changed.
 
-Current product follow-up:
-
-If Producer accepts First Week / Day 2 as implementation-ready, next likely brief:
+Completed product implementation brief:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Second_Day_Return_And_Second_Order_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
 ```
 
 Expected reasoning level:
@@ -139,9 +146,40 @@ Expected reasoning level:
 очень высокий
 ```
 
+Current next step:
+
+```text
+No next implementation brief is accepted after R-29 closeout.
+Any production art/animation/world, save/calendar or desktop-platform work needs a separate accepted brief.
+```
+
 ---
 
 ## 6. Changelog
+
+### 2026-07-12 — R-29 PM/Producer closeout
+
+- Recorded R-29 closed / PASS after Day 2 owner GREEN and fresh First Day regression.
+- Removed the pending closeout wording and left the next implementation brief intentionally unselected.
+- Preserved the separate MCP knowledge-drift note and all future production/platform gates.
+
+### 2026-07-11 — D-022 Day 2 implementation/evidence complete
+
+- Added `second_day_after_first_delivery` and `second_warm_delivery_after_first_day` with immutable First Day history separated from the active Day 2 order/chain.
+- Verified the exact order and physical-chain sequences, order-tagged tasks/events, Labrador in-progress packing-care cue, player-confirmed dispatch and non-reward quiet completion.
+- Generated six native 1x moments plus 80 normal-speed frames under ignored `.runtime`; full First Day dispatch and connector/runtime regressions remain green.
+- Kept save/calendar, new systems, production dog pipeline, window/platform, MCP and CI outside the implementation change.
+
+### 2026-07-11 — D-022 Day 2 implementation activated
+
+- Accepted the complete same-chain Day 2 scope and normalized the canonical brief path.
+- Kept save/calendar, new systems, production dog pipeline and window/platform work outside the implementation brief.
+
+### 2026-07-11 — Shelter MCP GitHub Actions CI
+
+- Added least-privilege CI for every push and pull request, without path filters so source-only knowledge drift is covered.
+- CI uses the Go version in `mcp/go.mod` and runs unit/race tests, vet, build and `sh -n mcp/run.sh`.
+- First remote GitHub run remains pending.
 
 ### 2026-07-10 — D-021 workflow migration
 

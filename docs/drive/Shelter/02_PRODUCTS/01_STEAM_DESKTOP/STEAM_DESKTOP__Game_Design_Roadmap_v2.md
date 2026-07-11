@@ -1,6 +1,7 @@
 # STEAM_DESKTOP — Game Design Roadmap v2
 
 Дата: 2026-07-01  
+Обновлено: 2026-07-12
 Роль документа: Game Design Roadmap / Active Working Plan  
 Статус: active current roadmap  
 Read policy: use as the current Steam/Desktop game-design roadmap; older roadmap docs are history/reference.  
@@ -35,14 +36,15 @@ STEAM_DESKTOP__Game_Design_Roadmap_v2.md
 Current active task:
 
 ```text
-R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
+No new executable Game Design task is accepted after R-29 closeout.
 ```
 
 Current product status:
 
 ```text
 First Day MVP locked at prototype/product-language level.
-Next selected scope: First Week / Day 2 / longer retention.
+D-022 Day 2 same-chain Warm Food Delivery variation is complete at prototype/product-language/runtime-evidence level.
+R-29 is closed / PASS.
 ```
 
 Do not use as active roadmap:
@@ -396,7 +398,7 @@ docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direct
 
 ### R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
 
-Статус: active next.
+Статус: done / scope accepted and executable brief created.
 
 Цель:
 
@@ -408,7 +410,7 @@ Output:
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
 ```
 
-Candidate topics:
+Deferred future topics — not part of R-28 or R-29:
 
 - second production chain;
 - comfort chain;
@@ -418,9 +420,43 @@ Candidate topics:
 - first meaningful dog friendship / mentorship moment;
 - first longer-term route familiarity.
 
+### R-29 — Day 2 Return And Second Warm Delivery implementation / evidence review
+
+Статус: closed / PASS — 2026-07-12.
+
+Цель:
+
+- implement the D-022 same-chain Day 2 fixture/scenario;
+- prove return continuity, full second delivery, careful-packing cue, player-confirmed dispatch, calm progress note and post-completion optional question;
+- preserve First Day finals and all task/object causal boundaries;
+- return runtime capture for Game Designer / Producer / Art readability review.
+
+Outcome:
+
+- canonical Day 2 fixture/scenario completed with exact order/chain/task/event evidence;
+- 52/52 Day 2 assertions and the fresh First Day regression passed;
+- prototype/product-language/runtime-evidence acceptance does not imply production art, final animation, save/calendar, platform or shipping readiness;
+- no successor executable slice was accepted by this closeout.
+
+Source:
+
+```text
+docs/drive/Shelter/00_START_HERE/02_DECISIONS.md#d-022--steamdesktop-day-2-executable-scope-lock
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
+```
+
+Stop boundary:
+
+```text
+No production save/calendar, new chain/route/resource/station, active habit/research/economy system,
+production dog rig/tool/schema, window semantics or shipping-platform work.
+```
+
 ---
 
-## 5. Immediate execution plan
+## 5. Completed evidence-workflow reference
+
+The workflow below records the already completed capture-harness review pattern. It is not the current active task or an instruction to rerun old First Day work by default.
 
 ### Step 1 — Codex implements capture harness
 
@@ -530,6 +566,18 @@ Every runtime review should check:
 ---
 
 ## 7. Changelog
+
+### 2026-07-12 — R-29 closed / PASS
+
+- Accepted canonical Day 2 at prototype/product-language/runtime-evidence level after full second-delivery and First Day regression proof.
+- Closed the active roadmap task without inventing a successor executable slice.
+- Kept production art/animation/world, rooms, save/calendar and platform work behind separate future decisions and briefs.
+
+### 2026-07-11 — D-022 accepted, R-28 closed, R-29 activated
+
+- Accepted the complete same-chain Day 2 scope and created its canonical Codex brief.
+- Removed broad second-chain/room/friendship topics from the active slice and retained them as deferred future candidates.
+- Activated implementation/evidence review without changing production art or platform scope.
 
 ### 2026-07-07 — roadmap cleanup / active roadmap marker
 

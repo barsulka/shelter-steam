@@ -1,8 +1,9 @@
 # STEAM_DESKTOP — First Week Direction v1
 
 Дата: 2026-07-06
+Обновлено: 2026-07-11
 Роль документа: Game Design / Product Direction
-Статус: draft v1
+Статус: accepted direction v1 / Day 2 executable scope locked
 Продукт: Steam/Desktop idle always-on-top strip
 Roadmap task: R-27 — First Week / Long-Term Loop Direction
 Роль-владелец: Game Designer / Systems Designer
@@ -12,6 +13,14 @@ Roadmap task: R-27 — First Week / Long-Term Loop Direction
 ## 0. Назначение
 
 Этот документ определяет направление Day 2 / First Week после зафиксированного First Day MVP lock.
+
+Принятая executable-граница 2026-07-11:
+
+```text
+Day 2 Return + одна полностью завершаемая вариация существующей Warm Food Delivery.
+Та же route.oat_farm_intro, та же resource family, Basket Bicycle и те же станции.
+Fixture/capture доказывает continuity; production save/calendar в scope не входит.
+```
 
 Источник R-25:
 
@@ -153,7 +162,7 @@ return to co-op
 
 ### 5.1 Second order direction
 
-Working title:
+Accepted Day 2 title:
 
 ```text
 Аккуратная тёплая поставка
@@ -298,7 +307,7 @@ Accepted meaning:
 
 ## 8. First soft choice
 
-Day 2 should include one soft choice or soft focus, but not a branching system.
+First Week direction может содержать будущий soft focus, но принятый Day 2 executable slice не создаёт active soft-choice state или branching system.
 
 Recommended soft choice:
 
@@ -306,11 +315,11 @@ Recommended soft choice:
 What should the co-op pay attention to next?
 ```
 
-Candidate presentation:
+Принятая Day 2 presentation после завершения второй поставки:
 
 ```text
-На доске заметка: “Как паковать мягче?”
-Игрок может открыть/заметить её, но не обязан решать research tree.
+Existing Packing Table note cue changes to the optional question: “Как паковать мягче?”
+Игрок может открыть/заметить её, но не обязан выбирать ветку, запускать research или получать habit unlock.
 ```
 
 Possible choices for later, not necessarily Day 2 implementation:
@@ -319,7 +328,7 @@ Possible choices for later, not necessarily Day 2 implementation:
 2. Carry more calmly.
 3. Prepare route earlier.
 
-For current First Week direction, choose only the first as active direction:
+For current First Week direction, keep only the first as a future promise:
 
 ```text
 Pack more neatly.
@@ -343,10 +352,10 @@ House of Curiosity should move from tease to **first gentle question**, not full
 Allowed:
 
 ```text
-curiosity note visible
-one question appears
-one dog can be associated with the question
+question appears only after the second delivery completes
+question remains an optional physical hint
 state says curiosity_question_available=true
+state says curiosity_is_optional_hint=true
 ```
 
 Example:
@@ -395,9 +404,10 @@ Packing note appears.
 
 ```text
 Yesterday remains visible.
-Second warm delivery variation.
-Лабрадор notices packing care.
-Curiosity question appears: “Как паковать мягче?”
+Second warm delivery variation completes end to end on the existing chain.
+Лабрадор gives one readable careful-packing cue inside the existing PackTask.
+A small progress note closes the delivery; no second full postcard/reward cadence is created.
+Only then curiosity question appears: “Как паковать мягче?”
 ```
 
 ### Day 3 candidate
@@ -425,9 +435,9 @@ Player understands: this is a place that grows through routines and care.
 
 ---
 
-## 11. Candidate second order
+## 11. Accepted Day 2 second order
 
-Recommended candidate:
+Accepted order:
 
 ```text
 order.second_warm_delivery_careful_pack
@@ -453,12 +463,12 @@ Tone constraints:
 - no monetization;
 - no daily streak pressure.
 
-Completion output candidate:
+Accepted completion output:
 
 ```text
-second postcard / progress note
-packing care question remains or becomes clearer
-Лабрадор gets small memory marker or opportunity, not full power upgrade
+small progress note, not a second full postcard/reward
+packing care question becomes available only after completion
+no Labrador memory/reward/habit/power unlock in this slice
 ```
 
 ---
@@ -492,20 +502,15 @@ Important:
 - should not create rarity tiers;
 - should not override innate trait.
 
-Possible Day 2 state:
+Not in the accepted Day 2 executable slice:
 
 ```text
 habit_opportunity.visible: true
-habit_opportunity.id: habit_opportunity.neat_knot
-```
-
-Not yet:
-
-```text
 habit_unlocked: true
+numeric packing bonus
 ```
 
-unless the next implementation slice explicitly chooses to make Day 2 a habit unlock proof.
+`Ровный узелок` остаётся future-only до отдельного product/game decision.
 
 ---
 
@@ -539,59 +544,65 @@ The economy grows through meaningful routines and visible care, not through bigg
 
 ---
 
-## 14. Workbench / runtime requirements for next implementation
+## 14. Accepted Day 2 fixture / runtime semantics
 
-Before implementation, next Codex brief should add a small Day 2 scenario and proof.
+This section keeps the bounded product/game meaning. Exact canonical fields, chain-state inventory and event signatures live in `STEAM_DESKTOP__Task_Flow_Contract_v1.md`, `STEAM_DESKTOP__Object_Contract_v1.md` and the canonical Codex brief.
 
-Candidate scenario:
-
-```text
-second_warm_delivery_after_first_day
-```
-
-Candidate fixture:
+Accepted ids:
 
 ```text
-second_day_after_first_delivery
+scenario: second_warm_delivery_after_first_day
+fixture: second_day_after_first_delivery
+order: order.second_warm_delivery_careful_pack
+chain template: chain.warm_food_delivery_intro
+chain run: run.day2.second_warm_delivery
 ```
 
-Initial state should include:
+Required semantics:
+
+1. Completed First Day facts remain immutable history; one fresh Day 2 order/chain is the only active execution state. Legacy flags may project active state one way but cannot replace history.
+2. Fixture Storage starts with static existing stock `Protein Packet x1` and `Packaging Bag x1`, with no Oat/Pumpkin/Food Mix/Food Bag or pre-created cargo. This is not replenishment, economy, route reward, save or calendar behavior.
+3. Day 2 order status is exact:
 
 ```text
-first postcard on board
-Такса slippers equipped
-Такса first memory present
-packing note visible
-first_day completed
-second warm delivery available
+offered -> route_suggested -> missing_resources -> resources_available
+-> production_in_progress -> packed -> loaded -> sent -> completed
 ```
 
-Expected proof:
+4. `sent` follows player confirmation / DeliveryTask creation and reveals no feedback. `completed` follows only order-tagged `delivery_complete`.
+5. Every task/capture event in the Day 2 chain carries the second order id; First Day regression remains tagged with `order.first_warm_delivery`.
+6. The existing Day 2 PackTask is deterministically assigned to Labrador; the careful-packing cue exists only during PackTask `in_progress` and creates no second task/system/bonus.
+7. Active Order owns the non-reward response: the existing Van-side postcard-board cue renders the small progress note, then the existing Packing Table note cue renders `Как паковать мягче?`.
+8. Day 2 creates no Postcard Card, reward or EquipItemTask; First Day postcard/slippers/equip behavior remains unchanged.
+
+Required proof remains:
 
 ```text
 day2.return_moment_seen: true
-day2.second_order_available: true
 day2.yesterday_postcard_visible: true
 day2.dachshund_slippers_visible: true
+day2.dachshund_memory_inspectable: true
 day2.packing_note_visible: true
-day2.curiosity_question_available: true
-```
-
-Optional proof:
-
-```text
-day2.second_delivery_completed: true
+day2.second_order_available: true
+day2.return_has_no_urgent_prompt: true
+day2.absence_penalty_applied: false
 day2.labrador_packing_care_moment_seen: true
-day2.neat_knot_opportunity_visible: true
+day2.second_delivery_completed: true
+day2.second_feedback_visible: true
+day2.curiosity_question_available: true
+day2.curiosity_is_optional_hint: true
+day2.quiet_end_state_reached: true
 ```
+
+Completion is mandatory. Availability-only proves the return tableau but not the first repeatable direction or emotional closure.
 
 ---
 
-## 15. Candidate next Codex implementation slice
+## 15. Canonical next Codex implementation slice
 
-Do not implement from this document directly. Prepare a separate Codex brief if user approves the direction.
+Do not implement from this document directly. Use the accepted separate Codex brief below as the implementation source.
 
-Recommended brief title:
+Canonical brief:
 
 ```text
 STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
@@ -607,17 +618,23 @@ Reason:
 
 The task touches progression meaning, Day 2 state, curiosity boundary, dog memory behavior, new fixture/scenario and runtime proof. Codex must not expand into full First Week, full House of Curiosity, economy complexity or new art direction.
 
-Recommended implementation scope:
+Accepted implementation scope:
 
 - create `second_day_after_first_delivery` fixture;
 - create `second_warm_delivery_after_first_day` workbench scenario;
 - preserve First Day loop;
 - show return moment state;
-- show second order availability;
-- show yesterday’s postcard/slippers/memory still present;
-- show packing note / curiosity question as visible but non-full-system;
-- optionally complete the second warm delivery if narrow;
-- create capture/proof pack if needed.
+- offer and fully complete the second order;
+- show yesterday’s postcard still present;
+- show Dachshund slippers separately visible/equipped;
+- show the First Day memory separately inspectable in Dog Card;
+- reuse `route.oat_farm_intro`, Basket Bicycle, the existing resource family and stations;
+- preserve visible payload -> unload -> carry -> Kitchen/Food Mix -> Packing Table/Food Bag -> LoadVan causality;
+- show one Labrador careful-packing cue only inside the existing PackTask;
+- require visible Van load and player-confirmed DeliveryTask before completion;
+- show a small progress note, then the optional curiosity question;
+- create runtime capture/proof at return, packing, van-ready, confirmed delivery and quiet post-completion.
+- provide machine-readable state/event assertions plus native 1x scenario captures at those proof points; 216/144/96 are scale/readability review rubrics, not three additional mandatory scenario runs, and existing supported 2x review remains optional.
 
 ---
 
@@ -625,9 +642,13 @@ Recommended implementation scope:
 
 Do not add:
 
+- production persistence/save migration;
+- real-world clock, day rollover or calendar;
 - new dog recruitment;
 - new route family;
+- new resource family, station, recipe or production/comfort chain;
 - many orders;
+- active soft-choice state;
 - full research tree;
 - active laboratory/classroom/library loop;
 - complex habit tree;
@@ -638,6 +659,8 @@ Do not add:
 - charity prompts;
 - Browser Extension mechanics;
 - production art pass;
+- production dog rig/tool/schema decision;
+- window semantics or desktop-platform/release integration;
 - Steam platform integration.
 
 ---
@@ -654,7 +677,7 @@ R-27 direction is accepted when:
 6. First habit/improvement opportunity is defined as optional/future-safe.
 7. Next Codex brief direction can be derived without inventing product decisions.
 
-Status: **complete for direction v1**.
+Status: **accepted direction v1; Day 2 executable scope locked 2026-07-11**.
 
 ---
 
@@ -673,6 +696,13 @@ docs/repo/status/CODEX_STATUS.md
 ---
 
 ## 19. Changelog
+
+### 2026-07-11 — Day 2 executable scope accepted
+
+- Locked one fully completable second Warm Food Delivery on the existing route/resource/station chain.
+- Made end-to-end completion, player-confirmed dispatch, calm progress note and post-completion optional question mandatory proof.
+- Added bounded fixture-only history/active-state semantics, static existing-stock precondition, order-tagged-event requirement, deterministic Labrador PackTask assignment and limited non-reward completion exception; routed the exact schema to Task Flow/Object contracts and the Codex brief.
+- Kept persistence fixture-only and excluded save/calendar, new systems, habit unlock, production art/rig decisions and platform semantics.
 
 ### 2026-07-06 — v1 created
 

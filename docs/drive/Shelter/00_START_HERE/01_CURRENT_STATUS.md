@@ -1,6 +1,6 @@
 # 01_CURRENT_STATUS
 
-Обновлено: 2026-07-10
+Обновлено: 2026-07-12
 Статус: active current status
 Владелец: Producer / Project Manager
 
@@ -33,13 +33,14 @@ Shelter — это производственный кооператив, в к�
 
 ```text
 First Day MVP закрыт на уровне prototype/product-language proof.
-Следующий выбранный scope: First Week / Day 2 / longer retention.
+D-022 Day 2 same-chain Warm Food Delivery variation завершена на уровне prototype/product-language/runtime-evidence.
+R-29 закрыт / PASS.
 ```
 
-Главный текущий вопрос:
+Главная текущая задача:
 
 ```text
-Зачем игрок возвращается завтра после первой тёплой поставки?
+No new executable product/game task is accepted after R-29 closeout.
 ```
 
 Актуальный вход в Steam-контекст:
@@ -156,7 +157,14 @@ NOT production art. NOT final visual style. NOT shipping UX. NOT final animation
 Next scope:
 
 ```text
-First Week / Day 2 should show that yesterday mattered.
+No next executable scope is selected. Sheet A/B world-room preview R&D is closed as Art WARN with no root contract failure; it remains evidence until a separate decision and brief.
+```
+
+Visual R&D boundary:
+
+```text
+Sheet A/B are PREVIEW_RESEARCH_ONLY — not production art, final style, asset approval, room runtime or a hidden successor slice.
+Dog production animation bindings remain unapproved; debug clips and proposed vocabularies are coverage evidence only.
 ```
 
 Source docs:
@@ -232,6 +240,7 @@ Important active decisions:
 - D-019 — Game Design Systems Workbench over live Godot runtime.
 - D-020 — Project Philosophy / Shelter Constitution.
 - D-021 — local ChatGPT Work/Codex checkout and Shelter MCP boundary.
+- D-022 — complete same-chain Day 2 Warm Food Delivery executable scope lock.
 
 ---
 
@@ -276,19 +285,26 @@ Workflow / Codex:
 D-021 local Work/Codex migration is complete. Preserve the direct-checkout / optional Shelter MCP boundary and keep its validation green; start new Codex implementation only from a separately accepted brief.
 ```
 
+Current MCP note:
+
+```text
+D-022/OQ/R-29 source changes currently make the fail-loud MCP knowledge validator red.
+Direct-checkout work remains available; reconcile or decouple the catalog/runtime coupling in a separate technical task.
+```
+
 Product / Game Design:
 
 ```text
-Producer confirms whether First Week Direction v1 is ready to become a narrow next implementation slice.
+D-022 implemented and accepted; R-29 closed / PASS. Do not infer a successor slice.
 ```
 
-Potential next Codex brief:
+Completed Codex brief:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Second_Day_Return_And_Second_Order_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
 ```
 
-Suggested Codex reasoning level if assigned:
+Reasoning level used for the completed brief:
 
 ```text
 очень высокий
@@ -303,6 +319,22 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## Changelog
+
+### 2026-07-12 — R-29 closed / Day 2 accepted
+
+- Recorded canonical Day 2 completion and Producer closeout at prototype/product-language/runtime-evidence level.
+- Removed Day 2 implementation as the current task and intentionally left the next executable scope unselected.
+- Kept world/room/dog work as non-production R&D rather than a hidden successor slice.
+
+### 2026-07-12 — world/room preview R&D closed
+
+- Recorded Sheet A and Sheet B formal Art `WARN` outcomes with no root contract failure.
+- Kept production terrain, reusable room shell, dog-family contact, runtime, taxonomy and final style as separate future gates.
+
+### 2026-07-11 — D-022 Day 2 executable scope accepted
+
+- Replaced the readiness question with the accepted complete same-chain Day 2 implementation/evidence task.
+- Normalized the canonical brief path and kept production art/platform readiness outside this slice.
 
 ### 2026-07-10 — ChatGPT Work migration wave
 

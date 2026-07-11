@@ -1,0 +1,161 @@
+{
+  "schema_version": "shelter.game_systems_runtime.v0.1",
+  "id": "second_day_after_first_delivery",
+  "title": "Second Day After First Delivery",
+  "description": "Deterministic Day 2 continuation after the completed First Day, with immutable history separated from the active second Warm Food Delivery.",
+  "runtime": {
+    "debug_speed_multiplier": 1,
+    "active_fixture_id": "second_day_after_first_delivery",
+    "active_save_file": "",
+    "dog_assignments": {},
+    "active_research": {},
+    "events": [],
+    "next_event_number": 1
+  },
+  "state": {
+    "elapsed_seconds": 0.0,
+    "timing_scale": 0.72,
+    "next_task_number": 1,
+    "current_step_index": -1,
+    "step_time": 0.0,
+    "first_day_history": {
+      "order_id": "order.first_warm_delivery",
+      "delivery_confirmed": true,
+      "postcard_visible": true,
+      "reward_available": true,
+      "chain_complete": true,
+      "postcard_life_moment_seen": true,
+      "first_reward_equipped": true,
+      "first_memory_added": true,
+      "next_day_hint_available": true,
+      "dachshund": {
+        "slippers_equipped": true,
+        "memory_id": "memory.first_warm_delivery",
+        "memory_text": "Помнит первую тёплую поставку"
+      },
+      "packing_note_visible": true
+    },
+    "active_order": {
+      "id": "order.second_warm_delivery_careful_pack",
+      "title": "Аккуратная тёплая поставка",
+      "status": "offered",
+      "status_history": [
+        "offered"
+      ],
+      "delivery_state": "idle",
+      "delivery_confirmed": false,
+      "completed": false,
+      "postcard_created": false,
+      "reward_created": false,
+      "equip_task_created": false
+    },
+    "active_chain": {
+      "template_id": "chain.warm_food_delivery_intro",
+      "run_id": "run.day2.second_warm_delivery",
+      "state": "not_started",
+      "state_history": [
+        "not_started"
+      ],
+      "current_step": "none",
+      "route_id": "route.oat_farm_intro",
+      "transport_id": "transport.basket_bicycle"
+    },
+    "day2": {
+      "return_moment_seen": false,
+      "yesterday_postcard_visible": true,
+      "dachshund_slippers_visible": true,
+      "dachshund_memory_inspectable": true,
+      "packing_note_visible": true,
+      "second_order_available": true,
+      "return_has_no_urgent_prompt": true,
+      "absence_penalty_applied": false,
+      "labrador_packing_care_moment_seen": false,
+      "second_delivery_completed": false,
+      "second_feedback_visible": false,
+      "curiosity_question_available": false,
+      "curiosity_is_optional_hint": false,
+      "quiet_end_state_reached": false
+    },
+    "dogs": {
+      "dachshund_intro": {
+        "id": "dachshund_intro",
+        "x": 260.0,
+        "visible": true,
+        "state": "idle",
+        "carried_resource": "",
+        "equipment": "Удобные тапочки",
+        "current_task": "",
+        "task_label": "IdleTask"
+      },
+      "labrador_intro": {
+        "id": "labrador_intro",
+        "x": 940.0,
+        "visible": true,
+        "state": "idle",
+        "carried_resource": "",
+        "equipment": "",
+        "current_task": "",
+        "task_label": "IdleTask"
+      }
+    },
+    "tokens": {
+      "protein_packet": {
+        "id": "protein_packet",
+        "resource_id": "protein_packet",
+        "location": "storage",
+        "visible": true,
+        "carried_by": "",
+        "from_payload": false
+      },
+      "packaging_bag": {
+        "id": "packaging_bag",
+        "resource_id": "packaging_bag",
+        "location": "storage",
+        "visible": true,
+        "carried_by": "",
+        "from_payload": false
+      }
+    },
+    "inventories": {
+      "storage": {
+        "protein_packet": 1,
+        "packaging_bag": 1
+      },
+      "kitchen_inputs": {},
+      "packing_table_inputs": {}
+    },
+    "task_queue": [],
+    "current_task": {},
+    "flags": {
+      "route_started": false,
+      "trip_payload_visible": false,
+      "kitchen_carries_enqueued": false,
+      "cook_enqueued": false,
+      "packing_carries_enqueued": false,
+      "pack_enqueued": false,
+      "load_van_enqueued": false,
+      "van_loaded": false,
+      "delivery_confirmed": false,
+      "delivery_complete": false,
+      "postcard_visible": false,
+      "postcard_claimed": false,
+      "reward_available": false,
+      "equip_task_created": false,
+      "slippers_equipped": true,
+      "first_day_postcard_life_moment_seen": false,
+      "first_day_first_memory_added": false,
+      "first_day_next_day_hint_available": false,
+      "chain_complete": false
+    },
+    "transport": {
+      "x": 222.0,
+      "visible": true,
+      "state": "parked",
+      "has_payload": false
+    },
+    "order": {
+      "state": "offered",
+      "delivery_state": "idle"
+    }
+  }
+}

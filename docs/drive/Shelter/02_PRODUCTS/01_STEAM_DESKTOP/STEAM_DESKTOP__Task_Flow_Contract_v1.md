@@ -1,8 +1,9 @@
 # STEAM_DESKTOP — Task Flow Contract v1
 
 Дата: 2026-06-28  
+Обновлено: 2026-07-11
 Роль документа: Game Design / Systems Design / Dev-facing Task Flow Contract  
-Статус: draft v1  
+Статус: active v1 / D-022 Day 2 scenario addendum accepted
 Продукт: Steam/Desktop idle always-on-top strip  
 Обязателен для: Game Designer, Codex  
 Основано на: `STEAM_DESKTOP__Vertical_Slice_Contract_v1.md`, `STEAM_DESKTOP__Object_Contract_v1.md`, D-009, D-010, D-011, D-012, D-013
@@ -76,12 +77,14 @@ target_object_id
 assigned_dog_id optional
 transport_id optional
 resource_id optional
-order_id optional
+order_id required for order-bound scenarios; optional otherwise
 created_by
 blocks_order_progress: true/false
 completion_event
 failure_or_block_reason optional
 ```
+
+For the accepted First Day and Day 2 delivery scenarios, `order_id` is REQUIRED on every task and task/capture event in the active chain. It MUST equal the current `active_order.id`. A task MAY omit `order_id` only outside an order-bound scenario.
 
 ### 4.1 Required statuses
 
@@ -121,7 +124,16 @@ TripTask MUST be linked to:
 - route: Oat Farm intro;
 - transport: Basket Bicycle;
 - driver: Dachshund;
-- order: First Warm Delivery.
+- order: current `active_order.id`.
+
+Accepted ids are:
+
+```text
+First Day: order.first_warm_delivery
+Day 2 scenario: order.second_warm_delivery_careful_pack
+```
+
+This parameterization does not change route, transport, driver or object responsibility.
 
 ### 5.2 TripTask owns return payload and UnloadTask creation
 
@@ -193,6 +205,8 @@ PackTask MAY use Labrador or Dachshund.
 
 The visual requirement is more important than perfect role matching: a dog must visibly help the station work.
 
+Exception for the accepted Day 2 scenario: its existing PackTask MUST be assigned deterministically to `dog.labrador_intro`. The careful-packing cue/event MUST occur only while that PackTask is `in_progress`. This does not create a second task, overlay task, assignment system, habit, quality state or bonus.
+
 ### 6.5 Idle assignment
 
 IdleTask fills downtime.
@@ -223,6 +237,8 @@ A dog carrying an item MUST NOT abandon that item for another task except debug 
 ## 8. Full Vertical Slice Task Chain
 
 This is the required first-order task chain.
+
+Sections 8.1–8.11 remain the unchanged First Day contract with `active_order.id = order.first_warm_delivery`. Their task/event examples are parameterized by `active_order.id`. Section 8.12 instantiates the same physical contract with `active_order.id = order.second_warm_delivery_careful_pack` and narrowly changes only Day 2 assignment/feedback behavior.
 
 ### 8.1 Initial State
 
@@ -269,7 +285,7 @@ send Dachshund with Basket Bicycle
 System MUST create:
 
 ```text
-TripTask(route.oat_farm_intro, dog.dachshund_intro, transport.basket_bicycle)
+TripTask(route.oat_farm_intro, dog.dachshund_intro, transport.basket_bicycle, order_id: active_order.id)
 ```
 
 ### 8.3 TripTask flow
@@ -291,14 +307,14 @@ complete: publish trip_returned_with_payload
 Completion event:
 
 ```text
-trip_returned_with_payload(route.oat_farm_intro, payload: Oat Crate x1, Pumpkin Crate x1)
+trip_returned_with_payload(route.oat_farm_intro, payload: Oat Crate x1, Pumpkin Crate x1, order_id: active_order.id)
 ```
 
 TripTask MUST create:
 
 ```text
-UnloadTask(Oat Crate, Basket Bicycle -> Storage)
-UnloadTask(Pumpkin Crate, Basket Bicycle -> Storage)
+UnloadTask(Oat Crate, Basket Bicycle -> Storage, order_id: active_order.id)
+UnloadTask(Pumpkin Crate, Basket Bicycle -> Storage, order_id: active_order.id)
 ```
 
 TripTask MUST NOT:
@@ -324,8 +340,8 @@ complete: publish resource_added_to_storage
 Completion events:
 
 ```text
-resource_added_to_storage(Oat Crate)
-resource_added_to_storage(Pumpkin Crate)
+resource_added_to_storage(Oat Crate, order_id: active_order.id)
+resource_added_to_storage(Pumpkin Crate, order_id: active_order.id)
 ```
 
 Storage inventory MUST update only after `resource_added_to_storage`.
@@ -339,9 +355,9 @@ missing_resources -> resources_available
 System MUST create required CarryTasks for Kitchen inputs:
 
 ```text
-CarryTask(Oat Crate, Storage -> Kitchen)
-CarryTask(Pumpkin Crate, Storage -> Kitchen)
-CarryTask(Protein Packet, Storage -> Kitchen)
+CarryTask(Oat Crate, Storage -> Kitchen, order_id: active_order.id)
+CarryTask(Pumpkin Crate, Storage -> Kitchen, order_id: active_order.id)
+CarryTask(Protein Packet, Storage -> Kitchen, order_id: active_order.id)
 ```
 
 ### 8.5 CarryTask to Kitchen flow
@@ -361,9 +377,9 @@ complete: publish resource_delivered_to_kitchen
 Completion events:
 
 ```text
-resource_delivered_to_kitchen(Oat Crate)
-resource_delivered_to_kitchen(Pumpkin Crate)
-resource_delivered_to_kitchen(Protein Packet)
+resource_delivered_to_kitchen(Oat Crate, order_id: active_order.id)
+resource_delivered_to_kitchen(Pumpkin Crate, order_id: active_order.id)
+resource_delivered_to_kitchen(Protein Packet, order_id: active_order.id)
 ```
 
 Kitchen MUST wait until all three required inputs are delivered.
@@ -375,7 +391,7 @@ Kitchen MUST NOT start CookTask before all inputs arrive.
 When Kitchen inputs are ready, system MUST create:
 
 ```text
-CookTask(Kitchen -> Food Mix)
+CookTask(Kitchen -> Food Mix, order_id: active_order.id)
 ```
 
 CookTask MUST proceed:
@@ -392,7 +408,7 @@ complete: publish food_mix_created
 Completion event:
 
 ```text
-food_mix_created(Food Mix x1, source: Kitchen)
+food_mix_created(Food Mix x1, source: Kitchen, order_id: active_order.id)
 ```
 
 Kitchen MUST expose Food Mix for transport to Packing Table.
@@ -400,8 +416,8 @@ Kitchen MUST expose Food Mix for transport to Packing Table.
 System MUST create:
 
 ```text
-CarryTask(Food Mix, Kitchen -> Packing Table)
-CarryTask(Packaging Bag, Storage -> Packing Table)
+CarryTask(Food Mix, Kitchen -> Packing Table, order_id: active_order.id)
+CarryTask(Packaging Bag, Storage -> Packing Table, order_id: active_order.id)
 ```
 
 ### 8.7 CarryTask to Packing Table flow
@@ -415,7 +431,7 @@ moving_to_source: dog walks to Kitchen
 in_progress: dog picks up Food Mix
 moving_to_target: dog carries Food Mix to Packing Table
 completing: dog places Food Mix on Packing Table
-complete: publish resource_delivered_to_packing_table(Food Mix)
+complete: publish resource_delivered_to_packing_table(Food Mix, order_id: active_order.id)
 ```
 
 Packaging Bag CarryTask MUST proceed:
@@ -427,7 +443,7 @@ moving_to_source: dog walks to Storage
 in_progress: dog picks up Packaging Bag
 moving_to_target: dog carries Packaging Bag to Packing Table
 completing: dog places Packaging Bag on Packing Table
-complete: publish resource_delivered_to_packing_table(Packaging Bag)
+complete: publish resource_delivered_to_packing_table(Packaging Bag, order_id: active_order.id)
 ```
 
 Packing Table MUST wait until Food Mix and Packaging Bag are both delivered.
@@ -437,7 +453,7 @@ Packing Table MUST wait until Food Mix and Packaging Bag are both delivered.
 When Packing Table inputs are ready, system MUST create:
 
 ```text
-PackTask(Packing Table -> Food Bag)
+PackTask(Packing Table -> Food Bag, order_id: active_order.id)
 ```
 
 PackTask MUST proceed:
@@ -454,13 +470,13 @@ complete: publish food_bag_created
 Completion event:
 
 ```text
-food_bag_created(Food Bag x1, source: Packing Table)
+food_bag_created(Food Bag x1, source: Packing Table, order_id: active_order.id)
 ```
 
 System MUST create:
 
 ```text
-LoadVanTask(Food Bag, Packing Table -> Delivery Van Endpoint)
+LoadVanTask(Food Bag, Packing Table -> Delivery Van Endpoint, order_id: active_order.id)
 ```
 
 ### 8.9 LoadVanTask flow
@@ -480,7 +496,7 @@ complete: publish van_loaded
 Completion event:
 
 ```text
-van_loaded(Food Bag x1, order.first_warm_delivery)
+van_loaded(Food Bag x1, order_id: active_order.id)
 ```
 
 Delivery Van Endpoint MUST transition:
@@ -506,7 +522,7 @@ confirm delivery
 After player confirmation, system MUST create:
 
 ```text
-DeliveryTask(order.first_warm_delivery)
+DeliveryTask(order_id: active_order.id)
 ```
 
 DeliveryTask MUST proceed:
@@ -521,7 +537,7 @@ complete: publish delivery_complete
 Completion event:
 
 ```text
-delivery_complete(order.first_warm_delivery)
+delivery_complete(order_id: active_order.id)
 ```
 
 System MUST create or show:
@@ -549,6 +565,133 @@ Dachshund equipment: Удобные тапочки
 ```
 
 Reward flow MUST demonstrate D-010 separation.
+
+### 8.12 Day 2 same-chain reuse
+
+Fixture/scenario:
+
+```text
+fixture: second_day_after_first_delivery
+scenario: second_warm_delivery_after_first_day
+```
+
+#### 8.12.1 Historical and active state boundary
+
+The fixture MUST keep completed First Day facts in immutable `first_day_history` and MUST initialize exactly one fresh `active_order` and one fresh `active_chain`:
+
+```text
+first_day_history.order_id: order.first_warm_delivery
+first_day_history.delivery_confirmed: true
+first_day_history.postcard_visible: true
+first_day_history.reward_available: true
+first_day_history.chain_complete: true
+first_day_history.postcard_life_moment_seen: true
+first_day_history.first_reward_equipped: true
+first_day_history.first_memory_added: true
+first_day_history.next_day_hint_available: true
+first_day_history.dachshund.slippers_equipped: true
+first_day_history.dachshund.memory_id: memory.first_warm_delivery
+first_day_history.dachshund.memory_text: Помнит первую тёплую поставку
+first_day_history.packing_note_visible: true
+
+active_order.id: order.second_warm_delivery_careful_pack
+active_order.status: offered
+active_order.delivery_state: idle
+active_order.delivery_confirmed: false
+active_order.completed: false
+active_order.postcard_created: false
+active_order.reward_created: false
+active_order.equip_task_created: false
+
+active_chain.template_id: chain.warm_food_delivery_intro
+active_chain.run_id: run.day2.second_warm_delivery
+active_chain.state: not_started
+active_chain.current_step: none
+active_chain.route_id: route.oat_farm_intro
+active_chain.transport_id: transport.basket_bicycle
+```
+
+Legacy top-level order/chain flags MAY exist only as one-way projections of `active_order` / `active_chain`; they MUST NOT overwrite or stand in for `first_day_history`. This boundary is fixture/runtime/capture-only and MUST NOT add save, migration, calendar, rollover or persistence behavior.
+
+The active chain MUST progress exactly:
+
+```text
+not_started
+-> route_selected
+-> trip_active
+-> payload_returned
+-> unloading
+-> stored
+-> inputs_to_kitchen
+-> cooking
+-> food_mix_ready
+-> moving_to_packing
+-> packing_ready
+-> packing
+-> food_bag_ready
+-> loading_van
+-> ready_to_dispatch
+-> dispatched
+-> completed
+```
+
+`active_chain.current_step` MUST expose the exact current step and starts as `none`.
+
+#### 8.12.2 Deterministic inputs
+
+At Day 2 fixture load, Storage MUST contain exactly:
+
+```text
+Protein Packet x1
+Packaging Bag x1
+```
+
+It MUST NOT contain Oat Crate, Pumpkin Crate, Food Mix or Food Bag. No cargo/token is pre-created. The two supplies are static existing-stock fixture preconditions, not replenishment, generator, timer, route reward, resource economy or save state.
+
+#### 8.12.3 Exact order progression
+
+The active order MUST progress in this exact order:
+
+```text
+offered
+-> route_suggested
+-> missing_resources
+-> resources_available
+-> production_in_progress
+-> packed
+-> loaded
+-> sent
+-> completed
+```
+
+Rules:
+
+1. Fixture return tableau sets `day2.return_moment_seen=true`; the order remains `offered` and no task starts automatically.
+2. `player_confirmed_trip(order_id)` creates the order-tagged TripTask. The route step moves through `route_suggested` to `missing_resources`.
+3. Oat/Pumpkin MUST exist as returned cargo. Only both order-tagged `resource_added_to_storage` events permit `resources_available`, then `production_in_progress`.
+4. Existing CarryTask, CookTask, PackTask and LoadVanTask causal boundaries remain unchanged. The Day 2 PackTask is assigned to Labrador and emits `labrador_packing_care_moment(order_id)` only in `in_progress`.
+5. `van_loaded(Food Bag x1, order_id)` permits `loaded` and `delivery_state=ready_to_send`.
+6. `player_confirmed_delivery(order_id)` creates DeliveryTask and sets `active_order.delivery_confirmed=true`, `sent` / `delivery_state=sending`. `sent` MUST NOT reveal note, question, reward or quiet end.
+7. Only `delivery_complete(order_id)` permits `completed` / `delivery_state=delivered`, `active_order.completed=true` and `day2.second_delivery_completed=true`.
+
+Every Day 2 task and required capture event MUST carry:
+
+```text
+order_id: order.second_warm_delivery_careful_pack
+```
+
+TripTask, LoadVanTask and DeliveryTask therefore use the active order id rather than a First-Day constant. First Day regression remains tagged `order.first_warm_delivery`.
+
+#### 8.12.4 Day 2 completion exception
+
+After Day 2 `delivery_complete`:
+
+1. Active Order observes the exact event and publishes `day2_progress_note_revealed(order_id)`.
+2. The existing Van-side postcard-board cue renders the small progress note and sets `day2.second_feedback_visible=true`.
+3. Only after that note is visible, Active Order publishes `day2_curiosity_question_revealed(order_id)`.
+4. The existing Packing Table note cue renders `Как паковать мягче?`, sets `day2.curiosity_question_available=true` and `day2.curiosity_is_optional_hint=true`, then the scenario reaches `day2.quiet_end_state_reached=true`.
+
+For `order.second_warm_delivery_careful_pack`, DeliveryTask MUST NOT emit `postcard_created`, `reward_created` or create EquipItemTask. For `order.first_warm_delivery`, sections 8.10–8.11 remain unchanged: Postcard Card and Comfortable Slippers reward/equip flow still occur.
 
 ## 9. Blocked State Rules
 
@@ -663,6 +806,34 @@ reward_created
 reward_equipped
 ```
 
+Every order-bound event MUST include `order_id`. The accepted Day 2 scenario additionally MUST expose:
+
+```text
+labrador_packing_care_moment(order_id)
+day2_progress_note_revealed(order_id)
+day2_curiosity_question_revealed(order_id)
+```
+
+For Day 2, the required parameterized event chain is:
+
+```text
+player_confirmed_trip(order_id)
+trip_task_created(order_id)
+trip_returned_with_payload(route_id, payload, order_id)
+resource_added_to_storage(resource_id, order_id)
+resource_delivered_to_kitchen(resource_id, order_id)
+food_mix_created(resource_id=food_mix, order_id)
+resource_delivered_to_packing_table(resource_id, order_id)
+labrador_packing_care_moment(order_id)
+food_bag_created(resource_id=food_bag, order_id)
+van_loaded(resource_id=food_bag, order_id)
+player_confirmed_delivery(order_id)
+delivery_task_created(order_id)
+delivery_complete(order_id)
+day2_progress_note_revealed(order_id)
+day2_curiosity_question_revealed(order_id)
+```
+
 Dev-only debug UI MAY show these events.
 
 Player UI SHOULD show only the meaningful calm states, not an event log.
@@ -725,6 +896,8 @@ Task Flow Contract is satisfied when:
 8. Blocked states do not look like errors.
 9. Idle behaviour does not block progression.
 10. The full first-order chain can run from route confirmation to slippers equipped.
+11. The fixture-only Day 2 chain can run from immutable First Day history and `offered` through the exact active-order statuses to `completed` without mutating First Day facts.
+12. Day 2 uses the same physical task/object chain, carries the second order id on every task/event, assigns the existing PackTask to Labrador, and ends with non-reward note/question feedback only after `delivery_complete`.
 
 ## 16. Next Recommended Document
 
@@ -742,3 +915,11 @@ Condense Vertical Slice Contract, Object Contract and Task Flow Contract into on
 - implementation order;
 - checks;
 - documentation updates expected after coding.
+
+## 17. Changelog
+
+### 2026-07-11 — D-022 Day 2 scenario addendum
+
+- Preserved the First Day chain and parameterized order-bound tasks/events by `active_order.id`.
+- Added immutable First Day history versus active Day 2 state, deterministic existing-stock fixture inputs, exact status ordering and Labrador-owned PackTask.
+- Added the limited Day 2 non-reward completion path using the existing Van-side board and Packing Table note anchors; First Day postcard/slippers behavior remains unchanged.

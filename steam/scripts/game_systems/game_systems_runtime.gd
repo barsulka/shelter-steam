@@ -499,20 +499,26 @@ func _route_states(context: Dictionary) -> Array[Dictionary]:
 
 func _production_chain_states(context: Dictionary) -> Array[Dictionary]:
     var flags := context.get("flags", {}) as Dictionary
+    var active_order := context.get("active_order", {}) as Dictionary
+    var active_chain := context.get("active_chain", {}) as Dictionary
+    var is_day2 := str(active_order.get("id", "")) == "order.second_warm_delivery_careful_pack"
     var inventories := context.get("inventories", {}) as Dictionary
     var storage := inventories.get("storage", {}) as Dictionary
     var kitchen := inventories.get("kitchen_inputs", {}) as Dictionary
     var packing := inventories.get("packing_table_inputs", {}) as Dictionary
     var tokens := context.get("tokens", {}) as Dictionary
-    var state := _warm_food_chain_state(context)
+    var state := str(active_chain.get("state", "not_started")) if is_day2 else _warm_food_chain_state(context)
+    var current_step := str(active_chain.get("current_step", "none")) if is_day2 else _warm_food_current_step(state)
     var required_inputs := _required_inputs_for_chain_state(state)
     var available_inputs := _available_chain_inputs(storage, kitchen, packing, tokens)
     return [
         {
-            "id": "chain.warm_food_delivery_intro",
-            "display_name": "Первая тёплая поставка",
+            "id": str(active_chain.get("template_id", "chain.warm_food_delivery_intro")),
+            "template_id": str(active_chain.get("template_id", "chain.warm_food_delivery_intro")),
+            "run_id": str(active_chain.get("run_id", "run.first_day.first_warm_delivery")),
+            "display_name": str(active_order.get("title", "Первая тёплая поставка")),
             "state": state,
-            "current_step": _warm_food_current_step(state),
+            "current_step": current_step,
             "places": [
                 "object.road_sign",
                 "transport.basket_bicycle",
@@ -524,9 +530,9 @@ func _production_chain_states(context: Dictionary) -> Array[Dictionary]:
             "dogs_involved": _dogs_involved_in_chain(context),
             "required_inputs": required_inputs,
             "available_inputs": available_inputs,
-            "outputs": _chain_outputs(flags, tokens),
+            "outputs": _chain_outputs(flags, tokens, active_order),
             "blocked_reason": _chain_blocked_reason(context, state, required_inputs, available_inputs),
-            "quality_state": "neatly_packed" if bool(flags.get("pack_enqueued", false)) else "not_evaluated",
+            "quality_state": "not_evaluated" if is_day2 else ("neatly_packed" if bool(flags.get("pack_enqueued", false)) else "not_evaluated"),
             "player_confirmation_required": bool(flags.get("van_loaded", false)) and not bool(flags.get("delivery_confirmed", false)),
             "recent_events": _events_by_tags(["production_chain", "route", "movement"], 30),
         },
@@ -713,10 +719,10 @@ func _learned_habits_for_dog(internal_id: String, dog: Dictionary) -> Array[Dict
                 "active": active_fixture_id == "house_of_curiosity_learning_session",
             },
         ]
-    if str(dog.get("equipment", "")) != "":
+    if active_fixture_id == "second_day_after_first_delivery" or str(dog.get("equipment", "")) != "":
         return [
             {
-                "id": "habit.first_warm_delivery_memory",
+                "id": "memory.first_warm_delivery",
                 "display_name": "Помнит первую тёплую поставку",
                 "implementation_level": "runtime_event_scaffold",
                 "active": true,
@@ -982,11 +988,11 @@ func _warm_food_current_step(state: String) -> String:
 
 
 func _required_inputs_for_chain_state(state: String) -> Array[String]:
-    if state in ["cooking", "inputs_to_kitchen"]:
+    if state in ["stored", "inputs_to_kitchen", "cooking"]:
         return ["resource.oat_crate", "resource.pumpkin_crate", "resource.protein_packet"]
-    if state in ["moving_to_packing", "packing"]:
+    if state in ["food_mix_ready", "moving_to_packing", "packing_ready", "packing"]:
         return ["resource.food_mix", "resource.packaging_bag"]
-    if state in ["loading_van", "ready_to_dispatch"]:
+    if state in ["food_bag_ready", "loading_van", "ready_to_dispatch"]:
         return ["resource.food_bag"]
     return []
 
@@ -1011,15 +1017,16 @@ func _available_chain_inputs(storage: Dictionary, kitchen: Dictionary, packing: 
     return result
 
 
-func _chain_outputs(flags: Dictionary, tokens: Dictionary) -> Array[String]:
+func _chain_outputs(flags: Dictionary, tokens: Dictionary, active_order: Dictionary) -> Array[String]:
     var result: Array[String] = []
+    var order_id := str(active_order.get("id", "order.first_warm_delivery"))
     if tokens.has("food_mix"):
         result.append("resource.food_mix")
     if tokens.has("food_bag"):
         result.append("resource.food_bag")
     if bool(flags.get("delivery_complete", false)):
-        result.append("delivery.first_warm_delivery")
-    if bool(flags.get("postcard_visible", false)):
+        result.append("delivery.%s" % order_id.trim_prefix("order."))
+    if bool(flags.get("postcard_visible", false)) and order_id == "order.first_warm_delivery":
         result.append("story.postcard.first_warm_delivery")
     return result
 

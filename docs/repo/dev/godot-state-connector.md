@@ -258,6 +258,7 @@ Fixtures:
 steam/resources/game_systems/fixtures/first_day_empty_coop.json
 steam/resources/game_systems/fixtures/warm_food_delivery_mid_chain.json
 steam/resources/game_systems/fixtures/house_of_curiosity_learning_session.json
+steam/resources/game_systems/fixtures/second_day_after_first_delivery.json
 ```
 
 Local prototype save:
@@ -282,6 +283,10 @@ tools/dev-vertical-slice.sh runtime-foundation-smoke
 Runtime `/state` top-level groups:
 
 - `game`
+- `first_day_history`
+- `active_order`
+- `active_chain`
+- `day2`
 - `dogs`
 - `routes`
 - `production_chains`
@@ -310,6 +315,14 @@ Workbench review: `postcard_life_moment_seen`, `first_reward_available`,
 `first_reward_equipped`, `first_memory_added`, `memory_text`,
 `next_day_hint_available` and `next_day_hint_text`. These are state evidence for
 the first delivery contract, not a new progression system.
+
+For `second_day_after_first_delivery`, `first_day_history` is immutable fixture
+history only, while `active_order` and `active_chain` are the Day 2 execution
+authority. `day2` exposes the exact return/care/completion/question evidence
+flags. The legacy `order` and `production_chain` groups remain one-way
+compatibility views of the active run; they do not represent First Day history.
+This is deterministic fixture/capture state, not a production day rollover,
+calendar, save migration or persistence contract.
 
 The current visible-readability v2 capture also emits review-only story events
 for main-strip prototype markers: `postcard_world_marker_shown`,
@@ -425,6 +438,26 @@ tools/dev-vertical-slice.sh workbench-capture \
   --output-dir=.runtime/workbench_capture_runs/first_delivery_with_dispatch_confirmation_v0
 ```
 
+To capture the accepted Day 2 continuation and exact causal sequences, use:
+
+```sh
+cd steam
+tools/dev-vertical-slice.sh workbench-capture \
+  --scenario=second_warm_delivery_after_first_day \
+  --fixture=second_day_after_first_delivery \
+  --game-seconds=24 \
+  --sample-every-game-seconds=0.2 \
+  --speed=1 \
+  --output-dir=.runtime/workbench_capture_runs/day2_state_evidence_v1
+```
+
+For the six required normal-speed native 1x moments plus matching state proof:
+
+```sh
+cd steam
+tools/dev-vertical-slice.sh day-2-visible-capture
+```
+
 The harness starts or reuses a local control-enabled Godot runtime, loads the
 accepted fixture, performs the scenario setup through whitelisted runtime
 control endpoints, advances bounded debug time, samples live `/state`, then
@@ -441,6 +474,8 @@ manifest.json
 snapshots.jsonl
 events.jsonl
 stress_signals.jsonl
+fixture_initial_state.json
+return_state.json
 final_state.json
 run.log
 ```
@@ -456,6 +491,12 @@ the accepted dispatch-confirmation path; the second additionally checks high
 level dog-action events, first-day postcard/memory/next-day-hint state, delivered
 Food Bag semantics, legacy `production_chain` consistency, review-only
 marker/object-state evidence events, and debug event tagging.
+
+For `second_warm_delivery_after_first_day`, `day2_scenario_proof` validates the
+exact fixture surface, immutable First Day continuity, exact active order/chain
+histories, all order-tagged material/task events, Labrador's in-progress
+PackTask care moment, delivered Food Bag semantics, forbidden second
+postcard/reward/equip events, and the ordered progress-note/question quiet end.
 
 The capture harness redacts reusable token values from `manifest.json` and
 `run.log`. Generated bundles live under ignored `.runtime` storage and must not
@@ -572,6 +613,10 @@ the tunnel terminal open while the tunnel is in use.
 - `schema_version`
 - `connector`
 - `game`
+- `first_day_history`
+- `active_order`
+- `active_chain`
+- `day2`
 - `dogs`
 - `routes`
 - `production_chains`
@@ -607,10 +652,12 @@ For the current Vertical Slice, learned abilities are exported as an empty place
   bounded dev-only viewport capture.
 - runtime mutation commands are local prototype/dev-test commands only, not
   player-facing cheats and not final production save tooling.
-- `runtime.delivery.confirm` is limited to `order.first_warm_delivery` at the
-  accepted `ready_to_dispatch` / `waiting_for_player_confirmation` state and
-  returns a validation error instead of mutating arbitrary order/task/resource
-  state.
+- `runtime.delivery.confirm` is limited to the accepted active warm-delivery
+  order (`order.first_warm_delivery` or
+  `order.second_warm_delivery_careful_pack`) at the accepted
+  `ready_to_dispatch` / `waiting_for_player_confirmation` state and returns a
+  validation error instead of selecting or mutating arbitrary
+  order/task/resource state.
 - the capture API stores PNG bytes in connector memory and uses only deleted
   temporary PNG files as an encoding bridge; it does not produce MP4 files and
   does not enable Godot Movie Maker in the normal launcher.

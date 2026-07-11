@@ -1,6 +1,7 @@
 # GAME_DESIGN__CURRENT_CONTEXT — Shelter Steam/Desktop
 
 Дата создания: 2026-07-07
+Обновлено: 2026-07-12
 Статус: current-summary / game-design current context
 Владелец: Game Designer / Producer / Project Manager
 Продукт: Steam/Desktop idle always-on-top strip
@@ -33,34 +34,35 @@ then task-specific docs
 Current truth:
 
 ```text
-Game Design focus: Day 2 / First Week after locked First Day MVP.
-Day 2 should show that yesterday mattered.
+Game Design focus: post-Day 2 evidence review after locked First Day MVP.
+D-022 Day 2 proof is complete at prototype/product-language/runtime-evidence level.
+R-29 is closed / PASS; no successor executable slice is accepted.
 ```
 
 Active roadmap / current task:
 
 ```text
 Active roadmap: STEAM_DESKTOP__Game_Design_Roadmap_v2.md
-Current task: R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
+Current task: none accepted after R-29 closeout
 ```
 
 Current decisions:
 
 ```text
-D-009, D-010, D-012, D-013, D-018, D-019, D-020
+D-009, D-010, D-012, D-013, D-018, D-019, D-020, D-022
 ```
 
 Active open questions:
 
 ```text
-OQ-Steam-001, OQ-Steam-002, OQ-Steam-003
+OQ-Steam-003
 ```
 
 Read next by task:
 
 ```text
 Day 2 scope: STEAM_DESKTOP__First_Week_Direction_v1.md
-Implementation brief: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md when created
+Implementation brief: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
 Systems details: read R-09..R-16 docs only when needed
 ```
 
@@ -73,7 +75,7 @@ old roadmaps, old capture packs, old handoff, full CODEX_STATUS.md
 Next best step:
 
 ```text
-Approve or prepare the narrow Day 2 implementation brief.
+Use completed Day 2 as the current baseline. Any next slice requires a separate role decision and executable brief.
 ```
 
 ---
@@ -92,7 +94,8 @@ Current accepted product state:
 
 ```text
 First Day MVP is locked at prototype/product-language proof level.
-Next selected scope: First Week / Day 2 / longer retention.
+Day 2 same-chain continuation is complete at prototype/product-language/runtime-evidence level.
+No next executable scope is selected.
 ```
 
 The active question:
@@ -115,6 +118,7 @@ D-013 — Steam resource trips replace visible crop farming.
 D-018 — Vertical Slice gameplay proof unlocks systems branch.
 D-019 — Game Design Systems Workbench over live Godot runtime.
 D-020 — Project Philosophy / Shelter Constitution.
+D-022 — complete same-chain Day 2 Warm Food Delivery executable scope lock.
 ```
 
 Main D-020 filter:
@@ -136,7 +140,7 @@ docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Game_Design_Roadm
 Current active roadmap task:
 
 ```text
-R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
+None accepted after R-29 closeout.
 ```
 
 Current direction source:
@@ -145,7 +149,7 @@ Current direction source:
 docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md
 ```
 
-Next likely output:
+Current implementation source:
 
 ```text
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
@@ -274,15 +278,15 @@ full CODEX_STATUS.md — use CODEX_CURRENT_STATUS.md first.
 
 ---
 
-## 9. Active open questions
+## 9. Active open question
 
 Current Game Design / Steam questions:
 
 ```text
-OQ-Steam-001 — Is First Week / Day 2 direction ready for implementation?
-OQ-Steam-002 — Where is the boundary of First Week and what do we not add?
 OQ-Steam-003 — What is the production art gate after prototype visual-language pass?
 ```
+
+OQ-Steam-001 and OQ-Steam-002 were resolved by D-022 on 2026-07-11.
 
 Source:
 
@@ -294,26 +298,40 @@ docs/drive/Shelter/00_START_HERE/03_OPEN_QUESTIONS.md
 
 ## 10. Next best step
 
-Prepare or approve the Day 2 implementation brief:
+Day 2 implementation/evidence is accepted and R-29 is closed. Use it as baseline evidence; do not infer a successor task from the completed brief:
 
 ```text
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
 ```
 
-The brief should be narrow:
+The completed brief boundary was narrow:
 
 ```text
 return moment
 second warm delivery variation
 yesterday's postcard/slippers/memory
 first gentle packing note
-first curiosity question boundary
+full player-confirmed second delivery
+one Labrador careful-packing cue
+small progress note followed by an optional curiosity question
+no active habit/research/economy/save/platform or production-art scope
 no full new system
 ```
 
 ---
 
 ## 11. Changelog
+
+### 2026-07-12 — R-29 closed / PASS
+
+- Recorded Day 2 acceptance after full runtime/native evidence and fresh First Day regression.
+- Removed R-29 from current work and intentionally left the next executable slice unselected.
+- Kept dog production bindings, world/room work and OQ-Steam-003 as independent future gates.
+
+### 2026-07-11 — D-022 accepted, R-29 activated
+
+- Closed OQ-Steam-001/002 and moved from brief preparation to implementation/evidence review.
+- Made full same-chain completion mandatory and kept the remaining production-art question independent.
 
 ### 2026-07-09 — standard current-context navigation
 

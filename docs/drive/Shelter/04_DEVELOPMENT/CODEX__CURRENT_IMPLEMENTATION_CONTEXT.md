@@ -1,7 +1,7 @@
 # CODEX — Current Implementation Context
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-10
+Обновлено: 2026-07-12
 Статус: active current-summary
 Владелец: Codex / Project Manager
 Назначение: короткий актуальный dev/Codex вход без перечитывания всего `CODEX_STATUS.md` и старых brief-файлов.
@@ -43,28 +43,30 @@ Current truth:
 Godot runtime is source of truth.
 ChatGPT Work/Codex reads the local checkout directly.
 Shelter MCP is an optional local domain-specific runtime/inspection adapter.
+GitHub Actions CI validates the MCP without starting Godot/runtime.
+D-022 source evolution currently makes MCP startup fail loud on knowledge catalog drift; direct checkout remains the active path.
 First Day MVP is locked at prototype/product-language level.
-Next likely implementation direction: Day 2 / First Week slice.
+D-022 Day 2 same-chain Warm Food Delivery is implemented and verified at prototype/product-language/runtime-evidence level.
 ```
 
 Active roadmap / current task:
 
 ```text
 Product roadmap: STEAM_DESKTOP__Game_Design_Roadmap_v2.md
-Current product task: R-28 — Day 2 Return And Second Warm Delivery Codex Brief v1
+Current product task: none accepted; R-29 closed / PASS
 Completed workflow/MCP task: ChatGPT Work And Local MCP Migration v1
 ```
 
 Current decisions:
 
 ```text
-D-007, D-016, D-017, D-018, D-019, D-020, D-021
+D-007, D-016, D-017, D-018, D-019, D-020, D-021, D-022
 ```
 
 Active open questions:
 
 ```text
-OQ-Steam-001, OQ-Steam-002, OQ-Docs-001
+OQ-Steam-003, OQ-Docs-001
 ```
 
 Read next by task:
@@ -150,7 +152,7 @@ Current Steam/Desktop product state:
 
 ```text
 First Day MVP locked at prototype/product-language level.
-Next scope selected: First Week / Day 2 / longer retention.
+D-022 complete same-chain Day 2 variation is implemented with green runtime/native evidence.
 ```
 
 Current visual-language evidence:
@@ -196,8 +198,11 @@ Implemented across completed Codex tasks:
 - First Day MVP runtime polish.
 - First Day visible review capture pack v1/v2/v3.
 - First Day Art/UX visual-language pass v1.
+- Day 2 deterministic continuation fixture and full second warm-delivery scenario.
+- Day 2 exact order/chain/event proof plus six native 1x return-to-quiet-end moments.
 - Shelter MCP repo/document tooling v1/v2.
 - Shelter MCP Knowledge API v2 for decisions, open questions, roadmaps, latest handoff and task context.
+- Shelter MCP GitHub Actions CI: unit/race tests, vet, build and launcher syntax check on every push and pull request.
 
 MCP knowledge output is validated against source documents at startup; source documents always win.
 
@@ -229,6 +234,7 @@ tools/dev-vertical-slice.sh smoke
 tools/dev-vertical-slice.sh capture-smoke
 tools/dev-vertical-slice.sh connector-control-smoke
 tools/dev-vertical-slice.sh first-day-art-ux-capture
+tools/dev-vertical-slice.sh day-2-visible-capture
 ```
 
 Workbench/capture commands and options are documented in:
@@ -267,6 +273,23 @@ captures/video/postcard_slippers_moment_1x/*.png
 
 Read pack docs and state proof first. Do not load PNG/frame directories unless visual inspection is required.
 
+Current Day 2 local evidence (ignored, not committed):
+
+```text
+steam/.runtime/workbench_capture_runs/day2_return_and_second_delivery_v1/
+steam/.runtime/workbench_capture_runs/20260711_day2_state_evidence_v1/
+steam/.runtime/workbench_capture_runs/20260711_first_day_dispatch_regression_after_day2_v1/
+```
+
+The Day 2 pack contains six native 1x screenshots, a normal-speed frame sequence
+and exact machine-readable fixture/order/chain/task/event assertions. It is
+prototype/product-language evidence, not production art, final animation,
+shipping UX or desktop-platform acceptance.
+
+The First Day regression directory also contains a fresh post-correction
+headless final state and proof confirming full completion, First Day order ids
+and `player_confirmed_delivery -> DeliveryTask -> delivery_complete` causality.
+
 ---
 
 ## 7. Completed briefs are historical by default
@@ -300,6 +323,8 @@ Do not reconstruct current state by reading every old brief.
 - Capture packs under docs are evidence; they are not default bootstrap context.
 - Codex must not change product scope, gameplay contracts, visual direction, charity/monetization claims or ethical boundaries.
 - Steam/Desktop must not absorb Browser Extension UX: no Chrome new-tab layout, search bar, sponsorship/ad block, rewarded ads, or extension-specific mechanics in Godot game.
+- First GitHub Actions run still needs to confirm hosted-runner/action availability; no runtime smoke belongs in this CI job.
+- D-022/OQ/R-29 source changes require catalog reconciliation or a later decoupling design before MCP runtime tools are available again.
 
 ---
 
@@ -313,23 +338,29 @@ SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md
 
 The task completed local MCP/config/docs boundaries without changing Godot/runtime behavior or product/game/art contracts.
 
-Current product follow-up:
-
-Potential next implementation slice if Producer accepts the First Week / Day 2 direction:
+Completed product implementation brief:
 
 ```text
-STEAM_DESKTOP__Codex_Brief__Second_Day_Return_And_Second_Order_v1.md
+STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
 ```
 
-Expected scope from current design direction:
+Implemented scope:
 
 - `second_day_after_first_delivery` fixture;
 - `second_warm_delivery_after_first_day` Workbench scenario;
 - return moment state;
-- second order availability;
+- full second order completion on the existing chain;
 - persistence of yesterday’s postcard, slippers and memory;
-- packing note / curiosity question as visible but non-full-system;
-- optional narrow second delivery completion if explicitly scoped.
+- one Labrador careful-packing cue inside PackTask;
+- player-confirmed dispatch, small progress note and post-completion optional question;
+- no save/calendar, new systems, production dog pipeline or window/platform changes.
+
+Current handoff boundary:
+
+```text
+R-29 is closed / PASS. No successor implementation task is accepted.
+Any production art/animation/world proof or later product slice requires its own accepted brief.
+```
 
 Out of scope unless separately accepted:
 
@@ -354,6 +385,31 @@ Suggested reasoning level for Codex if assigned:
 ---
 
 ## 10. Changelog
+
+### 2026-07-12 — R-29 closeout recorded
+
+- Replaced pending PM/Producer closeout wording with closed / PASS.
+- Kept the completed Day 2 brief as baseline evidence and did not invent a successor implementation task.
+- Preserved separate future gates for art/animation/world, rooms, save/calendar and platform work.
+
+### 2026-07-11 — D-022 Day 2 implementation/evidence complete
+
+- Implemented the deterministic Day 2 fixture, complete existing-chain second
+  delivery, Labrador in-progress care cue and non-reward quiet completion.
+- Added exact live state/event assertions and six native 1x review moments; full
+  First Day dispatch and runtime/connector regressions remain green.
+- Kept `.runtime` evidence ignored and left save/calendar, production art/rig,
+  window/platform, MCP and CI implementation out of scope.
+
+### 2026-07-11 — D-022 Day 2 brief activated
+
+- Replaced the old candidate filename/readiness wording with the accepted canonical Day 2 brief.
+- Made same-chain completion mandatory and kept production art/platform work out of scope.
+
+### 2026-07-11 — Shelter MCP GitHub Actions CI
+
+- Added a least-privilege MCP CI workflow with no path filters, so source-only knowledge catalog drift is covered.
+- The workflow reads Go version from `mcp/go.mod` and does not start Godot/runtime or MCP control operations.
 
 ### 2026-07-10 — ChatGPT Work and local MCP migration context
 

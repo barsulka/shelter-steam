@@ -1,6 +1,6 @@
 # 02_DECISIONS — Shelter Decision Log
 
-Обновлено: 2026-07-10
+Обновлено: 2026-07-11
 Статус: active knowledge / decision log
 Владелец: Producer / Project Manager
 Назначение: хранить принятые долгоживущие решения Shelter. История обсуждений, handoff и evidence живут в History-документах.
@@ -53,6 +53,7 @@ For implementation history, use CODEX_CURRENT_STATUS.md / CODEX_STATUS.md and re
 | D-019 | Game Design Systems Workbench over live Godot runtime | technical/process | Steam/Codex | accepted |
 | D-020 | Project Philosophy / Shelter Constitution | philosophy/product | all | accepted |
 | D-021 | ChatGPT Work local project and Shelter MCP boundary | process/dev tooling | docs/Codex/MCP | accepted |
+| D-022 | Steam/Desktop Day 2 executable scope lock | product/game design | Steam | accepted |
 
 ---
 
@@ -848,6 +849,55 @@ README.md
 
 ---
 
+### D-022 — Steam/Desktop Day 2 executable scope lock
+
+Дата: 2026-07-11
+Kind: `product/game design`
+Area: `Steam/Desktop`
+Status: `accepted`
+
+Summary:
+
+> Следующий executable slice — Day 2 Return и одна полностью завершаемая вариация существующей Warm Food Delivery. Вчерашняя забота остаётся видимой; знакомая физическая цепочка повторяется с одним careful-packing моментом Лабрадора и спокойным завершением.
+
+Decision:
+
+1. Вторая поставка проходит end to end, а не останавливается на availability: payload → unload → carry → Kitchen/Food Mix → Packing Table/Food Bag → LoadVan → player-confirmed DeliveryTask → completed.
+2. Используются существующие `route.oat_farm_intro`, Basket Bicycle, resource family и станции; новый маршрут, chain, ресурс, station или recipe не добавляются.
+3. Return сохраняет postcard, equipped slippers, Dachshund memory и packing note First Day; production save/calendar/day rollover не реализуются — continuity доказывается deterministic fixture/capture.
+4. Единственная новая вариация — читаемый Labrador careful-packing cue внутри существующего PackTask. Он не создаёт quality system, habit unlock или числовой bonus.
+5. После completion появляется небольшая progress note, а не вторая полноценная postcard/reward cadence. Только затем становится доступен optional question `Как паковать мягче?` как future promise, не active research/choice/habit state.
+6. Slice не меняет production art/animation architecture, window semantics, desktop-platform integration, monetization, charity claims или ethics boundaries.
+7. Результат является Day 2 product-language/repeatable-loop proof, но не доказывает production persistence, shipping desktop readiness или реальный retention KPI.
+
+Accepted implementation-contract clarification:
+
+1. `second_day_after_first_delivery` разделяет immutable `first_day_history` и единственные активные `active_order` / `active_chain`; legacy top-level flags допустимы только как one-way projections активного Day 2 state и не являются источником Day 1 history.
+2. `first_day_history` сохраняет completed First Day order, postcard, reward, chain, life-moment, equipped slippers, Dachshund memory, next-day hint и packing-note facts. `active_order.id = order.second_warm_delivery_careful_pack`; `active_chain.template_id = chain.warm_food_delivery_intro`, `run_id = run.day2.second_warm_delivery`.
+3. Fixture кладёт в Storage ровно `Protein Packet x1` и `Packaging Bag x1`, но не Oat/Pumpkin/Food Mix/Food Bag. Это deterministic existing-stock precondition только для fixture, не refill/replenishment, economy, save или route reward.
+4. Day 2 order проходит строго `offered → route_suggested → missing_resources → resources_available → production_in_progress → packed → loaded → sent → completed`; `sent` наступает после player confirmation / создания DeliveryTask, `completed` — только после `delivery_complete`.
+5. TripTask, downstream tasks and capture events получают `active_order.id`. Это узкая параметризация прежнего First-Day hardcoding; поведение `order.first_warm_delivery` не меняется.
+6. Day 2 PackTask остаётся существующим task type и детерминированно назначается Лабрадору; careful-packing cue/event появляется только в `in_progress`.
+7. Для `order.second_warm_delivery_careful_pack` completion не создаёт `postcard_created`, `reward_created` или `EquipItemTask`. Active Order наблюдает `delivery_complete`, владеет non-reward response state и последовательно раскрывает small progress note на существующем Van-side postcard-board cue, затем optional question на существующем Packing Table note cue. First Day Postcard/Slippers flow остаётся неизменным.
+
+Exact fixture/state/event surface and object/task ownership are normative in the related First Week Direction, Task Flow Contract, Object Contract and canonical Codex brief.
+
+Canonical brief:
+
+```text
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
+```
+
+Related:
+
+```text
+02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md
+02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Game_Design_Roadmap_v2.md
+00_START_HERE/03_OPEN_QUESTIONS.md
+```
+
+---
+
 ## 3. Open / proposed items not fixed here
 
 These are not decisions in this file. Track them in:
@@ -864,11 +914,16 @@ Examples:
 - charity reporting and partner-shelter model;
 - legal/platform checks for ads, privacy, Chrome Web Store and claims;
 - production art gate and future production-style requirements;
-- First Week / Day 2 implementation readiness.
 
 ---
 
 ## 4. Changelog
+
+### 2026-07-11 — D-022 accepted
+
+- Locked the narrow Day 2 executable slice as one fully completable same-chain Warm Food Delivery variation.
+- Added the fixture-only history/active-state split, static existing-stock precondition, active-order event parameterization, deterministic Labrador PackTask ownership and the non-reward Day 2 feedback exception.
+- Kept save/calendar, new systems, active habit/research, production art/rig and platform semantics out of scope.
 
 ### 2026-07-10 — D-021 accepted
 

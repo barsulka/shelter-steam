@@ -64,6 +64,27 @@ go vet ./...
 go build -o .runtime/bin/shelter-mcp ./cmd/shelter-mcp
 ```
 
+## GitHub Actions CI
+
+`.github/workflows/shelter-mcp-ci.yml` runs on every `push` and
+`pull_request`. It intentionally has no path filters: source Markdown used by
+the knowledge source/catalog validator lives outside `mcp/`, and CI must not
+miss source-only drift.
+
+The workflow uses the Go version declared in `mcp/go.mod` and runs:
+
+```text
+go test -count=1 ./...
+go test -race -count=1 ./...
+go vet ./...
+go build ./cmd/shelter-mcp
+sh -n mcp/run.sh
+```
+
+It has read-only repository permissions, does not require secrets and does not
+start the launcher, Godot runtime or MCP control operations. The first GitHub
+run remains the remote verification point for runner/action availability.
+
 ## Root resolution
 
 По умолчанию server находит checkout по структуре:

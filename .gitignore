@@ -30,5 +30,8 @@ builds/
 dist/
 exports/
 
+# Local scratch workspace
+tmp/
+
 # Logs
 *.log

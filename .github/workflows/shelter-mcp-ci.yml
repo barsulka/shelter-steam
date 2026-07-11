@@ -1,0 +1,47 @@
+name: Shelter MCP CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: shelter-mcp-ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Go checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: mcp/go.mod
+          cache-dependency-path: mcp/go.sum
+
+      - name: Unit tests
+        working-directory: mcp
+        run: go test -count=1 ./...
+
+      - name: Race tests
+        working-directory: mcp
+        run: go test -race -count=1 ./...
+
+      - name: Vet
+        working-directory: mcp
+        run: go vet ./...
+
+      - name: Build Shelter MCP
+        working-directory: mcp
+        run: go build ./cmd/shelter-mcp
+
+      - name: Check launcher syntax
+        run: sh -n mcp/run.sh

@@ -150,7 +150,8 @@ tools/dev-vertical-slice.sh workbench-capture \
 
 The capture bundle is written under `.runtime/workbench_capture_runs/<run_id>/`
 and includes `manifest.json`, `snapshots.jsonl`, `events.jsonl`,
-`stress_signals.jsonl`, `final_state.json`, and `run.log`.
+`stress_signals.jsonl`, `fixture_initial_state.json`, `return_state.json`,
+`final_state.json`, and `run.log`.
 
 Create the persistent First Day MVP visible/player-feel review pack:
 
@@ -158,6 +159,20 @@ Create the persistent First Day MVP visible/player-feel review pack:
 tools/dev-vertical-slice.sh first-day-visible-capture
 tools/dev-vertical-slice.sh first-day-art-ux-capture
 ```
+
+Create the ignored local Day 2 prototype/product-language evidence pack:
+
+```sh
+tools/dev-vertical-slice.sh day-2-visible-capture
+```
+
+It writes six named native 1x screenshots, a normal-speed PNG-frame sequence,
+and an independent machine-readable state proof under
+`.runtime/workbench_capture_runs/day2_return_and_second_delivery_v1/`. The pack
+proves the calm return tableau, Labrador's existing PackTask care moment, van
+readiness, player-confirmed dispatch, progress note, optional curiosity question
+and quiet end. It is not production art, final animation, shipping UX or a
+desktop-platform acceptance pack.
 
 The current Art / UX visual-language pack is written under
 `../docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/`
@@ -319,6 +334,26 @@ reached `ready_to_dispatch` / `waiting_for_player_confirmation`.
 Its `manifest.json` includes `first_day_mvp_proof`, which checks high-level dog
 action events, first-day postcard/memory/next-day-hint state, delivered Food Bag
 semantics, legacy `production_chain` consistency and clean debug event tagging.
+
+The accepted Day 2 continuation state proof is:
+
+```sh
+tools/dev-vertical-slice.sh workbench-capture \
+  --scenario=second_warm_delivery_after_first_day \
+  --fixture=second_day_after_first_delivery \
+  --game-seconds=24 \
+  --sample-every-game-seconds=0.2 \
+  --speed=1 \
+  --output-dir=.runtime/workbench_capture_runs/day2_state_evidence_v1
+```
+
+Its `day2_scenario_proof` verifies the immutable `first_day_history`, separate
+`active_order` / `active_chain`, exact status/state sequences, existing physical
+route and task causality, order-tagged events, Labrador PackTask ownership, the
+absence of a second postcard/reward/equip flow, and the progress-note/question
+ordering. `runtime.delivery.confirm` remains a narrow action: it can confirm only
+the accepted active First Day or Day 2 warm-delivery order already waiting at
+`ready_to_dispatch`; it cannot select or mutate an arbitrary order.
 
 The fallback snapshot file is written to `.runtime/godot_state_connector/state_snapshot.json`.
 Its default file write interval is 5 seconds and can be changed with

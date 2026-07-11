@@ -1,5 +1,76 @@
 # Codex Status
 
+## 2026-07-11 - D-022 Day 2 Return And Second Warm Delivery implemented
+
+- Source: `STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md`.
+- Added deterministic fixture `second_day_after_first_delivery` with immutable
+  `first_day_history`, separate authoritative `active_order` / `active_chain`,
+  exact Day 2 flags, Dachshund slippers/memory continuity and only Protein Packet
+  x1 + Packaging Bag x1 as existing Storage stock.
+- Added scenario `second_warm_delivery_after_first_day`. It reuses the accepted
+  Oat Farm route, Basket Bicycle, resource family, Storage, Kitchen, Packing
+  Table, Food Bag and Delivery Van Endpoint without a new chain or system.
+- Exact active-order history is
+  `offered -> route_suggested -> missing_resources -> resources_available -> production_in_progress -> packed -> loaded -> sent -> completed`.
+- Exact active-chain history is
+  `not_started -> route_selected -> trip_active -> payload_returned -> unloading -> stored -> inputs_to_kitchen -> cooking -> food_mix_ready -> moving_to_packing -> packing_ready -> packing -> food_bag_ready -> loading_van -> ready_to_dispatch -> dispatched -> completed`.
+- Every Day 2 task and required causal event carries
+  `order.second_warm_delivery_careful_pack`; the existing PackTask stays assigned
+  to Labrador and emits its care moment only while `in_progress`.
+- Day 2 completion branches before the First Day postcard/reward/equip flow:
+  `delivery_complete` reveals a small Van-side progress note, then the existing
+  Packing Table note shows optional `Как паковать мягче?` and reaches quiet end.
+- Added connector/OpenAPI/docs projections for `first_day_history`,
+  `active_order`, `active_chain` and `day2`; no new control endpoint or arbitrary
+  mutation surface was added.
+- Evidence:
+  - `.runtime/workbench_capture_runs/day2_return_and_second_delivery_v1/` — six
+    native 3456x224 screenshots, 80 normal-speed 1x frames and a 120-snapshot /
+    226-event state proof with no failed assertions;
+  - `.runtime/workbench_capture_runs/20260711_day2_state_evidence_v1/` — separate
+    24-second / 0.2-second / 1x state proof;
+  - `.runtime/workbench_capture_runs/20260711_first_day_dispatch_regression_after_day2_v1/`
+    — full 420-second / 10-second / 100x First Day dispatch regression with both
+    proof sections green, plus a fresh post-correction headless final state and
+    seven green assertions covering completion, First Day order ids and causal
+    confirmation order.
+- Passed: launcher syntax, Workbench help, Vertical Slice smoke,
+  runtime-foundation smoke, connector-control smoke, full Godot project check,
+  Day 2 native/state capture, First Day dispatch regression, JSON validation and
+  OpenAPI YAML parsing.
+- Scope safety: no save/calendar/day rollover, new route/resource/station,
+  House/research/habit/economy/quality system, production art/rig, window/platform,
+  MCP or CI implementation change; generated `.runtime` evidence remains ignored.
+- No stage, commit or push was performed.
+
+## 2026-07-11 - D-022 Day 2 implementation brief accepted
+
+- Producer accepted D-022: one fully completable second Warm Food Delivery on the existing route/resource/station chain.
+- Created `STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md` as the canonical implementation source for R-29.
+- Mandatory proof includes First Day continuity, full object/task causality, Labrador careful-packing cue, visible Van load, player-confirmed dispatch, calm progress note, post-completion optional question and quiet end state.
+- Explicitly excluded production save/calendar, new chains/routes/resources/stations, active habit/research/economy, production dog pipeline, window semantics and shipping-platform work.
+- Recommended Codex reasoning level: very high.
+
+## 2026-07-11 - Shelter MCP GitHub Actions CI v1
+
+- Source: `SHELTER_MCP__Codex_Brief__GitHub_Actions_CI_v1.md`.
+- Added `.github/workflows/shelter-mcp-ci.yml` for every `push` and `pull_request`.
+  No path filters are used because source Markdown outside `mcp/` is an input to
+  the knowledge source/catalog drift validator.
+- Security/operations: `contents: read`, no secrets, 15-minute job timeout and
+  concurrency cancellation for superseded branch/PR runs.
+- The workflow reads its Go version from `mcp/go.mod` and runs:
+  - `go test -count=1 ./...`;
+  - `go test -race -count=1 ./...`;
+  - `go vet ./...`;
+  - `go build ./cmd/shelter-mcp`;
+  - `sh -n mcp/run.sh`.
+- Local checks passed for every listed command and `git diff --check`.
+- Scope safety: no changes under `steam/`, no Godot/runtime execution and no
+  product/game/art contract changes.
+- Remaining external check: first GitHub-hosted run must confirm action and
+  runner availability.
+
 ## 2026-07-10 - ChatGPT Work and local Shelter MCP migration completed
 
 - Branch: `master`.
