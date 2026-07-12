@@ -125,6 +125,8 @@ func _load_valid_checkpoint(source: String) -> Dictionary:
     var envelope := load_result.get("envelope", {}) as Dictionary
     var checkpoint := envelope.get("payload", {}) as Dictionary
     var validation := _codec.validate_checkpoint(checkpoint, {
+        "payload_format_id": envelope.get("payload_format_id"),
+        "payload_schema_version": envelope.get("payload_schema_version"),
         "journey_phase": envelope.get("journey_phase"),
         "checkpoint_kind": envelope.get("checkpoint_kind"),
         "checkpoint_sequence": envelope.get("checkpoint_sequence"),
@@ -133,7 +135,7 @@ func _load_valid_checkpoint(source: String) -> Dictionary:
         return {"ok": false, "error": "checkpoint_contract_invalid", "validation": validation}
     return {
         "ok": true,
-        "checkpoint": checkpoint.duplicate(true),
+        "checkpoint": (validation["checkpoint"] as Dictionary).duplicate(true),
         "validation": validation,
         "envelope": envelope.duplicate(true),
     }
@@ -146,7 +148,9 @@ func _offer_continue(checkpoint: Dictionary) -> void:
     _last_persisted_digest = str(validation["checkpoint_digest"])
     var phase := str((_loaded_checkpoint["journey"] as Dictionary)["phase"])
     if phase == "first_day_complete_hold":
-        _show_lifecycle("Кооператив ждёт спокойно.", "Вернуться в кооператив", "continue")
+        _show_lifecycle("Кооператив спокойно ждёт возвращения.", "Продолжить", "begin_day2_return")
+    elif phase == "quiet_cooperative":
+        _show_lifecycle("Кооператив отдыхает. Можно вернуться, когда удобно.", "Вернуться в кооператив", "continue")
     else:
         _show_lifecycle("Сохранение готово.", "Продолжить", "continue")
 
@@ -160,6 +164,8 @@ func activate_lifecycle_action() -> Dictionary:
     match action:
         "continue":
             result = _start_runtime(STARTUP_INTENT_CONTINUE, _loaded_checkpoint)
+        "begin_day2_return":
+            result = _start_runtime("begin_day2_return", _loaded_checkpoint)
         "recover":
             result = _recover_and_continue()
         "retry_save":
@@ -184,7 +190,8 @@ func _recover_and_continue() -> Dictionary:
     var validation := loaded["validation"] as Dictionary
     _last_persisted_sequence = int(validation["checkpoint_sequence"])
     _last_persisted_digest = str(validation["checkpoint_digest"])
-    return _start_runtime(STARTUP_INTENT_CONTINUE, checkpoint)
+    var phase := str((checkpoint["journey"] as Dictionary)["phase"])
+    return _start_runtime("begin_day2_return" if phase == "first_day_complete_hold" else STARTUP_INTENT_CONTINUE, checkpoint)
 
 
 func _start_runtime(intent: String, checkpoint: Dictionary) -> Dictionary:
@@ -198,7 +205,7 @@ func _start_runtime(intent: String, checkpoint: Dictionary) -> Dictionary:
         "startup_intent": intent,
         "checkpoint_commit_sink": Callable(self, "_persist_runtime_checkpoint"),
     }
-    if intent == STARTUP_INTENT_CONTINUE:
+    if intent in [STARTUP_INTENT_CONTINUE, "begin_day2_return"]:
         configuration["checkpoint"] = checkpoint.duplicate(true)
     var configuration_result: Dictionary = runtime.call("configure_player_session", configuration) as Dictionary
     if not bool(configuration_result.get("ok", false)):
@@ -218,6 +225,7 @@ func _persist_runtime_checkpoint(checkpoint: Dictionary) -> Dictionary:
     if not bool(validation.get("ok", false)):
         _show_save_failure()
         return {"ok": false, "error": "checkpoint_contract_invalid", "validation": validation}
+    var normalized_checkpoint := (validation["checkpoint"] as Dictionary).duplicate(true)
     var sequence := int(validation["checkpoint_sequence"])
     var digest := str(validation["checkpoint_digest"])
     if sequence == _last_persisted_sequence:
@@ -241,8 +249,8 @@ func _persist_runtime_checkpoint(checkpoint: Dictionary) -> Dictionary:
         "checkpoint_kind": journey["checkpoint_kind"],
         "checkpoint_sequence": sequence,
         "payload_format_id": PlayerProfileSchema.PAYLOAD_FORMAT_ID,
-        "payload_schema_version": PlayerProfileSchema.PAYLOAD_SCHEMA_VERSION,
-        "payload": checkpoint.duplicate(true),
+        "payload_schema_version": int(normalized_checkpoint["schema_version"]),
+        "payload": normalized_checkpoint,
         "written_at_metadata": {
             "source": "system_utc_diagnostic_only",
             "iso8601_utc": Time.get_datetime_string_from_system(true),

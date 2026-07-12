@@ -1,5 +1,15 @@
 # Codex Status
 
+## 2026-07-12 - R48-03 Persisted Day 1 To Day 2 Return completed
+
+- Source: `STEAM_DESKTOP__Codex_Brief__Persisted_Day_1_To_Day_2_Return_v1.md`.
+- Added the ordinary session-return transition from completed First Day sequence 17 to Day 2 sequence 18 without loading the dev fixture, using elapsed closed-app time or creating replacement stock.
+- Extended the strict checkpoint payload to v2 and the journey graph through all 33 First Day/Day 2/Quiet Cooperative cursors; legacy v1 First Day profiles remain readable and upgrade only on a successful v2 write.
+- Preserved immutable First Day history and exact Protein/Packaging `x1/x1` remainder, kept every Day 2 task/event on the second order id and archived the completed Day 2 result before clearing active slots in Quiet Cooperative.
+- Added centralized post-ACK effects so save-failure Retry reproduces route, dispatch and completion feedback exactly once; restart import reconstructs pending work silently without replaying historical creation events.
+- Passed the 33-cursor fresh-process restore/advance matrix, all automatic-task and completion-beat SIGKILL cases, failure-barrier/retry cases, fixture-oracle comparison, profile-store transaction matrices, First Day checkpoint regression, full Godot checks and the native D-022 six-shot/80-frame scenario.
+- Isolated test profiles were removed and the production profile was not created or modified by this wave. R48-04A remains a separate unaccepted brief gate.
+
 ## 2026-07-12 - R48-02B Runtime Safe Checkpoints And Continue completed
 
 - Source: `STEAM_DESKTOP__Codex_Brief__Runtime_Safe_Checkpoints_And_Continue_v1.md`.

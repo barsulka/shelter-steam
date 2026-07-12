@@ -5,7 +5,8 @@ const FORMAT_ID := "shelter.player-profile-envelope"
 const SCHEMA_VERSION := 1
 const PROFILE_ID := "default"
 const PAYLOAD_FORMAT_ID := "shelter.player-checkpoint"
-const PAYLOAD_SCHEMA_VERSION := 1
+const PAYLOAD_SCHEMA_VERSION := 2
+const SUPPORTED_PAYLOAD_SCHEMA_VERSIONS := [1, 2]
 const INTEGRITY_ALGORITHM := "sha256"
 
 const MAX_FILE_BYTES := 1_048_576
@@ -248,7 +249,7 @@ func _normalize_and_validate_envelope(raw: Dictionary, from_parser: bool) -> Dic
         return _error("invalid_profile_id", "corrupt")
     if str(envelope.get("payload_format_id", "")) != PAYLOAD_FORMAT_ID:
         return _error("incompatible_payload_format_id", "incompatible")
-    if not _is_exact_int(envelope.get("payload_schema_version")) or int(envelope["payload_schema_version"]) != PAYLOAD_SCHEMA_VERSION:
+    if not _is_exact_int(envelope.get("payload_schema_version")) or int(envelope["payload_schema_version"]) not in SUPPORTED_PAYLOAD_SCHEMA_VERSIONS:
         return _error("incompatible_payload_schema_version", "incompatible")
 
     for field in ["content_build_version", "journey_phase", "checkpoint_kind"]:
@@ -305,8 +306,12 @@ func _classify_identity(raw: Dictionary) -> String:
         return "incompatible_schema_version"
     if raw.has("payload_format_id") and raw["payload_format_id"] is String and str(raw["payload_format_id"]) != PAYLOAD_FORMAT_ID:
         return "incompatible_payload_format_id"
-    if raw.has("payload_schema_version") and _numeric_identity_differs(raw["payload_schema_version"], PAYLOAD_SCHEMA_VERSION):
-        return "incompatible_payload_schema_version"
+    if raw.has("payload_schema_version"):
+        var payload_version: Variant = raw["payload_schema_version"]
+        if payload_version is int and int(payload_version) not in SUPPORTED_PAYLOAD_SCHEMA_VERSIONS:
+            return "incompatible_payload_schema_version"
+        if payload_version is float and is_finite(float(payload_version)) and floor(float(payload_version)) == float(payload_version) and int(payload_version) not in SUPPORTED_PAYLOAD_SCHEMA_VERSIONS:
+            return "incompatible_payload_schema_version"
     return ""
 
 

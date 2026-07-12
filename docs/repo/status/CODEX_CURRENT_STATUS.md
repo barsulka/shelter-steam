@@ -40,7 +40,7 @@ Current product state:
 First Day MVP locked at prototype/product-language level.
 D-022 Day 2 same-chain Warm Food Delivery variation is implemented and verified at prototype/product-language/runtime-evidence level.
 R-29 is closed / PASS after PM/Producer review.
-D-023 First Day + Day 2 player journey scope lock is accepted; R48-01A, R48-02A and R48-02B are completed/PASS. R48-03 persisted First Day → Day 2 transition is the next brief gate.
+D-023 First Day + Day 2 player journey scope lock is accepted; R48-01A, R48-02A, R48-02B and R48-03 are completed/PASS. R48-04A background/minimize evidence is the next unaccepted brief gate.
 ```
 
 Current tooling state:
@@ -64,6 +64,7 @@ Steam/Desktop / Godot:
 - Separate bounded `steam/dev.sh` dispatcher for prototype/dev tooling.
 - Strict player-profile envelope/store/recovery foundation under `user://player/default`.
 - Exact seventeen-cursor First Day safe-checkpoint autosave/Continue with durable acknowledgement barriers and restart-safe recovery.
+- Exact thirty-three-cursor First Day + Day 2 player journey, including fixture-free persisted return and restart-stable Quiet Cooperative.
 - Desktop window / companion strip tech demos.
 - Vertical Slice prototype.
 - Dog rig spikes and dog runtime integration slice.
@@ -154,12 +155,19 @@ Expected reasoning level:
 Current next step:
 
 ```text
-Prepare and accept the bounded R48-03 persisted First Day → Day 2 transition brief. R48-02B closes technical First Day checkpoint resume only; organic Continue → Day 2 is not implemented yet.
+Prepare and accept the bounded R48-04A background/stall/minimize policy and macOS evidence brief. R48-03 journey continuity is complete; no R48-04 implementation is accepted yet.
 ```
 
 ---
 
 ## 6. Changelog
+
+### 2026-07-12 — R48-03 completed / PASS
+
+- Implemented ordinary persisted First Day → Day 2 return without fixture loading, wall-clock progression or transition refill.
+- Extended the player checkpoint graph from 17 to 33 through the complete second delivery and restart-stable Quiet Cooperative.
+- Passed fresh-process restart/advance, automatic-task and completion-beat SIGKILL, failed-save Retry, fixture-oracle, First Day, profile-store, full Godot and native D-022 regressions.
+- Advanced only to R48-04A brief preparation; no background-cadence claim is made.
 
 ### 2026-07-12 — R48-02B completed / PASS
 

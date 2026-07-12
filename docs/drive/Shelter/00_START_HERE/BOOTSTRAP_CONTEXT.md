@@ -333,7 +333,7 @@ SUPERSEDED_MAP.md
 02_DECISIONS.md
 ```
 
-PM focus now: preserve D-021/R-29 history, keep D-023 Current Memory synchronized and coordinate R48-03 brief preparation without scope drift.
+PM focus now: preserve D-021/R-29 history, keep D-023 Current Memory synchronized and coordinate R48-04A brief preparation without scope drift.
 
 ---
 
@@ -358,7 +358,7 @@ STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
 STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
 ```
 
-R48-01A, R48-02A and R48-02B are completed/PASS. First Day autosave/Continue is implemented; organic Continue → Day 2 remains R48-03.
+R48-01A, R48-02A, R48-02B and R48-03 are completed/PASS. The ordinary persisted First Day → Day 2 journey reaches restart-stable Quiet Cooperative; R48-04A is the next unaccepted brief gate.
 
 Reasoning level if assigned to Codex:
 
@@ -375,6 +375,12 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## 10. Changelog
+
+### 2026-07-12 — R48-03 completed / PASS
+
+- Recorded fixture-free session return from completed First Day through Day 2 and restart-stable Quiet Cooperative.
+- Preserved the accepted no-calendar/no-offline-progression/no-extra-input boundary.
+- Advanced Current Memory only to R48-04A brief preparation; no R48-04 implementation is claimed.
 
 ### 2026-07-12 — R48-02B completed / PASS
 

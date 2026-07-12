@@ -40,7 +40,7 @@ Active roadmap / current task:
 
 ```text
 Active roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
-Current task: R48-01A + R48-02A + R48-02B completed/PASS; prepare R48-03 persisted First Day → Day 2 transition brief
+Current task: R48-01A + R48-02A + R48-02B + R48-03 completed/PASS; prepare the separate R48-04A background/minimize evidence brief
 ```
 
 Current decisions:
@@ -73,7 +73,7 @@ old captures, old completed briefs, old handoff, full CODEX_STATUS.md, supersede
 Next best step:
 
 ```text
-Prepare and accept the bounded R48-03 persisted First Day → Day 2 transition brief. First Day `PlayerCheckpointV1` autosave/Continue is complete/PASS; ordinary Continue still does not create Day 2.
+Prepare and accept the bounded R48-04A background/stall/minimize evidence brief. The ordinary persisted First Day → Day 2 journey and Quiet Cooperative are complete/PASS; R48-04 is not yet accepted.
 ```
 
 ---
@@ -132,7 +132,7 @@ Current state as of 2026-07-12:
 ```text
 First Day MVP is locked at prototype/product-language level.
 Day 2 is complete at prototype/product-language/runtime-evidence level; R-29 is closed / PASS.
-D-023 separately selects `First 48 Hours Playable`; R48-01A, accepted ADR-0003/R48-02A and R48-02B are complete/PASS. R48-03 brief preparation is next.
+D-023 separately selects `First 48 Hours Playable`; R48-01A, accepted ADR-0003/R48-02A, R48-02B and R48-03 are complete/PASS. R48-04A brief preparation is next.
 ```
 
 Important caveat:
@@ -400,6 +400,12 @@ Do not expand into:
 ---
 
 ## 11. Changelog
+
+### 2026-07-12 — R48-03 completed / persisted Day 2 return PASS
+
+- Ordinary player return now advances a fully completed First Day profile into the accepted Day 2 journey exactly once, without fixture loading or wall-clock progression.
+- The complete second delivery and restart-stable Quiet Cooperative are covered by the strict 33-cursor player checkpoint graph.
+- First Day, D-022, persistence failure/restart and native journey regressions remain green; R48-04A is only the next unaccepted brief gate.
 
 ### 2026-07-12 — R48-02B completed / PASS
 

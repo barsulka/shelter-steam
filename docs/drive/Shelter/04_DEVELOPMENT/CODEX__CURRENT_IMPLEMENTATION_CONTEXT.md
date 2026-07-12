@@ -53,7 +53,7 @@ Active roadmap / current task:
 
 ```text
 Product roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
-Current product task: R48-01A + R48-02A + R48-02B completed/PASS; prepare R48-03 persisted First Day → Day 2 transition brief
+Current product task: R48-01A + R48-02A + R48-02B + R48-03 completed/PASS; prepare R48-04A background/minimize evidence brief
 Completed workflow/MCP task: ChatGPT Work And Local MCP Migration v1
 ```
 
@@ -154,8 +154,8 @@ Current Steam/Desktop product state:
 ```text
 First Day MVP locked at prototype/product-language level.
 D-022 complete same-chain Day 2 variation is implemented with green runtime/native evidence.
-R48-01A clean PlayerBoot entry, R48-02A profile-store foundation and R48-02B First Day safe-checkpoint Continue are implemented/PASS.
-Organic ordinary Continue → Day 2 remains R48-03 and is not implemented yet.
+R48-01A clean PlayerBoot entry, R48-02A profile-store foundation, R48-02B First Day safe-checkpoint Continue and R48-03 organic persisted Day 2 return are implemented/PASS.
+The strict player journey now spans 33 restart-safe cursors through Quiet Cooperative. R48-04A remains an unaccepted background/minimize evidence gate.
 ```
 
 Current visual-language evidence:
@@ -361,7 +361,7 @@ Implemented scope:
 Current handoff boundary:
 
 ```text
-R-29 is closed / PASS. D-023 selects the First Day + Day 2 player journey. R48-01A, ADR-0003/R48-02A and R48-02B completed/PASS; R48-03 brief preparation is next.
+R-29 is closed / PASS. D-023 selects the First Day + Day 2 player journey. R48-01A, ADR-0003/R48-02A, R48-02B and R48-03 completed/PASS; R48-04A brief preparation is next.
 Any production art/animation/world proof or later product slice requires its own accepted brief.
 ```
 
@@ -388,6 +388,13 @@ Suggested reasoning level for Codex if assigned:
 ---
 
 ## 10. Changelog
+
+### 2026-07-12 — R48-03 completed / persisted Day 2 return PASS
+
+- Added fixture-free ordinary return from completed First Day into the accepted Day 2 order and exact full second-delivery checkpoint graph.
+- Persisted Quiet Cooperative with immutable Day 2 history and empty active slots; no Day 3, offline progression or repeatable order was added.
+- Passed 33-cursor restart/advance, SIGKILL, save-failure Retry, fixture-oracle, profile-store, First Day, full Godot and native D-022 regressions.
+- Advanced the next gate to separate R48-04A brief preparation only.
 
 ### 2026-07-12 — R48-02B completed / checkpoint resume PASS
 

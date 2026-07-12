@@ -86,7 +86,10 @@ player route.
 
 R48-02A provides the isolated profile store under `user://player/default/`.
 R48-02B connects it to PlayerBoot and the single Vertical Slice runtime through
-the strict `PlayerCheckpointV1` contract. The runtime persists exactly seventeen
+the strict player checkpoint contract. The runtime persists seventeen First Day
+safe cursors and the R48-03 Day 2 continuation graph through restart-stable
+Quiet Cooperative. A completed First Day ordinary return creates Day 2 exactly
+once without loading a fixture; the existing x1/x1 remainder is preserved.
 semantic First Day cursors; it never stores task steps, timers, positions,
 floats, dev fixtures or connector state.
 
@@ -114,6 +117,7 @@ kill/restart matrices with:
 tools/test-player-profile-store.sh
 tools/test-player-checkpoints.sh
 tools/test-player-continue.sh
+tools/test-player-day2-return.sh
 ```
 
 The test runner uses only one fresh `user://player-tests/<run-id>/` root, fails

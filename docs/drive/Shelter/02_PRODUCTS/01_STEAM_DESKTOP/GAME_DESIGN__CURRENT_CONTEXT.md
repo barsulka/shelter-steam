@@ -98,7 +98,7 @@ Current accepted product state:
 ```text
 First Day MVP is locked at prototype/product-language proof level.
 Day 2 same-chain continuation is complete at prototype/product-language/runtime-evidence level.
-D-023 First Day + Day 2 player journey scope is accepted; R48-01A, R48-02A and R48-02B are complete/PASS. R48-03 brief preparation is next.
+D-023 First Day + Day 2 player journey scope is accepted; R48-01A, R48-02A, R48-02B and R48-03 are complete/PASS. R48-04A brief preparation is next.
 ```
 
 The active execution question:
@@ -144,7 +144,7 @@ docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Pl
 Current active roadmap task:
 
 ```text
-R48-00 and ADR-0003 are accepted; R48-01A, R48-02A and R48-02B are complete/PASS. R48-03 is the next bounded brief gate.
+R48-00 and ADR-0003 are accepted; R48-01A, R48-02A, R48-02B and R48-03 are complete/PASS. R48-04A is the next bounded, not-yet-accepted brief gate.
 ```
 
 Current direction sources:
@@ -329,6 +329,12 @@ no full new system
 ---
 
 ## 11. Changelog
+
+### 2026-07-12 — R48-03 completed / game contract preserved
+
+- The real player journey now performs the accepted session-based First Day → Day 2 transition without calendar time, refill, extra confirmations or fixture loading.
+- Day 2 keeps exactly route + dispatch player inputs and ends in restart-stable Quiet Cooperative with no Day 3 or repeatable order.
+- R48-04A remains a separate technical evidence gate; no new game-design decision was introduced.
 
 ### 2026-07-12 — R48-02B completed / game contract preserved
 

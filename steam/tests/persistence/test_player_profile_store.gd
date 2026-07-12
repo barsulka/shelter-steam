@@ -125,7 +125,7 @@ func _test_schema_and_canonical_bytes() -> void:
         var integrity := (sealed["envelope"] as Dictionary)["integrity"] as Dictionary
         _expect(str(integrity["algorithm"]) == "sha256", "integrity algorithm")
         _expect(str(integrity["digest"]).length() == 64, "integrity digest length")
-        _expect(str(integrity["digest"]) == "6762afe8205b129400aa8fe060c5597d870f49de953fc4785fd4d23c268743ba", "top-level integrity omission golden digest")
+        _expect(str(integrity["digest"]) == "21d3a33feee23b0519934932b583221f22f666f84b46dce918ae045967d3ce00", "top-level integrity omission golden digest")
 
 
 func _test_schema_rejections() -> void:

@@ -250,6 +250,7 @@ var _first_day_next_day_hint_available := false
 var _chain_complete := false
 var _runtime_dispatch_confirmation_followup := false
 var _first_day_history: Dictionary = {}
+var _day2_history: Dictionary = {}
 var _active_order: Dictionary = {}
 var _active_chain: Dictionary = {}
 var _day2: Dictionary = {}
@@ -341,7 +342,7 @@ func _ready() -> void:
     _systems_runtime.reset_runtime_state()
     _reset_world_state()
     var player_import_result := {"ok": true}
-    if _player_session_configured and _player_startup_intent == "continue":
+    if _player_session_configured and _player_startup_intent in ["continue", "begin_day2_return"]:
         player_import_result = import_player_safe_checkpoint(_player_import_checkpoint)
         if not bool(player_import_result.get("ok", false)):
             push_error("Player checkpoint import failed: %s" % str(player_import_result))
@@ -353,13 +354,17 @@ func _ready() -> void:
     _apply_window_settings()
     _update_ui()
     _start_timers()
-    if not (_player_session_configured and _player_startup_intent == "continue"):
+    if not (_player_session_configured and _player_startup_intent in ["continue", "begin_day2_return"]):
         _emit_event("order_created")
 
     if _player_session_configured and _player_startup_intent == "fresh_session":
         _commit_player_checkpoint("first_day_offered")
+    elif _player_session_configured and _player_startup_intent == "begin_day2_return":
+        _begin_persisted_day2_return()
     elif _player_session_configured and _player_startup_intent == "continue":
         _materialize_player_pending_intents(_player_checkpoint_kind)
+        if _player_checkpoint_kind == "day2_delivery_response":
+            _day2_completion_beat_remaining = DAY2_COMPLETION_BEAT_SECONDS
 
     var report := _build_report()
     for line in report:
@@ -386,7 +391,7 @@ func configure_player_session(configuration: Dictionary) -> Dictionary:
         }
 
     var startup_intent := str(configuration.get("startup_intent", "")).strip_edges()
-    if startup_intent not in ["fresh_session", "continue"]:
+    if startup_intent not in ["fresh_session", "continue", "begin_day2_return"]:
         return {
             "ok": false,
             "error": "unsupported_startup_intent",
@@ -399,7 +404,7 @@ func configure_player_session(configuration: Dictionary) -> Dictionary:
             "error": "checkpoint_commit_sink_required",
         }
     var checkpoint: Dictionary = {}
-    if startup_intent == "continue":
+    if startup_intent in ["continue", "begin_day2_return"]:
         if not configuration.get("checkpoint") is Dictionary:
             return {"ok": false, "error": "continue_checkpoint_required"}
         checkpoint = (configuration["checkpoint"] as Dictionary).duplicate(true)
@@ -431,17 +436,18 @@ func export_player_safe_checkpoint() -> Dictionary:
 
 
 func import_player_safe_checkpoint(checkpoint: Dictionary) -> Dictionary:
-    if not _player_session_configured or _player_startup_intent != "continue":
+    if not _player_session_configured or _player_startup_intent not in ["continue", "begin_day2_return"]:
         return {"ok": false, "error": "checkpoint_import_not_configured"}
     if is_inside_tree() and _player_checkpoint_kind != "":
         return {"ok": false, "error": "checkpoint_import_after_runtime_start"}
     var validation := _player_checkpoint_codec.validate_checkpoint(checkpoint)
     if not bool(validation.get("ok", false)):
         return {"ok": false, "error": "checkpoint_contract_invalid", "validation": validation}
-    _apply_player_checkpoint(checkpoint)
+    var normalized_checkpoint := (validation["checkpoint"] as Dictionary).duplicate(true)
+    _apply_player_checkpoint(normalized_checkpoint)
     _player_checkpoint_kind = str(validation["checkpoint_kind"])
     _player_checkpoint_sequence = int(validation["checkpoint_sequence"])
-    _player_last_committed_checkpoint = checkpoint.duplicate(true)
+    _player_last_committed_checkpoint = normalized_checkpoint
     _emit_event("player_checkpoint_restored", {
         "tag": "system_restore",
         "payload": {
@@ -463,6 +469,21 @@ func retry_player_checkpoint_commit() -> Dictionary:
     return _persist_staged_player_checkpoint()
 
 
+func _begin_persisted_day2_return() -> Dictionary:
+    if _player_checkpoint_kind != "first_day_complete" or _player_checkpoint_sequence != 17:
+        return {"ok": false, "error": "day2_transition_precondition_failed"}
+    var previous := _player_last_committed_checkpoint.duplicate(true)
+    var day2_checkpoint := _player_checkpoint_codec.build_golden_checkpoint("day2_offered")
+    if day2_checkpoint.is_empty():
+        return {"ok": false, "error": "day2_transition_checkpoint_missing"}
+    _apply_player_checkpoint(day2_checkpoint)
+    _player_checkpoint_kind = "first_day_complete"
+    _player_checkpoint_sequence = 17
+    _player_last_committed_checkpoint = previous
+    var result := _commit_player_checkpoint("day2_offered")
+    return result
+
+
 func player_checkpoint_snapshot() -> Dictionary:
     return {
         "configured": _player_session_configured,
@@ -472,9 +493,16 @@ func player_checkpoint_snapshot() -> Dictionary:
         "barrier_failed": _player_checkpoint_barrier_failed,
         "commit_in_progress": _player_checkpoint_commit_in_progress,
         "staged_kind": str((_player_staged_checkpoint.get("journey", {}) as Dictionary).get("checkpoint_kind", "")),
+        "completion_beat_active": _day2_completion_beat_remaining >= 0.0,
         "pending_intents": _player_pending_intent_snapshots(),
         "reconstructed_intents": _player_reconstructed_intents.duplicate(true),
     }
+
+
+func test_player_event_snapshots() -> Array[Dictionary]:
+    if not _player_session_configured:
+        return []
+    return _systems_runtime.event_snapshots(500)
 
 
 func test_advance_player_to_next_checkpoint(max_ticks: int = 2000) -> Dictionary:
@@ -489,6 +517,12 @@ func test_advance_player_to_next_checkpoint(max_ticks: int = 2000) -> Dictionary
         "first_day_delivery_response":
             _equip_slippers_pressed()
         "first_day_complete":
+            return {"ok": false, "error": "checkpoint_graph_complete"}
+        "day2_offered":
+            _start_route_pressed()
+        "day2_ready_to_dispatch":
+            _confirm_delivery_pressed()
+        "quiet_cooperative":
             return {"ok": false, "error": "checkpoint_graph_complete"}
     var ticks := 0
     while _player_checkpoint_sequence == starting_sequence and ticks < max_ticks:
@@ -600,7 +634,8 @@ func _persist_staged_player_checkpoint() -> Dictionary:
     _player_last_committed_checkpoint = staged.duplicate(true)
     _player_staged_checkpoint.clear()
     _player_checkpoint_barrier_failed = false
-    _materialize_player_pending_intents(_player_checkpoint_kind)
+    _on_player_checkpoint_committed(_player_checkpoint_kind)
+    _materialize_player_pending_intents(_player_checkpoint_kind, true)
     _update_ui()
     queue_redraw()
     return {
@@ -612,17 +647,30 @@ func _persist_staged_player_checkpoint() -> Dictionary:
 
 
 func _build_player_checkpoint(kind: String, sequence: int) -> Dictionary:
+    var phase := "first_day"
+    var active_day := 1
+    if kind == "first_day_complete":
+        phase = "first_day_complete_hold"
+    elif kind == "quiet_cooperative":
+        phase = "quiet_cooperative"
+        active_day = 2
+    elif kind.begins_with("day2_"):
+        phase = "day2"
+        active_day = 2
     return {
         "format_id": PlayerCheckpointCodec.FORMAT_ID,
         "schema_version": PlayerCheckpointCodec.SCHEMA_VERSION,
         "journey": {
-            "phase": "first_day_complete_hold" if kind == "first_day_complete" else "first_day",
+            "phase": phase,
             "checkpoint_kind": kind,
             "checkpoint_sequence": sequence,
             "workflow_cursor": kind,
-            "active_day": 1,
+            "active_day": active_day,
+            "transition_version": 1 if active_day == 2 else 0,
+            "day2_initialized": active_day == 2,
         },
         "first_day_history": _first_day_history.duplicate(true),
+        "day2_history": _day2_history.duplicate(true),
         "active_order": _active_order.duplicate(true),
         "active_chain": _active_chain.duplicate(true),
         "day2": _day2.duplicate(true),
@@ -683,6 +731,7 @@ func _apply_player_checkpoint(checkpoint: Dictionary) -> void:
     _player_checkpoint_kind = str(journey["checkpoint_kind"])
     _player_checkpoint_sequence = int(journey["checkpoint_sequence"])
     _first_day_history = (checkpoint["first_day_history"] as Dictionary).duplicate(true)
+    _day2_history = (checkpoint.get("day2_history", {"completed": false, "order": {}, "chain": {}}) as Dictionary).duplicate(true)
     _active_order = (checkpoint["active_order"] as Dictionary).duplicate(true)
     _active_chain = (checkpoint["active_chain"] as Dictionary).duplicate(true)
     _day2 = (checkpoint["day2"] as Dictionary).duplicate(true)
@@ -705,7 +754,7 @@ func _apply_player_checkpoint(checkpoint: Dictionary) -> void:
                 var delivered_token := _tokens[resource_id] as Dictionary
                 delivered_token["visible"] = false
                 delivered_token["semantic_state"] = "delivered"
-                delivered_token["delivery_id"] = FIRST_ORDER_ID
+                delivered_token["delivery_id"] = SECOND_ORDER_ID if int(journey["active_day"]) == 2 else FIRST_ORDER_ID
     _route_started = bool(world["route_started"])
     _trip_payload_visible = bool(world["route_payload_returned"])
     _transport_state = str(world["transport_state"])
@@ -720,17 +769,24 @@ func _apply_player_checkpoint(checkpoint: Dictionary) -> void:
     _reward_available = bool(world["reward_available"])
     _equip_task_created = bool(world["slippers_equip_requested"])
     _slippers_equipped = bool(world["slippers_equipped"])
-    _order_state = str(_active_order["status"])
-    _delivery_state = str(_active_order["delivery_state"])
+    _order_state = str(_active_order.get("status", "completed" if str(journey["phase"]) == "quiet_cooperative" else ""))
+    _delivery_state = str(_active_order.get("delivery_state", "delivered" if str(journey["phase"]) == "quiet_cooperative" else ""))
     _chain_complete = bool(_first_day_history["chain_complete"])
     _first_day_postcard_life_moment_seen = bool(_first_day_history["postcard_life_moment_seen"])
     _first_day_first_memory_added = bool(_first_day_history["first_memory_added"])
     _first_day_next_day_hint_available = bool(_first_day_history["next_day_hint_available"])
-    _kitchen_carries_enqueued = _player_checkpoint_sequence >= 5
-    _cook_enqueued = _player_checkpoint_sequence >= 8
-    _packing_carries_enqueued = _player_checkpoint_sequence >= 9
-    _pack_enqueued = _player_checkpoint_sequence >= 11
-    _load_van_enqueued = _player_checkpoint_sequence >= 12
+    if int(journey["active_day"]) == 2:
+        _kitchen_carries_enqueued = _player_checkpoint_sequence >= 22
+        _cook_enqueued = _player_checkpoint_sequence >= 25
+        _packing_carries_enqueued = _player_checkpoint_sequence >= 26
+        _pack_enqueued = _player_checkpoint_sequence >= 28
+        _load_van_enqueued = _player_checkpoint_sequence >= 29
+    else:
+        _kitchen_carries_enqueued = _player_checkpoint_sequence >= 5
+        _cook_enqueued = _player_checkpoint_sequence >= 8
+        _packing_carries_enqueued = _player_checkpoint_sequence >= 9
+        _pack_enqueued = _player_checkpoint_sequence >= 11
+        _load_van_enqueued = _player_checkpoint_sequence >= 12
     if _slippers_equipped:
         var dachshund := _dogs["dachshund_intro"] as Dictionary
         dachshund["equipment"] = "Удобные тапочки"
@@ -741,7 +797,7 @@ func _apply_player_checkpoint(checkpoint: Dictionary) -> void:
     _step_time = 0.0
 
 
-func _materialize_player_pending_intents(kind: String) -> void:
+func _materialize_player_pending_intents(kind: String, emit_creation_events: bool = false) -> void:
     _task_queue.clear()
     _player_reconstructed_intents = _player_checkpoint_codec.pending_intents(kind)
     for intent in _player_reconstructed_intents:
@@ -751,7 +807,31 @@ func _materialize_player_pending_intents(kind: String) -> void:
             _player_checkpoint_barrier_failed = true
             _task_queue.clear()
             return
-        _task_queue.append(task)
+        if emit_creation_events:
+            _enqueue_task(task)
+        else:
+            _task_queue.append(task)
+
+
+func _on_player_checkpoint_committed(kind: String) -> void:
+    match kind:
+        "first_day_route_confirmed", "day2_route_confirmed":
+            _emit_event("player_confirmed_trip", {"payload": {"order_id": _active_order_id()}})
+        "first_day_dispatch_confirmed", "day2_dispatch_confirmed":
+            _emit_event("player_confirmed_delivery", {"payload": {"order_id": _active_order_id()}})
+        "day2_offered":
+            _emit_event("day2_return_moment_seen", {
+                "tag": "story",
+                "payload": {"order_id": SECOND_ORDER_ID, "transition_version": 1},
+            })
+        "day2_delivery_response":
+            _emit_event("day2_progress_note_revealed", {"payload": {"order_id": SECOND_ORDER_ID}})
+            _day2_completion_beat_remaining = DAY2_COMPLETION_BEAT_SECONDS
+        "quiet_cooperative":
+            _emit_event("day2_curiosity_question_revealed", {
+                "tag": "story",
+                "payload": {"order_id": SECOND_ORDER_ID, "question": DAY2_CURIOSITY_QUESTION, "optional_hint": true},
+            })
 
 
 func _task_from_player_intent(intent: Dictionary) -> Dictionary:
@@ -1088,6 +1168,7 @@ func _reset_world_state() -> void:
     _runtime_dispatch_confirmation_followup = false
     _day2_completion_beat_remaining = -1.0
     _first_day_history = _empty_first_day_history()
+    _day2_history = {"completed": false, "order": {}, "chain": {}}
     _active_order = {
         "id": FIRST_ORDER_ID,
         "title": FIRST_ORDER_TITLE,
@@ -1163,8 +1244,12 @@ func _is_day2_active() -> bool:
     return str(_active_order.get("id", "")) == SECOND_ORDER_ID
 
 
+func _is_day2_context() -> bool:
+    return _is_day2_active() or bool(_day2_history.get("completed", false))
+
+
 func _active_order_id() -> String:
-    return str(_active_order.get("id", FIRST_ORDER_ID))
+    return str(_active_order.get("id", ""))
 
 
 func _set_active_order_status(status: String) -> void:
@@ -1273,7 +1358,19 @@ func _reveal_day2_curiosity_question() -> void:
     _day2["curiosity_question_available"] = true
     _day2["curiosity_is_optional_hint"] = true
     _day2["quiet_end_state_reached"] = true
-    _emit_event("day2_curiosity_question_revealed", {
+    if _player_session_configured:
+        _day2_history = {
+            "completed": true,
+            "order": _active_order.duplicate(true),
+            "chain": _active_chain.duplicate(true),
+        }
+        _active_order.clear()
+        _active_chain.clear()
+        var commit_result := _commit_player_checkpoint("quiet_cooperative")
+        if not bool(commit_result.get("ok", false)):
+            return
+    if not _player_session_configured:
+        _emit_event("day2_curiosity_question_revealed", {
         "tag": "story",
         "place_ids": ["object.packing_table"],
         "building_ids": ["object.packing_table"],
@@ -1284,7 +1381,7 @@ func _reveal_day2_curiosity_question() -> void:
             "question": DAY2_CURIOSITY_QUESTION,
             "optional_hint": true,
         },
-    })
+        })
     if _capture_mode:
         _begin_capture_finish_sequence()
     elif _auto_quit:
@@ -1680,13 +1777,13 @@ func _start_route_pressed() -> void:
     if _is_day2_active():
         _set_active_order_status("route_suggested")
         _set_active_chain_state("route_selected", "create_trip_task")
+        _set_active_order_status("missing_resources")
+        _set_active_chain_state("trip_active", "trip_to_oat_farm")
     else:
         _set_active_order_status("trip_active")
     _route_started = true
     if _player_session_configured:
-        var commit_result := _commit_player_checkpoint("first_day_route_confirmed")
-        if bool(commit_result.get("ok", false)):
-            _emit_event("player_confirmed_trip")
+        _commit_player_checkpoint("day2_route_confirmed" if _is_day2_active() else "first_day_route_confirmed")
     else:
         _emit_event("player_confirmed_trip")
         _enqueue_task(_create_trip_task())
@@ -1703,9 +1800,7 @@ func _confirm_delivery_pressed() -> void:
         _set_active_delivery_state("sending")
         _set_active_order_status("sent")
         _set_active_chain_state("dispatched", "delivery")
-        var commit_result := _commit_player_checkpoint("first_day_dispatch_confirmed")
-        if bool(commit_result.get("ok", false)):
-            _emit_event("player_confirmed_delivery")
+        _commit_player_checkpoint("day2_dispatch_confirmed" if _is_day2_active() else "first_day_dispatch_confirmed")
     else:
         _emit_event("player_confirmed_delivery")
         _enqueue_task(_create_delivery_task())
@@ -2071,61 +2166,69 @@ func _handle_player_task_completed(task: Dictionary) -> void:
     var resource_id := str(task.get("resource_id", ""))
     var target := str(task.get("target_object_id", ""))
     var checkpoint_kind := ""
+    var day2_player := _is_day2_active()
     match type:
         "TripTask":
-            checkpoint_kind = "first_day_payload_returned"
+            checkpoint_kind = "day2_payload_returned" if day2_player else "first_day_payload_returned"
         "UnloadTask":
             if resource_id == "oat_crate":
-                checkpoint_kind = "first_day_oat_stored"
+                checkpoint_kind = "day2_oat_stored" if day2_player else "first_day_oat_stored"
             elif resource_id == "pumpkin_crate":
                 _transport_has_payload = false
                 _transport_state = "parked"
                 _set_active_order_status("resources_available")
                 _set_active_chain_state("stored", "storage_ready")
                 _set_active_chain_state("inputs_to_kitchen", "carry_ingredients_to_kitchen")
-                checkpoint_kind = "first_day_resources_available"
+                checkpoint_kind = "day2_resources_available" if day2_player else "first_day_resources_available"
         "CarryTask":
             if target == "kitchen":
                 if resource_id == "oat_crate":
-                    checkpoint_kind = "first_day_oat_in_kitchen"
+                    checkpoint_kind = "day2_oat_in_kitchen" if day2_player else "first_day_oat_in_kitchen"
                 elif resource_id == "pumpkin_crate":
-                    checkpoint_kind = "first_day_pumpkin_in_kitchen"
+                    checkpoint_kind = "day2_pumpkin_in_kitchen" if day2_player else "first_day_pumpkin_in_kitchen"
                 elif resource_id == "protein_packet":
-                    checkpoint_kind = "first_day_inputs_in_kitchen"
+                    checkpoint_kind = "day2_inputs_in_kitchen" if day2_player else "first_day_inputs_in_kitchen"
             elif target == "packing_table":
                 if resource_id == "food_mix":
-                    checkpoint_kind = "first_day_food_mix_at_packing"
+                    checkpoint_kind = "day2_food_mix_at_packing" if day2_player else "first_day_food_mix_at_packing"
                 elif resource_id == "packaging_bag":
                     _set_active_chain_state("packing_ready", "packing_table_ready")
-                    checkpoint_kind = "first_day_inputs_at_packing"
+                    checkpoint_kind = "day2_inputs_at_packing" if day2_player else "first_day_inputs_at_packing"
         "CookTask":
             _set_active_order_status("production_in_progress")
             _set_active_chain_state("moving_to_packing", "carry_inputs_to_packing")
-            checkpoint_kind = "first_day_food_mix_ready"
+            checkpoint_kind = "day2_food_mix_ready" if day2_player else "first_day_food_mix_ready"
         "PackTask":
             _set_active_order_status("packed")
-            checkpoint_kind = "first_day_food_bag_ready"
+            checkpoint_kind = "day2_food_bag_ready" if day2_player else "first_day_food_bag_ready"
         "LoadVanTask":
             _van_loaded = true
             _set_active_delivery_state("ready_to_send")
             _set_active_order_status("loaded")
             _set_active_chain_state("ready_to_dispatch", "player_confirms_dispatch")
-            checkpoint_kind = "first_day_ready_to_dispatch"
+            checkpoint_kind = "day2_ready_to_dispatch" if day2_player else "first_day_ready_to_dispatch"
         "DeliveryTask":
             _delivery_complete = true
             _set_active_order_flag("completed", true)
             _set_active_order_status("completed")
             _set_active_delivery_state("delivered")
             _mark_food_bag_delivered()
-            _postcard_visible = true
-            _postcard_claimed = true
-            _reward_available = true
-            _set_active_order_flag("postcard_created", true)
-            _set_active_order_flag("reward_created", true)
-            _emit_event("postcard_created")
-            _emit_event("reward_created")
-            _record_first_day_post_delivery_moment()
-            checkpoint_kind = "first_day_delivery_response"
+            if day2_player:
+                _day2["second_delivery_completed"] = true
+                _set_active_chain_state("completed", "complete")
+                _chain_complete = true
+                _day2["second_feedback_visible"] = true
+                checkpoint_kind = "day2_delivery_response"
+            else:
+                _postcard_visible = true
+                _postcard_claimed = true
+                _reward_available = true
+                _set_active_order_flag("postcard_created", true)
+                _set_active_order_flag("reward_created", true)
+                _emit_event("postcard_created")
+                _emit_event("reward_created")
+                _record_first_day_post_delivery_moment()
+                checkpoint_kind = "first_day_delivery_response"
         "EquipItemTask":
             _chain_complete = true
             _set_active_chain_state("completed", "complete")
@@ -2137,6 +2240,8 @@ func _handle_player_task_completed(task: Dictionary) -> void:
         _player_checkpoint_barrier_failed = true
         return
     var commit_result := _commit_player_checkpoint(checkpoint_kind)
+    if not bool(commit_result.get("ok", false)):
+        push_error("Player checkpoint commit failed after task: %s" % str(commit_result))
     if bool(commit_result.get("ok", false)) and checkpoint_kind == "first_day_complete":
         print("vertical_slice_complete=true")
 
@@ -3004,7 +3109,7 @@ func _update_ui() -> void:
     _layout_ui()
 
     if _compact_ui:
-        _order_label.text = "%s\n%s" % [str(_active_order.get("title", FIRST_ORDER_TITLE)), _next_action_text()]
+        _order_label.text = "%s\n%s" % [_presentation_order_title(), _next_action_text()]
         _route_label.text = "Овсяная ферма\nТакса + велосипед"
         _dog_label.text = "Такса\nEquip: %s\nMemory: %s" % [_dachshund_equipment_text(), _dachshund_memory_text()]
         _order_label.add_theme_font_size_override("font_size", 10)
@@ -3012,7 +3117,7 @@ func _update_ui() -> void:
         _dog_label.add_theme_font_size_override("font_size", 10)
     else:
         _order_label.text = "%s\n%s\nСледующее: %s" % [
-            str(_active_order.get("title", FIRST_ORDER_TITLE)),
+            _presentation_order_title(),
             _order_state_text(),
             _next_action_text(),
         ]
@@ -3080,6 +3185,8 @@ func _order_state_text() -> String:
 
 
 func _next_action_text() -> String:
+    if bool(_day2_history.get("completed", false)):
+        return "кооператив спокойно отдыхает"
     if not _route_started:
         return "отправить таксу на Овсяную ферму"
     if _van_loaded and not _delivery_confirmed:
@@ -3093,6 +3200,12 @@ func _next_action_text() -> String:
             return "тихий конец достигнут" if bool(_day2.get("quiet_end_state_reached", false)) else "спокойная заметка о доставке появилась"
         return "первый loop завершён"
     return "наблюдать за работой собак"
+
+
+func _presentation_order_title() -> String:
+    if _active_order.is_empty() and bool(_day2_history.get("completed", false)):
+        return "Кооператив отдыхает"
+    return str(_active_order.get("title", FIRST_ORDER_TITLE))
 
 
 func _dachshund_equipment_text() -> String:
@@ -3600,10 +3713,10 @@ func _draw_postcard_world_cue(baseline: float, scale: float) -> void:
     draw_line(postcard.position + Vector2(9.0, 11.0) * scale, postcard.position + Vector2(42.0, 11.0) * scale, Color(0.36, 0.22, 0.14, 0.66), maxf(1.0, scale))
     draw_line(postcard.position + Vector2(10.0, 21.0) * scale, postcard.position + Vector2(46.0, 21.0) * scale, Color(0.36, 0.22, 0.14, 0.50), maxf(1.0, scale))
     if _show_semantic_labels:
-        var postcard_label := "вчерашняя открытка" if _is_day2_active() else "открытка"
-        _draw_world_badge(board_center + Vector2(0.0, -36.0) * scale, postcard_label, Color(0.42, 0.30, 0.20, 0.82), Color(0.96, 0.82, 0.60, 0.94), 126.0 if _is_day2_active() else 78.0, 8.4)
+        var postcard_label := "вчерашняя открытка" if _is_day2_context() else "открытка"
+        _draw_world_badge(board_center + Vector2(0.0, -36.0) * scale, postcard_label, Color(0.42, 0.30, 0.20, 0.82), Color(0.96, 0.82, 0.60, 0.94), 126.0 if _is_day2_context() else 78.0, 8.4)
 
-    if _is_day2_active() and bool(_day2.get("second_feedback_visible", false)):
+    if _is_day2_context() and bool(_day2.get("second_feedback_visible", false)):
         var progress_note := Rect2(rect.position + Vector2(54.0, 20.0) * scale, Vector2(36.0, 22.0) * scale)
         draw_rect(progress_note, Color(0.68, 0.80, 0.61, 0.98), true)
         draw_rect(progress_note, Color(0.20, 0.32, 0.20, 0.82), false, maxf(1.0, scale))
@@ -3647,7 +3760,7 @@ func _draw_next_day_world_cue(baseline: float, scale: float) -> void:
     if not _packing_note_visible():
         return
 
-    var show_day2_question := _is_day2_active() and bool(_day2.get("curiosity_question_available", false))
+    var show_day2_question := _is_day2_context() and bool(_day2.get("curiosity_question_available", false))
     var note_center := Vector2(_world_to_screen_x(_anchor_x("packing_table") + 112.0), baseline - 47.0 * scale)
     var note_size := Vector2(214.0 if _show_semantic_labels or show_day2_question else 82.0, 48.0) * scale
     var rect := Rect2(note_center - note_size * 0.5, note_size)
@@ -5339,6 +5452,7 @@ func _normalize_dog_id(raw_dog_id: String) -> String:
 func _build_state_connector_snapshot() -> Dictionary:
     var runtime_state := _systems_runtime.build_state(_runtime_context())
     runtime_state["first_day_history"] = _first_day_history.duplicate(true)
+    runtime_state["day2_history"] = _day2_history.duplicate(true)
     runtime_state["active_order"] = _state_active_order_snapshot()
     runtime_state["active_chain"] = _state_active_chain_snapshot()
     runtime_state["day2"] = _day2.duplicate(true)
@@ -5363,6 +5477,7 @@ func _state_game_snapshot() -> Dictionary:
         "chain_complete": _chain_complete,
         "first_day": _state_first_day_snapshot(),
         "day2": _day2.duplicate(true),
+        "day2_history": _day2_history.duplicate(true),
         "control_enabled": _state_connector_control_enabled,
         "ui_visible": _state_connector_window_visible,
         "window_visible": _state_connector_window_visible,
@@ -5414,6 +5529,20 @@ func _state_legacy_connector_snapshot() -> Dictionary:
 
 
 func _state_order_snapshot() -> Dictionary:
+    if _active_order.is_empty() and bool(_day2_history.get("completed", false)):
+        return {
+            "id": "",
+            "title": "Кооператив отдыхает",
+            "status": "quiet_cooperative",
+            "delivery_state": "delivered",
+            "next_expected_player_action": _next_action_text(),
+            "route_started": _route_started,
+            "delivery_confirmed": _delivery_confirmed,
+            "postcard_visible": _postcard_visible,
+            "reward_available": false,
+            "slippers_equipped": _slippers_equipped,
+            "completed": true,
+        }
     return {
         "id": _active_order_id(),
         "title": str(_active_order.get("title", FIRST_ORDER_TITLE)),
@@ -5431,6 +5560,8 @@ func _state_order_snapshot() -> Dictionary:
 
 
 func _state_active_order_snapshot() -> Dictionary:
+    if _active_order.is_empty():
+        return {}
     var snapshot := _active_order.duplicate(true)
     snapshot["id"] = _active_order_id()
     snapshot["title"] = str(_active_order.get("title", FIRST_ORDER_TITLE))
@@ -5447,6 +5578,8 @@ func _state_active_order_snapshot() -> Dictionary:
 
 
 func _state_active_chain_snapshot() -> Dictionary:
+    if _active_chain.is_empty():
+        return {}
     var snapshot := _active_chain.duplicate(true)
     snapshot["template_id"] = str(_active_chain.get("template_id", WARM_DELIVERY_CHAIN_ID))
     snapshot["run_id"] = str(_active_chain.get("run_id", FIRST_CHAIN_RUN_ID))

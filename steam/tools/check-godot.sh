@@ -14,6 +14,7 @@ fi
 "$GODOT_BIN" --version
 "$GODOT_BIN" --headless --path "$ROOT_DIR" --import
 "$ROOT_DIR/tests/launch_surfaces/run.sh"
+"$ROOT_DIR/tools/test-player-day2-return.sh"
 "$GODOT_BIN" --headless --path "$ROOT_DIR" --check-only --script res://scripts/main.gd
 "$GODOT_BIN" --headless --path "$ROOT_DIR" --check-only --script res://scripts/launcher.gd
 "$GODOT_BIN" --headless --path "$ROOT_DIR" --check-only --script res://scripts/dev_tools/godot_state_connector.gd

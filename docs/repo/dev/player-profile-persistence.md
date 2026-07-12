@@ -75,8 +75,13 @@ format_id = shelter.player-profile-envelope
 schema_version = 1
 profile_id = default
 payload_format_id = shelter.player-checkpoint
-payload_schema_version = 1
+payload_schema_version = 1 | 2
 ```
+
+Version 1 is the readable legacy First Day-only payload. Version 2 is the
+current writer contract and is required for persisted Day 2 / Quiet
+Cooperative. The envelope version must exactly match the nested checkpoint
+`schema_version`; mixed identities fail closed.
 
 `journey_phase` and `checkpoint_kind` are nonempty opaque strings in this wave. The store never derives them. `checkpoint_sequence` is a caller-supplied integer in `0..9007199254740991`; the store neither increments nor compares it.
 
@@ -201,7 +206,14 @@ The runner performs:
 
 The command uses one isolated `user://player-tests/<run-id>/` namespace and removes that exact owned root on success or through its failure/interruption trap. It does not touch historical sibling runs or `user://player/default/`.
 
-## PlayerCheckpointV1
+## Player checkpoint payload v1/v2
+
+Payload v1 remains readable for the original seventeen First Day cursors.
+Payload v2 is the current writer contract: it adds the explicit Day 2 transition
+marker, immutable `day2_history`, sequences 18–33 and `quiet_cooperative` with
+empty active order/chain slots. Validation remains strict and allowlisted; a
+valid v1 checkpoint is normalized in memory and is upgraded only by a successful
+new persisted checkpoint write.
 
 The nested payload exact top-level allowlist is:
 
@@ -296,6 +308,7 @@ From the repository root:
 ```sh
 steam/tools/test-player-checkpoints.sh
 steam/tools/test-player-continue.sh
+steam/tools/test-player-day2-return.sh
 ```
 
 The first command validates all seventeen golden cursors, strict negative

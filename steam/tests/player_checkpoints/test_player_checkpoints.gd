@@ -96,13 +96,13 @@ func _test_codec_matrix() -> void:
 
     for identity_case in [
         ["format_id", "unknown.checkpoint", "checkpoint_identity_invalid"],
-        ["schema_version", 2, "checkpoint_identity_invalid"],
+        ["schema_version", 3, "checkpoint_identity_invalid"],
     ]:
         var identity := _codec.build_golden_checkpoint("first_day_offered")
         identity[str(identity_case[0])] = identity_case[1]
         _expect(str(_codec.validate_checkpoint(identity).get("error", "")) == str(identity_case[2]), "checkpoint identity mismatch rejected")
 
-    for section in ["journey", "first_day_history", "active_order", "active_chain", "day2", "resources", "world"]:
+    for section in ["journey", "first_day_history", "day2_history", "active_order", "active_chain", "day2", "resources", "world"]:
         var nested_unknown := _codec.build_golden_checkpoint("first_day_offered")
         (nested_unknown[section] as Dictionary)["unexpected_nested_field"] = true
         _expect(not bool(_codec.validate_checkpoint(nested_unknown).get("ok", true)), "unknown nested field rejected in %s" % section)

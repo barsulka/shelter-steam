@@ -2,7 +2,7 @@
 
 Дата создания: 2026-07-12
 
-Статус: active execution roadmap / R48-01 + R48-02 completed PASS / R48-03 brief next
+Статус: active execution roadmap / R48-01 + R48-02 + R48-03 completed PASS / R48-04A brief gate next
 
 Владелец: Producer / Project Manager
 
@@ -428,7 +428,7 @@ Launch boundary:
 
 ## 6. R48-02 — Player Save and Resume
 
-Статус: R48-02A + R48-02B completed / PASS; R48-03 brief next
+Статус: R48-02A + R48-02B completed / PASS; dependency closed
 
 Владелец реализации: Codex
 
@@ -502,7 +502,7 @@ Recommended stable checkpoints:
 
 ## 7. R48-03 — Persisted Day 1 → Day 2 Return
 
-Статус: blocked by R48-01/R48-02 joint Continue gate
+Статус: completed / PASS
 
 Владелец реализации: Codex
 
@@ -539,24 +539,24 @@ Transition boundary:
 
 ### DoD R48-03
 
-- [ ] Fresh profile проходит First Day обычным player flow.
-- [ ] После принятого return trigger обычный запуск открывает Day 2 tableau.
-- [ ] Ни один fixture/CLI/control action не нужен.
-- [ ] First Day history immutable и inspectable после return.
-- [ ] Postcard, slippers и Dog Card memory — независимые persistent cues.
-- [ ] Day 2 stock provenance видим/объясним и не является скрытым refill.
-- [ ] Реальный transition использует persisted `x1/x1` remainder и не создаёт transition-resource events.
-- [ ] Exact Day 2 order/chain history и order-tagged events остаются green.
-- [ ] Повторный restart внутри Day 2 не создаёт второй active order/chain.
-- [ ] Early First Day restart не продвигает narrative day.
-- [ ] Post-Day2 restart возвращает тот же Quiet Cooperative state и не создаёт Day 3.
-- [ ] First Day regression и Day 2 52-assertion equivalent остаются green.
+- [x] Fresh profile проходит First Day обычным player flow.
+- [x] После принятого return trigger обычный запуск открывает Day 2 tableau.
+- [x] Ни один fixture/CLI/control action не нужен.
+- [x] First Day history immutable и inspectable после return.
+- [x] Postcard, slippers и Dog Card memory — независимые persistent cues.
+- [x] Day 2 stock provenance видим/объясним и не является скрытым refill.
+- [x] Реальный transition использует persisted `x1/x1` remainder и не создаёт transition-resource events.
+- [x] Exact Day 2 order/chain history и order-tagged events остаются green.
+- [x] Повторный restart внутри Day 2 не создаёт второй active order/chain.
+- [x] Early First Day restart не продвигает narrative day.
+- [x] Post-Day2 restart возвращает тот же Quiet Cooperative state и не создаёт Day 3.
+- [x] First Day regression и Day 2 52-assertion equivalent остаются green.
 
 ---
 
 ## 8. R48-04 — Calm Background Cadence and Onboarding
 
-Статус: blocked by R48-03 journey continuity; evidence plan may be prepared separately
+Статус: R48-03 dependency closed; R48-04A is the next brief gate and is not yet accepted
 
 Владельцы контракта: Producer + Game Designer + Technical
 
@@ -992,9 +992,9 @@ fresh profile
 
 ## 17. Immediate next steps
 
-1. Подготовить и принять bounded R48-03 persisted First Day → Day 2 transition brief.
-2. После acceptance выполнить R48-03 одним последовательным integrator.
-3. Затем отдельно выполнить R48-04A platform evidence и R48-04B Calm Onboarding And Quiet Cooperative.
+1. Подготовить и принять bounded R48-04A Background/Stall/Minimize Policy + macOS Evidence brief.
+2. После R48-04A отдельно подготовить R48-04B Calm Onboarding And Quiet Cooperative.
+3. Не считать R48-04 принятой или выполненной до отдельных brief/implementation/evidence волн.
 4. Art source work допускается только в отдельном file scope и по отдельному accepted brief.
 5. Не начинать R48-05/06, пока их dependencies не закрыты.
 6. Завершить программу единым R48-07 acceptance journey, а не набором разрозненных green demos.
@@ -1069,3 +1069,10 @@ tools/dev-vertical-slice.sh player-prototype --runtime-load-fixture=second_day_a
 - Added exact seventeen-cursor First Day autosave/Continue with acknowledgement barriers and calm recovery lifecycle.
 - Verified every cursor across fresh-process restore/advance, real in-flight SIGKILL, failed-save Retry and recovery matrices.
 - Preserved First Day and D-022 Day 2 regressions; advanced the roadmap to R48-03 brief preparation.
+
+### 2026-07-12 — R48-03 completed / persisted Day 2 return PASS
+
+- Added the ordinary session-return transition from completed First Day to the existing Day 2 order without loading a fixture or consulting elapsed closed-app time.
+- Extended the strict checkpoint graph through Day 2 and restart-stable Quiet Cooperative while preserving the exact `x1/x1` remainder and immutable First Day traces.
+- Passed all 33 cursor restores/advances, task-family and completion-beat SIGKILL recovery, save-failure Retry, fixture-oracle, First Day and native D-022 regressions.
+- Closed only journey continuity; R48-04A remains the next unaccepted brief gate.

@@ -4,7 +4,8 @@ extends RefCounted
 const PlayerProfileSchema := preload("res://scripts/persistence/player_profile_schema.gd")
 
 const FORMAT_ID := "shelter.player-checkpoint"
-const SCHEMA_VERSION := 1
+const LEGACY_SCHEMA_VERSION := 1
+const SCHEMA_VERSION := 2
 const FIRST_ORDER_ID := "order.first_warm_delivery"
 const FIRST_ORDER_TITLE := "Первая тёплая поставка"
 const CHAIN_TEMPLATE_ID := "chain.warm_food_delivery_intro"
@@ -13,12 +14,20 @@ const ROUTE_ID := "route.oat_farm_intro"
 const TRANSPORT_ID := "transport.basket_bicycle"
 const MEMORY_ID := "memory.first_warm_delivery"
 const MEMORY_TEXT := "Помнит первую тёплую поставку"
+const SECOND_ORDER_ID := "order.second_warm_delivery_careful_pack"
+const SECOND_ORDER_TITLE := "Аккуратная тёплая поставка"
+const SECOND_CHAIN_RUN_ID := "run.day2.second_warm_delivery"
 
-const TOP_LEVEL_FIELDS := [
+const TOP_LEVEL_FIELDS_V1 := [
     "format_id", "schema_version", "journey", "first_day_history",
     "active_order", "active_chain", "day2", "resources", "world",
 ]
-const JOURNEY_FIELDS := ["phase", "checkpoint_kind", "checkpoint_sequence", "workflow_cursor", "active_day"]
+const TOP_LEVEL_FIELDS := [
+    "format_id", "schema_version", "journey", "first_day_history", "day2_history",
+    "active_order", "active_chain", "day2", "resources", "world",
+]
+const JOURNEY_FIELDS_V1 := ["phase", "checkpoint_kind", "checkpoint_sequence", "workflow_cursor", "active_day"]
+const JOURNEY_FIELDS := ["phase", "checkpoint_kind", "checkpoint_sequence", "workflow_cursor", "active_day", "transition_version", "day2_initialized"]
 const HISTORY_FIELDS := [
     "order_id", "delivery_confirmed", "postcard_visible", "reward_available",
     "chain_complete", "postcard_life_moment_seen", "first_reward_equipped",
@@ -76,6 +85,22 @@ const KINDS := [
     "first_day_delivery_response",
     "first_day_equip_confirmed",
     "first_day_complete",
+    "day2_offered",
+    "day2_route_confirmed",
+    "day2_payload_returned",
+    "day2_oat_stored",
+    "day2_resources_available",
+    "day2_oat_in_kitchen",
+    "day2_pumpkin_in_kitchen",
+    "day2_inputs_in_kitchen",
+    "day2_food_mix_ready",
+    "day2_food_mix_at_packing",
+    "day2_inputs_at_packing",
+    "day2_food_bag_ready",
+    "day2_ready_to_dispatch",
+    "day2_dispatch_confirmed",
+    "day2_delivery_response",
+    "quiet_cooperative",
 ]
 
 const ORDER_HISTORIES := [
@@ -106,6 +131,12 @@ var _profile_schema := PlayerProfileSchema.new()
 
 func checkpoint_kinds() -> Array[String]:
     var result: Array[String] = []
+    result.assign(KINDS.slice(0, 17))
+    return result
+
+
+func all_checkpoint_kinds() -> Array[String]:
+    var result: Array[String] = []
     result.assign(KINDS)
     return result
 
@@ -128,9 +159,45 @@ func build_golden_checkpoint(kind: String) -> Dictionary:
     var sequence := sequence_for_kind(kind)
     if sequence == 0:
         return {}
+    var phase := "first_day"
+    var active_day := 1
+    if sequence == 17:
+        phase = "first_day_complete_hold"
+    elif sequence >= 18 and sequence < 33:
+        phase = "day2"
+        active_day = 2
+    elif sequence == 33:
+        phase = "quiet_cooperative"
+        active_day = 2
     return {
         "format_id": FORMAT_ID,
         "schema_version": SCHEMA_VERSION,
+        "journey": {
+            "phase": phase,
+            "checkpoint_kind": kind,
+            "checkpoint_sequence": sequence,
+            "workflow_cursor": kind,
+            "active_day": active_day,
+            "transition_version": 1 if sequence >= 18 else 0,
+            "day2_initialized": sequence >= 18,
+        },
+        "first_day_history": _history_for_sequence(sequence),
+        "day2_history": _day2_history_for_sequence(sequence),
+        "active_order": _order_for_sequence(sequence),
+        "active_chain": _chain_for_sequence(sequence),
+        "day2": _day2_for_sequence(sequence),
+        "resources": _resources_for_sequence(sequence),
+        "world": _world_for_sequence(sequence),
+    }
+
+
+func build_legacy_golden_checkpoint(kind: String) -> Dictionary:
+    var sequence := sequence_for_kind(kind)
+    if sequence < 1 or sequence > 17:
+        return {}
+    return {
+        "format_id": FORMAT_ID,
+        "schema_version": LEGACY_SCHEMA_VERSION,
         "journey": {
             "phase": "first_day_complete_hold" if sequence == 17 else "first_day",
             "checkpoint_kind": kind,
@@ -151,15 +218,16 @@ func validate_checkpoint(checkpoint: Dictionary, envelope_mirror: Dictionary = {
     var type_result := _validate_json_shape(checkpoint, 1)
     if not bool(type_result.get("ok", false)):
         return type_result
-    var fields_result := _exact_fields(checkpoint, TOP_LEVEL_FIELDS, "checkpoint_fields")
+    var schema_version := int(checkpoint.get("schema_version", 0))
+    if str(checkpoint.get("format_id", "")) != FORMAT_ID or schema_version not in [LEGACY_SCHEMA_VERSION, SCHEMA_VERSION]:
+        return _error("checkpoint_identity_invalid")
+    var fields_result := _exact_fields(checkpoint, TOP_LEVEL_FIELDS_V1 if schema_version == LEGACY_SCHEMA_VERSION else TOP_LEVEL_FIELDS, "checkpoint_fields")
     if not bool(fields_result.get("ok", false)):
         return fields_result
-    if str(checkpoint.get("format_id", "")) != FORMAT_ID or checkpoint.get("schema_version") != SCHEMA_VERSION:
-        return _error("checkpoint_identity_invalid")
     if not checkpoint.get("journey") is Dictionary:
         return _error("journey_not_dictionary")
     var journey := checkpoint["journey"] as Dictionary
-    var journey_fields := _exact_fields(journey, JOURNEY_FIELDS, "journey_fields")
+    var journey_fields := _exact_fields(journey, JOURNEY_FIELDS_V1 if schema_version == LEGACY_SCHEMA_VERSION else JOURNEY_FIELDS, "journey_fields")
     if not bool(journey_fields.get("ok", false)):
         return journey_fields
     var kind := str(journey.get("checkpoint_kind", ""))
@@ -168,24 +236,33 @@ func validate_checkpoint(checkpoint: Dictionary, envelope_mirror: Dictionary = {
         return _error("unknown_checkpoint_kind")
     if journey.get("checkpoint_sequence") != sequence or str(journey.get("workflow_cursor", "")) != kind:
         return _error("checkpoint_sequence_cursor_mismatch")
+    if schema_version == LEGACY_SCHEMA_VERSION and sequence > 17:
+        return _error("legacy_checkpoint_kind_invalid")
     if not envelope_mirror.is_empty():
+        if str(envelope_mirror.get("payload_format_id", FORMAT_ID)) != FORMAT_ID:
+            return _error("envelope_payload_format_mismatch")
+        if int(envelope_mirror.get("payload_schema_version", schema_version)) != schema_version:
+            return _error("envelope_payload_schema_version_mismatch")
         if str(envelope_mirror.get("journey_phase", "")) != str(journey.get("phase", "")):
             return _error("envelope_journey_phase_mismatch")
         if str(envelope_mirror.get("checkpoint_kind", "")) != kind:
             return _error("envelope_checkpoint_kind_mismatch")
         if envelope_mirror.get("checkpoint_sequence") != sequence:
             return _error("envelope_checkpoint_sequence_mismatch")
-    var expected := build_golden_checkpoint(kind)
+    var expected := build_legacy_golden_checkpoint(kind) if schema_version == LEGACY_SCHEMA_VERSION else build_golden_checkpoint(kind)
     if checkpoint != expected:
         return _error("checkpoint_golden_state_mismatch", {"checkpoint_kind": kind})
-    var canonical := _profile_schema.canonicalize(checkpoint)
+    var normalized := build_golden_checkpoint(kind) if schema_version == LEGACY_SCHEMA_VERSION else checkpoint.duplicate(true)
+    var canonical := _profile_schema.canonicalize(normalized)
     if not bool(canonical.get("ok", false)):
         return _error("checkpoint_not_canonicalizable")
     return {
         "ok": true,
         "checkpoint_contract_valid": true,
         "playable_profile": true,
-        "checkpoint": checkpoint.duplicate(true),
+        "checkpoint": normalized,
+        "source_schema_version": schema_version,
+        "schema_version": SCHEMA_VERSION,
         "checkpoint_kind": kind,
         "checkpoint_sequence": sequence,
         "checkpoint_digest": str(canonical["json"]).sha256_text(),
@@ -243,17 +320,54 @@ func pending_intents(kind: String) -> Array[Dictionary]:
             return [_intent("DeliveryTask", "", "", "", "player_confirmed_delivery", "delivery_complete")]
         "first_day_equip_confirmed":
             return [_intent("EquipItemTask", "equipment.comfortable_slippers", "postcard_card", "dachshund_intro", "player_equips_reward", "reward_equipped", "dachshund_intro")]
+        "day2_route_confirmed":
+            return [_intent("TripTask", "", "road_sign", "road_sign", "object.road_sign", "trip_returned_with_payload", "dachshund_intro", SECOND_ORDER_ID)]
+        "day2_payload_returned":
+            return [
+                _intent("UnloadTask", "oat_crate", "basket_bicycle", "storage", "TripTask", "resource_added_to_storage", "", SECOND_ORDER_ID),
+                _intent("UnloadTask", "pumpkin_crate", "basket_bicycle", "storage", "TripTask", "resource_added_to_storage", "", SECOND_ORDER_ID),
+            ]
+        "day2_oat_stored":
+            return [_intent("UnloadTask", "pumpkin_crate", "basket_bicycle", "storage", "TripTask", "resource_added_to_storage", "", SECOND_ORDER_ID)]
+        "day2_resources_available":
+            return [
+                _intent("CarryTask", "oat_crate", "storage", "kitchen", "object.storage", "resource_delivered", "", SECOND_ORDER_ID),
+                _intent("CarryTask", "pumpkin_crate", "storage", "kitchen", "object.storage", "resource_delivered", "", SECOND_ORDER_ID),
+                _intent("CarryTask", "protein_packet", "storage", "kitchen", "object.storage", "resource_delivered", "", SECOND_ORDER_ID),
+            ]
+        "day2_oat_in_kitchen":
+            return [
+                _intent("CarryTask", "pumpkin_crate", "storage", "kitchen", "object.storage", "resource_delivered", "", SECOND_ORDER_ID),
+                _intent("CarryTask", "protein_packet", "storage", "kitchen", "object.storage", "resource_delivered", "", SECOND_ORDER_ID),
+            ]
+        "day2_pumpkin_in_kitchen":
+            return [_intent("CarryTask", "protein_packet", "storage", "kitchen", "object.storage", "resource_delivered", "", SECOND_ORDER_ID)]
+        "day2_inputs_in_kitchen":
+            return [_intent("CookTask", "", "kitchen", "kitchen", "object.kitchen", "food_mix_created", "labrador_intro", SECOND_ORDER_ID)]
+        "day2_food_mix_ready":
+            return [
+                _intent("CarryTask", "food_mix", "kitchen", "packing_table", "object.kitchen", "resource_delivered", "", SECOND_ORDER_ID),
+                _intent("CarryTask", "packaging_bag", "storage", "packing_table", "object.storage", "resource_delivered", "", SECOND_ORDER_ID),
+            ]
+        "day2_food_mix_at_packing":
+            return [_intent("CarryTask", "packaging_bag", "storage", "packing_table", "object.storage", "resource_delivered", "", SECOND_ORDER_ID)]
+        "day2_inputs_at_packing":
+            return [_intent("PackTask", "", "packing_table", "packing_table", "object.packing_table", "food_bag_created", "labrador_intro", SECOND_ORDER_ID)]
+        "day2_food_bag_ready":
+            return [_intent("LoadVanTask", "food_bag", "packing_table", "delivery_van_endpoint", "object.delivery_van_endpoint", "van_loaded", "", SECOND_ORDER_ID)]
+        "day2_dispatch_confirmed":
+            return [_intent("DeliveryTask", "", "", "", "player_confirmed_delivery", "delivery_complete", "", SECOND_ORDER_ID)]
         _:
             return []
 
 
-func _intent(type: String, resource_id: String, source: String, target: String, created_by: String, completion_event: String, assigned_dog_id: String = "") -> Dictionary:
+func _intent(type: String, resource_id: String, source: String, target: String, created_by: String, completion_event: String, assigned_dog_id: String = "", order_id: String = FIRST_ORDER_ID) -> Dictionary:
     var result := {
         "type": type,
         "resource_id": resource_id,
         "source_object_id": source,
         "target_object_id": target,
-        "order_id": FIRST_ORDER_ID,
+        "order_id": order_id,
         "created_by": created_by,
         "completion_event": completion_event,
         "status": "queued",
@@ -265,6 +379,8 @@ func _intent(type: String, resource_id: String, source: String, target: String, 
 
 
 func _order_for_sequence(sequence: int) -> Dictionary:
+    if sequence >= 18:
+        return _day2_order_for_sequence(sequence)
     var history_index := 0
     if sequence >= 2:
         history_index = 1
@@ -314,6 +430,8 @@ func _order_for_sequence(sequence: int) -> Dictionary:
 
 
 func _chain_for_sequence(sequence: int) -> Dictionary:
+    if sequence >= 18:
+        return _day2_chain_for_sequence(sequence)
     var index := 0
     if sequence >= 3:
         index = 1
@@ -379,7 +497,139 @@ func _empty_day2() -> Dictionary:
     return result
 
 
+func _day2_for_sequence(sequence: int) -> Dictionary:
+    if sequence < 18:
+        return _empty_day2()
+    return {
+        "return_moment_seen": true,
+        "yesterday_postcard_visible": true,
+        "dachshund_slippers_visible": true,
+        "dachshund_memory_inspectable": true,
+        "packing_note_visible": true,
+        "second_order_available": true,
+        "return_has_no_urgent_prompt": true,
+        "absence_penalty_applied": false,
+        "labrador_packing_care_moment_seen": sequence >= 29,
+        "second_delivery_completed": sequence >= 32,
+        "second_feedback_visible": sequence >= 32,
+        "curiosity_question_available": sequence >= 33,
+        "curiosity_is_optional_hint": sequence >= 33,
+        "quiet_end_state_reached": sequence >= 33,
+    }
+
+
+func _day2_history_for_sequence(sequence: int) -> Dictionary:
+    if sequence < 33:
+        return {"completed": false, "order": {}, "chain": {}}
+    return {
+        "completed": true,
+        "order": _day2_order_for_sequence(32),
+        "chain": _day2_chain_for_sequence(32),
+    }
+
+
+func _day2_order_for_sequence(sequence: int) -> Dictionary:
+    if sequence >= 33:
+        return {}
+    var history := ["offered"]
+    if sequence >= 19:
+        history.append_array(["route_suggested", "missing_resources"])
+    if sequence >= 22:
+        history.append("resources_available")
+    if sequence >= 26:
+        history.append("production_in_progress")
+    if sequence >= 29:
+        history.append("packed")
+    if sequence >= 30:
+        history.append("loaded")
+    if sequence >= 31:
+        history.append("sent")
+    if sequence >= 32:
+        history.append("completed")
+    var delivery_state := "idle"
+    if sequence == 30:
+        delivery_state = "ready_to_send"
+    elif sequence == 31:
+        delivery_state = "sending"
+    elif sequence >= 32:
+        delivery_state = "delivered"
+    return {
+        "id": SECOND_ORDER_ID,
+        "title": SECOND_ORDER_TITLE,
+        "status": str(history[-1]),
+        "status_history": history,
+        "delivery_state": delivery_state,
+        "delivery_confirmed": sequence >= 31,
+        "completed": sequence >= 32,
+        "postcard_created": false,
+        "reward_created": false,
+        "equip_task_created": false,
+    }
+
+
+func _day2_chain_for_sequence(sequence: int) -> Dictionary:
+    if sequence >= 33:
+        return {}
+    var history := ["not_started"]
+    var state := "not_started"
+    var step := "none"
+    if sequence >= 19:
+        history.append_array(["route_selected", "trip_active"])
+        state = "trip_active"
+        step = "trip_to_oat_farm"
+    if sequence >= 20:
+        history.append("payload_returned")
+        state = "payload_returned"
+        step = "unload_to_storage"
+    if sequence >= 21:
+        history.append("unloading")
+        state = "unloading"
+    if sequence >= 22:
+        history.append_array(["stored", "inputs_to_kitchen"])
+        state = "inputs_to_kitchen"
+        step = "carry_ingredients_to_kitchen"
+    if sequence >= 26:
+        history.append("cooking")
+        state = "cooking"
+        step = "prepare_food_mix"
+    if sequence >= 26:
+        history.append_array(["food_mix_ready", "moving_to_packing"])
+        state = "moving_to_packing"
+        step = "carry_inputs_to_packing"
+    if sequence >= 28:
+        history.append("packing_ready")
+        state = "packing_ready"
+        step = "packing_table_ready"
+    if sequence >= 29:
+        history.append_array(["packing", "food_bag_ready"])
+        state = "food_bag_ready"
+        step = "load_food_bag_into_van"
+    if sequence >= 30:
+        history.append_array(["loading_van", "ready_to_dispatch"])
+        state = "ready_to_dispatch"
+        step = "player_confirms_dispatch"
+    if sequence >= 31:
+        history.append("dispatched")
+        state = "dispatched"
+        step = "delivery"
+    if sequence >= 32:
+        history.append("completed")
+        state = "completed"
+        step = "complete"
+    return {
+        "template_id": CHAIN_TEMPLATE_ID,
+        "run_id": SECOND_CHAIN_RUN_ID,
+        "state": state,
+        "state_history": history,
+        "current_step": step,
+        "route_id": ROUTE_ID,
+        "transport_id": TRANSPORT_ID,
+    }
+
+
 func _resources_for_sequence(sequence: int) -> Dictionary:
+    if sequence >= 18:
+        return _day2_resources_for_sequence(sequence)
     var result := {}
     for container in RESOURCE_CONTAINER_FIELDS:
         result[container] = _empty_resource_container()
@@ -421,6 +671,48 @@ func _resources_for_sequence(sequence: int) -> Dictionary:
     return result
 
 
+func _day2_resources_for_sequence(sequence: int) -> Dictionary:
+    var result := {}
+    for container in RESOURCE_CONTAINER_FIELDS:
+        result[container] = _empty_resource_container()
+    var storage := result["storage"] as Dictionary
+    storage["protein_packet"] = 1 if sequence <= 24 else 0
+    storage["packaging_bag"] = 1 if sequence <= 27 else 0
+    if sequence == 20:
+        (result["transport_payload"] as Dictionary)["oat_crate"] = 1
+        (result["transport_payload"] as Dictionary)["pumpkin_crate"] = 1
+    elif sequence == 21:
+        storage["oat_crate"] = 1
+        (result["transport_payload"] as Dictionary)["pumpkin_crate"] = 1
+    elif sequence == 22:
+        storage["oat_crate"] = 1
+        storage["pumpkin_crate"] = 1
+    elif sequence == 23:
+        (result["kitchen"] as Dictionary)["oat_crate"] = 1
+        storage["pumpkin_crate"] = 1
+    elif sequence == 24:
+        (result["kitchen"] as Dictionary)["oat_crate"] = 1
+        (result["kitchen"] as Dictionary)["pumpkin_crate"] = 1
+    elif sequence == 25:
+        (result["kitchen"] as Dictionary)["oat_crate"] = 1
+        (result["kitchen"] as Dictionary)["pumpkin_crate"] = 1
+        (result["kitchen"] as Dictionary)["protein_packet"] = 1
+    elif sequence == 26:
+        (result["kitchen"] as Dictionary)["food_mix"] = 1
+    elif sequence == 27:
+        (result["packing_table"] as Dictionary)["food_mix"] = 1
+    elif sequence == 28:
+        (result["packing_table"] as Dictionary)["food_mix"] = 1
+        (result["packing_table"] as Dictionary)["packaging_bag"] = 1
+    elif sequence == 29:
+        (result["packing_table"] as Dictionary)["food_bag"] = 1
+    elif sequence in [30, 31]:
+        (result["delivery_van_endpoint"] as Dictionary)["food_bag"] = 1
+    elif sequence >= 32:
+        (result["delivered"] as Dictionary)["food_bag"] = 1
+    return result
+
+
 func _empty_resource_container() -> Dictionary:
     var result := {}
     for resource_id in RESOURCE_FIELDS:
@@ -429,6 +721,20 @@ func _empty_resource_container() -> Dictionary:
 
 
 func _world_for_sequence(sequence: int) -> Dictionary:
+    if sequence >= 18:
+        return {
+            "route_started": sequence >= 19,
+            "route_payload_returned": sequence >= 20,
+            "transport_state": "waiting_for_unload" if sequence in [20, 21] else "parked",
+            "transport_has_payload": sequence in [20, 21],
+            "van_loaded": sequence >= 30,
+            "delivery_confirmed": sequence >= 31,
+            "delivery_complete": sequence >= 32,
+            "postcard_visible": true,
+            "reward_available": false,
+            "slippers_equip_requested": false,
+            "slippers_equipped": true,
+        }
     return {
         "route_started": sequence >= 2,
         "route_payload_returned": sequence >= 3,
