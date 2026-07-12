@@ -52,15 +52,15 @@ D-022 Day 2 same-chain Warm Food Delivery is implemented and verified at prototy
 Active roadmap / current task:
 
 ```text
-Product roadmap: STEAM_DESKTOP__Game_Design_Roadmap_v2.md
-Current product task: none accepted; R-29 closed / PASS
+Product roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
+Current product task: R48-01A + R48-02A + R48-02B completed/PASS; prepare R48-03 persisted First Day → Day 2 transition brief
 Completed workflow/MCP task: ChatGPT Work And Local MCP Migration v1
 ```
 
 Current decisions:
 
 ```text
-D-007, D-016, D-017, D-018, D-019, D-020, D-021, D-022
+D-007, D-016, D-017, D-018, D-019, D-020, D-021, D-022, D-023
 ```
 
 Active open questions:
@@ -133,6 +133,7 @@ Active ADRs:
 ```text
 0001 — Use Godot For Steam/Desktop
 0002 — Game State As Source Of Truth
+0003 — Player Profile Persistence Boundary And Recovery
 ```
 
 Key rule:
@@ -153,6 +154,8 @@ Current Steam/Desktop product state:
 ```text
 First Day MVP locked at prototype/product-language level.
 D-022 complete same-chain Day 2 variation is implemented with green runtime/native evidence.
+R48-01A clean PlayerBoot entry, R48-02A profile-store foundation and R48-02B First Day safe-checkpoint Continue are implemented/PASS.
+Organic ordinary Continue → Day 2 remains R48-03 and is not implemented yet.
 ```
 
 Current visual-language evidence:
@@ -350,7 +353,7 @@ Implemented scope:
 - `second_warm_delivery_after_first_day` Workbench scenario;
 - return moment state;
 - full second order completion on the existing chain;
-- persistence of yesterday’s postcard, slippers and memory;
+- persistence of the previous-session postcard, slippers and memory;
 - one Labrador careful-packing cue inside PackTask;
 - player-confirmed dispatch, small progress note and post-completion optional question;
 - no save/calendar, new systems, production dog pipeline or window/platform changes.
@@ -358,7 +361,7 @@ Implemented scope:
 Current handoff boundary:
 
 ```text
-R-29 is closed / PASS. No successor implementation task is accepted.
+R-29 is closed / PASS. D-023 selects the First Day + Day 2 player journey. R48-01A, ADR-0003/R48-02A and R48-02B completed/PASS; R48-03 brief preparation is next.
 Any production art/animation/world proof or later product slice requires its own accepted brief.
 ```
 
@@ -385,6 +388,32 @@ Suggested reasoning level for Codex if assigned:
 ---
 
 ## 10. Changelog
+
+### 2026-07-12 — R48-02B completed / checkpoint resume PASS
+
+- Implemented the exact seventeen-cursor First Day checkpoint/Continue contract after Producer, Game Design and Technical PASS.
+- Added restart-safe recovery, durable save acknowledgement, failure rollback/retry and exact three-input/resource-conservation alignment.
+- Passed the full cursor/restart/kill/failure matrix plus First Day and Day 2 regressions.
+- Kept organic ordinary Continue → Day 2 transition outside this wave in R48-03.
+
+### 2026-07-12 — R48-02A completed / R48-02B brief next
+
+- Added the strict integer-only player-profile store/recovery foundation without PlayerBoot or gameplay wiring.
+- Verified restart/SIGKILL recovery, namespace isolation, exact current test-root cleanup and full Godot regression.
+- Kept envelopes explicitly non-playable; R48-02B must define `PlayerCheckpointV1`, autosave and Continue before integration.
+
+### 2026-07-12 — R48-01A completed / R48-02A current
+
+- Unified F5, `play.sh` and macOS export through one clean PlayerBoot over the existing Vertical Slice runtime.
+- Added bounded `dev.sh` while preserving legacy launch/tooling compatibility.
+- Passed player/dev isolation, First Day, connector, Day 2 dev-route, full Godot and real macOS export checks.
+- Advanced current work to ADR-0003/R48-02A; durable Continue remains R48-02B.
+
+### 2026-07-12 — R48 entry/save preflight accepted
+
+- Accepted R48-01A as the current implementation wave.
+- Accepted ADR-0003 and queued R48-02A after R48-01A under one sequential integrator.
+- Kept gameplay checkpoints, Continue wiring and Day 2 transition in their later bounded waves.
 
 ### 2026-07-12 — R-29 closeout recorded
 

@@ -1,9 +1,9 @@
 # STEAM_DESKTOP — Object Contract v1
 
 Дата: 2026-06-28  
-Обновлено: 2026-07-11
+Обновлено: 2026-07-12
 Роль документа: Game Design / Domain Model / Dev-facing Object Contract  
-Статус: active v1 / D-022 Day 2 scenario addendum accepted
+Статус: active v1 / D-022 Day 2 + D-023 player-journey synchronization accepted
 Продукт: Steam/Desktop idle always-on-top strip  
 Обязателен для: Game Designer, Art Director, Codex  
 Основано на: `STEAM_DESKTOP__Vertical_Slice_Contract_v1.md`, D-009, D-010, D-011, D-012, D-013
@@ -243,8 +243,10 @@ Storage contains:
 
 Vertical Slice starting supplies:
 
-- Protein Packet x1;
-- Packaging Bag x1.
+- Protein Packet x2;
+- Packaging Bag x2.
+
+First Day consumes one unit of each. The remaining `Protein Packet x1` and `Packaging Bag x1` are persisted existing stock for Day 2 under D-023. Storage does not create this remainder.
 
 The accepted `second_day_after_first_delivery` fixture also starts with exactly the same two units as deterministic existing stock:
 
@@ -751,13 +753,13 @@ Basket Bicycle is not responsible for:
 
 #### Protein Packet
 
-- Source: starting Storage supply.
+- Source: starting Storage reserve (`x2` across First Day + Day 2).
 - Target: Kitchen.
 - Used by: Kitchen.
 
 #### Packaging Bag
 
-- Source: starting Storage supply.
+- Source: starting Storage reserve (`x2` across First Day + Day 2).
 - Target: Packing Table.
 - Used by: Packing Table.
 
@@ -947,6 +949,8 @@ The active Order produces:
 - calm quiet-end state.
 
 The active Order owns this non-reward response state. The existing Van-side postcard-board cue renders the progress note; the existing Packing Table note cue renders `Как паковать мягче?`. Neither anchor owns the response or gains production responsibility.
+
+Under D-023, after the accepted progress-note/question sequence, the completed Day 2 Order/chain move into immutable journey history and active-order/active-chain slots become empty. Quiet Cooperative reuses only existing non-progression IdleTask presentation; no object gains a new production, reward or progression responsibility.
 
 #### Required task/object behavior
 
@@ -1172,6 +1176,11 @@ Purpose:
 Define exact task sequencing, task ownership, priority rules and blocked-state behavior for the first vertical slice.
 
 ## 21. Changelog
+
+### 2026-07-12 — D-023 player-journey synchronization
+
+- Changed the First Day Protein/Packaging source to a visible `x2/x2` reserve whose `x1/x1` remainder persists into Day 2; Storage still never generates/refills it.
+- Clarified that post-Day2 Quiet Cooperative archives the completed result and leaves no active order/chain or new object responsibility.
 
 ### 2026-07-11 — D-022 Day 2 scenario addendum
 

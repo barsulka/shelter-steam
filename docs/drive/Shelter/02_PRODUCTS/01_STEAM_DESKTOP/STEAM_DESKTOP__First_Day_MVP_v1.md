@@ -2,7 +2,7 @@
 
 Дата: 2026-07-05
 Роль документа: Game Design / MVP Scope Contract
-Статус: draft v1
+Статус: accepted prototype game contract / D-023 reserve and completion synchronization
 Продукт: Steam/Desktop idle always-on-top strip
 Roadmap task: R-20 — First Day MVP Contract v1
 Роль-владелец: Game Designer / Systems Designer
@@ -21,7 +21,7 @@ Roadmap task: R-20 — First Day MVP Contract v1
 -> игрок понимает физический flow ресурсов и действий
 -> приходит благодарность
 -> одна собака получает личную память/маленькую награду
--> появляется мягкий повод вернуться завтра
+-> появляется мягкий повод вернуться в следующий раз
 ```
 
 Документ основан на full-dispatch runtime review:
@@ -66,7 +66,7 @@ First Day MVP включает:
 7. Одну открытку / благодарность после доставки.
 8. Одну личную награду: Удобные тапочки для Таксы.
 9. Одну личную память: “Помнит первую тёплую поставку”.
-10. Один мягкий post-delivery tease на следующий день / House of Curiosity.
+10. Один мягкий post-delivery tease на следующий визит / House of Curiosity.
 11. Workbench/state evidence достаточный для проверки loop, dog identity и post-delivery moment.
 
 ### Out of scope
@@ -99,7 +99,7 @@ Beat 1 — В кооперативе первый рабочий день
 Beat 2 — Первая поездка за ресурсами
 Beat 3 — Собаки вместе готовят поставку
 Beat 4 — Игрок отправляет первую поставку
-Beat 5 — Открытка, тапочки, память и завтрашний намёк
+Beat 5 — Открытка, тапочки, память и намёк на следующий визит
 ```
 
 ### Beat 1 — В кооперативе первый рабочий день
@@ -219,7 +219,7 @@ Design rule:
 - нет guilt pressure;
 - текст должен звучать спокойно: “Отправить первую тёплую поставку”, не “срочно помоги, иначе плохо”.
 
-### Beat 5 — Открытка, тапочки, память и завтрашний намёк
+### Beat 5 — Открытка, тапочки, память и намёк на следующий визит
 
 Player fantasy:
 
@@ -239,7 +239,7 @@ Required emotional completion:
 - postcard is not only a flag;
 - dog reacts / notices / carries / reads / sniffs / places postcard;
 - reward is personal and attached to a dog;
-- day ends with a small reason to continue tomorrow.
+- session ends with a small reason to continue next time.
 
 Preferred post-delivery life moment:
 
@@ -248,7 +248,7 @@ Preferred post-delivery life moment:
 Лабрадор спокойно садится рядом.
 Такса получает Удобные тапочки.
 В Dog Card появляется: “Помнит первую тёплую поставку”.
-Появляется мягкий hint: “Завтра можно придумать, как паковать ещё аккуратнее.”
+Появляется мягкий hint: “В следующий раз можно подумать, как паковать ещё аккуратнее.”
 ```
 
 ---
@@ -424,7 +424,7 @@ Emotional completion criteria:
 ```text
 postcard_life_moment_seen: true
 first_memory_added_to_dog: true
-first_reward_equipped_or_claimed: true
+first_day.first_reward_equipped: true
 next_day_hint_available: true
 ```
 
@@ -440,14 +440,14 @@ First Day MVP should have few meaningful player actions.
 
 1. Start/confirm first route.
 2. Confirm delivery dispatch.
-3. Notice/accept postcard and reward moment.
+3. Equip Comfortable Slippers on Dachshund after the postcard/reward moment.
 
 ### Optional player actions
 
 - inspect Dog Card after reward;
 - inspect order/postcard card;
 - toggle QA/player prototype view in dev only;
-- maybe click “continue tomorrow” / close first-day moment.
+- close the app and return through the ordinary session flow.
 
 ### Not allowed in First Day MVP
 
@@ -622,11 +622,7 @@ First Day may include a soft post-delivery hint:
 Лабрадор смотрит на мешочек: “В следующий раз можно завязать ещё ровнее.”
 ```
 
-or:
-
-```text
-На доске любопытства появляется первая заметка: “Как паковать мягче?”
-```
+The exact question `Как паковать мягче?` is reserved for the accepted post-Day2 sequence. First Day exposes only a generic next-visit tease.
 
 This hint may unlock or reveal:
 
@@ -835,6 +831,13 @@ Codex must stop and return a question if implementation requires:
 ---
 
 ## 16. Changelog
+
+### 2026-07-12 — D-023 synchronization
+
+- Locked the exact First Day gameplay input budget to route confirmation, dispatch confirmation and slippers equip.
+- Changed starting Protein/Packaging supply semantics to the accepted two-delivery reserve through Task Flow/Object contracts.
+- Reserved the exact `Как паковать мягче?` question for post-Day2 and kept only a generic First Day next-visit tease.
+- Required actual slippers equip, not an equip-or-claim substitute, for full First Day completion.
 
 ### 2026-07-05 — v1 created
 

@@ -34,22 +34,22 @@ then task-specific docs
 Current truth:
 
 ```text
-Game Design focus: post-Day 2 evidence review after locked First Day MVP.
+Game Design focus: accepted First Day + Day 2 player journey under D-023.
 D-022 Day 2 proof is complete at prototype/product-language/runtime-evidence level.
-R-29 is closed / PASS; no successor executable slice is accepted.
+R-29 is closed / PASS; R48-00 is accepted.
 ```
 
 Active roadmap / current task:
 
 ```text
-Active roadmap: STEAM_DESKTOP__Game_Design_Roadmap_v2.md
-Current task: none accepted after R-29 closeout
+Active roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
+Current task: preserve accepted D-023 semantics while the bounded R48-03 persisted First Day → Day 2 transition brief is prepared
 ```
 
 Current decisions:
 
 ```text
-D-009, D-010, D-012, D-013, D-018, D-019, D-020, D-022
+D-009, D-010, D-012, D-013, D-018, D-019, D-020, D-022, D-023
 ```
 
 Active open questions:
@@ -61,8 +61,11 @@ OQ-Steam-003
 Read next by task:
 
 ```text
-Day 2 scope: STEAM_DESKTOP__First_Week_Direction_v1.md
-Implementation brief: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
+Current scope: STEAM_DESKTOP__First_48_Hours_Playable_Scope_Lock_v1.md
+Current roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
+Completed implementation: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
+Completed persistence foundation: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
+Completed checkpoint implementation: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Runtime_Safe_Checkpoints_And_Continue_v1.md
 Systems details: read R-09..R-16 docs only when needed
 ```
 
@@ -75,7 +78,7 @@ old roadmaps, old capture packs, old handoff, full CODEX_STATUS.md
 Next best step:
 
 ```text
-Use completed Day 2 as the current baseline. Any next slice requires a separate role decision and executable brief.
+Use D-023 and the accepted First 48 Hours Scope Lock as the current baseline. Review implementation without expanding the exact `3 + 2` input budget, persisted reserve or Quiet Cooperative boundary.
 ```
 
 ---
@@ -95,13 +98,13 @@ Current accepted product state:
 ```text
 First Day MVP is locked at prototype/product-language proof level.
 Day 2 same-chain continuation is complete at prototype/product-language/runtime-evidence level.
-No next executable scope is selected.
+D-023 First Day + Day 2 player journey scope is accepted; R48-01A, R48-02A and R48-02B are complete/PASS. R48-03 brief preparation is next.
 ```
 
-The active question:
+The active execution question:
 
 ```text
-Why does the player return tomorrow after the first warm delivery?
+How do the accepted implementation waves deliver the session-based return without expanding the exact D-023 game semantics?
 ```
 
 ---
@@ -119,6 +122,7 @@ D-018 — Vertical Slice gameplay proof unlocks systems branch.
 D-019 — Game Design Systems Workbench over live Godot runtime.
 D-020 — Project Philosophy / Shelter Constitution.
 D-022 — complete same-chain Day 2 Warm Food Delivery executable scope lock.
+D-023 — session-based First Day + Day 2 player journey, exact `3 + 2` inputs, persisted `x2/x2 → x1/x1` reserve, Quiet Cooperative with completed history preserved and active order/chain slots empty, Labrador P0 and Kitchen P1.
 ```
 
 Main D-020 filter:
@@ -131,28 +135,30 @@ Any system must first explain how it makes cooperative life richer, and only the
 
 ## 3. Current active roadmap
 
-Active Steam/Desktop Game Design roadmap:
+Active Steam/Desktop execution roadmap:
 
 ```text
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Game_Design_Roadmap_v2.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
 ```
 
 Current active roadmap task:
 
 ```text
-None accepted after R-29 closeout.
+R48-00 and ADR-0003 are accepted; R48-01A, R48-02A and R48-02B are complete/PASS. R48-03 is the next bounded brief gate.
 ```
 
-Current direction source:
+Current direction sources:
 
 ```text
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Scope_Lock_v1.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
 ```
 
 Current implementation source:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
 ```
 
 ---
@@ -166,7 +172,7 @@ Beat 1 — First work day in the cooperative.
 Beat 2 — First trip for resources.
 Beat 3 — Dogs prepare the delivery together.
 Beat 4 — Player sends the first delivery.
-Beat 5 — Postcard, slippers, memory and tomorrow hint.
+Beat 5 — Postcard, slippers, memory and next-visit hint.
 ```
 
 Locked First Day elements:
@@ -194,15 +200,15 @@ Steam release readiness
 
 ## 5. Day 2 / First Week direction
 
-Day 2 should show that yesterday mattered.
+Day 2 should show that the previous session mattered.
 
 Do not jump immediately into a large new system. The next slice should be narrow and emotionally continuous.
 
 Likely Day 2 ingredients:
 
 ```text
-yesterday's postcard still visible
-yesterday's slippers matter
+previous-session postcard still visible
+previous-session slippers matter
 Dachshund remembers the first warm delivery
 second warm delivery variation appears
 first gentle packing note / comfort detail
@@ -298,10 +304,12 @@ docs/drive/Shelter/00_START_HERE/03_OPEN_QUESTIONS.md
 
 ## 10. Next best step
 
-Day 2 implementation/evidence is accepted and R-29 is closed. Use it as baseline evidence; do not infer a successor task from the completed brief:
+Day 2 implementation/evidence is accepted and R-29 is closed. Use it as baseline evidence; the active successor authority is:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Scope_Lock_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
 ```
 
 The completed brief boundary was narrow:
@@ -309,7 +317,7 @@ The completed brief boundary was narrow:
 ```text
 return moment
 second warm delivery variation
-yesterday's postcard/slippers/memory
+previous-session postcard/slippers/memory
 first gentle packing note
 full player-confirmed second delivery
 one Labrador careful-packing cue
@@ -321,6 +329,23 @@ no full new system
 ---
 
 ## 11. Changelog
+
+### 2026-07-12 — R48-02B completed / game contract preserved
+
+- Verified the exact seventeen-cursor First Day checkpoint matrix, three-input reward alignment and resource conservation in implementation.
+- Preserved Day 2, offline and Quiet Cooperative semantics; ordinary Continue → Day 2 remains R48-03.
+
+### 2026-07-12 — R48-02A complete / D-023 semantics preserved
+
+- The strict player-profile envelope/store foundation completed without owning gameplay, offline time or journey transitions.
+- `PlayerCheckpointV1`, autosave and First Day Continue are now complete/PASS.
+- The exact `3 + 2`, persisted reserve and Quiet Cooperative contracts remain unchanged.
+
+### 2026-07-12 — D-023 / R48-00 accepted
+
+- Selected the session-based First Day + Day 2 player journey as the active executable program.
+- Locked exact `3 + 2` player input, persisted `x2/x2 → x1/x1` reserve, Quiet Cooperative, Labrador P0 and Kitchen P1.
+- Activated R48-01A/R48-02A brief preflight without authorizing implementation early.
 
 ### 2026-07-12 — R-29 closed / PASS
 

@@ -36,7 +36,7 @@ STEAM_DESKTOP__Game_Design_Roadmap_v2.md
 Current active task:
 
 ```text
-No new executable Game Design task is accepted after R-29 closeout.
+R-29 remains closed. The accepted successor program is maintained in `STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md`; this roadmap remains the historical/system-design queue and must not duplicate the R48 execution plan.
 ```
 
 Current product status:

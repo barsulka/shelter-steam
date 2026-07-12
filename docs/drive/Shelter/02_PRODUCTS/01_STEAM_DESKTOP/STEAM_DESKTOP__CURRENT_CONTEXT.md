@@ -33,19 +33,20 @@ Steam/Desktop = cozy idle production strip + dog community sim.
 First Day MVP locked at prototype/product-language level.
 D-022 Day 2 same-chain Warm Food Delivery variation is complete at prototype/product-language/runtime-evidence level.
 R-29 is closed / PASS.
+D-023 First Day + Day 2 player journey scope lock is accepted.
 ```
 
 Active roadmap / current task:
 
 ```text
-Active roadmap: STEAM_DESKTOP__Game_Design_Roadmap_v2.md
-Current task: none accepted after R-29 closeout
+Active roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
+Current task: R48-01A + R48-02A + R48-02B completed/PASS; prepare R48-03 persisted First Day → Day 2 transition brief
 ```
 
 Current decisions:
 
 ```text
-D-007, D-009, D-010, D-011, D-012, D-013, D-018, D-019, D-020, D-022
+D-007, D-009, D-010, D-011, D-012, D-013, D-018, D-019, D-020, D-022, D-023
 ```
 
 Active open questions:
@@ -72,7 +73,7 @@ old captures, old completed briefs, old handoff, full CODEX_STATUS.md, supersede
 Next best step:
 
 ```text
-No successor executable slice is accepted. Select any next implementation only through a separate product/role decision and Codex brief.
+Prepare and accept the bounded R48-03 persisted First Day → Day 2 transition brief. First Day `PlayerCheckpointV1` autosave/Continue is complete/PASS; ordinary Continue still does not create Day 2.
 ```
 
 ---
@@ -114,6 +115,7 @@ Active decisions:
 - D-019 — Game Design Systems Workbench over live Godot runtime; no standalone simulator.
 - D-020 — Shelter makes life richer, not the warehouse.
 - D-022 — one complete same-chain Day 2 Warm Food Delivery variation was the accepted executable slice; it is now implemented and R-29 is closed.
+- D-023 — session-based First Day + Day 2 player journey, exact `3 + 2` inputs, persisted reserve, Quiet Cooperative, Labrador P0 and Kitchen P1.
 
 Read decision details in:
 
@@ -130,7 +132,7 @@ Current state as of 2026-07-12:
 ```text
 First Day MVP is locked at prototype/product-language level.
 Day 2 is complete at prototype/product-language/runtime-evidence level; R-29 is closed / PASS.
-No successor executable scope is selected.
+D-023 separately selects `First 48 Hours Playable`; R48-01A, accepted ADR-0003/R48-02A and R48-02B are complete/PASS. R48-03 brief preparation is next.
 ```
 
 Important caveat:
@@ -150,7 +152,7 @@ Beat 1 — В кооперативе первый рабочий день
 Beat 2 — Первая поездка за ресурсами
 Beat 3 — Собаки вместе готовят поставку
 Beat 4 — Игрок отправляет первую поставку
-Beat 5 — Открытка, тапочки, память и завтрашний намёк
+Beat 5 — Открытка, тапочки, память и намёк на следующий визит
 ```
 
 Accepted entities:
@@ -213,7 +215,7 @@ Accepted at prototype level:
 - van ready object-state proof;
 - postcard board attention cue;
 - comfortable slippers as dachshund personal reward cue;
-- next-day hint as physical note object;
+- next-visit hint as physical note object;
 - compact strip composition at 96 px.
 
 Sources:
@@ -233,7 +235,7 @@ Accepted Day 2 direction, now implemented:
 
 ```text
 Day 2 should not add a big new system immediately.
-Day 2 should show that yesterday mattered.
+Day 2 should show that the previous session mattered.
 One complete second Warm Food Delivery on the existing route/resource/station chain is mandatory proof.
 ```
 
@@ -263,6 +265,7 @@ Accepted completion boundary:
 ```text
 fixture return -> full visible production chain -> Labrador careful-pack cue -> visible Van load
 -> player-confirmed DeliveryTask -> small progress note -> optional post-completion question -> quiet end state
+-> archive completed Day 2 result into journey history -> clear active order/chain slots -> Quiet Cooperative
 ```
 
 Production save/calendar, new route/chain/resources/stations, active habit/research/economy, production dog pipeline and platform semantics remain out of scope.
@@ -310,6 +313,8 @@ For product / game design:
 STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md
 STEAM_DESKTOP__First_Week_Direction_v1.md
 STEAM_DESKTOP__Game_Design_Roadmap_v2.md
+STEAM_DESKTOP__First_48_Hours_Playable_Scope_Lock_v1.md
+STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
 STEAM_DESKTOP__First_Day_MVP_v1.md
 STEAM_DESKTOP__Vertical_Slice_Scope_Lock_v1.md
 STEAM_DESKTOP__Task_Flow_Contract_v1.md
@@ -361,16 +366,18 @@ docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 
 ## 10. Current next best step
 
-Recommended next product/design step:
+Current product/design boundary:
 
 ```text
-R-29 is closed. Sheet A and Sheet B are also closed as PREVIEW_RESEARCH_ONLY Art `WARN` evidence with no root contract failure. Review these results and the proposed dog pipeline work only as evidence; do not promote any result into an executable slice without a separate decision and brief.
+R-29 is closed. D-023/R48-00 are accepted. Prepare the bounded R48-03 transition brief without adding successor content; R48-01A/R48-02A/R48-02B are complete and Sheet A/B remain PREVIEW_RESEARCH_ONLY evidence, not runtime assets.
 ```
 
-Completed canonical brief:
+Completed and current accepted implementation briefs:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Runtime_Safe_Checkpoints_And_Continue_v1.md
 ```
 
 Suggested Codex reasoning level:
@@ -393,6 +400,17 @@ Do not expand into:
 ---
 
 ## 11. Changelog
+
+### 2026-07-12 — R48-02B completed / PASS
+
+- Implemented and verified the exact First Day checkpoint/Continue brief after cross-role PASS.
+- Passed the full cursor/restart/kill/failure matrix and retained R48-03 as the organic Day 2 return boundary.
+
+### 2026-07-12 — R48-01A/R48-02A complete / R48-02B brief next
+
+- Unified ordinary player launch and added the strict non-playable profile-store foundation.
+- Preserved the one-runtime/no-offline/no-fixture boundary and advanced only to R48-02B brief preparation.
+- Continue, autosave and Day 2 persisted transition are not yet implemented.
 
 ### 2026-07-12 — R-29 closed / Day 2 accepted
 

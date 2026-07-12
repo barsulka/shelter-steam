@@ -56,17 +56,24 @@ Shelter — группа тёплых, спокойных, этичных при
 First Day MVP закрыт на уровне prototype/product-language proof.
 D-022 Day 2 same-chain Warm Food Delivery variation завершена на уровне prototype/product-language/runtime-evidence.
 R-29 закрыт / PASS.
+D-023 First Day + Day 2 player journey scope lock принят.
 ```
 
 Текущая граница следующей работы:
 
-> Новый executable product/game scope после R-29 не выбран. Текущие world/room/dog визуальные исследования остаются отдельным preview R&D и не становятся скрытым продолжением Day 2.
+> R-29 не создаёт автоматический successor из preview R&D. Новый scope выбран отдельно через D-023: `First 48 Hours Playable`.
+
+Актуализация D-023:
+
+> Successor scope теперь выбран: `First 48 Hours Playable` как session-based First Day + Day 2 player journey. R48-01A, R48-02A и R48-02B завершены/PASS; R48-03 persisted First Day → Day 2 transition brief является следующим gate.
 
 Источник:
 
 ```text
 docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md
 docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Scope_Lock_v1.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
 ```
 
 ### Current working environment
@@ -102,7 +109,7 @@ Beat 1 — В кооперативе первый рабочий день
 Beat 2 — Первая поездка за ресурсами
 Beat 3 — Собаки вместе готовят поставку
 Beat 4 — Игрок отправляет первую поставку
-Beat 5 — Открытка, тапочки, память и завтрашний намёк
+Beat 5 — Открытка, тапочки, память и намёк на следующий визит
 ```
 
 First Day locked elements:
@@ -143,6 +150,8 @@ Implemented / available:
 - First Day visible review capture packs v1/v2/v3.
 - First Day Art/UX visual-language pass v1 implemented and accepted as prototype pass.
 - Day 2 return + complete second warm delivery runtime/evidence proof implemented and accepted; R-29 closed / PASS.
+- R48-01A clean ordinary PlayerBoot route implemented for F5/`play.sh`/internal export; bounded `dev.sh` separates developer workflows.
+- R48-02A strict player-profile envelope/store/recovery foundation implemented and verified; it is not yet wired to Continue or gameplay checkpoints.
 
 Latest dev status source:
 
@@ -220,6 +229,7 @@ Important accepted decisions:
 - D-020 — Project Philosophy / Shelter Constitution.
 - D-021 — local ChatGPT Work/Codex checkout and Shelter MCP boundary.
 - D-022 — complete same-chain Day 2 Warm Food Delivery executable scope lock.
+- D-023 — session-based First Day + Day 2 player journey, exact input budget, persisted reserve, Quiet Cooperative, Labrador P0 and Kitchen P1.
 
 ---
 
@@ -257,7 +267,7 @@ STEAM_DESKTOP__CURRENT_CONTEXT.md
 02_DECISIONS.md
 ```
 
-Producer focus now: keep R-29 closed, evaluate current preview R&D evidence and choose any successor scope only through a separate explicit decision.
+Producer focus now: keep D-023 scope locked while R48-03 transition brief is prepared and protect the exact player-journey/no-obligation boundary.
 
 ### Game Designer
 
@@ -271,7 +281,7 @@ STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md
 STEAM_DESKTOP__First_Week_Direction_v1.md
 ```
 
-Game Designer focus now: preserve the accepted Day 2 causality and use the proposed dog-action/activity vocabulary as a coverage map, not automatic implementation scope.
+Game Designer focus now: preserve D-022 causality plus the D-023 `3 + 2` input budget, persisted reserve and Quiet Cooperative boundary.
 
 ### Art Director / UX
 
@@ -323,7 +333,7 @@ SUPERSEDED_MAP.md
 02_DECISIONS.md
 ```
 
-PM focus now: preserve the completed D-021 boundary and R-29 closeout, keep Current Memory synchronized and coordinate preview R&D handbacks without inferring a successor slice.
+PM focus now: preserve D-021/R-29 history, keep D-023 Current Memory synchronized and coordinate R48-03 brief preparation without scope drift.
 
 ---
 
@@ -338,14 +348,17 @@ D-021 local Work/Codex migration is complete. Use the checkout directly for file
 Product / Game Design:
 
 ```text
-D-022 is implemented and accepted; R-29 is closed / PASS. Do not infer a successor executable slice from current preview R&D.
+D-022 is implemented and R-29 is closed / PASS. D-023 now selects the First Day + Day 2 player journey; use the accepted Scope Lock and R48 roadmap, not preview R&D, as authority.
 ```
 
-Completed Codex brief:
+Current accepted Codex sequence:
 
 ```text
-STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
+STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
+STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
 ```
+
+R48-01A, R48-02A and R48-02B are completed/PASS. First Day autosave/Continue is implemented; organic Continue → Day 2 remains R48-03.
 
 Reasoning level if assigned to Codex:
 
@@ -362,6 +375,36 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## 10. Changelog
+
+### 2026-07-12 — R48-02B completed / PASS
+
+- Implemented and verified the exact First Day checkpoint/Continue contract, including durable save acknowledgement, restart/kill recovery and the seventeen-cursor matrix.
+- Preserved the exact three-input flow and honest reserve arithmetic.
+- Kept organic ordinary Continue → Day 2 in R48-03.
+
+### 2026-07-12 — R48-02A completed
+
+- Added the strict non-playable player-profile store/recovery foundation and verified restart/SIGKILL behavior.
+- Kept gameplay authority and offline/session semantics unchanged.
+- Advanced only to R48-02B brief preparation; Continue and persisted Day 2 remain pending.
+
+### 2026-07-12 — R48-01A completed
+
+- Replaced the ordinary placeholder launch with one clean PlayerBoot route shared by F5, `play.sh` and macOS export.
+- Added bounded `dev.sh` without replacing legacy specialized tools.
+- Advanced the sequential program to current R48-02A; functional Continue remains R48-02B.
+
+### 2026-07-12 — R48 implementation preflight accepted
+
+- Accepted R48-01A for immediate sequential implementation.
+- Accepted ADR-0003 and queued R48-02A after R48-01A.
+- Kept R48-02B checkpoint integration and R48-03 Day 2 transition outside the first two code waves.
+
+### 2026-07-12 — D-023 / First 48 Hours selected
+
+- Recorded user acceptance A/A/A and D-023.
+- Made the First 48 Hours roadmap and Scope Lock the active player-journey authority.
+- Routed current work to R48-01A/R48-02A preflight while preserving R-29 as completed evidence.
 
 ### 2026-07-12 — R-29 closed / Day 2 accepted
 

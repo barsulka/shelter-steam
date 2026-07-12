@@ -1,6 +1,6 @@
 # 02_DECISIONS — Shelter Decision Log
 
-Обновлено: 2026-07-11
+Обновлено: 2026-07-12
 Статус: active knowledge / decision log
 Владелец: Producer / Project Manager
 Назначение: хранить принятые долгоживущие решения Shelter. История обсуждений, handoff и evidence живут в History-документах.
@@ -54,6 +54,7 @@ For implementation history, use CODEX_CURRENT_STATUS.md / CODEX_STATUS.md and re
 | D-020 | Project Philosophy / Shelter Constitution | philosophy/product | all | accepted |
 | D-021 | ChatGPT Work local project and Shelter MCP boundary | process/dev tooling | docs/Codex/MCP | accepted |
 | D-022 | Steam/Desktop Day 2 executable scope lock | product/game design | Steam | accepted |
+| D-023 | Steam/Desktop First Day + Day 2 player journey scope lock | product/game design | Steam | accepted |
 
 ---
 
@@ -898,6 +899,55 @@ Related:
 
 ---
 
+### D-023 — Steam/Desktop First Day + Day 2 player journey scope lock
+
+Дата: 2026-07-12
+Kind: `product/game design`
+Area: `Steam/Desktop`
+Status: `accepted`
+
+Summary:
+
+> Следующий executable program превращает уже доказанные First Day и Day 2 сценарии в один обычный player journey: clean launch, спокойное влияние без microtask duty, player save/Continue, одноразовый session-based return, первый living Labrador, одна inspectable Kitchen и тихое продолжение после Day 2.
+
+Decision:
+
+1. `First 48 Hours` — внутреннее имя программы. Canonical readiness claim до Windows smoke: `macOS-only internal First Day + Day 2 playable (session-based continuation, prototype visual level; not Steam/release ready)`.
+2. Narrative Day 2 начинается ровно один раз при первом обычном `Continue` после fully-complete First Day; wall clock, timezone, real calendar и elapsed closed-app time не продвигают день.
+3. Закрытая игра frozen: нет offline simulation, catch-up, resource/reward production, decay, loss, neglect, deadline или absence penalty. Visible-unfocused/occluded runtime продолжает safe 1x simulation; minimized/OS-suspended runtime может pause/slow без restore burst.
+4. Fresh First Day Storage содержит `Protein Packet x2` и `Packaging Bag x2`. First Day расходует по одной единице; Day 2 получает persisted remainder `x1/x1`. Transition не создаёт refill/reward/resource event.
+5. Exact required gameplay input budget: First Day — start trip, confirm dispatch, equip slippers; Day 2 — start trip, confirm dispatch. Dog-owned unload/carry/cook/pack/load microtasks требуют ноль подтверждений; irreversible gates ждут бессрочно.
+6. First Day считается полностью завершённым только после delivery completion, postcard life moment, equipped slippers, added memory и next-visit hint. До этой границы restart продолжает First Day и не создаёт Day 2.
+7. После Day 2 принимается вариант A — `Quiet Cooperative`: completed First Day/Day 2 history and persistent traces remain immutable, active order/chain slots are empty, safe idle/wait/rest ambience continues. Это не repeatable order, Day 3 или новая progression system.
+8. Первый living runtime character — Labrador (`P0`). Первая inspectable room — Kitchen (`P1`) и остаётся обязательным Program DoD. Room uses one same-window detail surface over the same runtime, does not duplicate the dog and adds no mechanics.
+9. Player persistence uses versioned `user://` save, strict validation, transactional replace plus recovery and safe checkpoints. Exact in-flight task resume не входит без отдельного idempotency contract.
+10. `steam/play.sh` запускает только обычную игру тем же semantic route, что F5/internal export. `steam/dev.sh` — developer dispatcher для fixtures, connector/control, captures и diagnostics. Player path не принимает dev fixture/control/debug/time semantics.
+11. Authored visual source и imported runtime evidence — разные maturity stages. PREVIEW_RESEARCH_ONLY Sheet A/B не являются runtime assets; standalone demo не закрывает playable Art DoD.
+12. First Week остаётся направлением, а не семью реализованными днями. First Month, Day 3+, repeatable order generator, full dog vocabulary, multiple rooms, research/habits/economy, production style lock и Steam/release integration остаются out of scope.
+
+Accepted user choices:
+
+```text
+A — Quiet Cooperative after Day 2.
+A — Kitchen remains mandatory P1 in Program DoD.
+A — First 48 Hours remains an internal roadmap name; readiness uses First Day + Day 2 / two-session language.
+```
+
+Implementation relationship:
+
+- `R48-01` player entry and `R48-02` persistence may be designed in parallel but close as a joint acceptance gate; shared-checkout implementation is sequential under one integrator.
+- D-022 task/order/resource causality remains authoritative. Player continuation must implement an idempotent same-runtime transition and MUST NOT load the Day 2 fixture from player path.
+- Every Codex implementation wave requires a separate accepted brief.
+
+Canonical sources:
+
+```text
+02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
+02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Scope_Lock_v1.md
+```
+
+---
+
 ## 3. Open / proposed items not fixed here
 
 These are not decisions in this file. Track them in:
@@ -918,6 +968,12 @@ Examples:
 ---
 
 ## 4. Changelog
+
+### 2026-07-12 — D-023 accepted
+
+- Accepted the First Day + Day 2 player-journey program and user choices A/A/A.
+- Locked session-based continuation, frozen closed-app state, exact `3 + 2` input budget, persisted `x2/x2 → x1/x1` reserve, Labrador P0, Kitchen P1 and Quiet Cooperative.
+- Kept calendar/offline progression, Day 3+, First Month, full animation vocabulary, production art and Steam/release work outside the program.
 
 ### 2026-07-11 — D-022 accepted
 

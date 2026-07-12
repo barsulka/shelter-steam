@@ -32,57 +32,109 @@ export GODOT_BIN="$HOME/Library/Application Support/Steam/steamapps/common/Godot
 tools/check-godot.sh
 ```
 
-## Launch
+## Play
 
-Use the main launcher for day-to-day manual runs:
-
-```sh
-./launch.sh
-./launch.sh -- --runtime-load-fixture=warm_food_delivery_mid_chain
-./launch.sh -- --runtime-load-save
-./launch.sh --exit
-```
-
-The main launcher starts the playable Vertical Slice and always enables the local
-dev-only connector/control HTTP server. Lookup flags never start new processes:
+Use the ordinary player route for day-to-day play:
 
 ```sh
-./launch.sh --url                  # print local URLs for the already running game
-./launch.sh --exit                 # stop tunnels, local HTTP connector, and Godot game
-./launch.sh --shutdown             # alias for --exit
-./launch.sh --barsulka --start     # start/reuse game, then start SSH reverse tunnel through barsulka.eboshim.site
-./launch.sh --barsulka             # optional lookup: reprint the already running Barsulka URL
-./launch.sh --barsulka --stop      # stop Barsulka tunnel and local HTTP connector, keep Godot running
-./launch.sh --cloudflared --start  # backup: start/reuse game, then start cloudflared
-./launch.sh --cloudflared          # backup: print the already running Cloudflare URL
-./launch.sh --launcher             # open the legacy visual launcher without connector
+./play.sh
 ```
 
-Arguments after `--` are forwarded to the Vertical Slice scene. Runtime test
-startup flags are dev-only:
+Godot Project Run / F5, `./play.sh`, and internal exports all enter the same
+`PlayerBoot` main scene. This route creates one existing Vertical Slice runtime
+in clean player presentation. A fresh run creates a strict player profile at the
+first durable First Day checkpoint; later launches offer calm `Продолжить` or
+`Вернуться в кооператив` lifecycle actions before the runtime is instantiated.
+
+`play.sh` accepts no arguments. It never loads fixtures or dev saves, starts no
+connector/control server, enables no capture/debug mode, and applies no speed
+override. Set `GODOT_BIN` when Godot is not installed at the default path.
+
+## Develop
+
+Use the bounded developer dispatcher for prototype inspection and diagnostics:
 
 ```sh
-./launch.sh -- --runtime-load-fixture=house_of_curiosity_learning_session
-./launch.sh -- --runtime-load-save
+./dev.sh                         # player-prototype dev scene
+./dev.sh qa                      # QA/interactive Vertical Slice
+./dev.sh day2                    # accepted Day 2 fixture
+./dev.sh connector               # legacy connector/control launcher
+./dev.sh capture --scenario=first_delivery_from_empty
+./dev.sh smoke
+./dev.sh --help
 ```
 
-For the one-terminal public inspection flow, run `./launch.sh --barsulka --start`.
-It starts the local game when needed, prints the public URL, and keeps both the
-game and tunnel alive in that terminal. `./launch.sh --cloudflared --start` does
-the same through Cloudflare as a backup. Keep the terminal that starts
-`./launch.sh`, `./launch.sh --barsulka --start`, or
-`./launch.sh --cloudflared --start` open while that process is in use.
-Use `./launch.sh --exit` from another terminal for a soft full shutdown of
-launcher-started tunnels, the local connector, and the Godot game.
-`./launch.sh --shutdown` is the same command with a more explicit name.
+`dev.sh` delegates to existing specialized scripts; it does not duplicate their
+fixture, connector, capture, or smoke implementations. Direct scripts under
+`tools/` remain valid for specialized workflows.
 
-Scripts under `tools/` are dev helpers. They are named `dev-*` when they launch
-prototype diagnostics, smoke checks, capture modes, or compatibility helpers.
+`launch.sh` remains a deprecated compatibility surface for existing local
+connector, tunnel, MCP, and documentation workflows. It is developer tooling,
+not the ordinary player entry:
+
+```sh
+./dev.sh connector --url
+./dev.sh connector --barsulka --start
+./dev.sh connector --cloudflared --start
+./dev.sh connector --exit
+```
+
+Arguments passed to `dev.sh` are developer-only and never alter the F5/`play.sh`
+player route.
+
+## Player profile and First Day Continue
+
+R48-02A provides the isolated profile store under `user://player/default/`.
+R48-02B connects it to PlayerBoot and the single Vertical Slice runtime through
+the strict `PlayerCheckpointV1` contract. The runtime persists exactly seventeen
+semantic First Day cursors; it never stores task steps, timers, positions,
+floats, dev fixtures or connector state.
+
+Fresh First Day now begins with `Protein Packet x2` and `Packaging Bag x2`.
+One of each is physically consumed, leaving the accepted Day 2 remainder
+`x1/x1`. Delivery makes the slippers immediately available, so the ordinary
+First Day still has exactly three gameplay confirmations: trip, dispatch and
+equip. There is no separate player-facing `Получить тапочки` progression click.
+
+Closing during automatic work restores the preceding durable semantic cursor
+and replays at most that interrupted task. Every new cursor passes a synchronous
+persistence acknowledgement barrier before the next task or gate can advance.
+Store failure pauses the world calmly and offers one explicit
+`Повторить сохранение` action; there is no periodic or wall-clock retry.
+
+An incomplete First Day profile offers `Продолжить`. A fully complete profile
+offers `Вернуться в кооператив` and restores a calm First Day complete hold.
+R48-02B deliberately does not create Day 2; the organic one-time return
+transition remains R48-03.
+
+Run the isolated schema, transaction, recovery, ordinary restart and forced
+kill/restart matrices with:
+
+```sh
+tools/test-player-profile-store.sh
+tools/test-player-checkpoints.sh
+tools/test-player-continue.sh
+```
+
+The test runner uses only one fresh `user://player-tests/<run-id>/` root, fails
+fast on collisions or the production profile path, and removes that exact root
+on success, failure, or interruption. The player store never
+falls back to `.runtime`, fixtures or connector snapshots. Exact paths, the
+integer-only canonical JSON contract, seventeen-cursor checkpoint matrix and
+recovery/Continue precedence are documented in
+`../docs/repo/dev/player-profile-persistence.md`.
+
+Automated launch-surface and full-project checks instantiate PlayerBoot through
+the same pre-tree API with an isolated `user://player-tests/<run-id>/` store.
+They never run the default main scene against `user://player/default`; native
+F5/`play.sh` evidence is a separately declared manual internal-profile check.
 
 ## Project Layout
 
 - `project.godot` - Godot project configuration.
-- `launch.sh` - main manual game entry point with local connector/control server.
+- `play.sh` - ordinary player entry, matching Godot Project Run and export.
+- `dev.sh` - bounded dispatcher for developer fixtures, captures and diagnostics.
+- `launch.sh` - deprecated connector/tunnel compatibility surface.
 - `.agents/skills/` - repo-local Codex skills for this product.
 - `scenes/` - Godot scenes.
 - `scripts/` - GDScript files.

@@ -1,9 +1,9 @@
 # STEAM_DESKTOP — Task Flow Contract v1
 
 Дата: 2026-06-28  
-Обновлено: 2026-07-11
+Обновлено: 2026-07-12
 Роль документа: Game Design / Systems Design / Dev-facing Task Flow Contract  
-Статус: active v1 / D-022 Day 2 scenario addendum accepted
+Статус: active v1 / D-022 Day 2 + D-023 player-journey synchronization accepted
 Продукт: Steam/Desktop idle always-on-top strip  
 Обязателен для: Game Designer, Codex  
 Основано на: `STEAM_DESKTOP__Vertical_Slice_Contract_v1.md`, `STEAM_DESKTOP__Object_Contract_v1.md`, D-009, D-010, D-011, D-012, D-013
@@ -238,7 +238,7 @@ A dog carrying an item MUST NOT abandon that item for another task except debug 
 
 This is the required first-order task chain.
 
-Sections 8.1–8.11 remain the unchanged First Day contract with `active_order.id = order.first_warm_delivery`. Their task/event examples are parameterized by `active_order.id`. Section 8.12 instantiates the same physical contract with `active_order.id = order.second_warm_delivery_careful_pack` and narrowly changes only Day 2 assignment/feedback behavior.
+D-023 changes only section 8.1 starting reserve from `x1/x1` to `x2/x2`; sections 8.2–8.11 First Day task causality remains unchanged with `active_order.id = order.first_warm_delivery`. Their task/event examples are parameterized by `active_order.id`. Section 8.12 remains the D-022 Day 2 scenario contract with `active_order.id = order.second_warm_delivery_careful_pack` and narrowly changes only Day 2 assignment/feedback behavior.
 
 ### 8.1 Initial State
 
@@ -259,9 +259,11 @@ Basket Bicycle: parked near Road Sign
 Storage MUST contain:
 
 ```text
-Protein Packet x1
-Packaging Bag x1
+Protein Packet x2
+Packaging Bag x2
 ```
+
+The First Day chain consumes one unit of each. The remaining `Protein Packet x1` and `Packaging Bag x1` persist for Day 2 under D-023. Storage does not generate or refill them.
 
 Storage MUST NOT contain:
 
@@ -693,6 +695,10 @@ After Day 2 `delivery_complete`:
 
 For `order.second_warm_delivery_careful_pack`, DeliveryTask MUST NOT emit `postcard_created`, `reward_created` or create EquipItemTask. For `order.first_warm_delivery`, sections 8.10–8.11 remain unchanged: Postcard Card and Comfortable Slippers reward/equip flow still occur.
 
+#### 8.12.5 D-023 post-proof Quiet Cooperative
+
+D-022 fixture evidence may end with the completed Day 2 order/chain still exposed as the active completed state. The ordinary D-023 player journey subsequently MUST archive that completed result into immutable journey history, clear active-order/active-chain slots and enter Quiet Cooperative. Only existing non-progression IdleTask behavior may continue; no new order, task chain, resource, reward or progression is created.
+
 ## 9. Blocked State Rules
 
 Blocked state is a normal waiting condition, not an error.
@@ -917,6 +923,11 @@ Condense Vertical Slice Contract, Object Contract and Task Flow Contract into on
 - documentation updates expected after coding.
 
 ## 17. Changelog
+
+### 2026-07-12 — D-023 player-journey synchronization
+
+- Changed only the First Day starting reserve to `Protein Packet x2` and `Packaging Bag x2`; existing task causality and per-order consumption remain unchanged.
+- Defined the post-proof transition from completed Day 2 evidence state to history-backed Quiet Cooperative with empty active slots.
 
 ### 2026-07-11 — D-022 Day 2 scenario addendum
 

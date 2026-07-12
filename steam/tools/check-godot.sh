@@ -13,7 +13,7 @@ fi
 
 "$GODOT_BIN" --version
 "$GODOT_BIN" --headless --path "$ROOT_DIR" --import
-"$GODOT_BIN" --headless --path "$ROOT_DIR" --quit-after 2
+"$ROOT_DIR/tests/launch_surfaces/run.sh"
 "$GODOT_BIN" --headless --path "$ROOT_DIR" --check-only --script res://scripts/main.gd
 "$GODOT_BIN" --headless --path "$ROOT_DIR" --check-only --script res://scripts/launcher.gd
 "$GODOT_BIN" --headless --path "$ROOT_DIR" --check-only --script res://scripts/dev_tools/godot_state_connector.gd

@@ -1,7 +1,7 @@
 # STEAM_DESKTOP — Codex Brief — Day 2 Return And Second Warm Delivery v1
 
 Дата: 2026-07-11
-Статус: accepted / ready for implementation
+Статус: completed / R-29 PASS / historical implementation brief
 Роль-владелец постановки: Producer / Game Designer / Project Manager
 Roadmap task: R-29 — Day 2 Return And Second Warm Delivery implementation / evidence review
 Decision: D-022 — Steam/Desktop Day 2 executable scope lock

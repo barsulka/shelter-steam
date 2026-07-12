@@ -1,9 +1,9 @@
 # STEAM_DESKTOP — First Week Direction v1
 
 Дата: 2026-07-06
-Обновлено: 2026-07-11
+Обновлено: 2026-07-12
 Роль документа: Game Design / Product Direction
-Статус: accepted direction v1 / Day 2 executable scope locked
+Статус: accepted direction v1 / D-022 Day 2 proof + D-023 player-journey synchronization
 Продукт: Steam/Desktop idle always-on-top strip
 Roadmap task: R-27 — First Week / Long-Term Loop Direction
 Роль-владелец: Game Designer / Systems Designer
@@ -36,7 +36,7 @@ A — First Week / longer retention
 
 Главный вопрос:
 
-> Зачем игрок возвращается завтра после первой тёплой поставки?
+> Зачем игрок возвращается в следующую сессию после первой тёплой поставки?
 
 ---
 
@@ -44,7 +44,7 @@ A — First Week / longer retention
 
 ```text
 Day 2 should not add a big new system immediately.
-Day 2 should show that yesterday mattered.
+Day 2 should show that the previous session mattered.
 ```
 
 Первый день доказал:
@@ -68,11 +68,11 @@ Day 2 should show that yesterday mattered.
 
 First Week должен дать игроку простое ощущение:
 
-> “Мой маленький собачий кооператив начинает жить. Вчерашняя поставка оставила след, сегодня собаки делают что-то чуть лучше, и у меня появляется спокойная причина заглянуть завтра.”
+> “Мой маленький собачий кооператив начинает жить. Прошлая поставка оставила след, в этот раз собаки делают что-то чуть лучше, и у меня появляется спокойная причина заглянуть снова.”
 
 Ключевые ощущения:
 
-- вчера имело значение;
+- прошлый визит имел значение;
 - собаки помнят и меняются мягко;
 - кооператив растёт через заботу, не через давление;
 - новые цели понятны без spreadsheet overwhelm;
@@ -119,9 +119,9 @@ new calm order card is available
 
 Player fantasy:
 
-> “Они помнят вчера. Сегодня можно сделать следующую поставку чуть аккуратнее.”
+> “Они помнят прошлый раз. В этот раз можно сделать следующую поставку чуть аккуратнее.”
 
-### 4.2 What changed from yesterday
+### 4.2 What changed since the previous visit
 
 Required visible changes:
 
@@ -129,7 +129,7 @@ Required visible changes:
 - тапочки остались у Таксы;
 - `Помнит первую тёплую поставку` remains inspectable;
 - появилась заметка / мысль о более аккуратной упаковке;
-- второй заказ feels related to yesterday, not random.
+- второй заказ feels related to the previous session, not random.
 
 ### 4.3 What must NOT happen immediately
 
@@ -152,8 +152,9 @@ Recommended Day 2 loop:
 
 ```text
 return to co-op
--> notice yesterday's memory
--> accept second warm delivery variation
+-> notice the previous-session memory
+-> notice the offered second warm delivery variation
+-> confirm the familiar route; this begins the offered order
 -> dogs repeat familiar production flow
 -> one step is slightly more careful / personal
 -> receive a second gentle response or progress note
@@ -212,8 +213,8 @@ Warm Delivery Loop
 Loop skeleton:
 
 ```text
-choose/accept calm order
--> confirm route
+notice offered calm order
+-> confirm route; there is no separate order-accept action
 -> dog returns with payload
 -> unload/carry/cook/pack/load
 -> confirm dispatch
@@ -403,7 +404,7 @@ Packing note appears.
 ### Day 2
 
 ```text
-Yesterday remains visible.
+The previous session remains visible.
 Second warm delivery variation completes end to end on the existing chain.
 Лабрадор gives one readable careful-packing cue inside the existing PackTask.
 A small progress note closes the delivery; no second full postcard/reward cadence is created.
@@ -452,7 +453,7 @@ Player-facing name:
 Player-facing text:
 
 ```text
-Вчера всё получилось. Сегодня можно собрать ещё один тёплый мешочек — чуть аккуратнее.
+В прошлый раз всё получилось. В этот раз можно собрать ещё один тёплый мешочек — чуть аккуратнее.
 ```
 
 Tone constraints:
@@ -561,7 +562,7 @@ chain run: run.day2.second_warm_delivery
 Required semantics:
 
 1. Completed First Day facts remain immutable history; one fresh Day 2 order/chain is the only active execution state. Legacy flags may project active state one way but cannot replace history.
-2. Fixture Storage starts with static existing stock `Protein Packet x1` and `Packaging Bag x1`, with no Oat/Pumpkin/Food Mix/Food Bag or pre-created cargo. This is not replenishment, economy, route reward, save or calendar behavior.
+2. Fixture Storage starts with static existing stock `Protein Packet x1` and `Packaging Bag x1`, with no Oat/Pumpkin/Food Mix/Food Bag or pre-created cargo. Under D-023 this exact state is the dev/regression projection of the persisted remainder from the fresh First Day `x2/x2` reserve; the fixture itself still proves no replenishment, economy, route reward, save or calendar behavior.
 3. Day 2 order status is exact:
 
 ```text
@@ -574,6 +575,7 @@ offered -> route_suggested -> missing_resources -> resources_available
 6. The existing Day 2 PackTask is deterministically assigned to Labrador; the careful-packing cue exists only during PackTask `in_progress` and creates no second task/system/bonus.
 7. Active Order owns the non-reward response: the existing Van-side postcard-board cue renders the small progress note, then the existing Packing Table note cue renders `Как паковать мягче?`.
 8. Day 2 creates no Postcard Card, reward or EquipItemTask; First Day postcard/slippers/equip behavior remains unchanged.
+9. D-022 fixture proof ends with the completed Day 2 order/chain and `quiet_end_state_reached`. Under D-023 the ordinary player journey then archives that completed result into immutable history, clears active-order/active-chain slots and enters Quiet Cooperative with only existing non-progression IdleTask behavior.
 
 Required proof remains:
 
@@ -625,7 +627,7 @@ Accepted implementation scope:
 - preserve First Day loop;
 - show return moment state;
 - offer and fully complete the second order;
-- show yesterday’s postcard still present;
+- show the previous-session postcard still present;
 - show Dachshund slippers separately visible/equipped;
 - show the First Day memory separately inspectable in Dog Card;
 - reuse `route.oat_farm_intro`, Basket Bicycle, the existing resource family and stations;
@@ -696,6 +698,12 @@ docs/repo/status/CODEX_STATUS.md
 ---
 
 ## 19. Changelog
+
+### 2026-07-12 — D-023 player-journey synchronization
+
+- Removed a separate Day 2 order-accept action: route confirmation begins the offered order, preserving the exact two-confirmation Day 2 budget.
+- Reframed calendar-like copy as session-based `в прошлый раз / в этот раз` language.
+- Added the post-proof transition from completed D-022 evidence state to history-backed Quiet Cooperative with no active order/chain.
 
 ### 2026-07-11 — Day 2 executable scope accepted
 

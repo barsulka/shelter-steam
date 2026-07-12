@@ -35,12 +35,13 @@ Shelter — это производственный кооператив, в к�
 First Day MVP закрыт на уровне prototype/product-language proof.
 D-022 Day 2 same-chain Warm Food Delivery variation завершена на уровне prototype/product-language/runtime-evidence.
 R-29 закрыт / PASS.
+D-023 First Day + Day 2 player journey scope lock принят.
 ```
 
 Главная текущая задача:
 
 ```text
-No new executable product/game task is accepted after R-29 closeout.
+R48-00 accepted. R48-01A, R48-02A and R48-02B completed/PASS; bounded R48-03 persisted First Day → Day 2 transition brief is next.
 ```
 
 Актуальный вход в Steam-контекст:
@@ -157,7 +158,7 @@ NOT production art. NOT final visual style. NOT shipping UX. NOT final animation
 Next scope:
 
 ```text
-No next executable scope is selected. Sheet A/B world-room preview R&D is closed as Art WARN with no root contract failure; it remains evidence until a separate decision and brief.
+D-023 selects First 48 Hours Playable. R48-01A, ADR-0003/R48-02A and R48-02B are complete/PASS; R48-03 brief preparation is next. Sheet A/B remain evidence only.
 ```
 
 Visual R&D boundary:
@@ -295,16 +296,18 @@ Direct-checkout work remains available; reconcile or decouple the catalog/runtim
 Product / Game Design:
 
 ```text
-D-022 implemented and accepted; R-29 closed / PASS. Do not infer a successor slice.
+D-022 implemented and accepted; R-29 closed / PASS. D-023 separately selects the First Day + Day 2 player journey; do not infer additional scope beyond its Scope Lock.
 ```
 
-Completed Codex brief:
+Completed and current accepted Codex briefs:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Runtime_Safe_Checkpoints_And_Continue_v1.md
 ```
 
-Reasoning level used for the completed brief:
+Required reasoning level:
 
 ```text
 очень высокий
@@ -319,6 +322,30 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## Changelog
+
+### 2026-07-12 — R48-02B completed / PASS
+
+- Implemented and verified exact First Day checkpoint resume, autosave acknowledgement, restart/kill recovery and all seventeen safe cursors.
+- Preserved exact `3 + 2`, reserve provenance and no-offline semantics.
+- Kept organic Continue → Day 2 transition in R48-03.
+
+### 2026-07-12 — D-023 / R48-00 accepted
+
+- Accepted user choices A/A/A and selected the session-based First Day + Day 2 player journey.
+- Activated R48-01A/R48-02A brief preflight while keeping code blocked until technical acceptance and write ownership.
+
+### 2026-07-12 — R48-01A completed / R48-02A current
+
+- Ordinary F5, `play.sh` and macOS export now enter one clean PlayerBoot route.
+- `dev.sh` now separates bounded development workflows from the player route.
+- Advanced current implementation to accepted ADR-0003/R48-02A; Continue remains a later R48-02B gate.
+
+### 2026-07-12 — R48-02A completed / R48-02B brief next
+
+- Recorded the strict player-profile envelope/store/recovery foundation as PASS.
+- Preserved gameplay authority and no-offline semantics; no envelope is playable yet.
+- Advanced Current Memory only to bounded R48-02B brief preparation.
+- Preserved Sheet A/B as PREVIEW_RESEARCH_ONLY evidence rather than runtime source.
 
 ### 2026-07-12 — R-29 closed / Day 2 accepted
 

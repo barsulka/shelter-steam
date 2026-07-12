@@ -40,6 +40,7 @@ Current product state:
 First Day MVP locked at prototype/product-language level.
 D-022 Day 2 same-chain Warm Food Delivery variation is implemented and verified at prototype/product-language/runtime-evidence level.
 R-29 is closed / PASS after PM/Producer review.
+D-023 First Day + Day 2 player journey scope lock is accepted; R48-01A, R48-02A and R48-02B are completed/PASS. R48-03 persisted First Day → Day 2 transition is the next brief gate.
 ```
 
 Current tooling state:
@@ -59,6 +60,10 @@ Current D-022/OQ/R-29 source changes make MCP startup fail loud on knowledge cat
 Steam/Desktop / Godot:
 
 - Godot 4.x project under `steam/`.
+- Clean PlayerBoot route shared by F5, `steam/play.sh` and the macOS internal export.
+- Separate bounded `steam/dev.sh` dispatcher for prototype/dev tooling.
+- Strict player-profile envelope/store/recovery foundation under `user://player/default`.
+- Exact seventeen-cursor First Day safe-checkpoint autosave/Continue with durable acknowledgement barriers and restart-safe recovery.
 - Desktop window / companion strip tech demos.
 - Vertical Slice prototype.
 - Dog rig spikes and dog runtime integration slice.
@@ -149,13 +154,38 @@ Expected reasoning level:
 Current next step:
 
 ```text
-No next implementation brief is accepted after R-29 closeout.
-Any production art/animation/world, save/calendar or desktop-platform work needs a separate accepted brief.
+Prepare and accept the bounded R48-03 persisted First Day → Day 2 transition brief. R48-02B closes technical First Day checkpoint resume only; organic Continue → Day 2 is not implemented yet.
 ```
 
 ---
 
 ## 6. Changelog
+
+### 2026-07-12 — R48-02B completed / PASS
+
+- Implemented the exact seventeen-cursor First Day checkpoint codec, autosave/Continue and persistence acknowledgement barrier.
+- Verified all cursor restores and advances, real in-flight forced-kill replay, save-failure rollback/retry, recovery/error routes, exact three-input First Day flow and `x2/x2 → x1/x1` conservation.
+- Preserved First Day and D-022 Day 2 regressions; no production player profile remains after tests.
+- Advanced only to R48-03 brief preparation; organic Continue → Day 2 is still pending.
+
+### 2026-07-12 — R48-02A persistence foundation completed
+
+- Added strict integer-only player envelope, exact production/test namespace boundaries and deterministic primary/backup/temp recovery.
+- Passed normal restart, real SIGKILL transaction matrices, exact current test-root cleanup, full Godot checks and independent review.
+- Kept every envelope non-playable; advanced the next gate to R48-02B brief preparation and retained R48-03 as the later persisted Day 2 transition.
+
+### 2026-07-12 — R48-01A player entry completed
+
+- F5, `steam/play.sh` and the macOS export now enter one clean PlayerBoot route over the existing Vertical Slice runtime.
+- Added bounded `steam/dev.sh`; preserved legacy `launch.sh` and specialized tools.
+- Shell, Godot, First Day, connector, Day 2 dev-route and macOS export checks passed.
+- Made accepted ADR-0003/R48-02A the current implementation wave; functional Continue remains R48-02B.
+
+### 2026-07-12 — R48 entry/save preflight accepted
+
+- Accepted R48-01A as the current implementation wave for the unified F5/`play.sh` player route and bounded `dev.sh` dispatcher.
+- Accepted ADR-0003 player-profile persistence boundary and queued R48-02A after R48-01A.
+- Preserved one gameplay runtime, player/dev isolation, safe-checkpoint semantics and the exact D-023 no-obligation boundary.
 
 ### 2026-07-12 — R-29 PM/Producer closeout
 

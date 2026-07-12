@@ -1,5 +1,75 @@
 # Codex Status
 
+## 2026-07-12 - R48-02B Runtime Safe Checkpoints And Continue completed
+
+- Source: `STEAM_DESKTOP__Codex_Brief__Runtime_Safe_Checkpoints_And_Continue_v1.md`.
+- Added strict `PlayerCheckpointV1` coverage for the exact seventeen accepted First Day safe cursors and wired autosave/Continue through the existing single Vertical Slice runtime.
+- Added a durable persistence acknowledgement barrier: no causal advance or success presentation occurs before a save ACK; failure rolls back to the previous durable cursor and offers a calm retry.
+- Continue imports before runtime `_ready`, reconstructs only the exact pending task intent without replaying historical task/order creation, and preserves the exact three-input First Day flow.
+- Verified honest `Protein Packet x2 + Packaging Bag x2` fresh reserve and `x1/x1` remainder after First Day consumption.
+- Passed the full seventeen-cursor restore/advance matrix, real in-flight forced-kill replay, save-failure/retry matrix, recovery/error routes, launch isolation, full Godot checks and First Day/Day 2 regressions.
+- Tests left no production profile or persistent test-root artifacts. Runtime evidence remains ignored and untracked.
+- This closes technical First Day checkpoint resume only. Organic ordinary Continue → Day 2 remains R48-03; production visuals, living Labrador animation and Kitchen remain later roadmap gates.
+- No stage, commit or push was performed.
+
+## 2026-07-12 - R48-02A Player Save Store Schema And Recovery completed
+
+- Source: `STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md`.
+- Added strict `PlayerProfileEnvelopeV1` schema and store foundation under the
+  exact production namespace `user://player/default`, without registering an
+  autoload or wiring PlayerBoot/runtime autosave.
+- Added the ADR-0003 JCS-compatible integer-only canonical JSON subset, UTF-16
+  key ordering, bounded recursive validation and SHA-256 integrity excluding
+  only the top-level `integrity` field. Decimal, exponent, leading-zero,
+  negative-zero, non-integral and unsafe-range numbers fail closed.
+- Added deterministic read-only primary/backup/temp inspection, explicit
+  create/update/recovery authorities, future/incompatible preservation,
+  validated promotion and bounded redacted quarantine diagnostics.
+- Tests use canonicalized `user://player-tests/<run-id>/` roots and reject path
+  traversal, production overlap and pre-existing run-id collisions. Each new
+  invocation removes only its exact owned root on success, failure, `INT` or
+  `TERM`, including hidden failpoint markers.
+- Passed the full schema/store/recovery matrix, normal process restart, real
+  SIGKILL create/update matrices at every named transaction boundary, shell
+  syntax, full `tools/check-godot.sh`, whitespace checks and independent
+  corrective review. The production profile path remained absent.
+- Historical test-marker remnants created by the three pre-fix R48-02A runs
+  were removed through the same canonical-guarded Godot cleanup phase after
+  exact ownership review; the `player-tests/` tree is empty.
+- `envelope_valid` does not mean a playable save. `PlayerCheckpointV1`, runtime
+  export/import, autosave, Continue/Restart wiring and safe-checkpoint
+  idempotency remain R48-02B; persisted Day 1 → Day 2 transition remains
+  R48-03.
+- No stage, commit or push was performed.
+
+## 2026-07-12 - R48-01A Playable Main Scene And Launch Surfaces completed
+
+- Source: `STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md`.
+- Replaced the placeholder Project Run route with `PlayerBoot`; F5, `steam/play.sh`
+  and the macOS internal export now instantiate exactly one existing Vertical
+  Slice runtime through the same pre-ready player-session configuration seam.
+- The player route ignores process fixture/dev-save/connector/control/debug/
+  capture/fast/autoplay arguments, stays at 1x, starts no connector and presents
+  the compact player UI without QA labels, assertion panels or performance HUD.
+- Added `steam/dev.sh` as a bounded dispatcher over existing player-prototype,
+  QA, Day 2 fixture, connector, capture and smoke tools. Existing `launch.sh`
+  remains an unchanged deprecated compatibility surface.
+- Added shell routing tests and a Godot PlayerBoot isolation runner covering the
+  one-runtime/pre-ready contract, hostile arguments, presentation and late
+  reconfiguration failure.
+- Passed shell syntax/routing, launch-surface tests, Vertical Slice/First Day
+  smoke, connector/control regression, Day 2 dev-route proof, full
+  `tools/check-godot.sh`, real macOS `.app` export and exported-binary smoke.
+- Native `play.sh` readback showed the 3456×224 transparent/always-on-top player
+  strip with the First Day tableau and no debug/QA surfaces. Ignored evidence is
+  under `steam/build/evidence/r48_01a/` and
+  `steam/.runtime/workbench_capture_runs/r48_01a_day2_dev_route_smoke/`.
+- No player profile was created. Durable Continue remains R48-02B; current x1/x1
+  runtime reserve and legacy reward-claim click remain later D-023 alignment
+  work. This is player-entry PASS, not full First Day + Day 2 playable or
+  production visual acceptance.
+- No stage, commit or push was performed.
+
 ## 2026-07-11 - D-022 Day 2 Return And Second Warm Delivery implemented
 
 - Source: `STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md`.

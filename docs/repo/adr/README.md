@@ -10,6 +10,7 @@ Before technical work, Codex must check this index and read all relevant `Accept
 | --- | --- | --- | --- |
 | [0001: Use Godot For Steam/Desktop](0001-use-godot-for-steam-desktop.md) | Accepted | Steam/Desktop engine and language direction | Read before Steam/Desktop implementation, engine/runtime decisions, platform behavior, or changes that could blur Steam/Desktop with other products. |
 | [0002: Game State As Source Of Truth](0002-game-state-as-source-of-truth.md) | Accepted | Runtime state, UI, saves, snapshots, connectors, external inspectors | Read before changing gameplay state architecture, task/resource/dog/building runtime logic, save format, state snapshots, connector endpoints, or inspector/debug tooling. |
+| [0003: Player Profile Persistence Boundary And Recovery](0003-player-profile-persistence-boundary-and-recovery.md) | Accepted | Player profile namespace, envelope/checkpoint boundary, safe checkpoints, transactions and recovery | Read before implementing player saves, Continue/Restart, profile recovery, checkpoint import/export or First Day → Day 2 persistence. |
 
 ## Rules
 
