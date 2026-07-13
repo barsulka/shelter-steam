@@ -1,0 +1,62 @@
+{
+  "schema_version": "shelter-dog-animation-package/v0",
+  "repo_root": "/Users/barsulka/GolandProjects/shelter/shelter",
+  "profile": "hybrid",
+  "task_mode": "integrate",
+  "runtime_authority": "godot_state",
+  "dog_dna_status": "WORKING_DRAFT_TECHNICAL_PROOF",
+  "dog_dna_ref": {
+    "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/DOG_DNA_SCHEMA_v0.md"
+  },
+  "accepted_action_manifest": {
+    "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/manifests/accepted_action_scope.json"
+  },
+  "actions": [
+    {"id":"dog.action.idle.neutral","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":[]},
+    {"id":"dog.action.wait.calm","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.delivery_van_endpoint"]},
+    {"id":"dog.action.locomotion.start","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.kitchen","object.packing_table"]},
+    {"id":"dog.action.locomotion.walk_empty","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.kitchen","object.packing_table"]},
+    {"id":"dog.action.locomotion.stop","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.kitchen","object.packing_table"]},
+    {"id":"dog.action.locomotion.turn","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.kitchen","object.packing_table"]},
+    {"id":"dog.action.interaction.approach_target","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.kitchen","object.packing_table"]},
+    {"id":"dog.action.interaction.contact_align","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.kitchen","object.packing_table"]},
+    {"id":"dog.action.station.work_loop","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.kitchen","object.packing_table"]},
+    {"id":"dog.activity.delivery.help_kitchen","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.kitchen"]},
+    {"id":"dog.activity.delivery.pack_food_bag","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.packing_table"]},
+    {"id":"dog.activity.delivery.pack_carefully_labrador","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.packing_table"]}
+  ],
+  "assets": {
+    "world_layers": {"path":"steam/assets/prototypes/vertical_slice/authored/world/layers"},
+    "labrador_layers": {"path":"steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro"},
+    "source_package": {"path":"docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/README.md"}
+  },
+  "runtime": {
+    "runtime_authority": "godot_state",
+    "animation_authority": "derived_non_persisted_adapter_animationplayer_properties",
+    "scene_path": {"path":"steam/scenes/prototypes/vertical_slice/labrador_visual_adapter.tscn","required_anchors":["LabradorVisualAdapter","BaseAnimationPlayer","BlinkAnimationPlayer","TailAnimationPlayer","FocusAnimationPlayer"]},
+    "script_path": {"path":"steam/scripts/prototypes/vertical_slice/labrador_visual_adapter.gd","required_anchors":["select_visual_binding","legacy_unbound","selector_G","runtime_authority","packing_front_span_mask_active"]},
+    "clip_path": {"path":"steam/resources/prototypes/vertical_slice/labrador_r48_05a_animation_library.tres","required_anchors":["base_idle","base_wait","base_locomotion_start","base_locomotion_walk","base_locomotion_stop","base_turn","base_approach","base_contact","base_station_work","base_kitchen_work","base_packing_work","focus_care"]},
+    "socket_path": {"path":"steam/resources/prototypes/vertical_slice/labrador_r48_05a_station_anchors_v1.json","required_anchors":["visual_anchor.none","visual_anchor.van","visual_anchor.station","visual_anchor.kitchen","visual_anchor.packing_table"]},
+    "node_paths": ["LabradorVisualAdapter/BaseAnimationPlayer","LabradorVisualAdapter/BlinkAnimationPlayer","LabradorVisualAdapter/TailAnimationPlayer","LabradorVisualAdapter/FocusAnimationPlayer"],
+    "bindings": [
+      {"action_id":"dog.action.idle.neutral","clip":"base_idle","socket":"visual_anchor.none","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.action.wait.calm","clip":"base_wait","socket":"visual_anchor.van","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.action.locomotion.start","clip":"base_locomotion_start","socket":"visual_anchor.station","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.action.locomotion.walk_empty","clip":"base_locomotion_walk","socket":"visual_anchor.station","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.action.locomotion.stop","clip":"base_locomotion_stop","socket":"visual_anchor.station","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.action.locomotion.turn","clip":"base_turn","socket":"visual_anchor.station","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.action.interaction.approach_target","clip":"base_approach","socket":"visual_anchor.station","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.action.interaction.contact_align","clip":"base_contact","socket":"visual_anchor.station","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.action.station.work_loop","clip":"base_station_work","socket":"visual_anchor.station","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.activity.delivery.help_kitchen","clip":"base_kitchen_work","socket":"visual_anchor.kitchen","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.activity.delivery.pack_food_bag","clip":"base_packing_work","socket":"visual_anchor.packing_table","node_path":"LabradorVisualAdapter/BaseAnimationPlayer"},
+      {"action_id":"dog.activity.delivery.pack_carefully_labrador","clip":"focus_care","socket":"visual_anchor.packing_table","node_path":"LabradorVisualAdapter/FocusAnimationPlayer"}
+    ]
+  },
+  "qa": {
+    "sizes": [216,144,96],
+    "evidence_root": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5",
+    "signoff_owners": ["technical_mechanical_only","runtime_art_review_pending"],
+    "required_captures": ["first_day_A_to_F","day2_A_to_G","negative_G","quiet_cooperative","both_turn_directions","both_station_sides","native_216_144_96","packing_D_F_G_mask_both_sides","packing_contact_held_exit_mask","non_packing_and_locomotion_mask_negatives","source_alpha_overlap_class_audit"]
+  }
+}

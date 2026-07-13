@@ -1,7 +1,7 @@
 # GAME_DESIGN__CURRENT_CONTEXT — Shelter Steam/Desktop
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-12
+Обновлено: 2026-07-13
 Статус: current-summary / game-design current context
 Владелец: Game Designer / Producer / Project Manager
 Продукт: Steam/Desktop idle always-on-top strip
@@ -43,7 +43,15 @@ Active roadmap / current task:
 
 ```text
 Active roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
-Current task: preserve accepted D-023 semantics while the bounded R48-03 persisted First Day → Day 2 transition brief is prepared
+Current task: exact 12-row Labrador manifest SIGNED; observe bounded R48-05A implementation without expanding A–G; P0-C object transfer remains deferred to R48-05B
+```
+
+Current ambient-walk boundary:
+
+```text
+User direction: quality visual base now; rich dog-life catalogue later.
+Labrador calm back-and-forth is NEEDS_MANIFEST_AMENDMENT: current manifest permits locomotion only through station selector C, so no ambient executable binding enters R48-05A without a re-signed amendment.
+Mill is static decorative-only; Dachshund/cart behavior is not current scope.
 ```
 
 Current decisions:
@@ -78,7 +86,7 @@ old roadmaps, old capture packs, old handoff, full CODEX_STATUS.md
 Next best step:
 
 ```text
-Use D-023 and the accepted First 48 Hours Scope Lock as the current baseline. Review implementation without expanding the exact `3 + 2` input budget, persisted reserve or Quiet Cooperative boundary.
+Review implementation evidence only after the accepted R48-05A integration. Preserve exact A–G, `3 + 2`, persisted reserve, Quiet Cooperative and Day 2 semantics; no transfer row or ambient-walk selector enters R48-05A without its accepted amendment.
 ```
 
 ---
@@ -98,7 +106,7 @@ Current accepted product state:
 ```text
 First Day MVP is locked at prototype/product-language proof level.
 Day 2 same-chain continuation is complete at prototype/product-language/runtime-evidence level.
-D-023 First Day + Day 2 player journey scope is accepted; R48-01A, R48-02A, R48-02B and R48-03 are complete/PASS. R48-04A brief preparation is next.
+D-023 First Day + Day 2 player journey scope is accepted; R48-01A, R48-02A, R48-02B and R48-03 are complete/PASS. Current game-first order is Labrador/world → non-modal onboarding → Kitchen → two-visit polish; R48-04A is later.
 ```
 
 The active execution question:
@@ -144,7 +152,7 @@ docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Pl
 Current active roadmap task:
 
 ```text
-R48-00 and ADR-0003 are accepted; R48-01A, R48-02A, R48-02B and R48-03 are complete/PASS. R48-04A is the next bounded, not-yet-accepted brief gate.
+R48-00 and ADR-0003 are accepted; R48-01A, R48-02A, R48-02B and R48-03 are complete/PASS. The exact Labrador manifest is SIGNED and bounded R48-05A is accepted/executable. Background evidence and R48-05B remain deferred.
 ```
 
 Current direction sources:
@@ -329,6 +337,23 @@ no full new system
 ---
 
 ## 11. Changelog
+
+### 2026-07-13 — user direction and ambient-walk boundary recorded
+
+- Recorded “quality base now, rich dog life later” as future-only backlog direction.
+- Kept Mill static decorative-only and Labrador as the sole current living-dog priority.
+- Classified calm Labrador back-and-forth as `NEEDS_MANIFEST_AMENDMENT`, preserving the exact station-bound A–G scope until a re-signed external manifest exists.
+
+### 2026-07-12 — bounded Labrador manifest recorded
+
+- Recorded the exact 12-row no-transfer R48-05A scope for owner readback.
+- Kept P0-C and every prop/socket decision in later R48-05B.
+
+### 2026-07-12 — game-first sequence synchronized
+
+- Made exact Labrador action-manifest review the next Game Design gate.
+- Preserved existing mechanics, `3 + 2`, resource provenance and Quiet Cooperative.
+- Deferred R48-04A without accepting new game semantics.
 
 ### 2026-07-12 — R48-03 completed / game contract preserved
 

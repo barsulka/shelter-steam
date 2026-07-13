@@ -35,6 +35,8 @@ docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.m
 
 | Role / area | Latest useful handoff | Read when |
 | --- | --- | --- |
+| Producer / PM / R48-05A + R48-05B convergence | `producer/2026-07-12__producer_pm_handoff__r48_05a_05b_convergence.md` | continuing the source-only Art wave, Labrador foundation activation or later one-transfer closure |
+| Codex / Steam game-first coordination | `codex/2026-07-12__codex_handoff__game_first_coordination.md` | continuing the Labrador/world → onboarding → Kitchen → two-visit polish sequence or auditing why R48-04A was deferred |
 | Art Direction / world and room preview R&D | `design/2026-07-12__art_direction_handoff__world_room_preview_planning_wave.md` | reviewing Sheet A/B evidence boundaries, planning a world/room proof or checking why preview assets are not production-approved |
 | Producer / PM / Day 2 scope lock | `producer/2026-07-11__producer_pm_handoff__day_2_scope_lock_and_work_wave.md` | continuing D-022 implementation/review or reconstructing the cross-role scope decision |
 | Codex / local Shelter MCP | `codex/2026-07-10__codex_handoff__chatgpt_work_local_mcp_migration.md` | continuing local MCP implementation or validating project-scoped setup |
@@ -93,6 +95,15 @@ status docs
 ---
 
 ## 4. Changelog
+
+### 2026-07-12 — R48-05A/05B convergence handoff
+
+- Added the accepted foundation-first / transfer-later execution clarification and signer order.
+
+### 2026-07-12 — game-first Codex coordination handoff
+
+- Added the game-first roadmap/brief synchronization handoff.
+- Recorded failed direct delivery to the missing archived source rollout and preserved the original `source_thread_id`.
 
 ### 2026-07-12 — world/room preview R&D handoff
 

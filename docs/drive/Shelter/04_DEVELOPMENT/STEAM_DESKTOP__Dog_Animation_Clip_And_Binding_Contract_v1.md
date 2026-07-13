@@ -1,7 +1,7 @@
 # STEAM_DESKTOP — Dog Animation Clip And Binding Contract v1
 
 Дата: 2026-07-11
-Последнее обновление: 2026-07-12
+Последнее обновление: 2026-07-13
 Статус: **proposed technical contract / no implementation authorization**
 Владелец: Codex / Technical Animation
 Продукт: Shelter Steam/Desktop, Godot 4
@@ -141,7 +141,7 @@ Animation system не может:
 
 `DOG_DNA_SCHEMA_v0.md` and `dog_dna_examples.json` remain `WORKING_DRAFT_TECHNICAL_PROOF`. Any production schema/version/compatibility policy requires a separate accepted technical decision; this contract does not promote them.
 
-Inventory claims in this section are based on stable HEAD `b41db7af95167add893d20499a2ab5f02af9b6d3`. Incomplete/moving Day 2 working-tree files are excluded and must not be cited as finished animation, room or connector evidence. Accepted D-022 semantics remain authority, but their presence does not prove a finished visual binding.
+Inventory claims for dog clips/assets remain the narrow qualified baseline originally audited at `b41db7af95167add893d20499a2ab5f02af9b6d3`; current gameplay/runtime readback is `cecca23925b84685f927f56dbe78c90e50cd4e79`. HEAD now includes the persisted 33-cursor First Day + Day 2 journey and the Day 2 care event, but still contains no authored Labrador clip library or production binding.
 
 `pickup_pose`, `deliver_pose` and `MouthHarnessSocket` are one fixed-timeline Food Bag visibility/attachment proof. They do not implement marker-driven generic contact/attach/detach, crate/heavy carry, placement causality or gameplay `DeliveryTask`.
 
@@ -160,9 +160,9 @@ Evidence classification must remain explicit:
 | Asset area | Current truth | Consequence |
 | --- | --- | --- |
 | Dachshund action card | `NEEDED`; no approved current dog action asset. | No authored Stage A Dachshund clip may be called Art-approved. |
-| Labrador action card | `NEEDED`; rejected SVGs are not evidence. | No authored Stage A Labrador clip may be called Art-approved. |
+| Labrador source package | `SOURCE-READY_ONLY__NO_RUNTIME_ART_PASS` for `dog.labrador_intro`: bounded world, right/left/turn-mid layered Labrador, provenance/pivots/z/facing/envelope and source-level 216/144/96 Art review exist in `STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/`. | R48-05A may use this source only after exact Technical/PM activation. It proves source maturity, not clips, native Godot contact, runtime Art PASS or production-pipeline selection. Rejected legacy SVGs remain non-evidence. |
 | Basket Bicycle | Approved semantic placeholder exists. | Vehicle phrase may be staged, but exact dog contact/propulsion remains unresolved. |
-| Packing Table | Card is `NEEDED`; no local approved PNG. | Labrador PackTask Art-backed station proof is blocked on the station source/anchor contract. |
+| Packing Table | Final/approved illustration remains `NEEDED`; accepted technical anchor/clearance source now exists in the R48-05A-S package. Art accepted `ACCEPT_PLACEHOLDER_BOUNDARY` for 05A only. | Current code-drawn table may remain temporary semantic reference; anchor plane is numeric-only and never player art. R48-05A may prove Technical contact/work but cannot claim authored station replacement or runtime station Art PASS. |
 | Crates, Protein Packet, Packaging Bag, Food Mix, Food Bag | Gameplay meaning exists. | Exact weight, carry mode, socket and placement bindings are not yet accepted. |
 | Comfortable Slippers | Existing equipment/reward meaning. | Must be four worn-foot overlays or an explicitly approved equivalent, never a mouth-held prop or separate unique locomotion library. |
 
@@ -618,9 +618,27 @@ Current stable-HEAD `dog_state` strings in `vertical_slice_demo.gd` are adapter 
 | First Day/Day 2 feedback available | `dog.activity.delivery.notice_feedback` | Approach/look after feedback exists; never creates it. |
 | Equipment completion | worn-foot Slippers overlay + accepted reaction | Equipment state stays separate from identity and locomotion clips. |
 
-The D-022 cue `labrador_packing_care_moment(order_id)` is valid only for `dog.labrador_intro`, the existing Day 2 `PackTask`, and `in_progress`. It does not create another task, overlay task, quality/habit state or bonus. The animation binding observes the authoritative cue/state and records visual evidence; it does not own the event's gameplay causality.
+For bounded R48-05A, Labrador `UnloadTask`, `CarryTask` and `LoadVanTask` are explicitly `legacy_unbound`: the authored adapter is suppressed and the single current primitive presentation remains. There is no fake idle, generic carry, duplicate dog, attach/detach or authored acceptance credit. Those rows remain future R48-05B/P0-C scope.
 
-`labrador_packing_care_moment(order_id)` is absent from stable HEAD. It remains an accepted D-022 future binding constraint, not current implementation evidence; moving Day 2 files are excluded from this claim.
+The current D-022 event signature is `labrador_packing_care_moment(order_id, task_id)`. The shorter name or `order_id`-only form elsewhere is semantic shorthand, not a binding key. It is valid only for `dog.labrador_intro`, the existing Day 2 `PackTask`, matching current task/order and `in_progress`. It does not create another task, overlay task, quality/habit state or bonus. The animation binding observes the authoritative cue/state and records visual evidence; it does not own the event's gameplay causality.
+
+Current HEAD `cecca23925b84685f927f56dbe78c90e50cd4e79` implements `labrador_packing_care_moment` for the exact Day 2 Labrador PackTask/in-progress context. This proves the authoritative selector/event, not an authored visual binding.
+
+### 11.3 R48-05A derived/non-persisted presentation boundary
+
+The bounded accepted action scope lives in:
+
+```text
+STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md
+```
+
+R48-05A may keep a presentation-only facing/clip/layer cache and a bounded AnimationPlayer sequencer. This is not a second gameplay state machine when all choices are derived from authoritative runtime selectors, never imported into save/gameplay state, discarded on restore/task change and unable to advance tasks/resources/orders/rewards.
+
+First-wave markers are trace-only: phase enter/loop/contact/exit/cancel/complete acknowledgements. R48-05A has no attach/detach markers. PlayerBoot, checkpoint schema and the 33 safe cursors remain unchanged.
+
+Current custom drawing interleaves world/dog/resource presentation in one `_draw`; implementation must assign explicit z/occlusion ownership before moving Labrador into child visual nodes. A broad visual architecture refactor is not implied.
+
+The exact R48-05A coordinate scale, station transforms, A–G plus `legacy_unbound` mapping, property ownership, trace order, recovery, draw order, file/no-touch scope and regression matrix live in `STEAM_DESKTOP__R48_05A_Technical_Activation_Record_v1.md`. That companion record is executable only after exact-file Technical readback and PM activation.
 
 ---
 
@@ -914,10 +932,17 @@ Stage A uses the 10-base / 4-layer / 4-choreography hypothesis, but evidence sho
 | P0-C — one object transfer | One already-accepted source -> pickup/attach -> carry -> place/detach -> target flow, with runtime marker/socket trace. | Exact prop weight/mode/socket/contact/placement authority. |
 | P0-D — one station work | One already-accepted station approach/lock/work-loop/exit using the actual assignee and authoritative output timing. | Approved station source, approach/work/exit anchors and runtime task binding. |
 
+R48-05A is an accepted split exception to the general maturity sequence:
+
+- it combines only P0-B foundation and P0-D Kitchen/Packing station work for the 12-row Labrador manifest;
+- P0-C object transfer remains R48-05B and is not a prerequisite for the bounded 05A implementation;
+- the SOURCE-READY Labrador/world package and Kitchen/Packing anchor planes close the source-level P0-B/P0-D inputs;
+- the temporary Packing Table placeholder boundary permits Technical contact evidence but no station Art PASS.
+
 The earlier player-visible role corpus remains useful after those gates:
 
 - Dachshund TripTask/Bicycle approach-contact-depart-return is a separate high-risk comparison because exact Bicycle contact/propulsion is unresolved;
-- Labrador Packing Table station-work + Day 2 careful/focus layer is admissible only after P0-D inputs, and the D-022 cue is not stable-HEAD implementation evidence.
+- Labrador Packing Table station-work + Day 2 careful/focus layer is admissible under the exact R48-05A activation record; current HEAD already supplies the authoritative D-022 event/state, while authored playback remains unimplemented.
 
 Bicycle is not counted as a reusable Stage A maturity pass, and room/detail work is outside Stage A. P0 continuation later covers the rest of the accepted current delivery chain: unload, ingredient delivery, Kitchen work, carry to Packing, ordinary PackTask, LoadVan and feedback notice.
 
@@ -992,6 +1017,8 @@ Can one shared logical corpus and bounded runtime modifier model preserve curren
 
 ### 18.2 Preconditions
 
+These are general spike preconditions, not a hidden requirement that R48-05A implement Dachshund/Bicycle or object transfer. For R48-05A, the accepted manifest, SOURCE-READY Labrador/world package, Kitchen/Packing anchor planes and Technical Activation Record replace the irrelevant Bicycle/prop prerequisites; P0-C remains later.
+
 - accepted Stage A manifest/brief and exact selected rows;
 - approved layered side-view current-dog parts with pivots/z-order/asymmetry;
 - declared candidate envelope(s) and Dog DNA source/status;
@@ -1052,17 +1079,27 @@ These stop codes are proposed Technical contract vocabulary. They apply before o
 No authored Stage A implementation should begin until these are explicit:
 
 1. **Producer / Game Designer:** which exact Stage A semantic rows are accepted for executable proof; P0 priority alone is insufficient.
-2. **Producer / Game Designer:** confirm Dachshund TripTask and Labrador Day 2 PackTask as the bounded first player-visible pair, without expanding game scope.
-3. **Art Director:** approved current Dachshund/Labrador layered side-view source and identity references.
+2. **Producer / Game Designer:** confirm the bounded first player-visible pair for any general multi-dog proof. R48-05A is separately accepted as Labrador-only A–G and does not require Dachshund/Bicycle.
+3. **Art Director:** approved current dog layered side-view source and identity references for every actor actually included.
 4. **Art Director + Technical Animation:** pivots, z-order, baseline, facing/asymmetry and compatibility envelope.
 5. **Game Design/Object owner + Art + Technical:** exact Bicycle contact/propulsion mode.
-6. **Art/world owner:** approved Packing Table source plus work/approach/exit/facing anchors.
+6. **Art/world owner:** approved Packing Table visual source plus work/approach/exit/facing anchors for final/general station Art PASS. R48-05A exception: temporary semantic placeholder + SOURCE-READY technical anchor plane, numeric contact only, no station Art PASS.
 7. **Game Design/Object owner + Art + Technical:** prop weight/mode/socket/placement for every tested carried object.
 8. **Technical Animation/Codex:** logical clip, phase, marker, transition, cancellation and recovery records.
 9. **Technical Animation/Codex:** exact runtime scene/script/task/status/event binding that preserves ADR-0002.
 10. **Project Manager:** run artifact path, retention lifecycle, source-map update owner and signer-state policy.
 11. **PM/Codex:** accepted implementation brief as required by project rules.
 12. **Later architecture decision:** production pipeline/family choice only after the bounded evidence; not before the first clip.
+
+### R48-05A-specific activation state
+
+For R48-05A only:
+
+- Producer/Game Design accepted the exact 12-row Labrador manifest;
+- Art accepted the SOURCE-READY Labrador/world package and `ACCEPT_PLACEHOLDER_BOUNDARY`;
+- Dachshund, Bicycle, prop/socket/attach/detach and transfer prerequisites are not entry gates;
+- exact runtime binding/no-touch/evidence authority is `STEAM_DESKTOP__R48_05A_Technical_Activation_Record_v1.md`;
+- implementation remains blocked until Technical exact-file readback and PM change the implementation brief to `accepted / executable`.
 
 ### Work that may proceed in parallel with Day 2
 
@@ -1122,6 +1159,20 @@ This document is ready for cross-role review when reviewers can verify that it:
 ---
 
 ## 23. Changelog
+
+### 2026-07-13 — R48-05A source package and activation reconciliation
+
+- Recorded SOURCE-READY Labrador/world package, authored facings/turn midpoint and Kitchen/Packing anchor-plane maturity without claiming runtime Art PASS.
+- Added exact A–G authored scope plus `legacy_unbound` behavior for current Labrador transfer tasks; P0-C remains R48-05B.
+- Scoped Packing Table to temporary semantic placeholder + numeric anchor authority for 05A; final station visual remains open.
+- Corrected Day 2 care event signature to `labrador_packing_care_moment(order_id, task_id)`.
+- Added the R48-05A exception to general Dachshund/Bicycle/prop prerequisites and linked the separate Technical Activation Record.
+
+### 2026-07-12 — current HEAD and R48-05A boundary
+
+- Updated the gameplay evidence base to cecca23 and recorded the implemented Day 2 care event.
+- Added the derived/non-persisted adapter and no-checkpoint-mutation boundary.
+- Kept object transfer outside R48-05A and preserved this contract's proposed/no-self-authorization status.
 
 ### 2026-07-12 — stable-HEAD inventory and room audit clarification
 

@@ -1,7 +1,7 @@
 # STEAM_DESKTOP — Current Context
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-12
+Обновлено: 2026-07-13
 Статус: active current-summary
 Владелец: Producer / Game Designer / Project Manager
 Назначение: короткий актуальный вход в Steam/Desktop контекст без перечитывания всей истории design, Codex, captures и handoff.
@@ -40,7 +40,7 @@ Active roadmap / current task:
 
 ```text
 Active roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
-Current task: R48-01A + R48-02A + R48-02B + R48-03 completed/PASS; prepare the separate R48-04A background/minimize evidence brief
+Current task: R48-05A v5 Technical PASS is retained as regression evidence, but the overall current look is CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK. Accept the prepared Art reconciliation package, then run a bounded Art source wave before any new Codex integration brief.
 ```
 
 Current decisions:
@@ -73,7 +73,7 @@ old captures, old completed briefs, old handoff, full CODEX_STATUS.md, supersede
 Next best step:
 
 ```text
-Prepare and accept the bounded R48-04A background/stall/minimize evidence brief. The ordinary persisted First Day → Day 2 journey and Quiet Cooperative are complete/PASS; R48-04 is not yet accepted.
+PM/User accept the prepared Art reconciliation package; Art then restores the bounded D-011/approved-library/Labrador source foundation with existing mechanics only. A separate accepted/executable Codex brief is required before runtime integration. No v6 patch loop, R48-05B, room, onboarding or background work now.
 ```
 
 ---
@@ -108,7 +108,7 @@ Active decisions:
 - D-007 — Godot as Steam/Desktop engine.
 - D-009 — horizontal dog production co-op.
 - D-010 — innate traits vs equipment / acquired memory / learned habits.
-- D-011 — Cozy Modular Diorama as visual candidate, not final art style.
+- D-011 — canonical target for the current Steam main-strip reconciliation, not a new global palette/final-style lock.
 - D-012 — Browser Farm supplies Steam Co-op as shared-world narrative; no mandatory MVP sync.
 - D-013 — Steam resource trips replace visible crop farming.
 - D-018 — Vertical Slice gameplay proof is enough for Game Designer systems branch; visual proof is separate.
@@ -127,12 +127,12 @@ docs/drive/Shelter/00_START_HERE/02_DECISIONS.md
 
 ## 3. Current Steam status
 
-Current state as of 2026-07-12:
+Current state as of 2026-07-13:
 
 ```text
 First Day MVP is locked at prototype/product-language level.
 Day 2 is complete at prototype/product-language/runtime-evidence level; R-29 is closed / PASS.
-D-023 separately selects `First 48 Hours Playable`; R48-01A, accepted ADR-0003/R48-02A, R48-02B and R48-03 are complete/PASS. R48-04A brief preparation is next.
+D-023 separately selects `First 48 Hours Playable`; R48-01A, accepted ADR-0003/R48-02A, R48-02B and R48-03 are complete/PASS. R48-05A v5 is Technical PASS evidence but its overall visible result is rejected. Current work is Art reconciliation acceptance and a new bounded source wave; parent R48-A/R48-05 stays open. R48-05B, rooms, onboarding and R48-04A are later, not current.
 ```
 
 Important caveat:
@@ -188,6 +188,25 @@ STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md
 ---
 
 ## 5. Current visual / UX status
+
+Current reconciliation authority:
+
+```text
+D-011 full main-strip composition + the approved_art_files visual library + the accepted Labrador direction/identity pair are the canonical current targets. The approved Mill may be included literally only as static decoration, with no mechanic/task/resource/output/input. Current runtime v5 is regression evidence, not the visual target.
+```
+
+Current dog boundary:
+
+```text
+Labrador remains the first living dog. Calm back-and-forth walking is the minimum desired living read, but its exact selector requires Game Design acceptance and later implementation through a separate executable Codex brief. Dachshund/cart is not a current implementation requirement.
+Exact status: NEEDS_MANIFEST_AMENDMENT. Existing start/walk/stop/turn rows are reused; no new vocabulary row is needed, but current A–G allows locomotion only under station selector C. A bounded selector amendment needs Game Design, Producer/PM and Technical/Codex re-sign before executable binding.
+```
+
+Ambient-walk fail-closed guardrails:
+
+```text
+No current/queued Labrador task. Allowed only pre-TripTask while an order is offered or post-Day-2 in Quiet Cooperative. ready_to_send calm wait wins. Forbidden during authoritative trip/task/delivery, restore and save failure/retry. A player gate cancels the presentation before transition. Zero gameplay/save/progression output.
+```
 
 Latest accepted visual-language evidence:
 
@@ -329,6 +348,7 @@ D-011_Cozy_Modular_Diorama_Candidate_A.md
 D-011_Steam_Overlay_Main_Strip_v1_Rules.md
 DOG_VISUAL_LANGUAGE_v1.md
 DOG_RUNTIME_AND_ANIMATION_GRAMMAR_v1.md
+STEAM_DESKTOP__Art_Reconciliation__Dog_Buildings_Meadow_v1/README.md
 ```
 
 For development:
@@ -369,7 +389,7 @@ docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 Current product/design boundary:
 
 ```text
-R-29 is closed. D-023/R48-00 are accepted. Prepare the bounded R48-03 transition brief without adding successor content; R48-01A/R48-02A/R48-02B are complete and Sheet A/B remain PREVIEW_RESEARCH_ONLY evidence, not runtime assets.
+R-29 and R48-03 are closed/PASS. The prepared Art reconciliation package must be accepted by PM/User first. Then Art owns one bounded source-only wave for canonical base graphics and existing mechanics. Ambient Labrador walking remains NEEDS_MANIFEST_AMENDMENT and must receive the three owner re-signs before it can enter a later separate accepted/executable Codex integration brief. No v6 patch loop or R48-05B/room/onboarding/background work is current.
 ```
 
 Completed and current accepted implementation briefs:
@@ -400,6 +420,24 @@ Do not expand into:
 ---
 
 ## 11. Changelog
+
+### 2026-07-13 — current base graphics / later dog-life direction
+
+- Made D-011, approved_art_files and accepted Labrador direction the canonical current reconciliation targets.
+- Allowed literal Mill inclusion only as static decoration; kept Labrador first and Dachshund/cart outside current requirements.
+- Fixed the Art reconciliation → PM/User → Art source → separate Codex brief → runtime Art/user review sequence.
+- Kept R48-05B, rooms, onboarding, background work and the wider dog-life catalogue later; no v6 patch loop is authorized.
+
+### 2026-07-12 — 05A/05B owner convergence
+
+- Recorded source-only Art Package next, bounded no-transfer 05A and later one-transfer 05B.
+- Kept full parent and runtime activation claims honest.
+
+### 2026-07-12 — game-first implementation order
+
+- Made Playable World + First Living Labrador the next prepared wave, followed by calm onboarding, Kitchen and two-visit polish.
+- Deferred background/minimize/performance evidence without marking its D-023 contract complete.
+- Kept proposed Art/animation documents fail-closed until owner preflight accepts exact inputs.
 
 ### 2026-07-12 — R48-03 completed / persisted Day 2 return PASS
 

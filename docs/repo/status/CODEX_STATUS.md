@@ -1,5 +1,67 @@
 # Codex Status
 
+## 2026-07-13 - R48-05A bounded Packing-mask correction v5 / local Technical PASS / current look rejected
+
+- Implemented only the derived/non-persisted, fail-closed local segmentation of existing `world.fence.front_span` for exact Packing D/F/G and contact-held EXIT/recovery selectors. `LabradorVisualAdapter` derives the selector-scoped property from current Godot state; the existing `VerticalSliceDemo` parent draw slot owns local source segmentation. Outside exact Packing contact context, ordinary authored foreground ownership is restored.
+- Preserved uniform positive scale `0.24`, actual full-width bottom-edge PlayerBoot `2992x224`, root/baseline/pivots, Kitchen `104.16/62.88/54.24`, Packing `104.16/60.00/50.88`, animation library/timing, gameplay state/output, persistence, source assets and global z ownership.
+- Passed state-specific complete-bbox minima at `216/144/96`: general `80/54/36`, Kitchen E `74/49/33`, Packing F `79/53/35`, focus G `73/49/32`; minimum native top/bottom margins are `89/31 px`.
+- Passed both-side contact: Kitchen muzzle gap `3.714207 px`, Packing `2.063448 px`, with muzzle and working paw inside plane. Mask audit passes `8/8` positive and `6/6` negative cells with actual paw-tip hiding `0 px`, forbidden overlap `0` screen pixels / `0` source-alpha samples; worst raw pre-mask overlap is `404/2239`.
+- Preserved A–G/negative G, four 1x even-timestamp strips with six visible intervals and max interval ratio `0.166667`, both root-locked turns, cancellation/recovery, one runtime/Labrador, `legacy_unbound=3`, all six negative lanes and `transfer_acceptance_cells=0`.
+- Published immutable 556-capture-file v5 evidence under `STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/`; ledger SHA-256 `0f83134e4f27aa5599a27a3789dfdfad0136aec23c70e6a7f3c6dcb11fc6e3b8`, manifest SHA-256 `9041c812a82cf233658532b29b865bd4c9cfd49a5098adaa7ca69cfdc5422447`. Local independent evidence review remains `PENDING_OWNER_REVIEW`; Codex did not grant runtime Art PASS.
+- Separate overall verdict: player-facing R48-05A visual coherence is `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK`. The current dogs, building placement and meadow/clearing do not match expected accepted references. No prototype-resolved or user-acceptance claim is made.
+- Next is a separate read-only Art comparison current v5 versus earlier accepted dog/building/meadow references, followed by a new Art-owned reconciliation brief sequence. No v6, source/runtime reconciliation mutation or R48-05B work is authorized from this result.
+- Package/source `40 PASS / 1` declared warning, project validator `57`, both skill validators, Godot import/check/smoke, profile-store restart/SIGKILL, checkpoint-17, Continue/Day2-33 forced-kill/save-retry and isolated ordinary `play.sh` are green. The production profile remained absent and temporary profiles were removed. v1-v4/source ledgers remain immutable.
+- No stage, commit or push was performed.
+
+## 2026-07-13 - R48-05A bounded scale correction v4 / BLOCKED
+
+- Applied Art-owner decision A exactly: uniform positive Labrador scale `0.24`; Kitchen approach/contact/work `104.16/62.88/54.24`; Packing `104.16/60.00/50.88`. Animation/gameplay timing and all no-touch contracts remain unchanged.
+- Preserved the actual `2992x224` full-width bottom-edge PlayerBoot window, x=`0..1740` authored/non-authored world truth, both root-locked turns, four even 1x strips, A–G/negative G, cancellation/recovery, `legacy_unbound=3` and `transfer_acceptance_cells=0`.
+- Idle A passes complete bbox and height/margin gates (`89/59/39 px` at `216/144/96`, native top/bottom margins `98/35 px`), but work/focus evidence does not: synthetic Kitchen E is `74/49/33 px`, First Day E `76/52/35 px`, and Day 2 G `73/49/32 px` versus required `80/52/35 px`.
+- Both-side contact is within `4 px` (Kitchen `3.714207 px`, Packing `2.063448 px`). From-right Packing nevertheless has forbidden torso overlap with `world.fence.front_span` of `167` screen pixels / `890` source-alpha samples; allowed `-2.88 world` registration leaves `124/653`, while clearing at `-15.95 world` breaks contact to `29.490115 px`.
+- Returned `STOP_UNSUPPORTED_ACTOR_ENVELOPE` without another scale/root/window/z/timing guess. Published the 450-file v4 pack, ledger SHA-256 `7645796b50db961622aada07b10902d3d4c296206dd61ab2135cf5c09571c658`, manifest SHA-256 `f7fd745572cb09f5d748bfb3573c0be48c2f5ba5538d20bbacf7bea74502ed0c`; runtime Art remains `PENDING_OWNER_REVIEW` and Codex did not grant Art PASS.
+- Package/source `40 PASS / 1 declared warning`, project `55`, both skill validators, Godot import/check/smoke, profile-store restart/SIGKILL, checkpoint-17, Continue/Day2-33 forced-kill/save-retry and isolated ordinary startup are green. The real profile stayed absent and temporary profiles were removed.
+- v1/v2/v3/source package remain immutable. No stage, commit or push was performed.
+
+## 2026-07-13 - R48-05A runtime Art correction v3 / BLOCKED
+
+- Applied the exact v3 values without changing gameplay or no-touch contracts: Labrador uniform positive scale `0.60`; Kitchen approach/contact/work `260.4/157.2/135.6`; Packing `260.4/150.0/127.2`.
+- Preserved full-width x=`0..1740`, authored x=`0..1536` plus honest unstretched tail, even start/walk/stop motion, both root-locked turns, selectors A–G, cancellation/recovery, `legacy_unbound=3` and `transfer_acceptance_cells=0`.
+- Actual PlayerBoot evidence is `2992x224`, full usable display width, bottom delta `0`, with no PlayerBoot/window mutation. The `225 px` Labrador identity envelope projects to `232.14 px` at exact scale/full-width zoom; measured native bbox touches `y=0`.
+- Returned `STOP_UNSUPPORTED_ACTOR_ENVELOPE`: no-crop would require forbidden effective scale below `0.60`, PlayerBoot height at least `233 px`, partial/non-uniform horizontal fit or root/baseline drift.
+- Published 450-file v3 evidence under `STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v3/`, ledger SHA-256 `e9aa94d3fc72b2c55b36d966bdfc56866c9e8d95183567d7242cd49de8430db8`; runtime Art remains `PENDING_OWNER_REVIEW`, and Codex did not self-approve Art.
+- Package/source `40 PASS / 1 declared warning`, project `53`, both skill validators, Godot import/check/smoke, profile-store restart/SIGKILL, checkpoint-17, Continue/Day2-33 forced-kill/save-retry and isolated ordinary startup are green. The real profile stayed absent and temporary profiles were removed.
+- v1/v2/source package remain immutable. No stage, commit or push was performed.
+
+## 2026-07-13 - R48-05A runtime Art correction v2 implemented / WARN
+
+- Source: `STEAM_DESKTOP__Codex_Brief__Playable_World_And_First_Living_Dog_v1.md` plus signed `STEAM_DESKTOP__R48_05A_Technical_Activation_Record_v1.md`.
+- Preserved the exact 14 authored world layers and 48 Labrador right/left/turn-mid layers with verified Godot sidecars; source masters, v1 evidence and all no-touch runtime contracts remain unchanged.
+- Corrected the Art-owner findings without changing gameplay: full player-width x=0..1740 corridor framing, authored 1:1 x=0..1536 plus honestly non-authored unstretched tail, and uniform positive Labrador scale `0.25 -> 1.0`.
+- Reprojected the accepted numeric station anchors 1:1: Kitchen approach/contact/work `434/262/226`, Packing `434/250/212`; preserved temporary station art, root/baseline continuity, parent draw-slot ownership and zero transfer semantics.
+- Distributed start/walk/stop root motion across six even visible intervals (`max_interval_ratio=0.1667`), kept both root-locked authored physical turns without mirroring, and strengthened distinct Kitchen E, Packing F and Day 2 G presentation.
+- Published 443-file v2 evidence under `STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v2/`: actual First Day/Day 2/Quiet states, both turns/station sides, clean/silhouette, four 1x strips, cancellation/recovery, desktop composition and declared full-layout resamples with subject heights `137/92/61 px` at `216/144/96` (minimums `80/52/35`).
+- Passed source authority `40` checks (one declared temporary Packing visual warning), project validator `53` checks, both skill validators, Godot import/check/smoke, launch surfaces, Day 2, checkpoints, profile-store restart/SIGKILL, all 33 Continue cursors with forced-kill/failed-barrier/save-retry, and isolated ordinary `steam/play.sh` startup. The real profile stayed absent and temporary profiles were removed.
+- v1 and its `CHANGES_REQUIRED` review remain immutable historical evidence. Technical correction verdict is PASS; overall R48-05A remains WARN because v2 runtime Art is `PENDING_OWNER_REVIEW`. Codex did not self-approve Art; parent R48-05 remains PARTIAL/WARN until separate R48-05B.
+- No stage, commit or push was performed.
+
+## 2026-07-12 - R48-05A / R48-05B owner convergence recorded
+
+- Producer/PM accepted a bounded no-transfer R48-05A visible foundation and later one-transfer R48-05B closure after independent Game Design, Art and Technical preflights.
+- Recorded the exact 12-row Labrador manifest and authorized a source-only world/Labrador/station-anchor Art Package without runtime/code mutation.
+- Kept R48-05A runtime blocked until manifest/Art/Technical/PM signatures; R48-05A PASS maps only to parent PARTIAL/WARN.
+- Preserved PlayerBoot, 33-cursor persistence, `3 + 2`, resource provenance, Quiet Cooperative and deferred R48-04A.
+- No Godot/runtime/art implementation, stage, commit or push was performed in the convergence/doc-sync wave.
+
+## 2026-07-12 - Game-first implementation sequence prepared
+
+- Source: explicit user priority after R48-03 handoff and `STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md`.
+- Confirmed `master` matched `origin/master` at the handoff start; the only pre-existing working-tree item was the untracked R48-04A background/minimize draft, which was not edited, deleted, staged or accepted.
+- Reordered the active critical path to Playable World + First Living Labrador → calm non-modal onboarding → one inspectable Kitchen → two-visit polish; background/minimize/performance evidence remains a later unclosed D-023 gate.
+- Added four separate implementation-grade briefs with scope, out-of-scope, activation gates, DoD, expected file areas, checks and stop conditions.
+- Applied the `shelter-dog-animation-pipeline` governance to the Labrador brief: no asset/runtime mutation before accepted external action manifest, layered Art sources, provenance, pivots/facing/asymmetry and prop/station anchors.
+- Synchronized Current Memory and the active roadmap. No Godot/runtime/art implementation, stage, commit or push was performed.
+
 ## 2026-07-12 - R48-03 Persisted Day 1 To Day 2 Return completed
 
 - Source: `STEAM_DESKTOP__Codex_Brief__Persisted_Day_1_To_Day_2_Return_v1.md`.

@@ -1,7 +1,7 @@
 # ART_DIRECTION__CURRENT_CONTEXT — Shelter Steam/Desktop
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-12
+Обновлено: 2026-07-13
 Статус: current-summary / art-direction current context
 Владелец: Art Director / Producer / Project Manager
 Продукт: Steam/Desktop idle always-on-top strip
@@ -43,9 +43,9 @@ World/room Sheet A and Sheet B are closed as PREVIEW_RESEARCH_ONLY Art WARN, wit
 Active roadmap / current task:
 
 ```text
-No active Art Direction implementation task is assigned right now.
-The proposed Visual Production Roadmap and World/Room Asset Vocabulary are planning/coverage documents, not an asset order.
-Sheet A/B preview loops are closed; no Sheet C, repair, import, runtime binding or production wave is authorized.
+The user selected Playable World + First Living Labrador as the next game-first wave. Producer accepted R48-05A/05B split.
+R48-05A-S is SOURCE-READY with layered Labrador/world sources, provenance, pivots, authored facings/turn midpoint and Kitchen/Packing numeric anchors. Art accepted the temporary Packing placeholder boundary. The Codex runtime brief is accepted/executable; native runtime Art review remains mandatory after integration.
+The proposed Visual Production Roadmap and World/Room Asset Vocabulary remain planning/coverage documents, not an asset order; Sheet A/B remain PREVIEW_RESEARCH_ONLY.
 ```
 
 Current decisions:
@@ -78,7 +78,7 @@ old capture packs v1/v2, old Vertical Slice Art QA packs, old design handoff, fu
 Next best step:
 
 ```text
-No successor task is selected. If separately authorized, the nearest room-production prerequisite is an authored identical-layer modular-shell spike for Dog House and Kitchen; this is not started automatically.
+Remain read-only during the one-integrator R48-05A implementation. After native captures, review Labrador/world readability, both facing/turn continuity, station contact and 216/144/96 evidence; runtime Art PASS is still open. Object transfer remains excluded.
 ```
 
 ---
@@ -106,7 +106,7 @@ Current product state:
 ```text
 First Day MVP locked at prototype/product-language proof level.
 Day 2 / R-29 closed at prototype/product-language/runtime-evidence level.
-No next executable scope is selected.
+R48-05A-S is SOURCE-READY. The active Art responsibility is post-integration native review; runtime Art PASS remains open while bounded implementation is executable.
 ```
 
 ---
@@ -288,6 +288,17 @@ Do not start these automatically. Sheet A/B are evidence, not a hidden successor
 ---
 
 ## 9. Changelog
+
+### 2026-07-12 — source-only Art wave authorized
+
+- Authorized bounded world/Labrador/station source production with explicit file ownership.
+- Preserved no-runtime/no-transfer and source-versus-runtime maturity boundaries.
+
+### 2026-07-12 — game-first Art preflight selected
+
+- Selected world + living Labrador as the next visual priority after the user's game-first correction.
+- Kept Sheet A/B and proposed visual/dog contracts at their existing non-production status.
+- Required accepted layered sources, provenance, pivots, facing/asymmetry and anchors before generation/import/runtime binding.
 
 ### 2026-07-12 — world/room planning and preview wave closed
 

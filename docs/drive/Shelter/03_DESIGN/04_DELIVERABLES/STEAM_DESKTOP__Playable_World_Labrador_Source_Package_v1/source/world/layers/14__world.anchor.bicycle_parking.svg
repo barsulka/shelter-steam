@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1536" height="216" viewBox="0 0 1536 216">
+<metadata>
+{"creator": "OpenAI Codex — delegated Art Director + Visual Production owner", "date": "2026-07-13", "layer_id": "world.anchor.bicycle_parking", "status": "AUTHORED_EDITABLE_SOURCE_LAYER"}
+</metadata>
+<g id="world.anchor.bicycle_parking" inkscape:groupmode="layer" inkscape:label="world.anchor.bicycle_parking" data-default-visible="true">
+<ellipse cx="307.0" cy="174.0" rx="29.0" ry="16.0" fill="#00b5d2" fill-opacity="0.000000" stroke="#00b5d2" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="307,151 307,198" fill="#000000" fill-opacity="0.000000" stroke="#00b5d2" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round" fill="none"/>
+<polyline points="270,174 344,174" fill="#000000" fill-opacity="0.000000" stroke="#00b5d2" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round" fill="none"/>
+</g>
+</svg>

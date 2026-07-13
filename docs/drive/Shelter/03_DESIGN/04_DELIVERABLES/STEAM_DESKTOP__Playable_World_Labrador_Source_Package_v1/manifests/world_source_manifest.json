@@ -1,0 +1,271 @@
+{
+  "anchor_records": {
+    "bicycle_parking": {
+      "facing": "left_or_right_not_bound",
+      "interactive": false,
+      "owner": "world_staging_only",
+      "x": 307,
+      "y": 174
+    }
+  },
+  "bounded_scope": {
+    "bicycle": "parking anchor only; no vehicle choreography or interaction",
+    "decor_atlas": "NOT_CREATED",
+    "fence": [
+      "back_span",
+      "front_span",
+      "post_end_open_gap"
+    ],
+    "fence_corner": "OMITTED_NOT_USED",
+    "path": "one main path with two used taper/end pieces",
+    "sand": "bicycle service pad/yard relation only",
+    "soft_ends": "used ends embedded only in world.ground.base",
+    "transitions": [
+      "grass_dirt",
+      "grass_sand",
+      "ground_path"
+    ]
+  },
+  "canvas": {
+    "baseline_y": 211,
+    "height": 216,
+    "transparent_exterior": true,
+    "width": 1536
+  },
+  "composite": "exports/world/world_composite_216.png",
+  "evidence": {
+    "parking_anchor_overlay": "evidence/world/world_bicycle_parking_anchor_overlay_216.png",
+    "sizes": {
+      "144": {
+        "height": 144,
+        "path": "evidence/world/world_native_144.png",
+        "width": 1024
+      },
+      "216": {
+        "height": 216,
+        "path": "evidence/world/world_native_216.png",
+        "width": 1536
+      },
+      "96": {
+        "height": 96,
+        "path": "evidence/world/world_native_96.png",
+        "width": 683
+      }
+    }
+  },
+  "excluded_claims": [
+    "final terrain atlas",
+    "global world layout",
+    "interactive fence/gate",
+    "bicycle mechanics",
+    "final palette/style lock"
+  ],
+  "layers": {
+    "world.anchor.bicycle_parking": {
+      "bounds": [
+        267,
+        148,
+        347,
+        201
+      ],
+      "default_visible": false,
+      "export": "exports/world/layers/14__world.anchor.bicycle_parking.png",
+      "source": "source/world/layers/14__world.anchor.bicycle_parking.svg",
+      "z": 14
+    },
+    "world.fence.back_span": {
+      "bounds": [
+        109,
+        109,
+        1393,
+        146
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/09__world.fence.back_span.png",
+      "source": "source/world/layers/09__world.fence.back_span.svg",
+      "z": 9
+    },
+    "world.fence.front_span": {
+      "bounds": [
+        167,
+        168,
+        1347,
+        181
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/13__world.fence.front_span.png",
+      "source": "source/world/layers/13__world.fence.front_span.svg",
+      "z": 13
+    },
+    "world.fence.post_end_open_gap": {
+      "bounds": [
+        99,
+        88,
+        1403,
+        181
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/10__world.fence.post_end_open_gap.png",
+      "source": "source/world/layers/10__world.fence.post_end_open_gap.svg",
+      "z": 10
+    },
+    "world.ground.base": {
+      "bounds": [
+        3,
+        148,
+        1534,
+        215
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/00__world.ground.base.png",
+      "source": "source/world/layers/00__world.ground.base.svg",
+      "z": 0
+    },
+    "world.ground.dirt_worn": {
+      "bounds": [
+        467,
+        151,
+        1283,
+        208
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/02__world.ground.dirt_worn.png",
+      "source": "source/world/layers/02__world.ground.dirt_worn.svg",
+      "z": 2
+    },
+    "world.ground.grass_mass": {
+      "bounds": [
+        19,
+        128,
+        1520,
+        177
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/01__world.ground.grass_mass.png",
+      "source": "source/world/layers/01__world.ground.grass_mass.svg",
+      "z": 1
+    },
+    "world.ground.sand_soft": {
+      "bounds": [
+        147,
+        148,
+        453,
+        210
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/03__world.ground.sand_soft.png",
+      "source": "source/world/layers/03__world.ground.sand_soft.svg",
+      "z": 3
+    },
+    "world.path.main": {
+      "bounds": [
+        417,
+        155,
+        1392,
+        201
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/04__world.path.main.png",
+      "source": "source/world/layers/04__world.path.main.svg",
+      "z": 4
+    },
+    "world.path.used_taper_end": {
+      "bounds": [
+        417,
+        155,
+        1392,
+        201
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/05__world.path.used_taper_end.png",
+      "source": "source/world/layers/05__world.path.used_taper_end.svg",
+      "z": 5
+    },
+    "world.shadow.local_prop": {
+      "bounds": [
+        648,
+        176,
+        1223,
+        210
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/12__world.shadow.local_prop.png",
+      "source": "source/world/layers/12__world.shadow.local_prop.svg",
+      "z": 12
+    },
+    "world.transition.grass_dirt": {
+      "bounds": [
+        448,
+        143,
+        1038,
+        180
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/06__world.transition.grass_dirt.png",
+      "source": "source/world/layers/06__world.transition.grass_dirt.svg",
+      "z": 6
+    },
+    "world.transition.grass_sand": {
+      "bounds": [
+        133,
+        141,
+        468,
+        180
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/07__world.transition.grass_sand.png",
+      "source": "source/world/layers/07__world.transition.grass_sand.svg",
+      "z": 7
+    },
+    "world.transition.ground_path": {
+      "bounds": [
+        472,
+        155,
+        1328,
+        171
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/08__world.transition.ground_path.png",
+      "source": "source/world/layers/08__world.transition.ground_path.svg",
+      "z": 8
+    },
+    "world.yard.bicycle_pad": {
+      "bounds": [
+        202,
+        150,
+        405,
+        205
+      ],
+      "default_visible": true,
+      "export": "exports/world/layers/11__world.yard.bicycle_pad.png",
+      "source": "source/world/layers/11__world.yard.bicycle_pad.svg",
+      "z": 11
+    }
+  },
+  "master": "source/world/world_master.svg",
+  "schema_version": "shelter-world-source/v1",
+  "shadow_ownership": {
+    "dog": "dog.shadow.local in Labrador hierarchy",
+    "rule": "No shadow is baked into ground/base or dog identity layers.",
+    "world_prop": "world.shadow.local_prop"
+  },
+  "source_maturity": "SOURCE_READY_ONLY__NO_RUNTIME_ART_PASS",
+  "status": "AUTHORED_VISUAL_SOURCE_FOUNDATION__SOURCE_READY",
+  "z_order": [
+    "world.ground.base",
+    "world.ground.grass_mass",
+    "world.ground.dirt_worn",
+    "world.ground.sand_soft",
+    "world.path.main",
+    "world.path.used_taper_end",
+    "world.transition.grass_dirt",
+    "world.transition.grass_sand",
+    "world.transition.ground_path",
+    "world.fence.back_span",
+    "world.fence.post_end_open_gap",
+    "world.yard.bicycle_pad",
+    "world.shadow.local_prop",
+    "world.fence.front_span",
+    "world.anchor.bicycle_parking"
+  ]
+}

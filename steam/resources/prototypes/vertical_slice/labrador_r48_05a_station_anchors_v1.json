@@ -1,0 +1,47 @@
+{
+  "schema_version": "shelter.labrador_r48_05a.station_anchors/v1",
+  "actor_id": "dog.labrador_intro",
+  "runtime_authority": "godot_state",
+  "source_actor_root": [256, 280],
+  "station_source_root": [512, 300],
+  "source_px_to_world_unit": 0.24,
+  "previous_trial_source_px_to_world_unit": 0.6,
+  "runtime_scale_correction": "R48-05A v4 Art-owner ACCEPT_BOUNDED_SCALE_ENVELOPE trial; uniform positive 0.24 with accepted source numeric anchors reprojected by the same uniform factor",
+  "visual_anchors": {
+    "visual_anchor.none": {
+      "transfer_semantics": false
+    },
+    "visual_anchor.van": {
+      "object_id": "object.delivery_van_endpoint",
+      "transfer_semantics": false
+    },
+    "visual_anchor.station": {
+      "object_ids": ["object.kitchen", "object.packing_table"],
+      "transfer_semantics": false
+    },
+    "visual_anchor.kitchen": {
+      "object_id": "object.kitchen",
+      "approach_world_offset": 104.16,
+      "contact_world_offset": 62.88,
+      "work_world_offset": 54.24,
+      "exit_world_offset": 104.16,
+      "transfer_semantics": false
+    },
+    "visual_anchor.packing_table": {
+      "object_id": "object.packing_table",
+      "approach_world_offset": 104.16,
+      "contact_world_offset": 60.0,
+      "work_world_offset": 50.88,
+      "exit_world_offset": 104.16,
+      "transfer_semantics": false
+    }
+  },
+  "forbidden_runtime_semantics": [
+    "pickup",
+    "attach",
+    "carry",
+    "place",
+    "detach"
+  ],
+  "source_ref": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/manifests/station_anchors.json"
+}

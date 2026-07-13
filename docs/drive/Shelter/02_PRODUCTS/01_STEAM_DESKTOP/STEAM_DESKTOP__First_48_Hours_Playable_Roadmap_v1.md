@@ -2,7 +2,9 @@
 
 Дата создания: 2026-07-12
 
-Статус: active execution roadmap / R48-01 + R48-02 + R48-03 completed PASS / R48-04A brief gate next
+Обновлено: 2026-07-13
+
+Статус: active execution roadmap / R48-01 + R48-02 + R48-03 completed PASS / R48-05A mechanical evidence retained / Art reconciliation sequence active
 
 Владелец: Producer / Project Manager
 
@@ -10,7 +12,7 @@
 
 Продукт: Shelter Steam/Desktop
 
-Назначение: превратить доказанные First Day и Day 2 runtime-сценарии в один честный session-based пользовательский путь, который запускается обычным способом, спокойно живёт в фоне, сохраняется и позволяет вернуться к Day 2 без dev-команд и fixture-флагов.
+Назначение: превратить доказанные First Day и Day 2 runtime-сценарии в один честный session-based пользовательский путь, который запускается обычным способом, выглядит как живая authored игра, сохраняется и позволяет вернуться к Day 2 без dev-команд и fixture-флагов.
 
 ---
 
@@ -36,6 +38,24 @@ R-29 не был фиктивной работой: он доказал прич
 - не обещает First Month;
 - не утверждает production art или shipping desktop readiness;
 - фиксирует последовательность решений, briefs, реализации и приёмки, нужную для внутренней First Day + Day 2 / two-session playable-сборки.
+
+### 0.1 Game-first execution update — 2026-07-12
+
+После завершения R48-03 пользователь явно исправил ближайший приоритет: техническая continuity уже доказана, а blocker пользовательской ценности — прямоугольный prototype presentation без authored мира, living Labrador, нормальной Kitchen и достаточной анимации.
+
+Текущий критический путь после user-owner scope clarification 2026-07-13:
+
+```text
+1. PM/User accepts the prepared Art reconciliation brief/package and pins the current visual roster.
+2. Art owns one bounded source-only wave restoring D-011 + approved_art_files + accepted Labrador fidelity over existing mechanics.
+3. A separate accepted/executable Codex integration brief imports only the accepted source result.
+4. Immutable runtime evidence receives independent Art review and explicit user-owner review.
+5. R48-05B, rooms, onboarding, background/minimize/performance and broad dog-life work remain later/backlog until separately prioritized.
+```
+
+Это изменение порядка не отменяет D-023, accepted runtime causality или будущие Program gates. Оно запрещает новый v6 patch loop и не активирует R48-05B, rooms, onboarding или R48-04A. Approved Mill может быть включён только как static decorative object без mechanic/task/resource/output/input. Labrador остаётся первой living dog; calm back-and-forth read имеет статус `NEEDS_MANIFEST_AMENDMENT`: existing start/walk/stop/turn rows reuse, bounded selector amendment and Game Design + Producer/PM + Technical/Codex re-sign before any executable brief. Dachshund/cart сейчас не является requirement.
+
+Предыдущий R48-05A brief завершил bounded mechanical evidence, но overall current look отклонён и не создаёт authority для v6 или reconciliation mutation. Текущий Art reconciliation package остаётся `PREPARED_FOR_PM_ACCEPTANCE / NOT EXECUTABLE`; следующий runtime write возможен только по новой staged sequence выше.
 
 ---
 
@@ -209,17 +229,24 @@ flowchart LR
     R1 <--> R2
     R1 --> R3["R48-03 Persisted Day 1 → Day 2"]
     R2 --> R3
-    R3 --> R4["R48-04 Calm Background Cadence"]
     R0 --> RA["R48-A Authored Visual Foundation"]
-    R3 --> R5["R48-05 Playable World + First Living Dog"]
-    R4 --> R5
-    RA --> R5
+    R3 --> R5S["R48-05A-S Art Source Package"]
+    RA --> R5S
+    R5S --> R5A["R48-05A World + Living Labrador Foundation"]
+    R5A --> R4B["R48-04B Calm Non-Modal Onboarding"]
     RA --> R6["R48-06 First Inspectable Kitchen"]
     R3 --> R6
-    R5 --> R6
-    R5 --> R7["R48-07 First Day + Day 2 Acceptance"]
+    R5A --> R6
+    R4B --> R6
+    R5A --> R7["R48-07 First Day + Day 2 Game-First Polish"]
     R6 --> R7
+    R5A -. later .-> R5B["R48-05B One Named Object Transfer"]
+    R7 -. deferred .-> R4A["R48-04A Background / Minimize / Performance Evidence"]
+    R5B --> RF["Full Program Acceptance"]
+    R4A --> RF
 ```
+
+Это program dependency view, а не текущая activation queue. Текущая очередь определяется §0.1 и §17; R48-04B, R48-06, R48-07, R48-05B и R48-04A сейчас не активированы.
 
 Правило последовательности:
 
@@ -229,8 +256,8 @@ flowchart LR
 
 - R48-01 и R48-02 можно проектировать параллельно, но их acceptance закрывается совместно: working `Continue` зависит от player save;
 - запись в общий checkout выполняет один последовательный integrator;
-- минимальный порядок code waves:
-  `R48-01A → R48-02A → R48-02B → R48-03 → R48-04A → R48-04B`;
+- текущая active sequence: `Art reconciliation PM/User acceptance → bounded Art source wave → ambient-walk manifest amendment/re-sign → separate Codex integration brief → runtime Art/user review`;
+- остальные program gates (`R48-04B`, `R48-06`, `R48-07`, `R48-05B`, `R48-04A`) остаются later/open и требуют отдельной будущей приоритизации;
 - Art source work может идти параллельно в отдельном file scope, но runtime Art PASS появляется только после import/readback в обычном player journey.
 
 ---
@@ -556,7 +583,7 @@ Transition boundary:
 
 ## 8. R48-04 — Calm Background Cadence and Onboarding
 
-Статус: R48-03 dependency closed; R48-04A is the next brief gate and is not yet accepted
+Статус: later/open, not current; no onboarding or background/minimize/performance execution is authorized now
 
 Владельцы контракта: Producer + Game Designer + Technical
 
@@ -568,6 +595,12 @@ Transition boundary:
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Background_Stall_Minimize_Policy_And_macOS_Evidence_v1.md
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Calm_Onboarding_And_Quiet_Cooperative_v1.md
 ```
+
+Execution boundary:
+
+- `Calm_Onboarding_And_Quiet_Cooperative_v1` — prepared second game-first implementation wave after living Labrador/world;
+- `Background_Stall_Minimize_Policy_And_macOS_Evidence_v1` — untracked/unaccepted draft, deferred outside the critical path;
+- onboarding DoD может закрыться раньше platform evidence, но full R48-04/program background claims остаются открытыми.
 
 ### Цель
 
@@ -711,7 +744,7 @@ Source/import gates:
 
 ## 10. R48-05 — Playable World and First Living Dog Integration
 
-Статус: blocked by R48-03, R48-04 and R48-A
+Статус: R48-05A implemented mechanical evidence / overall visual CHANGES_REQUIRED / current Art reconciliation package PREPARED_FOR_PM_ACCEPTANCE / R48-05B later
 
 Владелец реализации: Codex
 
@@ -725,33 +758,47 @@ docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_World_And
 
 Интегрировать authored foundation в тот же player journey, а не в ещё одну отдельную демонстрационную сцену.
 
-### Scope
+### R48-05A scope — current visible-progress milestone
 
 - replace key ground/world placeholder bands;
 - integrate first current-dog visual adapter;
-- bind dog visuals to existing task states/events;
+- bind dog visuals to existing task states/events for the bounded P0-B/P0-D corpus;
 - preserve current causality and assignments;
 - keep one animation authority per property;
-- preserve debug/capture observability outside player presentation.
+- preserve debug/capture observability outside player presentation;
+- explicitly exclude pickup/attach/carry/place/detach until R48-05B.
 
-### DoD R48-05
+### DoD R48-05A
 
 - [ ] Обычный First Day/Day 2 player flow показывает authored world foundation.
 - [ ] Хотя бы одна current dog identity — Labrador — представлена living runtime character, не code rectangle.
-- [ ] Собака визуально выполняет accepted idle/walk/turn/contact/carry/station-work phrases.
+- [ ] Собака визуально выполняет accepted idle/wait/start/walk/stop/physical-turn/contact-align/station-work phrases.
 - [ ] Visual adapter только наблюдает Godot runtime; task flow не дублируется в animation state machine.
 - [ ] Action + object читаются раньше decoration.
-- [ ] Facing, physical turn, contact, attachment and detach events проходят capture checks.
+- [ ] Facing, physical turn, approach/contact and station entry/work/exit проходят capture checks.
 - [ ] 216/144/96 evidence проходит принятый tiered rubric.
 - [ ] First Day/Day 2 causal assertions остаются green.
 - [ ] Player mode не показывает debug geometry или state labels.
 - [ ] Никакой Bicycle ride/tow/hitch choreography не добавлена без отдельного accepted contract.
 
+R48-05A PASS означает только bounded milestone PASS. Parent R48-A/R48-05 остаётся `PARTIAL / WARN`.
+
+### R48-05B / P0-C — later one-object-transfer closure
+
+Отдельный accepted brief выбирает ровно один named prop и фиксирует weight, carry mode, socket, source, target, contact/placement anchors, facing/z ownership и cancellation/recovery.
+
+DoD R48-05B:
+
+- [ ] pickup/contact → attach → accepted carry → target contact → place/detach проходит по authoritative runtime state;
+- [ ] нет lost/duplicate/teleported resource или универсального MouthHarness fallback;
+- [ ] обе facing стороны и native 216/144/96 contact/weight evidence приняты;
+- [ ] только после PASS full R48-A/R48-05 может быть закрыт.
+
 ---
 
 ## 11. R48-06 — First Inspectable Kitchen Room
 
-Статус: blocked by R48-03, R48-A3 and R48-05 Labrador integration
+Статус: later/open, not current; no room execution is authorized now
 
 Владелец реализации: Codex
 
@@ -806,7 +853,7 @@ accepted Kitchen world cue
 
 ## 12. R48-07 — First Day + Day 2 / Two-Session Acceptance and Internal Export
 
-Статус: blocked by R48-01..06
+Статус: later/open, not current; blocked by future Art reconciliation acceptance and separately re-prioritized prerequisite waves
 
 Владельцы: Producer / Game Designer / Art Director / Codex / PM
 
@@ -834,34 +881,32 @@ fresh profile
 → consequences remain consistent
 ```
 
-### Evidence pack
+### Game-first evidence pack
 
 - native 1x full-journey capture;
 - event/state/assertion summary;
 - save/restart matrix;
 - corrupt save recovery proof;
-- focused/unfocused/minimized cadence evidence;
-- 30–60 minute performance observation;
 - First Day and Day 2 regressions;
 - room parity evidence;
 - 216/144/96 art/readability captures;
 - macOS internal export smoke;
 - Windows real smoke before any external playtest claim.
 
+Focused/unfocused/minimized cadence and 30–60 minute performance evidence remain required for later full program closure, but they do not block the game-first two-visit polish wave.
+
 ### DoD R48-07
 
 - [ ] Весь required journey пройден без terminal, fixture flag, connector action или manual state edit.
 - [ ] First Day и Day 2 проходят в normal-speed player mode.
 - [ ] Перезапуски и autosave работают в обозначенных точках.
-- [ ] Background use не создаёт obligation, loss или accidental dispatch.
 - [ ] One living dog и one inspectable Kitchen работают в том же runtime.
 - [ ] No debug UI appears in player capture.
 - [ ] First Day and Day 2 causal regressions green.
 - [ ] Save corruption/recovery behavior проверен.
-- [ ] 30–60 minute performance evidence не показывает blocker-level degradation.
 - [ ] Art Director принимает runtime readability на требуемом prototype level.
 - [ ] Producer/Game Designer принимают player influence/no-obligation experience.
-- [ ] Build маркирован честно: `macOS-only internal First Day + Day 2 playable (session-based continuation, prototype visual level; not Steam/release ready)`, пока Windows smoke не пройден.
+- [ ] Build маркирован честно как game-first internal build с явным `background/minimize/performance gate pending`; полный canonical D-023 readiness label не используется до R48-04A.
 
 ---
 
@@ -992,12 +1037,13 @@ fresh profile
 
 ## 17. Immediate next steps
 
-1. Подготовить и принять bounded R48-04A Background/Stall/Minimize Policy + macOS Evidence brief.
-2. После R48-04A отдельно подготовить R48-04B Calm Onboarding And Quiet Cooperative.
-3. Не считать R48-04 принятой или выполненной до отдельных brief/implementation/evidence волн.
-4. Art source work допускается только в отдельном file scope и по отдельному accepted brief.
-5. Не начинать R48-05/06, пока их dependencies не закрыты.
-6. Завершить программу единым R48-07 acceptance journey, а не набором разрозненных green demos.
+1. PM/User принимают `STEAM_DESKTOP__Art_Reconciliation__Dog_Buildings_Meadow_v1` и фиксируют canonical references/current visible roster.
+2. Art Director ведёт отдельную bounded source-only wave: базовая графика по D-011/approved library/Labrador direction, только существующие mechanics, без runtime/code mutation.
+3. Параллельно Game Design оформляет bounded ambient-walk selector amendment; Game Design, Producer/PM и Technical/Codex re-sign обязательны. Guardrails: no current/queued Labrador task; only pre-TripTask offered-order or post-Day-2 Quiet Cooperative; ready_to_send calm wait wins; forbidden during authoritative trip/task/delivery, restore and save failure/retry; player gate cancels before transition; zero gameplay/save/progression output.
+4. После Art source review и selector re-sign готовится отдельный Codex integration brief в `04_DEVELOPMENT/`; до его acceptance runtime/import mutation запрещена.
+5. После implementation публикуются immutable runtime captures и проводятся independent Art review plus explicit user-owner review.
+6. Не запускать v6 patch loop, R48-05B/object transfer, rooms, onboarding или background/minimize/performance сейчас.
+7. Broad dog-life catalogue остаётся later product direction/backlog; Game Design отдельно владеет будущими detailed semantics/selectors.
 
 ---
 
@@ -1016,6 +1062,33 @@ tools/dev-vertical-slice.sh player-prototype --runtime-load-fixture=second_day_a
 ---
 
 ## 19. Changelog
+
+### 2026-07-13 — current base graphics / later dog-life reprioritization
+
+- Replaced the stale implemented-R48-05A/onboarding/room immediate queue with Art reconciliation acceptance, bounded source work, a separate Codex integration brief and runtime Art/user review.
+- Made D-011, approved_art_files and accepted Labrador direction the current visual targets while preserving existing mechanics only.
+- Allowed the approved Mill only as static decoration; kept calm Labrador walking selector-owned by Game Design and Dachshund/cart non-critical.
+- Prohibited a v6 patch loop and left R48-05B, rooms, onboarding, background work and broad dog-life states later/backlog.
+
+### 2026-07-13 — R48-05A source and activation gates closed
+
+- R48-05A-S produced a SOURCE-READY authored world/Labrador package.
+- Game Design, Art, Technical and PM signed the bounded A–G plus legacy_unbound execution record.
+- Only R48-05A moved to accepted/executable; runtime Art PASS and full parent/transfer closure remain open.
+
+### 2026-07-12 — R48-05A / R48-05B convergence
+
+- Producer/PM accepted the no-transfer visible-progress R48-05A and later one-transfer R48-05B split.
+- Added a source-only Art Package wave before runtime integration.
+- Made R48-05A PASS map honestly to parent PARTIAL/WARN; full closure still requires R48-05B.
+
+### 2026-07-12 — game-first critical path selected
+
+- После R48-03 пользователь поставил authored playable world + living Labrador выше background/minimize evidence.
+- Перенесены Calm Onboarding, Kitchen и two-visit polish в последовательный game-first critical path; R48-04A сохранён как более поздний незакрытый program gate.
+- Добавлены четыре отдельные implementation-grade briefs с DoD, dependencies, checks и stop conditions.
+- Первый Labrador/world brief оставлен preflight-gated: proposed/draft Art/animation sources не повышены до implementation authority.
+- Незакоммиченный background/minimize draft оставлен нетронутым и не принят как направление.
 
 ### 2026-07-12 — v1 created / player-journey reprioritization
 

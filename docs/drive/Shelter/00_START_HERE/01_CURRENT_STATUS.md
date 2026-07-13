@@ -1,6 +1,6 @@
 # 01_CURRENT_STATUS
 
-Обновлено: 2026-07-12
+Обновлено: 2026-07-13
 Статус: active current status
 Владелец: Producer / Project Manager
 
@@ -41,7 +41,7 @@ D-023 First Day + Day 2 player journey scope lock принят.
 Главная текущая задача:
 
 ```text
-R48-00 accepted. R48-01A, R48-02A and R48-02B completed/PASS; bounded R48-03 persisted First Day → Day 2 transition brief is next.
+R48-00 accepted. R48-01A, R48-02A, R48-02B and R48-03 completed/PASS. Exact bounded R48-05A v5 Technical evidence remains PASS, while overall player-facing visual coherence remains CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK. Current work is the prepared Art reconciliation package → PM/User acceptance → bounded Art source wave → separate executable Codex integration brief → runtime evidence/Art/user review. No v6 patch loop is authorized.
 ```
 
 Актуальный вход в Steam-контекст:
@@ -158,7 +158,13 @@ NOT production art. NOT final visual style. NOT shipping UX. NOT final animation
 Next scope:
 
 ```text
-D-023 selects First 48 Hours Playable. R48-01A, ADR-0003/R48-02A and R48-02B are complete/PASS; R48-03 brief preparation is next. Sheet A/B remain evidence only.
+D-023 selects First 48 Hours Playable. Current priority is canonical base-visual reconciliation against D-011, approved_art_files and the accepted Labrador direction while preserving only existing mechanics. The approved Mill may appear only as static decoration. Labrador remains the first living dog; ambient back-and-forth walking is NEEDS_MANIFEST_AMENDMENT before any executable binding. Dachshund/cart is not a current requirement.
+```
+
+Current-versus-later boundary:
+
+```text
+No R48-05B/object transfer, rooms, onboarding or background/minimize/performance work now. Ambient Labrador walking reuses existing start/walk/stop/turn rows but requires a bounded selector amendment plus Game Design, Producer/PM and Technical/Codex re-sign; it has zero gameplay/save/progression authority. The broad dog-life catalogue is later product direction/backlog, not implementation authority; Game Design owns its future detailed semantics.
 ```
 
 Visual R&D boundary:
@@ -283,7 +289,7 @@ Do not read by default:
 Workflow / Codex:
 
 ```text
-D-021 local Work/Codex migration is complete. Preserve the direct-checkout / optional Shelter MCP boundary and keep its validation green; start new Codex implementation only from a separately accepted brief.
+D-021 local Work/Codex migration is complete. Preserve direct-checkout / optional Shelter MCP boundaries. Do not start v6, source/runtime reconciliation, object transfer, room, onboarding or background work. Codex receives authority only from a new separately accepted integration brief after PM/User and Art source acceptance.
 ```
 
 Current MCP note:
@@ -296,7 +302,7 @@ Direct-checkout work remains available; reconcile or decouple the catalog/runtim
 Product / Game Design:
 
 ```text
-D-022 implemented and accepted; R-29 closed / PASS. D-023 separately selects the First Day + Day 2 player journey; do not infer additional scope beyond its Scope Lock.
+D-022 implemented and accepted; R-29 closed / PASS. PM/User must first accept the prepared Art reconciliation package. Art then owns a bounded source-only wave restoring D-011/approved-library/Labrador fidelity with existing mechanics. Ambient Labrador walking is `NEEDS_MANIFEST_AMENDMENT`; Game Design owns the bounded selector amendment and future detailed dog-life catalogue, while Producer/PM and Technical/Codex must re-sign before any executable binding.
 ```
 
 Completed and current accepted Codex briefs:
@@ -305,6 +311,7 @@ Completed and current accepted Codex briefs:
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Runtime_Safe_Checkpoints_And_Continue_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_World_And_First_Living_Dog_v1.md
 ```
 
 Required reasoning level:
@@ -322,6 +329,31 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## Changelog
+
+### 2026-07-13 — current base graphics / later dog-life scope lock
+
+- Made canonical base-visual reconciliation with existing mechanics the only current content wave.
+- Allowed the approved Mill solely as static decoration; kept Labrador first and Dachshund/cart non-critical.
+- Fixed the sequence from Art reconciliation acceptance through source work and a separate Codex brief to runtime Art/user review.
+- Prohibited a v6 patch loop and kept R48-05B, rooms, onboarding, background work and the broad dog-life catalogue later.
+
+### 2026-07-13 — R48-05A v5 local Technical PASS / overall current look rejected
+
+- Exact derived Packing mask passes local scale/contact/state-envelope and positive/negative overlap gates without source/runtime authority changes.
+- Independent v5 evidence review remains pending; Codex did not grant runtime Art PASS or user acceptance.
+- Direct owner verdict sets overall player-facing visual coherence to `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK`.
+- Next is read-only Art comparison against earlier accepted dog/building/meadow references, followed by a new Art-owned brief sequence; no v6 or reconciliation mutation is authorized.
+
+### 2026-07-13 — R48-05A activated
+
+- Accepted the SOURCE-READY world/Labrador package and Packing placeholder boundary.
+- Recorded exact Technical binding/provenance/file/test authority.
+- Changed only bounded no-transfer R48-05A to accepted/executable; runtime Art PASS and parent/full transfer closure remain open.
+
+### 2026-07-12 — R48-05A/05B convergence
+
+- Accepted the no-transfer visible foundation first and one named transfer later.
+- Authorized source-only Art production while keeping R48-05A runtime blocked.
 
 ### 2026-07-12 — R48-02B completed / PASS
 

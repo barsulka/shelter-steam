@@ -448,6 +448,39 @@ Current semantic card status remains `NEEDED`; rejected SVGs are not evidence.
 
 Forbidden for current Labrador: TripTask driver, independent Day 2 overlay task, automatic quality/habit state, or room role assignment not accepted elsewhere.
 
+### 14.1 Current bounded ambient Labrador walk — user decision recorded
+
+**Status:** `NEEDS_MANIFEST_AMENDMENT` — user-approved Game Design direction, **not executable under the current exact A–G manifest**.
+
+Current world boundary:
+
+- the Mill may appear now only as a static decorative object;
+- it creates no mechanic, task, resource, input, output, route, reward or progression authority;
+- Labrador remains the only first living dog; Dachshund/cart behavior is not current critical scope.
+
+The user requests a calm back-and-forth Labrador walk as base living-scene presentation. This reuses only existing shared rows `dog.action.idle.neutral`, `dog.action.locomotion.start`, `dog.action.locomotion.walk_empty`, `dog.action.locomotion.stop` and `dog.action.locomotion.turn`; it creates no new semantic row, task or world-state authority.
+
+The current accepted Labrador manifest binds locomotion to station selector C (`CookTask` / `PackTask`, `moving_to_source`). Therefore the following is only the proposed future amendment selector, not a permitted R48-05A binding:
+
+```text
+actor: dog.labrador_intro
+precondition: current_task == "" and current_visible_state == "idle"
+queue guard: no queued/assigned task belongs to Labrador
+journey guard: either an offered order before TripTask creation, or post-Day-2 Quiet Cooperative
+presentation phrase: idle -> bounded start/walk/(physical turn if direction changes)/stop -> idle
+authority: presentation-only; Godot runtime remains the sole authority
+```
+
+Guardrails for a later amendment:
+
+- an active order alone never grants progression; the phrase is allowed only in the two states above and must yield before any required task;
+- it is forbidden from TripTask creation through delivery resolution, and while `ready_to_send` it yields to the accepted calm-wait selector rather than wandering;
+- it is forbidden while Labrador has a current/queued task, during any protected task phase, restore until the safe checkpoint state is fully restored, or save-failure/retry/recovery handling;
+- a player input that starts a task or changes a player gate cancels the phrase before the authoritative transition; the phrase never captures input, delays a gate or creates a competing cue;
+- it creates no event, resource movement, task/order/status change, save write, reward, memory, habit, quality, timer result or Day 3/repeatable loop.
+
+Before any Art/Technical executable binding, the exact external manifest needs an amendment that adds this selector while retaining exactly the same 12 rows. Game Designer, Producer/PM and Technical/Codex must re-sign that amendment; Art/Technical still own the actual world bounds, facing and binding evidence. The user decision recorded here does not silently expand A–G.
+
 ---
 
 ## 15. Coverage matrix 4 — room/interior candidate set
@@ -468,6 +501,28 @@ This matrix is a design coverage list only. It does not authorize room implement
 | tidy place | `dog.activity.room.tidy_place` | P2 | DL future | declared movable prop + placement | E-D/E-R |
 
 Room action cannot move from this matrix into a manifest unless the room, prop, occupancy and gameplay status are all cited.
+
+### 15.1 USER_REQUESTED_FUTURE_DIRECTION — rich dog-life backlog vocabulary
+
+**Status:** `USER_REQUESTED_FUTURE_DIRECTION / NOT_ACCEPTED_CURRENT`.
+
+The user direction is: build a quality visual base and already accepted gameplay now; expand to a richer dog-life catalogue later. The following are future vocabulary/backlog meanings only. They grant **no** current mechanic, task, role, room, vehicle, resource, input, output, reward, progression, asset or runtime authority:
+
+1. Dog pulls or rides with a cart.
+2. Dog rides a bicycle.
+3. Dog drives a small truck.
+4. Dog sits in the bed of a large truck.
+5. Dog sits at a school desk.
+6. Dog reads in a library.
+7. Dog mixes chemicals in a laboratory.
+8. Dog teaches at a blackboard with a pointer.
+9. Dog relaxes in a rocking chair with a book.
+10. Dog sleeps.
+11. Dog plays with another dog.
+12. Dog chases its tail.
+13. Further everyday dog-life states are intentionally an open future catalogue, not an implicit universal atlas.
+
+Every item requires a later separately accepted product/game slice with its actor/role, task-or-ambient authority, object/vehicle/room/partner anchors, safety/readability evidence and manifest entry. In particular, no cart/bicycle/truck phrase is authorized by the current first-driver route, and no school/library/lab/chair/play/sleep phrase authorizes a room, research, social, need or reward system.
 
 ---
 
@@ -709,6 +764,12 @@ This document is ready for cross-role review when:
 ---
 
 ## 21. Changelog
+
+### 2026-07-13 — user direction: quality base now, rich dog life later
+
+- Recorded the Mill as static decorative-only and Labrador as the only current living-dog priority; no new gameplay authority was added.
+- Recorded the requested future dog-life catalogue as `USER_REQUESTED_FUTURE_DIRECTION / NOT_ACCEPTED_CURRENT` backlog vocabulary.
+- Classified calm Labrador back-and-forth as `NEEDS_MANIFEST_AMENDMENT`: it may reuse existing rows later, but cannot extend the exact station-bound A–G manifest silently.
 
 ### 2026-07-11 — proposed v1 created
 

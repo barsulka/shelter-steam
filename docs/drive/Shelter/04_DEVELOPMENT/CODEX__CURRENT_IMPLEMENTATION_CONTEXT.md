@@ -1,7 +1,7 @@
 # CODEX — Current Implementation Context
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-12
+Обновлено: 2026-07-13
 Статус: active current-summary
 Владелец: Codex / Project Manager
 Назначение: короткий актуальный dev/Codex вход без перечитывания всего `CODEX_STATUS.md` и старых brief-файлов.
@@ -53,7 +53,7 @@ Active roadmap / current task:
 
 ```text
 Product roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
-Current product task: R48-01A + R48-02A + R48-02B + R48-03 completed/PASS; prepare R48-04A background/minimize evidence brief
+Current product task: exact bounded R48-05A v5 Packing-mask correction is Technical PASS with independent local evidence review pending; overall player-facing visual coherence is CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK
 Completed workflow/MCP task: ChatGPT Work And Local MCP Migration v1
 ```
 
@@ -87,7 +87,7 @@ old completed briefs, full CODEX_STATUS.md, old runtime captures, superseded sim
 Next best step:
 
 ```text
-Run Codex only from a current brief and update current/status docs after completion.
+Route exact local v5 mask evidence to the same independent Art owner without a runtime Art PASS claim. Separately run a read-only Art comparison current v5 versus earlier accepted dog/building/meadow references, then prepare a new Art-owned reconciliation brief sequence. Keep v1-v4/source immutable; do not start v6, reconciliation mutation or R48-05B from this result.
 ```
 
 ---
@@ -155,7 +155,7 @@ Current Steam/Desktop product state:
 First Day MVP locked at prototype/product-language level.
 D-022 complete same-chain Day 2 variation is implemented with green runtime/native evidence.
 R48-01A clean PlayerBoot entry, R48-02A profile-store foundation, R48-02B First Day safe-checkpoint Continue and R48-03 organic persisted Day 2 return are implemented/PASS.
-The strict player journey now spans 33 restart-safe cursors through Quiet Cooperative. R48-04A remains an unaccepted background/minimize evidence gate.
+The strict player journey spans 33 restart-safe cursors through Quiet Cooperative. The exact bounded R48-05A v5 correction passes local state-specific envelope, scale, both-side contact and selector-scoped Packing mask gates at unchanged `0.24`, `2992x224`, anchors, root/baseline and timing. Independent local evidence review remains pending and Codex granted no runtime Art PASS. Separately, overall player-facing visual coherence is `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK` because current dogs, building placement and meadow/clearing do not match expected accepted references. v1-v4/source are immutable, R48-05B stays separate, and R48-04A remains deferred.
 ```
 
 Current visual-language evidence:
@@ -203,6 +203,8 @@ Implemented across completed Codex tasks:
 - First Day Art/UX visual-language pass v1.
 - Day 2 deterministic continuation fixture and full second warm-delivery scenario.
 - Day 2 exact order/chain/event proof plus six native 1x return-to-quiet-end moments.
+- R48-05A authored world foundation and living Labrador A–G derived presentation in the ordinary PlayerBoot-owned First Day/Day 2 runtime.
+- R48-05A source/binding validators and persistent v5 clean/silhouette, four-strip 1x motion, both-turn/both-side, cancellation/recovery, desktop-composition, state-specific 216/144/96 readbacks and exact positive/negative Packing mask/source-alpha audit.
 - Shelter MCP repo/document tooling v1/v2.
 - Shelter MCP Knowledge API v2 for decisions, open questions, roadmaps, latest handoff and task context.
 - Shelter MCP GitHub Actions CI: unit/race tests, vet, build and launcher syntax check on every push and pull request.
@@ -253,6 +255,18 @@ Do not run broad or new dev controls unless they are explicitly whitelisted/acce
 ---
 
 ## 6. Current proof / artifact location
+
+Current R48-05A Labrador runtime evidence:
+
+```text
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v1/
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v2/
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v3/
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v4/
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/
+```
+
+v1-v4 and their owner reviews are immutable historical evidence. v5 records the exact local Technical PASS and pending independent mask evidence review; it must not be read as runtime Art PASS or overall user acceptance. The direct user/owner verdict separately sets overall visual coherence to `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK`.
 
 Latest First Day visual proof pack:
 
@@ -328,6 +342,7 @@ Do not reconstruct current state by reading every old brief.
 - Steam/Desktop must not absorb Browser Extension UX: no Chrome new-tab layout, search bar, sponsorship/ad block, rewarded ads, or extension-specific mechanics in Godot game.
 - First GitHub Actions run still needs to confirm hosted-runner/action availability; no runtime smoke belongs in this CI job.
 - D-022/OQ/R-29 source changes require catalog reconciliation or a later decoupling design before MCP runtime tools are available again.
+- R48-05A v1-v4/source are immutable. v5 passes only the exact local mask/scale/contact/state-envelope Technical gates; independent local evidence review remains pending. Overall player-facing visual coherence is `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK`. The next action is read-only Art comparison against earlier accepted dog/building/meadow references followed by a new Art-owned brief sequence, not v6 or source/runtime mutation.
 
 ---
 
@@ -361,7 +376,7 @@ Implemented scope:
 Current handoff boundary:
 
 ```text
-R-29 is closed / PASS. D-023 selects the First Day + Day 2 player journey. R48-01A, ADR-0003/R48-02A, R48-02B and R48-03 completed/PASS; R48-04A brief preparation is next.
+R-29 and R48-03 are closed/PASS. The exact v5 local Packing-mask correction is Technical PASS and pending the same independent owner's evidence review, but overall player-facing R48-05A visual coherence is `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK`. Next is a read-only Art comparison current v5 versus earlier accepted dog/building/meadow references, then a new Art-owned reconciliation brief sequence. Do not start v6, source/runtime reconciliation mutation or R48-05B from this handoff.
 Any production art/animation/world proof or later product slice requires its own accepted brief.
 ```
 
@@ -388,6 +403,51 @@ Suggested reasoning level for Codex if assigned:
 ---
 
 ## 10. Changelog
+
+### 2026-07-13 — R48-05A v5 local Technical PASS / current look rejected
+
+- Added only derived fail-closed Packing D/F/G/contact-held EXIT segmentation of existing `world.fence.front_span`; no source/global-z/scale/root/window/anchor/timing/gameplay/persistence mutation.
+- Passed exact state-specific 216/144/96 envelope/margin gates, both-side contact, `8/8` positive and `6/6` negative mask cells with zero forbidden screen/source-alpha overlap, A–G/negative G, both turns, four 1x strips, recovery, legacy negatives and zero transfer.
+- Published the 556-file v5 evidence as local Technical PASS; independent evidence review remains pending and Codex did not grant runtime Art PASS.
+- Recorded overall player-facing visual coherence as `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK`; no prototype-resolved or user-acceptance claim is allowed.
+- Next is read-only Art comparison current v5 against earlier accepted dog/building/meadow references, followed by a new Art-owned brief sequence. No v6 or reconciliation mutation is authorized.
+
+### 2026-07-13 — R48-05A v4 correction / Technical BLOCKED / Art pending
+
+- Applied the exact accepted uniform scale `0.24` and station anchors without changing PlayerBoot, root/baseline, z ownership, animation/gameplay timing or transfer semantics.
+- Preserved actual `2992x224` full-width bottom-edge evidence, A–G, both locked-root turns, four even 1x strips, cancellation/recovery, `legacy_unbound=3` and zero transfer.
+- Idle A passes at `89/59/39 px`, but synthetic Kitchen E `74/49/33 px`, First Day E `76/52/35 px`, and Day 2 G `73/49/32 px` fail the universal `80/52/35 px` thresholds. From-right Packing also retains forbidden torso overlap; bounded registration cannot satisfy both occlusion and ≤4 px contact.
+- Published the immutable 450-file v4 pack, ledger `7645796b50db961622aada07b10902d3d4c296206dd61ab2135cf5c09571c658`, and stopped with `STOP_UNSUPPORTED_ACTOR_ENVELOPE`. Runtime Art remains `PENDING_OWNER_REVIEW`; Codex did not grant Art PASS.
+
+### 2026-07-13 — R48-05A v3 correction / Technical BLOCKED / Art pending
+
+- Applied exact scale `0.60`, Kitchen `260.4/157.2/135.6` and Packing `260.4/150.0/127.2`, preserved full-width world, even motion, both turns, A–G, `legacy_unbound=3` and zero transfer.
+- Captured the actual `2992x224` bottom-hugging PlayerBoot window and a 450-file v3 pack, but measured native bbox `y=0`: the `225 px` source envelope projects to `232.14 px`, exceeding the locked height by `8.14 px`.
+- Returned `STOP_UNSUPPORTED_ACTOR_ENVELOPE` instead of changing PlayerBoot/window, effective scale, horizontal fit or root/baseline. All mechanical/source/Godot/profile/checkpoint/33-cursor/SIGKILL/save-retry checks remain green; v1/v2 are immutable and v3 Art remains `PENDING_OWNER_REVIEW`.
+
+### 2026-07-13 — R48-05A v2 correction / technical PASS / Art pending
+
+- Corrected full-width corridor framing, uniform Labrador scale `0.25 -> 1.0`, 1:1 station-anchor projection, distributed motion and both root-locked physical turns without changing gameplay authority, timing or outputs.
+- Published 443-file v2 evidence with declared 216/144/96 resamples measuring `137/92/61 px`, four even-timestamp 1x strips, both sides/turns, cancellation/recovery and desktop transparency proof.
+- Passed the full source/binding/Godot/player/profile/checkpoint/33-cursor/SIGKILL/save-failure suite; real profile remained absent. v1 is immutable and v2 remains `PENDING_OWNER_REVIEW`.
+
+### 2026-07-13 — R48-05A implemented / mechanical PASS / Art pending
+
+- Added exact authored world/Labrador imports and one derived/non-persisted A–G visual adapter inside the ordinary PlayerBoot runtime.
+- Kept transfer tasks in `legacy_unbound`, preserved all gameplay/persistence/no-touch contracts and passed the 33-cursor restart/SIGKILL/save-failure regression matrix.
+- Published persistent native evidence; runtime Art remains a separate owner gate and parent R48-05 remains PARTIAL/WARN until 05B.
+
+### 2026-07-12 — R48-05A source/runtime boundary
+
+- Recorded source-only Art work as next and kept Codex/runtime blocked.
+- Split parent closure into bounded 05A PARTIAL/WARN and later 05B transfer PASS.
+
+### 2026-07-12 — game-first brief sequence prepared
+
+- Replaced R48-04A as the next step with owner-gated Playable World + First Living Labrador.
+- Prepared separate onboarding, Kitchen and two-visit acceptance briefs.
+- Deferred background/minimize/performance work and preserved its unaccepted status.
+- No Godot/runtime or asset changes were authorized by this documentation wave.
 
 ### 2026-07-12 — R48-03 completed / persisted Day 2 return PASS
 

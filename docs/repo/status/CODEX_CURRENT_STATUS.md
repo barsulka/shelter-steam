@@ -1,7 +1,7 @@
 # CODEX_CURRENT_STATUS
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-12
+Обновлено: 2026-07-13
 Статус: current-summary
 Владелец: Codex / Project Manager
 Назначение: короткий текущий dev-status entry point. Не является историческим журналом.
@@ -40,7 +40,7 @@ Current product state:
 First Day MVP locked at prototype/product-language level.
 D-022 Day 2 same-chain Warm Food Delivery variation is implemented and verified at prototype/product-language/runtime-evidence level.
 R-29 is closed / PASS after PM/Producer review.
-D-023 First Day + Day 2 player journey scope lock is accepted; R48-01A, R48-02A, R48-02B and R48-03 are completed/PASS. R48-04A background/minimize evidence is the next unaccepted brief gate.
+D-023 First Day + Day 2 player journey scope lock is accepted; R48-01A, R48-02A, R48-02B and R48-03 are completed/PASS. The exact bounded R48-05A v5 Packing-mask correction is Technical PASS and pending independent owner review. Overall player-facing R48-05A visual coherence is separately `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK`: the current dogs, building placement and meadow/clearing do not match the expected accepted references. Later R48-05B remains separate, and R48-04A remains deferred.
 ```
 
 Current tooling state:
@@ -76,6 +76,8 @@ Steam/Desktop / Godot:
 - First Day Art/UX visual-language pass v1 accepted as prototype pass.
 - Day 2 deterministic continuation fixture and complete second warm-delivery scenario.
 - Day 2 exact order/chain/event assertions plus six native 1x product-language moments.
+- R48-05A authored world foundation plus derived/non-persisted living Labrador adapter for exact A–G, with explicit `legacy_unbound` for existing transfer tasks.
+- R48-05A v5 capture pack with actual `2992x224` bottom-edge PlayerBoot evidence, exact `0.24` scale, state-specific 216/144/96 readbacks, clean/silhouette, four 1x motion strips, both turns/station sides, cancellation/recovery, desktop composition and Quiet Cooperative evidence; exact Packing D/F/G/contact-held EXIT local segmentation passes `8` positive / `6` negative cells with zero forbidden screen/source-alpha overlap.
 
 Shelter MCP:
 
@@ -127,6 +129,7 @@ docs/drive/Shelter/04_DEVELOPMENT/
 - The first GitHub Actions run must still verify hosted-runner/action availability; CI never starts Godot/runtime or MCP control operations.
 - Reconcile the current D-022/OQ/R-29 knowledge drift or decouple knowledge health from runtime availability in a separate accepted MCP task.
 - Day 2 native evidence uses existing semantic placeholders; it is not production dog art, final animation or final world readability acceptance.
+- R48-05A v1/v2/v3/v4 and source package remain immutable. v5 locally passes exact mask/scale/contact/state-envelope mechanical gates, but that result is not runtime Art PASS or general user acceptance. Overall player-facing visual coherence is `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK`; separate read-only Art comparison against earlier accepted dog/building/meadow references and a new Art-owned brief sequence are required before any reconciliation mutation. Packing Table/Kitchen remain temporary anchors and R48-05B remains separate.
 
 ---
 
@@ -155,12 +158,62 @@ Expected reasoning level:
 Current next step:
 
 ```text
-Prepare and accept the bounded R48-04A background/stall/minimize policy and macOS evidence brief. R48-03 journey continuity is complete; no R48-04 implementation is accepted yet.
+Route the exact local v5 mask evidence to the same independent Art owner without claiming runtime Art PASS. Separately perform a read-only Art comparison of current v5 against earlier accepted dog/building/meadow references, then prepare a new Art-owned reconciliation brief sequence. Do not start v6, mutate source/runtime for reconciliation, or start R48-05B from this result.
 ```
 
 ---
 
 ## 6. Changelog
+
+### 2026-07-13 — R48-05A v5 local Technical PASS / overall current look rejected
+
+- Implemented only the derived, fail-closed Packing D/F/G/contact-held EXIT segmentation of existing `world.fence.front_span`; source, global z, scale/root/window/anchors/timing/gameplay/persistence stayed unchanged.
+- Passed exact state-specific bbox/margin gates, both-side contact, `8/8` positive and `6/6` negative mask cells with zero forbidden screen/source-alpha overlap, A–G/negative G, both turns, four even 1x strips, cancellation/recovery, `legacy_unbound=3`, all negatives and zero transfer.
+- Published the 556-file v5 pack as local Technical PASS with independent owner review pending; Codex did not grant runtime Art PASS.
+- Recorded the separate direct owner verdict: overall player-facing visual coherence is `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK` because the current dogs, building placement and meadow/clearing do not match expected accepted references.
+- No v6 or reconciliation mutation is authorized. Next is read-only Art comparison followed by a new Art-owned brief sequence.
+- Source/project/skill, Godot, profile/checkpoint/Day2, 33-cursor Continue/SIGKILL/save-retry and isolated ordinary startup remain green; production profile absent and temporary profiles removed.
+
+### 2026-07-13 — R48-05A v4 Technical BLOCKED / Art pending
+
+- Applied exact uniform scale `0.24` and v4 station projections while preserving the actual `2992x224` PlayerBoot window, gameplay timing, A–G, both turns, full-width world, `legacy_unbound=3`, zero transfer and all no-touch contracts.
+- Measured idle A at `89/59/39 px` for `216/144/96`, but synthetic Kitchen E at `74/49/33 px`, First Day E at `76/52/35 px`, and Day 2 G at `73/49/32 px`, below the universal `80/52/35 px` requirement.
+- Confirmed both-side contact within `4 px`; from-right Packing still has forbidden torso overlap of `167/890` screen/source samples. The allowed registration boundary cannot clear it, while the first clear probe breaks contact.
+- Published the 450-file v4 pack and returned `STOP_UNSUPPORTED_ACTOR_ENVELOPE`; v1/v2/v3 remain immutable, v4 Art is `PENDING_OWNER_REVIEW`, and Codex did not grant Art PASS.
+- Source/project/skill, Godot, profile/checkpoint/Day2, 33-cursor Continue/SIGKILL/save-retry and isolated ordinary startup remain green; real profile absent and temporary profiles removed.
+
+### 2026-07-13 — R48-05A v3 Technical BLOCKED / Art pending
+
+- Applied exact uniform scale `0.60` and v3 station projections while preserving timing, A–G, both turns, full-width world, `legacy_unbound=3`, zero transfer and all no-touch contracts.
+- Proved the real PlayerBoot truth: `2992x224`, full usable width, bottom delta `0`, no window-contract mutation. Native Labrador bbox touches `y=0`; projected identity height is `232.14 px` versus `224 px` available.
+- Published the 450-file v3 pack and returned `STOP_UNSUPPORTED_ACTOR_ENVELOPE`; v1/v2 remain immutable, v3 Art is `PENDING_OWNER_REVIEW`, and Codex did not grant Art PASS.
+- Source/project/skill, Godot, profile/checkpoint/Day2, 33-cursor Continue/SIGKILL/save-retry and isolated ordinary startup remain green; real profile absent and temporary profiles removed.
+
+### 2026-07-13 — R48-05A v2 technical correction PASS / Art re-review pending
+
+- Corrected full-width x=0..1740 framing, Labrador uniform scale `0.25 -> 1.0`, 1:1 station-anchor projection, distributed start/walk/stop motion and root-locked two-direction turns without changing gameplay timing or output.
+- Published a 443-file v2 pack with actual player states, four evenly sampled 1x strips, both turns/sides, cancellation/recovery, desktop composition and declared 216/144/96 resamples measuring `137/92/61 px`.
+- Re-ran source/project/skill validators, full Godot, profile/checkpoint/Day 2, 33-cursor Continue/SIGKILL/save-failure and isolated ordinary player startup; the production profile remained absent.
+- Preserved v1 as immutable `CHANGES_REQUIRED` history. v2 runtime Art remains `PENDING_OWNER_REVIEW`, so implemented R48-05A is still overall WARN and parent R48-05 remains PARTIAL/WARN.
+
+### 2026-07-13 — bounded R48-05A implemented / mechanical PASS / Art pending
+
+- Imported the exact 14 world and 48 Labrador runtime layers and integrated authored A–G presentation into the existing PlayerBoot-owned First Day/Day 2 runtime.
+- Preserved current gameplay/persistence authority, exact 33 cursors and the primitive `legacy_unbound` lane for Unload/Carry/LoadVan; no transfer semantics or new mechanic was added.
+- Passed source/binding validators, native capture, full Godot, profile-store, checkpoint, 33-cursor Continue/SIGKILL/save-retry and ordinary isolated `play.sh` smoke.
+- Published the persistent native capture pack with runtime Art explicitly pending; overall R48-05A remains WARN until owner review, and parent R48-05 remains PARTIAL/WARN until 05B.
+
+### 2026-07-12 — R48-05A/05B split recorded
+
+- Authorized source-only Art input production and kept runtime activation blocked.
+- Recorded bounded no-transfer 05A and later one-transfer 05B parent closure.
+
+### 2026-07-12 — game-first coordination handoff recorded
+
+- Confirmed R48-03 continuity at 33 safe cursors and shifted the next priority to authored world + living Labrador.
+- Prepared four bounded game-first briefs with explicit DoD and stop conditions.
+- Kept the untracked R48-04A draft untouched, deferred and non-authoritative.
+- Made asset/runtime work fail closed on accepted Art/Game Design/Technical inputs; no code or art was changed.
 
 ### 2026-07-12 — R48-03 completed / PASS
 

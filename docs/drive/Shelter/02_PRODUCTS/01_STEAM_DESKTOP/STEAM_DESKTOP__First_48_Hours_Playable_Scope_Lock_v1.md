@@ -271,7 +271,12 @@ Minimum life-kernel:
 - station-work;
 - bounded careful/focus layer only during accepted Day 2 PackTask `in_progress`.
 
-The full program additionally requires one accepted object-transfer choreography only after a named prop weight/socket/anchor contract.
+Execution is split without weakening the full program:
+
+- `R48-05A / P0-B + P0-D` — authored world, Labrador idle/wait/locomotion/physical-turn/contact-align and existing Kitchen/Packing station work, with no object transfer. R48-05A PASS leaves parent R48-A/R48-05 at `PARTIAL / WARN`.
+- `R48-05B / P0-C` — later exactly one accepted named-prop pickup/attach/carry/place/detach choreography after a full weight/mode/socket/source/target/anchor contract. Only R48-05B PASS closes full R48-A/R48-05.
+
+The source-only Art Package for world/Labrador/station anchors may precede R48-05A runtime work. `SOURCE-READY` is not runtime Art PASS and does not make the Codex brief executable by itself.
 
 Runtime state remains sole gameplay authority. Animation observes task state and cannot create a second simulation. Dachshund does not become a mandatory second fully animated character in this program; existing First Day driver/reward semantics remain intact.
 
@@ -318,11 +323,14 @@ R48-01A Playable Main Scene And Launch Surfaces
 → R48-02A Player Save Store Schema And Recovery
 → R48-02B Runtime Safe Checkpoints And Continue
 → R48-03 Persisted Day 1 To Day 2 Return
-→ R48-04A Background/Stall/Minimize Policy And macOS Evidence
-→ R48-04B Calm Onboarding And Quiet Cooperative
-→ R48-05 Playable World And First Living Dog
+→ R48-05A-S Art Source Package: world + layered Labrador + station anchors
+→ R48-05A Playable World And First Living Labrador foundation (no transfer; parent PARTIAL/WARN)
+→ R48-04B Calm Non-Modal Onboarding And Quiet Cooperative
 → R48-06 First Inspectable Kitchen
-→ R48-07 Full Acceptance Journey
+→ R48-07 Game-First Two-Visit Polish
+→ later R48-05B One Named Object Transfer (closes full R48-A/R48-05)
+→ later R48-04A Background/Minimize/Performance Evidence
+→ Full Program Acceptance
 ```
 
 Entry and save may be designed in parallel, but their acceptance closes jointly. Shared-checkout implementation uses one sequential integrator.
@@ -403,6 +411,12 @@ No other First Day/Day 2 task, object, dog assignment, order or reward responsib
 ---
 
 ## 19. Changelog
+
+### 2026-07-12 — game-first sequence and Labrador split
+
+- Synchronized the user-selected game-first order and moved R48-04A after the visible-game critical path.
+- Split Labrador/world work into no-transfer R48-05A and later one-transfer R48-05B.
+- Preserved one object transfer as mandatory for full parent/program closure.
 
 ### 2026-07-12 — v1 accepted
 

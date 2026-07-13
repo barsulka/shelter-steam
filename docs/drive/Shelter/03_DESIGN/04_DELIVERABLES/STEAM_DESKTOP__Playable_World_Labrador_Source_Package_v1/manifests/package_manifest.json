@@ -1,0 +1,44 @@
+{
+  "accepted_action_ledger": "manifests/accepted_action_scope.json",
+  "accepted_action_manifest": "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md",
+  "accepted_rows": 12,
+  "components": {
+    "labrador": {
+      "manifest": "manifests/labrador_source_manifest.json",
+      "status": "AUTHORED_VISUAL_SOURCE_FOUNDATION__SOURCE_READY"
+    },
+    "stations": {
+      "manifest": "manifests/station_anchors.json",
+      "status": "SOURCE_READY_ANCHOR_PLANES__NO_RUNTIME_BINDING"
+    },
+    "world": {
+      "manifest": "manifests/world_source_manifest.json",
+      "status": "AUTHORED_VISUAL_SOURCE_FOUNDATION__SOURCE_READY"
+    }
+  },
+  "date": "2026-07-13",
+  "milestone": "R48-05A-S",
+  "next_owner": "Technical/Codex readback, then PM activation gate; no runtime authority is implied",
+  "owner": "OpenAI Codex — delegated Art Director + Visual Production owner",
+  "package_id": "STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1",
+  "profile": "hybrid",
+  "runtime_authority": "godot_state",
+  "schema_version": "shelter-playable-world-labrador-source-package/v1",
+  "source_level_sizes": [
+    216,
+    144,
+    96
+  ],
+  "source_only_boundaries": {
+    "bicycle_choreography": false,
+    "broad_decor_atlas": false,
+    "building_replacement": false,
+    "final_style_palette_lock": false,
+    "godot_import": false,
+    "negative_scale_shortcut": false,
+    "object_transfer": false,
+    "room_art": false,
+    "runtime_binding": false
+  },
+  "verdict_scope": "SOURCE_LEVEL_ONLY"
+}

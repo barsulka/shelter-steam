@@ -1,0 +1,345 @@
+{
+  "schema_version": "shelter.art_reconciliation_reference_manifest.v1",
+  "package_id": "STEAM_DESKTOP__Art_Reconciliation__Dog_Buildings_Meadow_v1",
+  "date": "2026-07-13",
+  "owner": "Art Director",
+  "status": "PREPARED_FOR_PM_ACCEPTANCE",
+  "executable": false,
+  "runtime_authority": false,
+  "source_production_authority": false,
+  "status_reconciliation": {
+    "historical_document_status": "D-011 and Approved Library were recorded as approved direction, not final production exports",
+    "user_owner_decision": "D-011 is the canonical full-scene target and every file in approved_art_files is canonical visual-library reference for reconciliation",
+    "result": "canonical visual target; not an editable master, production export, gameplay-scope grant or runtime Art PASS"
+  },
+  "current_scope_decisions": {
+    "governing_boundary": "restore base graphics and already established mechanics now; expand later",
+    "mill": {
+      "current_literal_scene_content": true,
+      "role": "static decorative Utility Prop",
+      "interactive_station": false,
+      "task_owner": false,
+      "resource_owner": false,
+      "output_owner": false,
+      "progression_owner": false,
+      "input_or_mechanic_authority": false,
+      "source_and_runtime_work_requires_later_accepted_waves": true
+    },
+    "labrador": {
+      "first_and_only_current_living_dog": true,
+      "presentation_requirement": "calm Labrador walks back and forth along the living strip with natural scale, readable silhouette, even rhythm and physical turns",
+      "art_authority": "appearance, route rhythm, scale and readability",
+      "selector_or_state_authority_created_here": false,
+      "pre_executable_requirement": "bounded Game Design selector/guardrails followed by a separate accepted Codex brief"
+    },
+    "dachshund_cart": {
+      "canonical_quality_scale_language_reference": true,
+      "current_literal_roster_or_behavior": false,
+      "cart_transfer_or_choreography_authority": false
+    },
+    "later_out_of_current_scope": [
+      "dog pulls or rides with cart",
+      "dog rides bicycle",
+      "dog drives small truck",
+      "dog sits in bed of large truck",
+      "dog sits at school desk",
+      "dog reads in library",
+      "dog mixes chemicals in lab",
+      "dog teaches at blackboard with pointer",
+      "dog relaxes in rocking chair with book",
+      "dog sleeps",
+      "dog plays with another dog",
+      "dog chases its tail",
+      "other expanded dog-life states"
+    ]
+  },
+  "canonical_references": [
+    {
+      "id": "scene.d011.main_strip",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/D-011_steam_overlay_main_strip_v1_reference.png",
+      "sha256": "bde69388b337f1b7b158f35958a3a740953d58816bffd4d51fff5920d54ae508",
+      "bytes_format": "PNG",
+      "width_px": 1672,
+      "height_px": 941,
+      "pixel_mode": "RGBA",
+      "status": "USER_OWNER_CANONICAL_FULL_SCENE_TARGET",
+      "role": "Full Steam/Desktop lower living strip: meadow, faint background trees and shrubs, module rhythm, scale, proportions, density, baseline, van endpoint and transparent upper reserve",
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "library.readability.216_144_96",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__approved_library_v1_readability_216_144_96.png",
+      "sha256": "e83fd4fdc6c1da1cddf3c9b73b1a8b60e55632a4945ef1c2615bb4186ac475f1",
+      "bytes_format": "PNG",
+      "width_px": 1980,
+      "height_px": 2290,
+      "pixel_mode": "RGB",
+      "status": "USER_OWNER_CANONICAL_VISUAL_LIBRARY_REFERENCE",
+      "role": "Approved-library comparative readability evidence at 216, 144 and 96 px",
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "library.utility.decor_workshop_v2",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__decor_workshop_v2_utility_workbench__approved_direction.png",
+      "sha256": "ca48cd0c46be6e5b983981c14eca558a39d2ab65249009eb1b39e26f13b3cf66",
+      "bytes_format": "PNG",
+      "width_px": 1448,
+      "height_px": 1086,
+      "pixel_mode": "RGB",
+      "status": "USER_OWNER_CANONICAL_VISUAL_LIBRARY_REFERENCE",
+      "role": "Utility Workbench language: low open workbench, dog-action priority, contact island and no-house taxonomy",
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "library.dog_action.dachshund_cart",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__dog_action_dachshund_cart_grain_bag__approved_direction.png",
+      "sha256": "4c6940ddcd83f442dfb169844a47143544d9a8dda1da53195aca505b3340a4d7",
+      "bytes_format": "PNG",
+      "width_px": 1448,
+      "height_px": 1086,
+      "pixel_mode": "RGB",
+      "status": "USER_OWNER_CANONICAL_VISUAL_LIBRARY_REFERENCE",
+      "role": "Dog Action Sprite language: breed-specific natural silhouette, readable cart and grain bag, grounded motion scale",
+      "current_literal_roster_or_behavior": false,
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "library.dog_action.husky_painting",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__dog_action_husky_painting_board__approved_direction.png",
+      "sha256": "0cb3c5de0db96ae067205ae3e35090dc91a149382ba301f4976477ce7d4a775f",
+      "bytes_format": "PNG",
+      "width_px": 1448,
+      "height_px": 1086,
+      "pixel_mode": "RGB",
+      "status": "USER_OWNER_CANONICAL_VISUAL_LIBRARY_REFERENCE",
+      "role": "Dog Action Sprite language: recognizable breed, oversized readable action object and peaceful work pose",
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "library.dog_action.labrador_watering",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__dog_action_labrador_watering_can__approved_direction.png",
+      "sha256": "b7f116605d27bf551fb0b4319c579671b9a0f696fa0d097fe221cf1b439e04d7",
+      "bytes_format": "PNG",
+      "width_px": 1448,
+      "height_px": 1086,
+      "pixel_mode": "RGB",
+      "status": "USER_OWNER_CANONICAL_LABRADOR_DIRECTION",
+      "role": "Labrador material, calm character, natural soft anatomy, action-object relationship and approved-library compatibility",
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "library.building.kitchen_v2_1",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__kitchen_v2_1_building__approved_with_minor_simplification.png",
+      "sha256": "7b6703d65a2ab0f5af99769bbe5b025f6ffb85a83fb38e04f04d153e18b7b98a",
+      "bytes_format": "PNG",
+      "width_px": 1448,
+      "height_px": 1086,
+      "pixel_mode": "RGB",
+      "status": "USER_OWNER_CANONICAL_VISUAL_LIBRARY_REFERENCE",
+      "role": "Kitchen building target: low functional anchor, pot icon, warm light, dog/action hierarchy and bounded detail",
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "library.utility.mill_v2",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__mill_v2_utility_prop__approved_direction.png",
+      "sha256": "70b193ddaf403ee8bb885278bb2ea8cfaecdc818486dfd3c33753436042cf1f5",
+      "bytes_format": "PNG",
+      "width_px": 1448,
+      "height_px": 1086,
+      "pixel_mode": "RGB",
+      "status": "USER_OWNER_CANONICAL_VISUAL_LIBRARY_REFERENCE",
+      "role": "Mill Utility Prop target: thin vertical pause, readable blades and non-building taxonomy",
+      "current_literal_scene_content": true,
+      "current_role": "static decorative Utility Prop only",
+      "interaction_or_mechanic_authority": false,
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "library.building.storage_v2",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__storage_v2_building__approved_direction.png",
+      "sha256": "fb0bc903f15203923e5251a271ebf6dbaf2f9b2ccdb4a850cc48d6fcac1e741a",
+      "bytes_format": "PNG",
+      "width_px": 1448,
+      "height_px": 1086,
+      "pixel_mode": "RGB",
+      "status": "USER_OWNER_CANONICAL_VISUAL_LIBRARY_REFERENCE",
+      "role": "Storage building target: low wooden anchor, crate icon, bounded open-front detail, dog and box action",
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "library.utility.water_station_v2",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__water_station_v2_utility_prop__approved_direction.png",
+      "sha256": "3f19cdef4e7720d04d16d54c6a0f0d4a8fab766c4588b1b4a9801ff3286b67fe",
+      "bytes_format": "PNG",
+      "width_px": 1448,
+      "height_px": 1086,
+      "pixel_mode": "RGB",
+      "status": "USER_OWNER_CANONICAL_VISUAL_LIBRARY_REFERENCE",
+      "role": "Water Utility Prop target: tank, pipe, trough, readable function and Labrador scale without house silhouette",
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "library.scene.mill_dachshund_image_png",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/image.png",
+      "sha256": "f63159790080725ecbf2537b72432f1ca0ea782366935c63cfc8112351a891cc",
+      "bytes_format": "PNG",
+      "width_px": 1448,
+      "height_px": 1086,
+      "pixel_mode": "RGB",
+      "status": "USER_OWNER_CANONICAL_VISUAL_LIBRARY_REFERENCE",
+      "role": "APPROVED MILL + DACHSHUND SCENE EVIDENCE: mutual scale of thin mill, Dachshund cart, bags, shrubs and grounded contact island",
+      "current_usage_boundary": "Mill may be reproduced as static decor; Dachshund and cart remain quality/scale reference only and are not current literal content",
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    },
+    {
+      "id": "user_owner.labrador_identity_three_view",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Reconciliation__Dog_Buildings_Meadow_v1/references/user_owner/STEAM_DESKTOP__Labrador_Identity_Three_View__User_Owner_Reference.png",
+      "original_path": "/var/folders/nk/_gxfvnqn0x3cltpyw429lggh0000gn/T/codex-clipboard-6d31ec00-0a37-4f91-8c97-7846af37e327.png",
+      "sha256": "5cfffc7a32717346183b035feb00b4d429f7197381513758c831c4e69a3db1c6",
+      "bytes_format": "PNG",
+      "width_px": 1773,
+      "height_px": 887,
+      "pixel_mode": "RGB",
+      "status": "EXPLICIT_USER_OWNER_CANONICAL_LABRADOR_IDENTITY_REFERENCE",
+      "role": "Three-view Labrador identity: left/right/front continuity, natural anatomy, head, muzzle, ears, tail, legs, coat and calm character",
+      "gameplay_scope_authority": false,
+      "editable_master": false
+    }
+  ],
+  "scope_and_status_authorities": [
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/00_VISUAL_DIRECTION/D-011_Steam_Overlay_Main_Strip_v1_Rules.md",
+      "sha256": "a9457cb90f15e81d690ad54ffb6390107063344f5efbc39a1333ad6852dc7f17",
+      "role": "D-011 main-strip grammar; historical direction status is superseded only for reconciliation target status by the 2026-07-13 user-owner decision"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_OVERLAY__Approved_Library_v1.md",
+      "sha256": "c39d017caaaf5773046978296551e783ea5971d920552103ab78a3d281f48126",
+      "role": "Asset taxonomy and historical approved-direction inventory"
+    },
+    {
+      "path": "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_World_And_First_Living_Dog_v1.md",
+      "sha256": "5df57cb2519d929f26636f2f41162c223a74618c1feef4382a657c75b26d80f2",
+      "role": "Historical bounded R48-05A implementation brief; not authority for this package to execute code"
+    },
+    {
+      "path": "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__R48_05A_Technical_Activation_Record_v1.md",
+      "sha256": "f00f3aa151d801731b7ab4d9ebc40de926484469c9a48eddeab4edcc4203a1ed",
+      "role": "Historical Technical activation and boundary record"
+    },
+    {
+      "path": "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md",
+      "sha256": "afedb0185cff0c56963e566ff846a479437bf37950d8b38bc84380781015b3b8",
+      "role": "Accepted R48-05A A-G/action boundary and zero-transfer scope"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/OWNER_REVIEW.md",
+      "sha256": "75b753e5fbb41d39b71da5ab495591e68a2809065a266ce5cda09e4d7c9c11d2",
+      "role": "Bounded v5 Technical Art PASS separated from overall CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/capture_manifest.json",
+      "sha256": "9041c812a82cf233658532b29b865bd4c9cfd49a5098adaa7ca69cfdc5422447",
+      "role": "Immutable v5 capture inventory and technical measurements"
+    }
+  ],
+  "current_noncanonical_evidence": [
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/captures/first_day/A.png",
+      "sha256": "5a19f0e92590b896d5197824297237ecf8d98f2237471e039943c8829fc6eba9",
+      "role": "Current v5 full-layout baseline/proportional frame; not a visual target"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/captures/first_day/E.png",
+      "sha256": "e38b48e2804cc3937adda0115526dbb3bde3cc796f2e580801a2af5ff123af7f",
+      "role": "Current v5 Kitchen E evidence; behavior regression only"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/captures/first_day/F.png",
+      "sha256": "d734bce45fea24323402c37cc2be3485d3751039b37ba4980f4e758bad7911f0",
+      "role": "Current v5 Packing F/mask evidence; behavior regression only"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/captures/day2/G.png",
+      "sha256": "6ed1ef4358a5e1491698314e8b85bbc229873c178604e5d9e5a6cc36b6c86ce0",
+      "role": "Current v5 focus G evidence; behavior regression only"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/captures/quiet/A_quiet_cooperative.png",
+      "sha256": "bff86f88e8d3d9515e182b689512ae9d297635a82f51e67eee3e910a82dcad8f",
+      "role": "Current v5 quiet full-layout evidence; not a composition target"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/captures/desktop_composited/macos_desktop_window.png",
+      "sha256": "adab18e9d12f0735e6f1369de1594609dfa905886bbd58bcf751038fa7be2cad",
+      "role": "Current v5 actual desktop window/transparency evidence; not a visual target"
+    }
+  ],
+  "current_noncanonical_sources": [
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/source/labrador/right/labrador_master_right.svg",
+      "sha256": "fc1888a4fcc38f06e54d6680d248e7f89787fdbd86676a27407a8b4204884a5f",
+      "role": "Current geometric right-facing source; technical regression source, not canonical identity target"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/source/labrador/left/labrador_master_left.svg",
+      "sha256": "19eb44e512026a41b2a4eb5ab7b18c64fc72cf0abebd833279bd95a51f7a6f06",
+      "role": "Current geometric left-facing source; technical regression source, not canonical identity target"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/source/labrador/turn_mid/labrador_master_turn_mid.svg",
+      "sha256": "fbef07ef5a3410d58445181eb8c2cbef6f453cdbf40e510faeb7efa56201be8a",
+      "role": "Current physical-turn source; binding pattern may inform regression but morphology is not canonical"
+    },
+    {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/source/world/world_master.svg",
+      "sha256": "a25385b8ea70ae47879811d01588879ddfda6ffd62392eb58f576a26d610e154",
+      "role": "Current world source; numeric anchors may inform reconciliation but the visual composition is not canonical"
+    },
+    {
+      "path": "steam/assets/prototypes/vertical_slice/semantic/buildings/kitchen.png",
+      "sha256": "cf55a38d2c7ea77fb22949574ec3b8a71e65652e549216897cea2bd8226f93a8",
+      "role": "Current Kitchen semantic placeholder; not production-form visual target"
+    },
+    {
+      "path": "steam/assets/prototypes/vertical_slice/semantic/buildings/storage.png",
+      "sha256": "cad82d119594f0a52c7230d70fa047be7eed16dd74c486bd5920299db219d5bd",
+      "role": "Current Storage semantic placeholder; not production-form visual target"
+    },
+    {
+      "path": "steam/assets/prototypes/vertical_slice/semantic/utility_props/delivery_van_endpoint.png",
+      "sha256": "f527869695b499721fac7b547d3323838d6dd9567085eae92c12e2717bd76b0e",
+      "role": "Current Van semantic placeholder; not production-form visual target"
+    },
+    {
+      "path": "steam/assets/prototypes/vertical_slice/semantic/utility_props/road_sign.png",
+      "sha256": "0814d5e607941a6a102c09862f0aa8a5d0219ead33a7f2d97a59ce34eb52aa65",
+      "role": "Current Road Sign semantic placeholder; gameplay presence does not make it a canonical visual target"
+    },
+    {
+      "path": "steam/assets/prototypes/vertical_slice/semantic/utility_props/basket_bicycle.png",
+      "sha256": "7c1818978b1c7a69416baae68ed77aa14aa540299dfcdd44001882c62df86682",
+      "role": "Current Bicycle semantic placeholder; gameplay presence does not authorize new choreography"
+    }
+  ],
+  "hard_exclusions": [
+    {
+      "id": "sheet_a",
+      "path": "/Users/barsulka/.codex/visualizations/2026/07/11/019f50cf-d2b5-7d62-b31f-abdf5e42f15c/shelter_world_room_rnd_2026-07-11/assembled/sheet_a_assembled_scene_master_4x1.png",
+      "sha256": "c0dd9f6aded7b06ba1fd4e551edda76315a5307c5ced02058a62d1fa689cbc42",
+      "status": "USER_REJECTED_REFERENCE",
+      "reuse": "ZERO: not target, principle, supporting evidence, source material, crop, palette input or derivative input"
+    }
+  ]
+}

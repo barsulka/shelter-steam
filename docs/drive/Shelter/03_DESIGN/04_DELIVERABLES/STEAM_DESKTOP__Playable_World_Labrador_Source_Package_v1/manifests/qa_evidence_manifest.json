@@ -1,0 +1,30 @@
+{
+  "schema_version": "shelter-dog-qa-evidence/v0",
+  "repo_root": "/Users/barsulka/GolandProjects/shelter/shelter",
+  "title": "R48-05A-S Labrador source evidence — right / physical turn midpoint / left",
+  "images": [
+    {
+      "label": "right authored source",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/exports/labrador/right/composite_identity.png",
+      "pivot": [256, 280],
+      "sockets": []
+    },
+    {
+      "label": "physical turn midpoint source",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/exports/labrador/turn_mid/composite_identity.png",
+      "pivot": [256, 280],
+      "sockets": []
+    },
+    {
+      "label": "left authored source",
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/exports/labrador/left/composite_identity.png",
+      "pivot": [256, 280],
+      "sockets": []
+    }
+  ],
+  "claims": {
+    "source_only": true,
+    "runtime_capture": false,
+    "object_transfer_sockets": false
+  }
+}

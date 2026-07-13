@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scripts/prototypes/vertical_slice/labrador_visual_adapter.gd" id="1_adapter"]
+[ext_resource type="AnimationLibrary" path="res://resources/prototypes/vertical_slice/labrador_r48_05a_animation_library.tres" id="2_library"]
+
+[node name="LabradorVisualAdapter" type="Node"]
+script = ExtResource("1_adapter")
+
+[node name="BaseAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("..")
+libraries = {&"": ExtResource("2_library")}
+
+[node name="BlinkAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("..")
+libraries = {&"": ExtResource("2_library")}
+
+[node name="TailAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("..")
+libraries = {&"": ExtResource("2_library")}
+
+[node name="FocusAnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("..")
+libraries = {&"": ExtResource("2_library")}

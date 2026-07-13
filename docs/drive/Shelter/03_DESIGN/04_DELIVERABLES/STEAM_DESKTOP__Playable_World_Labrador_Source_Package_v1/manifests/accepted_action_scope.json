@@ -1,0 +1,105 @@
+{
+  "schema_version": "shelter-accepted-dog-actions/v0",
+  "status": "MACHINE_READABLE_LEDGER_ONLY__PRIMARY_AUTHORITY_IS_MARKDOWN",
+  "primary_authority": "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md",
+  "actor_id": "dog.labrador_intro",
+  "milestone": "R48-05A / P0-B + P0-D",
+  "actions": [
+    {
+      "id": "dog.action.idle.neutral",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": []
+    },
+    {
+      "id": "dog.action.wait.calm",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.delivery_van_endpoint"]
+    },
+    {
+      "id": "dog.action.locomotion.start",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.kitchen", "object.packing_table"]
+    },
+    {
+      "id": "dog.action.locomotion.walk_empty",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.kitchen", "object.packing_table"]
+    },
+    {
+      "id": "dog.action.locomotion.stop",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.kitchen", "object.packing_table"]
+    },
+    {
+      "id": "dog.action.locomotion.turn",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.kitchen", "object.packing_table"]
+    },
+    {
+      "id": "dog.action.interaction.approach_target",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.kitchen", "object.packing_table"]
+    },
+    {
+      "id": "dog.action.interaction.contact_align",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.kitchen", "object.packing_table"]
+    },
+    {
+      "id": "dog.action.station.work_loop",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.kitchen", "object.packing_table"]
+    },
+    {
+      "id": "dog.activity.delivery.help_kitchen",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.kitchen"]
+    },
+    {
+      "id": "dog.activity.delivery.pack_food_bag",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.packing_table"]
+    },
+    {
+      "id": "dog.activity.delivery.pack_carefully_labrador",
+      "authority_refs": [
+        "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"
+      ],
+      "role_refs": ["role.calm_helper"],
+      "object_refs": ["object.packing_table"]
+    }
+  ]
+}

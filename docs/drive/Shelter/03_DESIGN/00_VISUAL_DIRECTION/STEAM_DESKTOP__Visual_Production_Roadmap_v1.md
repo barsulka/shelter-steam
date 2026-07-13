@@ -142,6 +142,32 @@ An exhaustive vocabulary is a **coverage map**, not an asset-count commitment.
 
 ## 4. Recommended first proof
 
+### R48-05A-S — authorized source-only game-first wave
+
+После cross-role owner preflight и Producer/PM convergence разрешена отдельная source-only wave:
+
+```text
+bounded authored world source set
++ layered dog.labrador_intro master
++ Packing Table / Kitchen station-anchor records
+→ source-level Art review
+→ SOURCE-READY only
+```
+
+Canonical package record:
+
+```text
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/README.md
+```
+
+Граница:
+
+- no Godot/runtime/code mutation;
+- no object transfer/socket/attach/detach;
+- Sheet A/B and preview Labrador remain reference-only;
+- source Art PASS/WARN does not activate Codex or prove runtime Art PASS;
+- final palette/style/prompt remains Art-owned and is not selected by this roadmap update.
+
 ### Proof A — Exterior Ground + Fence + Bicycle-Yard Kit
 
 This is the first recommended art/world proof because it has the highest immediate player-visible value:
@@ -478,6 +504,11 @@ No Current Memory update is made in this task because the user constrained write
 ---
 
 ## 15. Changelog
+
+### 2026-07-12 — R48-05A-S source-only wave authorized
+
+- Added the bounded world + layered Labrador + station-anchor source package before runtime integration.
+- Preserved preview/source/runtime maturity separation and Art ownership.
 
 ### 2026-07-11 — proposed v1 created
 

@@ -1,0 +1,449 @@
+{
+  "actor_envelope": "dog.labrador_intro current source envelope only",
+  "schema_version": "shelter-station-anchor-source/v1",
+  "stations": {
+    "object.kitchen": {
+      "allowed_facing": {
+        "cross_station_flip": "forbidden",
+        "from_left": "right",
+        "from_right": "left",
+        "physical_turn": "must happen before approach when requested facing changes"
+      },
+      "anchor_plane_source_status": "AUTHORED_TECHNICAL_ART_SOURCE__ANCHOR_AND_CLEARANCE_ONLY__NOT_STATION_REPLACEMENT_ART",
+      "approach_anchors": {
+        "left": [
+          78,
+          300
+        ],
+        "right": [
+          946,
+          300
+        ]
+      },
+      "authority": "object.kitchen / CookTask",
+      "canvas": {
+        "baseline_y": 300,
+        "height": 360,
+        "width": 1024
+      },
+      "category": "Building",
+      "clearance_envelope": {
+        "actor": "dog.labrador_intro",
+        "from_left_facing_right_bounds": [
+          6,
+          79,
+          467,
+          304
+        ],
+        "from_right_facing_left_bounds": [
+          557,
+          79,
+          1018,
+          304
+        ],
+        "identity_height_px": 225,
+        "identity_width_px": 461,
+        "local_shadow_bottom_offset_px": 15,
+        "root_to_muzzle_alpha_reach_px": 217,
+        "root_to_muzzle_contact_pivot_reach_px": 207,
+        "root_to_tail_alpha_reach_px": 244,
+        "validation": "both directional identity alpha envelopes are included in source overlay; local shadow remains separately owned"
+      },
+      "contact_align_body_root_anchors": {
+        "left": [
+          250,
+          300
+        ],
+        "right": [
+          774,
+          300
+        ]
+      },
+      "contact_planes": {
+        "ground_plane_y": 300,
+        "head_paw_work_plane": [
+          400,
+          188,
+          660,
+          255
+        ]
+      },
+      "evidence_overlay": "evidence/stations/kitchen_anchor_clearance_overlay.png",
+      "exit_anchors": {
+        "left": [
+          78,
+          300
+        ],
+        "right": [
+          946,
+          300
+        ]
+      },
+      "layers": {
+        "station.anchor.approach": {
+          "bounds": [
+            67,
+            289,
+            957,
+            311
+          ],
+          "default_visible": true,
+          "export": "exports/stations/kitchen/layers/03__station.anchor.approach.png",
+          "source": "source/stations/kitchen/layers/03__station.anchor.approach.svg",
+          "z": 3
+        },
+        "station.anchor.contact_align": {
+          "bounds": [
+            239,
+            289,
+            785,
+            311
+          ],
+          "default_visible": true,
+          "export": "exports/stations/kitchen/layers/04__station.anchor.contact_align.png",
+          "source": "source/stations/kitchen/layers/04__station.anchor.contact_align.svg",
+          "z": 4
+        },
+        "station.anchor.exit": {
+          "bounds": [
+            67,
+            289,
+            957,
+            311
+          ],
+          "default_visible": true,
+          "export": "exports/stations/kitchen/layers/06__station.anchor.exit.png",
+          "source": "source/stations/kitchen/layers/06__station.anchor.exit.svg",
+          "z": 6
+        },
+        "station.anchor.work": {
+          "bounds": [
+            275,
+            289,
+            749,
+            311
+          ],
+          "default_visible": true,
+          "export": "exports/stations/kitchen/layers/05__station.anchor.work.png",
+          "source": "source/stations/kitchen/layers/05__station.anchor.work.svg",
+          "z": 5
+        },
+        "station.guide.bounds": {
+          "bounds": [
+            407,
+            89,
+            653,
+            304
+          ],
+          "default_visible": true,
+          "export": "exports/stations/kitchen/layers/00__station.guide.bounds.png",
+          "source": "source/stations/kitchen/layers/00__station.guide.bounds.svg",
+          "z": 0
+        },
+        "station.guide.clearance": {
+          "bounds": [
+            3,
+            76,
+            1021,
+            307
+          ],
+          "default_visible": true,
+          "export": "exports/stations/kitchen/layers/02__station.guide.clearance.png",
+          "source": "source/stations/kitchen/layers/02__station.guide.clearance.svg",
+          "z": 2
+        },
+        "station.guide.contact_plane": {
+          "bounds": [
+            397,
+            185,
+            663,
+            258
+          ],
+          "default_visible": true,
+          "export": "exports/stations/kitchen/layers/01__station.guide.contact_plane.png",
+          "source": "source/stations/kitchen/layers/01__station.guide.contact_plane.svg",
+          "z": 1
+        },
+        "station.occlusion.front_owner": {
+          "bounds": [
+            407,
+            271,
+            653,
+            303
+          ],
+          "default_visible": true,
+          "export": "exports/stations/kitchen/layers/08__station.occlusion.front_owner.png",
+          "source": "source/stations/kitchen/layers/08__station.occlusion.front_owner.svg",
+          "z": 8
+        },
+        "station.shadow.local": {
+          "bounds": [
+            388,
+            282,
+            673,
+            321
+          ],
+          "default_visible": true,
+          "export": "exports/stations/kitchen/layers/07__station.shadow.local.png",
+          "source": "source/stations/kitchen/layers/07__station.shadow.local.svg",
+          "z": 7
+        }
+      },
+      "master": "source/stations/kitchen/kitchen_anchor_plane.svg",
+      "phase_rules": {
+        "cancel": "before contact lock, back out to approach; during work, wait for safe loop boundary; no task/resource mutation from Art source",
+        "entry": "approach anchor -> authored start/walk/stop -> contact-align; station state remains runtime-owned",
+        "exit": "work loop exit -> contact release -> exit anchor",
+        "work": "lock only after contact-align; work head/paw pose stays inside declared plane"
+      },
+      "source_reference": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Semantic_Asset_Pack_v1/approved/buildings/kitchen.png",
+      "source_reference_status": "APPROVED_FOR_CODEX__TEMPORARY_SEMANTIC_PLACEHOLDER__REFERENCE_ONLY_FOR_ANCHOR_PLANE",
+      "station_bounds": [
+        410,
+        92,
+        650,
+        300
+      ],
+      "station_id": "object.kitchen",
+      "work_body_root_anchors": {
+        "left": [
+          286,
+          300
+        ],
+        "right": [
+          738,
+          300
+        ]
+      },
+      "z_order_and_occlusion": {
+        "dog_identity": "never flattened into station source",
+        "dog_shadow_owner": "dog.shadow.local",
+        "foreground_contact_lip": "station.occlusion.front_owner may occlude only contacting forepaws/lower limb tips",
+        "station_base": "behind dog",
+        "station_shadow_owner": "station.shadow.local"
+      }
+    },
+    "object.packing_table": {
+      "allowed_facing": {
+        "cross_station_flip": "forbidden",
+        "from_left": "right",
+        "from_right": "left",
+        "physical_turn": "must happen before approach when requested facing changes"
+      },
+      "anchor_plane_source_status": "AUTHORED_TECHNICAL_ART_SOURCE__ANCHOR_AND_CLEARANCE_ONLY__NOT_STATION_REPLACEMENT_ART",
+      "approach_anchors": {
+        "left": [
+          78,
+          300
+        ],
+        "right": [
+          946,
+          300
+        ]
+      },
+      "authority": "object.packing_table / PackTask",
+      "canvas": {
+        "baseline_y": 300,
+        "height": 360,
+        "width": 1024
+      },
+      "category": "Utility Prop",
+      "clearance_envelope": {
+        "actor": "dog.labrador_intro",
+        "from_left_facing_right_bounds": [
+          18,
+          79,
+          479,
+          304
+        ],
+        "from_right_facing_left_bounds": [
+          545,
+          79,
+          1006,
+          304
+        ],
+        "identity_height_px": 225,
+        "identity_width_px": 461,
+        "local_shadow_bottom_offset_px": 15,
+        "root_to_muzzle_alpha_reach_px": 217,
+        "root_to_muzzle_contact_pivot_reach_px": 207,
+        "root_to_tail_alpha_reach_px": 244,
+        "validation": "both directional identity alpha envelopes are included in source overlay; local shadow remains separately owned"
+      },
+      "contact_align_body_root_anchors": {
+        "left": [
+          262,
+          300
+        ],
+        "right": [
+          762,
+          300
+        ]
+      },
+      "contact_planes": {
+        "ground_plane_y": 300,
+        "head_paw_work_plane": [
+          405,
+          176,
+          636,
+          252
+        ]
+      },
+      "evidence_overlay": "evidence/stations/packing_table_anchor_clearance_overlay.png",
+      "exit_anchors": {
+        "left": [
+          78,
+          300
+        ],
+        "right": [
+          946,
+          300
+        ]
+      },
+      "layers": {
+        "station.anchor.approach": {
+          "bounds": [
+            67,
+            289,
+            957,
+            311
+          ],
+          "default_visible": true,
+          "export": "exports/stations/packing_table/layers/03__station.anchor.approach.png",
+          "source": "source/stations/packing_table/layers/03__station.anchor.approach.svg",
+          "z": 3
+        },
+        "station.anchor.contact_align": {
+          "bounds": [
+            251,
+            289,
+            773,
+            311
+          ],
+          "default_visible": true,
+          "export": "exports/stations/packing_table/layers/04__station.anchor.contact_align.png",
+          "source": "source/stations/packing_table/layers/04__station.anchor.contact_align.svg",
+          "z": 4
+        },
+        "station.anchor.exit": {
+          "bounds": [
+            67,
+            289,
+            957,
+            311
+          ],
+          "default_visible": true,
+          "export": "exports/stations/packing_table/layers/06__station.anchor.exit.png",
+          "source": "source/stations/packing_table/layers/06__station.anchor.exit.svg",
+          "z": 6
+        },
+        "station.anchor.work": {
+          "bounds": [
+            289,
+            289,
+            735,
+            311
+          ],
+          "default_visible": true,
+          "export": "exports/stations/packing_table/layers/05__station.anchor.work.png",
+          "source": "source/stations/packing_table/layers/05__station.anchor.work.svg",
+          "z": 5
+        },
+        "station.guide.bounds": {
+          "bounds": [
+            417,
+            185,
+            623,
+            304
+          ],
+          "default_visible": true,
+          "export": "exports/stations/packing_table/layers/00__station.guide.bounds.png",
+          "source": "source/stations/packing_table/layers/00__station.guide.bounds.svg",
+          "z": 0
+        },
+        "station.guide.clearance": {
+          "bounds": [
+            15,
+            76,
+            1009,
+            307
+          ],
+          "default_visible": true,
+          "export": "exports/stations/packing_table/layers/02__station.guide.clearance.png",
+          "source": "source/stations/packing_table/layers/02__station.guide.clearance.svg",
+          "z": 2
+        },
+        "station.guide.contact_plane": {
+          "bounds": [
+            402,
+            173,
+            639,
+            255
+          ],
+          "default_visible": true,
+          "export": "exports/stations/packing_table/layers/01__station.guide.contact_plane.png",
+          "source": "source/stations/packing_table/layers/01__station.guide.contact_plane.svg",
+          "z": 1
+        },
+        "station.occlusion.front_owner": {
+          "bounds": [
+            417,
+            271,
+            623,
+            303
+          ],
+          "default_visible": true,
+          "export": "exports/stations/packing_table/layers/08__station.occlusion.front_owner.png",
+          "source": "source/stations/packing_table/layers/08__station.occlusion.front_owner.svg",
+          "z": 8
+        },
+        "station.shadow.local": {
+          "bounds": [
+            398,
+            282,
+            643,
+            321
+          ],
+          "default_visible": true,
+          "export": "exports/stations/packing_table/layers/07__station.shadow.local.png",
+          "source": "source/stations/packing_table/layers/07__station.shadow.local.svg",
+          "z": 7
+        }
+      },
+      "master": "source/stations/packing_table/packing_table_anchor_plane.svg",
+      "phase_rules": {
+        "cancel": "before contact lock, back out to approach; during work, wait for safe loop boundary; no task/resource mutation from Art source",
+        "entry": "approach anchor -> authored start/walk/stop -> contact-align; station state remains runtime-owned",
+        "exit": "work loop exit -> contact release -> exit anchor",
+        "work": "lock only after contact-align; work head/paw pose stays inside declared plane"
+      },
+      "source_reference": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Semantic_Asset_Pack_v1/cards/packing_table.md",
+      "source_reference_status": "NEEDED__NO_APPROVED_VISUAL__ANCHOR_PLANE_IS_NOT_REPLACEMENT_ART",
+      "station_bounds": [
+        420,
+        188,
+        620,
+        300
+      ],
+      "station_id": "object.packing_table",
+      "work_body_root_anchors": {
+        "left": [
+          300,
+          300
+        ],
+        "right": [
+          724,
+          300
+        ]
+      },
+      "z_order_and_occlusion": {
+        "dog_identity": "never flattened into station source",
+        "dog_shadow_owner": "dog.shadow.local",
+        "foreground_contact_lip": "station.occlusion.front_owner may occlude only contacting forepaws/lower limb tips",
+        "station_base": "behind dog",
+        "station_shadow_owner": "station.shadow.local"
+      }
+    }
+  },
+  "status": "SOURCE_READY_ANCHOR_PLANES__NO_RUNTIME_BINDING"
+}

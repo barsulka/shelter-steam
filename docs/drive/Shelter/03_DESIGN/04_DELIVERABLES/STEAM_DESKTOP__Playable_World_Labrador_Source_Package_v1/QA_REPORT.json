@@ -1,0 +1,210 @@
+{
+  "automated_result": "PASS",
+  "checks": [
+    {
+      "detail": "accepted exact action ids=['dog.action.idle.neutral', 'dog.action.interaction.approach_target', 'dog.action.interaction.contact_align', 'dog.action.locomotion.start', 'dog.action.locomotion.stop', 'dog.action.locomotion.turn', 'dog.action.locomotion.walk_empty', 'dog.action.station.work_loop', 'dog.action.wait.calm', 'dog.activity.delivery.help_kitchen', 'dog.activity.delivery.pack_carefully_labrador', 'dog.activity.delivery.pack_food_bag']",
+      "id": "scope.accepted_actions",
+      "result": "PASS"
+    },
+    {
+      "detail": "preflight reproduces exactly the accepted 12-row manifest",
+      "id": "scope.preflight_actions",
+      "result": "PASS"
+    },
+    {
+      "detail": "no pickup/attach/carry/place/detach authority",
+      "id": "scope.no_transfer",
+      "result": "PASS"
+    },
+    {
+      "detail": "no runtime binding/import claim",
+      "id": "scope.source_only",
+      "result": "PASS"
+    },
+    {
+      "detail": "lossless export PNG count=90",
+      "id": "exports.present",
+      "result": "PASS"
+    },
+    {
+      "detail": "all exports are RGBA",
+      "id": "exports.rgba",
+      "result": "PASS"
+    },
+    {
+      "detail": "dog=512x320, world=1536x216, stations=1024x360",
+      "id": "exports.canvas",
+      "result": "PASS"
+    },
+    {
+      "detail": "every semantic export contains non-zero alpha",
+      "id": "exports.nonempty_alpha",
+      "result": "PASS"
+    },
+    {
+      "detail": "actor_id=dog.labrador_intro",
+      "id": "dog.actor_id",
+      "result": "PASS"
+    },
+    {
+      "detail": "source_maturity=SOURCE_READY_ONLY__NO_RUNTIME_ART_PASS",
+      "id": "dog.maturity",
+      "result": "PASS"
+    },
+    {
+      "detail": "with-shadow bounds={'right': (12, 59, 473, 295), 'left': (39, 59, 500, 295), 'turn_mid': (93, 52, 454, 295)}",
+      "id": "dog.composite_alpha_bounds",
+      "result": "PASS"
+    },
+    {
+      "detail": "no-shadow bounds={'left': (39, 59, 500, 284), 'right': (12, 59, 473, 284), 'turn_mid': (131, 52, 454, 284)}",
+      "id": "dog.identity_alpha_bounds",
+      "result": "PASS"
+    },
+    {
+      "detail": "all actor roots=[256,280]",
+      "id": "dog.root_baseline",
+      "result": "PASS"
+    },
+    {
+      "detail": "all paw pivots are within 3 px of ground baseline",
+      "id": "dog.paw_baseline",
+      "result": "PASS"
+    },
+    {
+      "detail": "left/right pivots are positive-space counterparts; near/far anatomy swaps explicitly across facing",
+      "id": "dog.authored_facing_geometry",
+      "result": "PASS"
+    },
+    {
+      "detail": "right, left and physical-turn midpoint SVG hashes are distinct",
+      "id": "dog.distinct_masters",
+      "result": "PASS"
+    },
+    {
+      "detail": "no negative scale/matrix exists in dog masters",
+      "id": "dog.no_negative_scale",
+      "result": "PASS"
+    },
+    {
+      "detail": "every declared semantic layer exists as a named SVG group",
+      "id": "dog.named_editable_layers",
+      "result": "PASS"
+    },
+    {
+      "detail": "far ears/limbs are behind their near counterparts",
+      "id": "dog.near_far_z_order",
+      "result": "PASS"
+    },
+    {
+      "detail": "identity and silhouette alpha heights are exactly 216/144/96 px",
+      "id": "dog.native_size_evidence",
+      "result": "PASS"
+    },
+    {
+      "detail": "every layer source/export path resolves",
+      "id": "layers.source_export_paths",
+      "result": "PASS"
+    },
+    {
+      "detail": "recorded layer bounds equal RGBA alpha getbbox",
+      "id": "layers.alpha_bounds",
+      "result": "PASS"
+    },
+    {
+      "detail": "exact semantic layer set count=15",
+      "id": "world.exact_layer_scope",
+      "result": "PASS"
+    },
+    {
+      "detail": "fence corner is omitted as not used",
+      "id": "world.no_corner",
+      "result": "PASS"
+    },
+    {
+      "detail": "broad decor atlas not created",
+      "id": "world.no_decor_atlas",
+      "result": "PASS"
+    },
+    {
+      "detail": "every world layer exists as a named SVG group",
+      "id": "world.named_editable_layers",
+      "result": "PASS"
+    },
+    {
+      "detail": "bicycle anchor is staging-only and noninteractive",
+      "id": "world.bicycle_noninteractive",
+      "result": "PASS"
+    },
+    {
+      "detail": "every layer source/export path resolves",
+      "id": "layers.source_export_paths",
+      "result": "PASS"
+    },
+    {
+      "detail": "recorded layer bounds equal RGBA alpha getbbox",
+      "id": "layers.alpha_bounds",
+      "result": "PASS"
+    },
+    {
+      "detail": "station ids=['object.kitchen', 'object.packing_table']",
+      "id": "stations.exact_ids",
+      "result": "PASS"
+    },
+    {
+      "detail": "anchor planes declare facing, physical-turn, contact and no-flip policy",
+      "id": "stations.contact_policy",
+      "result": "PASS"
+    },
+    {
+      "detail": "directional 461x225 identity envelopes and all root anchors are canvas-valid",
+      "id": "stations.current_labrador_clearance",
+      "result": "PASS"
+    },
+    {
+      "detail": "every layer source/export path resolves",
+      "id": "layers.source_export_paths",
+      "result": "PASS"
+    },
+    {
+      "detail": "recorded layer bounds equal RGBA alpha getbbox",
+      "id": "layers.alpha_bounds",
+      "result": "PASS"
+    },
+    {
+      "detail": "AI reference declared; no AI pixels embedded in master/export",
+      "id": "provenance.ai_declared",
+      "result": "PASS"
+    },
+    {
+      "detail": "date=2026-07-13, Pillow=12.2.0",
+      "id": "provenance.toolchain",
+      "result": "PASS"
+    },
+    {
+      "detail": "five local input references have SHA-256 provenance",
+      "id": "provenance.input_hashes",
+      "result": "PASS"
+    },
+    {
+      "detail": "verified artifact SHA-256 count=211",
+      "id": "provenance.artifact_hashes",
+      "result": "PASS"
+    },
+    {
+      "detail": "no __pycache__/.pyc files",
+      "id": "package.no_build_cache",
+      "result": "PASS"
+    }
+  ],
+  "date": "2026-07-13",
+  "errors": [],
+  "package": "STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1",
+  "runtime_validation": "NOT_RUN_OUT_OF_SCOPE",
+  "schema_version": "shelter-source-package-qa/v1",
+  "scope": "SOURCE_LEVEL_ONLY",
+  "visual_review": "see ART_QA.md; automated script does not self-certify Art judgement",
+  "warnings": [
+    "stations.packing_table_visual: no approved Packing Table visual source exists; authored technical anchor plane is intentionally not replacement art"
+  ]
+}

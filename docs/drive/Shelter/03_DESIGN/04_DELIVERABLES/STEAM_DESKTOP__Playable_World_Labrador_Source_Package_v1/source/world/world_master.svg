@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="1536" height="216" viewBox="0 0 1536 216">
+<metadata>
+{"creator": "OpenAI Codex — delegated Art Director + Visual Production owner", "date": "2026-07-13", "master": "world_master", "status": "AUTHORED_EDITABLE_SOURCE"}
+</metadata>
+<g id="world.ground.base" inkscape:groupmode="layer" inkscape:label="world.ground.base" data-default-visible="true">
+<polygon points="18,164 55,151 1480,151 1518,165 1530,189 1504,211 42,211 6,190" fill="#604b32" fill-opacity="1.000000" stroke="#3b3126" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+</g>
+<g id="world.ground.grass_mass" inkscape:groupmode="layer" inkscape:label="world.ground.grass_mass" data-default-visible="true">
+<polygon points="30,159 86,145 180,151 278,142 384,151 506,143 636,151 756,144 884,150 1010,142 1144,151 1260,144 1386,151 1504,148 1516,173 22,173" fill="#667548" fill-opacity="1.000000" stroke="#435335" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="70,151 78,137 84,151 93,132 101,151" fill="#000000" fill-opacity="0.000000" stroke="#86945d" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round" fill="none"/>
+<polyline points="1180,151 1188,135 1195,151 1204,138 1212,151" fill="#000000" fill-opacity="0.000000" stroke="#86945d" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round" fill="none"/>
+</g>
+<g id="world.ground.dirt_worn" inkscape:groupmode="layer" inkscape:label="world.ground.dirt_worn" data-default-visible="true">
+<ellipse cx="740.0" cy="179.5" rx="270.0" ry="25.5" fill="#8a6946" fill-opacity="0.721569" stroke="#000000" stroke-opacity="0.000000" stroke-width="1" stroke-linejoin="round"/>
+<ellipse cx="1090.0" cy="184.0" rx="190.0" ry="21.0" fill="#7b5b3d" fill-opacity="0.658824" stroke="#000000" stroke-opacity="0.000000" stroke-width="1" stroke-linejoin="round"/>
+</g>
+<g id="world.ground.sand_soft" inkscape:groupmode="layer" inkscape:label="world.ground.sand_soft" data-default-visible="true">
+<ellipse cx="300.0" cy="179.0" rx="150.0" ry="28.0" fill="#b99a65" fill-opacity="0.850980" stroke="#8f754e" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+</g>
+<g id="world.path.main" inkscape:groupmode="layer" inkscape:label="world.path.main" data-default-visible="true">
+<polygon points="472,158 1320,158 1388,173 1324,197 472,197 420,177" fill="#a98559" fill-opacity="0.850980" stroke="#765c3d" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+</g>
+<g id="world.path.used_taper_end" inkscape:groupmode="layer" inkscape:label="world.path.used_taper_end" data-default-visible="true">
+<polygon points="420,177 472,158 472,197" fill="#a98559" fill-opacity="0.850980" stroke="#765c3d" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="1320,158 1388,173 1324,197" fill="#a98559" fill-opacity="0.850980" stroke="#765c3d" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+</g>
+<g id="world.transition.grass_dirt" inkscape:groupmode="layer" inkscape:label="world.transition.grass_dirt" data-default-visible="true">
+<ellipse cx="742.5" cy="161.5" rx="292.5" ry="15.5" fill="#778058" fill-opacity="0.447059" stroke="#000000" stroke-opacity="0.000000" stroke-width="1" stroke-linejoin="round"/>
+</g>
+<g id="world.transition.grass_sand" inkscape:groupmode="layer" inkscape:label="world.transition.grass_sand" data-default-visible="true">
+<ellipse cx="300.0" cy="160.5" rx="165.0" ry="16.5" fill="#8d8a5f" fill-opacity="0.447059" stroke="#000000" stroke-opacity="0.000000" stroke-width="1" stroke-linejoin="round"/>
+</g>
+<g id="world.transition.ground_path" inkscape:groupmode="layer" inkscape:label="world.transition.ground_path" data-default-visible="true">
+<polyline points="475,160 700,164 950,161 1180,165 1325,161" fill="#000000" fill-opacity="0.000000" stroke="#c3a477" stroke-opacity="0.533333" stroke-width="6" stroke-linejoin="round" fill="none"/>
+</g>
+<g id="world.fence.back_span" inkscape:groupmode="layer" inkscape:label="world.fence.back_span" data-default-visible="true">
+<polyline points="112,115 410,115" fill="#000000" fill-opacity="0.000000" stroke="#725334" stroke-opacity="1.000000" stroke-width="7" stroke-linejoin="round" fill="none"/>
+<polyline points="1070,116 1390,116" fill="#000000" fill-opacity="0.000000" stroke="#725334" stroke-opacity="1.000000" stroke-width="7" stroke-linejoin="round" fill="none"/>
+<polyline points="112,139 410,139" fill="#000000" fill-opacity="0.000000" stroke="#7d5b39" stroke-opacity="1.000000" stroke-width="6" stroke-linejoin="round" fill="none"/>
+<polyline points="1070,140 1390,140" fill="#000000" fill-opacity="0.000000" stroke="#7d5b39" stroke-opacity="1.000000" stroke-width="6" stroke-linejoin="round" fill="none"/>
+</g>
+<g id="world.fence.post_end_open_gap" inkscape:groupmode="layer" inkscape:label="world.fence.post_end_open_gap" data-default-visible="true">
+<rect x="102" y="91" width="18" height="86" rx="3" ry="3" fill="#755537" fill-opacity="1.000000" stroke="#4e3927" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+<rect x="402" y="91" width="18" height="86" rx="3" ry="3" fill="#755537" fill-opacity="1.000000" stroke="#4e3927" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+<rect x="1060" y="92" width="18" height="86" rx="3" ry="3" fill="#755537" fill-opacity="1.000000" stroke="#4e3927" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+<rect x="1382" y="92" width="18" height="86" rx="3" ry="3" fill="#755537" fill-opacity="1.000000" stroke="#4e3927" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+</g>
+<g id="world.yard.bicycle_pad" inkscape:groupmode="layer" inkscape:label="world.yard.bicycle_pad" data-default-visible="true">
+<rect x="205" y="153" width="197" height="49" rx="12" ry="12" fill="#9a8057" fill-opacity="0.666667" stroke="#6d583c" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+</g>
+<g id="world.shadow.local_prop" inkscape:groupmode="layer" inkscape:label="world.shadow.local_prop" data-default-visible="true">
+<ellipse cx="752.5" cy="192.5" rx="102.5" ry="14.5" fill="#241c15" fill-opacity="0.168627" stroke="#000000" stroke-opacity="0.000000" stroke-width="1" stroke-linejoin="round"/>
+<ellipse cx="1125.0" cy="194.0" rx="95.0" ry="13.0" fill="#241c15" fill-opacity="0.168627" stroke="#000000" stroke-opacity="0.000000" stroke-width="1" stroke-linejoin="round"/>
+</g>
+<g id="world.fence.front_span" inkscape:groupmode="layer" inkscape:label="world.fence.front_span" data-default-visible="true">
+<polyline points="170,174 370,174" fill="#000000" fill-opacity="0.000000" stroke="#5e432d" stroke-opacity="1.000000" stroke-width="8" stroke-linejoin="round" fill="none"/>
+<polyline points="1160,174 1344,174" fill="#000000" fill-opacity="0.000000" stroke="#5e432d" stroke-opacity="1.000000" stroke-width="8" stroke-linejoin="round" fill="none"/>
+</g>
+<g id="world.anchor.bicycle_parking" inkscape:groupmode="layer" inkscape:label="world.anchor.bicycle_parking" data-default-visible="false" style="display:none">
+<ellipse cx="307.0" cy="174.0" rx="29.0" ry="16.0" fill="#00b5d2" fill-opacity="0.000000" stroke="#00b5d2" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="307,151 307,198" fill="#000000" fill-opacity="0.000000" stroke="#00b5d2" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round" fill="none"/>
+<polyline points="270,174 344,174" fill="#000000" fill-opacity="0.000000" stroke="#00b5d2" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round" fill="none"/>
+</g>
+</svg>

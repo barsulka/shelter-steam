@@ -82,6 +82,69 @@ not the ordinary player entry:
 Arguments passed to `dev.sh` are developer-only and never alter the F5/`play.sh`
 player route.
 
+## R48-05A authored world and living Labrador
+
+The ordinary `PlayerBoot` First Day and Day 2 runtime now draws the bounded
+authored world foundation and one living `dog.labrador_intro` presentation for
+the exact accepted A–G selector set. The adapter observes current Godot runtime
+state, owns only derived/non-persisted presentation properties, emits trace-only
+markers, and never advances gameplay or persistence.
+
+Existing Labrador `UnloadTask`, `CarryTask`, and `LoadVanTask` states remain one
+explicit `legacy_unbound` primitive lane. R48-05A contains no
+pickup/attach/carry/place/detach asset or object-transfer acceptance claim.
+
+Run the bounded visual tests and validators with:
+
+```sh
+tools/capture-labrador-r48-05a.sh validate
+```
+
+Create the persistent native First Day/Day 2 evidence pack with:
+
+```sh
+tools/capture-labrador-r48-05a.sh capture
+```
+
+The pack is written to
+`../docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5/`.
+It includes full-corridor framing, selector snapshots, trace excerpts,
+clean/silhouette stills, four evenly sampled 1x motion strips, both physical
+turn directions, both station sides, cancellation/recovery, desktop-composited
+transparency, and declared full-player-layout 216/144/96 resamples with exact
+subject-height/contact/foreground/mask readback. The Labrador uses the Art-owner
+accepted uniform positive scale `0.24`; the
+authored world remains 1:1 through x=1536 and an explicitly non-authored,
+unstretched tail completes the accepted x=0..1740 corridor.
+
+The actual current PlayerBoot window readback is `2992x224`, full usable display
+width and bottom-hugging with a zero-pixel bottom delta; no PlayerBoot/window
+contract was changed. Exact state-family minimum complete bboxes at declared
+`216/144/96` are general `80/54/36 px`, Kitchen E `74/49/33 px`, Packing F
+`79/53/35 px`, and focus G `73/49/32 px`. All meet the Art-owner state-specific
+floors with complete bboxes and clear top/bottom margins.
+
+Both-side contact passes: Kitchen muzzle gap is `3.714207 px`, Packing is
+`2.063448 px`, and the working paw remains in the accepted plane. v5 derives a
+fail-closed, presentation-only local segmentation of the existing
+`world.fence.front_span` for exact Packing D/F/G/contact-held EXIT selectors.
+Eight positive and six negative audit cells pass with `0` forbidden screen
+pixels and `0` forbidden source-alpha samples; ordinary authored foreground
+ownership is restored outside the exact context. Source art, global z, station
+anchors, gameplay state and persistence remain unchanged.
+
+The v1/v2/v3/v4 packs are immutable historical evidence. v5 is a local
+Technical PASS for the exact bounded Packing occlusion correction, but
+mechanical validation does not grant runtime Art PASS. The direct user/owner
+verdict marks overall player-facing visual coherence as
+`CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK` because the current dogs,
+building composition and clearing do not match the expected locked art.
+Therefore R48-05A has no overall visual acceptance. The exact local mask remains
+`PENDING_OWNER_REVIEW`; source/composition reconciliation requires a separate
+Art-owned brief after a read-only comparison with earlier accepted
+dog/building/meadow references, and v5 does not authorize a v6 or source
+mutation.
+
 ## Player profile and First Day Continue
 
 R48-02A provides the isolated profile store under `user://player/default/`.

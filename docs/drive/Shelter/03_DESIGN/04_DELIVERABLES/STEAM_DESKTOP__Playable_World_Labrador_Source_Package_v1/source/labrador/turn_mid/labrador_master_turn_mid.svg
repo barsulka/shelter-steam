@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="512" height="320" viewBox="0 0 512 320">
+<metadata>
+{"creator": "OpenAI Codex — delegated Art Director + Visual Production owner", "date": "2026-07-13", "master": "labrador_master_turn_mid", "status": "AUTHORED_EDITABLE_SOURCE"}
+</metadata>
+<g id="dog.shadow.local" inkscape:groupmode="layer" inkscape:label="dog.shadow.local" data-default-visible="true">
+<ellipse cx="257.5" cy="275.0" rx="162.5" ry="17.0" fill="#2b2118" fill-opacity="0.184314" stroke="#000000" stroke-opacity="0.000000" stroke-width="1" stroke-linejoin="round"/>
+</g>
+<g id="dog.leg.hind.far" inkscape:groupmode="layer" inkscape:label="dog.leg.hind.far" data-default-visible="true">
+<polygon points="176,186 211,184 214,268 231,272 229,280 195,280 190,231" fill="#b97c3c" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+</g>
+<g id="dog.leg.fore.far" inkscape:groupmode="layer" inkscape:label="dog.leg.fore.far" data-default-visible="true">
+<polygon points="283,184 319,186 315,270 333,273 330,280 296,280 294,231" fill="#b97c3c" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+</g>
+<g id="dog.tail" inkscape:groupmode="layer" inkscape:label="dog.tail" data-default-visible="true">
+<polygon points="359,157 393,151 433,134 450,145 421,176 383,188 352,184" fill="#bd8440" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+</g>
+<g id="dog.torso" inkscape:groupmode="layer" inkscape:label="dog.torso" data-default-visible="true">
+<ellipse cx="258.0" cy="169.5" rx="124.0" ry="68.5" fill="#d9a65a" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="4" stroke-linejoin="round"/>
+</g>
+<g id="dog.marking.chest" inkscape:groupmode="layer" inkscape:label="dog.marking.chest" data-default-visible="true">
+<polygon points="224,131 288,131 304,200 276,226 236,224 207,194" fill="#f0d39b" fill-opacity="1.000000" stroke="#c9954d" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+</g>
+<g id="dog.detail.chest_fur" inkscape:groupmode="layer" inkscape:label="dog.detail.chest_fur" data-default-visible="true">
+<polygon points="236,151 258,167 279,151 286,183 270,207 246,206 224,182" fill="#f4dbad" fill-opacity="0.800000" stroke="#000000" stroke-opacity="0.000000" stroke-width="1" stroke-linejoin="round"/>
+</g>
+<g id="dog.leg.hind.near" inkscape:groupmode="layer" inkscape:label="dog.leg.hind.near" data-default-visible="true">
+<polygon points="139,181 178,184 167,268 184,273 181,280 148,280 146,233" fill="#d9a65a" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+</g>
+<g id="dog.leg.fore.near" inkscape:groupmode="layer" inkscape:label="dog.leg.fore.near" data-default-visible="true">
+<polygon points="326,181 362,185 363,270 381,273 379,280 345,280 343,232" fill="#d9a65a" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+</g>
+<g id="dog.head" inkscape:groupmode="layer" inkscape:label="dog.head" data-default-visible="true">
+<ellipse cx="257.0" cy="113.0" rx="66.0" ry="58.0" fill="#d9a65a" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="4" stroke-linejoin="round"/>
+</g>
+<g id="dog.ear.far" inkscape:groupmode="layer" inkscape:label="dog.ear.far" data-default-visible="true">
+<ellipse cx="304.0" cy="105.5" rx="22.0" ry="37.5" fill="#b97c3c" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+</g>
+<g id="dog.ear.near" inkscape:groupmode="layer" inkscape:label="dog.ear.near" data-default-visible="true">
+<ellipse cx="210.0" cy="105.5" rx="22.0" ry="37.5" fill="#bd8440" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+</g>
+<g id="dog.muzzle" inkscape:groupmode="layer" inkscape:label="dog.muzzle" data-default-visible="true">
+<ellipse cx="258.0" cy="145.0" rx="40.0" ry="32.0" fill="#f0d39b" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round"/>
+<ellipse cx="258.5" cy="139.0" rx="10.5" ry="10.0" fill="#2a211a" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+<polyline points="231,161 257,168 284,161" fill="#000000" fill-opacity="0.000000" stroke="#7b4e2c" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round" fill="none"/>
+</g>
+<g id="dog.eye.open" inkscape:groupmode="layer" inkscape:label="dog.eye.open" data-default-visible="true">
+<ellipse cx="230.5" cy="104.0" rx="8.5" ry="9.0" fill="#fff8ea" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+<ellipse cx="232.5" cy="105.0" rx="4.5" ry="6.0" fill="#2a211a" fill-opacity="1.000000" stroke="#000000" stroke-opacity="0.000000" stroke-width="1" stroke-linejoin="round"/>
+<ellipse cx="282.5" cy="104.0" rx="8.5" ry="9.0" fill="#fff8ea" fill-opacity="1.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+<ellipse cx="280.5" cy="105.0" rx="4.5" ry="6.0" fill="#2a211a" fill-opacity="1.000000" stroke="#000000" stroke-opacity="0.000000" stroke-width="1" stroke-linejoin="round"/>
+</g>
+<g id="dog.eye.blink" inkscape:groupmode="layer" inkscape:label="dog.eye.blink" data-default-visible="false" style="display:none">
+<polyline points="222,105 238,106" fill="#000000" fill-opacity="0.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round" fill="none"/>
+<polyline points="274,106 290,105" fill="#000000" fill-opacity="0.000000" stroke="#5b3c23" stroke-opacity="1.000000" stroke-width="3" stroke-linejoin="round" fill="none"/>
+</g>
+<g id="dog.equipment.collar" inkscape:groupmode="layer" inkscape:label="dog.equipment.collar" data-default-visible="false" style="display:none">
+<polygon points="208,135 256,146 304,135 300,153 256,162 212,153" fill="#426943" fill-opacity="1.000000" stroke="#29432b" stroke-opacity="1.000000" stroke-width="2" stroke-linejoin="round"/>
+</g>
+</svg>

@@ -1,0 +1,1024 @@
+{
+  "actor_id": "dog.labrador_intro",
+  "canvas": {
+    "alpha_bounds_identity_without_shadow": {
+      "left": [
+        39,
+        59,
+        500,
+        284
+      ],
+      "right": [
+        12,
+        59,
+        473,
+        284
+      ],
+      "turn_mid": [
+        131,
+        52,
+        454,
+        284
+      ]
+    },
+    "alpha_bounds_note": "Pillow getbbox convention: [left, top, right-exclusive, bottom-exclusive]. Paw strokes may extend 4 px below the authored root baseline; local shadow extends 15 px below it.",
+    "alpha_bounds_rgba": {
+      "left_identity_with_shadow": [
+        39,
+        59,
+        500,
+        295
+      ],
+      "right_identity_with_shadow": [
+        12,
+        59,
+        473,
+        295
+      ],
+      "turn_mid_identity_with_shadow": [
+        93,
+        52,
+        454,
+        295
+      ]
+    },
+    "ground_baseline_y": 280,
+    "height": 320,
+    "width": 512
+  },
+  "composites": {
+    "left_equipped": "exports/labrador/left/composite_equipped_collar.png",
+    "left_identity": "exports/labrador/left/composite_identity.png",
+    "right_equipped": "exports/labrador/right/composite_equipped_collar.png",
+    "right_identity": "exports/labrador/right/composite_identity.png",
+    "turn_mid_identity": "exports/labrador/turn_mid/composite_identity.png"
+  },
+  "dog_dna_status": "WORKING_DRAFT_TECHNICAL_PROOF",
+  "evidence": {
+    "pivot_overlay": "evidence/labrador/labrador_alpha_bounds_pivots_right.png",
+    "sizes": {
+      "144": {
+        "left": "evidence/labrador/144/left.png",
+        "right": "evidence/labrador/144/right.png",
+        "sheet": "evidence/labrador/labrador_facing_turn_readability_144.png",
+        "silhouette_sheet": "evidence/labrador/labrador_silhouette_readability_144.png",
+        "subject_height_px": 144,
+        "turn_mid": "evidence/labrador/144/turn_mid.png"
+      },
+      "216": {
+        "left": "evidence/labrador/216/left.png",
+        "right": "evidence/labrador/216/right.png",
+        "sheet": "evidence/labrador/labrador_facing_turn_readability_216.png",
+        "silhouette_sheet": "evidence/labrador/labrador_silhouette_readability_216.png",
+        "subject_height_px": 216,
+        "turn_mid": "evidence/labrador/216/turn_mid.png"
+      },
+      "96": {
+        "left": "evidence/labrador/96/left.png",
+        "right": "evidence/labrador/96/right.png",
+        "sheet": "evidence/labrador/labrador_facing_turn_readability_96.png",
+        "silhouette_sheet": "evidence/labrador/labrador_silhouette_readability_96.png",
+        "subject_height_px": 96,
+        "turn_mid": "evidence/labrador/96/turn_mid.png"
+      }
+    }
+  },
+  "excluded_claims": [
+    "production rig selection",
+    "runtime binding",
+    "final animation",
+    "object transfer",
+    "global style lock",
+    "real-dog likeness"
+  ],
+  "facing_policy": {
+    "asymmetry": "Near/far legs and ears, collar transform and layer order are facing-specific. Coat chest mark is anatomical center and retained.",
+    "canonical_facing": "right",
+    "implementation": "Both masters contain positive coordinates and independent near/far z-order. No runtime negative scale is authorized.",
+    "opposite_facing": "left",
+    "physical_turn": "Separate authored front/three-quarter midpoint source; physical turn is right -> turn_mid -> left or reverse, never a flip-only event.",
+    "value": "authored_both"
+  },
+  "identity_envelope": {
+    "body_type": "current_labrador_large_sturdy_visual_envelope_only",
+    "correction_limits": {
+      "actor_uniform_scale": [
+        0.94,
+        1.06
+      ],
+      "head_neck_translation_px": 6,
+      "limb_pivot_translation_px": 8,
+      "muzzle_contact_translation_px": 5,
+      "rule": "Limits are source-repair envelope only; exceeding them requires Art/Technical review, never silent non-uniform scaling.",
+      "station_contact_root_translation_px": 12
+    },
+    "identity_alpha_offsets_from_root": {
+      "left": [
+        -217,
+        -221,
+        244,
+        4
+      ],
+      "right": [
+        -244,
+        -221,
+        217,
+        4
+      ]
+    },
+    "local_shadow_bottom_offset_from_root_px": 15,
+    "muzzle_alpha_reach_from_actor_root_px": 217,
+    "muzzle_contact_pivot_reach_from_actor_root_px": 207,
+    "side_full_alpha_height_with_shadow_px": 236,
+    "side_head_alpha_width_px": 127,
+    "side_identity_alpha_height_without_shadow_px": 225,
+    "side_identity_alpha_width_px": 461,
+    "side_paw_pivot_span_px": 235,
+    "side_torso_alpha_height_px": 147,
+    "side_torso_alpha_width_px": 302,
+    "tail_alpha_reach_from_actor_root_px": 244
+  },
+  "layer_contract": {
+    "blink_swap": {
+      "closed": "dog.eye.blink",
+      "open": "dog.eye.open"
+    },
+    "equipment_separate": [
+      "dog.equipment.collar"
+    ],
+    "independently_registerable_limb_layers": [
+      "dog.leg.fore.near",
+      "dog.leg.fore.far",
+      "dog.leg.hind.near",
+      "dog.leg.hind.far"
+    ],
+    "innate_identity_layers": [
+      "dog.torso",
+      "dog.head",
+      "dog.muzzle",
+      "dog.ear.near",
+      "dog.ear.far",
+      "dog.tail",
+      "dog.marking.chest"
+    ],
+    "local_shadow_separate": [
+      "dog.shadow.local"
+    ],
+    "optional_nonessential_at_96": [
+      "dog.detail.chest_fur"
+    ]
+  },
+  "layers": {
+    "left": {
+      "dog.detail.chest_fur": {
+        "bounds": [
+          168,
+          142,
+          203,
+          210
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/06__dog.detail.chest_fur.png",
+        "source": "source/labrador/left/layers/06__dog.detail.chest_fur.svg",
+        "z": 6
+      },
+      "dog.ear.far": {
+        "bounds": [
+          118,
+          69,
+          163,
+          147
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/10__dog.ear.far.png",
+        "source": "source/labrador/left/layers/10__dog.ear.far.svg",
+        "z": 10
+      },
+      "dog.ear.near": {
+        "bounds": [
+          143,
+          68,
+          198,
+          150
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/11__dog.ear.near.png",
+        "source": "source/labrador/left/layers/11__dog.ear.near.svg",
+        "z": 11
+      },
+      "dog.equipment.collar": {
+        "bounds": [
+          157,
+          125,
+          200,
+          160
+        ],
+        "default_visible": false,
+        "export": "exports/labrador/left/layers/15__dog.equipment.collar.png",
+        "source": "source/labrador/left/layers/15__dog.equipment.collar.svg",
+        "z": 15
+      },
+      "dog.eye.blink": {
+        "bounds": [
+          103,
+          101,
+          124,
+          110
+        ],
+        "default_visible": false,
+        "export": "exports/labrador/left/layers/14__dog.eye.blink.png",
+        "source": "source/labrador/left/layers/14__dog.eye.blink.svg",
+        "z": 14
+      },
+      "dog.eye.open": {
+        "bounds": [
+          101,
+          93,
+          124,
+          116
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/13__dog.eye.open.png",
+        "source": "source/labrador/left/layers/13__dog.eye.open.svg",
+        "z": 13
+      },
+      "dog.head": {
+        "bounds": [
+          83,
+          59,
+          210,
+          179
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/09__dog.head.png",
+        "source": "source/labrador/left/layers/09__dog.head.svg",
+        "z": 9
+      },
+      "dog.leg.fore.far": {
+        "bounds": [
+          146,
+          174,
+          216,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/01__dog.leg.fore.far.png",
+        "source": "source/labrador/left/layers/01__dog.leg.fore.far.svg",
+        "z": 1
+      },
+      "dog.leg.fore.near": {
+        "bounds": [
+          115,
+          170,
+          185,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/07__dog.leg.fore.near.png",
+        "source": "source/labrador/left/layers/07__dog.leg.fore.near.svg",
+        "z": 7
+      },
+      "dog.leg.hind.far": {
+        "bounds": [
+          305,
+          179,
+          388,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/02__dog.leg.hind.far.png",
+        "source": "source/labrador/left/layers/02__dog.leg.hind.far.svg",
+        "z": 2
+      },
+      "dog.leg.hind.near": {
+        "bounds": [
+          350,
+          173,
+          424,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/08__dog.leg.hind.near.png",
+        "source": "source/labrador/left/layers/08__dog.leg.hind.near.svg",
+        "z": 8
+      },
+      "dog.marking.chest": {
+        "bounds": [
+          156,
+          127,
+          212,
+          222
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/05__dog.marking.chest.png",
+        "source": "source/labrador/left/layers/05__dog.marking.chest.svg",
+        "z": 5
+      },
+      "dog.muzzle": {
+        "bounds": [
+          39,
+          109,
+          139,
+          174
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/12__dog.muzzle.png",
+        "source": "source/labrador/left/layers/12__dog.muzzle.svg",
+        "z": 12
+      },
+      "dog.shadow.local": {
+        "bounds": [
+          43,
+          255,
+          460,
+          295
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/00__dog.shadow.local.png",
+        "source": "source/labrador/left/layers/00__dog.shadow.local.svg",
+        "z": 0
+      },
+      "dog.tail": {
+        "bounds": [
+          397,
+          117,
+          500,
+          191
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/03__dog.tail.png",
+        "source": "source/labrador/left/layers/03__dog.tail.svg",
+        "z": 3
+      },
+      "dog.torso": {
+        "bounds": [
+          141,
+          91,
+          443,
+          238
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/left/layers/04__dog.torso.png",
+        "source": "source/labrador/left/layers/04__dog.torso.svg",
+        "z": 4
+      }
+    },
+    "right": {
+      "dog.detail.chest_fur": {
+        "bounds": [
+          310,
+          142,
+          345,
+          210
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/06__dog.detail.chest_fur.png",
+        "source": "source/labrador/right/layers/06__dog.detail.chest_fur.svg",
+        "z": 6
+      },
+      "dog.ear.far": {
+        "bounds": [
+          349,
+          69,
+          394,
+          147
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/10__dog.ear.far.png",
+        "source": "source/labrador/right/layers/10__dog.ear.far.svg",
+        "z": 10
+      },
+      "dog.ear.near": {
+        "bounds": [
+          314,
+          68,
+          369,
+          150
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/11__dog.ear.near.png",
+        "source": "source/labrador/right/layers/11__dog.ear.near.svg",
+        "z": 11
+      },
+      "dog.equipment.collar": {
+        "bounds": [
+          312,
+          125,
+          356,
+          160
+        ],
+        "default_visible": false,
+        "export": "exports/labrador/right/layers/15__dog.equipment.collar.png",
+        "source": "source/labrador/right/layers/15__dog.equipment.collar.svg",
+        "z": 15
+      },
+      "dog.eye.blink": {
+        "bounds": [
+          388,
+          101,
+          409,
+          110
+        ],
+        "default_visible": false,
+        "export": "exports/labrador/right/layers/14__dog.eye.blink.png",
+        "source": "source/labrador/right/layers/14__dog.eye.blink.svg",
+        "z": 14
+      },
+      "dog.eye.open": {
+        "bounds": [
+          388,
+          93,
+          411,
+          116
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/13__dog.eye.open.png",
+        "source": "source/labrador/right/layers/13__dog.eye.open.svg",
+        "z": 13
+      },
+      "dog.head": {
+        "bounds": [
+          302,
+          59,
+          429,
+          179
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/09__dog.head.png",
+        "source": "source/labrador/right/layers/09__dog.head.svg",
+        "z": 9
+      },
+      "dog.leg.fore.far": {
+        "bounds": [
+          296,
+          174,
+          366,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/02__dog.leg.fore.far.png",
+        "source": "source/labrador/right/layers/02__dog.leg.fore.far.svg",
+        "z": 2
+      },
+      "dog.leg.fore.near": {
+        "bounds": [
+          327,
+          170,
+          397,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/08__dog.leg.fore.near.png",
+        "source": "source/labrador/right/layers/08__dog.leg.fore.near.svg",
+        "z": 8
+      },
+      "dog.leg.hind.far": {
+        "bounds": [
+          124,
+          179,
+          207,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/01__dog.leg.hind.far.png",
+        "source": "source/labrador/right/layers/01__dog.leg.hind.far.svg",
+        "z": 1
+      },
+      "dog.leg.hind.near": {
+        "bounds": [
+          88,
+          173,
+          162,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/07__dog.leg.hind.near.png",
+        "source": "source/labrador/right/layers/07__dog.leg.hind.near.svg",
+        "z": 7
+      },
+      "dog.marking.chest": {
+        "bounds": [
+          300,
+          127,
+          357,
+          222
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/05__dog.marking.chest.png",
+        "source": "source/labrador/right/layers/05__dog.marking.chest.svg",
+        "z": 5
+      },
+      "dog.muzzle": {
+        "bounds": [
+          373,
+          109,
+          473,
+          174
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/12__dog.muzzle.png",
+        "source": "source/labrador/right/layers/12__dog.muzzle.svg",
+        "z": 12
+      },
+      "dog.shadow.local": {
+        "bounds": [
+          54,
+          255,
+          471,
+          295
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/00__dog.shadow.local.png",
+        "source": "source/labrador/right/layers/00__dog.shadow.local.svg",
+        "z": 0
+      },
+      "dog.tail": {
+        "bounds": [
+          12,
+          117,
+          115,
+          191
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/03__dog.tail.png",
+        "source": "source/labrador/right/layers/03__dog.tail.svg",
+        "z": 3
+      },
+      "dog.torso": {
+        "bounds": [
+          69,
+          91,
+          371,
+          238
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/right/layers/04__dog.torso.png",
+        "source": "source/labrador/right/layers/04__dog.torso.svg",
+        "z": 4
+      }
+    },
+    "turn_mid": {
+      "dog.detail.chest_fur": {
+        "bounds": [
+          222,
+          149,
+          289,
+          210
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/06__dog.detail.chest_fur.png",
+        "source": "source/labrador/turn_mid/layers/06__dog.detail.chest_fur.svg",
+        "z": 6
+      },
+      "dog.ear.far": {
+        "bounds": [
+          279,
+          65,
+          329,
+          146
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/10__dog.ear.far.png",
+        "source": "source/labrador/turn_mid/layers/10__dog.ear.far.svg",
+        "z": 10
+      },
+      "dog.ear.near": {
+        "bounds": [
+          185,
+          65,
+          235,
+          146
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/11__dog.ear.near.png",
+        "source": "source/labrador/turn_mid/layers/11__dog.ear.near.svg",
+        "z": 11
+      },
+      "dog.equipment.collar": {
+        "bounds": [
+          204,
+          132,
+          308,
+          166
+        ],
+        "default_visible": false,
+        "export": "exports/labrador/turn_mid/layers/15__dog.equipment.collar.png",
+        "source": "source/labrador/turn_mid/layers/15__dog.equipment.collar.svg",
+        "z": 15
+      },
+      "dog.eye.blink": {
+        "bounds": [
+          219,
+          101,
+          293,
+          110
+        ],
+        "default_visible": false,
+        "export": "exports/labrador/turn_mid/layers/14__dog.eye.blink.png",
+        "source": "source/labrador/turn_mid/layers/14__dog.eye.blink.svg",
+        "z": 14
+      },
+      "dog.eye.open": {
+        "bounds": [
+          219,
+          92,
+          294,
+          116
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/13__dog.eye.open.png",
+        "source": "source/labrador/turn_mid/layers/13__dog.eye.open.svg",
+        "z": 13
+      },
+      "dog.head": {
+        "bounds": [
+          188,
+          52,
+          326,
+          174
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/09__dog.head.png",
+        "source": "source/labrador/turn_mid/layers/09__dog.head.svg",
+        "z": 9
+      },
+      "dog.leg.fore.far": {
+        "bounds": [
+          279,
+          180,
+          337,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/02__dog.leg.fore.far.png",
+        "source": "source/labrador/turn_mid/layers/02__dog.leg.fore.far.svg",
+        "z": 2
+      },
+      "dog.leg.fore.near": {
+        "bounds": [
+          322,
+          177,
+          385,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/08__dog.leg.fore.near.png",
+        "source": "source/labrador/turn_mid/layers/08__dog.leg.fore.near.svg",
+        "z": 8
+      },
+      "dog.leg.hind.far": {
+        "bounds": [
+          172,
+          180,
+          235,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/01__dog.leg.hind.far.png",
+        "source": "source/labrador/turn_mid/layers/01__dog.leg.hind.far.svg",
+        "z": 1
+      },
+      "dog.leg.hind.near": {
+        "bounds": [
+          135,
+          177,
+          188,
+          284
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/07__dog.leg.hind.near.png",
+        "source": "source/labrador/turn_mid/layers/07__dog.leg.hind.near.svg",
+        "z": 7
+      },
+      "dog.marking.chest": {
+        "bounds": [
+          204,
+          128,
+          308,
+          230
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/05__dog.marking.chest.png",
+        "source": "source/labrador/turn_mid/layers/05__dog.marking.chest.svg",
+        "z": 5
+      },
+      "dog.muzzle": {
+        "bounds": [
+          215,
+          110,
+          301,
+          180
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/12__dog.muzzle.png",
+        "source": "source/labrador/turn_mid/layers/12__dog.muzzle.svg",
+        "z": 12
+      },
+      "dog.shadow.local": {
+        "bounds": [
+          93,
+          256,
+          423,
+          295
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/00__dog.shadow.local.png",
+        "source": "source/labrador/turn_mid/layers/00__dog.shadow.local.svg",
+        "z": 0
+      },
+      "dog.tail": {
+        "bounds": [
+          348,
+          130,
+          454,
+          192
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/03__dog.tail.png",
+        "source": "source/labrador/turn_mid/layers/03__dog.tail.svg",
+        "z": 3
+      },
+      "dog.torso": {
+        "bounds": [
+          131,
+          98,
+          385,
+          241
+        ],
+        "default_visible": true,
+        "export": "exports/labrador/turn_mid/layers/04__dog.torso.png",
+        "source": "source/labrador/turn_mid/layers/04__dog.torso.svg",
+        "z": 4
+      }
+    }
+  },
+  "masters": {
+    "left": "source/labrador/left/labrador_master_left.svg",
+    "right": "source/labrador/right/labrador_master_right.svg",
+    "turn_mid": "source/labrador/turn_mid/labrador_master_turn_mid.svg"
+  },
+  "pivots": {
+    "left": {
+      "actor_root_ground": [
+        256,
+        280
+      ],
+      "collar_equipment": [
+        178,
+        143
+      ],
+      "ear_far": [
+        174,
+        91
+      ],
+      "ear_near": [
+        143,
+        93
+      ],
+      "fore_far_paw": [
+        141,
+        277
+      ],
+      "fore_far_shoulder": [
+        163,
+        190
+      ],
+      "fore_near_paw": [
+        171,
+        277
+      ],
+      "fore_near_shoulder": [
+        194,
+        193
+      ],
+      "head_neck": [
+        183,
+        132
+      ],
+      "hind_far_hip": [
+        386,
+        194
+      ],
+      "hind_far_paw": [
+        376,
+        277
+      ],
+      "hind_near_hip": [
+        356,
+        198
+      ],
+      "hind_near_paw": [
+        329,
+        277
+      ],
+      "muzzle_contact": [
+        49,
+        145
+      ],
+      "tail": [
+        418,
+        170
+      ],
+      "torso": [
+        277,
+        166
+      ]
+    },
+    "right": {
+      "actor_root_ground": [
+        256,
+        280
+      ],
+      "collar_equipment": [
+        334,
+        143
+      ],
+      "ear_far": [
+        369,
+        93
+      ],
+      "ear_near": [
+        338,
+        91
+      ],
+      "fore_far_paw": [
+        341,
+        277
+      ],
+      "fore_far_shoulder": [
+        318,
+        193
+      ],
+      "fore_near_paw": [
+        371,
+        277
+      ],
+      "fore_near_shoulder": [
+        349,
+        190
+      ],
+      "head_neck": [
+        329,
+        132
+      ],
+      "hind_far_hip": [
+        156,
+        198
+      ],
+      "hind_far_paw": [
+        183,
+        277
+      ],
+      "hind_near_hip": [
+        126,
+        194
+      ],
+      "hind_near_paw": [
+        136,
+        277
+      ],
+      "muzzle_contact": [
+        463,
+        145
+      ],
+      "tail": [
+        94,
+        170
+      ],
+      "torso": [
+        235,
+        166
+      ]
+    },
+    "turn_mid": {
+      "actor_root_ground": [
+        256,
+        280
+      ],
+      "collar_equipment": [
+        256,
+        148
+      ],
+      "ear_far": [
+        303,
+        91
+      ],
+      "ear_near": [
+        210,
+        91
+      ],
+      "fore_far_paw": [
+        314,
+        277
+      ],
+      "fore_far_shoulder": [
+        299,
+        194
+      ],
+      "fore_near_paw": [
+        362,
+        277
+      ],
+      "fore_near_shoulder": [
+        343,
+        194
+      ],
+      "head_neck": [
+        256,
+        137
+      ],
+      "hind_far_hip": [
+        197,
+        194
+      ],
+      "hind_far_paw": [
+        212,
+        277
+      ],
+      "hind_near_hip": [
+        158,
+        194
+      ],
+      "hind_near_paw": [
+        165,
+        277
+      ],
+      "muzzle_contact": [
+        256,
+        148
+      ],
+      "tail": [
+        363,
+        170
+      ],
+      "torso": [
+        256,
+        168
+      ]
+    }
+  },
+  "schema_version": "shelter-labrador-source/v1",
+  "silhouettes": {
+    "left": "exports/labrador/left/silhouette.png",
+    "right": "exports/labrador/right/silhouette.png",
+    "turn_mid": "exports/labrador/turn_mid/silhouette.png"
+  },
+  "source_maturity": "SOURCE_READY_ONLY__NO_RUNTIME_ART_PASS",
+  "status": "AUTHORED_VISUAL_SOURCE_FOUNDATION__SOURCE_READY",
+  "z_order": {
+    "left": [
+      "dog.shadow.local",
+      "dog.leg.fore.far",
+      "dog.leg.hind.far",
+      "dog.tail",
+      "dog.torso",
+      "dog.marking.chest",
+      "dog.detail.chest_fur",
+      "dog.leg.fore.near",
+      "dog.leg.hind.near",
+      "dog.head",
+      "dog.ear.far",
+      "dog.ear.near",
+      "dog.muzzle",
+      "dog.eye.open",
+      "dog.eye.blink",
+      "dog.equipment.collar"
+    ],
+    "right": [
+      "dog.shadow.local",
+      "dog.leg.hind.far",
+      "dog.leg.fore.far",
+      "dog.tail",
+      "dog.torso",
+      "dog.marking.chest",
+      "dog.detail.chest_fur",
+      "dog.leg.hind.near",
+      "dog.leg.fore.near",
+      "dog.head",
+      "dog.ear.far",
+      "dog.ear.near",
+      "dog.muzzle",
+      "dog.eye.open",
+      "dog.eye.blink",
+      "dog.equipment.collar"
+    ],
+    "turn_mid": [
+      "dog.shadow.local",
+      "dog.leg.hind.far",
+      "dog.leg.fore.far",
+      "dog.tail",
+      "dog.torso",
+      "dog.marking.chest",
+      "dog.detail.chest_fur",
+      "dog.leg.hind.near",
+      "dog.leg.fore.near",
+      "dog.head",
+      "dog.ear.far",
+      "dog.ear.near",
+      "dog.muzzle",
+      "dog.eye.open",
+      "dog.eye.blink",
+      "dog.equipment.collar"
+    ]
+  }
+}

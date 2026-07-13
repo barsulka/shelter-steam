@@ -1,7 +1,7 @@
 # BOOTSTRAP_CONTEXT — Shelter compressed entry point
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-12
+Обновлено: 2026-07-13
 Статус: active bootstrap / current-summary
 Владелец: Producer / Project Manager
 Назначение: быстрый вход новой AI-сессии в актуальный контекст Shelter без чтения всей истории.
@@ -65,7 +65,7 @@ D-023 First Day + Day 2 player journey scope lock принят.
 
 Актуализация D-023:
 
-> Successor scope теперь выбран: `First 48 Hours Playable` как session-based First Day + Day 2 player journey. R48-01A, R48-02A и R48-02B завершены/PASS; R48-03 persisted First Day → Day 2 transition brief является следующим gate.
+> Successor scope выбран: `First 48 Hours Playable` как session-based First Day + Day 2 player journey. R48-01A, R48-02A, R48-02B и R48-03 завершены/PASS. Текущий game-first порядок: authored playable world + living Labrador → calm non-modal onboarding → one inspectable Kitchen → polish двух визитов. Background/minimize/performance QA отложена за пределы критического пути и не считается выполненной.
 
 Источник:
 
@@ -333,7 +333,7 @@ SUPERSEDED_MAP.md
 02_DECISIONS.md
 ```
 
-PM focus now: preserve D-021/R-29 history, keep D-023 Current Memory synchronized and coordinate R48-04A brief preparation without scope drift.
+PM focus now: preserve D-021/R-29 history, keep D-023 Current Memory synchronized and coordinate the game-first brief sequence without promoting proposed Art/dog contracts into implementation authority.
 
 ---
 
@@ -358,7 +358,7 @@ STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
 STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
 ```
 
-R48-01A, R48-02A, R48-02B and R48-03 are completed/PASS. The ordinary persisted First Day → Day 2 journey reaches restart-stable Quiet Cooperative; R48-04A is the next unaccepted brief gate.
+R48-01A, R48-02A, R48-02B and R48-03 are completed/PASS. The ordinary persisted First Day → Day 2 journey reaches restart-stable Quiet Cooperative. R48-05A-S is SOURCE-READY and the exact Game Design/Art/Technical/PM gates are signed; bounded no-transfer R48-05A is accepted/executable. Later R48-05B closes transfer. R48-04A remains deferred and unaccepted.
 
 Reasoning level if assigned to Codex:
 
@@ -375,6 +375,23 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## 10. Changelog
+
+### 2026-07-13 — bounded R48-05A accepted/executable
+
+- Recorded SOURCE-READY authored world/Labrador inputs, numeric station anchors and temporary Packing placeholder boundary.
+- Linked the exact Technical Activation Record and one-write-integrator implementation scope.
+- Kept runtime Art PASS, R48-05B transfer and full parent/program closure open.
+
+### 2026-07-12 — R48-05A source wave authorized
+
+- Recorded the 05A foundation / 05B transfer split and source-only Art Package next step.
+- Kept runtime activation and full parent/program claims blocked until their exact gates pass.
+
+### 2026-07-12 — game-first critical path synchronized
+
+- Replaced background/minimize as the next step with playable world + living Labrador, calm onboarding, Kitchen and two-visit polish.
+- Kept background/minimize/performance as a later unclosed gate.
+- Preserved fail-closed Art/dog authority: prepared briefs do not authorize asset generation or runtime integration before owner preflight.
 
 ### 2026-07-12 — R48-03 completed / PASS
 

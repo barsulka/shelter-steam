@@ -1,6 +1,6 @@
 # 02_DECISIONS — Shelter Decision Log
 
-Обновлено: 2026-07-12
+Обновлено: 2026-07-13
 Статус: active knowledge / decision log
 Владелец: Producer / Project Manager
 Назначение: хранить принятые долгоживущие решения Shelter. История обсуждений, handoff и evidence живут в History-документах.
@@ -939,6 +939,25 @@ Implementation relationship:
 - D-022 task/order/resource causality remains authoritative. Player continuation must implement an idempotent same-runtime transition and MUST NOT load the Day 2 fixture from player path.
 - Every Codex implementation wave requires a separate accepted brief.
 
+Execution clarification accepted 2026-07-12 after cross-role owner preflight:
+
+- `R48-05A` delivers the authored world plus living Labrador P0-B/P0-D foundation without object transfer. Its successful bounded result is `PASS` for R48-05A and only `PARTIAL / WARN` for parent R48-A/R48-05.
+- `R48-05B / P0-C` later delivers exactly one named owner-approved object transfer. Only its PASS closes the remaining carry/contact/attach/detach gate and permits full R48-A/R48-05 PASS.
+- Start, stop and physical turn are accepted only inside the bounded Labrador proof as presentation transitions derived from authoritative runtime phase/target/facing data; they are not new gameplay states and do not globally promote the proposed vocabulary.
+- A separate source-only Art Package wave may prepare authored world, layered Labrador and Kitchen/Packing anchor inputs before runtime implementation. Source-ready Art maturity is not runtime Art PASS and does not activate Codex by itself.
+- The split changes execution order, not D-023 scope. One accepted transfer remains mandatory for full Program DoD; exact `3 + 2`, resource provenance, Quiet Cooperative and later R48-04A remain unchanged.
+
+User-owner current-versus-later scope clarification accepted 2026-07-13:
+
+- **Current:** restore the Steam/Desktop base visual presentation to the canonical reconciliation targets: D-011 as the full main-strip scene target, the `approved_art_files/` library as the approved visual-language/scale/quality reference set, and the accepted Labrador direction/identity pair. This work may exercise only mechanics already present in the accepted runtime.
+- The approved Mill may be included literally as a **static decorative object**. It does not become a gameplay entity and creates no mechanic, task, resource, output, reward, input or production responsibility. No approved decorative image may imply new gameplay authority by appearance alone.
+- The first living dog remains Labrador. The minimum desired living read is a Labrador calmly walking back and forth. Exact current status: `NEEDS_MANIFEST_AMENDMENT`. No new vocabulary row is needed: reuse existing start/walk/stop/turn, but the signed A–G manifest currently allows locomotion only under station selector C. Before executable binding, a bounded selector amendment requires Game Design, Producer/PM and Technical/Codex re-sign, followed by a separate accepted/executable Codex brief.
+- Ambient-walk guardrails are fail-closed: no current/queued Labrador task; allowed only before TripTask while an order is offered or after Day 2 in Quiet Cooperative; `ready_to_send` calm wait wins; forbidden during authoritative trip/task/delivery, restore and save failure/retry; a player gate cancels the presentation before transition; the presentation creates zero gameplay/save/progression output.
+- Dachshund/cart is not critical and is not a current implementation requirement.
+- The current sequence is: Art reconciliation brief/package → PM/User acceptance → bounded Art source wave without runtime/code mutation → separate Codex integration brief → runtime evidence, independent Art review and explicit user review.
+- There is no v6 patch loop. R48-05B/object transfer, rooms, onboarding and background/minimize/performance work are not current work. They remain later/open gates and are neither cancelled nor activated by this clarification.
+- **Later product direction/backlog:** cart; bicycle; small-truck driver; large-truck bed passenger; school desk; library reading; lab chemistry; blackboard teaching; rocking-chair reading; sleeping; playing with another dog; tail chasing; and a broader catalogue of dog-life states. This is not current scope or implementation authority. Game Design owns future detailed semantics/selectors/catalogue; PM records only the product direction and current-versus-later boundary.
+
 Canonical sources:
 
 ```text
@@ -968,6 +987,19 @@ Examples:
 ---
 
 ## 4. Changelog
+
+### 2026-07-13 — D-023 current graphics / later dog-life boundary
+
+- Made canonical base-visual reconciliation plus existing mechanics the current priority.
+- Allowed the approved Mill only as a static decorative object and kept Labrador as the first living dog.
+- Moved the broad dog-life catalogue, R48-05B, rooms, onboarding and background work out of the current queue without cancelling them.
+- Fixed the staged Art → PM/User → Art source → Codex brief → runtime review sequence and prohibited a v6 patch loop.
+
+### 2026-07-12 — D-023 execution clarification / R48-05A + R48-05B
+
+- Accepted the visible-progress split: no-transfer R48-05A first, one named transfer R48-05B later.
+- Kept full R48-A/R48-05 and Program DoD open until R48-05B PASS.
+- Authorized a separate source-only Art Package wave after document synchronization.
 
 ### 2026-07-12 — D-023 accepted
 
