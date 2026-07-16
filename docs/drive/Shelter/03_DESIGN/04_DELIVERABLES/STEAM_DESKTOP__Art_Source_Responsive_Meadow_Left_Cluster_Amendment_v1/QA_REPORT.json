@@ -1,0 +1,305 @@
+{
+  "checks": [
+    {
+      "actual": "7abc64cc21025a08312a63a8cfd7486652854f4fdf30d12179fd072161f9600b",
+      "expected": "7abc64cc21025a08312a63a8cfd7486652854f4fdf30d12179fd072161f9600b",
+      "id": "reference.frozen_hashes.hash",
+      "pass": true,
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/HASHES.sha256"
+    },
+    {
+      "actual": "23582b529a32db016a51a19ce9e9743eb5077edb1ebc9ba24bbd54aed54c41c1",
+      "expected": "23582b529a32db016a51a19ce9e9743eb5077edb1ebc9ba24bbd54aed54c41c1",
+      "id": "reference.cq_layout.hash",
+      "pass": true,
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Responsive_Meadow_Left_Cluster_Amendment_v1/references/user_owner/CQ_Hero_Town__Full_Width_Living_Lane__User_Owner_Layout_Reference.png"
+    },
+    {
+      "actual": "0b206080265c405bb59a00a16491b3cabe596500def0de4dab38cb9f5dfe9924",
+      "expected": "0b206080265c405bb59a00a16491b3cabe596500def0de4dab38cb9f5dfe9924",
+      "id": "reference.meadow_direction.hash",
+      "pass": true,
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/references/generated_originals/world_meadow_plate__flattened_original.png"
+    },
+    {
+      "actual": "f1b8905b7566a2e62bafcddea7e87f629e5e762be9fbc1d0a402192ce4138e00",
+      "expected": "f1b8905b7566a2e62bafcddea7e87f629e5e762be9fbc1d0a402192ce4138e00",
+      "id": "reference.fence_master.hash",
+      "pass": true,
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/assets/fence_segments/fence_segments_master.ora"
+    },
+    {
+      "actual": "e282a5e86ceb03ae5c1b8cf3a9ed94a9b4d3ae80c3588cb96999e86932e07709",
+      "expected": "e282a5e86ceb03ae5c1b8cf3a9ed94a9b4d3ae80c3588cb96999e86932e07709",
+      "id": "reference.pm_activation.hash",
+      "pass": true,
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Responsive_Meadow_Left_Cluster_Amendment_v1__PM_Activation_Status.md"
+    },
+    {
+      "actual": "e103d836427e3bb5054a183149dd97b095e91b5a4195c752ac5f4da19a00854c",
+      "expected": "e103d836427e3bb5054a183149dd97b095e91b5a4195c752ac5f4da19a00854c",
+      "id": "reference.gd_contract.hash",
+      "pass": true,
+      "path": "docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Gameplay_Field_And_Viewport_Semantic_Contract_v1.md"
+    },
+    {
+      "actual": "d3c393df311e85bdd8f133c40f5be189bafc64db17de3f6dcd1b6230c096d563",
+      "expected": "d3c393df311e85bdd8f133c40f5be189bafc64db17de3f6dcd1b6230c096d563",
+      "id": "reference.gd_current_memory.hash",
+      "pass": true,
+      "path": "docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/GAME_DESIGN__CURRENT_CONTEXT.md"
+    },
+    {
+      "actual": [
+        748,
+        224
+      ],
+      "id": "meadow.dimensions_748x224",
+      "pass": true
+    },
+    {
+      "actual": "RGBA",
+      "id": "meadow.mode_rgba",
+      "pass": true
+    },
+    {
+      "actual": 92,
+      "id": "meadow.upper_reserve_transparent",
+      "pass": true
+    },
+    {
+      "actual": 0,
+      "id": "meadow.every_x_has_ground_alpha",
+      "pass": true
+    },
+    {
+      "actual": {
+        "declared_edge_identity_region_px": 8,
+        "immediate_repeat_boundary_rgba_max_delta": 0,
+        "left_region_constant_max_delta": 0,
+        "left_right_alpha_max_delta": 0,
+        "left_right_rgba_max_delta": 0,
+        "method": "four-period premultiplied consolidation plus 40 px soft edge reconciliation and 8 px exact constant edge identity",
+        "right_region_constant_max_delta": 0,
+        "schema": "shelter.art.d024.seam_proof.v1",
+        "tile_dimensions_px": [
+          748,
+          224
+        ]
+      },
+      "id": "meadow.edge_rgba_identity",
+      "pass": true
+    },
+    {
+      "actual": [
+        1740.0,
+        2992
+      ],
+      "id": "meadow.exact_four_periods_cover_field",
+      "pass": true
+    },
+    {
+      "actual": "RGBA",
+      "id": "marker.mode_rgba",
+      "pass": true
+    },
+    {
+      "actual": [
+        0,
+        0,
+        174,
+        106
+      ],
+      "id": "marker.alpha_positive_canvas",
+      "pass": true
+    },
+    {
+      "actual": [
+        9,
+        25,
+        150,
+        77
+      ],
+      "id": "marker.opaque_body_exterior",
+      "pass": true
+    },
+    {
+      "actual": 0.5815508021390374,
+      "id": "marker.no_runtime_mirror",
+      "pass": true
+    },
+    {
+      "actual": "after accepted layer 16 and before current resources/cues",
+      "id": "marker.draw_slot",
+      "pass": true
+    },
+    {
+      "actual": "exact accepted A-H corpus reused; no pose/state/identity edit",
+      "id": "scope.labrador_unchanged",
+      "pass": true
+    },
+    {
+      "actual": "ZERO",
+      "id": "scope.sheet_a_zero",
+      "pass": true
+    },
+    {
+      "actual": "ZERO",
+      "id": "scope.cq_pixels_zero",
+      "pass": true
+    },
+    {
+      "actual": 0.15006684491978609,
+      "id": "responsive.2992.default.reserve_13_17_percent",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "id": "responsive.2992.default.no_anchor_or_dog_exterior",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.2992.default.single_static_overlay",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.2992.default.single_labrador",
+      "pass": true
+    },
+    {
+      "actual": 0.15006684491978609,
+      "id": "responsive.2992.right_end.reserve_13_17_percent",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "id": "responsive.2992.right_end.no_anchor_or_dog_exterior",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.2992.right_end.single_static_overlay",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.2992.right_end.single_labrador",
+      "pass": true
+    },
+    {
+      "actual": 0.14988425925925927,
+      "id": "responsive.3456.default.reserve_13_17_percent",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "id": "responsive.3456.default.no_anchor_or_dog_exterior",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.3456.default.single_static_overlay",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.3456.default.single_labrador",
+      "pass": true
+    },
+    {
+      "actual": 0.14988425925925927,
+      "id": "responsive.3456.right_end.reserve_13_17_percent",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "id": "responsive.3456.right_end.no_anchor_or_dog_exterior",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.3456.right_end.single_static_overlay",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.3456.right_end.single_labrador",
+      "pass": true
+    },
+    {
+      "actual": 0.15,
+      "id": "responsive.3840.default.reserve_13_17_percent",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "id": "responsive.3840.default.no_anchor_or_dog_exterior",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.3840.default.single_static_overlay",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.3840.default.single_labrador",
+      "pass": true
+    },
+    {
+      "actual": 0.15,
+      "id": "responsive.3840.right_end.reserve_13_17_percent",
+      "pass": true
+    },
+    {
+      "actual": null,
+      "id": "responsive.3840.right_end.no_anchor_or_dog_exterior",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.3840.right_end.single_static_overlay",
+      "pass": true
+    },
+    {
+      "actual": 1,
+      "id": "responsive.3840.right_end.single_labrador",
+      "pass": true
+    },
+    {
+      "actual": [
+        "RGBA",
+        2885,
+        216
+      ],
+      "id": "readability.216.rgba_export",
+      "pass": true
+    },
+    {
+      "actual": [
+        "RGBA",
+        1923,
+        144
+      ],
+      "id": "readability.144.rgba_export",
+      "pass": true
+    },
+    {
+      "actual": [
+        "RGBA",
+        1282,
+        96
+      ],
+      "id": "readability.96.rgba_export",
+      "pass": true
+    }
+  ],
+  "checks_passed": 48,
+  "checks_total": 48,
+  "date": "2026-07-14",
+  "schema": "shelter.art.d024.qa.v1",
+  "status": "PASS",
+  "verdict": "SOURCE_AMENDMENT_READY"
+}

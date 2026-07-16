@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://tests/vertical_slice_visual/test_d024_responsive_presentation.gd" id="1_test"]
+
+[node name="D024ResponsivePresentationTestRunner" type="Node"]
+script = ExtResource("1_test")

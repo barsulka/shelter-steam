@@ -1,0 +1,170 @@
+[
+  {
+    "baseline": 188.0,
+    "camera_max": 0.0,
+    "camera_x": 0.0,
+    "field_boundary_screen_x": 2543.2,
+    "framing": "default",
+    "marker": {
+      "draw_count": 1,
+      "interactive": false,
+      "opaque_body_screen_min_x": 2550.85,
+      "positive_uniform_scale": 0.85,
+      "screen_root": "(2543.2, 188.0)"
+    },
+    "material_y": [
+      25.65,
+      199.05
+    ],
+    "reserve_fraction": 0.15,
+    "tile_range": [
+      0,
+      4
+    ],
+    "viewport": "(2992.0, 224.0)",
+    "zoom": 1.4616091954023,
+    "zoom_fit_max": 1.88812260536398,
+    "zoom_max": 1.53468965517241,
+    "zoom_min": 1.4616091954023
+  },
+  {
+    "baseline": 188.0,
+    "camera_max": 82.8571428571429,
+    "camera_x": 82.8571428571429,
+    "field_boundary_screen_x": 2543.2,
+    "framing": "right_end",
+    "marker": {
+      "draw_count": 1,
+      "interactive": false,
+      "opaque_body_screen_min_x": 2551.2325,
+      "positive_uniform_scale": 0.8925,
+      "screen_root": "(2543.2, 188.0)"
+    },
+    "material_y": [
+      17.5325,
+      199.6025
+    ],
+    "reserve_fraction": 0.15,
+    "tile_range": [
+      0,
+      4
+    ],
+    "viewport": "(2992.0, 224.0)",
+    "zoom": 1.53468965517241,
+    "zoom_fit_max": 1.88812260536398,
+    "zoom_max": 1.53468965517241,
+    "zoom_min": 1.4616091954023
+  },
+  {
+    "baseline": 188.0,
+    "camera_max": 0.0,
+    "camera_x": 0.0,
+    "field_boundary_screen_x": 2937.6,
+    "framing": "default",
+    "marker": {
+      "draw_count": 1,
+      "interactive": false,
+      "opaque_body_screen_min_x": 2946.43636363636,
+      "positive_uniform_scale": 0.981818181818182,
+      "screen_root": "(2937.6, 188.0)"
+    },
+    "material_y": [
+      0.472727272727269,
+      200.763636363636
+    ],
+    "reserve_fraction": 0.15,
+    "tile_range": [
+      0,
+      4
+    ],
+    "viewport": "(3456.0, 224.0)",
+    "zoom": 1.68827586206897,
+    "zoom_fit_max": 1.88812260536398,
+    "zoom_max": 1.77268965517241,
+    "zoom_min": 1.68827586206897
+  },
+  {
+    "baseline": 196.903636363636,
+    "camera_max": 82.8571428571429,
+    "camera_x": 82.8571428571429,
+    "field_boundary_screen_x": 2937.6,
+    "framing": "right_end",
+    "marker": {
+      "draw_count": 1,
+      "interactive": false,
+      "opaque_body_screen_min_x": 2946.87818181818,
+      "positive_uniform_scale": 1.03090909090909,
+      "screen_root": "(2937.6, 196.9036)"
+    },
+    "material_y": [
+      0.0,
+      210.305454545455
+    ],
+    "reserve_fraction": 0.15,
+    "tile_range": [
+      0,
+      4
+    ],
+    "viewport": "(3456.0, 224.0)",
+    "zoom": 1.77268965517241,
+    "zoom_fit_max": 1.88812260536398,
+    "zoom_max": 1.77268965517241,
+    "zoom_min": 1.68827586206897
+  },
+  {
+    "baseline": 208.363636363636,
+    "camera_max": 0.0,
+    "camera_x": 0.0,
+    "field_boundary_screen_x": 3264.0,
+    "framing": "default",
+    "marker": {
+      "draw_count": 1,
+      "interactive": false,
+      "opaque_body_screen_min_x": 3273.81818181818,
+      "positive_uniform_scale": 1.09090909090909,
+      "screen_root": "(3264.0, 208.3636)"
+    },
+    "material_y": [
+      0.0,
+      222.545454545455
+    ],
+    "reserve_fraction": 0.15,
+    "tile_range": [
+      0,
+      4
+    ],
+    "viewport": "(3840.0, 224.0)",
+    "zoom": 1.87586206896552,
+    "zoom_fit_max": 1.88812260536398,
+    "zoom_max": 1.88812260536398,
+    "zoom_min": 1.87586206896552
+  },
+  {
+    "baseline": 209.725490196078,
+    "camera_max": 11.2987012987012,
+    "camera_x": 11.2987012987012,
+    "field_boundary_screen_x": 3264.0,
+    "framing": "right_end",
+    "marker": {
+      "draw_count": 1,
+      "interactive": false,
+      "opaque_body_screen_min_x": 3273.88235294118,
+      "positive_uniform_scale": 1.09803921568627,
+      "screen_root": "(3264.0, 209.7255)"
+    },
+    "material_y": [
+      0.0,
+      224.0
+    ],
+    "reserve_fraction": 0.15,
+    "tile_range": [
+      0,
+      4
+    ],
+    "viewport": "(3840.0, 224.0)",
+    "zoom": 1.88812260536398,
+    "zoom_fit_max": 1.88812260536398,
+    "zoom_max": 1.88812260536398,
+    "zoom_min": 1.87586206896552
+  }
+]

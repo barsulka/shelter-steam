@@ -2,9 +2,9 @@
 
 Дата создания: 2026-07-12
 
-Обновлено: 2026-07-13
+Обновлено: 2026-07-16
 
-Статус: active execution roadmap / R48-01 + R48-02 + R48-03 completed PASS / R48-05A mechanical evidence retained / Art reconciliation sequence active
+Статус: active execution roadmap / R48-01 + R48-02 + R48-03 completed PASS / R48-05A TECHNICAL_MECHANICAL_PASS / D-029+D-024 REMEDIATION IMPLEMENTED / INDEPENDENT_NO_GODOT_REVIEW_PASS / P0=0 P1=0 P2=0 / CAPTURE_BLOCKED / EVIDENCE_HOLD / UNSEALED / NEW LITERAL BOUNDED REAL-RUN ACK REQUIRED
 
 Владелец: Producer / Project Manager
 
@@ -43,19 +43,25 @@ R-29 не был фиктивной работой: он доказал прич
 
 После завершения R48-03 пользователь явно исправил ближайший приоритет: техническая continuity уже доказана, а blocker пользовательской ценности — прямоугольный prototype presentation без authored мира, living Labrador, нормальной Kitchen и достаточной анимации.
 
-Текущий критический путь после user-owner scope clarification 2026-07-13:
+Текущий критический путь после user-owner D-024 authority 2026-07-14:
 
 ```text
-1. PM/User accepts the prepared Art reconciliation brief/package and pins the current visual roster.
-2. Art owns one bounded source-only wave restoring D-011 + approved_art_files + accepted Labrador fidelity over existing mechanics.
-3. A separate accepted/executable Codex integration brief imports only the accepted source result.
-4. Immutable runtime evidence receives independent Art review and explicit user-owner review.
-5. R48-05B, rooms, onboarding, background/minimize/performance and broad dog-life work remain later/backlog until separately prioritized.
+1. `DONE / TECHNICAL_MECHANICAL_PASS` — exact accepted world/Labrador source was integrated and immutable runtime evidence produced.
+2. `DONE / CHANGES_REQUIRED` — independent Art review accepted the imported visual corpus as WARN but rejected overall player-facing coherence; runtime user/Art acceptance remains open.
+3. `DONE / D-024 ACCEPTED` — user-owner accepted the shown Labrador/building/meadow visual direction and fixed the responsive meadow/field/viewport rule.
+4. `DONE / SIGNED_GD_TECHNICAL` — Game Design signed buildable/field/dog-exclusion/pan/zoom semantics; Technical signed tile/render/coordinate/input/evidence topology. Hidden `offscreen_left=-160` is accepted only as the pre-existing D-013 absence sentinel.
+5. `DONE / ART_RESUME_AUTHORIZED` — Producer/PM issued the required separate exact-file activation after both handbacks.
+6. `DONE / SOURCE_AMENDMENT_READY` — retained Art thread completed the 51-file package; ledger 50/50 and QA 48/48 PASS.
+7. `DONE / ACCEPTED_SOURCE_INPUT` — PM/User source acceptance is bounded to one runtime integration trial; final runtime acceptance remains open.
+8. `DONE / SIGNED_TECHNICAL_PREFLIGHT` — exact additive topology, 3840 cap, input/passthrough and KEY_H resolution accepted.
+9. `DONE / INDEPENDENT_NO_GODOT_REVIEW_PASS` — exact D-029/D-024 eight-file observability, graceful-stop and atomic-runner remediation is implemented; independent re-review reproduces all no-Godot gates with `P0=0 / P1=0 / P2=0`. Contract A is unchanged and current whole brief SHA is K `ccb81f8a…`.
+10. `NEXT / NEW_USER_COORDINATOR_DECISION_AND_LITERAL_BOUNDED_REAL_RUN_ACK_REQUIRED` — PM sync activates nothing. The 32-file canonical evidence root remains HOLD/UNSEALED with exact tree `4ca49b1d…`; only a new ACK naming A/K, final eight hashes, pinned evidence and exact writer/scope may authorize real Steam Godot/runtime/control/capture. CA recurrence is diagnostic FAIL/rc73 and STOP before capture/seal.
+11. R48-05B, rooms, onboarding, background/minimize/performance and broad dog-life work remain later/backlog. Windows compatibility/port/smoke/certification is a separate pre-release wave, not current scope.
 ```
 
-Это изменение порядка не отменяет D-023, accepted runtime causality или будущие Program gates. Оно запрещает новый v6 patch loop и не активирует R48-05B, rooms, onboarding или R48-04A. Approved Mill может быть включён только как static decorative object без mechanic/task/resource/output/input. Labrador остаётся первой living dog; calm back-and-forth read имеет статус `NEEDS_MANIFEST_AMENDMENT`: existing start/walk/stop/turn rows reuse, bounded selector amendment and Game Design + Producer/PM + Technical/Codex re-sign before any executable brief. Dachshund/cart сейчас не является requirement.
+Это изменение порядка не отменяет D-023, accepted runtime causality или будущие Program gates. D-024 требует seam-safe horizontal meadow tile без non-uniform stretch/crop/tails, независимые gameplay/buildable/viewport bounds, horizontal drag pan при узком viewport и примерно 15% пустого meadow reserve справа при каждом zoom. Сразу после крайней buildable-клетки стоит static decorative `Fence Boundary Marker`; Art предоставляет отдельный positive-coordinate mirrored source/export, runtime negative scale запрещён. Marker не имеет collision/input/gameplay authority.
 
-Предыдущий R48-05A brief завершил bounded mechanical evidence, но overall current look отклонён и не создаёт authority для v6 или reconciliation mutation. Текущий Art reconciliation package остаётся `PREPARED_FOR_PM_ACCEPTANCE / NOT EXECUTABLE`; следующий runtime write возможен только по новой staged sequence выше.
+Source-reconciled R48-05A implementation is completed at Technical/Mechanical level. D-024 source QA, bounded PM/User source acceptance, Technical preflight and mechanical implementation are complete. The subsequent D-029/D-024 observability/atomic-runner remediation is implemented and independently no-Godot reviewed PASS. No real-run writer is active; real Steam Godot 4.7.1, Continue runtime, actual PlayerBoot control ACK, GUI/capture/manifest/seal/promotion and final player-facing Art/user acceptance remain pending a new literal bounded real-run ACK.
 
 ---
 
@@ -256,7 +262,7 @@ flowchart LR
 
 - R48-01 и R48-02 можно проектировать параллельно, но их acceptance закрывается совместно: working `Continue` зависит от player save;
 - запись в общий checkout выполняет один последовательный integrator;
-- текущая active sequence: `Art reconciliation PM/User acceptance → bounded Art source wave → ambient-walk manifest amendment/re-sign → separate Codex integration brief → runtime Art/user review`;
+- текущая active sequence: `resumed additive Art source amendment → Art QA/hash → PM/User source acceptance → separate Codex brief/preflight/activation → one integration → runtime Art/user review`;
 - остальные program gates (`R48-04B`, `R48-06`, `R48-07`, `R48-05B`, `R48-04A`) остаются later/open и требуют отдельной будущей приоритизации;
 - Art source work может идти параллельно в отдельном file scope, но runtime Art PASS появляется только после import/readback в обычном player journey.
 
@@ -311,9 +317,10 @@ Codex: sequential implementation under accepted bounded briefs
    - Simulation продолжается; одна dog identity не дублируется одновременно в двух местах.
 
 8. **Как называется уровень готовности.**
-   - Canonical label до Windows smoke:
+   - Canonical label текущей macOS-only development phase:
      `macOS-only internal First Day + Day 2 playable (session-based continuation, prototype visual level; not Steam/release ready)`.
    - Короткий label: `macOS internal two-session playable`.
+   - Windows validation не входит в этот gate и открывается только отдельной pre-release wave по D-025.
 
 9. **Какой визуальный уровень обязателен.**
    - Не final production art.
@@ -641,7 +648,7 @@ Execution boundary:
 - [ ] В каждый момент не более одного главного competing action cue по принятому motion budget.
 - [ ] 30–60 minute report содержит exact build/commit, Godot version, OS/hardware/backend, duration, sampling cadence, CPU/GPU/memory/energy samples и state/event invariants.
 - [ ] PASS thresholds заранее принадлежат owner; без threshold evidence остаётся WARN, а не автоматически PASS.
-- [ ] macOS behavior проверен для internal label; Windows behavior документирован/проверен до external playtest.
+- [ ] macOS behavior проверен для internal label; Windows behavior не входит в R48-04/current Program DoD и ждёт отдельной pre-release activation по D-025.
 
 ---
 
@@ -744,7 +751,7 @@ Source/import gates:
 
 ## 10. R48-05 — Playable World and First Living Dog Integration
 
-Статус: R48-05A implemented mechanical evidence / overall visual CHANGES_REQUIRED / current Art reconciliation package PREPARED_FOR_PM_ACCEPTANCE / R48-05B later
+Статус: R48-05A TECHNICAL_MECHANICAL_PASS / D-024 ACCEPTED_SOURCE_INPUT_FOR_BOUNDED_TRIAL / correction ACCEPTED_EXECUTABLE / parent PARTIAL_WARN / R48-05B later
 
 Владелец реализации: Codex
 
@@ -780,6 +787,10 @@ docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_World_And
 - [ ] First Day/Day 2 causal assertions остаются green.
 - [ ] Player mode не показывает debug geometry или state labels.
 - [ ] Никакой Bicycle ride/tow/hitch choreography не добавлена без отдельного accepted contract.
+- [ ] Meadow покрывает visible/world width seam-safe horizontal tiling без non-uniform stretch, crop, visible seam, black tail или transparent tail.
+- [ ] Gameplay/buildable/viewport bounds независимы; outside-field meadow небилдабельно и исключено из dog idle/H activity.
+- [ ] Узкий viewport поддерживает contract-owned horizontal mouse-drag pan; right reserve остаётся примерно 15% viewport width at every zoom.
+- [ ] Один static decorative Fence Boundary Marker стоит сразу после rightmost buildable cell, рендерится из отдельного authored mirrored positive-coordinate export и не имеет collision/input/gameplay authority.
 
 R48-05A PASS означает только bounded milestone PASS. Parent R48-A/R48-05 остаётся `PARTIAL / WARN`.
 
@@ -891,7 +902,7 @@ fresh profile
 - room parity evidence;
 - 216/144/96 art/readability captures;
 - macOS internal export smoke;
-- Windows real smoke before any external playtest claim.
+- sealed macOS self-capture evidence from a real GUI-capable Godot session before the current runtime Art/user claim.
 
 Focused/unfocused/minimized cadence and 30–60 minute performance evidence remain required for later full program closure, but they do not block the game-first two-visit polish wave.
 
@@ -959,7 +970,7 @@ Focused/unfocused/minimized cadence and 30–60 minute performance evidence rema
 - [ ] Native 216/144/96 readability evidence принято владельцами.
 - [ ] 30–60 minute background/performance evidence собрано.
 - [ ] macOS internal export запускается обычным способом.
-- [ ] Windows smoke выполнен до external playtest или build честно помечен `macOS-only internal First Day + Day 2 playable`.
+- [ ] Current build and evidence are accepted honestly as macOS-only; Windows compatibility is not part of this Program DoD and requires a separate pre-release activation.
 - [ ] Preview research assets не выданы за production assets.
 - [ ] Статусы документов не называют runtime proof shipping game.
 
@@ -986,7 +997,7 @@ Focused/unfocused/minimized cadence and 30–60 minute performance evidence rema
 - Bicycle ride/tow/hitch/sidecar choreography;
 - final production style lock;
 - Steam platform integration/release packaging;
-- full Windows production certification;
+- any Windows compatibility/port/smoke/certification before a separate explicit pre-release Producer/PM activation;
 - MCP/security refactor, если он напрямую не блокирует player journey;
 - generic asset pipeline work без привязки к R48 DoD.
 
@@ -1037,13 +1048,18 @@ Focused/unfocused/minimized cadence and 30–60 minute performance evidence rema
 
 ## 17. Immediate next steps
 
-1. PM/User принимают `STEAM_DESKTOP__Art_Reconciliation__Dog_Buildings_Meadow_v1` и фиксируют canonical references/current visible roster.
-2. Art Director ведёт отдельную bounded source-only wave: базовая графика по D-011/approved library/Labrador direction, только существующие mechanics, без runtime/code mutation.
-3. Параллельно Game Design оформляет bounded ambient-walk selector amendment; Game Design, Producer/PM и Technical/Codex re-sign обязательны. Guardrails: no current/queued Labrador task; only pre-TripTask offered-order or post-Day-2 Quiet Cooperative; ready_to_send calm wait wins; forbidden during authoritative trip/task/delivery, restore and save failure/retry; player gate cancels before transition; zero gameplay/save/progression output.
-4. После Art source review и selector re-sign готовится отдельный Codex integration brief в `04_DEVELOPMENT/`; до его acceptance runtime/import mutation запрещена.
-5. После implementation публикуются immutable runtime captures и проводятся independent Art review plus explicit user-owner review.
-6. Не запускать v6 patch loop, R48-05B/object transfer, rooms, onboarding или background/minimize/performance сейчас.
-7. Broad dog-life catalogue остаётся later product direction/backlog; Game Design отдельно владеет будущими detailed semantics/selectors.
+1. `DONE / TECHNICAL_MECHANICAL_PASS` — source-reconciled world/Labrador integration and immutable evidence are complete.
+2. `DONE / CHANGES_REQUIRED` — independent Art review keeps runtime user/Art acceptance open.
+3. `DONE / D-024 ACCEPTED` — user-owner responsive meadow/field/viewport authority is recorded in the decision log and external PM status record.
+4. `DONE / SIGNED_GD_TECHNICAL` — semantic and Technical readbacks are closed; `offscreen_left=-160` is hidden D-013 absence sentinel only.
+5. `DONE / ART_RESUME_AUTHORIZED` — separate PM source-only activation is recorded.
+6. `DONE / SOURCE_AMENDMENT_READY` — exact meadow tile, mirrored-positive marker and responsive QA/hash handback complete.
+7. `DONE / ACCEPTED_SOURCE_INPUT` — bounded runtime-trial source acceptance recorded; final runtime user/Art acceptance remains open.
+8. `DONE / SIGNED_TECHNICAL_PREFLIGHT` — exact file topology and runtime contracts accepted.
+9. `DONE / INDEPENDENT_NO_GODOT_REVIEW_PASS` — exact eight-file D-029/D-024 observability and atomic-runner remediation is implemented and independently reproduced with `P0=0 / P1=0 / P2=0`; Contract A is unchanged, brief K is `ccb81f8a…`, evidence remains 32 files/no seal/tree `4ca49b1d…`.
+10. `NEXT / NEW_LITERAL_BOUNDED_REAL_RUN_ACK_REQUIRED` — user/coordinator decides whether to proceed and issues a new literal ACK naming A/K, final eight hashes, pinned evidence tree and exact writer/scope. PM docs sync does not activate Godot/runtime/control/capture; CA remains real/unresolved/not allowlisted and recurrence is rc73/STOP before capture/seal.
+11. `LATER / PRE_RELEASE_ONLY` — Windows compatibility/port/smoke/certification opens only through a separate Producer/PM activation and is not a current WARN or blocker.
+12. Do not start v6, R48-05B/object transfer, rooms, onboarding or background/minimize/performance. Broad dog-life catalogue remains later.
 
 ---
 
@@ -1062,6 +1078,56 @@ tools/dev-vertical-slice.sh player-prototype --runtime-load-fixture=second_day_a
 ---
 
 ## 19. Changelog
+
+### 2026-07-16 — D-029/D-024 no-Godot remediation review PASS / real-run ACK next
+
+- Recorded the exact eight-file observability, graceful-stop and atomic-runner remediation as implemented and independently reviewed `PASS` with `P0=0 / P1=0 / P2=0`.
+- Preserved Contract A and advanced active brief provenance to K `ccb81f8a…`; evidence remains 32 files/no seal/tree `4ca49b1d…`, with no real Godot/capture performed.
+- Replaced the obsolete active capture-only resume with a new user/coordinator decision plus literal bounded real-run ACK gate. Final runtime Art/user acceptance remains pending; R48-05B and later scope remain untouched.
+
+### 2026-07-14 — D-025 macOS-only acceptance / D-024 capture-only next
+
+- Removed Windows from the current implementation, QA, evidence, WARN, blocker and acceptance queue; future Windows work now requires a separate pre-release activation.
+- Recorded D-024 as `MECHANICAL_PASS_CANDIDATE / UNSEALED`; exact implementation and regressions are complete and the same sole writer is reactivated only for capture completion.
+- Made the existing Godot self-capture surfaces the current visual-evidence route and kept Screenshot UI / Computer Use only for desktop/native-window context.
+- Activated the one-writer macOS capture-only sequence: two compliance edits → existing self-capture/native checks → evidence seal → independent Art/user review.
+
+### 2026-07-14 — D-024 Technical signed / runtime correction activated
+
+- Closed Technical preflight with the additive 43+43 corpus, one runtime owner, 3840 vertical-fit cap and exact passthrough/KEY_H rules.
+- Activated the brief for the sole writer `019f5ce4-e63c-7d33-a586-d2d3031c8610`.
+- Preserved all no-touch, no-transfer and later-scope boundaries; final runtime review remains open.
+
+### 2026-07-14 — D-024 source accepted / correction brief prepared
+
+- Verified the 51-file amendment, ledger 50/50, QA 48/48 and responsive visual/alpha evidence.
+- Accepted exact tile/marker source for one bounded runtime trial while keeping 3840 vertical fit and final runtime Art/user acceptance open.
+- Prepared a separate non-executable brief combining D-024 integration with ordinary-player presentation cleanup; Technical preflight is next.
+
+### 2026-07-14 — D-024 owner gates signed / Art source resumed
+
+- Closed Game Design and Technical readbacks under fixed `[0,1740]` field and non-persisted responsive presentation.
+- Reconciled `offscreen_left=-160` solely as the hidden pre-existing D-013 absence sentinel.
+- Issued the separate PM `ART_RESUME` to the retained Art owner; runtime/Codex remains blocked.
+
+### 2026-07-14 — D-024 responsive meadow / field / viewport sequence
+
+- Accepted the shown Labrador/building/meadow visual direction without reopening a broad pixel loop.
+- Replaced unique full-width meadow with seam-safe horizontal tiling and split gameplay/buildable/viewport bounds.
+- Required drag pan when needed, about 15% empty right reserve at every zoom and one static positive-scale mirrored Fence Boundary Marker after the rightmost buildable cell.
+- Paused Art until GD + Technical readbacks and a separate Producer/PM resume activation; no correction Codex brief is executable.
+
+### 2026-07-13 — source-reconciled integration brief executable
+
+- Closed Art promotion and Technical exact-file preflight gates.
+- Accepted the corrected 2992-source-to-1740-runtime mapping, one render lane and exact A–H presentation boundary.
+- Assigned one Codex writer; retained R48-05B, rooms, onboarding and background work outside current scope.
+
+### 2026-07-13 — final Art source accepted / integration brief prepared
+
+- Accepted the final source input and resolved Labrador/Kitchen/Mill P1s as-is for a bounded integration trial, with final user acceptance after actual captures.
+- Fixed the active visible roster/order, provenance route, Sheet A exclusion and honest source/runtime status split in the PM activation record.
+- Prepared the separate integration brief for Technical preflight; no runtime authority granted.
 
 ### 2026-07-13 — current base graphics / later dog-life reprioritization
 

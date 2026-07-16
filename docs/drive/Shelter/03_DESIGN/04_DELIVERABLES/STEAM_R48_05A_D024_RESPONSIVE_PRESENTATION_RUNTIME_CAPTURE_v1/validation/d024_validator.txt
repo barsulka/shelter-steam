@@ -1,0 +1,1 @@
+d024_responsive_presentation_validator=PASS authority_contract_sha256=4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf source=51 ledger=50/50 qa=48/48 corpus=43+43 meadow_load=1 marker_load_draw=1

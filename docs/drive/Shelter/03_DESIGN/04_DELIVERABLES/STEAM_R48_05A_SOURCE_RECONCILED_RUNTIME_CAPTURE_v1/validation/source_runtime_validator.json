@@ -1,0 +1,288 @@
+{
+  "check_count": 64,
+  "checks": [
+    "pinned SHA-256: docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Accepted_Art_Source_And_Labrador_H_Runtime_Integration_v1.md",
+    "pinned SHA-256: docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md",
+    "pinned SHA-256: docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1__Approved_Promotion_Record.md",
+    "pinned SHA-256: docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1__PM_User_Source_Acceptance.md",
+    "pinned SHA-256: docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/README.md",
+    "pinned SHA-256: docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/PROVENANCE.md",
+    "pinned SHA-256: docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/REFERENCE_READBACK.md",
+    "pinned SHA-256: docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/ART_QA.md",
+    "pinned SHA-256: docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/SOURCE_MANIFEST.json",
+    "pinned SHA-256: docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/QA_REPORT.json",
+    "pinned SHA-256: docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/INVENTORY.json",
+    "pinned SHA-256: docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/HASHES.sha256",
+    "frozen package contains exactly 606 files",
+    "frozen inventory contains exactly 605 ledger entries",
+    "frozen QA is exact 157/157 PASS",
+    "frozen package has no pycache/pyc",
+    "Sheet A reuse is ZERO",
+    "frozen HASHES ledger verifies 605/605",
+    "authored runtime contains exactly 41 PNG",
+    "authored runtime contains exactly 41 tracked import sidecars",
+    "all 41 sidecars are Godot texture imports",
+    "exact static world layers 00-09,11-16",
+    "all 16 world layers are 2992x224",
+    "standalone Bicycle exact SHA-256",
+    "exact 24 Labrador identity composites",
+    "all 24 Labrador composites are 512x320",
+    "source-to-runtime equality is exact for all 41 PNG",
+    "layer10 is not imported into authored runtime",
+    "authored runtime contains exactly one standalone Bicycle",
+    "binding retains exact ordered 12 semantic action rows",
+    "binding retains current selector-H authority path/SHA and exact 12-row overlay",
+    "binding preserves Godot authority and derived presentation",
+    "binding records exact source/runtime widths",
+    "binding records exact 1740/2992 coefficient",
+    "binding records positive Labrador 0.24 and forbids mirroring",
+    "binding records exact 41+41 topology",
+    "selector H is derived, non-persisted and zero-output",
+    "selector H exact durable cursors",
+    "selector H exact converted route",
+    "selector H exact cadence",
+    "station record preserves authority and exact coefficient",
+    "all six anchor centers store source_px and exact runtime_units",
+    "Kitchen/Packing both-side approach/contact/work/exit roots are exact",
+    "Mill layer12 is static decorative with zero authority",
+    "station record retains exact forbidden transfer list",
+    "adapter retains one base and three additive AnimationPlayers",
+    "one runtime Labrador definition and one adapter instance",
+    "no negative-scale facing shortcut",
+    "adapter emits no gameplay output",
+    "exact legacy_unbound lane remains",
+    "adapter contains exact H gate/cancel/cadence",
+    "unknown selector fails closed outside A-H",
+    "demo records exact runtime/source world widths",
+    "single Bicycle slot uses authored texture and exact parked placement",
+    "runtime loader fails loud on layer10",
+    "parent custom draw preserves exact single-lane z order",
+    "old duplicate anchors/tail/mask lanes are not rendered",
+    "demo renders accepted identity composites only",
+    "one Labrador slot remains visible in authored or legacy lane",
+    "H/presentation state is not persisted",
+    "animation library tracks presentation properties only",
+    "Godot test contains exact H and 33-cursor normal-path matrix",
+    "capture helper targets new immutable source-reconciled pack and guards history",
+    "all explicit no-touch implementation paths remain clean"
+  ],
+  "errors": [],
+  "frozen_ledger_ok_count": 605,
+  "godot_sidecar_count": 41,
+  "mutation_performed": false,
+  "runtime_art_pass": false,
+  "runtime_png_count": 41,
+  "source_to_runtime": [
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/00__world_depth_faint_trees_shrubs.png",
+      "sha256": "2bb3600102c666bb410ae1647c166697ad3645dfb4b0310e1e9470bbac81788d",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/00__world_depth_faint_trees_shrubs.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/01__world_ground_grass_mass.png",
+      "sha256": "9ef3e77a921ebb3d1a8b460f462651092e73a1e5a00e4a01482d4b40262c3a8c",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/01__world_ground_grass_mass.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/02__world_path_dirt_worn.png",
+      "sha256": "f2752e10b3ea13783d692f1e11983a69d69f1de5c7e7e1a696dc90853bb43169",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/02__world_path_dirt_worn.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/03__world_ground_soil_base.png",
+      "sha256": "1f0775c8c13fed69897b2d9e2c1a790fbd0165e7c314c50b6cd785f19f82906e",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/03__world_ground_soil_base.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/04__world_depth_shrub_cluster_left.png",
+      "sha256": "4c9e970a910e41ed929203d43bf4bc9e4846a90e9e7ed3c9158e546006374c90",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/04__world_depth_shrub_cluster_left.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/05__world_depth_shrub_cluster_mid.png",
+      "sha256": "4b6a1e56a79fdd719e88f20274b894d62c01f51356e8eb14ae0b48e897fde540",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/05__world_depth_shrub_cluster_mid.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/06__world_depth_shrub_cluster_right.png",
+      "sha256": "6a5499eac1d97b1642bb75262aac43efa0c8a7a04074f6a273564c149b85db71",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/06__world_depth_shrub_cluster_right.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/07__world_fence_back_span_left.png",
+      "sha256": "c32615d0860d7129fe80c512a0e89610f2f250d6c75335187031a002a24f667f",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/07__world_fence_back_span_left.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/08__world_fence_back_span_right.png",
+      "sha256": "4f933b4407b9cd795be9eecfdb681dd9c29497d2897c0bad8f8b9826d5039cc6",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/08__world_fence_back_span_right.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/09__world_anchor_road_sign.png",
+      "sha256": "eba5f57324a0df1974c15ec3ac0fad9d017a54873b8708568f54168b565d3efc",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/09__world_anchor_road_sign.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/11__world_building_storage.png",
+      "sha256": "e0dcdd4c3c1cd0e6cb4f4cb0a2e010ab9eb727e389d7730a6cdd0c281d127d8e",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/11__world_building_storage.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/12__world_utility_mill_static.png",
+      "sha256": "003dc67b77c950d6181b67dba855e92f4438825901517b093a659cdde7d3a0d1",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/12__world_utility_mill_static.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/13__world_building_kitchen.png",
+      "sha256": "5424eb62cf61c922235528756ad810b4a7f86ff114d496c1c28096f1befd3e75",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/13__world_building_kitchen.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/14__world_utility_packing.png",
+      "sha256": "b701549bffa360c2fa3076fed83734931e20ec721ba5247a082b5b36f964b6f8",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/14__world_utility_packing.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/15__world_endpoint_van.png",
+      "sha256": "cf90e493e9020c1e1e82fbe379c48633f8215c717763bcdfb7547c2e8d9382b5",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/15__world_endpoint_van.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/layers/16__world_fence_front_span_pause_only.png",
+      "sha256": "b1a004f22b392d456727a4356e5dabf29f726b28a80149cab5dd385142bdcbc8",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/16__world_fence_front_span_pause_only.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/world/assets/bicycle.png",
+      "sha256": "211b6c12774bf1170bf16c108e6dbada2d35a8da69fecb8656508e85695756c5",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/world/assets/bicycle.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/ambient_attentive_left/identity_rgba.png",
+      "sha256": "6d145c6cac652a3a9226ca6cbd6b1900806c08bebce2ae925ea131dcd027b7f1",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/ambient_attentive_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/ambient_attentive_right/identity_rgba.png",
+      "sha256": "e416b494b71d5b238c8bd34aa443085ac83abc370d125837d2779e1f5abb13ef",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/ambient_attentive_right/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/approach_left/identity_rgba.png",
+      "sha256": "29807896efc5231d73117cb8bc544cc47c5f4b6a643cd0b018fc79062f95923d",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/approach_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/approach_right/identity_rgba.png",
+      "sha256": "e7752f4aa476d07503aafff89b1fa69a71fa535864eabca6b5e6d64a38d868ff",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/approach_right/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/contact_align_left/identity_rgba.png",
+      "sha256": "4e6cbf7571a2566abeeb04e9c7be15a5ebc25608af903be9b718f4a45006f550",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/contact_align_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/contact_align_right/identity_rgba.png",
+      "sha256": "1fe1fe5aed1e14bd3be642a1bbbb311e582969a328a538d39b41cd04e54847b3",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/contact_align_right/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/idle_neutral_right/identity_rgba.png",
+      "sha256": "0120adb772fe463bcf4bcc85f422903182efc663be4df47e9487b289a477fa72",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/idle_neutral_right/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/kitchen_work_left/identity_rgba.png",
+      "sha256": "1231cd92706ee84e45cf52bff97c2bf41e9cdfa18cca32dbac16737e00d1c1c9",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/kitchen_work_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/kitchen_work_right/identity_rgba.png",
+      "sha256": "be6cb2caa71e8cc03bd8d806630de6a615f16a37d45361ad9a261d6eb95b321a",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/kitchen_work_right/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/locomotion_start_left/identity_rgba.png",
+      "sha256": "9382db1b42a6a050f06429dcdff57af66b0e46aa20844a46a2794804d9261004",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/locomotion_start_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/locomotion_start_right/identity_rgba.png",
+      "sha256": "3fe8d977906d7701c1515c25259dfa86126fbec62e24a69ee6e231a088093048",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/locomotion_start_right/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/locomotion_stop_left/identity_rgba.png",
+      "sha256": "050c96825463bb5f94095453788f345bab02200b55a4d00a4a4d70c45331998e",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/locomotion_stop_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/locomotion_stop_right/identity_rgba.png",
+      "sha256": "947038c046e1b0356ac7aa87590828b1907754e27d9a94bfa30d893bf368862c",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/locomotion_stop_right/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/packing_focus_left/identity_rgba.png",
+      "sha256": "a694b83f9ef4a6754444465b36494013dcd880e782e7006bf137534780af1de9",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/packing_focus_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/packing_focus_right/identity_rgba.png",
+      "sha256": "a658a2b513d90bd4dfe7c6edf5e3c2dc2b1a0e07b2233bfe398a210cd470f528",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/packing_focus_right/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/packing_work_left/identity_rgba.png",
+      "sha256": "4db6141c77ea3420159e5fe2d8694fc101c35ad8ce8e0fb4e5165e05b639ab79",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/packing_work_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/packing_work_right/identity_rgba.png",
+      "sha256": "e45424f5538be29522ef09d755d022e45305b45444c5b16b8993fa3cee28864d",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/packing_work_right/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/turn_left_to_right_mid/identity_rgba.png",
+      "sha256": "bfb68ea68a4cdc77a58a94cc04f9aee735f2322d92d4b465a72b6b490d302895",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/turn_left_to_right_mid/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/turn_right_to_left_mid/identity_rgba.png",
+      "sha256": "6f80c9e4592108bcc0dc063312f68616af2e7fc2f0184474821d0a2bc8955abe",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/turn_right_to_left_mid/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/wait_calm_left/identity_rgba.png",
+      "sha256": "616b62dfb5ad2afa170620f161086ae4bc6e66b5517841bb7d68862b717275ef",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/wait_calm_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/walk_support_a_left/identity_rgba.png",
+      "sha256": "0d2dd88125052154b87d42d4b9251fee80b4ce60e54345db7732d4ae9a86e763",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/walk_support_a_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/walk_support_a_right/identity_rgba.png",
+      "sha256": "64988614de3a7f3bad325f7c3b89e5df545867ad28f111338f513c1d1040c017",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/walk_support_a_right/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/walk_support_b_left/identity_rgba.png",
+      "sha256": "759f837913a59ad19dc9bf0602eedf6882122180e08a89e5052ab84f7e67294d",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/walk_support_b_left/identity_rgba.png"
+    },
+    {
+      "runtime": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/walk_support_b_right/identity_rgba.png",
+      "sha256": "cf31420f0097881494d4c8cb01ddad2da62ab4789164be00d10b26ed82685066",
+      "source": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/labrador/poses/walk_support_b_right/identity_rgba.png"
+    }
+  ],
+  "source_to_runtime_count": 41,
+  "status": "PASS",
+  "stop_code": null,
+  "validator": "validate-labrador-r48-05a",
+  "visual_approval": "NOT_EVALUATED",
+  "warnings": []
+}

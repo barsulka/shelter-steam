@@ -2,46 +2,78 @@
   "schema_version": "shelter.labrador_r48_05a.station_anchors/v1",
   "actor_id": "dog.labrador_intro",
   "runtime_authority": "godot_state",
-  "source_actor_root": [256, 280],
-  "station_source_root": [512, 300],
-  "source_px_to_world_unit": 0.24,
-  "previous_trial_source_px_to_world_unit": 0.6,
-  "runtime_scale_correction": "R48-05A v4 Art-owner ACCEPT_BOUNDED_SCALE_ENVELOPE trial; uniform positive 0.24 with accepted source numeric anchors reprojected by the same uniform factor",
+  "presentation_state": "derived_non_persisted",
+  "source_world_width_px": 2992.0,
+  "runtime_world_width": 1740.0,
+  "source_world_to_runtime": 0.5815508021390374,
+  "source_actor_root_px": [256.0, 280.0],
+  "labrador_runtime_scale": 0.24,
+  "uniform_positive_scale": true,
+  "anchor_centers": {
+    "object.road_sign": {"source_px": 129.5, "runtime_units": 75.310828877005},
+    "transport.basket_bicycle": {"source_px": 300.0, "runtime_units": 174.465240641711},
+    "object.storage": {"source_px": 610.5, "runtime_units": 355.036764705882},
+    "object.kitchen": {"source_px": 1335.5, "runtime_units": 776.661096256684},
+    "object.packing_table": {"source_px": 1760.0, "runtime_units": 1023.529411764706},
+    "object.delivery_van_endpoint": {"source_px": 2399.5, "runtime_units": 1395.431149732620}
+  },
   "visual_anchors": {
-    "visual_anchor.none": {
-      "transfer_semantics": false
-    },
-    "visual_anchor.van": {
-      "object_id": "object.delivery_van_endpoint",
-      "transfer_semantics": false
-    },
-    "visual_anchor.station": {
-      "object_ids": ["object.kitchen", "object.packing_table"],
-      "transfer_semantics": false
-    },
+    "visual_anchor.none": {"transfer_semantics": false},
+    "visual_anchor.van": {"object_id": "object.delivery_van_endpoint", "transfer_semantics": false},
+    "visual_anchor.station": {"object_ids": ["object.kitchen", "object.packing_table"], "transfer_semantics": false},
     "visual_anchor.kitchen": {
       "object_id": "object.kitchen",
-      "approach_world_offset": 104.16,
-      "contact_world_offset": 62.88,
-      "work_world_offset": 54.24,
-      "exit_world_offset": 104.16,
+      "from_left_facing_right": {
+        "approach": {"source_px": 1073.0, "runtime_units": 624.004010695187},
+        "contact": {"source_px": 1194.0, "runtime_units": 694.371657754011},
+        "work": {"source_px": 1198.0, "runtime_units": 696.697860962567},
+        "exit": {"source_px": 1073.0, "runtime_units": 624.004010695187}
+      },
+      "from_right_facing_left": {
+        "approach": {"source_px": 1598.0, "runtime_units": 929.318181818182},
+        "contact": {"source_px": 1475.0, "runtime_units": 857.787433155080},
+        "work": {"source_px": 1471.0, "runtime_units": 855.461229946524},
+        "exit": {"source_px": 1598.0, "runtime_units": 929.318181818182}
+      },
+      "station_front_occlusion": "zero",
       "transfer_semantics": false
     },
     "visual_anchor.packing_table": {
       "object_id": "object.packing_table",
-      "approach_world_offset": 104.16,
-      "contact_world_offset": 60.0,
-      "work_world_offset": 50.88,
-      "exit_world_offset": 104.16,
+      "from_left_facing_right": {
+        "approach": {"source_px": 1522.0, "runtime_units": 885.120320855615},
+        "contact": {"source_px": 1619.0, "runtime_units": 941.530748663102},
+        "work": {"source_px": 1623.0, "runtime_units": 943.856951871658},
+        "exit": {"source_px": 1522.0, "runtime_units": 885.120320855615}
+      },
+      "from_right_facing_left": {
+        "approach": {"source_px": 1998.0, "runtime_units": 1161.938502673797},
+        "contact": {"source_px": 1900.0, "runtime_units": 1104.946524064171},
+        "work": {"source_px": 1896.0, "runtime_units": 1102.620320855615},
+        "exit": {"source_px": 1998.0, "runtime_units": 1161.938502673797}
+      },
+      "station_front_occlusion": "zero",
       "transfer_semantics": false
     }
   },
-  "forbidden_runtime_semantics": [
-    "pickup",
-    "attach",
-    "carry",
-    "place",
-    "detach"
-  ],
-  "source_ref": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/manifests/station_anchors.json"
+  "selector_H_route": {
+    "source_px": [480.0, 2380.0],
+    "runtime_units": [279.144385026738, 1384.090909090909],
+    "cycles_per_traverse": 19,
+    "cycle_distance_runtime_units": 58.155080213904,
+    "speed_runtime_units_per_second": 70.920829529151,
+    "dwell_seconds": [4.5, 8.0],
+    "turn_seconds": 0.44,
+    "start_seconds": 0.18,
+    "walk_cycle_seconds": 0.82,
+    "stop_seconds": 0.24,
+    "transfer_semantics": false
+  },
+  "static_decorative_only": {
+    "world_layer_index": 12,
+    "semantic_id": "world.utility.mill_static",
+    "station_or_task_authority": false
+  },
+  "forbidden_runtime_semantics": ["pickup", "attach", "carry", "place", "detach"],
+  "source_ref": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/SOURCE_MANIFEST.json"
 }

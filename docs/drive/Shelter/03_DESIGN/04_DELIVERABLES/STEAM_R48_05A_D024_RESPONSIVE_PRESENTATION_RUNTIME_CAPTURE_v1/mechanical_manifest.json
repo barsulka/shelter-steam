@@ -1,0 +1,35 @@
+{
+  "schema": "shelter.d024-mechanical-evidence.v1",
+  "date": "2026-07-14",
+  "status": "MECHANICAL_PASS_CANDIDATE / UNSEALED / NATIVE_GATE_BLOCKED_PRE_GODOT",
+  "brief_sha256": "72119140c079e780532873cce1ade75e676e02617ee673e6313b43b8db9b390c",
+  "pm_activation_sha256": "98e3ad38ebea5446d51c81c20690d9205333d63a5c0efbf09010c9ac4df1ce91",
+  "source_acceptance_sha256": "eab92cb51a84361ba48036fed760ebbcdbfac59afe8b3b7d824dd42e84856079",
+  "source_package_hashes_sha256": "220a9532f54b8f8ae813f32ac02ef28e35a5d2bde6ded318ecb08a43319e43bf",
+  "a_h_manifest_sha256": "d8f1a9fc9226588097eb7bdfc162b6eff520ef42605b369ba25f906daa52ae56",
+  "runtime_corpus": {
+    "png": 43,
+    "import_sidecars": 43,
+    "previous_import_sidecars_unchanged": 41
+  },
+  "mechanical": {
+    "d024_validator": "PASS",
+    "responsive_2992_3456_3840": "PASS",
+    "a_h_and_normal_paths": "PASS",
+    "profile_sigkill_retry": "PASS",
+    "cursor_33_restart_advance": "PASS",
+    "launch_surfaces": "PASS"
+  },
+  "native": {
+    "macos": "NATIVE_GATE_BLOCKED_PRE_GODOT",
+    "windows": "CROSS_PLATFORM_WARN_WINDOWS_PENDING",
+    "desktop_capture_claimed": false,
+    "passthrough_claimed": false,
+    "ordinary_play_gui_claimed": false
+  },
+  "review": {
+    "runtime_art": "PENDING",
+    "user_acceptance": "PENDING"
+  },
+  "sealed": false
+}

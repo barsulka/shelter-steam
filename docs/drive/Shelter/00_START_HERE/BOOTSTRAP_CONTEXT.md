@@ -1,7 +1,7 @@
 # BOOTSTRAP_CONTEXT — Shelter compressed entry point
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-13
+Обновлено: 2026-07-15
 Статус: active bootstrap / current-summary
 Владелец: Producer / Project Manager
 Назначение: быстрый вход новой AI-сессии в актуальный контекст Shelter без чтения всей истории.
@@ -10,7 +10,13 @@
 
 ## 0. Как пользоваться
 
-Новая серьёзная сессия Shelter читает:
+Когда D-026 source-derived MCP bridge доступен и сообщает `health=current`, новая серьёзная сессия начинает routine bootstrap/context routing с:
+
+```text
+shelter_context_bundle(role, area, task, max_bytes)
+```
+
+D-026 принят, реализован и независимо перепроверен с финальным `PASS`: прежние два P1 и два P2 finding закрыты, новых P0/P1/P2 не найдено, daily-default rollout активирован. Прямое чтение source docs применяется как authority/exact fallback в перечисленных ниже условиях:
 
 1. `PROJECTS_RULES.md`
 2. `AGENTS.md`
@@ -21,6 +27,8 @@
 7. только потом deep docs по конкретной задаче
 
 Этот файл не заменяет решения и specs. Он говорит, что сейчас является актуальным и куда идти дальше.
+
+Прямой source read обязателен при unavailable/non-current MCP, `fallback`, omission/truncation, exact brief / Accepted ADR / normative contract, conflict/parser failure и перед изменением самого source document.
 
 ---
 
@@ -78,13 +86,16 @@ docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Pl
 
 ### Current working environment
 
-По D-021 проект работает как локальный ChatGPT Work/Codex project поверх текущего checkout монорепозитория:
+По D-021 и уточняющему D-026 проект работает как локальный ChatGPT Work/Codex project поверх текущего checkout монорепозитория:
 
 ```text
-Work/Codex -> direct local filesystem access to this checkout.
-Shelter MCP -> optional local domain-specific runtime/inspection adapter in mcp/.
+Healthy Shelter MCP -> default source-derived routine bootstrap/context routing.
+Local source docs -> authority, exact verification and fallback.
+Shelter MCP -> local domain-specific runtime/inspection adapter in mcp/.
 Shelter MCP setup -> project-scoped `.codex/config.toml` + `mcp/run.sh` over STDIO.
 ```
+
+Current transition: D-026 implementation существует и независимо reviewed `PASS`; static current-fact mirror/fingerprints и global startup knowledge gate удалены, same-session capability isolation проходит. Все четыре прежних finding закрыты; unit/race/vet/build, root+nested STDIO, Codex MCP list/get и non-interactive one-call smoke проходят. Healthy `shelter_context_bundle` теперь daily default, а direct source reads остаются authority/exact fallback для documented conditions.
 
 Отдельные ролевые задачи не считаются общей памятью. Их долговременная синхронизация идёт через Current Memory, Knowledge, RFC, brief и handoff.
 
@@ -146,6 +157,7 @@ Implemented / available:
 - Godot Control Connector.
 - Workbench Runtime Capture Harness.
 - Shelter MCP source under `mcp/`; project-scoped local STDIO setup is complete.
+- D-026 source-derived MCP context bridge accepted, implemented and independently reviewed `PASS`; daily-default rollout active.
 - First Day MVP runtime proof.
 - First Day visible review capture packs v1/v2/v3.
 - First Day Art/UX visual-language pass v1 implemented and accepted as prototype pass.
@@ -230,6 +242,8 @@ Important accepted decisions:
 - D-021 — local ChatGPT Work/Codex checkout and Shelter MCP boundary.
 - D-022 — complete same-chain Day 2 Warm Food Delivery executable scope lock.
 - D-023 — session-based First Day + Day 2 player journey, exact input budget, persisted reserve, Quiet Cooperative, Labrador P0 and Kitchen P1.
+- D-024..D-025 — responsive meadow/field/viewport boundary and macOS-first development/capture sequence.
+- D-026 — MCP-first source-derived routine bootstrap; source docs remain authority/exact fallback; knowledge failure is capability-local.
 
 ---
 
@@ -315,10 +329,10 @@ Codex work must be assigned through a brief file in:
 docs/drive/Shelter/04_DEVELOPMENT/
 ```
 
-Current workflow migration brief:
+Current workflow / MCP implementation and acceptance authority:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__Source_Derived_MCP_Context_Bridge_v1.md
 ```
 
 ### Project Manager / Knowledge Base Maintainer
@@ -333,7 +347,7 @@ SUPERSEDED_MAP.md
 02_DECISIONS.md
 ```
 
-PM focus now: preserve D-021/R-29 history, keep D-023 Current Memory synchronized and coordinate the game-first brief sequence without promoting proposed Art/dog contracts into implementation authority.
+PM focus now: preserve D-021/D-026 history, keep the accepted daily-default/fallback boundary synchronized and react only to a concrete drift or remote-CI signal.
 
 ---
 
@@ -342,7 +356,7 @@ PM focus now: preserve D-021/R-29 history, keep D-023 Current Memory synchronize
 Workflow / Codex:
 
 ```text
-D-021 local Work/Codex migration is complete. Use the checkout directly for files and the optional local Shelter MCP only for bounded knowledge/runtime/inspection tools.
+D-026 is accepted, implemented and independently reviewed PASS; healthy shelter_context_bundle is the routine bootstrap default. No D-026 remediation or re-review work remains. The already-governed project next step is D-024 capture-only completion through the existing macOS Godot self-capture path, evidence seal and Art/user review; direct source reads remain authority/exact fallback under documented conditions.
 ```
 
 Product / Game Design:
@@ -375,6 +389,30 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## 10. Changelog
+
+### 2026-07-15 — D-026 final reviewer PASS / daily default active
+
+- Recorded independent re-review `PASS`: the prior two P1 and two P2 findings are closed with no new P0/P1/P2 or compatibility regressions.
+- Activated healthy `shelter_context_bundle` as the routine bootstrap/context-routing default while keeping source docs as authority and exact fallback.
+- Closed D-026 work and returned the current project next step to the already-governed D-024 macOS self-capture/seal/review wave; retained first remote CI, the accepted semantic-conflict boundary and honest 4 KiB fallback as non-blocking residuals.
+
+### 2026-07-15 — D-026 remediation local PASS / independent re-review next
+
+- Recorded all four review findings as fixed locally and the full local matrix/client smokes as PASS.
+- Made independent re-review the only current MCP next step; final acceptance and daily-default rollout remain pending reviewer PASS.
+- Kept direct source fallback active and preserved the earlier BLOCKED/findings record as history.
+
+### 2026-07-15 — D-026 post-implementation review BLOCKED / remediation active
+
+- Recorded that the source-derived implementation exists and happy-path local gates pass.
+- Preserved independent review `BLOCKED` on two P1 and two P2 findings; final acceptance and daily-default rollout remain pending re-review.
+- Removed obsolete pre-implementation/static-catalog-red current claims and kept direct source reads as the active fallback.
+
+### 2026-07-15 — D-026 MCP-first context bridge accepted
+
+- Made healthy source-derived MCP context routing the target default routine bootstrap path.
+- Kept local docs as authority and listed bounded direct-read fallback conditions.
+- Recorded current MCP knowledge startup as red/non-current and activated a separate executable Codex repair brief.
 
 ### 2026-07-13 — bounded R48-05A accepted/executable
 

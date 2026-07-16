@@ -9,7 +9,8 @@ IMMUTABLE_V1_DIR="$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R
 IMMUTABLE_V2_DIR="$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v2"
 IMMUTABLE_V3_DIR="$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v3"
 IMMUTABLE_V4_DIR="$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v4"
-OUTPUT_DIR="${R48_05A_CAPTURE_DIR:-$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5}"
+IMMUTABLE_V5_DIR="$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5"
+OUTPUT_DIR="${R48_05A_CAPTURE_DIR:-$REPO_DIR/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_SOURCE_RECONCILED_RUNTIME_CAPTURE_v1}"
 MODE="${1:-capture}"
 
 if [[ ! -x "$GODOT_BIN" ]]; then
@@ -17,14 +18,19 @@ if [[ ! -x "$GODOT_BIN" ]]; then
     exit 1
 fi
 
-if [[ "$OUTPUT_DIR" == "$IMMUTABLE_V1_DIR" || "$OUTPUT_DIR" == "$IMMUTABLE_V2_DIR" || "$OUTPUT_DIR" == "$IMMUTABLE_V3_DIR" || "$OUTPUT_DIR" == "$IMMUTABLE_V4_DIR" ]]; then
-    echo "R48-05A v1/v2/v3/v4 capture packs are immutable; use the v5 output path" >&2
+if [[ "$OUTPUT_DIR" == "$IMMUTABLE_V1_DIR" || "$OUTPUT_DIR" == "$IMMUTABLE_V2_DIR" || "$OUTPUT_DIR" == "$IMMUTABLE_V3_DIR" || "$OUTPUT_DIR" == "$IMMUTABLE_V4_DIR" || "$OUTPUT_DIR" == "$IMMUTABLE_V5_DIR" ]]; then
+    echo "R48-05A v1/v2/v3/v4/v5 capture packs are immutable; use the source-reconciled v1 output path" >&2
+    exit 3
+fi
+
+if [[ -f "$OUTPUT_DIR/HASHES.sha256" ]]; then
+    echo "Source-reconciled runtime capture v1 is already sealed and immutable" >&2
     exit 3
 fi
 
 verify_immutable_history() {
     local immutable_dir
-    for immutable_dir in "$IMMUTABLE_V1_DIR" "$IMMUTABLE_V2_DIR" "$IMMUTABLE_V3_DIR" "$IMMUTABLE_V4_DIR"; do
+    for immutable_dir in "$IMMUTABLE_V1_DIR" "$IMMUTABLE_V2_DIR" "$IMMUTABLE_V3_DIR" "$IMMUTABLE_V4_DIR" "$IMMUTABLE_V5_DIR"; do
         (
             cd "$immutable_dir"
             shasum -a 256 -c HASHES.sha256 >/dev/null
@@ -38,12 +44,23 @@ run_visual_tests() {
 }
 
 run_validators() {
-    python3 "$ROOT_DIR/tools/validate-labrador-r48-05a.py"
+    local evidence_dir="${1:-}"
+    if [[ -n "$evidence_dir" ]]; then
+        mkdir -p "$evidence_dir/validation"
+        python3 "$ROOT_DIR/tools/validate-labrador-r48-05a.py" --json | tee "$evidence_dir/validation/source_runtime_validator.json"
+    else
+        python3 "$ROOT_DIR/tools/validate-labrador-r48-05a.py"
+    fi
     local manifest_validator="$HOME/.codex/skills/shelter-dog-animation-pipeline/scripts/validate_dog_animation_manifest.py"
     local runtime_validator="$HOME/.codex/skills/shelter-dog-animation-pipeline/scripts/validate_dog_runtime_binding.py"
     if [[ -f "$manifest_validator" && -f "$runtime_validator" ]]; then
-        python3 "$manifest_validator" --manifest "$ROOT_DIR/resources/prototypes/vertical_slice/labrador_r48_05a_binding_v1.json"
-        python3 "$runtime_validator" --manifest "$ROOT_DIR/resources/prototypes/vertical_slice/labrador_r48_05a_binding_v1.json"
+        if [[ -n "$evidence_dir" ]]; then
+            python3 "$manifest_validator" --manifest "$ROOT_DIR/resources/prototypes/vertical_slice/labrador_r48_05a_binding_v1.json" | tee "$evidence_dir/validation/animation_manifest_validator.txt"
+            python3 "$runtime_validator" --manifest "$ROOT_DIR/resources/prototypes/vertical_slice/labrador_r48_05a_binding_v1.json" | tee "$evidence_dir/validation/runtime_binding_validator.txt"
+        else
+            python3 "$manifest_validator" --manifest "$ROOT_DIR/resources/prototypes/vertical_slice/labrador_r48_05a_binding_v1.json"
+            python3 "$runtime_validator" --manifest "$ROOT_DIR/resources/prototypes/vertical_slice/labrador_r48_05a_binding_v1.json"
+        fi
     fi
 }
 
@@ -62,7 +79,7 @@ case "$MODE" in
             --scene res://tests/vertical_slice_visual/labrador_visual_test_runner.tscn -- \
             --r48-05a-capture-dir="$OUTPUT_DIR" \
             --r48-05a-git-commit="$git_commit"
-        run_validators
+        run_validators "$OUTPUT_DIR"
         (
             cd "$OUTPUT_DIR"
             find . -type f ! -name HASHES.sha256 -print0 | sort -z | xargs -0 shasum -a 256

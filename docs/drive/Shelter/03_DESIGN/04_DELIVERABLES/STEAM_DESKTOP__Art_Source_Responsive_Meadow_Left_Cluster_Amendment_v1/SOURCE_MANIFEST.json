@@ -1,0 +1,303 @@
+{
+  "coordinate_contract": {
+    "gameplay_world_x": [
+      0.0,
+      1740.0
+    ],
+    "offscreen_left_minus_160": "D-013 hidden Dachshund/Bicycle absence sentinel only; excluded from visible meadow, field, stations, A-H and idle space",
+    "right_reserve_target": 0.15,
+    "runtime_units_per_source_px": 0.5815508021390374,
+    "source_px_per_runtime_unit": 1.7195402298850575,
+    "world_baseline_y_units": 122.7072192513369,
+    "world_source_baseline_y_px": 211,
+    "world_source_canvas_px": [
+      2992,
+      224
+    ]
+  },
+  "cq_pixel_or_style_reuse": "ZERO",
+  "date": "2026-07-14",
+  "fence_boundary_marker": {
+    "alpha_bbox": [
+      0,
+      0,
+      174,
+      106
+    ],
+    "boundary_plane_world_x": 1740.0,
+    "contact_baseline_y_px": 105,
+    "derivation": "one accepted fence span cropped by semantic alpha bounds, horizontally authored into new positive-coordinate pixels, layers preserved; no runtime mirror",
+    "dimensions_px": [
+      174,
+      106
+    ],
+    "draw_slot": "after accepted layer 16 and before current resources/cues",
+    "export": "exports/boundary_marker/fence_boundary_marker_rgba.png",
+    "export_sha256": "e0237a29119a318cb7b5acb431ed17e7b70d7da3d5386883b335d16ba7416036",
+    "exterior_body_world_x_min": 1745.2339572192514,
+    "master": "source/fence_boundary_marker/fence_boundary_marker_master.ora",
+    "master_sha256": "e04a73af66742472c293eb3bd5925c22d10933243f46f27500713839c08c4111",
+    "mode": "RGBA",
+    "negative_scale": false,
+    "opaque_functional_body_bbox": [
+      9,
+      25,
+      150,
+      77
+    ],
+    "pivot_px": [
+      0,
+      105
+    ],
+    "placement_world": [
+      1740.0,
+      122.7072192513369
+    ],
+    "positive_uniform_runtime_scale": 0.5815508021390374,
+    "runtime_mirror": false,
+    "semantic_role": "noninteractive decorative boundary marker; no entity, collision, input or mechanic authority",
+    "source_input_master": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/assets/fence_segments/fence_segments_master.ora",
+    "source_input_master_sha256": "f1b8905b7566a2e62bafcddea7e87f629e5e762be9fbc1d0a402192ce4138e00"
+  },
+  "frozen_source_hashes_sha256": "7abc64cc21025a08312a63a8cfd7486652854f4fdf30d12179fd072161f9600b",
+  "meadow_tile": {
+    "alpha_bbox": [
+      0,
+      92,
+      748,
+      224
+    ],
+    "baseline_y_px": 211,
+    "baseline_y_units": 122.7072192513369,
+    "dimensions_px": [
+      748,
+      224
+    ],
+    "edge_identity_region_px": 8,
+    "export": "exports/meadow/meadow_tile_rgba_748x224.png",
+    "export_sha256": "1cb5845141ad80beba303bc6e0805f10954310eb783a9dfb5ac5f1354e144d40",
+    "import_recommendation": {
+      "edge_bleed": "none; exact transparent RGB normalization and exact edge identity",
+      "filter": "linear",
+      "format": "lossless RGBA PNG outside atlases",
+      "mipmaps": false,
+      "repeat": "enabled for X sampling or explicit repeated quads; never stretch/crop"
+    },
+    "master": "source/meadow_tile/meadow_tile_master.ora",
+    "master_sha256": "fbd9e9a03a54836933bf912ade049a97d0eaf79c26272fe919c0e626ce8093ea",
+    "mode": "RGBA",
+    "repeat": "X only; world-anchored; visible range only; one loaded texture; no Y repeat",
+    "seam_proof": "evidence/seam/SEAM_PROOF.json",
+    "source_inputs": [
+      {
+        "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/00__world_depth_faint_trees_shrubs.png",
+        "sha256": "2bb3600102c666bb410ae1647c166697ad3645dfb4b0310e1e9470bbac81788d"
+      },
+      {
+        "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/01__world_ground_grass_mass.png",
+        "sha256": "9ef3e77a921ebb3d1a8b460f462651092e73a1e5a00e4a01482d4b40262c3a8c"
+      },
+      {
+        "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/02__world_path_dirt_worn.png",
+        "sha256": "f2752e10b3ea13783d692f1e11983a69d69f1de5c7e7e1a696dc90853bb43169"
+      },
+      {
+        "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/source/world/layers/03__world_ground_soil_base.png",
+        "sha256": "1f0775c8c13fed69897b2d9e2c1a790fbd0165e7c314c50b6cd785f19f82906e"
+      }
+    ],
+    "tile_world_width": 435.0,
+    "transparent_upper_rows": 92,
+    "vertical_source_bounds_px": [
+      0,
+      224
+    ],
+    "world_phase_origin_x": 0.0
+  },
+  "owner": "Art Director + Visual Production owner",
+  "package_id": "STEAM_DESKTOP__Art_Source_Responsive_Meadow_Left_Cluster_Amendment_v1",
+  "responsive_rule": {
+    "camera_default_x": 0.0,
+    "camera_max_formula": "max(0, 1740 - 0.85 * (viewport_width / zoom))",
+    "field_boundary_screen_target": "0.85 * viewport_width at default and right clamp",
+    "labrador_instances": 1,
+    "meadow_instances": "repeat visible range only",
+    "meadow_loaded_textures": 1,
+    "measurement_path": "evidence/responsive/RESPONSIVE_MEASUREMENTS.json",
+    "measurements": [
+      {
+        "boundary_screen_x_px": 2543,
+        "camera_max_world": 0.0,
+        "camera_x_world": 0.0,
+        "exterior_non_meadow_marker_delta_bbox": null,
+        "labrador_instances": 1,
+        "meadow_repeat_world_period": 435.0,
+        "mode": "default",
+        "reserve_px": 449,
+        "reserve_ratio": 0.15006684491978609,
+        "static_overlay_instances": 1,
+        "uniform_screen_per_source_px": 0.8499999999999999,
+        "viewport_height_px": 224,
+        "viewport_width_px": 2992,
+        "z_min": 1.4616091954022987,
+        "zoom": 1.4616091954022987
+      },
+      {
+        "boundary_screen_x_px": 2543,
+        "camera_max_world": 82.85714285714289,
+        "camera_x_world": 82.85714285714289,
+        "exterior_non_meadow_marker_delta_bbox": null,
+        "labrador_instances": 1,
+        "meadow_repeat_world_period": 435.0,
+        "mode": "right_end",
+        "reserve_px": 449,
+        "reserve_ratio": 0.15006684491978609,
+        "static_overlay_instances": 1,
+        "uniform_screen_per_source_px": 0.8924999999999998,
+        "viewport_height_px": 224,
+        "viewport_width_px": 2992,
+        "z_min": 1.4616091954022987,
+        "zoom": 1.5346896551724136
+      },
+      {
+        "boundary_screen_x_px": 2938,
+        "camera_max_world": 0.0,
+        "camera_x_world": 0.0,
+        "exterior_non_meadow_marker_delta_bbox": null,
+        "labrador_instances": 1,
+        "meadow_repeat_world_period": 435.0,
+        "mode": "default",
+        "reserve_px": 518,
+        "reserve_ratio": 0.14988425925925927,
+        "static_overlay_instances": 1,
+        "uniform_screen_per_source_px": 0.9818181818181818,
+        "viewport_height_px": 224,
+        "viewport_width_px": 3456,
+        "z_min": 1.6882758620689655,
+        "zoom": 1.6882758620689655
+      },
+      {
+        "boundary_screen_x_px": 2938,
+        "camera_max_world": 82.85714285714289,
+        "camera_x_world": 82.85714285714289,
+        "exterior_non_meadow_marker_delta_bbox": null,
+        "labrador_instances": 1,
+        "meadow_repeat_world_period": 435.0,
+        "mode": "right_end",
+        "reserve_px": 518,
+        "reserve_ratio": 0.14988425925925927,
+        "static_overlay_instances": 1,
+        "uniform_screen_per_source_px": 1.030909090909091,
+        "viewport_height_px": 224,
+        "viewport_width_px": 3456,
+        "z_min": 1.6882758620689655,
+        "zoom": 1.7726896551724138
+      },
+      {
+        "boundary_screen_x_px": 3264,
+        "camera_max_world": 0.0,
+        "camera_x_world": 0.0,
+        "exterior_non_meadow_marker_delta_bbox": null,
+        "labrador_instances": 1,
+        "meadow_repeat_world_period": 435.0,
+        "mode": "default",
+        "reserve_px": 576,
+        "reserve_ratio": 0.15,
+        "static_overlay_instances": 1,
+        "uniform_screen_per_source_px": 1.0909090909090908,
+        "viewport_height_px": 224,
+        "viewport_width_px": 3840,
+        "z_min": 1.8758620689655172,
+        "zoom": 1.8758620689655172
+      },
+      {
+        "boundary_screen_x_px": 3264,
+        "camera_max_world": 82.85714285714289,
+        "camera_x_world": 82.85714285714289,
+        "exterior_non_meadow_marker_delta_bbox": null,
+        "labrador_instances": 1,
+        "meadow_repeat_world_period": 435.0,
+        "mode": "right_end",
+        "reserve_px": 576,
+        "reserve_ratio": 0.15,
+        "static_overlay_instances": 1,
+        "uniform_screen_per_source_px": 1.1454545454545455,
+        "viewport_height_px": 224,
+        "viewport_width_px": 3840,
+        "z_min": 1.8758620689655172,
+        "zoom": 1.9696551724137932
+      }
+    ],
+    "never_repeated_classes": [
+      "buildings",
+      "Road/Bicycle",
+      "Mill",
+      "Packing",
+      "Van",
+      "Labrador",
+      "boundary marker"
+    ],
+    "repeated_classes": [
+      "meadow tile only"
+    ],
+    "right_reserve_acceptance": [
+      0.13,
+      0.17
+    ],
+    "static_anchor_cluster_instances": 1,
+    "z_min_formula": "0.85 * viewport_width / 1740"
+  },
+  "runtime_authority": "NONE",
+  "schema": "shelter.art_source_responsive_meadow_left_cluster_amendment.v1",
+  "sheet_a_reuse": "ZERO",
+  "status": "SOURCE_AMENDMENT_READY__SOURCE_ONLY__NOT_RUNTIME_EXECUTABLE",
+  "unchanged_semantics": {
+    "H_route": {
+      "frozen_source_endpoints_px": [
+        480,
+        2380
+      ],
+      "mapped_world_endpoints_units": [
+        279.14438502673795,
+        1384.090909090909
+      ],
+      "right_dwell_exclusion": "no dog activity beyond x=1740; marker and exterior reserve are noninteractive",
+      "selector_runtime_authority": "NONE_IN_THIS_PACKAGE",
+      "station_contact_exclusion_source_px": [
+        [
+          1228,
+          1443
+        ],
+        [
+          1677,
+          1843
+        ]
+      ],
+      "station_contact_exclusion_world_units": [
+        [
+          714.144385026738,
+          839.177807486631
+        ],
+        [
+          975.2606951871658,
+          1071.798128342246
+        ]
+      ]
+    },
+    "frozen_source_manifest": {
+      "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/SOURCE_MANIFEST.json",
+      "sha256": "c825bac41a7721553eb725fb00d14c4e7aba94832ae8ab605db68624e135616b"
+    },
+    "labrador": "exact accepted A-H corpus reused; no pose/state/identity edit",
+    "order": [
+      "Road/Bicycle",
+      "Storage",
+      "static decorative Mill",
+      "Kitchen",
+      "Packing",
+      "Van"
+    ],
+    "static_layers": "accepted world layers 04-16 are read without edits and composed exactly once; their bounds, baseline, z and occlusion ownership remain frozen",
+    "station_contact_roots": "unchanged from frozen source manifest; amendment changes only meadow response and adds the exterior marker"
+  }
+}

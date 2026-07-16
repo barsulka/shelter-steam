@@ -28,25 +28,19 @@ func _run() -> void:
         "write":
             _clean_base()
             await _write_profile_to_sequence(_target_sequence, false)
-        "hold-inflight":
+        "snapshot-inflight":
             _clean_base()
             await _write_profile_to_sequence(_target_sequence, true)
             if _failures.is_empty():
-                print("player_continue_inflight_ready sequence=%d" % _target_sequence)
-                while true:
-                    await get_tree().create_timer(1.0).timeout
-        "hold-failed-barrier":
-            await _hold_failed_barrier(_target_sequence)
+                print("player_continue_inflight_snapshot=authored sequence=%d" % _target_sequence)
+        "snapshot-failed-barrier":
+            await _author_failed_barrier_snapshot(_target_sequence)
             if _failures.is_empty():
-                print("player_continue_failed_barrier_ready sequence=%d" % _target_sequence)
-                while true:
-                    await get_tree().create_timer(1.0).timeout
-        "hold-completion-beat":
-            await _hold_completion_beat()
+                print("player_continue_failed_barrier_snapshot=authored sequence=%d" % _target_sequence)
+        "snapshot-completion-beat":
+            await _author_completion_beat_snapshot()
             if _failures.is_empty():
-                print("player_continue_completion_beat_ready sequence=32")
-                while true:
-                    await get_tree().create_timer(1.0).timeout
+                print("player_continue_completion_beat_snapshot=authored sequence=32")
         "read":
             await _read_profile_at_sequence(_target_sequence, false)
         "advance":
@@ -264,29 +258,30 @@ func _test_automatic_completion_save_failure_retry() -> void:
         return
     runtime.set_process(false)
     _expect_ok(boot.call("configure_test_store_failpoint", "before_validation") as Dictionary, "inject automatic completion save failure")
-    var failed := runtime.call("test_advance_player_to_next_checkpoint") as Dictionary
-    _expect(str(failed.get("error", "")) == "checkpoint_barrier_failed", "automatic completion stops on failed ACK")
+    var failed := runtime.call("test_advance_player_to_next_checkpoint_expecting_persistence_failure", 5000) as Dictionary
+    _expect_expected_checkpoint_persistence_failure(failed, 8, "automatic completion")
     var blocked := runtime.call("player_checkpoint_snapshot") as Dictionary
     _expect(int(blocked.get("checkpoint_sequence", 0)) == 8, "automatic completion failure rolls back to durable cursor")
     _expect(bool(blocked.get("barrier_failed", false)), "automatic completion failure holds barrier")
     _expect_ok(boot.call("clear_test_store_failpoint") as Dictionary, "clear automatic completion failure")
-    _expect_ok(boot.call("activate_lifecycle_action") as Dictionary, "explicit retry automatic completion")
+    _expect_ok(runtime.call("retry_player_checkpoint_commit") as Dictionary, "explicit retry automatic completion")
     var committed := runtime.call("player_checkpoint_snapshot") as Dictionary
     _expect(int(committed.get("checkpoint_sequence", 0)) == 9, "automatic completion retry commits exact next cursor")
+    var exported := runtime.call("export_player_safe_checkpoint") as Dictionary
+    _expect_ok(exported, "automatic completion retry exports durable checkpoint")
+    if bool(exported.get("ok", false)):
+        _expect((exported["checkpoint"] as Dictionary) == _codec.build_golden_checkpoint(_codec.kind_for_sequence(9)), "automatic completion retry equals exact next golden checkpoint")
 
 
-func _hold_failed_barrier(sequence: int) -> void:
+func _author_failed_barrier_snapshot(sequence: int) -> void:
     var boot := PlayerBootScene.instantiate()
     _expect_ok(boot.call("configure_player_boot", {"profile_base_dir": _base_dir, "test_mode": true}) as Dictionary, "configure failed barrier boot")
     add_child(boot)
     await get_tree().process_frame
     if sequence == 17:
-        _expect_ok(boot.call("configure_test_store_failpoint", "before_validation") as Dictionary, "inject transition save failure")
+        _expect_ok(boot.call("configure_test_store_failpoint", "before_validation") as Dictionary, "inject authored transition save failure")
     var activation := boot.call("activate_lifecycle_action") as Dictionary
-    if sequence == 17:
-        _expect_ok(activation, "transition runtime starts behind persistence barrier")
-    else:
-        _expect_ok(activation, "continue failed barrier baseline")
+    _expect_ok(activation, "continue failed barrier baseline")
     await get_tree().process_frame
     var runtime: Variant = boot.call("player_runtime")
     _expect(runtime != null, "failed barrier runtime exists")
@@ -295,16 +290,16 @@ func _hold_failed_barrier(sequence: int) -> void:
     runtime.set_process(false)
     _expect(int((runtime.call("player_checkpoint_snapshot") as Dictionary).get("checkpoint_sequence", 0)) == sequence, "failed barrier starts at requested cursor")
     if sequence != 17:
-        _expect_ok(boot.call("configure_test_store_failpoint", "before_validation") as Dictionary, "inject player gate save failure")
-        var failed := runtime.call("test_advance_player_to_next_checkpoint") as Dictionary
-        _expect(str(failed.get("error", "")) == "checkpoint_barrier_failed", "player gate stops on failed ACK")
+        _expect_ok(boot.call("configure_test_store_failpoint", "before_validation") as Dictionary, "inject authored player gate save failure")
+        var failed := runtime.call("test_advance_player_to_next_checkpoint_expecting_persistence_failure", 5000) as Dictionary
+        _expect_expected_checkpoint_persistence_failure(failed, sequence, "authored player gate snapshot")
     var blocked := runtime.call("player_checkpoint_snapshot") as Dictionary
     _expect(int(blocked.get("checkpoint_sequence", 0)) == sequence, "failed player gate keeps previous durable cursor")
     _expect(bool(blocked.get("barrier_failed", false)), "failed player gate holds causal barrier")
     _expect((blocked.get("pending_intents", []) as Array).is_empty(), "failed player gate starts no unacknowledged automatic task")
 
 
-func _hold_completion_beat() -> void:
+func _author_completion_beat_snapshot() -> void:
     var boot := PlayerBootScene.instantiate()
     _expect_ok(boot.call("configure_player_boot", {"profile_base_dir": _base_dir, "test_mode": true}) as Dictionary, "configure completion-beat boot")
     add_child(boot)
@@ -317,7 +312,7 @@ func _hold_completion_beat() -> void:
     runtime.set_process(false)
     var snapshot := runtime.call("player_checkpoint_snapshot") as Dictionary
     _expect(int(snapshot.get("checkpoint_sequence", 0)) == 32, "completion beat starts from durable sequence 32")
-    _expect(bool(snapshot.get("completion_beat_active", false)), "completion beat is active before forced process stop")
+    _expect(bool(snapshot.get("completion_beat_active", false)), "completion beat is present in the authored process-boundary snapshot")
 
 
 func _test_sequence_rules() -> void:
@@ -346,7 +341,7 @@ func _test_retry_cursor(sequence: int) -> void:
     add_child(boot)
     await get_tree().process_frame
     if sequence == 17:
-        _expect_ok(boot.call("configure_test_store_failpoint", "before_validation") as Dictionary, "inject transition retry failure")
+        _expect_ok(boot.call("configure_test_store_failpoint", "before_validation") as Dictionary, "inject authored transition retry failure")
     _expect_ok(boot.call("activate_lifecycle_action") as Dictionary, "activate retry cursor lifecycle")
     await get_tree().process_frame
     var runtime: Variant = boot.call("player_runtime")
@@ -355,14 +350,18 @@ func _test_retry_cursor(sequence: int) -> void:
         return
     runtime.set_process(false)
     if sequence != 17:
-        _expect_ok(boot.call("configure_test_store_failpoint", "before_validation") as Dictionary, "inject retry cursor failure")
-        var failed := runtime.call("test_advance_player_to_next_checkpoint", 5000) as Dictionary
-        _expect(str(failed.get("error", "")) == "checkpoint_barrier_failed", "cursor advancement stops on failed ACK")
+        _expect_ok(boot.call("configure_test_store_failpoint", "before_validation") as Dictionary, "inject authored retry cursor failure")
+        var failed := runtime.call("test_advance_player_to_next_checkpoint_expecting_persistence_failure", 5000) as Dictionary
+        _expect_expected_checkpoint_persistence_failure(failed, sequence, "retry cursor")
     _expect(bool((runtime.call("player_checkpoint_snapshot") as Dictionary).get("barrier_failed", false)), "retry cursor barrier is held")
     _expect_ok(boot.call("clear_test_store_failpoint") as Dictionary, "clear retry cursor failpoint")
-    _expect_ok(boot.call("activate_lifecycle_action") as Dictionary, "explicit retry persists staged cursor")
+    _expect_ok(runtime.call("retry_player_checkpoint_commit") as Dictionary, "explicit retry persists staged cursor")
     var expected_next := sequence + 1
     _expect(int((runtime.call("player_checkpoint_snapshot") as Dictionary).get("checkpoint_sequence", 0)) == expected_next, "retry commits exact next cursor")
+    var exported := runtime.call("export_player_safe_checkpoint") as Dictionary
+    _expect_ok(exported, "retry cursor exports durable checkpoint")
+    if bool(exported.get("ok", false)):
+        _expect((exported["checkpoint"] as Dictionary) == _codec.build_golden_checkpoint(_codec.kind_for_sequence(expected_next)), "retry cursor equals exact next golden checkpoint")
     var event_types: Array[String] = []
     for event in runtime.call("test_player_event_snapshots") as Array:
         event_types.append(str((event as Dictionary).get("type", "")))
@@ -382,6 +381,32 @@ func _test_retry_cursor(sequence: int) -> void:
     if sequence == 31:
         _expect_ok(runtime.call("test_advance_player_to_next_checkpoint", 5000) as Dictionary, "delivery-response retry restarts completion beat")
         _expect(int((runtime.call("player_checkpoint_snapshot") as Dictionary).get("checkpoint_sequence", 0)) == 33, "completion beat reaches Quiet Cooperative after retry")
+
+
+func _expect_expected_checkpoint_persistence_failure(result: Dictionary, starting_sequence: int, label: String) -> void:
+    var expected_sequence := starting_sequence + 1
+    var expected_kind := _codec.kind_for_sequence(expected_sequence)
+    var expected_golden := _codec.build_golden_checkpoint(expected_kind)
+    var durable_kind := _codec.kind_for_sequence(starting_sequence)
+    var durable_golden := _codec.build_golden_checkpoint(durable_kind)
+    _expect(bool(result.get("ok", false)), "%s expected persistence failure is accepted only by the test seam" % label)
+    _expect(str(result.get("status", "")) == "expected_checkpoint_persistence_failure_observed", "%s structured expected failure discriminator" % label)
+    _expect(bool(result.get("test_only_exact_match", false)), "%s exact armed test-only match" % label)
+    _expect(bool(result.get("expectation_cleared", false)), "%s one-shot expectation is cleared" % label)
+    var transition_result := result.get("transition_result", {}) as Dictionary
+    _expect(str(transition_result.get("error", "")) == "checkpoint_barrier_failed", "%s public transition stops at the failed persistence barrier" % label)
+    var failure_result := result.get("failure_result", {}) as Dictionary
+    _expect(str(failure_result.get("error", "")) == "checkpoint_persistence_failed", "%s exact outer persistence failure" % label)
+    var store_result := failure_result.get("store_result", {}) as Dictionary
+    _expect(str(store_result.get("error", "")) == "injected_failure:before_validation", "%s exact nested injected failure" % label)
+    _expect(str(store_result.get("failpoint", "")) == "before_validation", "%s exact nested failpoint identity" % label)
+    _expect(int(result.get("durable_checkpoint_sequence", -1)) == starting_sequence, "%s previous durable sequence is retained" % label)
+    _expect(str(result.get("durable_checkpoint_kind", "")) == durable_kind, "%s previous durable kind is retained" % label)
+    _expect((result.get("durable_checkpoint", {}) as Dictionary) == durable_golden, "%s previous durable checkpoint remains exact golden" % label)
+    _expect(bool(result.get("barrier_failed", false)), "%s failed persistence barrier remains active" % label)
+    _expect(int(result.get("staged_checkpoint_sequence", -1)) == expected_sequence, "%s staged sequence is exact next" % label)
+    _expect(str(result.get("staged_checkpoint_kind", "")) == expected_kind, "%s staged kind is exact next" % label)
+    _expect((result.get("staged_checkpoint", {}) as Dictionary) == expected_golden, "%s staged checkpoint is exact full next golden" % label)
 
 
 func _setup_recovery_source(source: String) -> void:

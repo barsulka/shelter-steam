@@ -7,10 +7,23 @@ const SECOND_ORDER_ID := "order.second_warm_delivery_careful_pack"
 const CARE_EVENT := "labrador_packing_care_moment"
 const LEGACY_UNBOUND_TASKS := ["UnloadTask", "CarryTask", "LoadVanTask"]
 const PACKING_STATION_ID := "object.packing_table"
-const PACKING_FRONT_SPAN_MASK_SELECTORS := ["D", "F", "G"]
+const SOURCE_WORLD_TO_RUNTIME := 1740.0 / 2992.0
+const LABRADOR_RUNTIME_SCALE := 0.24
 const TURN_END_PROGRESS := 0.44
 const TURN_MID_BEGIN_PROGRESS := 0.10
 const TURN_MID_END_PROGRESS := 0.34
+const H_LEFT_ROOT := 279.144385026738
+const H_RIGHT_ROOT := 1384.090909090909
+const H_CYCLE_COUNT := 19
+const H_CYCLE_DISTANCE := 58.155080213904
+const H_SPEED := 70.920829529151
+const H_DWELL_LEFT := 4.5
+const H_DWELL_RIGHT := 8.0
+const H_TURN_SECONDS := 0.44
+const H_START_SECONDS := 0.18
+const H_WALK_CYCLE_SECONDS := 0.82
+const H_STOP_SECONDS := 0.24
+const H_TRAVERSE_SECONDS := H_WALK_CYCLE_SECONDS * H_CYCLE_COUNT
 const STATION_BINDINGS := {
     "object.kitchen": {
         "task_type": "CookTask",
@@ -18,9 +31,18 @@ const STATION_BINDINGS := {
         "on_start": "start_cooking",
         "selector": "E",
         "clip": "base_kitchen_work",
-        "approach": 104.16,
-        "contact": 62.88,
-        "work": 54.24,
+        "from_left": {
+            "approach": 624.004010695187,
+            "contact": 694.371657754011,
+            "work": 696.697860962567,
+            "exit": 624.004010695187,
+        },
+        "from_right": {
+            "approach": 929.318181818182,
+            "contact": 857.787433155080,
+            "work": 855.461229946524,
+            "exit": 929.318181818182,
+        },
     },
     "object.packing_table": {
         "task_type": "PackTask",
@@ -28,9 +50,18 @@ const STATION_BINDINGS := {
         "on_start": "start_packing",
         "selector": "F",
         "clip": "base_packing_work",
-        "approach": 104.16,
-        "contact": 60.0,
-        "work": 50.88,
+        "from_left": {
+            "approach": 885.120320855615,
+            "contact": 941.530748663102,
+            "work": 943.856951871658,
+            "exit": 885.120320855615,
+        },
+        "from_right": {
+            "approach": 1161.938502673797,
+            "contact": 1104.946524064171,
+            "work": 1102.620320855615,
+            "exit": 1161.938502673797,
+        },
     },
 }
 
@@ -58,6 +89,8 @@ var _contact_task_id := ""
 var _care_task_id := ""
 var _epoch_key := ""
 var _presentation_time := 0.0
+var _h_elapsed := 0.0
+var _h_player_gate_cancelled := false
 var _trace_enabled := false
 var _trace_path := ""
 var _trace_once: Dictionary = {}
@@ -86,6 +119,13 @@ func reset_visual_epoch(reason: String) -> void:
     _epoch_key = ""
 
 
+func cancel_h_for_player_gate(snapshot: Dictionary, reason: String = "player_route_gate") -> void:
+    if _last_selector == "H":
+        _trace_marker("visual.h_cancel_before_authoritative_transition", snapshot, reason)
+    _h_elapsed = 0.0
+    _h_player_gate_cancelled = true
+
+
 func observe_runtime(snapshot: Dictionary, delta: float = 0.05) -> Dictionary:
     _presentation_time += maxf(delta, 0.0)
     var next_epoch := _snapshot_epoch(snapshot)
@@ -104,6 +144,14 @@ func observe_runtime(snapshot: Dictionary, delta: float = 0.05) -> Dictionary:
 
     _update_care_latch(snapshot)
     var selection := select_visual_binding(snapshot)
+    if str(selection.get("selector", "")) == "H":
+        if _last_selector != "H":
+            _h_elapsed = 0.0
+        else:
+            _h_elapsed += maxf(delta, 0.0)
+    elif _last_selector == "H":
+        _trace_marker("visual.h_cancel_safe", snapshot, str(selection.get("reason", "gate_changed")))
+        _h_elapsed = 0.0
     _apply_selection(snapshot, selection)
     _render_state = selection.duplicate(true)
     _render_state.merge({
@@ -117,10 +165,11 @@ func observe_runtime(snapshot: Dictionary, delta: float = 0.05) -> Dictionary:
         "blink_amount": blink_amount,
         "tail_rotation": tail_rotation,
         "focus_pose": focus_pose,
-        "packing_front_span_mask_active": _packing_front_span_mask_active(selection),
-        "packing_front_span_mask_owner": "derived_non_persisted_presentation",
-        "packing_front_span_mask_policy": "packing_contact_local_existing_source_segmentation",
-        "source_px_to_world_unit": 0.24,
+        "packing_front_span_mask_active": false,
+        "packing_front_span_mask_owner": "disabled_source_reconciled_trial",
+        "packing_front_span_mask_policy": "zero_station_front_occlusion",
+        "source_px_to_world_unit": LABRADOR_RUNTIME_SCALE,
+        "source_world_to_runtime": SOURCE_WORLD_TO_RUNTIME,
         "uniform_positive_scale": true,
         "gameplay_output_count": 0,
         "transfer_semantics": false,
@@ -149,6 +198,10 @@ func select_visual_binding(snapshot: Dictionary) -> Dictionary:
         return _suppressed("actor_not_visible")
     if bool((snapshot.get("journey", {}) as Dictionary).get("barrier_failed", false)):
         return _suppressed("save_barrier_failed")
+    if bool((snapshot.get("journey", {}) as Dictionary).get("commit_in_progress", false)):
+        return _suppressed("save_commit_in_progress")
+    if bool((snapshot.get("journey", {}) as Dictionary).get("restore_incomplete", false)):
+        return _suppressed("restore_before_durable_readback")
     if task_id != "" and (assignee not in [ACTOR_ID, "labrador_intro"] or actor_task != task_id):
         return _suppressed("stale_task_or_assignee")
 
@@ -172,6 +225,25 @@ func select_visual_binding(snapshot: Dictionary) -> Dictionary:
                 "station_offset_x": 0.0,
                 "focus_enabled": false,
             }
+        if _h_player_gate_cancelled:
+            _h_player_gate_cancelled = false
+            return {
+                "lane": "authored",
+                "selector": "A",
+                "base_clip": "base_idle",
+                "station_offset_x": 0.0,
+                "focus_enabled": false,
+                "reason": "player_gate_cancelled_h",
+            }
+        if _exact_h_gate(snapshot):
+            return {
+                "lane": "authored",
+                "selector": "H",
+                "base_clip": "base_locomotion_walk",
+                "station_offset_x": 0.0,
+                "focus_enabled": false,
+                "h_derived_non_persisted": true,
+            }
         if str(actor.get("current_visible_state", "")) == "idle" and actor_task == "":
             return {
                 "lane": "authored",
@@ -185,7 +257,7 @@ func select_visual_binding(snapshot: Dictionary) -> Dictionary:
 
     var station_id := _exact_station_id(task)
     if station_id == "":
-        return _suppressed("semantic_selector_outside_A_to_G")
+        return _suppressed("semantic_selector_outside_A_to_H")
     var binding := STATION_BINDINGS[station_id] as Dictionary
     var phase_index := int(phase.get("index", -1))
     var task_status := str(task.get("status", ""))
@@ -247,25 +319,11 @@ func select_visual_binding(snapshot: Dictionary) -> Dictionary:
             "focus_enabled": false,
         }
 
-    return _suppressed("semantic_selector_outside_A_to_G")
+    return _suppressed("semantic_selector_outside_A_to_H")
 
 
 func render_state() -> Dictionary:
     return _render_state.duplicate(true)
-
-
-func _packing_front_span_mask_active(selection: Dictionary) -> bool:
-    if not str(selection.get("lane", "suppressed")).begins_with("authored"):
-        return false
-    if str(selection.get("station_id", "")) != PACKING_STATION_ID:
-        return false
-    var selector := str(selection.get("selector", ""))
-    if selector in PACKING_FRONT_SPAN_MASK_SELECTORS:
-        return true
-    return (
-        selector == "EXIT"
-        and str(selection.get("origin_selector", "")) in PACKING_FRONT_SPAN_MASK_SELECTORS
-    )
 
 
 func trace_entries() -> Array[Dictionary]:
@@ -296,43 +354,63 @@ func _apply_selection(snapshot: Dictionary, selection: Dictionary) -> void:
         selection["base_clip"] = str(subphase["clip"])
         selection["subphase"] = str(subphase["name"])
         _sample(_base_player, str(subphase["clip"]), float(subphase["progress"]))
-        var approach_progress := progress
+        var movement_progress := progress
         if _task_turn_had_required:
-            approach_progress = 0.0 if progress < TURN_END_PROGRESS else inverse_lerp(TURN_END_PROGRESS, 1.0, progress)
+            movement_progress = 0.0 if progress < TURN_END_PROGRESS else inverse_lerp(TURN_END_PROGRESS, 1.0, progress)
         var actor_world_x := float(actor.get("world_x", 0.0))
-        var station_world_x := float(actor.get("move_target_x", actor_world_x))
-        selection["station_offset_x"] = station_world_x - actor_world_x + _station_side_sign() * lerpf(
-            _station_value(station_id, "approach"),
-            _station_value(station_id, "contact"),
-            approach_progress
-        )
+        var start_world_x := float(actor.get("move_start_x", actor_world_x))
+        var approach_root := _station_root(station_id, "approach")
+        var render_world_x := lerpf(start_world_x, approach_root, movement_progress)
+        selection["station_offset_x"] = render_world_x - actor_world_x
+        selection["pose_id"] = _locomotion_pose_id(str(subphase["name"]), float(subphase["progress"]))
     elif selector == "D":
         _resolve_station_facing(task, actor)
         var contact_progress := clampf(progress / 0.18, 0.0, 1.0)
         _sample(_base_player, "base_contact", contact_progress)
-        selection["station_offset_x"] = _station_side_sign() * lerpf(
-            _station_value(station_id, "approach"),
-            _station_value(station_id, "contact"),
+        var actor_world_x := float(actor.get("world_x", 0.0))
+        var render_world_x := lerpf(
+            _station_root(station_id, "approach"),
+            _station_root(station_id, "contact"),
             contact_progress
         )
+        selection["station_offset_x"] = render_world_x - actor_world_x
+        selection["pose_id"] = _faced_pose("approach" if contact_progress < 0.5 else "contact_align")
         _finish_turn_if_needed()
     elif selector in ["E", "F", "G"]:
         _resolve_station_facing(task, actor)
         _sample(_base_player, str(selection["base_clip"]), progress)
-        selection["station_offset_x"] = _station_side_sign() * _station_value(station_id, "work")
+        selection["station_offset_x"] = _station_root(station_id, "work") - float(actor.get("world_x", 0.0))
+        if selector == "E":
+            selection["pose_id"] = _faced_pose("kitchen_work")
+        elif selector == "F":
+            selection["pose_id"] = _faced_pose("packing_work")
+        else:
+            selection["pose_id"] = _faced_pose("packing_focus")
         _finish_turn_if_needed()
     elif selector == "EXIT":
         _resolve_station_facing(task, actor)
         _sample(_base_player, "base_contact", 1.0 - progress)
-        selection["station_offset_x"] = _station_side_sign() * _station_value(station_id, "work") * (1.0 - progress)
+        var render_world_x := lerpf(
+            _station_root(station_id, "work"),
+            _station_root(station_id, "exit"),
+            progress
+        )
+        selection["station_offset_x"] = render_world_x - float(actor.get("world_x", 0.0))
+        selection["pose_id"] = _faced_pose("contact_align" if progress < 0.5 else "approach")
         _finish_turn_if_needed()
+    elif selector == "H":
+        _apply_h_selection(actor, selection)
     else:
         if selector == "B":
-            _requested_facing = "right" if float((snapshot.get("active_order", {}) as Dictionary).get("van_world_x", 0.0)) >= float(actor.get("world_x", 0.0)) else "left"
-            _apply_free_turn()
+            _requested_facing = "left"
+            _last_rendered_facing = "left"
+            _facing_source = "left"
+            selection["pose_id"] = "wait_calm_left" if fposmod(_presentation_time, 4.0) < 3.2 else "ambient_attentive_right"
         else:
-            _requested_facing = _last_rendered_facing
-            _facing_source = _last_rendered_facing
+            _requested_facing = "right"
+            _last_rendered_facing = "right"
+            _facing_source = "right"
+            selection["pose_id"] = "idle_neutral_right" if fposmod(_presentation_time, 4.5) < 3.8 else "ambient_attentive_left"
         _sample_loop(_base_player, str(selection["base_clip"]), _presentation_time)
 
     _sample_loop(_blink_player, "blink_calm", _presentation_time)
@@ -341,6 +419,127 @@ func _apply_selection(snapshot: Dictionary, selection: Dictionary) -> void:
         _sample(_focus_player, "focus_care", progress)
     else:
         _sample(_focus_player, "focus_off", 0.0)
+
+
+func _apply_h_selection(actor: Dictionary, selection: Dictionary) -> void:
+    var period := (
+        H_DWELL_LEFT + H_START_SECONDS + H_TRAVERSE_SECONDS + H_STOP_SECONDS
+        + H_DWELL_RIGHT + H_TURN_SECONDS + H_START_SECONDS + H_TRAVERSE_SECONDS
+        + H_STOP_SECONDS + H_DWELL_LEFT + H_TURN_SECONDS
+    )
+    var t := fposmod(_h_elapsed, period)
+    var root := H_LEFT_ROOT
+    var phase := "dwell_left"
+    var phase_progress := 0.0
+    var pose_id := "ambient_attentive_right"
+    _requested_facing = "right"
+    _last_rendered_facing = "right"
+    _facing_source = "right"
+
+    if t < H_DWELL_LEFT:
+        phase_progress = t / H_DWELL_LEFT
+    else:
+        t -= H_DWELL_LEFT
+        if t < H_START_SECONDS:
+            phase = "start_right"
+            phase_progress = t / H_START_SECONDS
+            pose_id = "locomotion_start_right"
+        else:
+            t -= H_START_SECONDS
+            if t < H_TRAVERSE_SECONDS:
+                phase = "walk_right"
+                phase_progress = t / H_TRAVERSE_SECONDS
+                root = H_LEFT_ROOT + minf(t * H_SPEED, H_RIGHT_ROOT - H_LEFT_ROOT)
+                pose_id = _h_walk_pose("right", t)
+            else:
+                t -= H_TRAVERSE_SECONDS
+                root = H_RIGHT_ROOT
+                if t < H_STOP_SECONDS:
+                    phase = "stop_right"
+                    phase_progress = t / H_STOP_SECONDS
+                    pose_id = "locomotion_stop_right"
+                else:
+                    t -= H_STOP_SECONDS
+                    if t < H_DWELL_RIGHT:
+                        phase = "dwell_right"
+                        phase_progress = t / H_DWELL_RIGHT
+                        pose_id = "ambient_attentive_right"
+                    else:
+                        t -= H_DWELL_RIGHT
+                        if t < H_TURN_SECONDS:
+                            phase = "turn_right_to_left"
+                            phase_progress = t / H_TURN_SECONDS
+                            pose_id = "turn_right_to_left_mid"
+                            _requested_facing = "left"
+                            _facing_source = "turn_mid"
+                        else:
+                            t -= H_TURN_SECONDS
+                            _requested_facing = "left"
+                            _last_rendered_facing = "left"
+                            _facing_source = "left"
+                            if t < H_START_SECONDS:
+                                phase = "start_left"
+                                phase_progress = t / H_START_SECONDS
+                                pose_id = "locomotion_start_left"
+                            else:
+                                t -= H_START_SECONDS
+                                if t < H_TRAVERSE_SECONDS:
+                                    phase = "walk_left"
+                                    phase_progress = t / H_TRAVERSE_SECONDS
+                                    root = H_RIGHT_ROOT - minf(t * H_SPEED, H_RIGHT_ROOT - H_LEFT_ROOT)
+                                    pose_id = _h_walk_pose("left", t)
+                                else:
+                                    t -= H_TRAVERSE_SECONDS
+                                    root = H_LEFT_ROOT
+                                    if t < H_STOP_SECONDS:
+                                        phase = "stop_left"
+                                        phase_progress = t / H_STOP_SECONDS
+                                        pose_id = "locomotion_stop_left"
+                                    else:
+                                        t -= H_STOP_SECONDS
+                                        if t < H_DWELL_LEFT:
+                                            phase = "dwell_left"
+                                            phase_progress = t / H_DWELL_LEFT
+                                            pose_id = "ambient_attentive_left"
+                                        else:
+                                            t -= H_DWELL_LEFT
+                                            phase = "turn_left_to_right"
+                                            phase_progress = t / H_TURN_SECONDS
+                                            pose_id = "turn_left_to_right_mid"
+                                            _requested_facing = "right"
+                                            _facing_source = "turn_mid"
+
+    selection["station_offset_x"] = root - float(actor.get("world_x", 0.0))
+    selection["pose_id"] = pose_id
+    selection["h_phase"] = phase
+    selection["h_phase_progress"] = clampf(phase_progress, 0.0, 1.0)
+    selection["h_elapsed_seconds"] = _h_elapsed
+    selection["h_route_runtime_units"] = [H_LEFT_ROOT, H_RIGHT_ROOT]
+    selection["h_cycle_count"] = H_CYCLE_COUNT
+    selection["h_cycle_distance_runtime_units"] = H_CYCLE_DISTANCE
+    selection["h_speed_runtime_units_per_second"] = H_SPEED
+
+
+func _h_walk_pose(facing: String, elapsed: float) -> String:
+    var support := "a" if fposmod(elapsed, H_WALK_CYCLE_SECONDS) < H_WALK_CYCLE_SECONDS * 0.5 else "b"
+    return "walk_support_%s_%s" % [support, facing]
+
+
+func _locomotion_pose_id(subphase: String, progress: float) -> String:
+    if subphase == "turn":
+        return "turn_right_to_left_mid" if _requested_facing == "left" else "turn_left_to_right_mid"
+    if subphase == "start":
+        return _faced_pose("locomotion_start")
+    if subphase == "stop":
+        return _faced_pose("locomotion_stop")
+    if subphase == "walk":
+        return _h_walk_pose(_task_facing, progress * H_WALK_CYCLE_SECONDS)
+    return _faced_pose("approach")
+
+
+func _faced_pose(stem: String) -> String:
+    var facing := _task_facing if _task_facing in ["left", "right"] else _last_rendered_facing
+    return "%s_%s" % [stem, facing]
 
 
 func _prepare_station_facing(task: Dictionary, actor: Dictionary) -> void:
@@ -446,6 +645,46 @@ func _exact_care_focus(task: Dictionary) -> bool:
     )
 
 
+func _exact_h_gate(snapshot: Dictionary) -> bool:
+    var actor := snapshot.get("actor", {}) as Dictionary
+    var guard := snapshot.get("presentation_guard", {}) as Dictionary
+    if str(actor.get("current_task", "")) != "" or str(actor.get("current_visible_state", "")) != "idle":
+        return false
+    if not bool(guard.get("player_session_configured", false)):
+        return false
+    if not bool(guard.get("durable_readback_complete", false)):
+        return false
+    if bool(guard.get("restore_incomplete", false)) or bool(guard.get("authoritative_transition_active", false)):
+        return false
+    if bool(guard.get("trip_task_exists", false)) or bool(guard.get("delivery_or_trip_active", false)):
+        return false
+    if int(guard.get("labrador_task_count", 0)) != 0 or int(guard.get("task_queue_count", 0)) != 0:
+        return false
+
+    var cursor := int(guard.get("durable_cursor", 0))
+    var checkpoint_kind := str(guard.get("checkpoint_kind", ""))
+    var order := snapshot.get("active_order", {}) as Dictionary
+    var active_chain := snapshot.get("active_chain", {}) as Dictionary
+    var day2_history := snapshot.get("day2_history", {}) as Dictionary
+    var pre_trip := (
+        cursor in [1, 18]
+        and checkpoint_kind in ["first_day_offered", "day2_offered"]
+        and str(order.get("id", "")) in ["order.first_warm_delivery", SECOND_ORDER_ID]
+        and str(order.get("status", "")) in ["offered", "route_suggested"]
+        and str(order.get("delivery_state", "")) not in ["sending", "delivered"]
+        and not bool(guard.get("route_started", false))
+        and not active_chain.is_empty()
+    )
+    var quiet := (
+        cursor == 33
+        and checkpoint_kind == "quiet_cooperative"
+        and order.is_empty()
+        and active_chain.is_empty()
+        and bool(day2_history.get("completed", false))
+    )
+    return pre_trip or quiet
+
+
 func _update_care_latch(snapshot: Dictionary) -> void:
     var task := snapshot.get("task", {}) as Dictionary
     var task_id := str(task.get("id", ""))
@@ -481,14 +720,12 @@ func _phase_progress(phase: Dictionary) -> float:
     return clampf(float(phase.get("elapsed_seconds", 0.0)) / duration, 0.0, 1.0)
 
 
-func _station_value(station_id: String, field: String) -> float:
+func _station_root(station_id: String, field: String) -> float:
     if not STATION_BINDINGS.has(station_id):
         return 0.0
-    return float((STATION_BINDINGS[station_id] as Dictionary).get(field, 0.0))
-
-
-func _station_side_sign() -> float:
-    return -1.0 if _task_facing == "right" else 1.0
+    var side := "from_left" if _task_facing == "right" else "from_right"
+    var roots := (STATION_BINDINGS[station_id] as Dictionary).get(side, {}) as Dictionary
+    return float(roots.get(field, 0.0))
 
 
 func _snapshot_epoch(snapshot: Dictionary) -> String:
@@ -528,6 +765,8 @@ func _reset_presentation(reason: String) -> void:
     _requested_facing = "right"
     _facing_source = "right"
     _presentation_time = 0.0
+    _h_elapsed = 0.0
+    _h_player_gate_cancelled = false
     base_pose = Vector4.ZERO
     blink_amount = 0.0
     tail_rotation = 0.0
@@ -562,6 +801,14 @@ func _trace_selection(snapshot: Dictionary, selection: Dictionary) -> void:
         _trace_once_marker("%s:exit:cancel_safe" % task_id, "visual.cancel_safe", snapshot)
         if progress >= 0.8:
             _trace_once_marker("%s:exit:phase_complete" % task_id, "visual.phase_complete", snapshot)
+    elif selector == "H":
+        _trace_once_marker("H:gate:%s" % _epoch_key, "visual.h_gate_enter", snapshot)
+        var h_phase := str(selection.get("h_phase", ""))
+        _trace_once_marker(
+            "H:%s:%d" % [h_phase, int(floor(_h_elapsed))],
+            "visual.h_%s" % h_phase,
+            snapshot
+        )
 
 
 func _trace_once_marker(key: String, marker: String, snapshot: Dictionary) -> void:

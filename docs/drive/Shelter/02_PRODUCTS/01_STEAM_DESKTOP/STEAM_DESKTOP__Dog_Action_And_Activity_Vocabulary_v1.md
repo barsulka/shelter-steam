@@ -450,7 +450,7 @@ Forbidden for current Labrador: TripTask driver, independent Day 2 overlay task,
 
 ### 14.1 Current bounded ambient Labrador walk — user decision recorded
 
-**Status:** `NEEDS_MANIFEST_AMENDMENT` — user-approved Game Design direction, **not executable under the current exact A–G manifest**.
+**Status:** `AMENDMENT_RECORDED / GAME_DESIGN_ACCEPTED / PM_TECH_PENDING` — selector H is now recorded in the exact manifest, but is not executable until Producer/PM and Technical/Codex complete their readbacks.
 
 Current world boundary:
 
@@ -460,7 +460,7 @@ Current world boundary:
 
 The user requests a calm back-and-forth Labrador walk as base living-scene presentation. This reuses only existing shared rows `dog.action.idle.neutral`, `dog.action.locomotion.start`, `dog.action.locomotion.walk_empty`, `dog.action.locomotion.stop` and `dog.action.locomotion.turn`; it creates no new semantic row, task or world-state authority.
 
-The current accepted Labrador manifest binds locomotion to station selector C (`CookTask` / `PackTask`, `moving_to_source`). Therefore the following is only the proposed future amendment selector, not a permitted R48-05A binding:
+The current accepted Labrador manifest bound locomotion to station selector C (`CookTask` / `PackTask`, `moving_to_source`). Selector H now records the following bounded amendment, retaining the same 12 semantic rows:
 
 ```text
 actor: dog.labrador_intro
@@ -471,7 +471,7 @@ presentation phrase: idle -> bounded start/walk/(physical turn if direction chan
 authority: presentation-only; Godot runtime remains the sole authority
 ```
 
-Guardrails for a later amendment:
+Guardrails for selector H:
 
 - an active order alone never grants progression; the phrase is allowed only in the two states above and must yield before any required task;
 - it is forbidden from TripTask creation through delivery resolution, and while `ready_to_send` it yields to the accepted calm-wait selector rather than wandering;
@@ -479,7 +479,7 @@ Guardrails for a later amendment:
 - a player input that starts a task or changes a player gate cancels the phrase before the authoritative transition; the phrase never captures input, delays a gate or creates a competing cue;
 - it creates no event, resource movement, task/order/status change, save write, reward, memory, habit, quality, timer result or Day 3/repeatable loop.
 
-Before any Art/Technical executable binding, the exact external manifest needs an amendment that adds this selector while retaining exactly the same 12 rows. Game Designer, Producer/PM and Technical/Codex must re-sign that amendment; Art/Technical still own the actual world bounds, facing and binding evidence. The user decision recorded here does not silently expand A–G.
+Game Design has accepted the exact manifest amendment. Before any Art/Technical executable binding, Producer/PM and Technical/Codex must complete their readbacks; Art/Technical still own the actual world bounds, facing and binding evidence. The amendment retains exactly the same 12 rows and does not silently expand any gameplay authority.
 
 ---
 
@@ -764,6 +764,11 @@ This document is ready for cross-role review when:
 ---
 
 ## 21. Changelog
+
+### 2026-07-13 — selector H amendment, Game Design accepted
+
+- Synchronized the vocabulary record with the exact 12-row manifest amendment for task-free ambient Labrador reposition.
+- Left Producer/PM and Technical/Codex readbacks pending; no runtime binding or new mechanics were authorized.
 
 ### 2026-07-13 — user direction: quality base now, rich dog life later
 

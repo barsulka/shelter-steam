@@ -1,10 +1,10 @@
 # KNOWLEDGE_BASE_ROADMAP — Shelter
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-10
+Обновлено: 2026-07-15
 Статус: active roadmap
 Владелец: Project Manager / Producer
-Назначение: рабочий roadmap эволюции базы знаний Shelter и optional MCP knowledge navigation.
+Назначение: рабочий roadmap эволюции базы знаний Shelter и source-derived MCP context routing.
 
 ---
 
@@ -17,15 +17,15 @@
 Главное направление:
 
 ```text
-Локальные source documents образуют управляемую базу знаний с Current Memory, Knowledge и History. MCP может давать bounded deterministic navigation, но не становится отдельной проектной памятью.
+Локальные source documents образуют управляемую базу знаний с Current Memory, Knowledge и History. Здоровый MCP source-derived bundle является default routine bootstrap/context-routing path, но не становится отдельной проектной памятью; direct source reads остаются authority и exact fallback.
 ```
 
 Authoritative compact-catalog state:
 
 ```text
 Catalog status: active roadmap
-Catalog current phase: MCP Knowledge API v2 and source/catalog drift guardrail implemented.
-Catalog next step: Keep Current Memory fresh and return to Day 2 product work.
+Catalog current phase: D-026 accepted, implemented and independently reviewed PASS; healthy shelter_context_bundle is the active routine bootstrap/context-routing default.
+Catalog next step: Return to the already-governed D-024 capture-only macOS self-capture, evidence seal and Art/user review wave. Keep Knowledge Base maintenance bounded to concrete drift or the first remote-CI signal.
 ```
 
 ---
@@ -207,7 +207,7 @@ Each active domain can be entered through one short current-context document ins
 
 ## 4. Phase 3 — MCP Knowledge API v2
 
-Статус: `implemented; source/catalog drift guardrail active`
+Статус: `legacy v2 implemented historically / D-026 independent review PASS / daily default active`
 
 Цель:
 
@@ -229,7 +229,7 @@ Important constraints:
 
 - deterministic;
 - bounded;
-- static catalog / simple parsing;
+- source-derived parse-on-request snapshot;
 - no AI summarization;
 - no broad arbitrary repo search;
 - no writes;
@@ -270,13 +270,13 @@ PM can run a deterministic report that suggests what to update next without modi
 
 ## 6. Phase 5 — Producer Dashboard
 
-Статус: `implemented as optional MCP convenience`
+Статус: `source-derived projection implemented / independent review PASS / daily default active`
 
 Цель:
 
 Получать агрегированную картину проекта без ручного чтения многих docs.
 
-Candidate tool:
+Focused source-derived projection (legacy schema compatibility retained):
 
 ```text
 shelter_status(area)
@@ -300,35 +300,63 @@ Definition of Done:
 Producer can get a compact project status from MCP and then open only relevant source docs.
 ```
 
+Daily default — `shelter_context_bundle(...)`; focused
+`shelter_status(area)` остаётся совместимой source-derived проекцией.
+
 ---
 
 ## 7. Current next steps
 
-### Codex next
+### Project next
 
-Keep the completed local Work/Codex + Shelter MCP migration validation green:
+Return to the already-governed D-024 capture-only completion; no new D-026 implementation wave is active:
 
 ```text
-docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md
 ```
 
 ### PM / Producer next
 
-Migration-wave GC is complete. Preserve the corrected access boundary and continue product work:
+Preserve the accepted D-026 routine-default/source-fallback boundary during normal project work:
 
 ```text
-Source docs are truth; MCP is an optional local domain adapter/navigation helper.
+Healthy MCP bundle is the routine bootstrap route; direct source reads remain authority/exact verification and documented fallback.
 ```
 
 Focus:
 
 - keep Current Memory fresh;
-- validate static MCP catalogs against source docs;
+- observe the first remote CI run without treating it as an acceptance blocker;
+- preserve the accepted semantic-governance boundary and honest 4 KiB fallback behavior;
 - avoid new documentation restructuring without a concrete friction signal.
 
 ---
 
 ## 8. Changelog
+
+### 2026-07-15 — D-026 final reviewer PASS / return to governed project work
+
+- Recorded independent re-review `PASS`, closure of all four prior findings and active daily-default MCP-first routing.
+- Closed D-026 remediation/re-review work; retained first remote CI and the accepted semantic/4 KiB fallback boundaries as non-blocking residuals.
+- Returned the next step to the already-governed D-024 macOS self-capture/seal/Art-user review wave without creating new product scope.
+
+### 2026-07-15 — D-026 remediation local PASS / independent re-review next
+
+- Recorded all four independent-review findings as fixed locally and the full local matrix/client smokes as passing.
+- Replaced active fix/resolve work with independent re-review as the sole current next step.
+- Kept final acceptance and daily-default rollout pending reviewer PASS, with direct source fallback active until then.
+
+### 2026-07-15 — D-026 implementation present / re-review blocked
+
+- Replaced the obsolete static-catalog-red/implement-next state with the implemented source-derived happy-path result.
+- Recorded independent review `BLOCKED` and made P1/P2 remediation plus full-matrix re-review the current next step.
+- Kept direct source reads as the active fallback until reviewer PASS enables daily-default rollout.
+
+### 2026-07-15 — D-026 source-derived context bridge activated
+
+- Replaced optional static-catalog navigation as the target state with MCP-first source-derived routine bootstrap.
+- Recorded the current MCP knowledge path as non-current/red until the executable D-026 brief passes.
+- Kept local source docs as authority and exact fallback without changing product/game/art work.
 
 ### 2026-07-10 — D-021 migration correction
 

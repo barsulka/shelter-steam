@@ -1,0 +1,203 @@
+ M docs/drive/Shelter/00_START_HERE/01_CURRENT_STATUS.md
+ M docs/drive/Shelter/00_START_HERE/02_DECISIONS.md
+ M docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/GAME_DESIGN__CURRENT_CONTEXT.md
+ M docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
+ M docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Dog_Action_And_Activity_Vocabulary_v1.md
+ M docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
+ M docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_OVERLAY__Approved_Library_v1.md
+ M docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+ M docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md
+ M docs/repo/status/CODEX_CURRENT_STATUS.md
+ M docs/repo/status/CODEX_STATUS.md
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/00__dog.shadow.local.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/00__dog.shadow.local.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/01__dog.leg.fore.far.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/01__dog.leg.fore.far.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/02__dog.leg.hind.far.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/02__dog.leg.hind.far.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/03__dog.tail.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/03__dog.tail.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/04__dog.torso.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/04__dog.torso.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/05__dog.marking.chest.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/05__dog.marking.chest.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/06__dog.detail.chest_fur.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/06__dog.detail.chest_fur.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/07__dog.leg.fore.near.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/07__dog.leg.fore.near.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/08__dog.leg.hind.near.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/08__dog.leg.hind.near.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/09__dog.head.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/09__dog.head.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/10__dog.ear.far.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/10__dog.ear.far.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/11__dog.ear.near.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/11__dog.ear.near.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/12__dog.muzzle.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/12__dog.muzzle.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/13__dog.eye.open.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/13__dog.eye.open.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/14__dog.eye.blink.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/14__dog.eye.blink.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/15__dog.equipment.collar.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/left/layers/15__dog.equipment.collar.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/00__dog.shadow.local.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/00__dog.shadow.local.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/01__dog.leg.hind.far.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/01__dog.leg.hind.far.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/02__dog.leg.fore.far.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/02__dog.leg.fore.far.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/03__dog.tail.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/03__dog.tail.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/04__dog.torso.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/04__dog.torso.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/05__dog.marking.chest.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/05__dog.marking.chest.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/06__dog.detail.chest_fur.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/06__dog.detail.chest_fur.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/07__dog.leg.hind.near.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/07__dog.leg.hind.near.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/08__dog.leg.fore.near.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/08__dog.leg.fore.near.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/09__dog.head.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/09__dog.head.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/10__dog.ear.far.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/10__dog.ear.far.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/11__dog.ear.near.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/11__dog.ear.near.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/12__dog.muzzle.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/12__dog.muzzle.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/13__dog.eye.open.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/13__dog.eye.open.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/14__dog.eye.blink.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/14__dog.eye.blink.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/15__dog.equipment.collar.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/right/layers/15__dog.equipment.collar.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/00__dog.shadow.local.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/00__dog.shadow.local.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/01__dog.leg.hind.far.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/01__dog.leg.hind.far.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/02__dog.leg.fore.far.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/02__dog.leg.fore.far.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/03__dog.tail.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/03__dog.tail.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/04__dog.torso.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/04__dog.torso.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/05__dog.marking.chest.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/05__dog.marking.chest.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/06__dog.detail.chest_fur.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/06__dog.detail.chest_fur.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/07__dog.leg.hind.near.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/07__dog.leg.hind.near.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/08__dog.leg.fore.near.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/08__dog.leg.fore.near.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/09__dog.head.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/09__dog.head.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/10__dog.ear.far.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/10__dog.ear.far.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/11__dog.ear.near.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/11__dog.ear.near.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/12__dog.muzzle.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/12__dog.muzzle.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/13__dog.eye.open.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/13__dog.eye.open.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/14__dog.eye.blink.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/14__dog.eye.blink.png.import
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/15__dog.equipment.collar.png
+ D steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/turn_mid/layers/15__dog.equipment.collar.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/00__world.ground.base.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/00__world.ground.base.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/01__world.ground.grass_mass.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/01__world.ground.grass_mass.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/02__world.ground.dirt_worn.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/02__world.ground.dirt_worn.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/03__world.ground.sand_soft.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/03__world.ground.sand_soft.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/04__world.path.main.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/04__world.path.main.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/05__world.path.used_taper_end.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/05__world.path.used_taper_end.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/06__world.transition.grass_dirt.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/06__world.transition.grass_dirt.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/07__world.transition.grass_sand.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/07__world.transition.grass_sand.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/08__world.transition.ground_path.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/08__world.transition.ground_path.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/09__world.fence.back_span.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/09__world.fence.back_span.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/10__world.fence.post_end_open_gap.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/10__world.fence.post_end_open_gap.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/11__world.yard.bicycle_pad.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/11__world.yard.bicycle_pad.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/12__world.shadow.local_prop.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/12__world.shadow.local_prop.png.import
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/13__world.fence.front_span.png
+ D steam/assets/prototypes/vertical_slice/authored/world/layers/13__world.fence.front_span.png.import
+ M steam/resources/prototypes/vertical_slice/labrador_r48_05a_binding_v1.json
+ M steam/resources/prototypes/vertical_slice/labrador_r48_05a_station_anchors_v1.json
+ M steam/scripts/prototypes/vertical_slice/labrador_visual_adapter.gd
+ M steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd
+ M steam/tests/vertical_slice_visual/test_labrador_visual_binding.gd
+ M steam/tools/capture-labrador-r48-05a.sh
+ M steam/tools/validate-labrador-r48-05a.py
+?? docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Gameplay_Field_And_Viewport_Semantic_Contract_v1.md
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1__Approved_Generated_Originals_Promotion_Record_v1.md
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1__Approved_Promotion_Record.md
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1__PM_Activation.md
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1__PM_User_Source_Acceptance.md
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Responsive_Meadow_Left_Cluster_Amendment_v1/
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Responsive_Meadow_Left_Cluster_Amendment_v1__PM_Activation_Status.md
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Responsive_Meadow_Left_Cluster_Amendment_v1__PM_User_Source_Acceptance.md
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1/
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_SOURCE_RECONCILED_RUNTIME_CAPTURE_v1/
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_DESKTOP__full_scene_d011_reconciled_v1__approved_direction.png
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_DESKTOP__meadow_source_plate_v1__approved_direction.png
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_DESKTOP__world_anchor_asset_source_sheet_v1__approved_direction.png
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__dog_labrador_intro_A_H__approved_direction_board.png
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__dog_labrador_intro_locomotion_source_sheet_v1__approved_direction.png
+?? docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_OVERLAY__dog_labrador_intro_work_source_sheet_v1__approved_direction.png
+?? docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Accepted_Art_Source_And_Labrador_H_Runtime_Integration_v1.md
+?? docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md
+?? steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/
+?? steam/assets/prototypes/vertical_slice/authored/world/assets/
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/00__world_depth_faint_trees_shrubs.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/00__world_depth_faint_trees_shrubs.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/01__world_ground_grass_mass.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/01__world_ground_grass_mass.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/02__world_path_dirt_worn.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/02__world_path_dirt_worn.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/03__world_ground_soil_base.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/03__world_ground_soil_base.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/04__world_depth_shrub_cluster_left.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/04__world_depth_shrub_cluster_left.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/05__world_depth_shrub_cluster_mid.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/05__world_depth_shrub_cluster_mid.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/06__world_depth_shrub_cluster_right.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/06__world_depth_shrub_cluster_right.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/07__world_fence_back_span_left.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/07__world_fence_back_span_left.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/08__world_fence_back_span_right.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/08__world_fence_back_span_right.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/09__world_anchor_road_sign.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/09__world_anchor_road_sign.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/11__world_building_storage.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/11__world_building_storage.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/12__world_utility_mill_static.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/12__world_utility_mill_static.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/13__world_building_kitchen.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/13__world_building_kitchen.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/14__world_utility_packing.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/14__world_utility_packing.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/15__world_endpoint_van.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/15__world_endpoint_van.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/16__world_fence_front_span_pause_only.png
+?? steam/assets/prototypes/vertical_slice/authored/world/layers/16__world_fence_front_span_pause_only.png.import
+?? steam/assets/prototypes/vertical_slice/authored/world/responsive/
+?? steam/docs/
+?? steam/resources/prototypes/vertical_slice/d024_responsive_presentation_v1.json
+?? steam/tests/vertical_slice_visual/d024_responsive_presentation_test_runner.tscn
+?? steam/tests/vertical_slice_visual/test_d024_responsive_presentation.gd
+?? steam/tests/vertical_slice_visual/test_d024_responsive_presentation.gd.uid
+?? steam/tools/capture-d024-responsive-presentation.sh
+?? steam/tools/validate-d024-responsive-presentation.py

@@ -2,18 +2,29 @@
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DEFAULT_GODOT_BIN="$HOME/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot"
-GODOT_BIN="${GODOT_BIN:-$DEFAULT_GODOT_BIN}"
-LOG_FILE="$(mktemp -t shelter-player-day2-return.XXXXXX.log)"
-trap 'rm -f "$LOG_FILE"' EXIT
+OBSERVER="$ROOT_DIR/tools/observe-godot-process.py"
+OBSERVE_ROOT="${SHELTER_GODOT_OBSERVE_ROOT:-$(mktemp -d -t shelter-player-day2-observe.XXXXXX)}"
+RUN_HOME="${SHELTER_GODOT_HOME:-$(mktemp -d -t shelter-player-day2-home.XXXXXX)}"
+RESULT="$OBSERVE_ROOT/player-day2-return/target/process-result.json"
 
-"$GODOT_BIN" --headless --path "$ROOT_DIR" \
-    --scene res://tests/day2_return/player_day2_return_test_runner.tscn >"$LOG_FILE" 2>&1
+mkdir -p "$OBSERVE_ROOT" "$RUN_HOME"
+trap 'echo "godot_process_diagnostics=$OBSERVE_ROOT" >&2' ERR
 
-if ! rg -q '^player_day2_return_test=passed cursors=33$' "$LOG_FILE" \
-    || rg -n 'SCRIPT ERROR|Parse Error|ERROR:' "$LOG_FILE" >/dev/null; then
-    cat "$LOG_FILE" >&2
-    exit 1
-fi
+"$OBSERVER" scene-test \
+    --output-dir "$OBSERVE_ROOT/player-day2-return" \
+    --home "$RUN_HOME" \
+    --target player-day2-return
+python3 - "$RESULT" <<'PY'
+import json
+import sys
+from pathlib import Path
+
+result = json.loads(Path(sys.argv[1]).read_text())
+if result.get("process_verdict") != "PASS" or result.get("diagnostic_verdict") != "PASS":
+    raise SystemExit("player day-2 process/diagnostic verdict mismatch")
+if result.get("capture_manifest_seal_eligible") is not True:
+    raise SystemExit("player day-2 result is evidence-ineligible")
+PY
 
 echo "player_day2_return_test=passed cursors=33"
+echo "godot_process_diagnostics=$OBSERVE_ROOT"

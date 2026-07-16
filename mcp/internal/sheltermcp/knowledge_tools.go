@@ -9,6 +9,10 @@ import (
 	"github.com/modelcontextprotocol/go-sdk/mcp"
 )
 
+func (a *App) knowledgeSnapshot() (KnowledgeSourceSnapshot, error) {
+	return loadKnowledgeSourceSnapshot(a.cfg.RepoRoot, knowledgeSnapshotOptions{})
+}
+
 type FindCurrentContextInput struct {
 	Area string `json:"area,omitempty" jsonschema:"steam|mcp|docs|browser|mobile|generic; default generic"`
 }
@@ -69,11 +73,15 @@ func (a *App) listDecisions(input ListDecisionsInput) (ListDecisionsOutput, erro
 		out.Area = area
 		return out, err
 	}
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
 	out = ListDecisionsOutput{
 		OK:           true,
 		Area:         area,
 		Kind:         kind,
-		Decisions:    decisionsFor(area, kind),
+		Decisions:    decisionsFor(snapshot, area, kind),
 		SourcePath:   docDecisions,
 		SourcePolicy: "Source Markdown always wins over compact catalog output.",
 	}
@@ -112,11 +120,15 @@ func (a *App) decisionDigest(input DecisionDigestInput) (DecisionDigestOutput, e
 		return out, err
 	}
 	maxItems := digestMaxItems(input.MaxItems)
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
 	out = DecisionDigestOutput{
 		OK:             true,
 		Area:           area,
 		MaxItems:       maxItems,
-		Digest:         decisionDigestFor(area, maxItems),
+		Digest:         decisionDigestFor(snapshot, area, maxItems),
 		SourcePath:     docDecisions,
 		ReadFullPolicy: "Source Markdown always wins; open 02_DECISIONS.md for authoritative wording.",
 	}
@@ -154,13 +166,17 @@ func (a *App) getDecision(input GetDecisionInput) (GetDecisionOutput, error) {
 	if id == "" {
 		return GetDecisionOutput{}, fmt.Errorf("id is required")
 	}
-	decision, ok := decisionByID(id)
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return GetDecisionOutput{ID: id}, err
+	}
+	decision, ok := decisionByID(snapshot, id)
 	if !ok {
 		return GetDecisionOutput{
 			OK:           false,
 			Found:        false,
 			ID:           id,
-			AvailableIDs: decisionIDs(),
+			AvailableIDs: decisionIDs(snapshot),
 			Error:        fmt.Sprintf("decision %q was not found", id),
 		}, nil
 	}
@@ -208,11 +224,15 @@ func (a *App) listOpenQuestions(input ListOpenQuestionsInput) (ListOpenQuestions
 		out.Area = area
 		return out, err
 	}
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
 	out = ListOpenQuestionsOutput{
 		OK:           true,
 		Area:         area,
 		Status:       status,
-		Questions:    openQuestionsFor(area, status),
+		Questions:    openQuestionsFor(snapshot, area, status),
 		SourcePath:   docOpenQuestions,
 		SourcePolicy: "Source Markdown always wins over compact catalog output.",
 	}
@@ -254,11 +274,15 @@ func (a *App) openQuestionsDigest(input OpenQuestionsDigestInput) (OpenQuestions
 	if status != "open" && status != "needs_research" && status != "all" {
 		return out, fmt.Errorf("unsupported open question digest status %q; expected open, needs_research, or all", status)
 	}
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
 	out = OpenQuestionsDigestOutput{
 		OK:             true,
 		Area:           area,
 		Status:         status,
-		Digest:         openQuestionsDigestFor(area, status),
+		Digest:         openQuestionsDigestFor(snapshot, area, status),
 		SourcePath:     docOpenQuestions,
 		ReadFullPolicy: "Source Markdown always wins; open 03_OPEN_QUESTIONS.md for authoritative wording and status.",
 	}
@@ -293,10 +317,14 @@ func (a *App) listRoadmaps(input ListRoadmapsInput) (ListRoadmapsOutput, error) 
 	if err != nil {
 		return out, err
 	}
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
 	out = ListRoadmapsOutput{
 		OK:           true,
 		Area:         area,
-		Roadmaps:     roadmapsFor(area),
+		Roadmaps:     roadmapsFor(snapshot, area),
 		SourcePolicy: "Cataloged roadmap files are authoritative; source Markdown always wins.",
 	}
 	return out, nil
@@ -341,7 +369,11 @@ func (a *App) latestHandoff(input LatestHandoffInput) (LatestHandoffOutput, erro
 		out.Role = role
 		return out, err
 	}
-	handoff, matches := latestHandoffFor(a.cfg.RepoRoot, role, area)
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
+	handoff, matches := latestHandoffFor(snapshot, role, area)
 	if len(matches) == 0 {
 		return LatestHandoffOutput{
 			OK:    false,
@@ -386,9 +418,13 @@ func (a *App) shelterStatus(input ShelterStatusInput) (ShelterStatusOutput, erro
 	if err != nil {
 		return out, err
 	}
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
 	return ShelterStatusOutput{
 		OK:        true,
-		Dashboard: statusDashboardFor(a.cfg.RepoRoot, area),
+		Dashboard: statusDashboardFor(snapshot, area),
 	}, nil
 }
 
@@ -428,9 +464,13 @@ func (a *App) knowledgeTaskContext(input KnowledgeTaskContextInput) (KnowledgeTa
 	if err != nil {
 		return out, err
 	}
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
 	return KnowledgeTaskContextOutput{
 		OK:      true,
-		Context: taskContextFor(role, area, task),
+		Context: taskContextFor(snapshot, role, area, task),
 	}, nil
 }
 
@@ -465,9 +505,13 @@ func (a *App) currentEntryDigest(input CurrentEntryDigestInput) (CurrentEntryDig
 	if err != nil {
 		return out, err
 	}
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
 	return CurrentEntryDigestOutput{
 		OK:     true,
-		Digest: currentEntryDigestFor(role, area),
+		Digest: currentEntryDigestFor(snapshot, role, area),
 	}, nil
 }
 
@@ -477,11 +521,15 @@ func (a *App) findCurrentContext(input FindCurrentContextInput) (FindCurrentCont
 	if err != nil {
 		return out, err
 	}
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
 	out = FindCurrentContextOutput{
 		OK:                 true,
 		Area:               area,
-		CurrentMemoryPaths: knowledgeDocPaths(catalogDocsFor(area, "current")),
-		KnowledgePaths:     knowledgeDocPaths(catalogDocsFor(area, "knowledge")),
+		CurrentMemoryPaths: knowledgeDocPaths(catalogDocsFor(snapshot, area, "current")),
+		KnowledgePaths:     knowledgeDocPaths(catalogDocsFor(snapshot, area, "knowledge")),
 		HistoryPolicy:      "Do not read history unless evidence/regression/archaeology is needed.",
 		Notes:              knowledgeAreaNotes(area),
 	}
@@ -523,11 +571,15 @@ func (a *App) listActiveDocs(input ListActiveDocsInput) (ListActiveDocsOutput, e
 		out.Area = area
 		return out, err
 	}
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
 	out = ListActiveDocsOutput{
 		OK:    true,
 		Area:  area,
 		Layer: layer,
-		Docs:  catalogDocsFor(area, layer),
+		Docs:  catalogDocsFor(snapshot, area, layer),
 		Notes: knowledgeAreaNotes(area),
 	}
 	return out, nil
@@ -556,7 +608,11 @@ func (a *App) explainSuperseded(input ExplainSupersededInput) (ExplainSuperseded
 	if input.Path == "" {
 		return ExplainSupersededOutput{}, fmt.Errorf("path is required")
 	}
-	explanation := explainSupersededPath(input.Path)
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return ExplainSupersededOutput{}, err
+	}
+	explanation := explainSupersededPath(snapshot, input.Path)
 	return ExplainSupersededOutput{SupersededExplanation: explanation}, nil
 }
 
@@ -583,7 +639,11 @@ func (a *App) classifyDocPath(input ClassifyDocPathInput) (ClassifyDocPathOutput
 	if input.Path == "" {
 		return ClassifyDocPathOutput{}, fmt.Errorf("path is required")
 	}
-	classification := classifyKnowledgePath(input.Path)
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return ClassifyDocPathOutput{}, err
+	}
+	classification := classifyKnowledgePath(snapshot, input.Path)
 	return ClassifyDocPathOutput{KnowledgePathClassification: classification}, nil
 }
 
@@ -624,14 +684,18 @@ func (a *App) knowledgeGCReport(input KnowledgeGCReportInput) (KnowledgeGCReport
 	}
 	maxEntries := gcMaxEntries(input.MaxEntries)
 	root := filepath.Clean(a.cfg.RepoRoot)
-	history, superseded, notes := collectKnowledgeGCCandidates(root, area, maxEntries)
+	snapshot, err := a.knowledgeSnapshot()
+	if err != nil {
+		return out, err
+	}
+	history, superseded, notes := collectKnowledgeGCCandidates(snapshot, root, area, maxEntries)
 	notes = append(notes, knowledgeAreaNotes(area)...)
 	out = KnowledgeGCReportOutput{
 		OK:                              true,
 		Area:                            area,
 		MaxEntries:                      maxEntries,
-		CurrentMemory:                   catalogDocsFor(area, "current"),
-		Knowledge:                       catalogDocsFor(area, "knowledge"),
+		CurrentMemory:                   catalogDocsFor(snapshot, area, "current"),
+		Knowledge:                       catalogDocsFor(snapshot, area, "knowledge"),
 		HistoryCandidates:               history,
 		SupersededCandidates:            superseded,
 		MissingCurrentContextCandidates: missingCurrentContextCandidates(area),

@@ -46,37 +46,43 @@ func _run() -> void:
             _clean_base()
         "assert-absent":
             _expect(not DirAccess.dir_exists_absolute(ProjectSettings.globalize_path(_base_dir)), "exact test run root is absent")
-        "kill-baseline":
+        "snapshot-baseline":
             _clean_base()
             var store := PlayerProfileStore.new(_base_dir, true)
-            _expect_ok(store.store_profile(_fields(92), PlayerProfileStore.CREATE_AUTHORITY), "kill baseline write")
-        "kill-update":
+            _expect_ok(store.store_profile(_fields(92), PlayerProfileStore.CREATE_AUTHORITY), "snapshot baseline write")
+        "snapshot-update":
             var store := PlayerProfileStore.new(_base_dir, true)
-            _expect(_failpoint != "", "kill update requires a failpoint")
-            _expect_ok(store.configure_test_failpoint(_failpoint, true), "configure terminating failpoint")
-            store.store_profile(_fields(93), PlayerProfileStore.UPDATE_AUTHORITY)
-            _fail("terminating failpoint returned to test runner")
-        "kill-create":
+            _expect(_failpoint != "", "snapshot update requires a failpoint")
+            _expect_ok(store.configure_test_failpoint(_failpoint), "configure nonfatal snapshot failpoint")
+            var result := store.store_profile(_fields(93), PlayerProfileStore.UPDATE_AUTHORITY)
+            _expect(
+                str(result.get("error", "")) == "injected_failure:%s" % _failpoint,
+                "snapshot update reaches exact nonfatal failpoint"
+            )
+        "snapshot-create":
             _clean_base()
             var store := PlayerProfileStore.new(_base_dir, true)
-            _expect(_failpoint != "", "kill create requires a failpoint")
-            _expect_ok(store.configure_test_failpoint(_failpoint, true), "configure terminating create failpoint")
-            store.store_profile(_fields(94), PlayerProfileStore.CREATE_AUTHORITY)
-            _fail("terminating create failpoint returned to test runner")
-        "kill-inspect":
+            _expect(_failpoint != "", "snapshot create requires a failpoint")
+            _expect_ok(store.configure_test_failpoint(_failpoint), "configure nonfatal create snapshot failpoint")
+            var result := store.store_profile(_fields(94), PlayerProfileStore.CREATE_AUTHORITY)
+            _expect(
+                str(result.get("error", "")) == "injected_failure:%s" % _failpoint,
+                "snapshot create reaches exact nonfatal failpoint"
+            )
+        "snapshot-inspect":
             var store := PlayerProfileStore.new(_base_dir, true)
-            _expect(_failpoint != "", "kill inspection requires expected failpoint")
+            _expect(_failpoint != "", "snapshot inspection requires expected failpoint")
             var marker_path := "%s/%s" % [_base_dir, PlayerProfileStore.TEST_FAILPOINT_MARKER]
-            _expect(FileAccess.file_exists(marker_path), "terminating failpoint wrote reach marker")
+            _expect(FileAccess.file_exists(marker_path), "nonfatal failpoint wrote authored snapshot marker")
             if FileAccess.file_exists(marker_path):
                 _expect(FileAccess.get_file_as_string(marker_path) == _failpoint, "reach marker identifies exact named failpoint")
             var inspection := store.inspect_profile_candidates()
             if _expected_status != "":
-                _expect(str(inspection.get("status", "")) == _expected_status, "killed transaction has expected deterministic status")
+                _expect(str(inspection.get("status", "")) == _expected_status, "authored transaction snapshot has expected deterministic status")
             else:
-                _expect(str(inspection.get("selected_source", "")) != "", "valid profile candidate survives killed update")
+                _expect(str(inspection.get("selected_source", "")) != "", "valid profile candidate survives authored update snapshot")
             if str(inspection.get("selected_source", "")) != "":
-                _expect_ok(store.load_profile_candidate(str(inspection["selected_source"])), "surviving candidate loads after killed update")
+                _expect_ok(store.load_profile_candidate(str(inspection["selected_source"])), "surviving candidate loads in fresh verifier")
             _clean_base()
         _:
             _clean_base()

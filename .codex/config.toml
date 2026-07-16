@@ -17,6 +17,7 @@ enabled_tools = [
   "start_shelter_control_connector",
   "stop_shelter_control_connector",
   "control_shelter_game",
+  "shelter_context_bundle",
   "read_shelter_bootstrap_context",
   "find_current_context",
   "list_decisions",
@@ -45,6 +46,9 @@ approval_mode = "approve"
 approval_mode = "approve"
 
 [mcp_servers.shelter.tools.read_shelter_bootstrap_context]
+approval_mode = "approve"
+
+[mcp_servers.shelter.tools.shelter_context_bundle]
 approval_mode = "approve"
 
 [mcp_servers.shelter.tools.find_current_context]

@@ -1,7 +1,7 @@
 # STEAM_DESKTOP — Current Context
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-13
+Обновлено: 2026-07-16
 Статус: active current-summary
 Владелец: Producer / Game Designer / Project Manager
 Назначение: короткий актуальный вход в Steam/Desktop контекст без перечитывания всей истории design, Codex, captures и handoff.
@@ -34,19 +34,21 @@ First Day MVP locked at prototype/product-language level.
 D-022 Day 2 same-chain Warm Food Delivery variation is complete at prototype/product-language/runtime-evidence level.
 R-29 is closed / PASS.
 D-023 First Day + Day 2 player journey scope lock is accepted.
+D-029/D-024 observability, graceful-stop and atomic-runner remediation is implemented and independently no-Godot reviewed PASS (P0=0/P1=0/P2=0); capture remains BLOCKED / EVIDENCE_HOLD / UNSEALED pending a new user/coordinator decision and literal bounded real-run ACK.
+D-025 makes the active development/QA/evidence/acceptance phase macOS-only and limits visual capture to two approved paths.
 ```
 
 Active roadmap / current task:
 
 ```text
 Active roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
-Current task: R48-05A v5 Technical PASS is retained as regression evidence, but the overall current look is CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK. Accept the prepared Art reconciliation package, then run a bounded Art source wave before any new Codex integration brief.
+Current task: source-reconciled R48-05A is `TECHNICAL_MECHANICAL_PASS`; final runtime Art/user acceptance remains open. D-029/D-024 is `D029_D024_OBSERVABILITY_ATOMIC_RUNNER_REMEDIATION_IMPLEMENTED / INDEPENDENT_NO_GODOT_REVIEW_PASS / P0=0 / P1=0 / P2=0 / CAPTURE_BLOCKED / EVIDENCE_HOLD / UNSEALED`. Contract A is `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`, current brief SHA K is `ccb81f8a7f881ad078dad54bcd811dad2616aa36f843b2bee0ca67c2487d26ed`, and evidence remains 32 files/no seal/tree `4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378`. PM sync activates nothing; bounded real execution requires a new user/coordinator decision and literal ACK.
 ```
 
 Current decisions:
 
 ```text
-D-007, D-009, D-010, D-011, D-012, D-013, D-018, D-019, D-020, D-022, D-023
+D-007, D-009, D-010, D-011, D-012, D-013, D-018, D-019, D-020, D-022, D-023, D-024, D-025, D-027, D-028, D-029
 ```
 
 Active open questions:
@@ -73,14 +75,14 @@ old captures, old completed briefs, old handoff, full CODEX_STATUS.md, supersede
 Next best step:
 
 ```text
-PM/User accept the prepared Art reconciliation package; Art then restores the bounded D-011/approved-library/Labrador source foundation with existing mechanics only. A separate accepted/executable Codex brief is required before runtime integration. No v6 patch loop, R48-05B, room, onboarding or background work now.
+Wait for a new user/coordinator decision. Only a new literal bounded real-run ACK naming unchanged Contract A, brief SHA K, final eight implementation hashes, pinned 32-file evidence tree and exact writer/scope may authorize Steam Godot/runtime/control/capture. This docs sync activates nothing; CA recurrence is diagnostic FAIL/rc73 and STOP before capture/seal.
 ```
 
 ---
 
 ## 1. Product frame
 
-Steam/Desktop — Windows/macOS Godot game в формате горизонтальной always-on-top sidescroll полоски.
+Steam/Desktop — Godot game с будущими Windows/macOS targets в формате горизонтальной always-on-top sidescroll полоски. Текущий active implementation/QA/evidence/acceptance target до отдельной pre-release activation — только macOS; отсутствие Windows проверки не является WARN, blocker или текущим gate.
 
 Принятая формула D-009:
 
@@ -116,6 +118,11 @@ Active decisions:
 - D-020 — Shelter makes life richer, not the warehouse.
 - D-022 — one complete same-chain Day 2 Warm Food Delivery variation was the accepted executable slice; it is now implemented and R-29 is closed.
 - D-023 — session-based First Day + Day 2 player journey, exact `3 + 2` inputs, persisted reserve, Quiet Cooperative, Labrador P0 and Kitchen P1.
+- D-024 — 100%-usable-width viewport with seam-safe tiled meadow, independent gameplay/buildable/viewport bounds, horizontal drag pan when needed, about 15% empty right reserve at every zoom, and a static decorative positive-scale mirrored Fence Boundary Marker at the buildable edge.
+- D-025 — macOS-only development/assembly/QA/acceptance until a separate pre-release Windows wave, with exactly Godot self-capture or macOS Screenshot UI / Computer Use as visual-capture paths.
+- D-027 — historical blockers require current bounded revalidation; material workaround routes require explicit user approval.
+- D-028 — local Steam/Desktop development/QA/evidence uses only the repo-documented Steam-managed Godot binary/version.
+- D-029 — Godot child output remains fully observable, finite tests exit naturally, graceful project quit precedes bounded SIGTERM fallback, hard kill/diagnostic suppression are forbidden.
 
 Read decision details in:
 
@@ -127,12 +134,12 @@ docs/drive/Shelter/00_START_HERE/02_DECISIONS.md
 
 ## 3. Current Steam status
 
-Current state as of 2026-07-13:
+Current state as of 2026-07-16:
 
 ```text
 First Day MVP is locked at prototype/product-language level.
 Day 2 is complete at prototype/product-language/runtime-evidence level; R-29 is closed / PASS.
-D-023 separately selects `First 48 Hours Playable`; R48-01A, accepted ADR-0003/R48-02A, R48-02B and R48-03 are complete/PASS. R48-05A v5 is Technical PASS evidence but its overall visible result is rejected. Current work is Art reconciliation acceptance and a new bounded source wave; parent R48-A/R48-05 stays open. R48-05B, rooms, onboarding and R48-04A are later, not current.
+D-023 separately selects `First 48 Hours Playable`; R48-01A, accepted ADR-0003/R48-02A, R48-02B and R48-03 are complete/PASS. Source-reconciled R48-05A is Technical/Mechanical PASS. D-024 source amendment/integration is accepted for the bounded trial, and the D-029/D-024 observability/atomic-runner remediation is implemented plus independently no-Godot reviewed PASS with P0=0/P1=0/P2=0. Capture remains BLOCKED/HOLD/UNSEALED; real Steam Godot 4.7.1, Continue runtime, actual PlayerBoot control ACK, GUI/capture/manifest/seal/promotion and final runtime Art/user acceptance are not run. The next gate is a new user/coordinator decision and literal bounded real-run ACK. Runtime/gameplay remains no-touch. Parent R48-A/R48-05 stays PARTIAL/WARN. R48-05B, rooms, onboarding and R48-04A are later, not current.
 ```
 
 Important caveat:
@@ -193,13 +200,14 @@ Current reconciliation authority:
 
 ```text
 D-011 full main-strip composition + the approved_art_files visual library + the accepted Labrador direction/identity pair are the canonical current targets. The approved Mill may be included literally only as static decoration, with no mechanic/task/resource/output/input. Current runtime v5 is regression evidence, not the visual target.
+The final source and direction-only approved promotion are accepted; external authority is `STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1__PM_User_Source_Acceptance.md` plus its Approved Promotion Record. The executable integration preserves `Road/Bicycle → Storage → Kitchen → Packing → Van`, Labrador-only living roster, static Mill and hard-excluded Sheet A.
 ```
 
 Current dog boundary:
 
 ```text
-Labrador remains the first living dog. Calm back-and-forth walking is the minimum desired living read, but its exact selector requires Game Design acceptance and later implementation through a separate executable Codex brief. Dachshund/cart is not a current implementation requirement.
-Exact status: NEEDS_MANIFEST_AMENDMENT. Existing start/walk/stop/turn rows are reused; no new vocabulary row is needed, but current A–G allows locomotion only under station selector C. A bounded selector amendment needs Game Design, Producer/PM and Technical/Codex re-sign before executable binding.
+Labrador remains the first living dog. Calm back-and-forth walking is the minimum desired living read; Dachshund/cart is not a current implementation requirement.
+Exact manifest authority: `SIGNED_GD_PM_TECHNICAL` at SHA `d8f1a9fc9226588097eb7bdfc162b6eff520ef42605b369ba25f906daa52ae56`. Selector H retains exactly 12 rows and presentation-only start/walk/stop/turn. Runtime binding is authorized only through the accepted executable integration brief and its named writer.
 ```
 
 Ambient-walk fail-closed guardrails:
@@ -349,6 +357,7 @@ D-011_Steam_Overlay_Main_Strip_v1_Rules.md
 DOG_VISUAL_LANGUAGE_v1.md
 DOG_RUNTIME_AND_ANIMATION_GRAMMAR_v1.md
 STEAM_DESKTOP__Art_Reconciliation__Dog_Buildings_Meadow_v1/README.md
+STEAM_DESKTOP__Art_Source_Responsive_Meadow_Left_Cluster_Amendment_v1__PM_Activation_Status.md
 ```
 
 For development:
@@ -389,15 +398,17 @@ docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 Current product/design boundary:
 
 ```text
-R-29 and R48-03 are closed/PASS. The prepared Art reconciliation package must be accepted by PM/User first. Then Art owns one bounded source-only wave for canonical base graphics and existing mechanics. Ambient Labrador walking remains NEEDS_MANIFEST_AMENDMENT and must receive the three owner re-signs before it can enter a later separate accepted/executable Codex integration brief. No v6 patch loop or R48-05B/room/onboarding/background work is current.
+R-29 and R48-03 are closed/PASS. Source-reconciled R48-05A is Technical/Mechanical PASS; final player-facing Art/user verdict remains open. D-024 presentation is mechanically green, and the D-029/D-024 observability/atomic-runner remediation is independently no-Godot reviewed PASS with P0=0/P1=0/P2=0. Capture stays BLOCKED/HOLD/UNSEALED. Current next is a new user/coordinator decision and literal bounded real-run ACK naming A/K, final eight hashes, pinned 32-file evidence tree and exact writer/scope; PM sync activates no Godot/runtime/control/capture.
 ```
 
-Completed and current accepted implementation briefs:
+Completed/accepted and current prepared implementation briefs:
 
 ```text
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Runtime_Safe_Checkpoints_And_Continue_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Accepted_Art_Source_And_Labrador_H_Runtime_Integration_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md — D029/D024 REMEDIATION IMPLEMENTED / INDEPENDENT NO-GODOT REVIEW PASS / P0=0 P1=0 P2=0 / CAPTURE BLOCKED / EVIDENCE HOLD / UNSEALED — Contract A 4f956a… / brief K ccb81f8a… / new literal bounded real-run ACK required
 ```
 
 Suggested Codex reasoning level:
@@ -420,6 +431,62 @@ Do not expand into:
 ---
 
 ## 11. Changelog
+
+### 2026-07-16 — D-029/D-024 remediation independent no-Godot PASS / capture HOLD
+
+- Recorded the exact eight-file observability, graceful-stop and atomic-runner remediation as implemented and independently reproduced `PASS` with `P0=0 / P1=0 / P2=0`.
+- Advanced current authority to Contract A plus whole brief SHA K `ccb81f8a…`; canonical evidence remains 32 files/no seal/tree `4ca49b1d…`.
+- Kept real Steam Godot/runtime/control/capture/manifest/seal/promotion not run and final Art/user acceptance pending. A new user/coordinator decision and literal bounded real-run ACK is the sole next gate; CA remains real/unresolved/not allowlisted.
+
+### 2026-07-15 — D-024 tool correction PASS / capture reactivation pending
+
+- Pinned current immutable Contract A, final Phase 2 brief SHA C and corrected validator/runner result while preserving earlier activation and capture-path findings as history.
+- Moved active state to `TOOL_CORRECTION_PASS / CAPTURE_REACTIVATION_PENDING_COORDINATOR_ACK / EVIDENCE_HOLD / UNSEALED`; capture is not active.
+- Set the sole current next action to literal ACK naming A/C, then one existing-runner macOS capture, seal and independent Art/user review by reserved writer `019f6604-8ac6-7871-85c8-2c858a2240f3`.
+
+### 2026-07-14 — D-025 macOS-first sequence / D-024 evidence resume
+
+- Removed Windows parity from the current implementation, QA, evidence, warning, blocker and acceptance queues; long-term Windows targeting remains for a separately activated pre-release wave.
+- Accepted the D-024 mechanical result as an unsealed candidate and reactivated the same sole writer only for capture completion.
+- Made existing Godot self-capture the normal visual-evidence path; macOS Screenshot UI / Computer Use is reserved for desktop/native-window context, with no third/ad-hoc path.
+- Classified the current AppKit/HIServices pre-Godot abort as a Codex-host limitation; the capture-only writer must first remove the forbidden legacy desktop path and stale Windows fields before using the existing runner.
+
+### 2026-07-14 — D-024 Technical signed / one-writer runtime activation
+
+- Accepted the additive two-asset/one-JSON topology, single runtime owner, 3840 fit cap, passthrough rules and existing KEY_H resolution.
+- Activated the exact brief for the sole writer `019f5ce4-e63c-7d33-a586-d2d3031c8610`.
+- Kept final runtime Art/user acceptance as a post-capture gate. D-025 later removed Windows native evidence from the current queue.
+
+### 2026-07-14 — D-024 source accepted / correction brief prepared
+
+- Accepted the exact 51-file amendment source for one bounded runtime trial after ledger, QA and visual/alpha readback.
+- Kept 3840 vertical fit, clean player presentation and final runtime Art/user verdict as later capture gates.
+- Prepared a separate non-executable brief; Technical exact-file preflight is the next owner step.
+
+### 2026-07-14 — D-024 owner gates signed / explicit Art resume
+
+- Closed exact GD and Technical contracts while keeping runtime authority blocked.
+- Accepted the pre-existing `offscreen_left=-160` only as hidden D-013 external-trip absence state.
+- Resumed the retained Art owner for the responsive meadow + authored-positive mirrored marker package source-only.
+
+### 2026-07-14 — D-024 responsive meadow / field / viewport authority
+
+- Accepted the four shown Labrador/building/meadow visuals as direction without reopening a broad pixel loop.
+- Required seam-safe horizontal meadow tiling, independent gameplay/buildable/viewport bounds, drag pan when necessary and about 15% empty right reserve at every zoom.
+- Added the static decorative Fence Boundary Marker immediately after the rightmost buildable cell; Art must supply a dedicated positive-coordinate mirrored export and runtime negative scale is forbidden.
+- Kept the additive Art package paused pending GD, Technical and a separate PM resume activation.
+
+### 2026-07-13 — source-reconciled integration activated
+
+- Closed exact Art promotion and Technical preflight gates.
+- Accepted the 2992-source-to-1740-runtime coordinate mapping without checkpoint/schema/cursor mutation.
+- Assigned the executable atomic brief to the single Codex writer thread `019f5ce4-e63c-7d33-a586-d2d3031c8610`; runtime Art/user acceptance remains after captures.
+
+### 2026-07-13 — Art source accepted / integration brief prepared
+
+- Recorded exact final source acceptance and P1 accept-as-is boundary for one integration trial.
+- Pinned current anchor order, static decorative Mill, Labrador-only living roster, provenance route and Sheet A exclusion through the external PM activation record.
+- Kept selector H non-runtime-executable and prepared the separate Technical-preflight brief without activating it.
 
 ### 2026-07-13 — current base graphics / later dog-life direction
 

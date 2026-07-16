@@ -1,0 +1,2 @@
+PASS: validate_dog_runtime_binding
+Mechanical runtime binding checks completed; visual approval was not evaluated.

@@ -1,6 +1,7 @@
 extends Node
 
 const PLAYER_BOOT_SCENE := preload("res://scenes/player/player_boot.tscn")
+const PLAYER_BOOT_SCRIPT_PATH := "res://scripts/player/player_boot.gd"
 
 var _failures: Array[String] = []
 var _base_dir := "user://player-tests/r48-launch-surface-default"
@@ -12,6 +13,7 @@ func _ready() -> void:
 
 func _run() -> void:
     _read_args()
+    _assert_graceful_shutdown_wiring()
     if not _base_dir.begins_with("user://player-tests/"):
         _failures.append("launch test root must stay under user://player-tests")
         _finish()
@@ -26,6 +28,12 @@ func _run() -> void:
     add_child(boot)
     await get_tree().process_frame
     await get_tree().process_frame
+
+    var shutdown_snapshot := boot.call("graceful_shutdown_snapshot") as Dictionary
+    _expect(not bool(shutdown_snapshot.get("control_enabled", true)), "observer control must be disabled without the exact flag")
+    _expect(not bool(shutdown_snapshot.get("control_polling", true)), "PlayerBoot must not poll the control file by default")
+    _expect(not bool(shutdown_snapshot.get("control_consumed", true)), "default PlayerBoot must not consume observer control")
+    _expect(not bool(shutdown_snapshot.get("shutdown_started", true)), "default PlayerBoot must not begin graceful shutdown")
 
     _expect(boot.get_child_count() == 1, "PlayerBoot must own exactly one gameplay runtime")
     var runtime: Control = boot.call("player_runtime") as Control
@@ -75,6 +83,22 @@ func _run() -> void:
     _clean_base()
 
     _finish()
+
+
+func _assert_graceful_shutdown_wiring() -> void:
+    var source := FileAccess.get_file_as_string(PLAYER_BOOT_SCRIPT_PATH)
+    _expect(source != "", "PlayerBoot source must be readable for lifecycle wiring proof")
+    _expect(source.contains("--shelter-observer-control-v1"), "PlayerBoot must use the exact observer flag")
+    _expect(source.contains("user://d029-observer-control/quit.request"), "PlayerBoot must use the fixed observer request path")
+    _expect(source.contains("SHELTER_CONTROL_QUIT\\n"), "PlayerBoot must require the exact observer request bytes")
+    _expect(source.contains("shelter_project_quit_ack=true"), "PlayerBoot must emit the exact project ACK")
+    _expect(source.contains("what == NOTIFICATION_WM_CLOSE_REQUEST"), "real WM close must enter PlayerBoot lifecycle")
+    _expect(source.contains('_begin_graceful_shutdown("wm_close")'), "WM close must call the shared graceful routine")
+    _expect(source.contains('_begin_graceful_shutdown("observer_control")'), "observer control must call the shared graceful routine")
+    _expect(source.contains("func _begin_graceful_shutdown(source: String)"), "one shared graceful routine must own both entries")
+    _expect(source.contains("get_tree().auto_accept_quit = false"), "PlayerBoot must own real close acknowledgement")
+    _expect(not source.contains("GDExtension"), "PlayerBoot must not add a native bridge")
+    _expect(not source.contains("SIGTERM"), "PlayerBoot must not add a signal handler")
 
 
 func _finish() -> void:

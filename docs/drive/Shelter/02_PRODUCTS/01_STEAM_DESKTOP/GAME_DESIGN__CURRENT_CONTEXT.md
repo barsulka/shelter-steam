@@ -43,14 +43,20 @@ Active roadmap / current task:
 
 ```text
 Active roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
-Current task: exact 12-row Labrador manifest SIGNED; observe bounded R48-05A implementation without expanding A–G; P0-C object transfer remains deferred to R48-05B
+Current task: exact 12-row Labrador manifest plus selector H is `SIGNED_GD_PM_TECHNICAL` (manifest SHA `d8f1a9fc9226588097eb7bdfc162b6eff520ef42605b369ba25f906daa52ae56`). The bounded source-reconciled Codex integration brief is `ACCEPTED / EXECUTABLE` (SHA `9fcaab17580f23b7a3d884440b802aa9c38f9181b84739bd0ba9dffcfa0159b1`). P0-C object transfer remains deferred to R48-05B.
+```
+
+Current field/viewport boundary:
+
+```text
+Gameplay field is fixed at `[0.0, 1740.0]`, independent of viewport. A static non-interactive Fence Boundary Marker starts at its right boundary; only meadow may continue exterior-side. The bounded semantic contract is ready for Technical readback, but does not authorize runtime work or alter A–H/D-023.
 ```
 
 Current ambient-walk boundary:
 
 ```text
 User direction: quality visual base now; rich dog-life catalogue later.
-Labrador calm back-and-forth is NEEDS_MANIFEST_AMENDMENT: current manifest permits locomotion only through station selector C, so no ambient executable binding enters R48-05A without a re-signed amendment.
+Labrador calm back-and-forth is signed selector H and may be bound only inside the active accepted Codex integration brief; it is not general ambient-simulation authority.
 Mill is static decorative-only; Dachshund/cart behavior is not current scope.
 ```
 
@@ -71,9 +77,11 @@ Read next by task:
 ```text
 Current scope: STEAM_DESKTOP__First_48_Hours_Playable_Scope_Lock_v1.md
 Current roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
+Field/viewport semantics: STEAM_DESKTOP__Gameplay_Field_And_Viewport_Semantic_Contract_v1.md
 Completed implementation: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_Main_Scene_And_Launch_Surfaces_v1.md
 Completed persistence foundation: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
 Completed checkpoint implementation: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Runtime_Safe_Checkpoints_And_Continue_v1.md
+Active bounded integration: 04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Accepted_Art_Source_And_Labrador_H_Runtime_Integration_v1.md (`ACCEPTED / EXECUTABLE`)
 Systems details: read R-09..R-16 docs only when needed
 ```
 
@@ -86,7 +94,7 @@ old roadmaps, old capture packs, old handoff, full CODEX_STATUS.md
 Next best step:
 
 ```text
-Review implementation evidence only after the accepted R48-05A integration. Preserve exact A–G, `3 + 2`, persisted reserve, Quiet Cooperative and Day 2 semantics; no transfer row or ambient-walk selector enters R48-05A without its accepted amendment.
+Review implementation evidence only after the active accepted R48-05A integration. Preserve exact A–H, `3 + 2`, persisted reserve, Quiet Cooperative and Day 2 semantics; H is executable only under its exact bounded brief, and no transfer row enters R48-05A.
 ```
 
 ---
@@ -337,6 +345,18 @@ no full new system
 ---
 
 ## 11. Changelog
+
+### 2026-07-14 — field/viewport semantic boundary
+
+- Fixed gameplay/buildable field to `[0.0, 1740.0]`, independent of viewport; exterior-side meadow is presentation-only and tile-safe without non-uniform stretch.
+- Added the static, non-interactive right `Fence Boundary Marker`, authored mirrored-positive only; Labrador activity remains fail-closed outside the field/right-end reserve.
+- Recorded default/right-end 15% reserve semantics and pan/click-through precedence for Technical readback without adding gameplay input, save state or runtime authorization.
+
+### 2026-07-13 — ambient selector H, signer readbacks closed
+
+- Added selector H to the unchanged 12-row Labrador manifest: task-free, fail-closed ambient reposition only before the offered start gate or in Quiet Cooperative.
+- Kept it presentation-only, non-persisted and cancelable before any authoritative player-gate transition.
+- Producer/PM and Technical/Codex readbacks are closed as `SIGNED_GD_PM_TECHNICAL`; its sole executable binding is the separate accepted source-reconciled Codex integration brief.
 
 ### 2026-07-13 — user direction and ambient-walk boundary recorded
 

@@ -70,6 +70,7 @@ func TestServerListsExpectedTools(t *testing.T) {
 		"append_changelog_entry",
 		"replace_between_markers",
 		"read_shelter_bootstrap_context",
+		"shelter_context_bundle",
 		"find_current_context",
 		"list_active_docs",
 		"classify_doc_path",
@@ -83,6 +84,21 @@ func TestServerListsExpectedTools(t *testing.T) {
 		}
 		assertObjectSchema(t, name, "output", tool.OutputSchema)
 	}
+	contextSchema, err := json.Marshal(tools["shelter_context_bundle"].InputSchema)
+	if err != nil {
+		t.Fatal(err)
+	}
+	var decodedContextSchema struct {
+		Properties map[string]struct {
+			Minimum float64 `json:"minimum"`
+		} `json:"properties"`
+	}
+	if err := json.Unmarshal(contextSchema, &decodedContextSchema); err != nil {
+		t.Fatal(err)
+	}
+	if decodedContextSchema.Properties["max_bytes"].Minimum != minimumContextBundleBytes {
+		t.Fatalf("shelter_context_bundle schema must publish max_bytes minimum=%d: %s", minimumContextBundleBytes, contextSchema)
+	}
 	for _, name := range []string{
 		"list_shelter_dev_commands",
 		"list_workbench_runs",
@@ -91,6 +107,7 @@ func TestServerListsExpectedTools(t *testing.T) {
 		"git_diff",
 		"git_diff_for_review",
 		"read_shelter_bootstrap_context",
+		"shelter_context_bundle",
 		"find_current_context",
 		"list_decisions",
 		"decision_digest",
@@ -158,6 +175,176 @@ func TestServerListsExpectedTools(t *testing.T) {
 		if !strings.Contains(text, want) {
 			t.Fatalf("command listing did not include %q: %s", want, text)
 		}
+	}
+}
+
+func TestKnowledgeFailureIsCapabilityLocal(t *testing.T) {
+	root := t.TempDir()
+	cfg := Config{SteamRoot: root, RepoRoot: root, DevScript: filepath.Join(root, "dev.sh"), LaunchScript: filepath.Join(root, "launch.sh"), WorkbenchRoot: filepath.Join(root, "workbench"), MCPRuntimeRoot: filepath.Join(root, "runtime"), DefaultPort: 8765, DefaultBaseURL: "http://127.0.0.1:8765", DefaultTimeout: time.Second, MaxTimeout: time.Second, MaxArtifactSize: 1024}
+	ctx := context.Background()
+	clientTransport, serverTransport := mcp.NewInMemoryTransports()
+	serverSession, err := NewServer(cfg).Connect(ctx, serverTransport, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer serverSession.Close()
+	clientSession, err := mcp.NewClient(&mcp.Implementation{Name: "test-client", Version: "test"}, nil).Connect(ctx, clientTransport, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer clientSession.Close()
+
+	listed, err := clientSession.ListTools(ctx, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	names := map[string]bool{}
+	for _, tool := range listed.Tools {
+		names[tool.Name] = true
+	}
+	for _, name := range []string{"shelter_context_bundle", "list_shelter_dev_commands", "list_workbench_runs", "control_shelter_game"} {
+		if !names[name] {
+			t.Fatalf("knowledge failure must not prevent registration of %s", name)
+		}
+	}
+	failed, err := clientSession.CallTool(ctx, &mcp.CallToolParams{Name: "shelter_context_bundle", Arguments: map[string]any{"role": "codex", "area": "mcp"}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !failed.IsError || !strings.Contains(failed.Content[0].(*mcp.TextContent).Text, "health=error") {
+		t.Fatalf("expected explicit knowledge error, got %+v", failed)
+	}
+	runtimeList, err := clientSession.CallTool(ctx, &mcp.CallToolParams{Name: "list_shelter_dev_commands", Arguments: map[string]any{}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if runtimeList.IsError || runtimeList.StructuredContent == nil {
+		t.Fatalf("runtime capability failed after knowledge error: %+v", runtimeList)
+	}
+}
+
+func TestContextBundleWireRejectsUnderMinimumBudget(t *testing.T) {
+	ctx := context.Background()
+	clientTransport, serverTransport := mcp.NewInMemoryTransports()
+	serverSession, err := NewServer(testServerConfig(repositoryRootForKnowledgeTest(t))).Connect(ctx, serverTransport, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer serverSession.Close()
+	clientSession, err := mcp.NewClient(&mcp.Implementation{Name: "test-client", Version: "test"}, nil).Connect(ctx, clientTransport, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer clientSession.Close()
+
+	for _, test := range []struct {
+		name     string
+		maxBytes int
+	}{{name: "one", maxBytes: 1}, {name: "below_minimum", maxBytes: minimumContextBundleBytes - 1}} {
+		t.Run(test.name, func(t *testing.T) {
+			maxBytes := test.maxBytes
+			result, callErr := clientSession.CallTool(ctx, &mcp.CallToolParams{
+				Name:      "shelter_context_bundle",
+				Arguments: map[string]any{"role": "codex", "area": "mcp", "max_bytes": maxBytes},
+			})
+			if callErr != nil {
+				t.Fatal(callErr)
+			}
+			if !result.IsError || result.StructuredContent != nil {
+				t.Fatalf("max_bytes=%d must be an argument error without structured content: %+v", maxBytes, result)
+			}
+			if len(result.Content) == 0 || !strings.Contains(result.Content[0].(*mcp.TextContent).Text, "minimum") {
+				t.Fatalf("max_bytes=%d error must explain the schema minimum: %+v", maxBytes, result.Content)
+			}
+		})
+	}
+}
+
+func TestContextBundleWireBoundsKnowledgeErrorEnvelope(t *testing.T) {
+	ctx := context.Background()
+	clientTransport, serverTransport := mcp.NewInMemoryTransports()
+	serverSession, err := NewServer(testServerConfig(malformedKnowledgeRepo(t))).Connect(ctx, serverTransport, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer serverSession.Close()
+	clientSession, err := mcp.NewClient(&mcp.Implementation{Name: "test-client", Version: "test"}, nil).Connect(ctx, clientTransport, nil)
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer clientSession.Close()
+
+	for _, test := range []struct {
+		name      string
+		arguments map[string]any
+		requested int
+	}{
+		{name: "default", arguments: map[string]any{"role": "codex", "area": "mcp"}, requested: defaultContextBundleBytes},
+		{name: "minimum", arguments: map[string]any{"role": "codex", "area": "mcp", "max_bytes": minimumContextBundleBytes}, requested: minimumContextBundleBytes},
+	} {
+		t.Run(test.name, func(t *testing.T) {
+			var previous string
+			for attempt := 0; attempt < 2; attempt++ {
+				result, callErr := clientSession.CallTool(ctx, &mcp.CallToolParams{Name: "shelter_context_bundle", Arguments: test.arguments})
+				if callErr != nil {
+					t.Fatal(callErr)
+				}
+				if !result.IsError || result.StructuredContent == nil {
+					t.Fatalf("knowledge failure must return an explicit structured error envelope: %+v", result)
+				}
+				encoded, marshalErr := json.Marshal(result.StructuredContent)
+				if marshalErr != nil {
+					t.Fatal(marshalErr)
+				}
+				var bundle ContextBundleOutput
+				if unmarshalErr := json.Unmarshal(encoded, &bundle); unmarshalErr != nil {
+					t.Fatal(unmarshalErr)
+				}
+				if bundle.Health != "error" || len(bundle.Errors) == 0 || !strings.Contains(bundle.Errors[0], "malformed decision document") || len(bundle.Budget.Omitted) != 0 {
+					t.Fatalf("malformed-source error must be explicit and must not silently omit data: %+v", bundle)
+				}
+				if bundle.Budget.RequestedBytes != test.requested || bundle.Budget.EncodedBytes != len(encoded) || len(encoded) > test.requested || len(encoded) > hardContextBundleBytes {
+					t.Fatalf("wire error budget mismatch: budget=%+v actual=%d", bundle.Budget, len(encoded))
+				}
+				if previous != "" && previous != string(encoded) {
+					t.Fatalf("same malformed source and input must produce an identical wire envelope\nfirst:  %s\nsecond: %s", previous, encoded)
+				}
+				previous = string(encoded)
+			}
+		})
+	}
+}
+
+func malformedKnowledgeRepo(t *testing.T) string {
+	t.Helper()
+	sourceRoot := repositoryRootForKnowledgeTest(t)
+	root := t.TempDir()
+	for _, path := range requiredKnowledgeSourcePaths() {
+		data, err := os.ReadFile(filepath.Join(sourceRoot, filepath.FromSlash(path)))
+		if err != nil {
+			t.Fatal(err)
+		}
+		if path == docDecisions {
+			data = []byte("# Decisions\n\nmalformed canonical fixture\n")
+		}
+		target := filepath.Join(root, filepath.FromSlash(path))
+		if err := os.MkdirAll(filepath.Dir(target), 0o755); err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(target, data, 0o600); err != nil {
+			t.Fatal(err)
+		}
+	}
+	return root
+}
+
+func testServerConfig(repoRoot string) Config {
+	steamRoot := filepath.Join(repoRoot, "steam")
+	return Config{
+		SteamRoot: steamRoot, RepoRoot: repoRoot,
+		DevScript: filepath.Join(steamRoot, "tools", "dev-vertical-slice.sh"), LaunchScript: filepath.Join(steamRoot, "launch.sh"),
+		WorkbenchRoot: filepath.Join(steamRoot, ".runtime", "workbench_capture_runs"), MCPRuntimeRoot: filepath.Join(steamRoot, ".runtime", "shelter_mcp"),
+		DefaultPort: 8765, DefaultBaseURL: "http://127.0.0.1:8765", DefaultTimeout: time.Second, MaxTimeout: time.Second, MaxArtifactSize: 1024,
 	}
 }
 

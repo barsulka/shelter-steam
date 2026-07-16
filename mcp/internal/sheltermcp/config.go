@@ -68,9 +68,6 @@ func NewConfig(steamRootFlag string) (Config, error) {
 			return Config{}, err
 		}
 	}
-	if err := validateKnowledgeCatalog(cfg.RepoRoot); err != nil {
-		return Config{}, err
-	}
 	return cfg, nil
 }
 

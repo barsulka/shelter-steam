@@ -1,0 +1,14 @@
+{
+  "declared_edge_identity_region_px": 8,
+  "immediate_repeat_boundary_rgba_max_delta": 0,
+  "left_region_constant_max_delta": 0,
+  "left_right_alpha_max_delta": 0,
+  "left_right_rgba_max_delta": 0,
+  "method": "four-period premultiplied consolidation plus 40 px soft edge reconciliation and 8 px exact constant edge identity",
+  "right_region_constant_max_delta": 0,
+  "schema": "shelter.art.d024.seam_proof.v1",
+  "tile_dimensions_px": [
+    748,
+    224
+  ]
+}

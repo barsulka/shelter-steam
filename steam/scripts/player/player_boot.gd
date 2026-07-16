@@ -9,6 +9,10 @@ const PlayerCheckpointCodec := preload("res://scripts/player/player_checkpoint_c
 const STARTUP_INTENT_FRESH_SESSION := "fresh_session"
 const STARTUP_INTENT_CONTINUE := "continue"
 const CONTENT_BUILD_VERSION := "r48-internal-1"
+const OBSERVER_CONTROL_FLAG := "--shelter-observer-control-v1"
+const OBSERVER_CONTROL_REQUEST_PATH := "user://d029-observer-control/quit.request"
+const OBSERVER_CONTROL_REQUEST_TEXT := "SHELTER_CONTROL_QUIT\n"
+const OBSERVER_CONTROL_ACK := "shelter_project_quit_ack=true"
 
 const COPY_SAVE_FAILURE := "Не удалось сохранить. Мир остановлен на безопасном месте."
 const COPY_INVALID_PROFILE := "Не удалось безопасно открыть сохранение. Оно осталось без изменений."
@@ -32,6 +36,11 @@ var _lifecycle_action_in_progress := false
 var _lifecycle_panel: PanelContainer
 var _lifecycle_label: Label
 var _lifecycle_button: Button
+var _observer_control_enabled := false
+var _observer_control_consumed := false
+var _observer_control_timer: Timer
+var _graceful_shutdown_started := false
+var _graceful_shutdown_source := ""
 
 
 func configure_player_boot(configuration: Dictionary) -> Dictionary:
@@ -54,6 +63,8 @@ func configure_player_boot(configuration: Dictionary) -> Dictionary:
 
 func _ready() -> void:
     _boot_configuration_locked = true
+    get_tree().auto_accept_quit = false
+    _configure_observer_control()
     _store = PlayerProfileStore.new(_store_base_dir, _store_test_mode)
     if _store_test_mode and _test_store_failpoint != "":
         var failpoint_result: Dictionary = _store.call("configure_test_failpoint", _test_store_failpoint, false) as Dictionary
@@ -61,6 +72,75 @@ func _ready() -> void:
             _show_error(COPY_INVALID_PROFILE, "test_store_failpoint_invalid")
             return
     _prepare_startup()
+
+
+func _notification(what: int) -> void:
+    if what == NOTIFICATION_WM_CLOSE_REQUEST:
+        _begin_graceful_shutdown("wm_close")
+
+
+func _configure_observer_control() -> void:
+    _observer_control_enabled = OS.get_cmdline_user_args().count(OBSERVER_CONTROL_FLAG) == 1
+    if not _observer_control_enabled:
+        return
+    _observer_control_timer = Timer.new()
+    _observer_control_timer.wait_time = 0.05
+    _observer_control_timer.one_shot = false
+    _observer_control_timer.timeout.connect(_poll_observer_control_request)
+    add_child(_observer_control_timer)
+    _observer_control_timer.start()
+
+
+func _poll_observer_control_request() -> void:
+    if not _observer_control_enabled or _observer_control_consumed or _graceful_shutdown_started:
+        return
+    if not FileAccess.file_exists(OBSERVER_CONTROL_REQUEST_PATH):
+        return
+    _observer_control_consumed = true
+    if _observer_control_timer != null:
+        _observer_control_timer.stop()
+    var payload := FileAccess.get_file_as_bytes(OBSERVER_CONTROL_REQUEST_PATH)
+    var remove_error := DirAccess.remove_absolute(ProjectSettings.globalize_path(OBSERVER_CONTROL_REQUEST_PATH))
+    if remove_error != OK:
+        push_error("shelter_observer_control=FAIL reason=request_remove_failed code=%d" % remove_error)
+        return
+    if payload != OBSERVER_CONTROL_REQUEST_TEXT.to_utf8_buffer():
+        push_error("shelter_observer_control=FAIL reason=malformed_request")
+        return
+    _begin_graceful_shutdown("observer_control")
+
+
+func _begin_graceful_shutdown(source: String) -> Dictionary:
+    if _graceful_shutdown_started:
+        return {"ok": true, "status": "already_started", "source": _graceful_shutdown_source}
+    if _runtime != null:
+        var checkpoint_snapshot := _runtime.call("player_checkpoint_snapshot") as Dictionary
+        if bool(checkpoint_snapshot.get("commit_in_progress", false)):
+            push_error("shelter_project_quit=FAIL reason=checkpoint_commit_in_progress")
+            return {"ok": false, "error": "checkpoint_commit_in_progress"}
+        _runtime.process_mode = Node.PROCESS_MODE_DISABLED
+        print(
+            "shelter_project_quit_persistence=durable checkpoint_sequence=%d barrier_failed=%s"
+            % [
+                int(checkpoint_snapshot.get("checkpoint_sequence", 0)),
+                str(bool(checkpoint_snapshot.get("barrier_failed", false))).to_lower(),
+            ]
+        )
+    _graceful_shutdown_started = true
+    _graceful_shutdown_source = source
+    _lifecycle_action = ""
+    _lifecycle_action_in_progress = true
+    if _observer_control_timer != null:
+        _observer_control_timer.stop()
+    print("shelter_project_quit_source=%s" % source)
+    print(OBSERVER_CONTROL_ACK)
+    _finish_graceful_shutdown.call_deferred()
+    return {"ok": true, "status": "acknowledged", "source": source}
+
+
+func _finish_graceful_shutdown() -> void:
+    await get_tree().process_frame
+    get_tree().quit(0)
 
 
 func clear_test_store_failpoint() -> Dictionary:
@@ -156,6 +236,8 @@ func _offer_continue(checkpoint: Dictionary) -> void:
 
 
 func activate_lifecycle_action() -> Dictionary:
+    if _graceful_shutdown_started:
+        return {"ok": false, "error": "graceful_shutdown_in_progress"}
     if _lifecycle_action == "" or _lifecycle_action_in_progress:
         return {"ok": false, "error": "lifecycle_action_unavailable"}
     _lifecycle_action_in_progress = true
@@ -349,4 +431,17 @@ func lifecycle_snapshot() -> Dictionary:
         "last_persisted_sequence": _last_persisted_sequence,
         "last_persisted_digest": _last_persisted_digest,
         "profile_base_dir": _store_base_dir if _store_test_mode else "user://player/default",
+    }
+
+
+func graceful_shutdown_snapshot() -> Dictionary:
+    return {
+        "control_enabled": _observer_control_enabled,
+        "control_polling": (
+            _observer_control_timer != null
+            and not _observer_control_timer.is_stopped()
+        ),
+        "control_consumed": _observer_control_consumed,
+        "shutdown_started": _graceful_shutdown_started,
+        "shutdown_source": _graceful_shutdown_source,
     }

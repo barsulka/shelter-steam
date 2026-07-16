@@ -1,0 +1,2 @@
+PASS: validate_dog_animation_manifest
+Mechanical validation passed; visual approval was not evaluated.

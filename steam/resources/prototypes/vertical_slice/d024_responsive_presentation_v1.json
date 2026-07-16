@@ -1,0 +1,51 @@
+{
+  "schema_version": "shelter.d024-responsive-presentation.v1",
+  "authority": {
+    "brief": "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md",
+    "brief_sha256": "72119140c079e780532873cce1ade75e676e02617ee673e6313b43b8db9b390c",
+    "source_acceptance_sha256": "eab92cb51a84361ba48036fed760ebbcdbfac59afe8b3b7d824dd42e84856079"
+  },
+  "field": {
+    "world_min_x": 0.0,
+    "world_max_x": 1740.0,
+    "gameplay_fraction": 0.85,
+    "exterior_reserve_fraction": 0.15,
+    "zoom_max_multiplier": 1.05,
+    "drag_threshold_screen_px": 8.0
+  },
+  "material": {
+    "texture": "res://assets/prototypes/vertical_slice/authored/world/responsive/meadow_tile_rgba_748x224.png",
+    "source_size_px": [748.0, 224.0],
+    "source_baseline_y_px": 211.0,
+    "source_opaque_top_y_px": 20.0,
+    "tile_world_width": 435.0,
+    "phase_origin_world_x": 0.0,
+    "repeat_axis": "x_only",
+    "load_count": 1,
+    "filter": "linear",
+    "mipmaps": false
+  },
+  "boundary_marker": {
+    "texture": "res://assets/prototypes/vertical_slice/authored/world/responsive/fence_boundary_marker_rgba.png",
+    "source_size_px": [174.0, 106.0],
+    "source_pivot_px": [0.0, 105.0],
+    "world_root": [1740.0, 122.7072192513369],
+    "source_to_runtime": 0.5815508021390374,
+    "opaque_body_world_min_x": 1745.2339572192514,
+    "runtime_mirror": false,
+    "draw_count": 1,
+    "load_count": 1,
+    "interactive": false,
+    "persisted": false
+  },
+  "render_order": [
+    "meadow_tile",
+    "static_00_09",
+    "standalone_bicycle",
+    "static_11_15",
+    "actors",
+    "static_16",
+    "fence_boundary_marker",
+    "gameplay_required_resources_and_cues"
+  ]
+}

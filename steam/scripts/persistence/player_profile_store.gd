@@ -19,7 +19,6 @@ var _quarantine_dir := ""
 var _test_mode := false
 var _configuration_error := ""
 var _test_failpoint := ""
-var _terminate_on_test_failpoint := false
 
 
 func _init(base_dir: String = PRODUCTION_BASE_DIR, test_mode: bool = false) -> void:
@@ -42,11 +41,10 @@ func paths() -> Dictionary:
     }
 
 
-func configure_test_failpoint(failpoint: String, terminate_process: bool = false) -> Dictionary:
+func configure_test_failpoint(failpoint: String) -> Dictionary:
     if not _test_mode or _configuration_error != "":
         return _result_error("test_failpoint_forbidden")
     _test_failpoint = failpoint
-    _terminate_on_test_failpoint = terminate_process
     return {"ok": true, "failpoint": _test_failpoint}
 
 
@@ -449,10 +447,7 @@ func _source_path(source: String) -> String:
 func _trigger_failpoint(name: String) -> bool:
     if not _test_mode or _test_failpoint != name:
         return false
-    if _terminate_on_test_failpoint:
-        if not _write_test_failpoint_marker(name):
-            return true
-        OS.kill(OS.get_process_id())
+    _write_test_failpoint_marker(name)
     return true
 
 

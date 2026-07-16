@@ -1,6 +1,7 @@
 # 05_DOCUMENTATION_GOVERNANCE — Current / Knowledge / History
 
 Дата создания: 2026-07-07
+Обновлено: 2026-07-16
 Статус: active documentation governance
 Владелец: Project Manager / Knowledge Base Maintainer
 Уровень: project-wide
@@ -107,7 +108,15 @@ superseded docs
 
 ## 2. Default read policy
 
-Новая серьёзная сессия читает в таком порядке:
+Когда D-026 source-derived bridge доступен и сообщает `health=current`, новая серьёзная сессия начинает routine bootstrap/context routing с:
+
+```text
+shelter_context_bundle(role, area, task, max_bytes)
+```
+
+Bundle — bounded deterministic projection из канонических Markdown source docs. Он экономит повторное широкое чтение, но не становится новым слоем памяти или authority.
+
+Прямое чтение применяется как exact verification/fallback в таком порядке:
 
 ```text
 1. PROJECTS_RULES.md
@@ -120,13 +129,42 @@ superseded docs
 8. History only if needed for evidence/regression/archaeology
 ```
 
-Если локальный Shelter MCP уже настроен, его knowledge tools можно использовать как необязательный навигатор:
+Прямой source read обязателен, если:
 
 ```text
-read_shelter_bootstrap_context(role=..., area=..., max_bytes=...)
+MCP unavailable or health != current
+bundle fallback is required
+required content is omitted or truncated
+exact brief / Accepted ADR / normative contract is required
+source conflict, malformed input or parser failure is reported
+the session is editing that source document
 ```
 
-Основной путь ChatGPT Work/Codex — прямое чтение локальных source documents. MCP-инструмент должен отдавать Current Memory первым и не заставлять AI-сессию читать весь архив, но его digest/catalog не заменяет source document и проигрывает ему при drift.
+D-026 принят, реализован и независимо reviewed `PASS`: прежние два P1 и два P2 finding закрыты, новых P0/P1/P2 или compatibility regressions не найдено. Healthy `shelter_context_bundle` — активный routine bootstrap path; прямой source read остаётся authority/exact fallback только для перечисленных условий.
+
+## 2.5 Blocker truth and workaround approval
+
+По D-027 исторический, environmental или version-specific blocker хранится как
+evidence/lead. Он не переносится в Current Memory как активная истина без
+bounded revalidation на текущем checkout, текущем binary/version и в текущем
+execution environment.
+
+Если blocker меняет согласованный execution path, acceptance route, tool
+surface, scope, owner или требует существенной/multi-session workaround-работы:
+
+1. точное evidence и варианты сначала показываются пользователю;
+2. безопасная/read-only диагностика и предложение workaround разрешены;
+3. принятие, активация, реализация или operational use workaround требуют
+   явного согласия пользователя;
+4. Coordinator, PM и Codex не могут создать такое согласие самостоятельно;
+5. без согласия новый route остаётся `HOLD`, а работа ограничивается безопасной
+   in-scope диагностикой без commitment к workaround;
+6. после согласия approval и chosen route фиксируются в active brief/current
+   docs до implementation.
+
+Историческое evidence не переписывается: к нему добавляется текущая
+классификация/revalidation. Это правило не превращает тривиальный обратимый
+recovery внутри уже разрешённого workflow в отдельный approval gate.
 
 ---
 
@@ -313,30 +351,74 @@ Knowledge GC задаёт вопросы:
 
 ## 9. Shelter MCP knowledge boundary
 
-По D-021 Shelter MCP — локальный domain-specific runtime/inspection adapter с необязательной bounded knowledge navigation.
+По D-021 и уточняющему D-026 Shelter MCP — локальный domain-specific runtime/inspection adapter и default routine bootstrap/context-routing bridge, когда его source-derived health равен `current`.
 
 Не нужно бесконечно ужимать все документы вручную. Нужно оптимизировать маршруты чтения.
 
-Knowledge tools могут оставаться safe convenience layer:
+Активный default context tool по D-026:
 
 ```text
-read_shelter_bootstrap_context(role, area)
-future: find_current_context(area)
-future: explain_superseded(path)
-future: list_active_docs(area)
-future: classify_docs(root)
-future: knowledge_gc_report(area)
+shelter_context_bundle(role, area, task, max_bytes)
 ```
+
+`read_shelter_bootstrap_context` сохраняется как legacy full-source fallback, не как ежедневный bootstrap default. Enabled knowledge projections перенесены на source snapshot и explicit-fail на knowledge errors; все четыре independent-review finding закрыты и независимо verified `PASS`.
 
 Правило:
 
-> Source documents остаются истиной. ChatGPT Work/Codex читает их напрямую; MCP может быстро найти маленький актуальный срез, но не должен создавать вторую вручную поддерживаемую память.
+> Source documents остаются истиной. Здоровый MCP bundle — default дешёвый детерминированный маршрут к их актуальному срезу; direct source read — точная проверка и fallback. MCP не должен создавать вторую вручную поддерживаемую память.
 
-Static summaries/catalogs внутри MCP допустимы только если они выводятся из source docs или валидируются против них. Drift такого каталога — технический дефект, а не новое решение проекта.
+Static code внутри MCP может хранить paths, routing и enum/path conventions, но не current titles/status/summaries/phases/next steps/active IDs. Такие факты должны выводиться из source docs по запросу. Knowledge parsing failure является capability-local и не должен отключать runtime/capture/control в той же MCP-сессии.
+
+Current rollout gate:
+
+```text
+Implementation and four-finding remediation are complete and independently reviewed PASS.
+Unit/race/vet/build, root+nested STDIO, Codex MCP list/get and non-interactive one-call smoke PASS.
+Healthy shelter_context_bundle is the active routine bootstrap/context-routing default.
+Direct source reads remain authority and exact fallback under the documented conditions.
+Remaining blockers: none.
+Non-blocking residuals: first remote CI run; semantic consistency remains a source-governance/direct-verification boundary rather than a generic detector; 4 KiB may honestly return fallback/omissions.
+Next project step: the already-governed D-024 macOS self-capture, evidence seal and Art/user review wave.
+```
 
 ---
 
 ## 10. Changelog
+
+### 2026-07-16 — D-027 blocker revalidation / workaround approval
+
+- Сделали historical/environment/version blocker evidence/lead, а не
+  автоматически активной Current Memory истиной.
+- Добавили bounded revalidation на текущих checkout/binary/environment перед
+  изменением route/scope/acceptance.
+- Зафиксировали, что material workaround можно исследовать и предложить, но
+  нельзя принять или operationalize без явного пользовательского согласия.
+- Сохранили тривиальное обратимое recovery внутри уже разрешённого workflow вне
+  дополнительного approval gate.
+
+### 2026-07-15 — D-026 final reviewer PASS / routine default active
+
+- Recorded independent re-review `PASS`, closure of the prior two P1 and two P2 findings and no new P0/P1/P2 or compatibility regressions.
+- Activated healthy `shelter_context_bundle` as the routine default while retaining direct source authority and exact fallback conditions.
+- Closed D-026 blockers and kept first remote CI plus the accepted semantic/4 KiB fallback boundaries as non-blocking residuals.
+
+### 2026-07-15 — D-026 remediation local PASS / re-review gate
+
+- Recorded all four independent-review findings as fixed locally and the full local matrix/client smokes as passing.
+- Made independent re-review the sole current next step without granting final acceptance or daily-default rollout.
+- Kept direct source fallback active until reviewer PASS.
+
+### 2026-07-15 — D-026 post-implementation rollout gate
+
+- Recorded the implemented source-derived architecture and passing happy path without promoting it to final acceptance.
+- Kept daily-default rollout blocked on the independent two-P1/two-P2 remediation and re-review gate.
+- Removed obsolete pre-implementation/static-catalog current claims and retained direct source fallback until reviewer PASS.
+
+### 2026-07-15 — D-026 MCP-first source-derived bootstrap
+
+- Made a healthy source-derived context bundle the default routine bootstrap/context-routing path.
+- Kept local source documents as authority and defined exact bounded direct-read fallback conditions.
+- Prohibited manually maintained current-fact memory in MCP and isolated knowledge failure from runtime/capture/control.
 
 ### 2026-07-10 — D-021 access and MCP boundary
 

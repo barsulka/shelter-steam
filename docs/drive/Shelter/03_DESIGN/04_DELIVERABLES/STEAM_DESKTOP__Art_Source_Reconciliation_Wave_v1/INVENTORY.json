@@ -1,0 +1,3027 @@
+[
+  {
+    "bytes": 4633,
+    "path": "ART_QA.md",
+    "sha256": "3405df1466d8bc821f54eae4874f43bedb384aab011315532ade32d660c88fbe"
+  },
+  {
+    "bytes": 113711,
+    "path": "INVENTORY.json",
+    "sha256": "92e2dcc4685ceb3be637d2b670dd9bee7cb5acf6c8b93d17567bcf06a91114f4"
+  },
+  {
+    "bytes": 6153,
+    "path": "PROVENANCE.md",
+    "sha256": "8253e955def0c1766f21f1db1a71cb18556be57d1341bea0846cdfbbb4c85f80"
+  },
+  {
+    "bytes": 78192,
+    "path": "QA_REPORT.json",
+    "sha256": "a772bf513be1cb251344a902d4303fa61e4805a8aa2660e96b14e4644705654d"
+  },
+  {
+    "bytes": 5960,
+    "path": "README.md",
+    "sha256": "8b0c2c7672315453900e062ca65b551e22abcffe8094a62783c53744a2cb76b5"
+  },
+  {
+    "bytes": 5049,
+    "path": "REFERENCE_READBACK.md",
+    "sha256": "e5a2dfa3d488a361be3b61a4893c9372e29070f797879e9cac85e8d3a32f9cc9"
+  },
+  {
+    "bytes": 33078,
+    "path": "SOURCE_MANIFEST.json",
+    "sha256": "c825bac41a7721553eb725fb00d14c4e7aba94832ae8ab605db68624e135616b"
+  },
+  {
+    "bytes": 1161948,
+    "path": "evidence/comparisons/labrador_identity_reference_comparison.png",
+    "sha256": "868548eaaf926dcf0220f954bc98f1219e4d5ac2cbed1c33bcaf05d325f95fac"
+  },
+  {
+    "bytes": 563332,
+    "path": "evidence/comparisons/world_D011_v5_new_comparison.png",
+    "sha256": "cb60669e47c477a0c18cce390e12ed57396713cd723ec17f9d57f54624235188"
+  },
+  {
+    "bytes": 521146,
+    "path": "evidence/full_layout/full_layout_alpha_checker_2992x224.png",
+    "sha256": "d5394501a515c849f59878640a233210fd9454bf9ed3fd825e9e89139fbf4e83"
+  },
+  {
+    "bytes": 509754,
+    "path": "evidence/full_layout/full_layout_desktop_composite_2992x224.png",
+    "sha256": "10f1bbf8c2d06cf87921493eeabb9ee0d4aa2d2c640a7803012ae826fb7f3663"
+  },
+  {
+    "bytes": 547184,
+    "path": "evidence/full_layout/full_layout_native_2992x224_rgba.png",
+    "sha256": "5f3ea55c54ac12e9460816bf60911c3905eec238c90fb9b9ac1aa30a895e2357"
+  },
+  {
+    "bytes": 32282,
+    "path": "evidence/labrador/144/ambient_attentive_left.png",
+    "sha256": "a0cc17ef7b329ab30a6832316bbba4141c76910d741c7d58695cd4fa58028685"
+  },
+  {
+    "bytes": 6016,
+    "path": "evidence/labrador/144/ambient_attentive_left__silhouette.png",
+    "sha256": "a5210364e6712da592cf8c5a98f59c5f4978d779632084998298cc2303abf99d"
+  },
+  {
+    "bytes": 31767,
+    "path": "evidence/labrador/144/ambient_attentive_right.png",
+    "sha256": "165e4685c1ce5256b4036554d457d7a472050b1edb1269c564cb62ed3791d202"
+  },
+  {
+    "bytes": 5814,
+    "path": "evidence/labrador/144/ambient_attentive_right__silhouette.png",
+    "sha256": "ecdc4c5b62bc28d69642c56d89cc62f1e11030ccc4fb0e1e02e10cebf2619efa"
+  },
+  {
+    "bytes": 38308,
+    "path": "evidence/labrador/144/approach_left.png",
+    "sha256": "17a205da66bb794664e1f0d5ad094559720ad7511c54c7b0978d9ccb2698b653"
+  },
+  {
+    "bytes": 6677,
+    "path": "evidence/labrador/144/approach_left__silhouette.png",
+    "sha256": "f8ff24780c938bdd1a2ca13892ed2734c038d9dc54f21e03593e56547385e22b"
+  },
+  {
+    "bytes": 40094,
+    "path": "evidence/labrador/144/approach_right.png",
+    "sha256": "3b115ef120dc7340c87e32ea0520b9a3a0ec82d5f04674f876018da2fdb31a5c"
+  },
+  {
+    "bytes": 6990,
+    "path": "evidence/labrador/144/approach_right__silhouette.png",
+    "sha256": "b6a822bd28084d095fd1e31eca7e1251765f20c071cae9d1b23225ca28ab0b52"
+  },
+  {
+    "bytes": 34944,
+    "path": "evidence/labrador/144/contact_align_left.png",
+    "sha256": "9cb467adb80631be96e7095d7387f68bb5f878bd232d87aef2c7b7ef4b2fe227"
+  },
+  {
+    "bytes": 6294,
+    "path": "evidence/labrador/144/contact_align_left__silhouette.png",
+    "sha256": "9b19d6204916643976d0c82def02b5ba5fc7c3302dba85e2cdcfa33ea13d5117"
+  },
+  {
+    "bytes": 34645,
+    "path": "evidence/labrador/144/contact_align_right.png",
+    "sha256": "2da865ead02501558a3a947ebdad58b2287db0d4bb2c697d4ffb3c6dade76f28"
+  },
+  {
+    "bytes": 6368,
+    "path": "evidence/labrador/144/contact_align_right__silhouette.png",
+    "sha256": "c59ea7c271acb357556cf7f3b1eaad4b0e546f82431b098bd080b87c5a59a787"
+  },
+  {
+    "bytes": 33234,
+    "path": "evidence/labrador/144/idle_neutral_right.png",
+    "sha256": "3660552810a9fc5b89b8c301bd06b28c3b3cdc7611d9b624f1e814f5fdc2fb1d"
+  },
+  {
+    "bytes": 6013,
+    "path": "evidence/labrador/144/idle_neutral_right__silhouette.png",
+    "sha256": "776155befe652067762d0df216c2bd4883301ef1b8ccdae54e54345401091fae"
+  },
+  {
+    "bytes": 22178,
+    "path": "evidence/labrador/144/kitchen_work_left.png",
+    "sha256": "fa1fd1c55847902d43c0ca473da53db22f584d6f21082b7350f39145d89bedcc"
+  },
+  {
+    "bytes": 4965,
+    "path": "evidence/labrador/144/kitchen_work_left__silhouette.png",
+    "sha256": "ffe4e9b9d714966ed8008a58cba23492933dde828f4df1d408b1a9f60db74700"
+  },
+  {
+    "bytes": 22403,
+    "path": "evidence/labrador/144/kitchen_work_right.png",
+    "sha256": "832573c55389cf455e479bd5c867c99bd30920715619c76ebfa2309ed7c4e43a"
+  },
+  {
+    "bytes": 4956,
+    "path": "evidence/labrador/144/kitchen_work_right__silhouette.png",
+    "sha256": "4f8877688817bd291de85457ce9aa5fe97b4ee261b1720be023a47dd86a43d5a"
+  },
+  {
+    "bytes": 37666,
+    "path": "evidence/labrador/144/locomotion_start_left.png",
+    "sha256": "64d2f98a3fe4caf1afa63eebd61086d39ed874a142e5c3674b2d6115860ff8e7"
+  },
+  {
+    "bytes": 6982,
+    "path": "evidence/labrador/144/locomotion_start_left__silhouette.png",
+    "sha256": "594063fd78d3dec695503b31ae049a077165d9b8ee56236fb0cdba0ac12746cf"
+  },
+  {
+    "bytes": 38680,
+    "path": "evidence/labrador/144/locomotion_start_right.png",
+    "sha256": "0dfd2863428ebbbd7a583cd7e6721e8219315afeaa4c0dfae284d3af877e4401"
+  },
+  {
+    "bytes": 7239,
+    "path": "evidence/labrador/144/locomotion_start_right__silhouette.png",
+    "sha256": "f7deee05c5a4c124b880c9450b909f026986697b2404032469ffcd2bc603401e"
+  },
+  {
+    "bytes": 34145,
+    "path": "evidence/labrador/144/locomotion_stop_left.png",
+    "sha256": "789b0d0493d2bd2ec88e09f3014b3510b4b4a55964e5f3c30a9ff1c2854a76ef"
+  },
+  {
+    "bytes": 5943,
+    "path": "evidence/labrador/144/locomotion_stop_left__silhouette.png",
+    "sha256": "a5ae6258df358b91221ff6ddbb75f1cfcd85dcfbcc9cb695cf4dc9e2e5851ec2"
+  },
+  {
+    "bytes": 34227,
+    "path": "evidence/labrador/144/locomotion_stop_right.png",
+    "sha256": "da8d270d9539a08095394a3a0946996d9e85e8b34e4ff5074a99251ba513e44e"
+  },
+  {
+    "bytes": 5850,
+    "path": "evidence/labrador/144/locomotion_stop_right__silhouette.png",
+    "sha256": "da07a6da2595d41b0b8cc823cf8f7a52237a33c9988ae31fea85cf3300f064f5"
+  },
+  {
+    "bytes": 53842,
+    "path": "evidence/labrador/144/packing_focus_left.png",
+    "sha256": "0190751b3c1d3fd5a11dc513e4a7887394686940ecad6fe5986c3a98cd089ac0"
+  },
+  {
+    "bytes": 8781,
+    "path": "evidence/labrador/144/packing_focus_left__silhouette.png",
+    "sha256": "8191cba1004da8ba01ae437d6da4edc060908e39954c0a562f3c5b0287777fb5"
+  },
+  {
+    "bytes": 53527,
+    "path": "evidence/labrador/144/packing_focus_right.png",
+    "sha256": "1fbed6e39754eaccdb019fc20fd0af721fffdb9f14904ee61073490a0d415cae"
+  },
+  {
+    "bytes": 8861,
+    "path": "evidence/labrador/144/packing_focus_right__silhouette.png",
+    "sha256": "bb7a44067cf24f6dcd6109b7efa11375f7d7a54b26fe65fc56cd309cff551cfd"
+  },
+  {
+    "bytes": 35055,
+    "path": "evidence/labrador/144/packing_work_left.png",
+    "sha256": "a77818589881f23fb61bf416bc11632081a6606369c86f8dac546a7e3b8feb61"
+  },
+  {
+    "bytes": 6405,
+    "path": "evidence/labrador/144/packing_work_left__silhouette.png",
+    "sha256": "07ad81736b68bcdabe5d26728903720a22ae38a7b460c0ebd927d3ba491438fc"
+  },
+  {
+    "bytes": 35173,
+    "path": "evidence/labrador/144/packing_work_right.png",
+    "sha256": "7ccfbf07a958c523ee2e8ee58459e37ed3083c80a04b5f43a907919dee862150"
+  },
+  {
+    "bytes": 6394,
+    "path": "evidence/labrador/144/packing_work_right__silhouette.png",
+    "sha256": "2d1deea0c9ff4223fd93c2d12cebec75f1eeaf16e629c4e19f89a0cade061214"
+  },
+  {
+    "bytes": 33320,
+    "path": "evidence/labrador/144/turn_left_to_right_mid.png",
+    "sha256": "211f7355d4ca3fd40099895aa81f2f24ba7a0e8faaf23cf698b5b95c20d6f2a4"
+  },
+  {
+    "bytes": 6078,
+    "path": "evidence/labrador/144/turn_left_to_right_mid__silhouette.png",
+    "sha256": "26fbace5b5f2506957051c8c4b487b2141d290b60ca980881718eceeb54e7d38"
+  },
+  {
+    "bytes": 31472,
+    "path": "evidence/labrador/144/turn_right_to_left_mid.png",
+    "sha256": "ae3d43491f092ae7d0900339b4ce21b804e267bfbbf0d0a0da6a1bd150b743f8"
+  },
+  {
+    "bytes": 5763,
+    "path": "evidence/labrador/144/turn_right_to_left_mid__silhouette.png",
+    "sha256": "2190e55ca6a6da11686616a6f81bee32a42c921226aef36da6457217a7758eb4"
+  },
+  {
+    "bytes": 33965,
+    "path": "evidence/labrador/144/wait_calm_left.png",
+    "sha256": "9ae12636842ab2a28a61909a3dfd8df6988786cb8cd3d1772c5091733ce6d02e"
+  },
+  {
+    "bytes": 5736,
+    "path": "evidence/labrador/144/wait_calm_left__silhouette.png",
+    "sha256": "53e22cb02e9d7430ec3ae77de3f36eeb21b1865fc0ecafbbfafe5a9b5204731f"
+  },
+  {
+    "bytes": 41578,
+    "path": "evidence/labrador/144/walk_support_a_left.png",
+    "sha256": "25f1024d0a1a166d81153292a3e4ef5aade61b7dccccb1a33eb172462218836c"
+  },
+  {
+    "bytes": 7496,
+    "path": "evidence/labrador/144/walk_support_a_left__silhouette.png",
+    "sha256": "cc22a78dafcf58ab3eb976ebe25758c5372f177c9eebfea7f8f5ea8fbf589713"
+  },
+  {
+    "bytes": 42257,
+    "path": "evidence/labrador/144/walk_support_a_right.png",
+    "sha256": "7377fe7566f7738207f97716c495b649791d3bf4cb498f5a36f095eb9e45261d"
+  },
+  {
+    "bytes": 7572,
+    "path": "evidence/labrador/144/walk_support_a_right__silhouette.png",
+    "sha256": "ad1ea089095cf7ec44eba31d1c4c3a97ef2711db56d858536c15db2fadca0b8a"
+  },
+  {
+    "bytes": 41032,
+    "path": "evidence/labrador/144/walk_support_b_left.png",
+    "sha256": "d89f0cc00fd10530b33a6364d8a52977b641441e4c1c3722e7919361e7f3163a"
+  },
+  {
+    "bytes": 7328,
+    "path": "evidence/labrador/144/walk_support_b_left__silhouette.png",
+    "sha256": "dc3755da3162f9589717519dafe666693b3e23500227fb7819b14f42344889ac"
+  },
+  {
+    "bytes": 41807,
+    "path": "evidence/labrador/144/walk_support_b_right.png",
+    "sha256": "3ed818b0e830cb2ca032880af4dc63f826669a85ac575c0772f11947156604d6"
+  },
+  {
+    "bytes": 7384,
+    "path": "evidence/labrador/144/walk_support_b_right__silhouette.png",
+    "sha256": "83baf56d62786516447f81d1694e9edab31b7b0315d9243cf5592ef4064a5aa6"
+  },
+  {
+    "bytes": 65147,
+    "path": "evidence/labrador/216/ambient_attentive_left.png",
+    "sha256": "7f9c5b31a94aadbc83d8971df3a967f1deda65d0ce55b3df7eb826d0fbccfca9"
+  },
+  {
+    "bytes": 9667,
+    "path": "evidence/labrador/216/ambient_attentive_left__silhouette.png",
+    "sha256": "54edea96f1b55ffec9f5dbf868f3f44c8fe03978bc21a1e9026bb74e1181bb0f"
+  },
+  {
+    "bytes": 64219,
+    "path": "evidence/labrador/216/ambient_attentive_right.png",
+    "sha256": "6872a24747266859816ff8fbcdfc252642392b31a473e55539e0a7da0112affe"
+  },
+  {
+    "bytes": 9429,
+    "path": "evidence/labrador/216/ambient_attentive_right__silhouette.png",
+    "sha256": "36c8af3172ebe8c3a261bbac90df1208b372902e2f0219dc9e124b0f8b388565"
+  },
+  {
+    "bytes": 77167,
+    "path": "evidence/labrador/216/approach_left.png",
+    "sha256": "bce53e13d806929fcac3718398933723f1f8ad1e83a0cdffce176014071918dc"
+  },
+  {
+    "bytes": 10902,
+    "path": "evidence/labrador/216/approach_left__silhouette.png",
+    "sha256": "3b8cfca4e6d6110f7a6ace12ecce8ee088c89beaedf96d1033c6f8f477a2edef"
+  },
+  {
+    "bytes": 81160,
+    "path": "evidence/labrador/216/approach_right.png",
+    "sha256": "3819ce9bd41c35b1bd6fb8ae9ab5cfc35714755ad917364a24a6b330a35b34d3"
+  },
+  {
+    "bytes": 11350,
+    "path": "evidence/labrador/216/approach_right__silhouette.png",
+    "sha256": "f2b52a0d5e48d74149dbb17bef3d4890d5e726d5c4cdc953d8fd2e17a4f34bb3"
+  },
+  {
+    "bytes": 70532,
+    "path": "evidence/labrador/216/contact_align_left.png",
+    "sha256": "0c59b06bf8ef3149de9d47d31d5e7ac8389c8abba0132d95db20e78a9b826ac4"
+  },
+  {
+    "bytes": 10085,
+    "path": "evidence/labrador/216/contact_align_left__silhouette.png",
+    "sha256": "a7981c88337fc3565d342755a965fc537606aaa4b7f7616cb78c4ace9e628164"
+  },
+  {
+    "bytes": 69547,
+    "path": "evidence/labrador/216/contact_align_right.png",
+    "sha256": "55d80ece822d647ea5c4b186434c471fbc8f820dfb8cee21214b419bb31b0a5b"
+  },
+  {
+    "bytes": 10214,
+    "path": "evidence/labrador/216/contact_align_right__silhouette.png",
+    "sha256": "5684c88a8923028b9befc4e1e1c898f8d809682c388fd6a1fc26787514301538"
+  },
+  {
+    "bytes": 67308,
+    "path": "evidence/labrador/216/idle_neutral_right.png",
+    "sha256": "66d96e8ea9be488a2722cc98d56d5326207aefe750f649027e84d9ee9e76b7b8"
+  },
+  {
+    "bytes": 9836,
+    "path": "evidence/labrador/216/idle_neutral_right__silhouette.png",
+    "sha256": "d77144011f2a00a1e807ae92baec86c1316af1b778ddde30bc02568acfe553bd"
+  },
+  {
+    "bytes": 44288,
+    "path": "evidence/labrador/216/kitchen_work_left.png",
+    "sha256": "0667c1eab0bb8baedbc355096d4d4dfd37059d4e9e2c8781d9cd185d34488224"
+  },
+  {
+    "bytes": 8239,
+    "path": "evidence/labrador/216/kitchen_work_left__silhouette.png",
+    "sha256": "253a557ba8fcc47cbd7b2b7069c6a3f644b0003b7a923635656d1fe2282ec2a5"
+  },
+  {
+    "bytes": 44815,
+    "path": "evidence/labrador/216/kitchen_work_right.png",
+    "sha256": "3d162472cb81b363f1d9b3b60acb527e1a8c18c02049b8b0b1bc121eab81e98b"
+  },
+  {
+    "bytes": 8088,
+    "path": "evidence/labrador/216/kitchen_work_right__silhouette.png",
+    "sha256": "63051278c34956a1adfe56f36004ce8688f9e2dbbacf8aee2480f4aa96fc48c6"
+  },
+  {
+    "bytes": 75805,
+    "path": "evidence/labrador/216/locomotion_start_left.png",
+    "sha256": "1f94f489e57b2b73612cfa2458a2f8b43c2f1aded397792555cf222c357dbdc0"
+  },
+  {
+    "bytes": 11004,
+    "path": "evidence/labrador/216/locomotion_start_left__silhouette.png",
+    "sha256": "a620cc7ea21708aa2156c2347f0173dabd57a2519ec69ec724bf2478b69e966b"
+  },
+  {
+    "bytes": 78351,
+    "path": "evidence/labrador/216/locomotion_start_right.png",
+    "sha256": "1c467bfec0608d5274313266985ab3251805f8a662f0d89d1f41951a04b3796b"
+  },
+  {
+    "bytes": 11397,
+    "path": "evidence/labrador/216/locomotion_start_right__silhouette.png",
+    "sha256": "1a44c78fb60e11410904ceb692951da5bc876ebc56e61c3c0301a3e7d341e459"
+  },
+  {
+    "bytes": 69247,
+    "path": "evidence/labrador/216/locomotion_stop_left.png",
+    "sha256": "15eaa280792c39565d66eb1d3a632517f3d3b495a532011feb96e5c3030dd972"
+  },
+  {
+    "bytes": 9530,
+    "path": "evidence/labrador/216/locomotion_stop_left__silhouette.png",
+    "sha256": "2f6b050de39a7c89632c122b051f66360cbed6215e9a408164097ef157d9f3d5"
+  },
+  {
+    "bytes": 68822,
+    "path": "evidence/labrador/216/locomotion_stop_right.png",
+    "sha256": "c4cd1e71561b26407ddef4672cba2a6225b263e29f9f3ba664b341c6c4fb4ebd"
+  },
+  {
+    "bytes": 9306,
+    "path": "evidence/labrador/216/locomotion_stop_right__silhouette.png",
+    "sha256": "ff1aaff6f7edbb8fd5397bb4ad960b4dbb8585fe12f9c0ac252f9a7eb5be3736"
+  },
+  {
+    "bytes": 107991,
+    "path": "evidence/labrador/216/packing_focus_left.png",
+    "sha256": "6e8fb560e0ccc9440bfe2feeb0196fe39afe5044e440b46991fe537aace83fdd"
+  },
+  {
+    "bytes": 14759,
+    "path": "evidence/labrador/216/packing_focus_left__silhouette.png",
+    "sha256": "52338d6931fa6cacd1ea07641e6c8b653acd825187e7d5c6620698093ca120be"
+  },
+  {
+    "bytes": 107378,
+    "path": "evidence/labrador/216/packing_focus_right.png",
+    "sha256": "4471de834530553bd076037d3bd5eb9a74ad0a9413c725967b93c84ac9ab9efb"
+  },
+  {
+    "bytes": 15206,
+    "path": "evidence/labrador/216/packing_focus_right__silhouette.png",
+    "sha256": "6332cb8e70b8cc3ed03c44b9259a24b7cbe1571424a13e6eebef390adaafb508"
+  },
+  {
+    "bytes": 70640,
+    "path": "evidence/labrador/216/packing_work_left.png",
+    "sha256": "18bd7f1004dbe99af132cf8e45dbcacd9c2bed13f89ffed3bbc8535ab7592fe1"
+  },
+  {
+    "bytes": 10001,
+    "path": "evidence/labrador/216/packing_work_left__silhouette.png",
+    "sha256": "f5ee9bee0ed57fb906a4b33b0ee32bc7e12d773dc170f346047c206b83a6f712"
+  },
+  {
+    "bytes": 70769,
+    "path": "evidence/labrador/216/packing_work_right.png",
+    "sha256": "5a0ea82abbfbe67aeac9659489b368305004df51903246a248840b9537e323c3"
+  },
+  {
+    "bytes": 10108,
+    "path": "evidence/labrador/216/packing_work_right__silhouette.png",
+    "sha256": "18beb0f4e7ec08c55b5d48423da1a69c6b826fe66f3fe9c4588020e5d10e80e0"
+  },
+  {
+    "bytes": 67147,
+    "path": "evidence/labrador/216/turn_left_to_right_mid.png",
+    "sha256": "b5adc1ebaa03e758478b8de324331ed7cb82dfedc24a30264077bf8ad805bc4d"
+  },
+  {
+    "bytes": 10298,
+    "path": "evidence/labrador/216/turn_left_to_right_mid__silhouette.png",
+    "sha256": "b4e4387e2bf0811225dee21ceaf05a08a5340c1d9de73bda558f4be228f97345"
+  },
+  {
+    "bytes": 63615,
+    "path": "evidence/labrador/216/turn_right_to_left_mid.png",
+    "sha256": "299644502fbded2718b124639ee9174686ebe0fdc0a8af708010b22c5c6c0f78"
+  },
+  {
+    "bytes": 9711,
+    "path": "evidence/labrador/216/turn_right_to_left_mid__silhouette.png",
+    "sha256": "cabba51edf03b28bdc220a3a3835f4e389de8842d7fa772c1f3c42be26192961"
+  },
+  {
+    "bytes": 69078,
+    "path": "evidence/labrador/216/wait_calm_left.png",
+    "sha256": "22e577b50579d1acb49fe962750786f896a57698e92259092a70347adcaf16da"
+  },
+  {
+    "bytes": 9625,
+    "path": "evidence/labrador/216/wait_calm_left__silhouette.png",
+    "sha256": "4e0826086047171d223e738bf3cfecabdc9813bb2ee96e1385119cae7c4cc1bd"
+  },
+  {
+    "bytes": 83833,
+    "path": "evidence/labrador/216/walk_support_a_left.png",
+    "sha256": "0f9112913ec05fd395e79ae66fbfa7492b64c3ac3d8f1b8f8d15fa207af94225"
+  },
+  {
+    "bytes": 12453,
+    "path": "evidence/labrador/216/walk_support_a_left__silhouette.png",
+    "sha256": "1f2922eb5aefa83626ed7f250f75a781bc3b0d9137239f924d5f43cb6c9f339b"
+  },
+  {
+    "bytes": 84685,
+    "path": "evidence/labrador/216/walk_support_a_right.png",
+    "sha256": "8149ac48da31c3b7499fdbc91cb508c084f3dd4fdf507f15c4bb68ece07b6fb0"
+  },
+  {
+    "bytes": 12272,
+    "path": "evidence/labrador/216/walk_support_a_right__silhouette.png",
+    "sha256": "5add0c769afdcce4e443e629dc1837eb1e56b9147081cc4f791eef0afe78491f"
+  },
+  {
+    "bytes": 82218,
+    "path": "evidence/labrador/216/walk_support_b_left.png",
+    "sha256": "a33652920e792372560041a0751825336c31d8b144b02d25fdfd999c7d9d7416"
+  },
+  {
+    "bytes": 11897,
+    "path": "evidence/labrador/216/walk_support_b_left__silhouette.png",
+    "sha256": "40772bf3a65592896b7cedc9165d8fd608e013a3fe86016a538e65ecdb0ddb4e"
+  },
+  {
+    "bytes": 84089,
+    "path": "evidence/labrador/216/walk_support_b_right.png",
+    "sha256": "6acd8ed97676c0c11d96da9304e549fb04f08df130d05ed50ce47b7778584da4"
+  },
+  {
+    "bytes": 12096,
+    "path": "evidence/labrador/216/walk_support_b_right__silhouette.png",
+    "sha256": "b88d56a0eb3cb55ff75be9a3d655847c8f17f0ca6d86f3cac40c940211689ca5"
+  },
+  {
+    "bytes": 16522,
+    "path": "evidence/labrador/96/ambient_attentive_left.png",
+    "sha256": "1352d20fd6b4c3e46ea5121f2d67a009058c334df2e45957322fc257376606a4"
+  },
+  {
+    "bytes": 3983,
+    "path": "evidence/labrador/96/ambient_attentive_left__silhouette.png",
+    "sha256": "01528edd9ab7b1f7e9793fb7e23fbf619385664e5fdb9392f8675d549d5d2ebb"
+  },
+  {
+    "bytes": 16209,
+    "path": "evidence/labrador/96/ambient_attentive_right.png",
+    "sha256": "4f057e5cff1bd77386a32adf1945ee86db3636c20222be5a59fa9b628afbd136"
+  },
+  {
+    "bytes": 3868,
+    "path": "evidence/labrador/96/ambient_attentive_right__silhouette.png",
+    "sha256": "14cf6fe55c70a66351cd5fc8c4f8f4382c41dcb7d7af876736ecefac574b1a3e"
+  },
+  {
+    "bytes": 19665,
+    "path": "evidence/labrador/96/approach_left.png",
+    "sha256": "0a344c97ad5455b9083176a0b09b1064455734997308f41a247c26f497bc14af"
+  },
+  {
+    "bytes": 4416,
+    "path": "evidence/labrador/96/approach_left__silhouette.png",
+    "sha256": "f5906eea6448c33096a581f697eb541230c1230674621120012648a439405f77"
+  },
+  {
+    "bytes": 20451,
+    "path": "evidence/labrador/96/approach_right.png",
+    "sha256": "388bb69ca28647f3e14ec46e03ee2843298bded3f9fea0706146d7413f37adc0"
+  },
+  {
+    "bytes": 4586,
+    "path": "evidence/labrador/96/approach_right__silhouette.png",
+    "sha256": "d03a3809283c12d293e1f6bbce255ced1fd6ffabc20fe6c1a522c06040fb6a9b"
+  },
+  {
+    "bytes": 17848,
+    "path": "evidence/labrador/96/contact_align_left.png",
+    "sha256": "5ac57cdcfef57d70527bd7ffd9813742e27e79d6fa15aade76b714e250b3716a"
+  },
+  {
+    "bytes": 4182,
+    "path": "evidence/labrador/96/contact_align_left__silhouette.png",
+    "sha256": "44898091b260a626791afd6161cce84ff90280c108a79a06ea9e5d43e555e47a"
+  },
+  {
+    "bytes": 17767,
+    "path": "evidence/labrador/96/contact_align_right.png",
+    "sha256": "7941fc7cd455a8e94628f8320645f4e58f3bc5049c7f8b48ec9dae4cd0f304db"
+  },
+  {
+    "bytes": 4226,
+    "path": "evidence/labrador/96/contact_align_right__silhouette.png",
+    "sha256": "fb183bbbbd89f40579466071f2404f5c0930ca6efcd50042105665e2105b5852"
+  },
+  {
+    "bytes": 17059,
+    "path": "evidence/labrador/96/idle_neutral_right.png",
+    "sha256": "c69b00517f7fa74c3e3f3442fb3f3028bedd5249bbccc7be28d04fdc27695be0"
+  },
+  {
+    "bytes": 3932,
+    "path": "evidence/labrador/96/idle_neutral_right__silhouette.png",
+    "sha256": "0355e0db311bf706f0e2b14c4474b4a95eca38b8e3ff878df5900d05da015196"
+  },
+  {
+    "bytes": 11390,
+    "path": "evidence/labrador/96/kitchen_work_left.png",
+    "sha256": "201b6351eb3497b6271a064aca6165f0f48a972080775aa5db599f5a95989fff"
+  },
+  {
+    "bytes": 3282,
+    "path": "evidence/labrador/96/kitchen_work_left__silhouette.png",
+    "sha256": "f653f618196a2d0f7285687ff3b2302e358463de4a9960988136beb9caa69dbc"
+  },
+  {
+    "bytes": 11528,
+    "path": "evidence/labrador/96/kitchen_work_right.png",
+    "sha256": "dd342538cd3b340073df2ae8afb11a60a5e7d30b902adcb476d0cf2899723b12"
+  },
+  {
+    "bytes": 3231,
+    "path": "evidence/labrador/96/kitchen_work_right__silhouette.png",
+    "sha256": "63992300f31e83f086e46ded0d1b54747cb6e7c7915d74db603e9bdba78d5141"
+  },
+  {
+    "bytes": 19313,
+    "path": "evidence/labrador/96/locomotion_start_left.png",
+    "sha256": "191ea848a99d9bc624db76f218ac74aa1a987065009951575b49b7358ac3de9d"
+  },
+  {
+    "bytes": 4651,
+    "path": "evidence/labrador/96/locomotion_start_left__silhouette.png",
+    "sha256": "b1b15e963937e1fd9e52d2dc448afe4ac98884a7b5f94a2b1492d564523814d5"
+  },
+  {
+    "bytes": 19816,
+    "path": "evidence/labrador/96/locomotion_start_right.png",
+    "sha256": "37a51d7026fa9dd3888585eb5cdb4ce2016d9daa52f6fd9fb8369ce1485f1835"
+  },
+  {
+    "bytes": 4776,
+    "path": "evidence/labrador/96/locomotion_start_right__silhouette.png",
+    "sha256": "20719c5dd926c6650b875593eec9715f669e9ca52a8c2fa3a378d0001ae727b7"
+  },
+  {
+    "bytes": 17454,
+    "path": "evidence/labrador/96/locomotion_stop_left.png",
+    "sha256": "9d9aee27f717025c71401872ccb2abc5291465b49c5e1c4fbee9a27d7f297637"
+  },
+  {
+    "bytes": 4025,
+    "path": "evidence/labrador/96/locomotion_stop_left__silhouette.png",
+    "sha256": "23b0218c05e67bcf6fa3749f81619a031f85e36d3e8e5497c435fca2ca9cacdd"
+  },
+  {
+    "bytes": 17324,
+    "path": "evidence/labrador/96/locomotion_stop_right.png",
+    "sha256": "678bf2fca28f8b199bcf1c207f190377464458b16c0509840439840037741c3d"
+  },
+  {
+    "bytes": 3964,
+    "path": "evidence/labrador/96/locomotion_stop_right__silhouette.png",
+    "sha256": "8d54e7abc30fee300f2853c5b6ceb37dbd53af65c9db594fefc2a4ed693b6249"
+  },
+  {
+    "bytes": 27078,
+    "path": "evidence/labrador/96/packing_focus_left.png",
+    "sha256": "abc46f256f35362058c08382138e0f242355f83eb253cb6e445bb1073ac4d96d"
+  },
+  {
+    "bytes": 5457,
+    "path": "evidence/labrador/96/packing_focus_left__silhouette.png",
+    "sha256": "5fe5c92773c911b5263a89724c412639b5290ba8a96d72d3fa3dbcde528e3a3c"
+  },
+  {
+    "bytes": 27002,
+    "path": "evidence/labrador/96/packing_focus_right.png",
+    "sha256": "3b4c62698a993328e9f2827a1766dd16a74dcba78aa7722f0a6e625ecf026442"
+  },
+  {
+    "bytes": 5537,
+    "path": "evidence/labrador/96/packing_focus_right__silhouette.png",
+    "sha256": "d7dabf82e2269678d4109a7d59f92d4eb76171298fed93f09cdbf073933415df"
+  },
+  {
+    "bytes": 17818,
+    "path": "evidence/labrador/96/packing_work_left.png",
+    "sha256": "c3ca3f738bd1fec76b81a463be6b7fef7ca51f50a6d13999328afc29c0383f41"
+  },
+  {
+    "bytes": 4183,
+    "path": "evidence/labrador/96/packing_work_left__silhouette.png",
+    "sha256": "689dd320fbb883a700a82709c8eec6b217d3ee4bb85aca3720e56fb27655ea2c"
+  },
+  {
+    "bytes": 18004,
+    "path": "evidence/labrador/96/packing_work_right.png",
+    "sha256": "fdc6a3eff072fa666e84f023fd15e935937666546730bd98590330d49ff34af3"
+  },
+  {
+    "bytes": 4152,
+    "path": "evidence/labrador/96/packing_work_right__silhouette.png",
+    "sha256": "294429c5fb0e870286e005b66200f62ca0abe46dbc98403745ecef436c3d5afc"
+  },
+  {
+    "bytes": 16733,
+    "path": "evidence/labrador/96/turn_left_to_right_mid.png",
+    "sha256": "4355f0120896138dd7da0ff9d5aeb004386390921eac923291120d778b82cfb3"
+  },
+  {
+    "bytes": 3883,
+    "path": "evidence/labrador/96/turn_left_to_right_mid__silhouette.png",
+    "sha256": "14d102a48f4a650d255bfd7a57ed9893186e91c030e2889f19b5e528560a0881"
+  },
+  {
+    "bytes": 15843,
+    "path": "evidence/labrador/96/turn_right_to_left_mid.png",
+    "sha256": "f4f6daa93ae66a046d0a640c98684392c06269bd7a5caae260f34e1a21502c23"
+  },
+  {
+    "bytes": 3675,
+    "path": "evidence/labrador/96/turn_right_to_left_mid__silhouette.png",
+    "sha256": "01658a052d3fdc0d845d231ede92004aa3bd4e3bd9b39bf3e241f60a8bc94f48"
+  },
+  {
+    "bytes": 16931,
+    "path": "evidence/labrador/96/wait_calm_left.png",
+    "sha256": "f7594692f459348f5978804e5961d35713b6e355d2de3c3df60b17b442e2de1c"
+  },
+  {
+    "bytes": 3688,
+    "path": "evidence/labrador/96/wait_calm_left__silhouette.png",
+    "sha256": "5003361c1294d7d1c9254cb981951631164ea402722f9751fdeb43850740fb12"
+  },
+  {
+    "bytes": 21209,
+    "path": "evidence/labrador/96/walk_support_a_left.png",
+    "sha256": "469362df29499bf28733170c862073f775683cf71622fdb477bdad45db150ae8"
+  },
+  {
+    "bytes": 4878,
+    "path": "evidence/labrador/96/walk_support_a_left__silhouette.png",
+    "sha256": "281d7456eb4daef814f2ab149e5abce6971d2bd5a7d31b091e52eba8f8233983"
+  },
+  {
+    "bytes": 21582,
+    "path": "evidence/labrador/96/walk_support_a_right.png",
+    "sha256": "4283903d90ed8f3ff333d1126e16b173c2ea7e2c602a5c1f9b05180cc742cb77"
+  },
+  {
+    "bytes": 5024,
+    "path": "evidence/labrador/96/walk_support_a_right__silhouette.png",
+    "sha256": "c75b05de0f62bc3003dd1f5ab65efa5b6f55bf3db2536cc2de48fdb4be6533ec"
+  },
+  {
+    "bytes": 20748,
+    "path": "evidence/labrador/96/walk_support_b_left.png",
+    "sha256": "2cadc0b6f6fdf83fb6dfb7c8cb8be8467d69e42f93fcc66c6be9171f775c3efa"
+  },
+  {
+    "bytes": 4836,
+    "path": "evidence/labrador/96/walk_support_b_left__silhouette.png",
+    "sha256": "776117f0859134659013207465681810282b92f6dae4a49f006a1e3a0b0d6d58"
+  },
+  {
+    "bytes": 21340,
+    "path": "evidence/labrador/96/walk_support_b_right.png",
+    "sha256": "d83a86842f6a1e285f08cc970353df809b6f4a2298e766335e0b5eb9051b5e2b"
+  },
+  {
+    "bytes": 4872,
+    "path": "evidence/labrador/96/walk_support_b_right__silhouette.png",
+    "sha256": "101143f57c46f98a282a6387b435916bc499960968d8f2bba0ceae4ed114b763"
+  },
+  {
+    "bytes": 975321,
+    "path": "evidence/labrador/labrador_A_H_action_coverage_board.png",
+    "sha256": "f36a24927e037338bf40e06a2577bced2ddd124aab8940bda23bc1046db4ad4e"
+  },
+  {
+    "bytes": 104309,
+    "path": "evidence/labrador/labrador_silhouette_board.png",
+    "sha256": "7a6aa01090481b363b241b636e2ba70c6dc7001832fd8b487281938787865946"
+  },
+  {
+    "bytes": 363048,
+    "path": "evidence/stations/kitchen_contact_from_left.png",
+    "sha256": "42fe336d13d243cf06359c44cac104b088fc718281023c31a41c35610bf911db"
+  },
+  {
+    "bytes": 364064,
+    "path": "evidence/stations/kitchen_contact_from_right.png",
+    "sha256": "66d75824239b0f9a4f47d60a274c6f67ae90d8b5490eefd0e511cbb3a6964796"
+  },
+  {
+    "bytes": 326296,
+    "path": "evidence/stations/packing_contact_from_left.png",
+    "sha256": "e235bd628a81f769ec66234f351130e5f22ca197bbcbd69a842cf048feae3780"
+  },
+  {
+    "bytes": 326755,
+    "path": "evidence/stations/packing_contact_from_right.png",
+    "sha256": "ae6697890e2d4688a87b7cb4a87409be57e6ec28cb92fa9fc1c5891fd2bd8318"
+  },
+  {
+    "bytes": 618333,
+    "path": "evidence/world/world_assets_black_board.png",
+    "sha256": "db805f9e2a530e8ceb866794ce9d455225ea682a2c2b18cdf708b6c492a48bab"
+  },
+  {
+    "bytes": 626215,
+    "path": "evidence/world/world_assets_checker_board.png",
+    "sha256": "66ded34fa0599d1746c6eb329248d810e073a670210d2e22a8bef0e4011baace"
+  },
+  {
+    "bytes": 261115,
+    "path": "evidence/world/world_full_corridor_144.png",
+    "sha256": "81f1d89fd0d815e20825ef5625c53224ef7b3ecd0379cd0340e628a936af6a82"
+  },
+  {
+    "bytes": 530909,
+    "path": "evidence/world/world_full_corridor_216.png",
+    "sha256": "8375379e479fcabaeeb550d52891cdd28695eb709b43e0071475af76b262439c"
+  },
+  {
+    "bytes": 126376,
+    "path": "evidence/world/world_full_corridor_96.png",
+    "sha256": "f8365826c281e6488e9a5704bc0529e5facf9bcd8c10f2159356a45cd4be8689"
+  },
+  {
+    "bytes": 77970,
+    "path": "exports/labrador/poses/ambient_attentive_left/composite_with_shadow_rgba.png",
+    "sha256": "ad5cdfee6a859daa756e066279d698a7eeb5ccef8f800e75ea469a6e101beb11"
+  },
+  {
+    "bytes": 75702,
+    "path": "exports/labrador/poses/ambient_attentive_left/identity_rgba.png",
+    "sha256": "6d145c6cac652a3a9226ca6cbd6b1900806c08bebce2ae925ea131dcd027b7f1"
+  },
+  {
+    "bytes": 76823,
+    "path": "exports/labrador/poses/ambient_attentive_right/composite_with_shadow_rgba.png",
+    "sha256": "8fac60623047e538907797efa4f207400ddde3773f96e5c90ab41595c8f4a41a"
+  },
+  {
+    "bytes": 74520,
+    "path": "exports/labrador/poses/ambient_attentive_right/identity_rgba.png",
+    "sha256": "e416b494b71d5b238c8bd34aa443085ac83abc370d125837d2779e1f5abb13ef"
+  },
+  {
+    "bytes": 90969,
+    "path": "exports/labrador/poses/approach_left/composite_with_shadow_rgba.png",
+    "sha256": "5d7bb5a22bb01a4d62b0016890ea7ce8ca0ef0770d52846bb45eaee35d75011a"
+  },
+  {
+    "bytes": 88773,
+    "path": "exports/labrador/poses/approach_left/identity_rgba.png",
+    "sha256": "29807896efc5231d73117cb8bc544cc47c5f4b6a643cd0b018fc79062f95923d"
+  },
+  {
+    "bytes": 94613,
+    "path": "exports/labrador/poses/approach_right/composite_with_shadow_rgba.png",
+    "sha256": "286fc425db9e3f8336bba61f95cf2fd1685290993f042a819b59275a374b80a0"
+  },
+  {
+    "bytes": 92392,
+    "path": "exports/labrador/poses/approach_right/identity_rgba.png",
+    "sha256": "e7752f4aa476d07503aafff89b1fa69a71fa535864eabca6b5e6d64a38d868ff"
+  },
+  {
+    "bytes": 83731,
+    "path": "exports/labrador/poses/contact_align_left/composite_with_shadow_rgba.png",
+    "sha256": "8da07071c6875f03d8b6345c38ef93a457d3919edb29b5de933655a7fbdc0ccf"
+  },
+  {
+    "bytes": 81350,
+    "path": "exports/labrador/poses/contact_align_left/identity_rgba.png",
+    "sha256": "4e6cbf7571a2566abeeb04e9c7be15a5ebc25608af903be9b718f4a45006f550"
+  },
+  {
+    "bytes": 82054,
+    "path": "exports/labrador/poses/contact_align_right/composite_with_shadow_rgba.png",
+    "sha256": "0c2e1244a7c0ae24ea6b956131211661cdae7ccdbc56c6e341c092505123707e"
+  },
+  {
+    "bytes": 79622,
+    "path": "exports/labrador/poses/contact_align_right/identity_rgba.png",
+    "sha256": "1fe1fe5aed1e14bd3be642a1bbbb311e582969a328a538d39b41cd04e54847b3"
+  },
+  {
+    "bytes": 79081,
+    "path": "exports/labrador/poses/idle_neutral_right/composite_with_shadow_rgba.png",
+    "sha256": "099fdf27606cc3d64bd923775627e7dff6fd0f04c0791e20618c874fc06cd8e2"
+  },
+  {
+    "bytes": 76701,
+    "path": "exports/labrador/poses/idle_neutral_right/identity_rgba.png",
+    "sha256": "0120adb772fe463bcf4bcc85f422903182efc663be4df47e9487b289a477fa72"
+  },
+  {
+    "bytes": 53874,
+    "path": "exports/labrador/poses/kitchen_work_left/composite_with_shadow_rgba.png",
+    "sha256": "6139ceb5eb60e2105f6a2cb20e81c4339dfc6d4cff6c7c58d9bdc5c5eaea993e"
+  },
+  {
+    "bytes": 51418,
+    "path": "exports/labrador/poses/kitchen_work_left/identity_rgba.png",
+    "sha256": "1231cd92706ee84e45cf52bff97c2bf41e9cdfa18cca32dbac16737e00d1c1c9"
+  },
+  {
+    "bytes": 54311,
+    "path": "exports/labrador/poses/kitchen_work_right/composite_with_shadow_rgba.png",
+    "sha256": "653bc4e384845b15a5ee89486cf59ecc3a5bd9a2634070fa1c2f6e56e58bb016"
+  },
+  {
+    "bytes": 51943,
+    "path": "exports/labrador/poses/kitchen_work_right/identity_rgba.png",
+    "sha256": "be6cb2caa71e8cc03bd8d806630de6a615f16a37d45361ad9a261d6eb95b321a"
+  },
+  {
+    "bytes": 89664,
+    "path": "exports/labrador/poses/locomotion_start_left/composite_with_shadow_rgba.png",
+    "sha256": "9ec0e86f33fb28aaa94c5eeb70ab5f53360a4de5596f75b65d230a335e8dec28"
+  },
+  {
+    "bytes": 87408,
+    "path": "exports/labrador/poses/locomotion_start_left/identity_rgba.png",
+    "sha256": "9382db1b42a6a050f06429dcdff57af66b0e46aa20844a46a2794804d9261004"
+  },
+  {
+    "bytes": 92174,
+    "path": "exports/labrador/poses/locomotion_start_right/composite_with_shadow_rgba.png",
+    "sha256": "83e2573b39d0615e663aa75b540143dfe78f676b1fa38f4c3539a7bff45fef77"
+  },
+  {
+    "bytes": 90089,
+    "path": "exports/labrador/poses/locomotion_start_right/identity_rgba.png",
+    "sha256": "3fe8d977906d7701c1515c25259dfa86126fbec62e24a69ee6e231a088093048"
+  },
+  {
+    "bytes": 82434,
+    "path": "exports/labrador/poses/locomotion_stop_left/composite_with_shadow_rgba.png",
+    "sha256": "4c7f13d0c7c596eaa42a99cf58d18c8cf54a994d78d34b18ddc9e4a21492edac"
+  },
+  {
+    "bytes": 80149,
+    "path": "exports/labrador/poses/locomotion_stop_left/identity_rgba.png",
+    "sha256": "050c96825463bb5f94095453788f345bab02200b55a4d00a4a4d70c45331998e"
+  },
+  {
+    "bytes": 81318,
+    "path": "exports/labrador/poses/locomotion_stop_right/composite_with_shadow_rgba.png",
+    "sha256": "0109e9d864752eba8ab180e72c7e8da04ceb40ecfe5268f78d65ed56336580cb"
+  },
+  {
+    "bytes": 78943,
+    "path": "exports/labrador/poses/locomotion_stop_right/identity_rgba.png",
+    "sha256": "947038c046e1b0356ac7aa87590828b1907754e27d9a94bfa30d893bf368862c"
+  },
+  {
+    "bytes": 123011,
+    "path": "exports/labrador/poses/packing_focus_left/composite_with_shadow_rgba.png",
+    "sha256": "8a7b93247aefec09f77d0d5eec048d9e60ba9ae814b907e69b795d5b745b953b"
+  },
+  {
+    "bytes": 120445,
+    "path": "exports/labrador/poses/packing_focus_left/identity_rgba.png",
+    "sha256": "a694b83f9ef4a6754444465b36494013dcd880e782e7006bf137534780af1de9"
+  },
+  {
+    "bytes": 122143,
+    "path": "exports/labrador/poses/packing_focus_right/composite_with_shadow_rgba.png",
+    "sha256": "e6bbba9cded272cd2fd6c89aa07ab71f39984412cef26dac3965686b18f3c851"
+  },
+  {
+    "bytes": 119739,
+    "path": "exports/labrador/poses/packing_focus_right/identity_rgba.png",
+    "sha256": "a658a2b513d90bd4dfe7c6edf5e3c2dc2b1a0e07b2233bfe398a210cd470f528"
+  },
+  {
+    "bytes": 83659,
+    "path": "exports/labrador/poses/packing_work_left/composite_with_shadow_rgba.png",
+    "sha256": "487ac16b8c72884c3ab1095d4d7fdf1c7b4a445fc7955f9f2de1747c3ccb7ea0"
+  },
+  {
+    "bytes": 81294,
+    "path": "exports/labrador/poses/packing_work_left/identity_rgba.png",
+    "sha256": "4db6141c77ea3420159e5fe2d8694fc101c35ad8ce8e0fb4e5165e05b639ab79"
+  },
+  {
+    "bytes": 83287,
+    "path": "exports/labrador/poses/packing_work_right/composite_with_shadow_rgba.png",
+    "sha256": "0dd486d4675d09761a9b7f4e0a71377240b6db7faf80e51ac8b046a8d2c0d187"
+  },
+  {
+    "bytes": 80893,
+    "path": "exports/labrador/poses/packing_work_right/identity_rgba.png",
+    "sha256": "e45424f5538be29522ef09d755d022e45305b45444c5b16b8993fa3cee28864d"
+  },
+  {
+    "bytes": 80126,
+    "path": "exports/labrador/poses/turn_left_to_right_mid/composite_with_shadow_rgba.png",
+    "sha256": "cf397f3df375f98e007111f4a203d17e2bde1649f8be513d59ab1867ab0fa534"
+  },
+  {
+    "bytes": 77844,
+    "path": "exports/labrador/poses/turn_left_to_right_mid/identity_rgba.png",
+    "sha256": "bfb68ea68a4cdc77a58a94cc04f9aee735f2322d92d4b465a72b6b490d302895"
+  },
+  {
+    "bytes": 76001,
+    "path": "exports/labrador/poses/turn_right_to_left_mid/composite_with_shadow_rgba.png",
+    "sha256": "09232efcd21a5a6ff7fb4775a5e10b938e41d74c544d52a177245cbf7b7f05fd"
+  },
+  {
+    "bytes": 73826,
+    "path": "exports/labrador/poses/turn_right_to_left_mid/identity_rgba.png",
+    "sha256": "6f80c9e4592108bcc0dc063312f68616af2e7fc2f0184474821d0a2bc8955abe"
+  },
+  {
+    "bytes": 81498,
+    "path": "exports/labrador/poses/wait_calm_left/composite_with_shadow_rgba.png",
+    "sha256": "6b10f310021b95e007298c750ad9aaba0550418111e24c4d1bcc28b81c675c87"
+  },
+  {
+    "bytes": 79190,
+    "path": "exports/labrador/poses/wait_calm_left/identity_rgba.png",
+    "sha256": "616b62dfb5ad2afa170620f161086ae4bc6e66b5517841bb7d68862b717275ef"
+  },
+  {
+    "bytes": 97885,
+    "path": "exports/labrador/poses/walk_support_a_left/composite_with_shadow_rgba.png",
+    "sha256": "b1a528a95f77da70a1af42597f1813bc4f7a26ccf71ef36e9233c85df0483ff4"
+  },
+  {
+    "bytes": 95605,
+    "path": "exports/labrador/poses/walk_support_a_left/identity_rgba.png",
+    "sha256": "0d2dd88125052154b87d42d4b9251fee80b4ce60e54345db7732d4ae9a86e763"
+  },
+  {
+    "bytes": 99180,
+    "path": "exports/labrador/poses/walk_support_a_right/composite_with_shadow_rgba.png",
+    "sha256": "6c188f819c4083b7fce9676db8d397d0d25fe9e9678af140a7718ad50d7ba72c"
+  },
+  {
+    "bytes": 96764,
+    "path": "exports/labrador/poses/walk_support_a_right/identity_rgba.png",
+    "sha256": "64988614de3a7f3bad325f7c3b89e5df545867ad28f111338f513c1d1040c017"
+  },
+  {
+    "bytes": 96404,
+    "path": "exports/labrador/poses/walk_support_b_left/composite_with_shadow_rgba.png",
+    "sha256": "34732c1a21583ab0a0e9d83c994e7d4fbb54bc992d50fd50ab41ab92d404e347"
+  },
+  {
+    "bytes": 94178,
+    "path": "exports/labrador/poses/walk_support_b_left/identity_rgba.png",
+    "sha256": "759f837913a59ad19dc9bf0602eedf6882122180e08a89e5052ab84f7e67294d"
+  },
+  {
+    "bytes": 98140,
+    "path": "exports/labrador/poses/walk_support_b_right/composite_with_shadow_rgba.png",
+    "sha256": "d70db27809b76d44e5e506edc751d6da35e9d6a94b1fd9e8d07503ed25f8c84c"
+  },
+  {
+    "bytes": 95905,
+    "path": "exports/labrador/poses/walk_support_b_right/identity_rgba.png",
+    "sha256": "cf31420f0097881494d4c8cb01ddad2da62ab4789164be00d10b26ed82685066"
+  },
+  {
+    "bytes": 64008,
+    "path": "exports/world/assets/bicycle.png",
+    "sha256": "211b6c12774bf1170bf16c108e6dbada2d35a8da69fecb8656508e85695756c5"
+  },
+  {
+    "bytes": 57297,
+    "path": "exports/world/assets/fence_segments.png",
+    "sha256": "8e1674e4b7be7e71a9332590416383c80460c7ff5b10b547005977d24bb5594f"
+  },
+  {
+    "bytes": 191938,
+    "path": "exports/world/assets/kitchen.png",
+    "sha256": "954cb90139c49f2390c5d5aae6190935936b513e3bd71c94011c10047d89e688"
+  },
+  {
+    "bytes": 122398,
+    "path": "exports/world/assets/mill_static.png",
+    "sha256": "a1063aaa1f44c414fb52268f5c727e0d4b777b24ebbe9e075e180bf5ab936570"
+  },
+  {
+    "bytes": 93492,
+    "path": "exports/world/assets/packing_utility.png",
+    "sha256": "5b20dbb82ec37ee151e941c72075c7c7aec7abb04c8f177e29f167f9122ad625"
+  },
+  {
+    "bytes": 31412,
+    "path": "exports/world/assets/road_sign.png",
+    "sha256": "dee133ecea707cb0d4b93948b6685410ea3715e8ea822b2149fcb51ec2413015"
+  },
+  {
+    "bytes": 61064,
+    "path": "exports/world/assets/shrub_depth.png",
+    "sha256": "3ff629c1ffdb138dbb986940d90b15f63c0d54e72a8c022bebc8e2180b959f23"
+  },
+  {
+    "bytes": 156877,
+    "path": "exports/world/assets/storage.png",
+    "sha256": "e86d627be61379dd0312b2ad033ea70baaf70798067222b39ae9a21f2d4fc20b"
+  },
+  {
+    "bytes": 131609,
+    "path": "exports/world/assets/van_endpoint.png",
+    "sha256": "f7b79ae3d70b0d45ff10009cf1547f6d56cdbeb9beb1ebe91fe736c8915125d7"
+  },
+  {
+    "bytes": 538522,
+    "path": "exports/world/world_full_corridor_rgba.png",
+    "sha256": "3db6ccd28753f0c4c710fd908a4cd9c288ef25fb13f928713d25d7b1f497c415"
+  },
+  {
+    "bytes": 1511884,
+    "path": "references/generated_originals/labrador_locomotion_sheet__flattened_original.png",
+    "sha256": "fe67c60b752ae80d590a40ccbdfd60d3cb5c4d9037e3738e2eef73184cdc5ad6"
+  },
+  {
+    "bytes": 1521482,
+    "path": "references/generated_originals/labrador_work_sheet__flattened_original.png",
+    "sha256": "9c6379cdd893a76fbd01318efe5c92705f0ef0772e1e2481bf5740d5d570577c"
+  },
+  {
+    "bytes": 1291451,
+    "path": "references/generated_originals/world_asset_sheet__flattened_original.png",
+    "sha256": "ede0519364aa6146c1ff3f0ae3143b9f902d8b9fb0bc1cdde27dbe93d3cf0f9e"
+  },
+  {
+    "bytes": 1050705,
+    "path": "references/generated_originals/world_meadow_plate__flattened_original.png",
+    "sha256": "0b206080265c405bb59a00a16491b3cabe596500def0de4dab38cb9f5dfe9924"
+  },
+  {
+    "bytes": 897302,
+    "path": "source/labrador/poses/ambient_attentive_left/ambient_attentive_left_master.ora",
+    "sha256": "a2b2637a1cd70c9aef8c2b609d3adcbddef3ef8a7a3a73889deb16fa7e6f0837"
+  },
+  {
+    "bytes": 3082,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/00__dog_shadow_local.png",
+    "sha256": "ca337f92693fec861e0e354292973958914f8f012e8e23cdf0b58a0cda52e4cf"
+  },
+  {
+    "bytes": 7529,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/01__dog_tail.png",
+    "sha256": "6d7d818dfce71c6bd3df13e6134094ae833bb5974440cfc09fe46be8c7cb73e7"
+  },
+  {
+    "bytes": 11851,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "3eb2afe6714b0e6faa4825a5f50dec46e1ce57f78348331a5c20a3de9db399ec"
+  },
+  {
+    "bytes": 5837,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "917bb03df42723af037914102a2ef0bac8f606cd628b6b0902a485c906c7a2fb"
+  },
+  {
+    "bytes": 9876,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "521f8b70e565a216b7fe90b8dbd97b3a428eb592fee623636dc5c2984f1f30f2"
+  },
+  {
+    "bytes": 16493,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/05__dog_torso.png",
+    "sha256": "71c3ed70c5e859aed440a24e7c0afac1b276f59506ce04a5ac579667b27c1d2b"
+  },
+  {
+    "bytes": 14389,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "c3dfad15a86f06b0b25359db46c5299d3dd8a8d5dc47e34e7750e055b502e436"
+  },
+  {
+    "bytes": 5687,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/07__dog_ear_far.png",
+    "sha256": "2d530635f6b3a1d6c3368f98722ee05d95d7a8a2ecf7d3ff3d7473f35e583273"
+  },
+  {
+    "bytes": 7611,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/08__dog_ear_near.png",
+    "sha256": "ed05caa4b7e233741cb92d7b2c8c38f067dc9132f13c33bb9d066f65d93b5fb5"
+  },
+  {
+    "bytes": 4564,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/09__dog_muzzle.png",
+    "sha256": "9603f32d0b2ecb6159645b453abb570f34dcffccd10db4cb03ee329a2790d3a6"
+  },
+  {
+    "bytes": 5573,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/10__dog_head.png",
+    "sha256": "4195ec2e97c22d3a351eab68052f4d50668bff0e81f4f4e0e7faf3816ca1e211"
+  },
+  {
+    "bytes": 4652,
+    "path": "source/labrador/poses/ambient_attentive_left/layers/11__dog_marking_chest.png",
+    "sha256": "798535bcba8cfcc7674fc3269ed162f82fd5a8e4722e7022256320bc5ab368fc"
+  },
+  {
+    "bytes": 885343,
+    "path": "source/labrador/poses/ambient_attentive_right/ambient_attentive_right_master.ora",
+    "sha256": "45dfe94ad70ac66bec82f96be3bf7ebdfc97b0c8f985eafef3bb4338bc8856fe"
+  },
+  {
+    "bytes": 3092,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/00__dog_shadow_local.png",
+    "sha256": "d03a304a90be40163704a3203541bd715650b8f7af6038f89b90a768f86ad10f"
+  },
+  {
+    "bytes": 7866,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/01__dog_tail.png",
+    "sha256": "fc971ba48177d7cc90a3b16d31850ea72b26deb4562aa927af729f3eb7fd5894"
+  },
+  {
+    "bytes": 11597,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "22b9a286c4a379bfa10d1d911128e540f9c3d6872536d946d2303c813af9461c"
+  },
+  {
+    "bytes": 5334,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "8405f85a91db66624d67fc741ae9add82f97833547542f66a04c1f712e0c4c63"
+  },
+  {
+    "bytes": 10213,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "19ca6a6eaa7b94826b5f488d2e214c17fe55f6b322f9b08d6d1aef0ea169b674"
+  },
+  {
+    "bytes": 16628,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/05__dog_torso.png",
+    "sha256": "3a8c3de6c903e089e28b563f85367572d0c9c23bbb885ee04b0cba385d5c38c4"
+  },
+  {
+    "bytes": 13697,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "02cd7f896cab69727a64a0341a2e8c103e7f4cffbbb9efd5e6ef52ddc34e440c"
+  },
+  {
+    "bytes": 5691,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/07__dog_ear_far.png",
+    "sha256": "6c196a50eb5f15ad835c7d7efac3bb08a4a777485b2952de91897410bda30c6c"
+  },
+  {
+    "bytes": 7458,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/08__dog_ear_near.png",
+    "sha256": "50ab24affe6db987c92a55372279daf7c3d3fa398a9374af1308e8a2f52f83f3"
+  },
+  {
+    "bytes": 4326,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/09__dog_muzzle.png",
+    "sha256": "e444de33250f2b50e4ca666bbf6bd4903dc6b566f30b5de4fc1a1691085c79fe"
+  },
+  {
+    "bytes": 5664,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/10__dog_head.png",
+    "sha256": "8f7641b77f3a8617cac0e4e59c106ab4005835565cbeff0e45c26e84c750c9c7"
+  },
+  {
+    "bytes": 4629,
+    "path": "source/labrador/poses/ambient_attentive_right/layers/11__dog_marking_chest.png",
+    "sha256": "a43e8ba2c4df02c08db504ce59e394955d5950d020cdc6a74b4fc9b9db8aee4d"
+  },
+  {
+    "bytes": 1054969,
+    "path": "source/labrador/poses/approach_left/approach_left_master.ora",
+    "sha256": "3ce7ecaef9df50b47e255c3d9d4603a70e897909c19e449de6a5bdac9df087bb"
+  },
+  {
+    "bytes": 3156,
+    "path": "source/labrador/poses/approach_left/layers/00__dog_shadow_local.png",
+    "sha256": "76ed1d098bfdf25afebea7e88b954ba8020faf8d6d887b1ffe17d9bd6e35a37a"
+  },
+  {
+    "bytes": 11398,
+    "path": "source/labrador/poses/approach_left/layers/01__dog_tail.png",
+    "sha256": "9c53273aa8a3b3b631f4716ace15b678d8cae68c435c0a9332cf6d1b8ebab7c8"
+  },
+  {
+    "bytes": 10537,
+    "path": "source/labrador/poses/approach_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "e1c490535b4bb3dcfcd52a4d9ffa8607d0e1cd927598f48c8419936381e1ba19"
+  },
+  {
+    "bytes": 6536,
+    "path": "source/labrador/poses/approach_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "3d0269efaeab2b0f574e6f53f8dacc11f9499c6c5a8d38f1a5c12a8107c47b9e"
+  },
+  {
+    "bytes": 10511,
+    "path": "source/labrador/poses/approach_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "5e87fba877ac6e4b0bbab80319367e07bae08b91df8098ecd0c31409bd22526a"
+  },
+  {
+    "bytes": 24141,
+    "path": "source/labrador/poses/approach_left/layers/05__dog_torso.png",
+    "sha256": "280ce127b723d4f2b210e3223a65af23a7e9b14e3edd2a12bdc596e46bb652f2"
+  },
+  {
+    "bytes": 15856,
+    "path": "source/labrador/poses/approach_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "ee908d76a867a647ec482395e75ad1a1f198c4728111fc23c6b2173cdb1ffd27"
+  },
+  {
+    "bytes": 6288,
+    "path": "source/labrador/poses/approach_left/layers/07__dog_ear_far.png",
+    "sha256": "adf5ad62ac031f7ca61c990f2aa771676ad4234ee114fc998975206c0b6290ae"
+  },
+  {
+    "bytes": 8154,
+    "path": "source/labrador/poses/approach_left/layers/08__dog_ear_near.png",
+    "sha256": "a608bd47b84ec54125ff458828194c232a3fa7556f41df19304bde1b156f5079"
+  },
+  {
+    "bytes": 4709,
+    "path": "source/labrador/poses/approach_left/layers/09__dog_muzzle.png",
+    "sha256": "b2e8a104b01ca586dacc6942b912d2a5d3df4996e2bc0e45a2a28efcea3365c5"
+  },
+  {
+    "bytes": 6353,
+    "path": "source/labrador/poses/approach_left/layers/10__dog_head.png",
+    "sha256": "8ed719d44bab002397c48340c1a1ed3d2504a4986c769ada436cc5f6e8ff5963"
+  },
+  {
+    "bytes": 4558,
+    "path": "source/labrador/poses/approach_left/layers/11__dog_marking_chest.png",
+    "sha256": "93700dc0fdf7d7534fbd9271a0c7adb4bbe37232cd7b94f425f37c3ce20f0604"
+  },
+  {
+    "bytes": 1098388,
+    "path": "source/labrador/poses/approach_right/approach_right_master.ora",
+    "sha256": "8b918fb194f9118c50dd7489f1f014a034666656092b722cdc938db62270c42a"
+  },
+  {
+    "bytes": 3108,
+    "path": "source/labrador/poses/approach_right/layers/00__dog_shadow_local.png",
+    "sha256": "33f46f1e07ae5be7019fa86f8610d74a63e2446b9cdaca3b694ad85b58d8a4ba"
+  },
+  {
+    "bytes": 10980,
+    "path": "source/labrador/poses/approach_right/layers/01__dog_tail.png",
+    "sha256": "22c3f36908d860769cc761a60869935851e3fcf8b54e817fdeb0639675f1b289"
+  },
+  {
+    "bytes": 12386,
+    "path": "source/labrador/poses/approach_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "a32d325b878e623f3b92ab9e50375d155468b59d7ef519445d71cbd5abcd0f11"
+  },
+  {
+    "bytes": 5432,
+    "path": "source/labrador/poses/approach_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "87fe3e75e6ceb263df190a39a964844d3cf8115671e08d4085ac307beddea048"
+  },
+  {
+    "bytes": 10330,
+    "path": "source/labrador/poses/approach_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "badb7fee962c892f39a1ad37c57215782c588065ea2255dfc91e2384a49bba4d"
+  },
+  {
+    "bytes": 25085,
+    "path": "source/labrador/poses/approach_right/layers/05__dog_torso.png",
+    "sha256": "e84cd0a57f2fbe892d9a275f71014d8ce26a5b2d460b3a2b6b9e19d1c84c7ef4"
+  },
+  {
+    "bytes": 17183,
+    "path": "source/labrador/poses/approach_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "779d4c905f8d7cfda1348f04d535cb9d99c0633023661e2e0e4aa5fb582bd13c"
+  },
+  {
+    "bytes": 6112,
+    "path": "source/labrador/poses/approach_right/layers/07__dog_ear_far.png",
+    "sha256": "7c04fcea1e141af5d824e041b4dc9d8ddc48b302794fec5a98be2b0b153de165"
+  },
+  {
+    "bytes": 8873,
+    "path": "source/labrador/poses/approach_right/layers/08__dog_ear_near.png",
+    "sha256": "8e69c725f8d82a8bd9810f597ff3fe4713f3be15b4b75c59caa6ac770960f2cd"
+  },
+  {
+    "bytes": 5160,
+    "path": "source/labrador/poses/approach_right/layers/09__dog_muzzle.png",
+    "sha256": "7c1666b413384e001ab16ee88b513ceee86f6c8dfca0475c7504d8f1d84a6624"
+  },
+  {
+    "bytes": 6590,
+    "path": "source/labrador/poses/approach_right/layers/10__dog_head.png",
+    "sha256": "37f6f4f30728a2282e22fdce846e4f53672c4c0a96f4986aa6570e1b7b5e1223"
+  },
+  {
+    "bytes": 4944,
+    "path": "source/labrador/poses/approach_right/layers/11__dog_marking_chest.png",
+    "sha256": "509e9190c13e9b84fe477011cde8206b483611cf0eb3e2371c07f62501d6350f"
+  },
+  {
+    "bytes": 968057,
+    "path": "source/labrador/poses/contact_align_left/contact_align_left_master.ora",
+    "sha256": "0be514d085dc5df42d3ed3aa8957ed6534b11c66c60af72f4d6562e248bc247e"
+  },
+  {
+    "bytes": 3174,
+    "path": "source/labrador/poses/contact_align_left/layers/00__dog_shadow_local.png",
+    "sha256": "60e7571538a4a449bc62005c2b9138598363188ccd0320a93c6bd261f6d65131"
+  },
+  {
+    "bytes": 8659,
+    "path": "source/labrador/poses/contact_align_left/layers/01__dog_tail.png",
+    "sha256": "2c6fedf5ac6d97d79073d658c83b579b9da5d708ea6e8c6e9ae27f798652072a"
+  },
+  {
+    "bytes": 12574,
+    "path": "source/labrador/poses/contact_align_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "f183ccccd054d530d3545b7ffa54cfa1d176418432f321556270355d3654f4ad"
+  },
+  {
+    "bytes": 4752,
+    "path": "source/labrador/poses/contact_align_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "323108be00200aa3c03feaf0145020b60724c93bf4cfc8edd412dae535bafd0a"
+  },
+  {
+    "bytes": 10189,
+    "path": "source/labrador/poses/contact_align_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "bb6b4d881e6d1821c9c0e085141819cbd2a23b80179525b99ac5ec4cc68408dc"
+  },
+  {
+    "bytes": 19326,
+    "path": "source/labrador/poses/contact_align_left/layers/05__dog_torso.png",
+    "sha256": "a63160110f4c6bdffe294206ff7755a65479e2801d04eb7a9cd96f58c66469fb"
+  },
+  {
+    "bytes": 15504,
+    "path": "source/labrador/poses/contact_align_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "b8815784501266447c9226c462fe81f1c28b62d9e6c5ccd94b20a2b742ac57d9"
+  },
+  {
+    "bytes": 5843,
+    "path": "source/labrador/poses/contact_align_left/layers/07__dog_ear_far.png",
+    "sha256": "6369182e17128a9754589df4b7494aaad5a682877402e4d493710ead44408bcf"
+  },
+  {
+    "bytes": 8031,
+    "path": "source/labrador/poses/contact_align_left/layers/08__dog_ear_near.png",
+    "sha256": "06fe382954ad35e71922bb4095147738ac08bea20eaed48bae328a8e7ab7c9b0"
+  },
+  {
+    "bytes": 4876,
+    "path": "source/labrador/poses/contact_align_left/layers/09__dog_muzzle.png",
+    "sha256": "027696ca598abc9f1d49c24558aff13d1cb6a50a1f364d13a937a9a17d68822e"
+  },
+  {
+    "bytes": 5765,
+    "path": "source/labrador/poses/contact_align_left/layers/10__dog_head.png",
+    "sha256": "9e10c9b984f9318aaeb814565c2661641afd7846431a1d0dc9f7d962154790df"
+  },
+  {
+    "bytes": 4695,
+    "path": "source/labrador/poses/contact_align_left/layers/11__dog_marking_chest.png",
+    "sha256": "c941109489647c45039471a60caa62672712dae05a0753679f8bb26a24eeb66d"
+  },
+  {
+    "bytes": 946431,
+    "path": "source/labrador/poses/contact_align_right/contact_align_right_master.ora",
+    "sha256": "b950fc3514b08c1ad74c41f0fe1404792e94207439cd90e79698b2274389e4f9"
+  },
+  {
+    "bytes": 3131,
+    "path": "source/labrador/poses/contact_align_right/layers/00__dog_shadow_local.png",
+    "sha256": "be9ac3c56486508ad5fdda8cebbbb96388f962f8d74c7fb0b2d38e1bac584509"
+  },
+  {
+    "bytes": 3826,
+    "path": "source/labrador/poses/contact_align_right/layers/01__dog_tail.png",
+    "sha256": "6c4768d60e14d2628b09b3b090b408be813ad5b6382894cdb12a891b35682716"
+  },
+  {
+    "bytes": 13558,
+    "path": "source/labrador/poses/contact_align_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "e1dfc3914f69bb4049ede5466a4e1c5229801cfa64bc816e76d2c09072cd01d3"
+  },
+  {
+    "bytes": 7535,
+    "path": "source/labrador/poses/contact_align_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "4e56b12fe17079bccc0b78241b02b557569056c20603be2c99be286cbaab1a44"
+  },
+  {
+    "bytes": 10216,
+    "path": "source/labrador/poses/contact_align_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "2df618b210650de424086ba16cd8f9dd826faa35aa86c03301c0ab4a613367c9"
+  },
+  {
+    "bytes": 16565,
+    "path": "source/labrador/poses/contact_align_right/layers/05__dog_torso.png",
+    "sha256": "422f1728ae6eaed1312839df166463b2ff9fd7fbc8347ab751b24fc1c4204e5d"
+  },
+  {
+    "bytes": 16449,
+    "path": "source/labrador/poses/contact_align_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "430829de5ed67342a51039b4a00369f722b3471d91d9b5c21bc1a64bc597e708"
+  },
+  {
+    "bytes": 5640,
+    "path": "source/labrador/poses/contact_align_right/layers/07__dog_ear_far.png",
+    "sha256": "a1b9d3551c70b9e4cbca6ff42c7b501ea569fadf726c60114d51a7130a0e4978"
+  },
+  {
+    "bytes": 8432,
+    "path": "source/labrador/poses/contact_align_right/layers/08__dog_ear_near.png",
+    "sha256": "37c83dedfe9a0ea5965ce12cc9b153b9636a6398d98f1847c93d90b3286e074a"
+  },
+  {
+    "bytes": 5176,
+    "path": "source/labrador/poses/contact_align_right/layers/09__dog_muzzle.png",
+    "sha256": "a21fd95fd63504f5a2e2ca5c317b05a0d67c425c03fc3e28dd662593a23bad5b"
+  },
+  {
+    "bytes": 5991,
+    "path": "source/labrador/poses/contact_align_right/layers/10__dog_head.png",
+    "sha256": "8e91128579818fdc965f760dcf8f17e9ae93326526f2a3deb01143b74e7c433d"
+  },
+  {
+    "bytes": 4907,
+    "path": "source/labrador/poses/contact_align_right/layers/11__dog_marking_chest.png",
+    "sha256": "957ed292431b15a760f8e64a5b8ee88ad43c807f0a044f6451688944ca6eafcf"
+  },
+  {
+    "bytes": 913163,
+    "path": "source/labrador/poses/idle_neutral_right/idle_neutral_right_master.ora",
+    "sha256": "d5c05e693c2e464ccf56da5621f05c8234e889cd27e7bd71ee44dd0dc942e60b"
+  },
+  {
+    "bytes": 3177,
+    "path": "source/labrador/poses/idle_neutral_right/layers/00__dog_shadow_local.png",
+    "sha256": "bdde2d13b0f22f9490ec52d4546e7ad704ca5d9b5061af43afa79f1d96fc1d07"
+  },
+  {
+    "bytes": 7417,
+    "path": "source/labrador/poses/idle_neutral_right/layers/01__dog_tail.png",
+    "sha256": "bd3849551ce7d5a98fdd6c512134845e8d9ff0c11bb09d0ebecd1f98082d776f"
+  },
+  {
+    "bytes": 14017,
+    "path": "source/labrador/poses/idle_neutral_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "750d4ccf8b08d524f846eb2f78c139d0a199b3418ecbf0ec5c715033d9710ec2"
+  },
+  {
+    "bytes": 3727,
+    "path": "source/labrador/poses/idle_neutral_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "a8b7808adbc46cbbed27b42f7a6583aa459b34afd93d3ea245b71f514fc86111"
+  },
+  {
+    "bytes": 8651,
+    "path": "source/labrador/poses/idle_neutral_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "0f678e60853bfb967d0932ec58a88da97c7ad6b3398ff1826bcae3b83bd2a0ee"
+  },
+  {
+    "bytes": 16511,
+    "path": "source/labrador/poses/idle_neutral_right/layers/05__dog_torso.png",
+    "sha256": "2db02d6dfd12b6ea4541531a644dc0f1bb7fbd4e0707c035101ac03ec4579efe"
+  },
+  {
+    "bytes": 16245,
+    "path": "source/labrador/poses/idle_neutral_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "6f03626595a7cfd32a9a7f180554aa2ab7397f97ef2317f241bbdc0f37899ef7"
+  },
+  {
+    "bytes": 5393,
+    "path": "source/labrador/poses/idle_neutral_right/layers/07__dog_ear_far.png",
+    "sha256": "666f7c8c4a2fb9e4824688454b7a022a5be716b31cba2f9d5ba1549d2794afe9"
+  },
+  {
+    "bytes": 8030,
+    "path": "source/labrador/poses/idle_neutral_right/layers/08__dog_ear_near.png",
+    "sha256": "28cab8f340b5effa2a1938a68b31ecc2bd49e7ab83b61e1154e2c8adf6a2b4a1"
+  },
+  {
+    "bytes": 4789,
+    "path": "source/labrador/poses/idle_neutral_right/layers/09__dog_muzzle.png",
+    "sha256": "2707d570ae14d684345268fb265a4d816ace3c03b85486d4f93908391d9d9afd"
+  },
+  {
+    "bytes": 5824,
+    "path": "source/labrador/poses/idle_neutral_right/layers/10__dog_head.png",
+    "sha256": "a0bba164116ac0bbc712d4c0de3db7a6616b2368674b61d5313a06277eba83f3"
+  },
+  {
+    "bytes": 4783,
+    "path": "source/labrador/poses/idle_neutral_right/layers/11__dog_marking_chest.png",
+    "sha256": "59ad46f595d6cd4889431f8f6ece20474951f64dcb7452017f142dd038e24d6c"
+  },
+  {
+    "bytes": 602470,
+    "path": "source/labrador/poses/kitchen_work_left/kitchen_work_left_master.ora",
+    "sha256": "f1d23ca3477d05b713405887c0e25ac6500261c66d23374af76a3c257a76c7df"
+  },
+  {
+    "bytes": 3027,
+    "path": "source/labrador/poses/kitchen_work_left/layers/00__dog_shadow_local.png",
+    "sha256": "da9c9fad48cd0dad2c25bbd829ed63d0e43b9f0e99a5472c5f574abef41f37c4"
+  },
+  {
+    "bytes": 2410,
+    "path": "source/labrador/poses/kitchen_work_left/layers/01__dog_tail.png",
+    "sha256": "a498b9adf0da7737a2625c75a895d7f6374ad5f237bf2f98546a8191984e4a13"
+  },
+  {
+    "bytes": 11669,
+    "path": "source/labrador/poses/kitchen_work_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "0df4df80525b55041f76026503ab83c696cdf5e60bba1378b8a391d376e91631"
+  },
+  {
+    "bytes": 7230,
+    "path": "source/labrador/poses/kitchen_work_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "3918ae1399751629ff510e1fd982e10b8b31b329a274162ef39ed13096019cdb"
+  },
+  {
+    "bytes": 3998,
+    "path": "source/labrador/poses/kitchen_work_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "6f9ec3932c08af77a3304346baec9af8a2eedd9aaf304c15b68e7227e1f71d07"
+  },
+  {
+    "bytes": 15868,
+    "path": "source/labrador/poses/kitchen_work_left/layers/05__dog_torso.png",
+    "sha256": "b2a493da72e39f35296945fa025599caee84373b6bd7088cff763a9f2bc89612"
+  },
+  {
+    "bytes": 2854,
+    "path": "source/labrador/poses/kitchen_work_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "8b5aae4c1ec98d394d7aed0d4b166478b1a7000677b03a7769a7afc2d578a32c"
+  },
+  {
+    "bytes": 5513,
+    "path": "source/labrador/poses/kitchen_work_left/layers/07__dog_ear_far.png",
+    "sha256": "5ebb0fb72e501186b80184b87050745e488777014ed47b2ede03afad3209822d"
+  },
+  {
+    "bytes": 3398,
+    "path": "source/labrador/poses/kitchen_work_left/layers/08__dog_ear_near.png",
+    "sha256": "6752eb3c6a62d80e068f4f34c3d38a775948e8534e4b0281c311925e0b7ea52b"
+  },
+  {
+    "bytes": 2812,
+    "path": "source/labrador/poses/kitchen_work_left/layers/09__dog_muzzle.png",
+    "sha256": "8221412afcdbf6e3dadb982ca22b8376dc35d4864985f27344d0cb71954bdfae"
+  },
+  {
+    "bytes": 5892,
+    "path": "source/labrador/poses/kitchen_work_left/layers/10__dog_head.png",
+    "sha256": "6f5a92ce1bfb0a7ed7d81ceb7c1dea35414782984585e5ac2f985b4367bde782"
+  },
+  {
+    "bytes": 3881,
+    "path": "source/labrador/poses/kitchen_work_left/layers/11__dog_marking_chest.png",
+    "sha256": "e03d0bb2f826eb9aab25d3892f50fdb85da63881187cf09504c804021df565b6"
+  },
+  {
+    "bytes": 610716,
+    "path": "source/labrador/poses/kitchen_work_right/kitchen_work_right_master.ora",
+    "sha256": "11c31b867ef2d4fe46cec451493b0ee65f77303a79f14812e6cb6f0e419f1301"
+  },
+  {
+    "bytes": 3027,
+    "path": "source/labrador/poses/kitchen_work_right/layers/00__dog_shadow_local.png",
+    "sha256": "a00a3c78482d4f1d6026d31ec4ad3ea36319232ee7ba76e134c120c42d14dc91"
+  },
+  {
+    "bytes": 2542,
+    "path": "source/labrador/poses/kitchen_work_right/layers/01__dog_tail.png",
+    "sha256": "2f9c34d38ac63da729b8a8acd44396b98b92e5c9548e6ae65992d277d07466f8"
+  },
+  {
+    "bytes": 11956,
+    "path": "source/labrador/poses/kitchen_work_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "0cc0357136c44581ca27a62f23fc9d9238c61a50ab3b1e727e0931ea2b221cf4"
+  },
+  {
+    "bytes": 6721,
+    "path": "source/labrador/poses/kitchen_work_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "672bfedf1cc86bb063bab911bcb54f5813833f9c4902e3a05b2d7159ddcfe2cf"
+  },
+  {
+    "bytes": 4100,
+    "path": "source/labrador/poses/kitchen_work_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "9fb937130f0611a6829a1fae0dccb287a19e8dbbd82c77b5f63ac55bb6c726aa"
+  },
+  {
+    "bytes": 16213,
+    "path": "source/labrador/poses/kitchen_work_right/layers/05__dog_torso.png",
+    "sha256": "ab4acd0c4a1523a4adee2b1196705238aead7fc80685021283f11b65b6993784"
+  },
+  {
+    "bytes": 2880,
+    "path": "source/labrador/poses/kitchen_work_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "d16c81f4cd7ef7e9ae1a4a944eb424a51bc66b336ccf3244e570bf2f67a27ed8"
+  },
+  {
+    "bytes": 5376,
+    "path": "source/labrador/poses/kitchen_work_right/layers/07__dog_ear_far.png",
+    "sha256": "e784f9ef14ecce98552b13fa35a7270d7d167b9cfd50a1277139748527c48021"
+  },
+  {
+    "bytes": 3354,
+    "path": "source/labrador/poses/kitchen_work_right/layers/08__dog_ear_near.png",
+    "sha256": "262e17dd8e33fe48a011fb26ce3de4c96eb308c27f55855cc840bfbc73c7a351"
+  },
+  {
+    "bytes": 2945,
+    "path": "source/labrador/poses/kitchen_work_right/layers/09__dog_muzzle.png",
+    "sha256": "0a70721b9bd499859c1c76439b8ac11d93dec3e3926628d49ba602b8f8f59404"
+  },
+  {
+    "bytes": 6176,
+    "path": "source/labrador/poses/kitchen_work_right/layers/10__dog_head.png",
+    "sha256": "0e6a8caad36868919d922ef45276b520bf25007164a81bf7859760a2b8d83401"
+  },
+  {
+    "bytes": 3942,
+    "path": "source/labrador/poses/kitchen_work_right/layers/11__dog_marking_chest.png",
+    "sha256": "dd3239604a8932be63f965523da92fce3b1b3025ff0065f7a1f8b714264a3604"
+  },
+  {
+    "bytes": 3150,
+    "path": "source/labrador/poses/locomotion_start_left/layers/00__dog_shadow_local.png",
+    "sha256": "21c759523e1d9e00f82c1a6925cf1639c9df5344c997bd6c24da187de94c101d"
+  },
+  {
+    "bytes": 7742,
+    "path": "source/labrador/poses/locomotion_start_left/layers/01__dog_tail.png",
+    "sha256": "12bcb81afa862767e0b5a9c6b6ac00facbdfce03e116b213473aae095fe1e9af"
+  },
+  {
+    "bytes": 13730,
+    "path": "source/labrador/poses/locomotion_start_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "73c8955914164cca5d1b5807122ba7d4aacf6990289cb029d441735045e42095"
+  },
+  {
+    "bytes": 6485,
+    "path": "source/labrador/poses/locomotion_start_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "870ec9c55b3c7f87d5d1d50a12fee96b8933332c0034c6a0e3e98a669b39c07b"
+  },
+  {
+    "bytes": 12790,
+    "path": "source/labrador/poses/locomotion_start_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "a6970458bbcb4448df07da10c50748e9e52d6940cea44c06569aa055a93b69c6"
+  },
+  {
+    "bytes": 20303,
+    "path": "source/labrador/poses/locomotion_start_left/layers/05__dog_torso.png",
+    "sha256": "5e2008369a4b18e2ebff27229393b983904a16bc2d950796742151b6715dbc62"
+  },
+  {
+    "bytes": 16143,
+    "path": "source/labrador/poses/locomotion_start_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "90f0b00f59f9f0820f8ef8595c0ccd20d94e0e597acb4c9faa687ab524bef4b5"
+  },
+  {
+    "bytes": 5968,
+    "path": "source/labrador/poses/locomotion_start_left/layers/07__dog_ear_far.png",
+    "sha256": "f2485825f0cda71e7e22603d9f8380d09cfd122e0968c5fd11876efdb34f5ba2"
+  },
+  {
+    "bytes": 8203,
+    "path": "source/labrador/poses/locomotion_start_left/layers/08__dog_ear_near.png",
+    "sha256": "e87e72c1881d2c45fe9973d6787b845605b6a12bc878442b61ac297b9fa0e05e"
+  },
+  {
+    "bytes": 5144,
+    "path": "source/labrador/poses/locomotion_start_left/layers/09__dog_muzzle.png",
+    "sha256": "83c738570bf45736f26478d90eb26784f2edf3000470a60b79605601bcbf85d4"
+  },
+  {
+    "bytes": 5947,
+    "path": "source/labrador/poses/locomotion_start_left/layers/10__dog_head.png",
+    "sha256": "8b98c9ce4f8a2924ffdab6526e237d7073c00cf34546e6fb1c97694f58f1d20c"
+  },
+  {
+    "bytes": 4786,
+    "path": "source/labrador/poses/locomotion_start_left/layers/11__dog_marking_chest.png",
+    "sha256": "cd014187b78c81e6bf0b43fe7dd8103b9af20272a61135ca9487c62f3ad59660"
+  },
+  {
+    "bytes": 1036827,
+    "path": "source/labrador/poses/locomotion_start_left/locomotion_start_left_master.ora",
+    "sha256": "7d32836481b30d4012add2b0112b9a9a385de417c2886066df865d711c2cafc1"
+  },
+  {
+    "bytes": 3133,
+    "path": "source/labrador/poses/locomotion_start_right/layers/00__dog_shadow_local.png",
+    "sha256": "15cc4180ab46d875e04fd8b29f6228ed5fe85f2d0ba0c39254f4984f54aa26b9"
+  },
+  {
+    "bytes": 9000,
+    "path": "source/labrador/poses/locomotion_start_right/layers/01__dog_tail.png",
+    "sha256": "0e12ebf9a00170bb64161698741d9752020b0b555e4a0724d0a6987ef34c7c35"
+  },
+  {
+    "bytes": 13625,
+    "path": "source/labrador/poses/locomotion_start_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "3b8765ea7077be8636536aee576a335ff88516b1a2a3a50a8232e11b6319e94a"
+  },
+  {
+    "bytes": 5827,
+    "path": "source/labrador/poses/locomotion_start_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "b2dd0b3c0748f7a8bf296b9d208315b66bf7a45ee01ffb7f8e739bd0041c8a21"
+  },
+  {
+    "bytes": 12966,
+    "path": "source/labrador/poses/locomotion_start_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "76a489d1fdd467355854fd53e9742e5738d48067748cdb9987d3170d198f82c4"
+  },
+  {
+    "bytes": 21541,
+    "path": "source/labrador/poses/locomotion_start_right/layers/05__dog_torso.png",
+    "sha256": "3284f28ed35ea2e77e0affceaef9762032c6df70576244d571e4fc3f50e3b962"
+  },
+  {
+    "bytes": 16288,
+    "path": "source/labrador/poses/locomotion_start_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "0e2058db68f81b490c2b456e449071b918ad7965c79de96dceae0342dff49e22"
+  },
+  {
+    "bytes": 6394,
+    "path": "source/labrador/poses/locomotion_start_right/layers/07__dog_ear_far.png",
+    "sha256": "59567ee1f9475007b48e48b9f917d24aad1940d64ec25aca15e5af5a8444b256"
+  },
+  {
+    "bytes": 8358,
+    "path": "source/labrador/poses/locomotion_start_right/layers/08__dog_ear_near.png",
+    "sha256": "e15fc03c11db4e9aa06adda3fe052eba963eb21ddf15d428368a15b7a05c3e85"
+  },
+  {
+    "bytes": 5207,
+    "path": "source/labrador/poses/locomotion_start_right/layers/09__dog_muzzle.png",
+    "sha256": "f8eaee38dbba7c5704898d4db475beb3563b0170a16c0d8888323032f91855f7"
+  },
+  {
+    "bytes": 6231,
+    "path": "source/labrador/poses/locomotion_start_right/layers/10__dog_head.png",
+    "sha256": "4abbe97df844e0f041940dcdc2d6e2acea68f0079d0df8fbc0f7b31b77efd6e7"
+  },
+  {
+    "bytes": 4928,
+    "path": "source/labrador/poses/locomotion_start_right/layers/11__dog_marking_chest.png",
+    "sha256": "8e6f13606d461c0152738090c1a84fc1aa4bb2467169c40b5eb25a1fae2b9a42"
+  },
+  {
+    "bytes": 1070016,
+    "path": "source/labrador/poses/locomotion_start_right/locomotion_start_right_master.ora",
+    "sha256": "34bef1c1379f63bb57ed8a9132a7500f91277e709beaf27a8e9029c7033ece30"
+  },
+  {
+    "bytes": 3174,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/00__dog_shadow_local.png",
+    "sha256": "60e7571538a4a449bc62005c2b9138598363188ccd0320a93c6bd261f6d65131"
+  },
+  {
+    "bytes": 7269,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/01__dog_tail.png",
+    "sha256": "ea0db7d739df8baddffc99dfcf948c11b77dedba68b2d8d20724d015e01b1d3f"
+  },
+  {
+    "bytes": 14317,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "982635e538450a71df56b6d59858dba0b063f23bed28b53887e748635a9815e4"
+  },
+  {
+    "bytes": 4199,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "439da7fd76b4030f9abed222ea27e8a0513ed6511948ccf2b83acafb0dbfc71d"
+  },
+  {
+    "bytes": 9871,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "6e772a91edf9faa13c7da3da8fbebc7b9546713d4451715315b665a24bfe4bf8"
+  },
+  {
+    "bytes": 18742,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/05__dog_torso.png",
+    "sha256": "6c615c20494de4fd3e3cb2c0ede080cd67f35299bc63f2c5df95265573432586"
+  },
+  {
+    "bytes": 15312,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "8f961dcf67d5a0134f5ab1c15e37b0fe27e5030d74cd2f2ce0fbd3bace06a76d"
+  },
+  {
+    "bytes": 5934,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/07__dog_ear_far.png",
+    "sha256": "5c20d8cf6a9e0efe6e197983d4e9d73c30e8bb7ff14e407849eaa79878f82d42"
+  },
+  {
+    "bytes": 7843,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/08__dog_ear_near.png",
+    "sha256": "78cee6a3879a4769c6511d8422c2e5c6aa204888805d2cc1e076ea16ceab1d58"
+  },
+  {
+    "bytes": 4855,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/09__dog_muzzle.png",
+    "sha256": "41b91cb3b0fe1b3ad93614297f08c5088695e1775ed28a09c2445b94d7468929"
+  },
+  {
+    "bytes": 5896,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/10__dog_head.png",
+    "sha256": "1b22d0b457f5b308da99205784bf25885f6aea3c2ffdcc18ffdcc34de511279a"
+  },
+  {
+    "bytes": 4723,
+    "path": "source/labrador/poses/locomotion_stop_left/layers/11__dog_marking_chest.png",
+    "sha256": "e3836f707c9aeb2066bbd90bf90d14a103d8c8d4eeb4fa45c0e113c15173d37c"
+  },
+  {
+    "bytes": 952815,
+    "path": "source/labrador/poses/locomotion_stop_left/locomotion_stop_left_master.ora",
+    "sha256": "8401e93971c89b939d236a5ffbf967e61a7cf6dc4aa15056e8f7574081ed59e9"
+  },
+  {
+    "bytes": 3174,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/00__dog_shadow_local.png",
+    "sha256": "c2a0d300d66425b24d3a44f51dda86d6ce81fc7580b762f18823a4986f9a946b"
+  },
+  {
+    "bytes": 7549,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/01__dog_tail.png",
+    "sha256": "6993784f584aff5f65fe4361904328654824b7d364ecf65a290d63971736e87f"
+  },
+  {
+    "bytes": 14524,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "f80575b462bf570b6f4653cfaefb6dfac633824fa9c3d36a23d210a970eda5d1"
+  },
+  {
+    "bytes": 3518,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "5daa5965cfa04d93ac857e3b73238a35b1f4a071eb85573e1de292b6fc06c501"
+  },
+  {
+    "bytes": 10034,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "9561e1eea0c458b32b659d2a250971191dec393221fc8c47354d71e85bdbbbff"
+  },
+  {
+    "bytes": 17991,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/05__dog_torso.png",
+    "sha256": "49acd8de8c610d4b4a388a17c0de35b5271132ac6088fff6691ddff87810d52b"
+  },
+  {
+    "bytes": 14858,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "99c0f6e133a354b9953b31fc46012e8a4978e331b7d4549dbfe50348c4615fef"
+  },
+  {
+    "bytes": 5978,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/07__dog_ear_far.png",
+    "sha256": "3a238fbfd538716eb2cea2181e96ac523c1dfd3fb614ef4afb2c92136a171849"
+  },
+  {
+    "bytes": 7901,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/08__dog_ear_near.png",
+    "sha256": "e0821b8ee511d33509650322d264d715236a7149841f205745c0813a5c7f7637"
+  },
+  {
+    "bytes": 4854,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/09__dog_muzzle.png",
+    "sha256": "337575df2f6cae7ade3a96a862fb5bc540f68d092e980397caa4438da62a8ba3"
+  },
+  {
+    "bytes": 5944,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/10__dog_head.png",
+    "sha256": "e7b42a653ba54cfd4e8dcb14831a86f11578ad80cdaeff0acc21696634fcd3de"
+  },
+  {
+    "bytes": 4667,
+    "path": "source/labrador/poses/locomotion_stop_right/layers/11__dog_marking_chest.png",
+    "sha256": "829c732920f65053182d8a68d8a4eb7d4fe0eb94ac64f0a4388d7cd9661677ab"
+  },
+  {
+    "bytes": 940819,
+    "path": "source/labrador/poses/locomotion_stop_right/locomotion_stop_right_master.ora",
+    "sha256": "12cbb0182f2a82742a6a5339d23f6db7a2bef1877976f2e328f9aaaa517cb136"
+  },
+  {
+    "bytes": 3167,
+    "path": "source/labrador/poses/packing_focus_left/layers/00__dog_shadow_local.png",
+    "sha256": "0393e6763d87b6f4e3cf14ad4a6af446927f1541ef1240e8cc22d8b828763ec2"
+  },
+  {
+    "bytes": 14754,
+    "path": "source/labrador/poses/packing_focus_left/layers/01__dog_tail.png",
+    "sha256": "3b9f5439ede5b32bb0ce623bd3c42ba83f79b9aa93a2344c601f145d10179615"
+  },
+  {
+    "bytes": 13304,
+    "path": "source/labrador/poses/packing_focus_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "40c0a950c50b07153d7e438b7d304df9532f82c3a4f55ae2dcc2100df12efedb"
+  },
+  {
+    "bytes": 8037,
+    "path": "source/labrador/poses/packing_focus_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "aa064b1cd30a280f7cd6ba9b15aba4b22becf3dbe79b8fc75394a345f5f79812"
+  },
+  {
+    "bytes": 14425,
+    "path": "source/labrador/poses/packing_focus_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "157dc4a0ba5f1cb79c8f7a75e65a39910a746c71e80fec2c7691cc1dff1fb16d"
+  },
+  {
+    "bytes": 39758,
+    "path": "source/labrador/poses/packing_focus_left/layers/05__dog_torso.png",
+    "sha256": "1ac58c98052ea2f0d254e5c453f79e930f31765387d1b52a5bd5e258ec682e3c"
+  },
+  {
+    "bytes": 27429,
+    "path": "source/labrador/poses/packing_focus_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "1479906bd03ad9dfd2d43564a48370f61477a46b6ad34c87f9030c4365103497"
+  },
+  {
+    "bytes": 4692,
+    "path": "source/labrador/poses/packing_focus_left/layers/07__dog_ear_far.png",
+    "sha256": "e60e336cca39d33a42c8a7b52b4dd08afc573ff245ae012559aca74a20ddc961"
+  },
+  {
+    "bytes": 3809,
+    "path": "source/labrador/poses/packing_focus_left/layers/08__dog_ear_near.png",
+    "sha256": "aa7099b66c2b681140a7d9d2ac6e6242ce6aff9b0a970f78e14dcd3eae7c9093"
+  },
+  {
+    "bytes": 3896,
+    "path": "source/labrador/poses/packing_focus_left/layers/09__dog_muzzle.png",
+    "sha256": "d7cf4e2466eff3337a2276cda6cc9f34a17ba414b613cdfe693bcd900a5406f9"
+  },
+  {
+    "bytes": 7712,
+    "path": "source/labrador/poses/packing_focus_left/layers/10__dog_head.png",
+    "sha256": "6baa5812c8e8bb2317863d7478315319015dab804a6ab60f849b18cb81736c79"
+  },
+  {
+    "bytes": 5145,
+    "path": "source/labrador/poses/packing_focus_left/layers/11__dog_marking_chest.png",
+    "sha256": "17ecdef11719e1de3113c15cd459b12425e6235ec30f1e7426fe25068722c121"
+  },
+  {
+    "bytes": 1429803,
+    "path": "source/labrador/poses/packing_focus_left/packing_focus_left_master.ora",
+    "sha256": "8f2dc85742e65d1aaeb127c31f3c22fb4e1542d7e514904d0030fd9af94aa6b8"
+  },
+  {
+    "bytes": 3161,
+    "path": "source/labrador/poses/packing_focus_right/layers/00__dog_shadow_local.png",
+    "sha256": "d5f56cf95c32827d23f66451f3a6ba5f47f8c4da6dbfc59b811a9a642c087150"
+  },
+  {
+    "bytes": 14107,
+    "path": "source/labrador/poses/packing_focus_right/layers/01__dog_tail.png",
+    "sha256": "d1abd0e9d548276ebd8bc26021df2f8b8fe7a668ae90289e420549845fbd2608"
+  },
+  {
+    "bytes": 13408,
+    "path": "source/labrador/poses/packing_focus_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "81b46611b7873c518523da1cd297ccd804b0a52c7a4c561286dc987719ab684b"
+  },
+  {
+    "bytes": 8513,
+    "path": "source/labrador/poses/packing_focus_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "278929e40b7df6d75060d549b9254343d2f3832a39515288f341058aa829e166"
+  },
+  {
+    "bytes": 14534,
+    "path": "source/labrador/poses/packing_focus_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "c537db89903036183b3ec4b03d28b45694315b96b03d791c13af01975855264b"
+  },
+  {
+    "bytes": 38855,
+    "path": "source/labrador/poses/packing_focus_right/layers/05__dog_torso.png",
+    "sha256": "e0a29c1123c514a8da9335a583f4e49ba8a62eb5bc9a37369a900c818b4f25b8"
+  },
+  {
+    "bytes": 27560,
+    "path": "source/labrador/poses/packing_focus_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "5661d162575134a7d73394a9d05f64fa1d1a252b26b31cd2e9ffb8a939a81726"
+  },
+  {
+    "bytes": 4762,
+    "path": "source/labrador/poses/packing_focus_right/layers/07__dog_ear_far.png",
+    "sha256": "463afd892accf4c74c68cff0c4e2539b97e2047aca8385b1fae0c4bc37eb1432"
+  },
+  {
+    "bytes": 3842,
+    "path": "source/labrador/poses/packing_focus_right/layers/08__dog_ear_near.png",
+    "sha256": "b7404df33c79f135a811a1b91fa059e8f92a706153988be3b10a1bd4c506bb45"
+  },
+  {
+    "bytes": 3868,
+    "path": "source/labrador/poses/packing_focus_right/layers/09__dog_muzzle.png",
+    "sha256": "3098cc6eb9bbdc03268b0eb2383f75e9878ab8706e9486f96792a44708118e8e"
+  },
+  {
+    "bytes": 7613,
+    "path": "source/labrador/poses/packing_focus_right/layers/10__dog_head.png",
+    "sha256": "bb0ec237516649d9957949255ef8d10b936284ee24d9e0969948a6bfb97172f9"
+  },
+  {
+    "bytes": 5057,
+    "path": "source/labrador/poses/packing_focus_right/layers/11__dog_marking_chest.png",
+    "sha256": "0ebe86a38a0d0ed6063897f18bc65def017c824ddf150fe790623bfafaaa0a42"
+  },
+  {
+    "bytes": 1420803,
+    "path": "source/labrador/poses/packing_focus_right/packing_focus_right_master.ora",
+    "sha256": "fc3285a013bd71d4bba07a610b9d3b10662e71a4f7a97269d0fb859669125a8d"
+  },
+  {
+    "bytes": 3129,
+    "path": "source/labrador/poses/packing_work_left/layers/00__dog_shadow_local.png",
+    "sha256": "65bb3ddfeb8386daa6702eae5da763d117dd8f65e3a2e711d0005e74124f18d9"
+  },
+  {
+    "bytes": 9174,
+    "path": "source/labrador/poses/packing_work_left/layers/01__dog_tail.png",
+    "sha256": "7f8d1d98d24c26d8665d1c34641a14aed0b5376c59756245fe6f18ca6e23aeae"
+  },
+  {
+    "bytes": 13925,
+    "path": "source/labrador/poses/packing_work_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "c9550351556adede90b9dfc9f8431f7a9a32565d51e2ba0ed1926cc6819be948"
+  },
+  {
+    "bytes": 5427,
+    "path": "source/labrador/poses/packing_work_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "fa6828b712719d83832af9325ee21058ff483825c5d06b648c981fdfa6c1e359"
+  },
+  {
+    "bytes": 11724,
+    "path": "source/labrador/poses/packing_work_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "2c05a5045b2f0900f7414330a8006325356ede05ebeb3616bc54846df8d3063f"
+  },
+  {
+    "bytes": 20795,
+    "path": "source/labrador/poses/packing_work_left/layers/05__dog_torso.png",
+    "sha256": "e7947a94bf72ee3274b85e80d2f8cd69737fcb3a3151b18360bbbff1e0da854b"
+  },
+  {
+    "bytes": 12228,
+    "path": "source/labrador/poses/packing_work_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "eeff50af2693276a42908ff60e7b97ba3e9550d531043b935e9c6fe1cfecac10"
+  },
+  {
+    "bytes": 7265,
+    "path": "source/labrador/poses/packing_work_left/layers/07__dog_ear_far.png",
+    "sha256": "ace4fc2c870698184c10c9bb74f1cd6c9b1df1af9671916889750a9225a95d71"
+  },
+  {
+    "bytes": 6671,
+    "path": "source/labrador/poses/packing_work_left/layers/08__dog_ear_near.png",
+    "sha256": "2b63379a333d0942248517fe49974fb77003f1fbf7de70df3e9d29945b43ad30"
+  },
+  {
+    "bytes": 928,
+    "path": "source/labrador/poses/packing_work_left/layers/09__dog_muzzle.png",
+    "sha256": "2f8a14b84048081e77e188df7f7074c3807c40e8b43200cdf9467d59755d13b4"
+  },
+  {
+    "bytes": 6390,
+    "path": "source/labrador/poses/packing_work_left/layers/10__dog_head.png",
+    "sha256": "133adb29e1e89c263a0a4c19eb61a038c73e2309a1d4be1c4d68385597c6e522"
+  },
+  {
+    "bytes": 4832,
+    "path": "source/labrador/poses/packing_work_left/layers/11__dog_marking_chest.png",
+    "sha256": "ed441cfd3cd77e74fc6684d1945118f972dee1dd0f2269520a4a4f8ff2a1e176"
+  },
+  {
+    "bytes": 966038,
+    "path": "source/labrador/poses/packing_work_left/packing_work_left_master.ora",
+    "sha256": "592b52ada2b748235f620081472ebc51b3902f62511e2397ebcf3269fe8b55c1"
+  },
+  {
+    "bytes": 3123,
+    "path": "source/labrador/poses/packing_work_right/layers/00__dog_shadow_local.png",
+    "sha256": "559f17b7168c4b51846d0118b0b273a0fa65da60aeff2e6fcad4a205c379685d"
+  },
+  {
+    "bytes": 9814,
+    "path": "source/labrador/poses/packing_work_right/layers/01__dog_tail.png",
+    "sha256": "0e00107b596ff8a43d29be58bef68c440521c369ee2f08f1df7a9e48f2b14c82"
+  },
+  {
+    "bytes": 13750,
+    "path": "source/labrador/poses/packing_work_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "22a5cd5c8e4550bff97cea5ca02c8469b7bd7615b2036464f0ec63d6dc47ebfa"
+  },
+  {
+    "bytes": 4945,
+    "path": "source/labrador/poses/packing_work_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "c108cfa174fb118fa22609698e259651aae5103c542a6110581fc8a86b5630b7"
+  },
+  {
+    "bytes": 12601,
+    "path": "source/labrador/poses/packing_work_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "1d0f78564226eaf9096194882a0a570fedb46f8b91b248ebc22ec161a47a514a"
+  },
+  {
+    "bytes": 21038,
+    "path": "source/labrador/poses/packing_work_right/layers/05__dog_torso.png",
+    "sha256": "0c0910186ab1a30b2fe195e5dce54792f02a622903868dc74f518f699dd96b43"
+  },
+  {
+    "bytes": 11609,
+    "path": "source/labrador/poses/packing_work_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "2f0283d49586c745083cb1694e5e34d740345e02d626fedaf68fd44123004dfc"
+  },
+  {
+    "bytes": 7318,
+    "path": "source/labrador/poses/packing_work_right/layers/07__dog_ear_far.png",
+    "sha256": "88af846f1b13220fe8f6fd7d1ac8d3140a178351fcc44a96858ce0b760bb6afc"
+  },
+  {
+    "bytes": 5924,
+    "path": "source/labrador/poses/packing_work_right/layers/08__dog_ear_near.png",
+    "sha256": "39aed8b8022a3bb2476d07cbba7ce6c554cf9d0a41c2efd2f189ee0037ceefbd"
+  },
+  {
+    "bytes": 715,
+    "path": "source/labrador/poses/packing_work_right/layers/09__dog_muzzle.png",
+    "sha256": "d6a70d6ede5d100c6330805633fae1637c37a3317298fd5836f949ea7a81a32d"
+  },
+  {
+    "bytes": 6683,
+    "path": "source/labrador/poses/packing_work_right/layers/10__dog_head.png",
+    "sha256": "12bef2b81d35d76ed906c4dddf9d2b31b872e146d051eead573f3d1953e95d59"
+  },
+  {
+    "bytes": 4854,
+    "path": "source/labrador/poses/packing_work_right/layers/11__dog_marking_chest.png",
+    "sha256": "5f64aba24395c945b7b6180e63d35fe00cf8256ef68510702693ea8466b18cc6"
+  },
+  {
+    "bytes": 962002,
+    "path": "source/labrador/poses/packing_work_right/packing_work_right_master.ora",
+    "sha256": "49ac0bb35c43acefdda2688dc6ec61d73c0ca2f16555823e1900f6cdbdb2662d"
+  },
+  {
+    "bytes": 3088,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/00__dog_shadow_local.png",
+    "sha256": "9a734f708142531d1c7a98259d5ed0c4fe8cbc4147d9faedee807e1944256b42"
+  },
+  {
+    "bytes": 15876,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/01__dog_tail.png",
+    "sha256": "3c0849ebac4e1ef54d43f075f86c9d4739b953b0d8cf6d74a6f3ad04cd1468c6"
+  },
+  {
+    "bytes": 11310,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/02__dog_leg_hind_far.png",
+    "sha256": "b0ee584be769dedc7cdc1eb50de04c3fe1d7b6248e22d914126c8c778303a237"
+  },
+  {
+    "bytes": 3184,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/03__dog_leg_hind_near.png",
+    "sha256": "7b6449fc42db8342932e069331c1647fb3d5b53f576d727de1ec356e6276d54a"
+  },
+  {
+    "bytes": 10961,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/04__dog_leg_fore_far.png",
+    "sha256": "4636161019199fd9fd0e945b1df6bca28bd1c8fbfedd63f60e422380a888600f"
+  },
+  {
+    "bytes": 26075,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/05__dog_torso.png",
+    "sha256": "0cda988e01b09bf8f73821c030bc7cff3e765018cc87d97286046935ab749f03"
+  },
+  {
+    "bytes": 16194,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/06__dog_leg_fore_near.png",
+    "sha256": "da1a8b9d411622056e2e01a64c3748bc1aca92b326ca0d824b91febd17c1fb56"
+  },
+  {
+    "bytes": 715,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/07__dog_ear_far.png",
+    "sha256": "d6a70d6ede5d100c6330805633fae1637c37a3317298fd5836f949ea7a81a32d"
+  },
+  {
+    "bytes": 715,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/08__dog_ear_near.png",
+    "sha256": "d6a70d6ede5d100c6330805633fae1637c37a3317298fd5836f949ea7a81a32d"
+  },
+  {
+    "bytes": 715,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/09__dog_muzzle.png",
+    "sha256": "d6a70d6ede5d100c6330805633fae1637c37a3317298fd5836f949ea7a81a32d"
+  },
+  {
+    "bytes": 3928,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/10__dog_head.png",
+    "sha256": "13d5966e78f8a037d79bc670088897997a0c9a8cfc1691d23b0512a88abaad91"
+  },
+  {
+    "bytes": 4201,
+    "path": "source/labrador/poses/turn_left_to_right_mid/layers/11__dog_marking_chest.png",
+    "sha256": "bd59a4e0518bfc9b4e5f11e10e37bf901d191db3593864b6b7bf4e4a0dbe974b"
+  },
+  {
+    "bytes": 920565,
+    "path": "source/labrador/poses/turn_left_to_right_mid/turn_left_to_right_mid_master.ora",
+    "sha256": "404e03a5734aa50b6a130f0ad9796b46859207b390704d32a8f601021827a2f3"
+  },
+  {
+    "bytes": 3049,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/00__dog_shadow_local.png",
+    "sha256": "8223e6675a205225f799f5206abbd5a292bdd52291037cd37021d707cf75e29d"
+  },
+  {
+    "bytes": 15203,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/01__dog_tail.png",
+    "sha256": "6b1aa15e37f92f00c657046727fe827bc69030e96c23412b5824096ecd1fc867"
+  },
+  {
+    "bytes": 10672,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/02__dog_leg_hind_far.png",
+    "sha256": "96b541a716315547706d1439e7a9e3486c17fcc8d9c5e80f2009750b9e4caa79"
+  },
+  {
+    "bytes": 4864,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/03__dog_leg_hind_near.png",
+    "sha256": "a50d7ffdf444bd3632a2bba15acf53aca8d5167620f9c801f20b5863b3fad3ff"
+  },
+  {
+    "bytes": 9152,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/04__dog_leg_fore_far.png",
+    "sha256": "5035d53087effe74399049f979c03c3e6dd6a19e9630256688b5adfd3c3dcef4"
+  },
+  {
+    "bytes": 25420,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/05__dog_torso.png",
+    "sha256": "c47f48a0f3c02a13056244ce4906ab3675f7ec94243f5a1eaf47f77ab4e0e5e1"
+  },
+  {
+    "bytes": 14996,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/06__dog_leg_fore_near.png",
+    "sha256": "d0f2290deddcd2b49cb7ae6a8282e553c87d27f17cf0280be2d46123297ce511"
+  },
+  {
+    "bytes": 715,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/07__dog_ear_far.png",
+    "sha256": "d6a70d6ede5d100c6330805633fae1637c37a3317298fd5836f949ea7a81a32d"
+  },
+  {
+    "bytes": 715,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/08__dog_ear_near.png",
+    "sha256": "d6a70d6ede5d100c6330805633fae1637c37a3317298fd5836f949ea7a81a32d"
+  },
+  {
+    "bytes": 715,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/09__dog_muzzle.png",
+    "sha256": "d6a70d6ede5d100c6330805633fae1637c37a3317298fd5836f949ea7a81a32d"
+  },
+  {
+    "bytes": 3689,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/10__dog_head.png",
+    "sha256": "6601102a4912c3ff4aef9f477b95baec345d221e9f816bcf5aa65783a3654859"
+  },
+  {
+    "bytes": 3858,
+    "path": "source/labrador/poses/turn_right_to_left_mid/layers/11__dog_marking_chest.png",
+    "sha256": "edd3943e496409cf0ffb30a195fc778f652f585276c8abf4776ebac3e9248aa0"
+  },
+  {
+    "bytes": 873737,
+    "path": "source/labrador/poses/turn_right_to_left_mid/turn_right_to_left_mid_master.ora",
+    "sha256": "54aec361a788f463c402c3e7f86c0718f295f003bfb99fdea824d5ad64c515f7"
+  },
+  {
+    "bytes": 3157,
+    "path": "source/labrador/poses/wait_calm_left/layers/00__dog_shadow_local.png",
+    "sha256": "56c62d86d13578634a16961c6b17d5e0178c0706e077083a17da255bba8802f6"
+  },
+  {
+    "bytes": 8104,
+    "path": "source/labrador/poses/wait_calm_left/layers/01__dog_tail.png",
+    "sha256": "31b07adf24e24575ff99259879f775c31a58615bffe27083c84e0cabbb720e09"
+  },
+  {
+    "bytes": 14358,
+    "path": "source/labrador/poses/wait_calm_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "47cd8c3c88e1e7d21c1fedce7e042f2e0d51aa9c438cf6364358ae45b72c4e80"
+  },
+  {
+    "bytes": 3122,
+    "path": "source/labrador/poses/wait_calm_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "004c6c35f2653d7626357fa15b1ce974599b3f0b9ad47c7dc410ee8e3ab2c912"
+  },
+  {
+    "bytes": 9719,
+    "path": "source/labrador/poses/wait_calm_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "4b8eb2e88fc347564e7bf68e3688a95f336d5ef6ecb02cd88330c2555334a98a"
+  },
+  {
+    "bytes": 17613,
+    "path": "source/labrador/poses/wait_calm_left/layers/05__dog_torso.png",
+    "sha256": "d95642f551f40408f76cee1f95a0f5fb8a91fa03200e20c994c54c5f69f95d5d"
+  },
+  {
+    "bytes": 14967,
+    "path": "source/labrador/poses/wait_calm_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "62498d78e5ae49b0ad78c6c19af34b07c007cfecc7e5d62791975f79b019b788"
+  },
+  {
+    "bytes": 5974,
+    "path": "source/labrador/poses/wait_calm_left/layers/07__dog_ear_far.png",
+    "sha256": "561f4f7c2bcf70968ab73f430353b19532e666a671690e2d70c096a51b613a54"
+  },
+  {
+    "bytes": 7911,
+    "path": "source/labrador/poses/wait_calm_left/layers/08__dog_ear_near.png",
+    "sha256": "7afa08e89b6e12ea71e2adbbbede2a636520ccfa60c0e6a68bc675250ceb54eb"
+  },
+  {
+    "bytes": 5046,
+    "path": "source/labrador/poses/wait_calm_left/layers/09__dog_muzzle.png",
+    "sha256": "30c57080b0127e901881099bb1fa10f168712de8c4c752b06fbfd4d07b4a6e28"
+  },
+  {
+    "bytes": 5974,
+    "path": "source/labrador/poses/wait_calm_left/layers/10__dog_head.png",
+    "sha256": "b4df2d8c0d6d81011907f9f9be96f00410e38e90e322d8731c58346a28121738"
+  },
+  {
+    "bytes": 4715,
+    "path": "source/labrador/poses/wait_calm_left/layers/11__dog_marking_chest.png",
+    "sha256": "a764c7605dafebcb33df0ec4a825d217a383aa3f0f210863ad8a8f95ddb38a41"
+  },
+  {
+    "bytes": 940341,
+    "path": "source/labrador/poses/wait_calm_left/wait_calm_left_master.ora",
+    "sha256": "5bcabfe34aa273143dfcf04fe297684b62f3442441737fcd6b10c4b13c941009"
+  },
+  {
+    "bytes": 3120,
+    "path": "source/labrador/poses/walk_support_a_left/layers/00__dog_shadow_local.png",
+    "sha256": "7a523a383e76ece9fd9f030faa890f74a37663978225d1a8222bc0cc862c3b6a"
+  },
+  {
+    "bytes": 9530,
+    "path": "source/labrador/poses/walk_support_a_left/layers/01__dog_tail.png",
+    "sha256": "3eb2e3383ce77aaf5f9308afddc2e9ac65a371518f323a8bd42c7207ecd84718"
+  },
+  {
+    "bytes": 12254,
+    "path": "source/labrador/poses/walk_support_a_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "0b45cdc02fd7a24ffcc0fd2c6ab955a8f2a71ff2ac2c9cde1dfead29b3abba8d"
+  },
+  {
+    "bytes": 7389,
+    "path": "source/labrador/poses/walk_support_a_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "3350ecec574bc09cc30a98c4d3f3fc0f489308aa0f8bed12e507cdae2e9d8d33"
+  },
+  {
+    "bytes": 13377,
+    "path": "source/labrador/poses/walk_support_a_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "258b639b62f57b4cd4596ed3af97289b55f2f80b29042ec0a091ef29782f2a01"
+  },
+  {
+    "bytes": 24068,
+    "path": "source/labrador/poses/walk_support_a_left/layers/05__dog_torso.png",
+    "sha256": "46363bd2ab0e64a871a971fd7fb2afadb9c905e0fddcf49a168b350101e4a7bb"
+  },
+  {
+    "bytes": 17304,
+    "path": "source/labrador/poses/walk_support_a_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "2876c33fbeb40d042e1da94130b0eb9df7d7f579575fdfa630e86845c97cf6d2"
+  },
+  {
+    "bytes": 6476,
+    "path": "source/labrador/poses/walk_support_a_left/layers/07__dog_ear_far.png",
+    "sha256": "02f01f094fd7c97ff70428bcde28ea0b74bcbe3462880f350bda11c206d2809c"
+  },
+  {
+    "bytes": 8873,
+    "path": "source/labrador/poses/walk_support_a_left/layers/08__dog_ear_near.png",
+    "sha256": "29ce7c8fc391a73ecdc9c61fffc789444e5103f0589be9e8cf54c368c912cd62"
+  },
+  {
+    "bytes": 5690,
+    "path": "source/labrador/poses/walk_support_a_left/layers/09__dog_muzzle.png",
+    "sha256": "d64549b04941c37f6202a339f760d3a09c26642280f19ead30f96b995b7bae3f"
+  },
+  {
+    "bytes": 6385,
+    "path": "source/labrador/poses/walk_support_a_left/layers/10__dog_head.png",
+    "sha256": "2ba343b2995994f66453e1942a281e47027db5d83b2ded3730e979428b0189d5"
+  },
+  {
+    "bytes": 5065,
+    "path": "source/labrador/poses/walk_support_a_left/layers/11__dog_marking_chest.png",
+    "sha256": "b671d882d0fea16cb170e71cacc001ed38264532b3c20e8b7e4433fe79e93f2c"
+  },
+  {
+    "bytes": 1133760,
+    "path": "source/labrador/poses/walk_support_a_left/walk_support_a_left_master.ora",
+    "sha256": "b98ed70a78b7b0a9e2705afa1fb57049388adb10defe7b02bb6452299c4f69b2"
+  },
+  {
+    "bytes": 3116,
+    "path": "source/labrador/poses/walk_support_a_right/layers/00__dog_shadow_local.png",
+    "sha256": "d2f104278eecc48b2ec7d1f3720489cce508660fc455029ab05826637a3fd734"
+  },
+  {
+    "bytes": 10104,
+    "path": "source/labrador/poses/walk_support_a_right/layers/01__dog_tail.png",
+    "sha256": "7941917335b08fa33014e55f97f0aeb713b934246cb35acb59262e7b73b2adae"
+  },
+  {
+    "bytes": 11575,
+    "path": "source/labrador/poses/walk_support_a_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "0f4791289437020fbac7c3a13f17d63e42291b24833b7eb6a811a8842cd44379"
+  },
+  {
+    "bytes": 8438,
+    "path": "source/labrador/poses/walk_support_a_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "fbc4fb0c3219b95deabcf165e6f65ecc02da3a82db82a09bb84dad631a666b24"
+  },
+  {
+    "bytes": 12671,
+    "path": "source/labrador/poses/walk_support_a_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "284b1f82c3a2561b6c37c332c0fd3ff7c1d5c6e9ea4f884ac2997a8f8320c48f"
+  },
+  {
+    "bytes": 25132,
+    "path": "source/labrador/poses/walk_support_a_right/layers/05__dog_torso.png",
+    "sha256": "9bfe5dbb13528c3a5caa0163c8022862c839257dd5b4fea4712ece7c0b2d478d"
+  },
+  {
+    "bytes": 17139,
+    "path": "source/labrador/poses/walk_support_a_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "2a5d386115cde1f0a120a58b2d233c4b2d5527bcb80cb7fcb99de01576d5d642"
+  },
+  {
+    "bytes": 6530,
+    "path": "source/labrador/poses/walk_support_a_right/layers/07__dog_ear_far.png",
+    "sha256": "a91d263ce91535a2c179feed7074512d29d33a9d9c36e5d9717633d9002ef975"
+  },
+  {
+    "bytes": 8841,
+    "path": "source/labrador/poses/walk_support_a_right/layers/08__dog_ear_near.png",
+    "sha256": "856f6192cc70b51eb5e392373071a3fbf6708b723385a1af5ce27d7f6660a39e"
+  },
+  {
+    "bytes": 5470,
+    "path": "source/labrador/poses/walk_support_a_right/layers/09__dog_muzzle.png",
+    "sha256": "98dbb4f1a68001f142be0032fb55b273293b79d219acc5feb1b93dfec889cf06"
+  },
+  {
+    "bytes": 6704,
+    "path": "source/labrador/poses/walk_support_a_right/layers/10__dog_head.png",
+    "sha256": "0e78c602cb250b3806c30453dcf997442adcf54268a39750dbd82729fe9c2a64"
+  },
+  {
+    "bytes": 5136,
+    "path": "source/labrador/poses/walk_support_a_right/layers/11__dog_marking_chest.png",
+    "sha256": "8a494c96b39cb1afcf6ea45a4658719cd7dd4230ca69850a75eccd79c57c87ae"
+  },
+  {
+    "bytes": 1147854,
+    "path": "source/labrador/poses/walk_support_a_right/walk_support_a_right_master.ora",
+    "sha256": "2ac310b793f33a6f6e39cec1224f1360fa7be49f3d618b129348e0ea5d71e1ee"
+  },
+  {
+    "bytes": 3112,
+    "path": "source/labrador/poses/walk_support_b_left/layers/00__dog_shadow_local.png",
+    "sha256": "3777cd91ff6b1d9c6153377e6ab01c28494185ed3a4165c3b0dad5b558659051"
+  },
+  {
+    "bytes": 9332,
+    "path": "source/labrador/poses/walk_support_b_left/layers/01__dog_tail.png",
+    "sha256": "e228e9a48f07c259f3817cff581f841ab6e4840bb124289b421be70cd7bf57e2"
+  },
+  {
+    "bytes": 12077,
+    "path": "source/labrador/poses/walk_support_b_left/layers/02__dog_leg_hind_far.png",
+    "sha256": "aa4f14bad8974dd7b6b923ea1cedafce9d9142e2ceee0e30a13fc1795f224597"
+  },
+  {
+    "bytes": 7903,
+    "path": "source/labrador/poses/walk_support_b_left/layers/03__dog_leg_hind_near.png",
+    "sha256": "e3b62c2be58208e76f7c6c5edc697f7a530ff3e55b59c7fc004177be4b9dc2dc"
+  },
+  {
+    "bytes": 13806,
+    "path": "source/labrador/poses/walk_support_b_left/layers/04__dog_leg_fore_far.png",
+    "sha256": "3433834ea077fd015ed80c5ebaa04ec13ea1310a1de11bc80380e65a76d3112a"
+  },
+  {
+    "bytes": 23739,
+    "path": "source/labrador/poses/walk_support_b_left/layers/05__dog_torso.png",
+    "sha256": "0d6a80b98396b40f1a4e1cc7b441baf6a480baa2e01ad9a056b4dbf779de886b"
+  },
+  {
+    "bytes": 16641,
+    "path": "source/labrador/poses/walk_support_b_left/layers/06__dog_leg_fore_near.png",
+    "sha256": "5361c24fc00853b2c0b67f8c7df50bf7ef6844ff3d358c059ab0dbd622539260"
+  },
+  {
+    "bytes": 6209,
+    "path": "source/labrador/poses/walk_support_b_left/layers/07__dog_ear_far.png",
+    "sha256": "fdb174b0be41e95cab4ce9d4fdd144eae24c733fd26ac7d7017f88eddfebcc52"
+  },
+  {
+    "bytes": 8671,
+    "path": "source/labrador/poses/walk_support_b_left/layers/08__dog_ear_near.png",
+    "sha256": "d06210c146267b3b28fa4647202b60573c10d3567047863f59d6efa6d1265e8f"
+  },
+  {
+    "bytes": 5564,
+    "path": "source/labrador/poses/walk_support_b_left/layers/09__dog_muzzle.png",
+    "sha256": "2f8f67ccd8695b82de96225e16ea6e73878b1955baa959fcc971b65c8adfacc3"
+  },
+  {
+    "bytes": 6422,
+    "path": "source/labrador/poses/walk_support_b_left/layers/10__dog_head.png",
+    "sha256": "48134dfc3c340a1426afe2948fc386f0f28007ab5d4e51fad8e78383f2183cc5"
+  },
+  {
+    "bytes": 4921,
+    "path": "source/labrador/poses/walk_support_b_left/layers/11__dog_marking_chest.png",
+    "sha256": "9fa5c59909ca2a7e0a324f2e21d690d4038a5b897751f66508c5988cefc6cf9c"
+  },
+  {
+    "bytes": 1118865,
+    "path": "source/labrador/poses/walk_support_b_left/walk_support_b_left_master.ora",
+    "sha256": "0cebf93c8e616e3470b6ff5c3ef2ef680cd447b3377181fa835be9edb0975bb7"
+  },
+  {
+    "bytes": 3118,
+    "path": "source/labrador/poses/walk_support_b_right/layers/00__dog_shadow_local.png",
+    "sha256": "279b0a2bfc8ac2a98ec6e0f394a37100bb8acc2f7548dde9ea1bf11090717ef1"
+  },
+  {
+    "bytes": 10976,
+    "path": "source/labrador/poses/walk_support_b_right/layers/01__dog_tail.png",
+    "sha256": "94a6e7b86c786cf2f886dac79f4a8da274b9abc5ae61192f8b80c531d442dcc3"
+  },
+  {
+    "bytes": 10307,
+    "path": "source/labrador/poses/walk_support_b_right/layers/02__dog_leg_hind_far.png",
+    "sha256": "a693e78ca553af93476b8cc9967ac0590e069d092d4b460c1e6fa32c0aea2670"
+  },
+  {
+    "bytes": 8969,
+    "path": "source/labrador/poses/walk_support_b_right/layers/03__dog_leg_hind_near.png",
+    "sha256": "1dfb0dd02dac020f24453cfb82c017c94b2a99d2eb090f22b6d6b30da1ba321b"
+  },
+  {
+    "bytes": 13681,
+    "path": "source/labrador/poses/walk_support_b_right/layers/04__dog_leg_fore_far.png",
+    "sha256": "c26aa836522208e4f2eaa7cb289719aa9c6917268a30e950e31e158a5504e3ff"
+  },
+  {
+    "bytes": 25389,
+    "path": "source/labrador/poses/walk_support_b_right/layers/05__dog_torso.png",
+    "sha256": "532022614209e1c2dd7027800d13e40c1157744b1c3fc448d84c380307309a41"
+  },
+  {
+    "bytes": 15457,
+    "path": "source/labrador/poses/walk_support_b_right/layers/06__dog_leg_fore_near.png",
+    "sha256": "5a4d9bacce54eef58b12aa4be7d4920f9c3bd20809a0a122989dd554b0fb973f"
+  },
+  {
+    "bytes": 6440,
+    "path": "source/labrador/poses/walk_support_b_right/layers/07__dog_ear_far.png",
+    "sha256": "cbf0bf0330294dc70634d14db14c86f29e131bbe4bdeabe8c9c029217b65f397"
+  },
+  {
+    "bytes": 8883,
+    "path": "source/labrador/poses/walk_support_b_right/layers/08__dog_ear_near.png",
+    "sha256": "328fb96f3db14ae3bcf96292f13c721168e7883fc95400255cb6ce953083f5ce"
+  },
+  {
+    "bytes": 5676,
+    "path": "source/labrador/poses/walk_support_b_right/layers/09__dog_muzzle.png",
+    "sha256": "dc7c65a3d6ce41e98bda126bccfabe26af69fcf10475b7ce98b5a53156ec3cd1"
+  },
+  {
+    "bytes": 6633,
+    "path": "source/labrador/poses/walk_support_b_right/layers/10__dog_head.png",
+    "sha256": "844ed2b29f5fc90e744cf8e21a4dc2f7ade77ad1c6de85f829b0efb4896d9c91"
+  },
+  {
+    "bytes": 5044,
+    "path": "source/labrador/poses/walk_support_b_right/layers/11__dog_marking_chest.png",
+    "sha256": "1a06b10d17be361f4af577ad9175a4b100e65ba11c6356faea96dd8ff9d45c8f"
+  },
+  {
+    "bytes": 1138489,
+    "path": "source/labrador/poses/walk_support_b_right/walk_support_b_right_master.ora",
+    "sha256": "2efbdb40300fd4cc16a6aa930c23db86b98968ca1354b827f783e9781f008b5b"
+  },
+  {
+    "bytes": 371968,
+    "path": "source/world/assets/bicycle/bicycle_master.ora",
+    "sha256": "285744f5709742312bf7c4958b5a1cdf13c5d41cabb89840906a4be47894827f"
+  },
+  {
+    "bytes": 9823,
+    "path": "source/world/assets/bicycle/layers/00__bicycle_contact_tuft_shadow.png",
+    "sha256": "a7054f6baf686fc8b6c595207d598ee828840b5bd77fc3bfe503b039e2d26f34"
+  },
+  {
+    "bytes": 10772,
+    "path": "source/world/assets/bicycle/layers/01__bicycle_upper_silhouette.png",
+    "sha256": "2207edd5fdcd00868b587450f09d69bd32b97b4ee412a36f4b8c54ae2723a0cc"
+  },
+  {
+    "bytes": 33387,
+    "path": "source/world/assets/bicycle/layers/02__bicycle_functional_body.png",
+    "sha256": "c9bd1dc62d2ea332aa1a5e2cbf07c583047b7d0920909547caa1e336cbc46611"
+  },
+  {
+    "bytes": 12244,
+    "path": "source/world/assets/bicycle/layers/03__bicycle_base_contact_detail.png",
+    "sha256": "5d08a756c9264657fb8c26f6e1fcb613ba3680592f0f5bc268d1e16dec0f8092"
+  },
+  {
+    "bytes": 304933,
+    "path": "source/world/assets/fence_segments/fence_segments_master.ora",
+    "sha256": "f1b8905b7566a2e62bafcddea7e87f629e5e762be9fbc1d0a402192ce4138e00"
+  },
+  {
+    "bytes": 9465,
+    "path": "source/world/assets/fence_segments/layers/00__fence_segments_contact_tuft_shadow.png",
+    "sha256": "92c47182dd32a39d44c13df4d74f9bd2a2c3d8222d0e3839441bb0fa948a681b"
+  },
+  {
+    "bytes": 9250,
+    "path": "source/world/assets/fence_segments/layers/01__fence_segments_upper_silhouette.png",
+    "sha256": "b162fc0f418569094f5106330c07663ab6ac4b9c19889e03f4afb53bab6844d1"
+  },
+  {
+    "bytes": 27272,
+    "path": "source/world/assets/fence_segments/layers/02__fence_segments_functional_body.png",
+    "sha256": "736d7638bbb8dd2c35f062b818828b1d1670a2b21a13bcc9a557dc39ed475ba9"
+  },
+  {
+    "bytes": 14540,
+    "path": "source/world/assets/fence_segments/layers/03__fence_segments_base_contact_detail.png",
+    "sha256": "a5de32a7cca4794e244354f70474c111581886f94029ad211cb78e904e2fd357"
+  },
+  {
+    "bytes": 1023936,
+    "path": "source/world/assets/kitchen/kitchen_master.ora",
+    "sha256": "06f4edf87142c67e97970c79c9046a8fcd77927b70068aceb973fca0ea782446"
+  },
+  {
+    "bytes": 35529,
+    "path": "source/world/assets/kitchen/layers/00__kitchen_contact_tuft_shadow.png",
+    "sha256": "d52e7f1874ed43cc0e8bc8e6c1574a79d756c62673a5845f7285913ea0efe38a"
+  },
+  {
+    "bytes": 36036,
+    "path": "source/world/assets/kitchen/layers/01__kitchen_upper_silhouette.png",
+    "sha256": "720eec0b53eff8e1940821f570ca4950b4bdb435237effc14e29c63abe71947e"
+  },
+  {
+    "bytes": 93190,
+    "path": "source/world/assets/kitchen/layers/02__kitchen_functional_body.png",
+    "sha256": "e8d1ca7bd8577281844be441098262a3b28d7ddf24aecdd337211561622338ee"
+  },
+  {
+    "bytes": 36451,
+    "path": "source/world/assets/kitchen/layers/03__kitchen_base_contact_detail.png",
+    "sha256": "b679829741acfb8623303dde4e85b08358b592123a231f703cfa074887fdf6f3"
+  },
+  {
+    "bytes": 18576,
+    "path": "source/world/assets/mill_static/layers/00__mill_static_contact_tuft_shadow.png",
+    "sha256": "3c7f94c17ec73174050ce0242258bb4025f0d4bbd6e8ad536811ec1ecdfee8d8"
+  },
+  {
+    "bytes": 42653,
+    "path": "source/world/assets/mill_static/layers/01__mill_static_upper_silhouette.png",
+    "sha256": "a7585643092ca1a694965ee5e2dbc0c8d08881025ea6eb649e7ae97af18d0747"
+  },
+  {
+    "bytes": 51958,
+    "path": "source/world/assets/mill_static/layers/02__mill_static_functional_body.png",
+    "sha256": "656bcd5dde3c0bf449c9b75890b67064d5b984f7af1597c76e8063b68dea1e22"
+  },
+  {
+    "bytes": 14245,
+    "path": "source/world/assets/mill_static/layers/03__mill_static_base_contact_detail.png",
+    "sha256": "730ddb2d12c7fe7f7b55f540164b3153a0dfa4f0286e090db4b144593697434b"
+  },
+  {
+    "bytes": 656111,
+    "path": "source/world/assets/mill_static/mill_static_master.ora",
+    "sha256": "0d3c593e9427d31c9469f39dbe7eedb83764ab0571f0d7778c3fb48eb937ba0d"
+  },
+  {
+    "bytes": 16481,
+    "path": "source/world/assets/packing_utility/layers/00__packing_utility_contact_tuft_shadow.png",
+    "sha256": "96e29e28a5bbbc8228c6ee39834840909ba46e7eefe07b4bd6e838e876578fce"
+  },
+  {
+    "bytes": 40396,
+    "path": "source/world/assets/packing_utility/layers/01__packing_utility_upper_silhouette.png",
+    "sha256": "1f953c777c5ef173189bfff8456540755d271e1d4c6f32ae493c04aafddb899f"
+  },
+  {
+    "bytes": 24074,
+    "path": "source/world/assets/packing_utility/layers/02__packing_utility_functional_body.png",
+    "sha256": "b6ed5382b4cf1b87aa19768838a07325b7f1f505cc08fb7964df9cd86f6f14c3"
+  },
+  {
+    "bytes": 17429,
+    "path": "source/world/assets/packing_utility/layers/03__packing_utility_base_contact_detail.png",
+    "sha256": "76ac20389604387482acdda49a0f299733fd4e162b6b286bb3a37b0e2d32c689"
+  },
+  {
+    "bytes": 528789,
+    "path": "source/world/assets/packing_utility/packing_utility_master.ora",
+    "sha256": "7192084876c9e7f5093a1223cb2ed63ea5db4725d781ffb3002dc86316998f24"
+  },
+  {
+    "bytes": 6299,
+    "path": "source/world/assets/road_sign/layers/00__road_sign_contact_tuft_shadow.png",
+    "sha256": "c3d8d1da5dc9f24cd8c7abe7525dbcf8a66570616b023077f8812d2b46073438"
+  },
+  {
+    "bytes": 14191,
+    "path": "source/world/assets/road_sign/layers/01__road_sign_upper_silhouette.png",
+    "sha256": "a3bcad12d2bd3d6dbf749e6b638dd7ca031597dd3a2bae99a77603f670cf28d2"
+  },
+  {
+    "bytes": 7876,
+    "path": "source/world/assets/road_sign/layers/02__road_sign_functional_body.png",
+    "sha256": "6095241c6c26ce0c65d1b0a88738ac52fb73ff5fa72d78490f9978a79d14d185"
+  },
+  {
+    "bytes": 4889,
+    "path": "source/world/assets/road_sign/layers/03__road_sign_base_contact_detail.png",
+    "sha256": "6006c2ff0a1a0ce2e03575d4d5809ba391b7b04b5cd28c1d18d00a7ef21b5b34"
+  },
+  {
+    "bytes": 186474,
+    "path": "source/world/assets/road_sign/road_sign_master.ora",
+    "sha256": "2e7b03a41b97d65eebb184722ce68597becb01c435d2567255f2fd96a0bcbcc2"
+  },
+  {
+    "bytes": 9289,
+    "path": "source/world/assets/shrub_depth/layers/00__shrub_depth_contact_tuft_shadow.png",
+    "sha256": "d95d15fc0602868ce586b4ea6c165750ce2fb890db6b78f020870d2ff99eb3bc"
+  },
+  {
+    "bytes": 13415,
+    "path": "source/world/assets/shrub_depth/layers/01__shrub_depth_upper_silhouette.png",
+    "sha256": "945e278051176fdc71de7c9c5f5c0696ce1b88def7e75f815a82f76a4f74b1a0"
+  },
+  {
+    "bytes": 30086,
+    "path": "source/world/assets/shrub_depth/layers/02__shrub_depth_functional_body.png",
+    "sha256": "8b574701e41dfb63d3bfa62bcdc1a495d7c5ff6786c17f076fb1b062494c798c"
+  },
+  {
+    "bytes": 13480,
+    "path": "source/world/assets/shrub_depth/layers/03__shrub_depth_base_contact_detail.png",
+    "sha256": "4a60c4bdc7a921644beb0e56693da2cad2021c1ae6b8168792376770fa14211f"
+  },
+  {
+    "bytes": 314526,
+    "path": "source/world/assets/shrub_depth/shrub_depth_master.ora",
+    "sha256": "68ec642192a1e1dea3f4fe370d8fb693ec8951189cd1e9b938ba13cb56fccdd3"
+  },
+  {
+    "bytes": 27936,
+    "path": "source/world/assets/storage/layers/00__storage_contact_tuft_shadow.png",
+    "sha256": "369709f49df0f61811cc4fcbcee6308ddfbb9741754bf2ed48a00890a13bb403"
+  },
+  {
+    "bytes": 48688,
+    "path": "source/world/assets/storage/layers/01__storage_upper_silhouette.png",
+    "sha256": "a64ff9c571d28082e681d5472692f49e5e236d2895a2f3f7c8f78a44d9bfdfed"
+  },
+  {
+    "bytes": 61167,
+    "path": "source/world/assets/storage/layers/02__storage_functional_body.png",
+    "sha256": "2dd545859d13c656674a8799243d9bc65b8a226ced714d22157343478937e126"
+  },
+  {
+    "bytes": 27298,
+    "path": "source/world/assets/storage/layers/03__storage_base_contact_detail.png",
+    "sha256": "2f140f12ec084ee055157290901b9894182a24bf9172297433e75fe42d6dc981"
+  },
+  {
+    "bytes": 845439,
+    "path": "source/world/assets/storage/storage_master.ora",
+    "sha256": "4b9e62e2800aea3dc86afbc3c8c0377fb07c6e97a4de4754c5c206b5003f778e"
+  },
+  {
+    "bytes": 17116,
+    "path": "source/world/assets/van_endpoint/layers/00__van_endpoint_contact_tuft_shadow.png",
+    "sha256": "03256fec3ecafb5f9eed6236bb6600737c71d2fa647cd0d28233b1debd64ad46"
+  },
+  {
+    "bytes": 38925,
+    "path": "source/world/assets/van_endpoint/layers/01__van_endpoint_upper_silhouette.png",
+    "sha256": "c1c7f420e79418f17e39e57d889ca3f812c9fcd0e6877055e78ff212c72d6730"
+  },
+  {
+    "bytes": 56862,
+    "path": "source/world/assets/van_endpoint/layers/02__van_endpoint_functional_body.png",
+    "sha256": "ada43bce39949edfa17f58713022f317b650d08b1217d3d89ac9194b6133b4cf"
+  },
+  {
+    "bytes": 24393,
+    "path": "source/world/assets/van_endpoint/layers/03__van_endpoint_base_contact_detail.png",
+    "sha256": "f2a8ce62c7644a32a0f429db295f8e4ad9857ba724d0aef4c6273a7a6bda11ee"
+  },
+  {
+    "bytes": 715063,
+    "path": "source/world/assets/van_endpoint/van_endpoint_master.ora",
+    "sha256": "090fba9673688ec93e8e9f8c1bb8bc950f1f7b19194bedd84770c0cb3f03c5d1"
+  },
+  {
+    "bytes": 62943,
+    "path": "source/world/layers/00__world_depth_faint_trees_shrubs.png",
+    "sha256": "2bb3600102c666bb410ae1647c166697ad3645dfb4b0310e1e9470bbac81788d"
+  },
+  {
+    "bytes": 95079,
+    "path": "source/world/layers/01__world_ground_grass_mass.png",
+    "sha256": "9ef3e77a921ebb3d1a8b460f462651092e73a1e5a00e4a01482d4b40262c3a8c"
+  },
+  {
+    "bytes": 175822,
+    "path": "source/world/layers/02__world_path_dirt_worn.png",
+    "sha256": "f2752e10b3ea13783d692f1e11983a69d69f1de5c7e7e1a696dc90853bb43169"
+  },
+  {
+    "bytes": 96940,
+    "path": "source/world/layers/03__world_ground_soil_base.png",
+    "sha256": "1f0775c8c13fed69897b2d9e2c1a790fbd0165e7c314c50b6cd785f19f82906e"
+  },
+  {
+    "bytes": 17161,
+    "path": "source/world/layers/04__world_depth_shrub_cluster_left.png",
+    "sha256": "4c9e970a910e41ed929203d43bf4bc9e4846a90e9e7ed3c9158e546006374c90"
+  },
+  {
+    "bytes": 15089,
+    "path": "source/world/layers/05__world_depth_shrub_cluster_mid.png",
+    "sha256": "4b6a1e56a79fdd719e88f20274b894d62c01f51356e8eb14ae0b48e897fde540"
+  },
+  {
+    "bytes": 17413,
+    "path": "source/world/layers/06__world_depth_shrub_cluster_right.png",
+    "sha256": "6a5499eac1d97b1642bb75262aac43efa0c8a7a04074f6a273564c149b85db71"
+  },
+  {
+    "bytes": 17522,
+    "path": "source/world/layers/07__world_fence_back_span_left.png",
+    "sha256": "c32615d0860d7129fe80c512a0e89610f2f250d6c75335187031a002a24f667f"
+  },
+  {
+    "bytes": 15707,
+    "path": "source/world/layers/08__world_fence_back_span_right.png",
+    "sha256": "4f933b4407b9cd795be9eecfdb681dd9c29497d2897c0bad8f8b9826d5039cc6"
+  },
+  {
+    "bytes": 10941,
+    "path": "source/world/layers/09__world_anchor_road_sign.png",
+    "sha256": "eba5f57324a0df1974c15ec3ac0fad9d017a54873b8708568f54168b565d3efc"
+  },
+  {
+    "bytes": 22136,
+    "path": "source/world/layers/10__world_anchor_bicycle_static.png",
+    "sha256": "312403d6c113eca9f11de59706f3628628b13febcf52ef4e897c6aebe165bf3f"
+  },
+  {
+    "bytes": 66417,
+    "path": "source/world/layers/11__world_building_storage.png",
+    "sha256": "e0dcdd4c3c1cd0e6cb4f4cb0a2e010ab9eb727e389d7730a6cdd0c281d127d8e"
+  },
+  {
+    "bytes": 39998,
+    "path": "source/world/layers/12__world_utility_mill_static.png",
+    "sha256": "003dc67b77c950d6181b67dba855e92f4438825901517b093a659cdde7d3a0d1"
+  },
+  {
+    "bytes": 61667,
+    "path": "source/world/layers/13__world_building_kitchen.png",
+    "sha256": "5424eb62cf61c922235528756ad810b4a7f86ff114d496c1c28096f1befd3e75"
+  },
+  {
+    "bytes": 38091,
+    "path": "source/world/layers/14__world_utility_packing.png",
+    "sha256": "b701549bffa360c2fa3076fed83734931e20ec721ba5247a082b5b36f964b6f8"
+  },
+  {
+    "bytes": 54224,
+    "path": "source/world/layers/15__world_endpoint_van.png",
+    "sha256": "cf90e493e9020c1e1e82fbe379c48633f8215c717763bcdfb7547c2e8d9382b5"
+  },
+  {
+    "bytes": 11179,
+    "path": "source/world/layers/16__world_fence_front_span_pause_only.png",
+    "sha256": "b1a004f22b392d456727a4356e5dabf29f726b28a80149cab5dd385142bdcbc8"
+  },
+  {
+    "bytes": 2338671,
+    "path": "source/world/world_master.ora",
+    "sha256": "61855b8a6ae27872d9c8daac32365e4bb2ff44a265e2834b866bb71f31aa5de6"
+  },
+  {
+    "bytes": 57113,
+    "path": "tools/build_package.py",
+    "sha256": "1f7557afe329060408568448acd064487186a18d5aca0d4d00eb0a5eb8e22dc6"
+  }
+]

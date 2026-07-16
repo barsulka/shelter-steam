@@ -4,12 +4,48 @@
   "profile": "hybrid",
   "task_mode": "integrate",
   "runtime_authority": "godot_state",
+  "presentation_state": "derived_non_persisted",
   "dog_dna_status": "WORKING_DRAFT_TECHNICAL_PROOF",
   "dog_dna_ref": {
     "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/DOG_DNA_SCHEMA_v0.md"
   },
   "accepted_action_manifest": {
     "path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/manifests/accepted_action_scope.json"
+  },
+  "current_selector_h_authority": {
+    "path": "docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md",
+    "sha256": "d8f1a9fc9226588097eb7bdfc162b6eff520ef42605b369ba25f906daa52ae56",
+    "exact_action_rows": [
+      "dog.action.idle.neutral",
+      "dog.action.wait.calm",
+      "dog.action.locomotion.start",
+      "dog.action.locomotion.walk_empty",
+      "dog.action.locomotion.stop",
+      "dog.action.locomotion.turn",
+      "dog.action.interaction.approach_target",
+      "dog.action.interaction.contact_align",
+      "dog.action.station.work_loop",
+      "dog.activity.delivery.help_kitchen",
+      "dog.activity.delivery.pack_food_bag",
+      "dog.activity.delivery.pack_carefully_labrador"
+    ],
+    "selector_h_row_additions": 0,
+    "presentation_state": "derived_non_persisted"
+  },
+  "source_authority": {
+    "package_path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1",
+    "source_manifest_sha256": "c825bac41a7721553eb725fb00d14c4e7aba94832ae8ab605db68624e135616b",
+    "hash_ledger_sha256": "7abc64cc21025a08312a63a8cfd7486652854f4fdf30d12179fd072161f9600b"
+  },
+  "coordinates": {
+    "runtime_world_width": 1740.0,
+    "authored_runtime_world_width": 1740.0,
+    "source_world_width_px": 2992.0,
+    "source_world_to_runtime": 0.5815508021390374,
+    "source_world_baseline_y_px": 211.0,
+    "labrador_source_root_px": [256.0, 280.0],
+    "labrador_runtime_scale": 0.24,
+    "negative_scale_allowed": false
   },
   "actions": [
     {"id":"dog.action.idle.neutral","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":[]},
@@ -26,15 +62,53 @@
     {"id":"dog.activity.delivery.pack_carefully_labrador","authority_refs":["docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Labrador_P0_Accepted_Action_Manifest_v1.md"],"role_ref":"role.calm_helper","object_refs":["object.packing_table"]}
   ],
   "assets": {
-    "world_layers": {"path":"steam/assets/prototypes/vertical_slice/authored/world/layers"},
-    "labrador_layers": {"path":"steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro"},
-    "source_package": {"path":"docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Playable_World_Labrador_Source_Package_v1/README.md"}
+    "runtime_png_count": 41,
+    "runtime_import_sidecar_count": 41,
+    "static_world_layers": {
+      "source_glob": "source/world/layers/{00..09,11..16}__*.png",
+      "runtime_path": "steam/assets/prototypes/vertical_slice/authored/world/layers",
+      "count": 16,
+      "forbidden_layer_index": 10
+    },
+    "bicycle": {
+      "source_path": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1/exports/world/assets/bicycle.png",
+      "runtime_path": "steam/assets/prototypes/vertical_slice/authored/world/assets/bicycle.png",
+      "sha256": "211b6c12774bf1170bf16c108e6dbada2d35a8da69fecb8656508e85695756c5",
+      "render_slot": "existing_transport_slot",
+      "duplicate_allowed": false
+    },
+    "labrador_identity_composites": {
+      "source_glob": "exports/labrador/poses/*/identity_rgba.png",
+      "runtime_glob": "steam/assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses/*/identity_rgba.png",
+      "count": 24,
+      "canvas_px": [512, 320],
+      "root_px": [256, 280]
+    }
+  },
+  "selector_plan": {
+    "precedence": ["invalid_durable_state", "legacy_unbound", "C_to_G_or_EXIT", "B", "H", "A"],
+    "H": {
+      "semantic_action_rows_added": 0,
+      "derived_non_persisted": true,
+      "positive_durable_cursors": [1, 18, 33],
+      "route_source_px": [480.0, 2380.0],
+      "route_runtime_units": [279.144385026738, 1384.090909090909],
+      "walk_cycle_count_per_traverse": 19,
+      "cycle_distance_runtime_units": 58.155080213904,
+      "speed_runtime_units_per_second": 70.920829529151,
+      "dwell_seconds": [4.5, 8.0],
+      "turn_seconds": 0.44,
+      "start_seconds": 0.18,
+      "walk_cycle_seconds": 0.82,
+      "stop_seconds": 0.24,
+      "gameplay_output_count": 0
+    }
   },
   "runtime": {
     "runtime_authority": "godot_state",
-    "animation_authority": "derived_non_persisted_adapter_animationplayer_properties",
+    "animation_authority": "derived_non_persisted_adapter_composite_pose",
     "scene_path": {"path":"steam/scenes/prototypes/vertical_slice/labrador_visual_adapter.tscn","required_anchors":["LabradorVisualAdapter","BaseAnimationPlayer","BlinkAnimationPlayer","TailAnimationPlayer","FocusAnimationPlayer"]},
-    "script_path": {"path":"steam/scripts/prototypes/vertical_slice/labrador_visual_adapter.gd","required_anchors":["select_visual_binding","legacy_unbound","selector_G","runtime_authority","packing_front_span_mask_active"]},
+    "script_path": {"path":"steam/scripts/prototypes/vertical_slice/labrador_visual_adapter.gd","required_anchors":["select_visual_binding","legacy_unbound","selector_G","_exact_h_gate","cancel_h_for_player_gate"]},
     "clip_path": {"path":"steam/resources/prototypes/vertical_slice/labrador_r48_05a_animation_library.tres","required_anchors":["base_idle","base_wait","base_locomotion_start","base_locomotion_walk","base_locomotion_stop","base_turn","base_approach","base_contact","base_station_work","base_kitchen_work","base_packing_work","focus_care"]},
     "socket_path": {"path":"steam/resources/prototypes/vertical_slice/labrador_r48_05a_station_anchors_v1.json","required_anchors":["visual_anchor.none","visual_anchor.van","visual_anchor.station","visual_anchor.kitchen","visual_anchor.packing_table"]},
     "node_paths": ["LabradorVisualAdapter/BaseAnimationPlayer","LabradorVisualAdapter/BlinkAnimationPlayer","LabradorVisualAdapter/TailAnimationPlayer","LabradorVisualAdapter/FocusAnimationPlayer"],
@@ -54,9 +128,10 @@
     ]
   },
   "qa": {
-    "sizes": [216,144,96],
-    "evidence_root": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_LABRADOR_RUNTIME_CAPTURE_v5",
-    "signoff_owners": ["technical_mechanical_only","runtime_art_review_pending"],
-    "required_captures": ["first_day_A_to_F","day2_A_to_G","negative_G","quiet_cooperative","both_turn_directions","both_station_sides","native_216_144_96","packing_D_F_G_mask_both_sides","packing_contact_held_exit_mask","non_packing_and_locomotion_mask_negatives","source_alpha_overlap_class_audit"]
+    "sizes": [216, 144, 96],
+    "evidence_root": "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_SOURCE_RECONCILED_RUNTIME_CAPTURE_v1",
+    "signoff_owners": ["technical_mechanical_only", "runtime_art_review_pending"],
+    "runtime_art_pass": false,
+    "required_captures": ["first_day_A_to_H", "day2_A_to_H", "negative_G", "H_positive_negative_cancellation_recovery", "quiet_cooperative", "both_turn_directions", "both_station_sides", "native_2992_216_144_96", "checker_black_desktop_alpha", "mill_static_zero_interaction", "one_runtime_one_labrador_zero_transfer"]
   }
 }

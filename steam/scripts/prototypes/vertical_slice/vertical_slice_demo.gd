@@ -14,8 +14,24 @@ const TICK_SECONDS := 0.05
 const PERFORMANCE_TICK_SECONDS := 0.5
 const MAX_TICK_STEPS_PER_FRAME := 4
 const WORLD_WIDTH := 1740.0
-const AUTHORED_WORLD_WIDTH := 1536.0
-const NON_AUTHORED_TAIL_STITCH_X := 1532.0
+const AUTHORED_WORLD_WIDTH := 1740.0
+const SOURCE_WORLD_WIDTH := 2992.0
+const SOURCE_WORLD_TO_RUNTIME := WORLD_WIDTH / SOURCE_WORLD_WIDTH
+const D024_PRESENTATION_PATH := "res://resources/prototypes/vertical_slice/d024_responsive_presentation_v1.json"
+const D024_MEADOW_TEXTURE_PATH := "res://assets/prototypes/vertical_slice/authored/world/responsive/meadow_tile_rgba_748x224.png"
+const D024_MARKER_TEXTURE_PATH := "res://assets/prototypes/vertical_slice/authored/world/responsive/fence_boundary_marker_rgba.png"
+const D024_GAMEPLAY_FRACTION := 0.85
+const D024_EXTERIOR_RESERVE_FRACTION := 0.15
+const D024_ZOOM_MAX_MULTIPLIER := 1.05
+const D024_DRAG_THRESHOLD_SCREEN_PX := 8.0
+const D024_MEADOW_SOURCE_SIZE := Vector2(748.0, 224.0)
+const D024_MEADOW_TILE_WORLD_WIDTH := 435.0
+const D024_MEADOW_SOURCE_BASELINE_Y := 211.0
+const D024_MATERIAL_SOURCE_TOP_Y := 20.0
+const D024_MARKER_SOURCE_SIZE := Vector2(174.0, 106.0)
+const D024_MARKER_SOURCE_PIVOT := Vector2(0.0, 105.0)
+const D024_MARKER_WORLD_ROOT := Vector2(1740.0, 122.7072192513369)
+const D024_MARKER_OPAQUE_WORLD_MIN_X := 1745.2339572192514
 const MOUSE_PASSTHROUGH_PADDING := 6.0
 const DEFAULT_TIMING_SCALE := 0.72
 const FAST_TIMING_SCALE := 0.16
@@ -42,7 +58,7 @@ const ZOOM_LABELS := ["75", "100", "125", "150"]
 
 const ASSET_PATHS := {
     "road_sign": "res://assets/prototypes/vertical_slice/semantic/utility_props/road_sign.png",
-    "basket_bicycle": "res://assets/prototypes/vertical_slice/semantic/utility_props/basket_bicycle.png",
+    "basket_bicycle": "res://assets/prototypes/vertical_slice/authored/world/assets/bicycle.png",
     "storage": "res://assets/prototypes/vertical_slice/semantic/buildings/storage.png",
     "kitchen": "res://assets/prototypes/vertical_slice/semantic/buildings/kitchen.png",
     "delivery_van_endpoint": "res://assets/prototypes/vertical_slice/semantic/utility_props/delivery_van_endpoint.png",
@@ -50,50 +66,42 @@ const ASSET_PATHS := {
 }
 
 const AUTHORED_WORLD_LAYER_DIR := "res://assets/prototypes/vertical_slice/authored/world/layers"
-const AUTHORED_LABRADOR_LAYER_ROOT := "res://assets/prototypes/vertical_slice/authored/dogs/labrador_intro"
+const AUTHORED_LABRADOR_POSE_ROOT := "res://assets/prototypes/vertical_slice/authored/dogs/labrador_intro/poses"
 const AUTHORED_WORLD_BASELINE_Y := 211.0
 const LABRADOR_SOURCE_ROOT := Vector2(256.0, 280.0)
 const LABRADOR_SOURCE_TO_WORLD := 0.24
 const LABRADOR_IDENTITY_HEIGHT_PX := 225.0
 const LABRADOR_TRACE_PATH := "res://.runtime/labrador_r48_05a/visual_trace.jsonl"
-const PACKING_FRONT_SPAN_MASK_STATION_ID := "object.packing_table"
-const PACKING_FRONT_SPAN_MASK_SELECTORS := ["D", "F", "G", "EXIT"]
-const PACKING_FRONT_SPAN_MASK_HALF_WIDTH_WORLD := 72.0
-const PACKING_FRONT_SPAN_MASK_TOP_FROM_BASELINE := -76.0
-const PACKING_FRONT_SPAN_MASK_BOTTOM_FROM_BASELINE := 16.0
-const LABRADOR_TAIL_PIVOTS := {
-    "right": Vector2(94.0, 170.0),
-    "left": Vector2(418.0, 170.0),
-    "turn_mid": Vector2(363.0, 170.0),
-}
+const BICYCLE_SOURCE_HEIGHT := 80.0
+const BICYCLE_SOURCE_BASELINE_Y := 207.0
 
 const ANCHOR_DEFS := {
     "road_sign": {
         "key": "object.road_sign",
         "label": "Road Sign",
         "taxonomy": "Utility Prop",
-        "x": 130.0,
+        "x": 75.310828877005,
         "max_size": Vector2(82.0, 80.0),
     },
     "storage": {
         "key": "object.storage",
         "label": "Storage",
         "taxonomy": "Building",
-        "x": 440.0,
+        "x": 355.036764705882,
         "max_size": Vector2(148.0, 96.0),
     },
     "kitchen": {
         "key": "object.kitchen",
         "label": "Kitchen",
         "taxonomy": "Building",
-        "x": 760.0,
+        "x": 776.661096256684,
         "max_size": Vector2(126.0, 92.0),
     },
     "packing_table": {
         "key": "object.packing_table",
         "label": "Packing Table",
         "taxonomy": "Utility Prop",
-        "x": 1090.0,
+        "x": 1023.529411764706,
         "max_size": Vector2(146.0, 58.0),
         "placeholder": true,
     },
@@ -101,7 +109,7 @@ const ANCHOR_DEFS := {
         "key": "object.delivery_van_endpoint",
         "label": "Delivery Van",
         "taxonomy": "Utility Prop",
-        "x": 1450.0,
+        "x": 1395.431149732620,
         "max_size": Vector2(154.0, 86.0),
     },
 }
@@ -125,7 +133,7 @@ const DOG_DEFS := {
         "trait": "Аккуратный помощник",
         "role": "спокойный помощник",
         "body": "labrador",
-        "start_x": 360.0,
+        "start_x": 279.144385026738,
         "color": Color(0.88, 0.70, 0.38, 1.0),
         "secondary": Color(0.98, 0.88, 0.58, 1.0),
     },
@@ -198,8 +206,18 @@ const TASK_TYPE_DEFS := {
 }
 
 var _textures: Dictionary = {}
+var _d024_presentation: Dictionary = {}
+var _d024_meadow_texture: Texture2D
+var _d024_marker_texture: Texture2D
+var _d024_meadow_load_count := 0
+var _d024_marker_load_count := 0
+var _d024_ready := false
+var _d024_pan_candidate := false
+var _d024_pan_active := false
+var _d024_pan_start_screen := Vector2.ZERO
+var _d024_pan_start_camera_x := 0.0
 var _authored_world_layers: Array[Dictionary] = []
-var _authored_labrador_layers: Dictionary = {}
+var _authored_labrador_poses: Dictionary = {}
 var _labrador_render_state: Dictionary = {
     "lane": "suppressed",
     "selector": "",
@@ -283,7 +301,7 @@ var _active_chain: Dictionary = {}
 var _day2: Dictionary = {}
 var _day2_completion_beat_remaining := -1.0
 
-var _transport_x := 230.0
+var _transport_x := 174.465240641711
 var _transport_visible := true
 var _transport_state := "parked"
 var _transport_has_payload := false
@@ -323,6 +341,9 @@ var _player_staged_checkpoint: Dictionary = {}
 var _player_reconstructed_intents: Array[Dictionary] = []
 var _player_checkpoint_barrier_failed := false
 var _player_checkpoint_commit_in_progress := false
+var _test_expected_checkpoint_persistence_failure: Dictionary = {}
+var _test_observed_checkpoint_persistence_failure: Dictionary = {}
+var _test_last_checkpoint_persistence_result: Dictionary = {}
 var _user_args_read := false
 var _control_capture_files: Dictionary = {}
 var _control_latest_screenshot: Dictionary = {}
@@ -363,6 +384,7 @@ var _debug_label: Label
 func _ready() -> void:
     _player_session_started = true
     mouse_filter = Control.MOUSE_FILTER_STOP
+    texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
     if _player_session_configured:
         _force_clean_player_configuration()
     else:
@@ -551,13 +573,14 @@ func test_labrador_visual_snapshot() -> Dictionary:
         "corridor_framing": {
             "world_min_x": 0.0,
             "authored_world_max_x": AUTHORED_WORLD_WIDTH,
-            "non_authored_tail_min_x": AUTHORED_WORLD_WIDTH,
+            "source_world_width_px": SOURCE_WORLD_WIDTH,
+            "source_world_to_runtime": SOURCE_WORLD_TO_RUNTIME,
             "world_max_x": WORLD_WIDTH,
             "screen_min_x": _world_to_screen_x(0.0),
             "authored_screen_max_x": _world_to_screen_x(AUTHORED_WORLD_WIDTH),
             "screen_max_x": _world_to_screen_x(WORLD_WIDTH),
-            "tail_stitch_overlap_world_units": AUTHORED_WORLD_WIDTH - NON_AUTHORED_TAIL_STITCH_X,
-            "authored_tail_claim": false,
+            "full_authored_corridor": true,
+            "non_authored_tail": false,
         },
         "labrador_scale_readback": {
             "source_to_world": LABRADOR_SOURCE_TO_WORLD,
@@ -573,6 +596,128 @@ func test_labrador_visual_snapshot() -> Dictionary:
             "delivery_van_screen_x": _world_to_screen_x(_anchor_x("delivery_van_endpoint")),
         },
     }
+
+
+func test_d024_contract_for_viewport(viewport_size: Vector2, use_zoom_max: bool, camera_at_right: bool) -> Dictionary:
+    var zoom_min := _d024_zoom_min(viewport_size.x)
+    var zoom_fit_max := _d024_zoom_fit_max(viewport_size.y)
+    var zoom_max := _d024_zoom_max(viewport_size)
+    var zoom := zoom_max if use_zoom_max else zoom_min
+    var camera_max := _d024_camera_max_for(viewport_size.x, zoom)
+    var camera_x := camera_max if camera_at_right else 0.0
+    var baseline := _d024_baseline_for_viewport(viewport_size, zoom)
+    var source_scale := SOURCE_WORLD_TO_RUNTIME * zoom
+    var field_boundary_screen_x := (WORLD_WIDTH - camera_x) * zoom
+    var visible_world_max := camera_x + viewport_size.x / zoom
+    var first_tile := int(floor(camera_x / D024_MEADOW_TILE_WORLD_WIDTH))
+    var last_tile := int(ceil(visible_world_max / D024_MEADOW_TILE_WORLD_WIDTH)) - 1
+    return {
+        "viewport": viewport_size,
+        "zoom_min": zoom_min,
+        "zoom_fit_max": zoom_fit_max,
+        "zoom_max": zoom_max,
+        "zoom": zoom,
+        "camera_x": camera_x,
+        "camera_max": camera_max,
+        "field_boundary_screen_x": field_boundary_screen_x,
+        "reserve_fraction": (viewport_size.x - field_boundary_screen_x) / viewport_size.x,
+        "baseline": baseline,
+        "material_y": [
+            baseline - (D024_MEADOW_SOURCE_BASELINE_Y - D024_MATERIAL_SOURCE_TOP_Y) * source_scale,
+            baseline + (D024_MEADOW_SOURCE_SIZE.y - D024_MEADOW_SOURCE_BASELINE_Y) * source_scale,
+        ],
+        "tile_range": [first_tile, last_tile],
+        "marker": {
+            "screen_root": Vector2(field_boundary_screen_x, baseline),
+            "opaque_body_screen_min_x": (D024_MARKER_OPAQUE_WORLD_MIN_X - camera_x) * zoom,
+            "positive_uniform_scale": source_scale,
+            "draw_count": 1,
+            "interactive": false,
+        },
+    }
+
+
+func test_d024_presentation_snapshot() -> Dictionary:
+    var passthrough := _interactive_mouse_polygon()
+    var passthrough_max_x := 0.0
+    var passthrough_max_y := 0.0
+    for point in passthrough:
+        passthrough_max_x = maxf(passthrough_max_x, point.x)
+        passthrough_max_y = maxf(passthrough_max_y, point.y)
+    return {
+        "ready": _d024_ready,
+        "config_schema": str(_d024_presentation.get("schema_version", "")),
+        "world_width": WORLD_WIDTH,
+        "source_world_width": SOURCE_WORLD_WIDTH,
+        "source_world_to_runtime": SOURCE_WORLD_TO_RUNTIME,
+        "view_mode": _view_mode,
+        "viewport_size": _viewport_size(),
+        "zoom_index": _zoom_index,
+        "zoom": _zoom(),
+        "camera_x": _camera_x,
+        "camera_max": _camera_max_x(),
+        "baseline": _field_baseline(),
+        "meadow_load_count": _d024_meadow_load_count,
+        "marker_load_count": _d024_marker_load_count,
+        "meadow_texture_instance": _d024_meadow_texture.get_instance_id() if _d024_meadow_texture != null else 0,
+        "marker_texture_instance": _d024_marker_texture.get_instance_id() if _d024_marker_texture != null else 0,
+        "marker_draw_count": 1,
+        "marker_interactive": false,
+        "pan_candidate": _d024_pan_candidate,
+        "pan_active": _d024_pan_active,
+        "drag_threshold_screen_px": D024_DRAG_THRESHOLD_SCREEN_PX,
+        "passthrough_point_count": passthrough.size(),
+        "passthrough_max_x": passthrough_max_x,
+        "passthrough_max_y": passthrough_max_y,
+        "field_boundary_screen_x": _world_to_screen_x(WORLD_WIDTH),
+        "ui_within_field": _d024_visible_ui_within_field(),
+        "ui_hidden": _ui_hidden,
+        "visibility_button_visible": _visibility_button != null and _visibility_button.visible,
+        "debug_card_visible": _debug_card != null and _debug_card.visible,
+        "status_label_visible": _status_label != null and _status_label.visible,
+        "performance_label_visible": _performance_label != null and _performance_label.visible,
+        "semantic_button_visible": _semantic_button != null and _semantic_button.visible,
+        "semantic_labels": _show_semantic_labels,
+    }
+
+
+func test_d024_set_player_framing(use_zoom_max: bool, camera_at_right: bool) -> Dictionary:
+    _apply_view_mode("player_prototype")
+    _zoom_index = 2 if use_zoom_max else 1
+    _camera_x = _camera_max_x() if camera_at_right else 0.0
+    _update_ui()
+    _apply_mouse_passthrough()
+    queue_redraw()
+    return test_d024_presentation_snapshot()
+
+
+func test_d024_simulate_pan(start_screen: Vector2, motion_screen: Vector2) -> Dictionary:
+    var before := _camera_x
+    var candidate := _d024_begin_pan_candidate(start_screen)
+    var consumed := _d024_update_pan(motion_screen)
+    var released := _d024_end_pan()
+    return {
+        "candidate": candidate,
+        "consumed": consumed,
+        "release_consumed": released,
+        "camera_before": before,
+        "camera_after": _camera_x,
+    }
+
+
+func test_d024_toggle_ui_hidden() -> Dictionary:
+    _toggle_ui_hidden()
+    return test_d024_presentation_snapshot()
+
+
+func _d024_visible_ui_within_field() -> bool:
+    var field_right := _world_to_screen_x(WORLD_WIDTH)
+    for control in _interactive_controls():
+        if control == null or not control.visible:
+            continue
+        if control.global_position.x < 0.0 or control.global_position.x + control.size.x > field_right + 0.01:
+            return false
+    return true
 
 
 func test_labrador_observe_snapshot(snapshot: Dictionary, delta: float = TICK_SECONDS) -> Dictionary:
@@ -679,6 +824,7 @@ func _labrador_visual_observation() -> Dictionary:
         "phase": phase,
         "active_order": {
             "id": _active_order_id(),
+            "status": str(_active_order.get("status", _order_state)),
             "delivery_state": _delivery_state,
             "delivery_confirmed": _delivery_confirmed,
             "van_world_x": _anchor_x("delivery_van_endpoint"),
@@ -688,11 +834,51 @@ func _labrador_visual_observation() -> Dictionary:
             "phase": str((_player_last_committed_checkpoint.get("journey", {}) as Dictionary).get("phase", "prototype")),
             "checkpoint_sequence": _player_checkpoint_sequence,
             "barrier_failed": _player_checkpoint_barrier_failed,
+            "commit_in_progress": _player_checkpoint_commit_in_progress,
+            "restore_incomplete": _player_session_configured and (
+                _player_checkpoint_sequence == 0 or _player_last_committed_checkpoint.is_empty()
+            ),
+        },
+        "presentation_guard": {
+            "player_session_configured": _player_session_configured,
+            "durable_readback_complete": _player_session_configured and _player_checkpoint_sequence > 0 and not _player_last_committed_checkpoint.is_empty(),
+            "restore_incomplete": _player_session_configured and (
+                _player_checkpoint_sequence == 0 or _player_last_committed_checkpoint.is_empty()
+            ),
+            "authoritative_transition_active": _player_checkpoint_commit_in_progress,
+            "durable_cursor": _player_checkpoint_sequence,
+            "checkpoint_kind": _player_checkpoint_kind,
+            "route_started": _route_started,
+            "trip_task_exists": _trip_task_exists(),
+            "delivery_or_trip_active": not _active_chain.is_empty() and (
+                _delivery_confirmed or _transport_state in ["preparing", "leaving", "away", "returning"]
+            ),
+            "labrador_task_count": _labrador_task_count(),
+            "task_queue_count": _task_queue.size(),
         },
         "first_day_history": _first_day_history.duplicate(true),
         "day2_history": _day2_history.duplicate(true),
         "recent_events": _systems_runtime.event_snapshots(80),
     }
+
+
+func _labrador_task_count() -> int:
+    var count := 0
+    if not _current_task.is_empty() and str(_current_task.get("assigned_dog_id", "")) == "labrador_intro":
+        count += 1
+    for task in _task_queue:
+        if str((task as Dictionary).get("assigned_dog_id", "")) == "labrador_intro":
+            count += 1
+    return count
+
+
+func _trip_task_exists() -> bool:
+    if not _current_task.is_empty() and str(_current_task.get("type", "")) == "TripTask":
+        return true
+    for task in _task_queue:
+        if str((task as Dictionary).get("type", "")) == "TripTask":
+            return true
+    return false
 
 
 func test_advance_player_to_next_checkpoint(max_ticks: int = 2000) -> Dictionary:
@@ -723,6 +909,102 @@ func test_advance_player_to_next_checkpoint(max_ticks: int = 2000) -> Dictionary
     if _player_checkpoint_sequence != starting_sequence + 1:
         return {"ok": false, "error": "next_checkpoint_not_reached", "ticks": ticks, "snapshot": player_checkpoint_snapshot()}
     return {"ok": true, "ticks": ticks, "snapshot": player_checkpoint_snapshot()}
+
+
+func test_advance_player_to_next_checkpoint_expecting_persistence_failure(max_ticks: int = 5000) -> Dictionary:
+    if not _player_session_configured:
+        return {"ok": false, "error": "test_player_session_required"}
+    if not _test_expected_checkpoint_persistence_failure.is_empty():
+        return {"ok": false, "error": "test_checkpoint_persistence_failure_already_armed"}
+    var starting_sequence := _player_checkpoint_sequence
+    var expected_sequence := starting_sequence + 1
+    var expected_kind := _player_checkpoint_codec.kind_for_sequence(expected_sequence)
+    var expected_golden := _player_checkpoint_codec.build_golden_checkpoint(expected_kind)
+    if expected_kind == "" or expected_golden.is_empty():
+        return {
+            "ok": false,
+            "error": "test_expected_checkpoint_unavailable",
+            "starting_sequence": starting_sequence,
+        }
+    _test_observed_checkpoint_persistence_failure.clear()
+    _test_last_checkpoint_persistence_result.clear()
+    _test_expected_checkpoint_persistence_failure = {
+        "starting_sequence": starting_sequence,
+        "durable_checkpoint": _player_last_committed_checkpoint.duplicate(true),
+        "expected_kind": expected_kind,
+        "expected_sequence": expected_sequence,
+        "expected_golden": expected_golden.duplicate(true),
+    }
+    var transition_result := test_advance_player_to_next_checkpoint(max_ticks)
+    if (
+        _test_observed_checkpoint_persistence_failure.is_empty()
+        and not _test_last_checkpoint_persistence_result.is_empty()
+    ):
+        _consume_expected_test_checkpoint_persistence_failure(
+            expected_kind,
+            _test_last_checkpoint_persistence_result
+        )
+    var observation := _test_observed_checkpoint_persistence_failure.duplicate(true)
+    _test_expected_checkpoint_persistence_failure.clear()
+    _test_observed_checkpoint_persistence_failure.clear()
+    _test_last_checkpoint_persistence_result.clear()
+    if observation.is_empty():
+        return {
+            "ok": false,
+            "error": "expected_checkpoint_persistence_failure_not_observed",
+            "transition_result": transition_result,
+        }
+    if str(transition_result.get("error", "")) != "checkpoint_barrier_failed":
+        return {
+            "ok": false,
+            "error": "expected_checkpoint_barrier_result_missing",
+            "transition_result": transition_result,
+            "observation": observation,
+        }
+    observation["ok"] = true
+    observation["status"] = "expected_checkpoint_persistence_failure_observed"
+    observation["test_only_exact_match"] = true
+    observation["expectation_cleared"] = _test_expected_checkpoint_persistence_failure.is_empty()
+    observation["transition_result"] = transition_result
+    return observation
+
+
+func _consume_expected_test_checkpoint_persistence_failure(checkpoint_kind: String, commit_result: Dictionary) -> bool:
+    if _test_expected_checkpoint_persistence_failure.is_empty():
+        return false
+    var armed := _test_expected_checkpoint_persistence_failure.duplicate(true)
+    _test_expected_checkpoint_persistence_failure.clear()
+    _test_observed_checkpoint_persistence_failure.clear()
+    _test_last_checkpoint_persistence_result.clear()
+    var store_result := commit_result.get("store_result", {}) as Dictionary
+    var staged_checkpoint := _player_staged_checkpoint.duplicate(true)
+    var staged_journey := staged_checkpoint.get("journey", {}) as Dictionary
+    var durable_checkpoint := _player_last_committed_checkpoint.duplicate(true)
+    var exact_match := (
+        str(commit_result.get("error", "")) == "checkpoint_persistence_failed"
+        and str(store_result.get("error", "")) == "injected_failure:before_validation"
+        and str(store_result.get("failpoint", "")) == "before_validation"
+        and _player_checkpoint_sequence == int(armed["starting_sequence"])
+        and _player_checkpoint_barrier_failed
+        and checkpoint_kind == str(armed["expected_kind"])
+        and str(staged_journey.get("checkpoint_kind", "")) == str(armed["expected_kind"])
+        and int(staged_journey.get("checkpoint_sequence", 0)) == int(armed["expected_sequence"])
+        and staged_checkpoint == (armed["expected_golden"] as Dictionary)
+        and durable_checkpoint == (armed["durable_checkpoint"] as Dictionary)
+    )
+    if not exact_match:
+        return false
+    _test_observed_checkpoint_persistence_failure = {
+        "failure_result": commit_result.duplicate(true),
+        "durable_checkpoint": durable_checkpoint,
+        "durable_checkpoint_kind": _player_checkpoint_kind,
+        "durable_checkpoint_sequence": _player_checkpoint_sequence,
+        "barrier_failed": _player_checkpoint_barrier_failed,
+        "staged_checkpoint": staged_checkpoint,
+        "staged_checkpoint_kind": str(staged_journey["checkpoint_kind"]),
+        "staged_checkpoint_sequence": int(staged_journey["checkpoint_sequence"]),
+    }
+    return true
 
 
 func test_start_player_pending_task() -> Dictionary:
@@ -831,7 +1113,10 @@ func _commit_player_checkpoint(kind: String) -> Dictionary:
         _player_checkpoint_barrier_failed = true
         return {"ok": false, "error": "runtime_checkpoint_invalid", "validation": validation}
     _player_staged_checkpoint = checkpoint.duplicate(true)
-    return _persist_staged_player_checkpoint()
+    var persistence_result := _persist_staged_player_checkpoint()
+    if not _test_expected_checkpoint_persistence_failure.is_empty():
+        _test_last_checkpoint_persistence_result = persistence_result.duplicate(true)
+    return persistence_result
 
 
 func _persist_staged_player_checkpoint() -> Dictionary:
@@ -1189,27 +1474,90 @@ func _unhandled_input(event: InputEvent) -> void:
                 _toggle_ui_hidden()
                 get_viewport().set_input_as_handled()
             KEY_D:
-                _show_debug_overlay = not _show_debug_overlay
-                _update_ui()
-                get_viewport().set_input_as_handled()
+                if _view_mode != "player_prototype":
+                    _show_debug_overlay = not _show_debug_overlay
+                    _update_ui()
+                    get_viewport().set_input_as_handled()
             KEY_L:
-                _show_semantic_labels = not _show_semantic_labels
-                _update_ui()
-                queue_redraw()
+                if _view_mode != "player_prototype":
+                    _show_semantic_labels = not _show_semantic_labels
+                    _update_ui()
+                    queue_redraw()
+                    get_viewport().set_input_as_handled()
+
+
+func _gui_input(event: InputEvent) -> void:
+    if _view_mode != "player_prototype":
+        return
+    if event is InputEventMouseButton:
+        var button_event := event as InputEventMouseButton
+        if button_event.button_index != MOUSE_BUTTON_LEFT:
+            return
+        if button_event.pressed:
+            _d024_begin_pan_candidate(button_event.position)
+        else:
+            var consumed := _d024_end_pan()
+            if consumed:
+                accept_event()
                 get_viewport().set_input_as_handled()
+    elif event is InputEventMouseMotion:
+        if _d024_update_pan((event as InputEventMouseMotion).position):
+            accept_event()
+            get_viewport().set_input_as_handled()
+
+
+func _d024_begin_pan_candidate(screen_position: Vector2) -> bool:
+    _d024_pan_candidate = false
+    _d024_pan_active = false
+    if _camera_max_x() <= 0.0 or not _d024_screen_point_is_pan_ground(screen_position):
+        return false
+    _d024_pan_candidate = true
+    _d024_pan_start_screen = screen_position
+    _d024_pan_start_camera_x = _camera_x
+    return true
+
+
+func _d024_update_pan(screen_position: Vector2) -> bool:
+    if not _d024_pan_candidate:
+        return false
+    var displacement := screen_position - _d024_pan_start_screen
+    if not _d024_pan_active and displacement.length() < D024_DRAG_THRESHOLD_SCREEN_PX:
+        return false
+    _d024_pan_active = true
+    _camera_x = _clamped_camera_x(_d024_pan_start_camera_x - displacement.x / _zoom())
+    _apply_mouse_passthrough()
+    queue_redraw()
+    return true
+
+
+func _d024_end_pan() -> bool:
+    var consumed := _d024_pan_active
+    _d024_pan_candidate = false
+    _d024_pan_active = false
+    return consumed
+
+
+func _d024_screen_point_is_pan_ground(screen_position: Vector2) -> bool:
+    var viewport_size := _viewport_size()
+    if screen_position.x < 0.0 or screen_position.x > viewport_size.x:
+        return false
+    if screen_position.y < _d024_ground_capture_top() or screen_position.y > viewport_size.y:
+        return false
+    var world_x := _screen_to_world_x(screen_position.x)
+    return world_x >= 0.0 and world_x <= WORLD_WIDTH
 
 
 func _draw() -> void:
     var baseline := _field_baseline()
 
+    _draw_d024_meadow(baseline)
     _draw_authored_world_back(baseline)
-    _draw_non_authored_corridor_tail(baseline)
-    _draw_world_anchors(baseline)
     _draw_transport(baseline)
+    _draw_authored_world_middle(baseline)
     _draw_dog_action_lanes(baseline)
-    _draw_packing_front_span_underlay(baseline)
     _draw_dogs(baseline)
     _draw_authored_world_front(baseline)
+    _draw_d024_boundary_marker(baseline)
     _draw_resource_tokens(baseline)
     _draw_first_day_readability_cues(baseline)
     _draw_world_state_labels(baseline)
@@ -1337,6 +1685,7 @@ func _read_user_args() -> void:
 
 func _load_textures() -> void:
     _textures.clear()
+    _load_d024_presentation()
     for asset_id in ASSET_PATHS.keys():
         var path := str(ASSET_PATHS[asset_id])
         var texture := load(path) as Texture2D
@@ -1344,7 +1693,79 @@ func _load_textures() -> void:
             push_warning("Could not load Vertical Slice texture: %s" % path)
         _textures[asset_id] = texture
     _load_authored_world_layers()
-    _load_authored_labrador_layers()
+    _load_authored_labrador_poses()
+
+
+func _load_d024_presentation() -> void:
+    _d024_ready = false
+    _d024_presentation.clear()
+    _d024_meadow_texture = null
+    _d024_marker_texture = null
+    _d024_meadow_load_count = 0
+    _d024_marker_load_count = 0
+
+    var raw := FileAccess.get_file_as_string(D024_PRESENTATION_PATH)
+    var parsed: Variant = JSON.parse_string(raw)
+    if not parsed is Dictionary:
+        push_error("D-024 presentation config is missing or invalid: %s" % D024_PRESENTATION_PATH)
+        return
+    _d024_presentation = (parsed as Dictionary).duplicate(true)
+    if not _validate_d024_presentation_config(_d024_presentation):
+        return
+
+    _d024_meadow_texture = load(D024_MEADOW_TEXTURE_PATH) as Texture2D
+    _d024_meadow_load_count += 1
+    _d024_marker_texture = load(D024_MARKER_TEXTURE_PATH) as Texture2D
+    _d024_marker_load_count += 1
+    if _d024_meadow_texture == null or _d024_marker_texture == null:
+        push_error("D-024 responsive textures failed to load")
+        return
+    if _d024_meadow_texture.get_size() != D024_MEADOW_SOURCE_SIZE:
+        push_error("D-024 meadow texture size drift: %s" % str(_d024_meadow_texture.get_size()))
+        return
+    if _d024_marker_texture.get_size() != D024_MARKER_SOURCE_SIZE:
+        push_error("D-024 boundary marker texture size drift: %s" % str(_d024_marker_texture.get_size()))
+        return
+    _d024_ready = true
+
+
+func _validate_d024_presentation_config(config: Dictionary) -> bool:
+    var field := config.get("field", {}) as Dictionary
+    var material := config.get("material", {}) as Dictionary
+    var marker := config.get("boundary_marker", {}) as Dictionary
+    var render_order := config.get("render_order", []) as Array
+    var expected_order := [
+        "meadow_tile",
+        "static_00_09",
+        "standalone_bicycle",
+        "static_11_15",
+        "actors",
+        "static_16",
+        "fence_boundary_marker",
+        "gameplay_required_resources_and_cues",
+    ]
+    var valid := (
+        str(config.get("schema_version", "")) == "shelter.d024-responsive-presentation.v1"
+        and is_equal_approx(float(field.get("world_min_x", -1.0)), 0.0)
+        and is_equal_approx(float(field.get("world_max_x", -1.0)), WORLD_WIDTH)
+        and is_equal_approx(float(field.get("gameplay_fraction", -1.0)), D024_GAMEPLAY_FRACTION)
+        and is_equal_approx(float(field.get("exterior_reserve_fraction", -1.0)), D024_EXTERIOR_RESERVE_FRACTION)
+        and is_equal_approx(float(material.get("tile_world_width", -1.0)), D024_MEADOW_TILE_WORLD_WIDTH)
+        and str(material.get("repeat_axis", "")) == "x_only"
+        and int(material.get("load_count", 0)) == 1
+        and not bool(material.get("mipmaps", true))
+        and is_equal_approx(float(marker.get("source_to_runtime", -1.0)), SOURCE_WORLD_TO_RUNTIME)
+        and is_equal_approx(float(marker.get("opaque_body_world_min_x", -1.0)), D024_MARKER_OPAQUE_WORLD_MIN_X)
+        and int(marker.get("draw_count", 0)) == 1
+        and int(marker.get("load_count", 0)) == 1
+        and not bool(marker.get("runtime_mirror", true))
+        and not bool(marker.get("interactive", true))
+        and not bool(marker.get("persisted", true))
+        and render_order == expected_order
+    )
+    if not valid:
+        push_error("D-024 presentation contract drift")
+    return valid
 
 
 func _load_authored_world_layers() -> void:
@@ -1354,37 +1775,32 @@ func _load_authored_world_layers() -> void:
     for file_name in files:
         if not file_name.ends_with(".png"):
             continue
+        var layer_index := int(file_name.get_slice("__", 0))
+        if layer_index == 10:
+            push_error("Forbidden authored world layer 10 present in runtime tree: %s" % file_name)
+            continue
         var texture := load("%s/%s" % [AUTHORED_WORLD_LAYER_DIR, file_name]) as Texture2D
         if texture == null:
             push_error("Could not load authored world layer: %s" % file_name)
             continue
         _authored_world_layers.append({
             "file": file_name,
-            "index": int(file_name.get_slice("__", 0)),
+            "index": layer_index,
             "texture": texture,
         })
 
 
-func _load_authored_labrador_layers() -> void:
-    _authored_labrador_layers.clear()
-    for facing in ["right", "left", "turn_mid"]:
-        var directory := "%s/%s/layers" % [AUTHORED_LABRADOR_LAYER_ROOT, facing]
-        var files := DirAccess.get_files_at(directory)
-        files.sort()
-        var layers: Array[Dictionary] = []
-        for file_name in files:
-            if not file_name.ends_with(".png"):
-                continue
-            var texture := load("%s/%s" % [directory, file_name]) as Texture2D
-            if texture == null:
-                push_error("Could not load authored Labrador layer: %s/%s" % [facing, file_name])
-                continue
-            layers.append({
-                "file": file_name,
-                "id": file_name.get_slice("__", 1).trim_suffix(".png"),
-                "texture": texture,
-            })
-        _authored_labrador_layers[facing] = layers
+func _load_authored_labrador_poses() -> void:
+    _authored_labrador_poses.clear()
+    var pose_dirs := DirAccess.get_directories_at(AUTHORED_LABRADOR_POSE_ROOT)
+    pose_dirs.sort()
+    for pose_id in pose_dirs:
+        var path := "%s/%s/identity_rgba.png" % [AUTHORED_LABRADOR_POSE_ROOT, pose_id]
+        var texture := load(path) as Texture2D
+        if texture == null:
+            push_error("Could not load authored Labrador identity composite: %s" % pose_id)
+            continue
+        _authored_labrador_poses[pose_id] = texture
 
 
 func _reset_world_state() -> void:
@@ -2049,6 +2465,7 @@ func _start_route_pressed() -> void:
     if _route_started or (_player_session_configured and (_player_checkpoint_barrier_failed or _player_checkpoint_commit_in_progress)):
         return
 
+    _labrador_visual_adapter.cancel_h_for_player_gate(_labrador_visual_observation(), "player_route_gate")
     if _is_day2_active():
         _set_active_order_status("route_suggested")
         _set_active_chain_state("route_selected", "create_trip_task")
@@ -2516,7 +2933,8 @@ func _handle_player_task_completed(task: Dictionary) -> void:
         return
     var commit_result := _commit_player_checkpoint(checkpoint_kind)
     if not bool(commit_result.get("ok", false)):
-        push_error("Player checkpoint commit failed after task: %s" % str(commit_result))
+        if not _consume_expected_test_checkpoint_persistence_failure(checkpoint_kind, commit_result):
+            push_error("Player checkpoint commit failed after task: %s" % str(commit_result))
     if bool(commit_result.get("ok", false)) and checkpoint_kind == "first_day_complete":
         print("vertical_slice_complete=true")
 
@@ -3426,7 +3844,7 @@ func _update_ui() -> void:
     _status_label.visible = base_ui_visible and not _compact_ui
     _performance_label.visible = base_ui_visible and _show_performance_hud
     _semantic_button.visible = base_ui_visible and not _compact_ui
-    _visibility_button.visible = true
+    _visibility_button.visible = _view_mode != "player_prototype"
     _visibility_button.text = "Show UI" if _ui_hidden else "Hide UI"
     _semantic_button.text = "Labels" if _show_semantic_labels else "No labels"
 
@@ -3536,86 +3954,68 @@ func _current_task_label() -> String:
 
 func _draw_authored_world_back(baseline: float) -> void:
     for layer in _authored_world_layers:
-        if int(layer.get("index", -1)) <= 12:
+        if int(layer.get("index", -1)) <= 9:
+            _draw_authored_world_layer(layer, baseline)
+
+
+func _draw_d024_meadow(baseline: float) -> void:
+    if not _d024_ready or _d024_meadow_texture == null:
+        return
+    var zoom := _zoom()
+    var render_scale := SOURCE_WORLD_TO_RUNTIME * zoom
+    var visible_world_min := _camera_x
+    var visible_world_max := _camera_x + _visible_world_width()
+    var first_tile := int(floor(visible_world_min / D024_MEADOW_TILE_WORLD_WIDTH))
+    var last_tile := int(ceil(visible_world_max / D024_MEADOW_TILE_WORLD_WIDTH)) - 1
+    var source_origin := Vector2(_world_to_screen_x(0.0), baseline - D024_MEADOW_SOURCE_BASELINE_Y * render_scale)
+    draw_set_transform(source_origin, 0.0, Vector2(render_scale, render_scale))
+    for tile_index in range(first_tile, last_tile + 1):
+        draw_texture(_d024_meadow_texture, Vector2(float(tile_index) * D024_MEADOW_SOURCE_SIZE.x, 0.0))
+    draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+
+
+func _draw_authored_world_middle(baseline: float) -> void:
+    for layer in _authored_world_layers:
+        var layer_index := int(layer.get("index", -1))
+        if layer_index >= 11 and layer_index <= 15:
             _draw_authored_world_layer(layer, baseline)
 
 
 func _draw_authored_world_front(baseline: float) -> void:
     for layer in _authored_world_layers:
-        if int(layer.get("index", -1)) == 13:
-            if not _packing_front_span_mask_active():
-                _draw_authored_world_layer(layer, baseline)
-                continue
-            var texture := layer.get("texture", null) as Texture2D
-            if texture == null:
-                continue
-            var full_rect := Rect2(Vector2.ZERO, texture.get_size())
-            var mask_rect := full_rect.intersection(_packing_front_span_mask_source_rect())
-            if not mask_rect.has_area():
-                _draw_authored_world_layer(layer, baseline)
-                continue
-            for region in _front_span_regions_outside_mask(full_rect, mask_rect):
-                _draw_authored_world_layer_region(layer, baseline, region)
+        if int(layer.get("index", -1)) == 16:
+            _draw_authored_world_layer(layer, baseline)
 
 
-func _draw_packing_front_span_underlay(baseline: float) -> void:
-    if not _packing_front_span_mask_active():
+func _draw_d024_boundary_marker(baseline: float) -> void:
+    if not _d024_ready or _d024_marker_texture == null:
         return
-    for layer in _authored_world_layers:
-        if int(layer.get("index", -1)) != 13:
-            continue
-        var texture := layer.get("texture", null) as Texture2D
-        if texture == null:
-            return
-        var mask_rect := Rect2(Vector2.ZERO, texture.get_size()).intersection(_packing_front_span_mask_source_rect())
-        if mask_rect.has_area():
-            _draw_authored_world_layer_region(layer, baseline, mask_rect)
-        return
+    var marker_root := Vector2(_world_to_screen_x(D024_MARKER_WORLD_ROOT.x), baseline)
+    var render_scale := SOURCE_WORLD_TO_RUNTIME * _zoom()
+    draw_set_transform(marker_root, 0.0, Vector2(render_scale, render_scale))
+    draw_texture(_d024_marker_texture, -D024_MARKER_SOURCE_PIVOT)
+    draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
 func _packing_front_span_mask_active() -> bool:
-    if not bool(_labrador_render_state.get("packing_front_span_mask_active", false)):
-        return false
-    if str(_labrador_render_state.get("packing_front_span_mask_owner", "")) != "derived_non_persisted_presentation":
-        return false
-    if str(_labrador_render_state.get("station_id", "")) != PACKING_FRONT_SPAN_MASK_STATION_ID:
-        return false
-    return str(_labrador_render_state.get("selector", "")) in PACKING_FRONT_SPAN_MASK_SELECTORS
-
-
-func _packing_front_span_mask_source_rect() -> Rect2:
-    var actor_world_x := float(_labrador_render_state.get("actor_world_x", (_dogs.get("labrador_intro", {}) as Dictionary).get("x", 0.0)))
-    actor_world_x += float(_labrador_render_state.get("station_offset_x", 0.0))
-    return Rect2(
-        Vector2(
-            actor_world_x - PACKING_FRONT_SPAN_MASK_HALF_WIDTH_WORLD,
-            AUTHORED_WORLD_BASELINE_Y + PACKING_FRONT_SPAN_MASK_TOP_FROM_BASELINE
-        ),
-        Vector2(
-            PACKING_FRONT_SPAN_MASK_HALF_WIDTH_WORLD * 2.0,
-            PACKING_FRONT_SPAN_MASK_BOTTOM_FROM_BASELINE - PACKING_FRONT_SPAN_MASK_TOP_FROM_BASELINE
-        )
-    )
+    return false
 
 
 func _packing_front_span_mask_snapshot() -> Dictionary:
-    var active := _packing_front_span_mask_active()
-    var source_rect := _packing_front_span_mask_source_rect() if active else Rect2()
     return {
-        "active": active,
+        "active": false,
         "owner": "VerticalSliceDemo.parent_draw_slot",
         "authority": "derived_non_persisted_presentation",
-        "strategy": "existing_source_local_segment_under_actor",
-        "source_layer": "world.fence.front_span",
+        "strategy": "zero_station_front_occlusion_source_reconciled_trial",
+        "source_layer": "world.fence.front_span.pause_only",
         "station_id": str(_labrador_render_state.get("station_id", "")),
         "selector": str(_labrador_render_state.get("selector", "")),
-        "source_rect": [source_rect.position.x, source_rect.position.y, source_rect.size.x, source_rect.size.y],
+        "source_rect": [0.0, 0.0, 0.0, 0.0],
         "global_z_reorder": false,
         "source_mutation": false,
         "gameplay_authority": false,
-        "ordinary_front_span_ownership_restored": not active,
-        "permitted_contacting_paw_tip_source_px": 12,
-        "permitted_contacting_paw_tip_native_px": 5,
+        "ordinary_front_span_ownership_restored": true,
+        "forbidden_overlap_pixels": 0,
     }
 
 
@@ -3636,8 +4036,9 @@ func _draw_authored_world_layer(layer: Dictionary, baseline: float) -> void:
     if texture == null:
         return
     var zoom := _zoom()
-    var source_origin := Vector2(_world_to_screen_x(0.0), baseline - AUTHORED_WORLD_BASELINE_Y * zoom)
-    draw_set_transform(source_origin, 0.0, Vector2(zoom, zoom))
+    var render_scale := SOURCE_WORLD_TO_RUNTIME * zoom
+    var source_origin := Vector2(_world_to_screen_x(0.0), baseline - AUTHORED_WORLD_BASELINE_Y * render_scale)
+    draw_set_transform(source_origin, 0.0, Vector2(render_scale, render_scale))
     draw_texture(texture, Vector2.ZERO)
     draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
@@ -3647,34 +4048,11 @@ func _draw_authored_world_layer_region(layer: Dictionary, baseline: float, sourc
     if texture == null or not source_rect.has_area():
         return
     var zoom := _zoom()
-    var source_origin := Vector2(_world_to_screen_x(0.0), baseline - AUTHORED_WORLD_BASELINE_Y * zoom)
-    draw_set_transform(source_origin, 0.0, Vector2(zoom, zoom))
+    var render_scale := SOURCE_WORLD_TO_RUNTIME * zoom
+    var source_origin := Vector2(_world_to_screen_x(0.0), baseline - AUTHORED_WORLD_BASELINE_Y * render_scale)
+    draw_set_transform(source_origin, 0.0, Vector2(render_scale, render_scale))
     draw_texture_rect_region(texture, source_rect, source_rect, Color.WHITE, false, true)
     draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
-
-
-func _draw_non_authored_corridor_tail(baseline: float) -> void:
-    # The source canvas ends at x=1536. This bounded primitive continues the
-    # already-existing runtime corridor to x=1740 without stretching or
-    # claiming authored pixels. Four world units only underlay the soft edge.
-    var zoom := _zoom()
-    var left := _world_to_screen_x(NON_AUTHORED_TAIL_STITCH_X)
-    var right := _world_to_screen_x(WORLD_WIDTH)
-    if right <= left:
-        return
-    var ground := PackedVector2Array([
-        Vector2(left, baseline - 30.0 * zoom),
-        Vector2(right, baseline - 25.0 * zoom),
-        Vector2(right, baseline + 4.0 * zoom),
-        Vector2(left, baseline + 4.0 * zoom),
-    ])
-    draw_colored_polygon(ground, Color(0.37, 0.29, 0.20, 1.0))
-    draw_line(
-        Vector2(left, baseline - 30.0 * zoom),
-        Vector2(right, baseline - 25.0 * zoom),
-        Color(0.40, 0.48, 0.29, 1.0),
-        maxf(2.0, 6.0 * zoom)
-    )
 
 
 func _draw_ground(baseline: float) -> void:
@@ -3767,22 +4145,22 @@ func _draw_transport(baseline: float) -> void:
 
     var texture := _textures.get("basket_bicycle", null) as Texture2D
     var center_x := _world_to_screen_x(_transport_x)
-    var max_size := Vector2(82.0, 70.0) * _zoom()
-    var bottom_y := baseline - (13.0 * _zoom())
+    var source_scale := BICYCLE_SOURCE_HEIGHT / 175.0
+    var render_scale := source_scale * SOURCE_WORLD_TO_RUNTIME * _zoom()
+    var bottom_y := baseline - ((AUTHORED_WORLD_BASELINE_Y - BICYCLE_SOURCE_BASELINE_Y) * SOURCE_WORLD_TO_RUNTIME * _zoom())
 
     if texture != null:
         var source_size := texture.get_size()
-        var scale := minf(max_size.x / source_size.x, max_size.y / source_size.y)
-        var target_size := source_size * scale
+        var target_size := source_size * render_scale
         draw_texture_rect(texture, Rect2(Vector2(center_x - target_size.x * 0.5, bottom_y - target_size.y), target_size), false)
     else:
         draw_rect(Rect2(center_x - 38.0 * _zoom(), bottom_y - 30.0 * _zoom(), 76.0 * _zoom(), 30.0 * _zoom()), Color(0.54, 0.40, 0.26, 0.94), true)
 
-    var scale := _zoom()
-    if _transport_state == "preparing":
+    var scale := SOURCE_WORLD_TO_RUNTIME * _zoom()
+    if _view_mode != "player_prototype" and _transport_state == "preparing":
         draw_line(Vector2(center_x - 30.0 * scale, bottom_y - 45.0 * scale), Vector2(center_x + 23.0 * scale, bottom_y - 54.0 * scale), Color(0.74, 0.88, 0.96, 0.72), maxf(1.0, 1.5 * scale))
         draw_circle(Vector2(center_x + 31.0 * scale, bottom_y - 55.0 * scale), 4.0 * scale, Color(0.74, 0.88, 0.96, 0.82))
-    elif _transport_state == "returning":
+    elif _view_mode != "player_prototype" and _transport_state == "returning":
         draw_line(Vector2(center_x - 47.0 * scale, bottom_y - 9.0 * scale), Vector2(center_x - 68.0 * scale, bottom_y - 5.0 * scale), Color(0.82, 0.74, 0.54, 0.42), maxf(1.0, scale))
         draw_line(Vector2(center_x - 42.0 * scale, bottom_y - 20.0 * scale), Vector2(center_x - 62.0 * scale, bottom_y - 17.0 * scale), Color(0.82, 0.74, 0.54, 0.36), maxf(1.0, scale))
 
@@ -3884,60 +4262,24 @@ func _draw_dogs(baseline: float) -> void:
 
 
 func _draw_authored_labrador(baseline: float) -> void:
-    var facing := str(_labrador_render_state.get("facing_source", "right"))
-    if not _authored_labrador_layers.has(facing):
+    var pose_id := str(_labrador_render_state.get("pose_id", "idle_neutral_right"))
+    if not _authored_labrador_poses.has(pose_id):
         return
     var zoom := _zoom()
     var world_x := float(_labrador_render_state.get("actor_world_x", (_dogs["labrador_intro"] as Dictionary).get("x", 0.0)))
     world_x += float(_labrador_render_state.get("station_offset_x", 0.0))
     var actor_root_screen := Vector2(_world_to_screen_x(world_x), baseline)
     var render_scale := LABRADOR_SOURCE_TO_WORLD * zoom
-    var pose: Vector4 = _labrador_render_state.get("base_pose", Vector4.ZERO)
-    var focus: Vector2 = _labrador_render_state.get("focus_pose", Vector2.ZERO)
-    var blink := float(_labrador_render_state.get("blink_amount", 0.0))
-    var facing_direction := -1.0 if facing == "left" else 1.0
-
-    for layer in _authored_labrador_layers[facing] as Array:
-        var layer_id := str((layer as Dictionary).get("id", ""))
-        if layer_id == "dog.equipment.collar":
-            continue
-        if layer_id == "dog.eye.open" and blink >= 0.5:
-            continue
-        if layer_id == "dog.eye.blink" and blink < 0.5:
-            continue
-
-        var offset_world := Vector2.ZERO
-        var rotation := 0.0
-        var pivot_source := LABRADOR_SOURCE_ROOT
-        if layer_id != "dog.shadow.local":
-            if layer_id.begins_with("dog.leg.fore"):
-                offset_world.x += pose.y * facing_direction
-                offset_world.y += pose.x * 0.2
-                if layer_id == "dog.leg.fore.near":
-                    offset_world.y += pose.w + focus.y
-            elif layer_id.begins_with("dog.leg.hind"):
-                offset_world.x += pose.z * facing_direction
-                offset_world.y += pose.x * 0.2
-            elif layer_id == "dog.tail":
-                offset_world.y += pose.x
-                pivot_source = LABRADOR_TAIL_PIVOTS[facing] as Vector2
-                rotation = float(_labrador_render_state.get("tail_rotation", 0.0))
-            elif layer_id in ["dog.head", "dog.ear.far", "dog.ear.near", "dog.muzzle", "dog.eye.open", "dog.eye.blink"]:
-                offset_world.y += pose.x + focus.x
-            else:
-                offset_world.y += pose.x
-
-        var pivot_world := (pivot_source - LABRADOR_SOURCE_ROOT) * LABRADOR_SOURCE_TO_WORLD
-        var pivot_screen := actor_root_screen + (pivot_world + offset_world) * zoom
-        draw_set_transform(pivot_screen, rotation, Vector2(render_scale, render_scale))
-        var identity_silhouette := _labrador_capture_silhouette and layer_id != "dog.shadow.local"
-        var modulate := Color(0.025, 0.025, 0.025, 1.0) if identity_silhouette else Color.WHITE
-        draw_texture((layer as Dictionary).get("texture", null) as Texture2D, -pivot_source, modulate)
+    var modulate := Color(0.025, 0.025, 0.025, 1.0) if _labrador_capture_silhouette else Color.WHITE
+    draw_set_transform(actor_root_screen, 0.0, Vector2(render_scale, render_scale))
+    draw_texture(_authored_labrador_poses[pose_id] as Texture2D, -LABRADOR_SOURCE_ROOT, modulate)
 
     draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
 
 
 func _draw_dog_action_lanes(baseline: float) -> void:
+    if _view_mode == "player_prototype":
+        return
     for dog_id in ["dachshund_intro", "labrador_intro"]:
         var dog := _dogs[dog_id] as Dictionary
         if not bool(dog.get("visible", true)):
@@ -4102,13 +4444,15 @@ func _draw_dog_role_marker(dog_id: String, center: Vector2, scale: float) -> voi
 
 func _draw_first_day_readability_cues(baseline: float) -> void:
     var scale := _zoom()
-    _draw_route_ready_cue(baseline, scale)
-    _draw_payload_returned_cue(baseline, scale)
+    if _view_mode != "player_prototype":
+        _draw_route_ready_cue(baseline, scale)
+        _draw_payload_returned_cue(baseline, scale)
     _draw_van_dispatch_cue(baseline, scale)
     _draw_postcard_world_cue(baseline, scale)
     _draw_reward_world_cue(baseline, scale)
     _draw_next_day_world_cue(baseline, scale)
-    _draw_day2_packing_care_cue(baseline, scale)
+    if _view_mode != "player_prototype":
+        _draw_day2_packing_care_cue(baseline, scale)
 
 
 func _draw_route_ready_cue(baseline: float, scale: float) -> void:
@@ -4203,7 +4547,7 @@ func _draw_postcard_world_cue(baseline: float, scale: float) -> void:
         if _show_semantic_labels:
             _draw_world_badge(board_center + Vector2(30.0, 34.0) * scale, "2-я доставка готова", Color(0.22, 0.38, 0.24, 0.86), Color(0.82, 0.95, 0.72, 0.96), 136.0, 8.2)
 
-    if _first_day_postcard_life_moment_seen:
+    if _view_mode != "player_prototype" and _first_day_postcard_life_moment_seen:
         for dog_id in ["dachshund_intro", "labrador_intro"]:
             if not _dogs.has(dog_id):
                 continue
@@ -4226,7 +4570,8 @@ func _draw_reward_world_cue(baseline: float, scale: float) -> void:
 
     var dog_center := Vector2(_world_to_screen_x(float(dog.get("x", 0.0))), baseline - 34.0 * scale)
     var marker_center := dog_center + Vector2(22.0, -68.0) * scale
-    draw_circle(dog_center + Vector2(10.0, 20.0) * scale, 22.0 * scale, Color(0.72, 0.90, 0.96, 0.16))
+    if _view_mode != "player_prototype":
+        draw_circle(dog_center + Vector2(10.0, 20.0) * scale, 22.0 * scale, Color(0.72, 0.90, 0.96, 0.16))
     _draw_slippers_icon(dog_center + Vector2(19.0, 22.0) * scale, scale * 1.25, Color(0.68, 0.84, 0.88, 0.96))
     if _show_semantic_labels:
         _draw_world_badge(marker_center, "тапочки Таксы", Color(0.22, 0.36, 0.40, 0.88), Color(0.74, 0.91, 0.96, 0.96), 116.0, 8.2)
@@ -4457,11 +4802,17 @@ func _world_to_screen_x(world_x: float) -> float:
     return (world_x - _camera_x) * _zoom()
 
 
+func _screen_to_world_x(screen_x: float) -> float:
+    return _camera_x + screen_x / _zoom()
+
+
 func _visible_world_width() -> float:
     return _viewport_size().x / _zoom()
 
 
 func _field_baseline() -> float:
+    if _view_mode == "player_prototype":
+        return _d024_baseline_for_viewport(_viewport_size(), _zoom())
     return maxf(148.0, _viewport_size().y - 36.0)
 
 
@@ -4472,8 +4823,44 @@ func _viewport_size() -> Vector2:
 
 func _zoom() -> float:
     if _view_mode == "player_prototype":
-        return _viewport_size().x / WORLD_WIDTH
+        return _d024_player_zoom_for_viewport(_viewport_size(), _zoom_index)
     return float(ZOOM_LEVELS[_zoom_index])
+
+
+func _d024_zoom_min(viewport_width: float) -> float:
+    return D024_GAMEPLAY_FRACTION * viewport_width / WORLD_WIDTH
+
+
+func _d024_zoom_fit_max(viewport_height: float) -> float:
+    return viewport_height / ((D024_MEADOW_SOURCE_SIZE.y - D024_MATERIAL_SOURCE_TOP_Y) * SOURCE_WORLD_TO_RUNTIME)
+
+
+func _d024_zoom_max(viewport_size: Vector2) -> float:
+    return minf(D024_ZOOM_MAX_MULTIPLIER * _d024_zoom_min(viewport_size.x), _d024_zoom_fit_max(viewport_size.y))
+
+
+func _d024_player_zoom_for_viewport(viewport_size: Vector2, zoom_index: int) -> float:
+    var zoom_min := _d024_zoom_min(viewport_size.x)
+    if zoom_index <= 1:
+        return zoom_min
+    return maxf(zoom_min, _d024_zoom_max(viewport_size))
+
+
+func _d024_baseline_for_viewport(viewport_size: Vector2, zoom: float) -> float:
+    var source_scale := SOURCE_WORLD_TO_RUNTIME * zoom
+    var minimum := (D024_MEADOW_SOURCE_BASELINE_Y - D024_MATERIAL_SOURCE_TOP_Y) * source_scale
+    var maximum := viewport_size.y - (D024_MEADOW_SOURCE_SIZE.y - D024_MEADOW_SOURCE_BASELINE_Y) * source_scale
+    return clampf(viewport_size.y - 36.0, minimum, maximum)
+
+
+func _d024_camera_max_for(viewport_width: float, zoom: float) -> float:
+    return maxf(0.0, WORLD_WIDTH - D024_GAMEPLAY_FRACTION * (viewport_width / zoom))
+
+
+func _camera_max_x() -> float:
+    if _view_mode == "player_prototype":
+        return _d024_camera_max_for(_viewport_size().x, _zoom())
+    return maxf(WORLD_WIDTH - _visible_world_width(), 0.0)
 
 
 func _set_zoom_index(index: int) -> void:
@@ -4490,7 +4877,7 @@ func _pan(direction: float) -> void:
 
 
 func _clamped_camera_x(raw_camera_x: float) -> float:
-    return clampf(raw_camera_x, 0.0, maxf(WORLD_WIDTH - _visible_world_width(), 0.0))
+    return clampf(raw_camera_x, 0.0, _camera_max_x())
 
 
 func _label_to_zoom_index(label: String, fallback: int) -> int:
@@ -4513,6 +4900,9 @@ func _apply_mouse_passthrough() -> void:
 
 
 func _interactive_mouse_polygon() -> PackedVector2Array:
+    if _view_mode == "player_prototype":
+        return _d024_player_mouse_polygon()
+
     var viewport_size := _viewport_size()
     var field_top := clampf(_field_baseline() - (126.0 * _zoom()) - MOUSE_PASSTHROUGH_PADDING, 0.0, viewport_size.y)
     var intervals: Array[Dictionary] = []
@@ -4548,6 +4938,70 @@ func _interactive_mouse_polygon() -> PackedVector2Array:
 
     points.append(Vector2(viewport_size.x, viewport_size.y))
     points.append(Vector2(0.0, viewport_size.y))
+    return points
+
+
+func _d024_ground_capture_top() -> float:
+    return clampf(
+        _field_baseline() - (D024_MEADOW_SOURCE_BASELINE_Y - D024_MATERIAL_SOURCE_TOP_Y) * SOURCE_WORLD_TO_RUNTIME * _zoom(),
+        0.0,
+        _viewport_size().y
+    )
+
+
+func _d024_player_mouse_polygon() -> PackedVector2Array:
+    var viewport_size := _viewport_size()
+    var field_left := clampf(_world_to_screen_x(0.0), 0.0, viewport_size.x)
+    var field_right := clampf(_world_to_screen_x(WORLD_WIDTH), 0.0, viewport_size.x)
+    var control_rects: Array[Rect2] = []
+    for control in _interactive_controls():
+        if control == null or not control.visible:
+            continue
+        var raw_rect := Rect2(control.global_position, control.size).grow(MOUSE_PASSTHROUGH_PADDING)
+        var clipped_position := Vector2(maxf(0.0, raw_rect.position.x), maxf(0.0, raw_rect.position.y))
+        var clipped_end := Vector2(minf(field_right, raw_rect.end.x), minf(viewport_size.y, raw_rect.end.y))
+        if clipped_end.x > clipped_position.x and clipped_end.y > clipped_position.y:
+            control_rects.append(Rect2(clipped_position, clipped_end - clipped_position))
+
+    if _camera_max_x() <= 0.0:
+        if control_rects.is_empty():
+            return PackedVector2Array()
+        var control_bounds := control_rects[0]
+        for index in range(1, control_rects.size()):
+            control_bounds = control_bounds.merge(control_rects[index])
+        return PackedVector2Array([
+            control_bounds.position,
+            Vector2(control_bounds.end.x, control_bounds.position.y),
+            control_bounds.end,
+            Vector2(control_bounds.position.x, control_bounds.end.y),
+        ])
+
+    var intervals: Array[Dictionary] = []
+    if field_right > field_left:
+        _add_mouse_interval(intervals, field_left, field_right, _d024_ground_capture_top(), field_right, viewport_size.y)
+
+    for rect in control_rects:
+        _add_mouse_interval(intervals, rect.position.x, minf(rect.end.x, field_right), rect.position.y, field_right, viewport_size.y)
+
+    var merged := _merged_mouse_intervals(intervals)
+    if merged.is_empty():
+        return PackedVector2Array()
+
+    var points := PackedVector2Array()
+    var first_x := float((merged[0] as Dictionary)["x1"])
+    points.append(Vector2(first_x, viewport_size.y))
+    var cursor_x := first_x
+    for interval in merged:
+        var x1 := float(interval["x1"])
+        var x2 := float(interval["x2"])
+        var top := float(interval["top"])
+        if x1 > cursor_x:
+            points.append(Vector2(cursor_x, viewport_size.y))
+            points.append(Vector2(x1, viewport_size.y))
+        points.append(Vector2(x1, top))
+        points.append(Vector2(x2, top))
+        points.append(Vector2(x2, viewport_size.y))
+        cursor_x = x2
     return points
 
 

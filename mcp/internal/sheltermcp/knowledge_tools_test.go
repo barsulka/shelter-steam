@@ -1,551 +1,211 @@
 package sheltermcp
 
 import (
-	"os"
-	"path/filepath"
+	"reflect"
 	"strings"
 	"testing"
 )
 
-func TestFindCurrentContextForCoreAreas(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-	tests := []struct {
-		area string
-		want []string
-	}{
-		{
-			area: "steam",
-			want: []string{
-				docBootstrapContext,
-				docSteamCurrent,
-			},
-		},
-		{
-			area: "mcp",
-			want: []string{
-				docBootstrapContext,
-				docCodexImplementation,
-				docCodexCurrentStatus,
-			},
-		},
-		{
-			area: "docs",
-			want: []string{
-				docBootstrapContext,
-				docCurrentStatus,
-			},
-		},
+func newKnowledgeTestApp(t *testing.T) App {
+	t.Helper()
+	return App{cfg: Config{RepoRoot: repositoryRootForKnowledgeTest(t)}}
+}
+
+func TestLegacyDecisionProjectionsAreSourceDerived(t *testing.T) {
+	app := newKnowledgeTestApp(t)
+	out, err := app.listDecisions(ListDecisionsInput{Area: "all", Kind: "all"})
+	if err != nil {
+		t.Fatal(err)
 	}
-	for _, tt := range tests {
-		out, err := app.findCurrentContext(FindCurrentContextInput{Area: tt.area})
-		if err != nil {
-			t.Fatal(err)
-		}
-		if !out.OK || out.Area != tt.area {
-			t.Fatalf("unexpected current context for %s: %+v", tt.area, out)
-		}
-		for _, want := range tt.want {
-			if !containsString(out.CurrentMemoryPaths, want) {
-				t.Fatalf("current context for %s missing %q: %+v", tt.area, want, out.CurrentMemoryPaths)
-			}
-		}
-		if out.HistoryPolicy == "" {
-			t.Fatalf("expected history policy for %s", tt.area)
+	for _, id := range []string{"D-022", "D-023", "D-024", "D-025", "D-026"} {
+		if !decisionListContains(out.Decisions, id) {
+			t.Fatalf("source-derived legacy decision projection missing %s: %+v", id, out.Decisions)
 		}
 	}
-}
-
-func TestListActiveDocsByLayer(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
-	current, err := app.listActiveDocs(ListActiveDocsInput{Area: "docs", Layer: "current"})
+	d026, err := app.getDecision(GetDecisionInput{ID: "D-026"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !docListContains(current.Docs, docBootstrapContext) {
-		t.Fatalf("docs/current missing bootstrap context: %+v", current.Docs)
+	if !d026.OK || d026.Decision == nil || !strings.Contains(d026.Decision.Title, "source-derived context bridge") {
+		t.Fatalf("get_decision did not return current D-026 source block: %+v", d026)
 	}
-	if docListContains(current.Docs, docGovernance) {
-		t.Fatalf("docs/current should not include governance knowledge doc: %+v", current.Docs)
-	}
-
-	knowledge, err := app.listActiveDocs(ListActiveDocsInput{Area: "docs", Layer: "knowledge"})
+	digest, err := app.decisionDigest(DecisionDigestInput{Area: "mcp", MaxItems: maxDigestItems})
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, want := range []string{docGovernance, docEvidenceReadPolicy, docSupersededMap} {
-		if !docListContains(knowledge.Docs, want) {
-			t.Fatalf("docs/knowledge missing %q: %+v", want, knowledge.Docs)
+	if !decisionDigestContains(digest.Digest, "D-026") {
+		t.Fatalf("decision digest missing D-026: %+v", digest)
+	}
+	for _, decision := range out.Decisions {
+		if !validDecisionKinds[decision.Kind] || decision.Kind == "all" {
+			t.Fatalf("legacy decision %s returned unsupported kind %q", decision.ID, decision.Kind)
 		}
 	}
-}
-
-func TestClassifyDocPathKnownAndUnknown(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
-	known, err := app.classifyDocPath(ClassifyDocPathInput{Path: docBootstrapContext})
+	steamProduct, err := app.listDecisions(ListDecisionsInput{Area: "steam", Kind: "product"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if known.Layer != knowledgeLayerCurrent || known.Status != "current-summary" || known.Confidence != "high" {
-		t.Fatalf("unexpected known classification: %+v", known)
-	}
-
-	unknown, err := app.classifyDocPath(ClassifyDocPathInput{Path: "docs/drive/Shelter/02_PRODUCTS/unknown.md"})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if unknown.Layer != "unknown" || unknown.Status != "unknown" || unknown.Confidence != "low" {
-		t.Fatalf("unexpected unknown classification: %+v", unknown)
+	if !decisionListContains(steamProduct.Decisions, "D-010") {
+		t.Fatalf("canonical game-design decision D-010 must remain queryable through legacy kind=product: %+v", steamProduct.Decisions)
 	}
 }
 
-func TestExplainSupersededOldCaptureAndUnknown(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
-	out, err := app.explainSuperseded(ExplainSupersededInput{
-		Path: "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v1/README.md",
-	})
+func TestLegacyOpenQuestionProjectionsExcludeResolvedSteamQuestions(t *testing.T) {
+	app := newKnowledgeTestApp(t)
+	out, err := app.listOpenQuestions(ListOpenQuestionsInput{Area: "steam", Status: "all"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if out.Classification != "evidence/superseded-by-v3" || out.ReadPolicy != "do_not_read_on_bootstrap" {
-		t.Fatalf("unexpected superseded explanation: %+v", out)
-	}
-	if !strings.Contains(out.CurrentSource, "STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3") {
-		t.Fatalf("expected v3 current source: %+v", out)
-	}
-
-	unknown, err := app.explainSuperseded(ExplainSupersededInput{Path: "docs/drive/Shelter/00_START_HERE/02_DECISIONS.md"})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if unknown.Classification != "unknown" {
-		t.Fatalf("expected unknown classification, got %+v", unknown)
-	}
-
-	mapDoc, err := app.explainSuperseded(ExplainSupersededInput{Path: docSupersededMap})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if mapDoc.Classification != "current/knowledge" {
-		t.Fatalf("SUPERSEDED_MAP should stay current, got %+v", mapDoc)
-	}
-}
-
-func TestKnowledgeGCReportReturnsHistoryEvidenceCandidates(t *testing.T) {
-	root := t.TempDir()
-	writeFile(t,
-		filepath.Join(root, "docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/2026-07-07_HANDOFF.md"),
-		"# Handoff\n",
-	)
-	writeFile(t,
-		filepath.Join(root, "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v1/README.md"),
-		"# Evidence\n",
-	)
-	writeFile(t,
-		filepath.Join(root, "docs/drive/Shelter/99_ARCHIVE/old.md"),
-		"# Archive\n",
-	)
-	writeFile(t,
-		filepath.Join(root, "docs/drive/Shelter/04_DEVELOPMENT/SHELTER_MCP__Codex_Brief__Old_v1.md"),
-		"# Old brief\n",
-	)
-	app := App{cfg: Config{RepoRoot: root}}
-
-	out, err := app.knowledgeGCReport(KnowledgeGCReportInput{Area: "docs", MaxEntries: 100})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if !out.OK || out.Area != "docs" {
-		t.Fatalf("unexpected GC report: %+v", out)
-	}
-	if !findingListContains(out.HistoryCandidates, "docs/drive/Shelter/06_SESSIONS_AND_HANDOFFS/2026-07-07_HANDOFF.md") {
-		t.Fatalf("expected handoff history candidate: %+v", out.HistoryCandidates)
-	}
-	if !findingListContains(out.HistoryCandidates, "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v1/README.md") {
-		t.Fatalf("expected evidence history candidate: %+v", out.HistoryCandidates)
-	}
-	if !supersededListContains(out.SupersededCandidates, "steam_first_day_mvp_visible_review_v1") {
-		t.Fatalf("expected superseded v1 candidate: %+v", out.SupersededCandidates)
-	}
-	if len(out.RecommendedNextActions) == 0 {
-		t.Fatalf("expected recommended actions")
-	}
-}
-
-func TestListDecisionsForSteamAndBrowser(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
-	steam, err := app.listDecisions(ListDecisionsInput{Area: "steam", Kind: "all"})
-	if err != nil {
-		t.Fatal(err)
-	}
-	for _, want := range []string{"D-007", "D-009", "D-013", "D-020"} {
-		if !decisionListContains(steam.Decisions, want) {
-			t.Fatalf("steam decisions missing %s: %+v", want, steam.Decisions)
+	for _, resolved := range []string{"OQ-Steam-001", "OQ-Steam-002"} {
+		if openQuestionListContains(out.Questions, resolved) {
+			t.Fatalf("resolved %s leaked into active source projection: %+v", resolved, out.Questions)
 		}
 	}
-
-	browser, err := app.listDecisions(ListDecisionsInput{Area: "browser", Kind: "all"})
+	if !openQuestionListContains(out.Questions, "OQ-Steam-003") {
+		t.Fatalf("active OQ-Steam-003 missing: %+v", out.Questions)
+	}
+	digest, err := app.openQuestionsDigest(OpenQuestionsDigestInput{Area: "steam", Status: "all"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, want := range []string{"D-008", "D-012", "D-020"} {
-		if !decisionListContains(browser.Decisions, want) {
-			t.Fatalf("browser decisions missing %s: %+v", want, browser.Decisions)
-		}
-	}
-
-	unknown, err := app.listDecisions(ListDecisionsInput{Area: "unknown", Kind: "all"})
-	if err == nil || unknown.OK {
-		t.Fatalf("expected safe error for unknown area, got out=%+v err=%v", unknown, err)
+	if !openQuestionDigestContains(digest.Digest, "OQ-Steam-003") || openQuestionDigestContains(digest.Digest, "OQ-Steam-001") {
+		t.Fatalf("open-question digest is not source-current: %+v", digest)
 	}
 }
 
-func TestGetDecisionD020AndUnknown(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
-	out, err := app.getDecision(GetDecisionInput{ID: "D-020"})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if !out.OK || !out.Found || out.Decision == nil {
-		t.Fatalf("expected D-020 decision, got %+v", out)
-	}
-	if out.Decision.Title != "Project Philosophy / Shelter Constitution" {
-		t.Fatalf("unexpected D-020 title: %+v", out.Decision)
-	}
-	if !strings.Contains(out.Decision.Summary, "Shelter makes life richer") {
-		t.Fatalf("D-020 summary should mention Project Philosophy / Constitution: %+v", out.Decision)
-	}
-
-	missing, err := app.getDecision(GetDecisionInput{ID: "D-999"})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if missing.OK || missing.Found || len(missing.AvailableIDs) == 0 {
-		t.Fatalf("expected structured not-found with available ids, got %+v", missing)
-	}
-}
-
-func TestGetDecisionD021(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-	out, err := app.getDecision(GetDecisionInput{ID: "D-021"})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if !out.OK || out.Decision == nil || !strings.Contains(out.Decision.Summary, "local STDIO") {
-		t.Fatalf("expected current D-021 local MCP decision, got %+v", out)
-	}
-}
-
-func TestListOpenQuestionsForSteamAndDocs(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
-	steam, err := app.listOpenQuestions(ListOpenQuestionsInput{Area: "steam", Status: "open"})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if !openQuestionListContains(steam.Questions, "OQ-Steam-001") {
-		t.Fatalf("steam open questions missing OQ-Steam-001: %+v", steam.Questions)
-	}
-
-	docs, err := app.listOpenQuestions(ListOpenQuestionsInput{Area: "docs", Status: "all"})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if !openQuestionListContains(docs.Questions, "OQ-Docs-001") {
-		t.Fatalf("docs open questions missing OQ-Docs-001: %+v", docs.Questions)
-	}
-	if openQuestionListContains(docs.Questions, "OQ-Docs-002") {
-		t.Fatalf("resolved OQ-Docs-002 must not be returned as active: %+v", docs.Questions)
-	}
-}
-
-func TestListRoadmapsDocsIncludesKnowledgeBaseRoadmap(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
+func TestLegacyRoadmapProjectionMatchesSnapshot(t *testing.T) {
+	app := newKnowledgeTestApp(t)
 	out, err := app.listRoadmaps(ListRoadmapsInput{Area: "docs"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !roadmapListContains(out.Roadmaps, docKnowledgeBaseRoadmap) {
-		t.Fatalf("docs roadmaps missing KNOWLEDGE_BASE_ROADMAP.md: %+v", out.Roadmaps)
-	}
-}
-
-func TestLatestHandoffProducerDocs(t *testing.T) {
-	root := t.TempDir()
-	writeFile(t,
-		filepath.Join(root, filepath.FromSlash(docWorkflowMigrationHandoff)),
-		"# ChatGPT Work and local MCP handoff\n",
-	)
-	app := App{cfg: Config{RepoRoot: root}}
-
-	out, err := app.latestHandoff(LatestHandoffInput{Role: "producer", Area: "docs"})
+	snapshot, err := app.knowledgeSnapshot()
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !out.OK || out.Handoff == nil {
-		t.Fatalf("expected latest handoff, got %+v", out)
+	want := roadmapsFor(snapshot, "docs")
+	if !reflect.DeepEqual(out.Roadmaps, want) {
+		t.Fatalf("legacy roadmap projection diverged from snapshot:\n got=%+v\nwant=%+v", out.Roadmaps, want)
 	}
-	if out.Handoff.Date != "2026-07-10" || out.Handoff.Path != docWorkflowMigrationHandoff {
-		t.Fatalf("expected current migration handoff, got %+v", out.Handoff)
-	}
-	if !out.Handoff.Available {
-		t.Fatalf("expected handoff to be marked available: %+v", out.Handoff)
-	}
-}
-
-func TestKnowledgeTaskContextProjectManagerDocsCleanup(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
-	out, err := app.knowledgeTaskContext(KnowledgeTaskContextInput{
-		Role: "project_manager",
-		Area: "docs",
-		Task: "cleanup",
-	})
-	if err != nil {
-		t.Fatal(err)
-	}
-	if !out.OK {
-		t.Fatalf("expected OK context, got %+v", out)
-	}
-	for _, want := range []string{docGovernance, docSupersededMap, docEvidenceReadPolicy, docCodexCurrentStatus, docOpenQuestions} {
-		if !containsString(out.Context.ReadFirst, want) && !containsString(out.Context.ReadByTask, want) {
-			t.Fatalf("cleanup context missing %q: %+v", want, out.Context)
+	for _, roadmap := range out.Roadmaps {
+		if strings.Contains(roadmap.CurrentPhase, "First Week") || strings.Contains(roadmap.NextStep, "R-28") {
+			t.Fatalf("stale roadmap fact returned: %+v", roadmap)
 		}
 	}
 }
 
-func TestDecisionDigestSteamAndBrowser(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
-	steam, err := app.decisionDigest(DecisionDigestInput{Area: "steam"})
+func TestLegacyDocumentRoutingUsesSourceMetadata(t *testing.T) {
+	app := newKnowledgeTestApp(t)
+	current, err := app.findCurrentContext(FindCurrentContextInput{Area: "mcp"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, want := range []string{"D-007", "D-009", "D-013", "D-020"} {
-		if !decisionDigestContains(steam.Digest, want) {
-			t.Fatalf("steam decision digest missing %s: %+v", want, steam.Digest)
+	for _, path := range []string{docBootstrapContext, docCodexCurrentStatus, docCodexImplementation} {
+		if !containsString(current.CurrentMemoryPaths, path) {
+			t.Fatalf("MCP current routing missing %s: %+v", path, current)
 		}
 	}
-	if steam.SourcePath != docDecisions || steam.ReadFullPolicy == "" {
-		t.Fatalf("expected source path and read policy: %+v", steam)
-	}
-
-	browser, err := app.decisionDigest(DecisionDigestInput{Area: "browser"})
+	docs, err := app.listActiveDocs(ListActiveDocsInput{Area: "docs", Layer: "knowledge"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, want := range []string{"D-008", "D-012", "D-020"} {
-		if !decisionDigestContains(browser.Digest, want) {
-			t.Fatalf("browser decision digest missing %s: %+v", want, browser.Digest)
+	for _, path := range []string{docGovernance, docEvidenceReadPolicy} {
+		if !docListContains(docs.Docs, path) {
+			t.Fatalf("source metadata projection missing %s: %+v", path, docs.Docs)
 		}
 	}
-
-	unknown, err := app.decisionDigest(DecisionDigestInput{Area: "unknown"})
-	if err == nil || unknown.OK {
-		t.Fatalf("expected safe error for unknown area, got out=%+v err=%v", unknown, err)
-	}
-}
-
-func TestShelterStatusSteamAndDocs(t *testing.T) {
-	root := t.TempDir()
-	writeFile(t,
-		filepath.Join(root, filepath.FromSlash(docWorkflowMigrationHandoff)),
-		"# ChatGPT Work and local MCP handoff\n",
-	)
-	app := App{cfg: Config{RepoRoot: root}}
-
-	steam, err := app.shelterStatus(ShelterStatusInput{Area: "steam"})
+	currentDocs, err := app.listActiveDocs(ListActiveDocsInput{Area: "docs", Layer: "current"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.Contains(steam.Dashboard.CurrentScope, "First Week / Day 2") {
-		t.Fatalf("steam status should include First Week / Day 2: %+v", steam.Dashboard)
+	if !docListContains(currentDocs.Docs, docSupersededMap) {
+		t.Fatalf("source status must classify SUPERSEDED_MAP current-summary as Current Memory: %+v", currentDocs.Docs)
 	}
-	if !strings.Contains(steam.Dashboard.CurrentTask, "R-28") {
-		t.Fatalf("steam status should include R-28: %+v", steam.Dashboard)
-	}
-	if !decisionDigestContains(steam.Dashboard.ActiveDecisions, "D-007") || !openQuestionDigestContains(steam.Dashboard.ActiveOpenQuestions, "OQ-Steam-001") {
-		t.Fatalf("steam status missing expected decisions/questions: %+v", steam.Dashboard)
-	}
-
-	docs, err := app.shelterStatus(ShelterStatusInput{Area: "docs"})
+	classification, err := app.classifyDocPath(ClassifyDocPathInput{Path: docBootstrapContext})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !strings.Contains(docs.Dashboard.CurrentPhase, "D-021") {
-		t.Fatalf("docs status should include completed D-021 migration: %+v", docs.Dashboard)
-	}
-	if docs.Dashboard.CurrentRoadmap != docKnowledgeBasePolishRoadmap {
-		t.Fatalf("docs status should point to polish roadmap: %+v", docs.Dashboard)
-	}
-	if docs.Dashboard.LatestHandoff == nil || docs.Dashboard.LatestHandoff.Path != docWorkflowMigrationHandoff {
-		t.Fatalf("docs status should include current migration handoff: %+v", docs.Dashboard.LatestHandoff)
+	if classification.Layer != knowledgeLayerCurrent || classification.Confidence != "high" {
+		t.Fatalf("source document classification mismatch: %+v", classification)
 	}
 }
 
-func TestKnowledgeCatalogMatchesRepositorySources(t *testing.T) {
-	wd, err := os.Getwd()
+func TestLegacyHandoffProjectionUsesCurrentIndex(t *testing.T) {
+	app := newKnowledgeTestApp(t)
+	out, err := app.latestHandoff(LatestHandoffInput{Role: "codex", Area: "mcp"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	root, ok := findMonorepoAncestor(wd)
-	if !ok {
-		t.Fatal("could not locate monorepo root")
-	}
-	if err := validateKnowledgeCatalog(root); err != nil {
-		t.Fatal(err)
+	if !out.OK || out.Handoff == nil || out.Handoff.Path != docWorkflowMigrationHandoff || out.Handoff.SourceType != "handoff-index" {
+		t.Fatalf("latest handoff did not come from HANDOFF_INDEX: %+v", out)
 	}
 }
 
-func TestKnowledgeCatalogRejectsDecisionContentDrift(t *testing.T) {
-	for _, tc := range []struct {
-		name        string
-		old         string
-		replacement string
-	}{
-		{"title", "### D-021 — ChatGPT Work local project and Shelter MCP boundary", "### D-021 — Drifted decision title"},
-		{"area", "Area: `docs/Codex/MCP`", "Area: `drifted`"},
-		{"summary", "Work/Codex работает с файлами напряму", "Work/Codex uses a drifted summary"},
-	} {
-		t.Run(tc.name, func(t *testing.T) {
-			root := copyKnowledgeValidationFixture(t)
-			replaceFixtureText(t, root, docDecisions, tc.old, tc.replacement)
-			if err := validateKnowledgeCatalog(root); err == nil {
-				t.Fatal("expected decision content drift to fail validation")
-			}
-		})
-	}
-}
-
-func TestKnowledgeCatalogRejectsOpenQuestionContentDrift(t *testing.T) {
-	for _, tc := range []struct {
-		name        string
-		old         string
-		replacement string
-	}{
-		{"title", "#### OQ-Docs-001 — Какие старые docs нужно пометить metadata/read_policy?", "#### OQ-Docs-001 — Drifted title"},
-		{"owner", "Владелец: Project Manager / Knowledge Base Maintainer", "Владелец: Drifted Owner"},
-		{"summary", "нужно постепенно размечать старые документы", "drifted open-question summary"},
-	} {
-		t.Run(tc.name, func(t *testing.T) {
-			root := copyKnowledgeValidationFixture(t)
-			replaceFixtureText(t, root, docOpenQuestions, tc.old, tc.replacement)
-			if err := validateKnowledgeCatalog(root); err == nil {
-				t.Fatal("expected open-question content drift to fail validation")
-			}
-		})
-	}
-}
-
-func TestKnowledgeCatalogRejectsRoadmapStateDrift(t *testing.T) {
-	for _, tc := range []struct {
-		name        string
-		old         string
-		replacement string
-	}{
-		{"status", "Catalog status: active short roadmap", "Catalog status: drifted"},
-		{"current_phase", "Catalog current phase: D-021 local Work/Codex migration complete; compact MCP knowledge remains optional and source-validated.", "Catalog current phase: drifted"},
-		{"next_step", "Catalog next step: Return to Day 2 product work; keep Current Memory and catalog validation green.", "Catalog next step: drifted"},
-	} {
-		t.Run(tc.name, func(t *testing.T) {
-			root := copyKnowledgeValidationFixture(t)
-			replaceFixtureText(t, root, docKnowledgeBasePolishRoadmap, tc.old, tc.replacement)
-			if err := validateKnowledgeCatalog(root); err == nil {
-				t.Fatal("expected roadmap state drift to fail validation")
-			}
-		})
-	}
-}
-
-func copyKnowledgeValidationFixture(t *testing.T) string {
-	t.Helper()
-	wd, err := os.Getwd()
+func TestLegacyStatusUsesCurrentSourceFields(t *testing.T) {
+	app := newKnowledgeTestApp(t)
+	out, err := app.shelterStatus(ShelterStatusInput{Area: "docs"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	sourceRoot, ok := findMonorepoAncestor(wd)
-	if !ok {
-		t.Fatal("could not locate source monorepo root")
+	if !out.OK || out.Dashboard.CurrentFocus == "" || out.Dashboard.CurrentPhase == "" || out.Dashboard.CurrentTask == "" {
+		t.Fatalf("source-derived status is incomplete: %+v", out)
 	}
-	fixtureRoot := t.TempDir()
-	paths := map[string]bool{
-		docDecisions:                  true,
-		docOpenQuestions:              true,
-		docKnowledgeBasePolishRoadmap: true,
-		docHandoffIndex:               true,
-		docWorkflowMigrationHandoff:   true,
+	joined := out.Dashboard.CurrentFocus + out.Dashboard.CurrentScope + out.Dashboard.CurrentPhase + out.Dashboard.CurrentTask
+	if strings.Contains(joined, "First Week") || strings.Contains(joined, "R-28") {
+		t.Fatalf("legacy status returned stale current facts: %+v", out.Dashboard)
 	}
-	for _, roadmap := range roadmapCatalog() {
-		paths[roadmap.Path] = true
+	if !decisionDigestContains(out.Dashboard.ActiveDecisions, "D-026") {
+		t.Fatalf("legacy status missing current D-026: %+v", out.Dashboard.ActiveDecisions)
 	}
-	for path := range paths {
-		data, err := os.ReadFile(filepath.Join(sourceRoot, filepath.FromSlash(path)))
-		if err != nil {
-			t.Fatalf("read fixture source %s: %v", path, err)
-		}
-		writeFile(t, filepath.Join(fixtureRoot, filepath.FromSlash(path)), string(data))
-	}
-	if err := validateKnowledgeCatalog(fixtureRoot); err != nil {
-		t.Fatalf("baseline fixture must validate: %v", err)
-	}
-	return fixtureRoot
 }
 
-func replaceFixtureText(t *testing.T, root, path, old, replacement string) {
-	t.Helper()
-	abs := filepath.Join(root, filepath.FromSlash(path))
-	data, err := os.ReadFile(abs)
+func TestLegacyRoleAndTaskRoutingRequiresHealthySnapshot(t *testing.T) {
+	app := newKnowledgeTestApp(t)
+	entry, err := app.currentEntryDigest(CurrentEntryDigestInput{Role: "game_designer", Area: "steam"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	text := string(data)
-	if strings.Count(text, old) != 1 {
-		t.Fatalf("expected one fixture match for %q in %s, got %d", old, path, strings.Count(text, old))
+	if !containsString(entry.Digest.ReadFirst, docGameDesignCurrent) {
+		t.Fatalf("game designer route missing current context: %+v", entry.Digest)
 	}
-	writeFile(t, abs, strings.Replace(text, old, replacement, 1))
-}
-
-func TestOpenQuestionsDigestSteamAndBrowser(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
-	steam, err := app.openQuestionsDigest(OpenQuestionsDigestInput{Area: "steam", Status: "all"})
+	context, err := app.knowledgeTaskContext(KnowledgeTaskContextInput{Role: "project_manager", Area: "docs", Task: "cleanup"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	for _, want := range []string{"OQ-Steam-001", "OQ-Steam-002", "OQ-Steam-003"} {
-		if !openQuestionDigestContains(steam.Digest, want) {
-			t.Fatalf("steam open questions digest missing %s: %+v", want, steam.Digest)
+	for _, path := range []string{docGovernance, docSupersededMap, docEvidenceReadPolicy, docOpenQuestions} {
+		if !containsString(context.Context.ReadFirst, path) && !containsString(context.Context.ReadByTask, path) {
+			t.Fatalf("PM cleanup route missing %s: %+v", path, context.Context)
 		}
 	}
 
-	browser, err := app.openQuestionsDigest(OpenQuestionsDigestInput{Area: "browser", Status: "all"})
-	if err != nil {
-		t.Fatal(err)
-	}
-	for _, want := range []string{"OQ-Browser-001", "OQ-Platform-001", "OQ-Charity-001"} {
-		if !openQuestionDigestContains(browser.Digest, want) {
-			t.Fatalf("browser open questions digest missing related %s: %+v", want, browser.Digest)
-		}
+	broken := App{cfg: Config{RepoRoot: t.TempDir()}}
+	if _, err := broken.listDecisions(ListDecisionsInput{Area: "mcp", Kind: "all"}); err == nil || !strings.Contains(err.Error(), "missing_required_source") {
+		t.Fatalf("unhealthy source must explicit-fail legacy projection, got %v", err)
 	}
 }
 
-func TestCurrentEntryDigestGameDesignerSteam(t *testing.T) {
-	app := App{cfg: Config{RepoRoot: t.TempDir()}}
-
-	out, err := app.currentEntryDigest(CurrentEntryDigestInput{Role: "game_designer", Area: "steam"})
+func TestSupersededAndGCProjectionsReadCurrentMap(t *testing.T) {
+	app := newKnowledgeTestApp(t)
+	out, err := app.explainSuperseded(ExplainSupersededInput{Path: "docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v1/README.md"})
 	if err != nil {
 		t.Fatal(err)
 	}
-	if !out.OK {
-		t.Fatalf("expected OK digest, got %+v", out)
+	if !strings.Contains(out.Classification, "superseded-by-v3") || !strings.Contains(strings.ToLower(out.CurrentSource), "v3") {
+		t.Fatalf("SUPERSEDED_MAP projection mismatch: %+v", out)
 	}
-	if !containsString(out.Digest.ReadFirst, docGameDesignCurrent) {
-		t.Fatalf("game designer steam entry should include GAME_DESIGN__CURRENT_CONTEXT.md: %+v", out.Digest)
+	unknown, err := app.explainSuperseded(ExplainSupersededInput{Path: docDecisions})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if unknown.Classification != "unknown" {
+		t.Fatalf("active decision doc must not be marked superseded: %+v", unknown)
+	}
+	report, err := app.knowledgeGCReport(KnowledgeGCReportInput{Area: "docs", MaxEntries: 20})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if !report.OK || len(report.CurrentMemory) == 0 || len(report.Knowledge) == 0 || len(report.RecommendedNextActions) == 0 {
+		t.Fatalf("source-derived GC report incomplete: %+v", report)
 	}
 }
 
@@ -567,24 +227,6 @@ func docListContains(docs []KnowledgeDoc, want string) bool {
 	return false
 }
 
-func findingListContains(findings []KnowledgePathFinding, want string) bool {
-	for _, finding := range findings {
-		if finding.Path == want {
-			return true
-		}
-	}
-	return false
-}
-
-func supersededListContains(findings []SupersededExplanation, pattern string) bool {
-	for _, finding := range findings {
-		if strings.Contains(finding.Path, pattern) {
-			return true
-		}
-	}
-	return false
-}
-
 func decisionListContains(decisions []KnowledgeDecision, want string) bool {
 	for _, decision := range decisions {
 		if decision.ID == want {
@@ -597,15 +239,6 @@ func decisionListContains(decisions []KnowledgeDecision, want string) bool {
 func openQuestionListContains(questions []OpenQuestion, want string) bool {
 	for _, question := range questions {
 		if question.ID == want {
-			return true
-		}
-	}
-	return false
-}
-
-func roadmapListContains(roadmaps []KnowledgeRoadmap, want string) bool {
-	for _, roadmap := range roadmaps {
-		if roadmap.Path == want {
 			return true
 		}
 	}

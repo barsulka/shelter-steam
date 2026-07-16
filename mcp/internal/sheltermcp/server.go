@@ -95,9 +95,15 @@ func NewServer(cfg Config) *mcp.Server {
 	}, app.ReplaceBetweenMarkers)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "read_shelter_bootstrap_context",
-		Description: "Read a bounded deterministic Shelter context bundle from fixed local docs for a role and area.",
+		Description: "Legacy full-source fallback wrapper for fixed Shelter bootstrap documents; use shelter_context_bundle for routine routing.",
 		Annotations: readOnlyAnnotations(),
 	}, app.ReadShelterBootstrapContext)
+	mcp.AddTool(server, &mcp.Tool{
+		Name:        "shelter_context_bundle",
+		Description: "Return a deterministic, budgeted, source-derived Shelter routine bootstrap and context-routing bundle.",
+		InputSchema: contextBundleInputSchema(),
+		Annotations: readOnlyAnnotations(),
+	}, app.ShelterContextBundle)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "find_current_context",
 		Description: "Return deterministic current-context and task-knowledge document paths for a Shelter area.",
@@ -105,37 +111,37 @@ func NewServer(cfg Config) *mcp.Server {
 	}, app.FindCurrentContext)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "list_decisions",
-		Description: "List accepted Shelter decisions for an area and kind from a deterministic static catalog.",
+		Description: "List accepted Shelter decisions parsed from the current canonical Markdown.",
 		Annotations: readOnlyAnnotations(),
 	}, app.ListDecisions)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "decision_digest",
-		Description: "Return compact accepted decision summaries for a Shelter area from a deterministic static catalog.",
+		Description: "Return compact accepted decision summaries parsed from the current canonical Markdown.",
 		Annotations: readOnlyAnnotations(),
 	}, app.DecisionDigest)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "get_decision",
-		Description: "Return one accepted Shelter decision by id from a deterministic static catalog.",
+		Description: "Return one accepted Shelter decision parsed from the current canonical Markdown.",
 		Annotations: readOnlyAnnotations(),
 	}, app.GetDecision)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "list_open_questions",
-		Description: "List current Shelter open questions for an area and status from a deterministic static catalog.",
+		Description: "List active Shelter open questions parsed from the current canonical Markdown.",
 		Annotations: readOnlyAnnotations(),
 	}, app.ListOpenQuestions)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "open_questions_digest",
-		Description: "Return compact open-question summaries for a Shelter area and status from a deterministic static catalog.",
+		Description: "Return compact active open-question summaries parsed from canonical Markdown.",
 		Annotations: readOnlyAnnotations(),
 	}, app.OpenQuestionsDigest)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "list_roadmaps",
-		Description: "List known Shelter roadmap docs, status, phase, owner, and next step from a deterministic static catalog.",
+		Description: "List Shelter roadmap status, phase, owner, and next step parsed from canonical Markdown.",
 		Annotations: readOnlyAnnotations(),
 	}, app.ListRoadmaps)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "latest_handoff",
-		Description: "Return the latest known relevant Shelter handoff for a role and area from a bounded static catalog.",
+		Description: "Return the latest relevant Shelter handoff parsed from HANDOFF_INDEX.",
 		Annotations: readOnlyAnnotations(),
 	}, app.LatestHandoff)
 	mcp.AddTool(server, &mcp.Tool{
@@ -160,7 +166,7 @@ func NewServer(cfg Config) *mcp.Server {
 	}, app.ListActiveDocs)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "classify_doc_path",
-		Description: "Classify one Shelter documentation path as Current Memory, Knowledge, History, or unknown using static rules.",
+		Description: "Classify one Shelter documentation path from source metadata plus bounded path conventions.",
 		Annotations: readOnlyAnnotations(),
 	}, app.ClassifyDocPath)
 	mcp.AddTool(server, &mcp.Tool{
@@ -170,7 +176,7 @@ func NewServer(cfg Config) *mcp.Server {
 	}, app.ExplainSuperseded)
 	mcp.AddTool(server, &mcp.Tool{
 		Name:        "knowledge_gc_report",
-		Description: "Generate a deterministic read-only PM cleanup report from static catalog and bounded local docs path rules.",
+		Description: "Generate a deterministic read-only PM cleanup report from source metadata and bounded local path rules.",
 		Annotations: readOnlyAnnotations(),
 	}, app.KnowledgeGCReport)
 	mcp.AddTool(server, &mcp.Tool{

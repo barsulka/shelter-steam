@@ -1,7 +1,7 @@
 # CODEX_CURRENT_STATUS
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-13
+Обновлено: 2026-07-16
 Статус: current-summary
 Владелец: Codex / Project Manager
 Назначение: короткий текущий dev-status entry point. Не является историческим журналом.
@@ -40,17 +40,22 @@ Current product state:
 First Day MVP locked at prototype/product-language level.
 D-022 Day 2 same-chain Warm Food Delivery variation is implemented and verified at prototype/product-language/runtime-evidence level.
 R-29 is closed / PASS after PM/Producer review.
-D-023 First Day + Day 2 player journey scope lock is accepted; R48-01A, R48-02A, R48-02B and R48-03 are completed/PASS. The exact bounded R48-05A v5 Packing-mask correction is Technical PASS and pending independent owner review. Overall player-facing R48-05A visual coherence is separately `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK`: the current dogs, building placement and meadow/clearing do not match the expected accepted references. Later R48-05B remains separate, and R48-04A remains deferred.
+D-023 First Day + Day 2 player journey scope lock is accepted; R48-01A, R48-02A, R48-02B and R48-03 are completed/PASS. The source-reconciled R48-05A integration is local Technical/Mechanical PASS: exact 41 PNG + 41 imports, one source-reconciled world lane and one Labrador A–H lane are active. D-024 exact 43+43 responsive-presentation integration/regressions pass, and the D-029/D-024 observability, graceful-stop and atomic-runner remediation is implemented plus independently no-Godot reviewed PASS with P0=0/P1=0/P2=0. Capture remains BLOCKED/HOLD/UNSEALED; real Steam Godot 4.7.1, Continue runtime, actual PlayerBoot control ACK, GUI/capture/manifest/seal/promotion and final runtime Art/user acceptance remain not run. Parent R48-A/R48-05 stays PARTIAL/WARN, later R48-05B remains separate, and R48-04A remains deferred.
+D-024 current status: D029_D024_OBSERVABILITY_ATOMIC_RUNNER_REMEDIATION_IMPLEMENTED / INDEPENDENT_NO_GODOT_REVIEW_PASS / P0=0 / P1=0 / P2=0 / CAPTURE_BLOCKED / EVIDENCE_HOLD / UNSEALED / BOUNDED_REAL_RUN_REQUIRES_NEW_USER_COORDINATOR_DECISION_AND_LITERAL_ACK.
 ```
 
 Current tooling state:
 
 ```text
 ChatGPT Work/Codex reads this checkout directly.
-Shelter MCP under mcp/ is an optional local domain-specific runtime/inspection adapter.
+Accepted D-026 is implemented and independently reviewed `PASS`; a healthy source-derived `shelter_context_bundle` is the active routine bootstrap/context-routing default. Local source docs remain project authority and exact fallback under the documented conditions.
+The Source-Derived MCP Context Bridge v1 publishes a 4 KiB schema minimum, 24 KiB default and 64 KiB hard cap; under-min input fails without StructuredContent, while valid knowledge errors use a bounded envelope with fixed-point actual encoded-byte accounting.
+Fixed implementation/decision/handoff/context-routing task categories now deterministically prioritize authored source paths/headings without AI/free search/arbitrary paths; canonical compound decision kinds project only to the accepted legacy enum or explicit-fail.
+All enabled legacy knowledge projections use the same source snapshot; static current-fact mirrors/fingerprints and the global startup knowledge gate are removed.
+Knowledge failure is capability-local, so server registration and runtime/capture/control tools remain available in the same session.
 Project-scoped local STDIO setup is complete.
 GitHub Actions CI for the MCP is defined; its first remote run is pending.
-Current D-022/OQ/R-29 source changes make MCP startup fail loud on knowledge catalog drift; direct checkout remains available.
+Direct checkout reads remain authority and the exact fallback for non-current/truncated bundles, exact briefs/ADRs/contracts, conflicts/parser failures and source editing.
 ```
 
 ---
@@ -76,8 +81,12 @@ Steam/Desktop / Godot:
 - First Day Art/UX visual-language pass v1 accepted as prototype pass.
 - Day 2 deterministic continuation fixture and complete second warm-delivery scenario.
 - Day 2 exact order/chain/event assertions plus six native 1x product-language moments.
-- R48-05A authored world foundation plus derived/non-persisted living Labrador adapter for exact A–G, with explicit `legacy_unbound` for existing transfer tasks.
-- R48-05A v5 capture pack with actual `2992x224` bottom-edge PlayerBoot evidence, exact `0.24` scale, state-specific 216/144/96 readbacks, clean/silhouette, four 1x motion strips, both turns/station sides, cancellation/recovery, desktop composition and Quiet Cooperative evidence; exact Packing D/F/G/contact-held EXIT local segmentation passes `8` positive / `6` negative cells with zero forbidden screen/source-alpha overlap.
+- Source-reconciled R48-05A world: 16 static full-canvas layers `00–09,11–16`, no runtime layer 10, one standalone Bicycle in the existing transport slot and 24 Labrador identity composites; exact runtime topology is `41 PNG + 41 .import`.
+- Derived/non-persisted Labrador A–H presentation at positive scale `0.24`, exact H route/cadence, both station sides and physical turns, one runtime/render lane, zero new mechanics/transfer/output and honest `legacy_unbound` for existing Unload/Carry/LoadVan phases.
+- Immutable source-reconciled runtime evidence with actual macOS desktop, native `2992x224`, `216/144/96`, checker/black alpha, First Day/Day 2/Quiet Cooperative, A–H, both turns/sides and H cancellation/recovery traces.
+- D-024 responsive presentation: seam-safe tiled meadow, independent `[0,1740]` field/viewport, bounded drag pan, right reserve, authored-positive boundary marker and exact `43 PNG + 43 .import` mechanical/regression PASS.
+- D-024 immutable authority Contract A `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`; current whole brief SHA K is `ccb81f8a7f881ad078dad54bcd811dad2616aa36f843b2bee0ca67c2487d26ed`.
+- D-029/D-024 narrow supervisor, append-only raw stdout/stderr, project-owned graceful quit/control ACK, bounded SIGTERM fallback, no-hard-kill/no-CA-allowlist policy, fail-loud expected-persistence seam and atomic staged runner are implemented. Independent no-Godot re-review reproduced authority-only/normal validator PASS, observer `22/22`, shell syntax, exact eight-path/pin, `17 -> 18` and isolation gates with `P0=0 / P1=0 / P2=0`.
 
 Shelter MCP:
 
@@ -87,8 +96,9 @@ Shelter MCP:
 - whitelisted runtime control actions;
 - safe repo tools: `git_status`, `git_diff`, `git_diff_for_review`;
 - safe patch/edit tools: `apply_patch`, markdown section editing, marker replacement, sha256 guarded writes;
-- deterministic bootstrap/context bundling via `read_shelter_bootstrap_context` with priority-first order and diagnostics.
-- deterministic knowledge access tools: `find_current_context`, `list_decisions`, `decision_digest`, `get_decision`, `list_open_questions`, `open_questions_digest`, `list_roadmaps`, `latest_handoff`, `knowledge_task_context`, `shelter_status`, `current_entry_digest`, `list_active_docs`, `classify_doc_path`, `explain_superseded`, `knowledge_gc_report`.
+- source-derived routine bootstrap/context routing via `shelter_context_bundle`;
+- legacy full-source bootstrap fallback via `read_shelter_bootstrap_context`; it is not the D-026 daily default.
+- source-derived knowledge access tools: `find_current_context`, `list_decisions`, `decision_digest`, `get_decision`, `list_open_questions`, `open_questions_digest`, `list_roadmaps`, `latest_handoff`, `knowledge_task_context`, `shelter_status`, `current_entry_digest`, `list_active_docs`, `classify_doc_path`, `explain_superseded`, `knowledge_gc_report`.
 - GitHub Actions CI runs MCP unit/race tests, vet, build and launcher syntax checks on every push and pull request.
 
 ---
@@ -106,6 +116,8 @@ steam/README.md
 docs/repo/adr/README.md
 docs/repo/status/CODEX_CURRENT_STATUS.md
 docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
+docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__Source_Derived_MCP_Context_Bridge_v1.md
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md
 ```
 
 For task execution, read the active brief in:
@@ -124,18 +136,27 @@ docs/drive/Shelter/04_DEVELOPMENT/
 - Capture packs are evidence/history, not default bootstrap context.
 - `CODEX_STATUS.md` is a historical log and should not be read in full by default.
 - MCP repo/document tools are safe helpers, not a generic shell.
-- Static MCP knowledge summaries are guarded by startup/test validation; source documents win.
+- MCP knowledge has no static current-fact mirror or manually maintained content fingerprints; source documents win and each request reparses them.
 - Read-only MCP knowledge/inspection tools run non-interactively through explicit per-tool approval; runtime-changing tools still require prompt approval.
 - The first GitHub Actions run must still verify hosted-runner/action availability; CI never starts Godot/runtime or MCP control operations.
-- Reconcile the current D-022/OQ/R-29 knowledge drift or decouple knowledge health from runtime availability in a separate accepted MCP task.
+- D-026 is final independent-review `PASS` with no remaining blocker and active daily-default rollout. Non-blocking residuals are the first remote CI run, the accepted boundary that semantic governance conflicts require canonical source synchronization/direct verification rather than an automatic detector, and honest fallback/omissions when 4 KiB cannot carry the requested context.
 - Day 2 native evidence uses existing semantic placeholders; it is not production dog art, final animation or final world readability acceptance.
-- R48-05A v1/v2/v3/v4 and source package remain immutable. v5 locally passes exact mask/scale/contact/state-envelope mechanical gates, but that result is not runtime Art PASS or general user acceptance. Overall player-facing visual coherence is `CHANGES_REQUIRED / USER_OWNER_REJECTED_CURRENT_LOOK`; separate read-only Art comparison against earlier accepted dog/building/meadow references and a new Art-owned brief sequence are required before any reconciliation mutation. Packing Table/Kitchen remain temporary anchors and R48-05B remains separate.
+- R48-05A v1–v5 history, the frozen source package and the new source-reconciled evidence pack are immutable. The new integration is Technical/Mechanical PASS only: runtime Art PASS and general user acceptance are not granted. Independent review must use the source-reconciled pack; parent R48-A/R48-05 remains PARTIAL/WARN and R48-05B remains separate.
+- D-024 capture is not active. The D-029/D-024 no-Godot remediation/review is PASS, but the canonical evidence root remains exactly 32 files/no `HASHES.sha256`/tree `4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378`. Real Steam Godot/runtime/control/capture/manifest/seal/promotion is not run. The CA diagnostic is real/unresolved/not allowlisted; recurrence is diagnostic FAIL/rc73 and STOP before capture/seal.
 
 ---
 
 ## 5. Current next likely dev step
 
-Completed workflow/tooling brief:
+Completed D-026 implementation/review authority:
+
+```text
+docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__Source_Derived_MCP_Context_Bridge_v1.md
+```
+
+The source-derived implementation and its four-finding remediation are complete and independently reviewed `PASS`; daily-default MCP-first routing is active, direct source remains authority/exact fallback, and no later MCP implementation slice is assigned.
+
+Completed previous workflow/tooling brief:
 
 ```text
 docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__ChatGPT_Work_And_Local_MCP_Migration_v1.md
@@ -158,12 +179,49 @@ Expected reasoning level:
 Current next step:
 
 ```text
-Route the exact local v5 mask evidence to the same independent Art owner without claiming runtime Art PASS. Separately perform a read-only Art comparison of current v5 against earlier accepted dog/building/meadow references, then prepare a new Art-owned reconciliation brief sequence. Do not start v6, mutate source/runtime for reconciliation, or start R48-05B from this result.
+Wait for a new user/coordinator decision. Only a new literal bounded real-run ACK naming unchanged Contract A, current brief K, all final eight implementation hashes, the pinned 32-file evidence tree and exact writer/scope may authorize the next Steam Godot/runtime/control/capture action. PM docs sync activates nothing. Do not mix this with later R48-05B work or claim parent R48-A/R48-05 closure.
 ```
 
 ---
 
 ## 6. Changelog
+
+### 2026-07-16 — D-029/D-024 remediation implemented / independent no-Godot PASS
+
+- Recorded the final exact eight-file observability, project-owned graceful-stop and atomic-runner remediation plus independent reviewer verdict `P0=0 / P1=0 / P2=0`.
+- Preserved Contract A and advanced the active brief to SHA K `ccb81f8a…`; evidence remains 32 files/no seal/tree `4ca49b1d…`.
+- Kept real Steam Godot/runtime/control/capture/manifest/seal/promotion not run, CA real/unresolved/not allowlisted and the next gate limited to a new user/coordinator decision plus literal bounded real-run ACK. PM sync activates nothing.
+
+### 2026-07-15 — D-024 authority-tool correction PASS / evidence HOLD
+
+- Recorded immutable Contract A, final Phase 2 brief SHA C and corrected validator/runner V/R after the bounded mutation matrix and no-GUI checks passed.
+- Marked capture as inactive pending literal coordinator ACK; the evidence root remains 31 files, no seal, ledger 30/30.
+- Set the only current dev step to ACK naming A/C, then one existing-runner GUI-capable macOS capture, seal and Art/user review by reserved writer `019f6604-8ac6-7871-85c8-2c858a2240f3`.
+
+### 2026-07-15 — D-026 independent review PASS / daily default active
+
+- Independent re-review reproduced and closed the prior two P1 and two P2 findings; no new P0/P1/P2 or compatibility regression was found, and remaining D-026 blockers are none.
+- Activated healthy `shelter_context_bundle` as the routine bootstrap/context-routing default while preserving local source docs as authority/exact fallback.
+- Retained first remote CI, the accepted semantic-governance conflict boundary and honest 4 KiB fallback/omissions as non-blocking residuals; returned the next project step to D-024 macOS self-capture, evidence seal and Art/user review.
+
+### 2026-07-15 — D-026 independent-review remediation / local checks PASS / re-review pending
+
+- Published the `4096` schema minimum: `1`/`4095` now fail input validation without StructuredContent; valid malformed-source errors are deterministic bounded envelopes with fixed-point actual byte counts and no silent omission.
+- Restored legacy decision-kind compatibility including D-010 as `product`, and added deterministic implementation/decision/handoff/context-routing priority from fixed task keywords.
+- Full local unit/race/vet/build, root+nested STDIO, 24 KiB/4 KiB/under-min/malformed-source and non-interactive Codex checks pass. Final D-026 acceptance/daily-default rollout still awaits independent reviewer PASS; semantic source conflicts require canonical sync/direct fallback.
+
+### 2026-07-15 — D-026 source-derived MCP context bridge / local PASS
+
+- Implemented parse-on-request source snapshots, exact current excerpts, file/block SHA-256 provenance and deterministic `shelter_context_bundle` budgets (`24576` default, `65536` hard cap).
+- Migrated every enabled legacy knowledge projection from static facts to the same canonical Markdown snapshot and removed current-fact mirrors/fingerprints plus the global startup gate.
+- Verified same-session capability isolation: a deterministic knowledge error leaves registration and runtime/capture/control tools available; local docs remain authority/exact fallback.
+
+### 2026-07-14 — source-reconciled R48-05A integration / Technical-Mechanical PASS / Art pending
+
+- Replaced the old 62-file authored runtime atomically with exact 16 world layers `00–09,11–16`, one standalone Bicycle and 24 Labrador composites: `41 PNG + 41` verified Godot sidecars, source-equal for all 41 files.
+- Integrated the exact `1740` runtime world over `2992` source width, Labrador scale `0.24`, single render lane, exact Kitchen/Packing roots and derived/non-persisted selector H route/cadence with zero gameplay/transfer output.
+- Passed the 64-check source/runtime validator, both animation-pipeline skill validators, Godot import/check/smoke, A–H/negative/cancellation/recovery, ordinary First Day/Day 2/Quiet Cooperative, profile-store/checkpoint/33-cursor Continue/SIGKILL/save-retry and isolated ordinary `play.sh`; production profile remained absent.
+- Published immutable 41-file source-reconciled evidence pack (40 ledger entries plus `HASHES.sha256`) with actual desktop and `2992x224/216/144/96` readbacks. Runtime Art review and explicit user acceptance remain pending; no R48-05B or parent closure is claimed.
 
 ### 2026-07-13 — R48-05A v5 local Technical PASS / overall current look rejected
 

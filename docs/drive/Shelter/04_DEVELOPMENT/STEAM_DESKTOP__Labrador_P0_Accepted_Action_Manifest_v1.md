@@ -1,7 +1,8 @@
 # STEAM_DESKTOP — Labrador P0 Accepted Action Manifest v1
 
 Дата: 2026-07-12
-Статус: accepted gameplay scope + source-level Art package + Technical binding WARN / PM activated for bounded R48-05A execution
+Обновлено: 2026-07-13
+Статус: accepted R48-05A core scope; selector H amendment is Game Design accepted / Producer/PM and Technical/Codex readbacks pending / no ambient executable binding yet
 Actor: `dog.labrador_intro`
 Milestone: R48-05A / P0-B + P0-D
 
@@ -9,7 +10,7 @@ Milestone: R48-05A / P0-B + P0-D
 
 ## 0. Authority and boundary
 
-This bounded manifest accepts presentation coverage only for the existing calm-helper Labrador in authoritative CookTask/PackTask flows. It adds no gameplay state, role, task, reward, quality, habit, resource, input or progression.
+This bounded manifest accepts presentation coverage only for the existing calm-helper Labrador in authoritative CookTask/PackTask flows plus the separately guarded ambient selector H. It adds no gameplay state, role, task, reward, quality, habit, resource, input or progression.
 
 R48-05A explicitly excludes object transfer. P0-C remains R48-05B and requires a separate named-prop contract.
 
@@ -30,17 +31,17 @@ R48-05A explicitly excludes object transfer. P0-C remains R48-05B and requires a
 
 No other vocabulary row is accepted by this manifest.
 
-`start`, `stop` and `turn` are accepted only as bounded presentation transitions derived from existing runtime phase/target/facing data. They are not new gameplay states and are not globally promoted in the proposed vocabulary.
+`start`, `stop` and `turn` are accepted only as bounded presentation transitions derived from existing runtime phase/target/facing data. They are not new gameplay states and are not globally promoted in the proposed vocabulary. Selector H reuses those same rows; it does not add a thirteenth row.
 
 ## 2. Actor and role
 
 - Actor: `dog.labrador_intro`.
 - Existing role: calm helper.
-- Eligible only when authoritative runtime assigns Labrador to existing `CookTask` or `PackTask`.
+- Eligible in existing work flows only when authoritative runtime assigns Labrador to `CookTask` or `PackTask`; selector H is the separate task-free presentation exception below.
 - Never inferred as TripTask driver.
 - No overlay task, quality, habit, bonus, XP, reward or new role.
 
-## 3. Authoritative selectors A–G
+## 3. Authoritative selectors A–H
 
 ### A — idle
 
@@ -84,6 +85,23 @@ All F predicates plus order `order.second_warm_delivery_careful_pack` and matchi
 
 This is a bounded care/focus visual layer on the same PackTask. It is not quality, profit, XP, habit, reward or a second task and is absent outside the exact selector.
 
+### H — ambient calm reposition / back-and-forth
+
+**Amendment state:** Game Design accepted; Producer/PM and Technical/Codex readbacks pending. No Art/Technical executable binding is authorized until those readbacks are recorded.
+
+All predicates below are required:
+
+- actor is `dog.labrador_intro`, `visible == true`, `current_task == ""` and `current_visible_state == "idle"`;
+- no queued or assigned task belongs to Labrador;
+- journey condition is exactly one of:
+  1. the existing active order is `offered`, its existing start-trip gate awaits player input, and no `TripTask` is current or queued; or
+  2. restart-stable Quiet Cooperative: completed history exists and active order/active chain are empty;
+- presentation phrase is `idle -> bounded start -> walk_empty -> optional physical turn on requested-direction change -> stop -> idle`.
+
+`ready_to_send` always resolves to selector B calm wait; it never resolves to H. H is forbidden from authoritative TripTask/task/delivery creation through completion, while any task/order predicate mismatches, during restore until durable state readback is complete, and during save-barrier failure, Retry or recovery handling. A player action that starts the existing trip gate or changes an existing player gate cancels H before the authoritative transition.
+
+H has no route endpoint, timing or cadence authority: those are Art/Technical inputs. It creates no task, event, resource movement, order/status change, save write, reward, progression, output or new player input. Facing/mirror is not evidence of physical turn; the turn remains a presentation transition. Any facing/direction cache is non-persisted presentation state and is never saved as gameplay state. On a missing/stale predicate, H fails closed to selector A idle.
+
 ## 4. Forbidden inference and fallback
 
 - Proposed vocabulary or debug analog alone never authorizes a binding.
@@ -105,8 +123,8 @@ This is a bounded care/focus visual layer on the same PackTask. It is not qualit
 
 | Owner | State | Evidence |
 | --- | --- | --- |
-| Producer | accepted | Producer/PM convergence handback, 2026-07-12 |
-| Game Designer | accepted / exact-file readback SIGNED | Game Design thread `019f57a6-d0c5-7aa0-a8ad-1b8bbb939938`, 2026-07-13 |
+| Producer | accepted R48-05A core / selector H readback pending | Producer/PM convergence handback, 2026-07-12 |
+| Game Designer | accepted selector H amendment | Game Design thread `019f57a6-d0c5-7aa0-a8ad-1b8bbb939938`, 2026-07-13 |
 | Art Director | SOURCE-READY / source-level Art signed | R48-05A-S package; Art thread `019f5ad9-79c0-7b82-9964-3491f93bb7ff`, 2026-07-13; runtime Art PASS not claimed |
-| Technical/Codex | accepted / WARN / exact-file readback SIGNED | Technical thread `019f57a6-da0c-7e00-a40e-a2e768247436`, 2026-07-13 |
-| PM | accepted / R48-05A activated | implementation brief explicitly accepted/executable, 2026-07-13 |
+| Technical/Codex | accepted R48-05A core / selector H readback pending | Technical thread `019f57a6-da0c-7e00-a40e-a2e768247436`, 2026-07-13 |
+| PM | accepted R48-05A core / selector H readback pending | implementation brief explicitly accepted/executable for core, 2026-07-13 |

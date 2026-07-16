@@ -1,6 +1,6 @@
 # 02_DECISIONS — Shelter Decision Log
 
-Обновлено: 2026-07-13
+Обновлено: 2026-07-16
 Статус: active knowledge / decision log
 Владелец: Producer / Project Manager
 Назначение: хранить принятые долгоживущие решения Shelter. История обсуждений, handoff и evidence живут в History-документах.
@@ -55,6 +55,12 @@ For implementation history, use CODEX_CURRENT_STATUS.md / CODEX_STATUS.md and re
 | D-021 | ChatGPT Work local project and Shelter MCP boundary | process/dev tooling | docs/Codex/MCP | accepted |
 | D-022 | Steam/Desktop Day 2 executable scope lock | product/game design | Steam | accepted |
 | D-023 | Steam/Desktop First Day + Day 2 player journey scope lock | product/game design | Steam | accepted |
+| D-024 | Steam/Desktop responsive meadow, field and viewport contract | product/game design/technical boundary | Steam | accepted / mechanical gate failed pre-native / unsealed / capture hold |
+| D-025 | macOS-first development sequence and visual-capture authority | product/process/technical boundary | Steam | accepted |
+| D-026 | MCP-first source-derived context bridge | process/dev tooling | docs/Codex/MCP | accepted / implemented / independent review PASS / daily default active |
+| D-027 | Blocker revalidation and user approval for material workaround routes | process/governance | all roles/Codex | accepted |
+| D-028 | Steam-managed Godot installation and version authority | process/dev environment | Steam/Desktop/Codex | accepted |
+| D-029 | Observable and graceful Godot subprocess lifecycle | process/dev tooling | Steam/Desktop/Codex | accepted |
 
 ---
 
@@ -250,6 +256,8 @@ STEAM_DESKTOP__CURRENT_CONTEXT.md
 Kind: `technical/product`
 Area: `Steam`
 Status: `accepted`
+
+Clarified by: `D-028 — Steam-managed Godot installation and version authority`
 
 Summary:
 
@@ -812,6 +820,8 @@ Kind: `process/dev tooling`
 Area: `docs/Codex/MCP`
 Status: `accepted`
 
+Clarified by: `D-026 — MCP-first source-derived context bridge`
+
 Summary:
 
 > Shelter работает как локальный проект ChatGPT Work/Codex, открытый на checkout монорепозитория. Work/Codex работает с файлами напрямую; Shelter MCP остаётся локальным domain-specific runtime/inspection adapter.
@@ -912,7 +922,7 @@ Summary:
 
 Decision:
 
-1. `First 48 Hours` — внутреннее имя программы. Canonical readiness claim до Windows smoke: `macOS-only internal First Day + Day 2 playable (session-based continuation, prototype visual level; not Steam/release ready)`.
+1. `First 48 Hours` — внутреннее имя программы. Canonical readiness claim текущей macOS-only development phase: `macOS-only internal First Day + Day 2 playable (session-based continuation, prototype visual level; not Steam/release ready)`. Windows validation не является текущим условием этого claim; его sequencing определяется D-025.
 2. Narrative Day 2 начинается ровно один раз при первом обычном `Continue` после fully-complete First Day; wall clock, timezone, real calendar и elapsed closed-app time не продвигают день.
 3. Закрытая игра frozen: нет offline simulation, catch-up, resource/reward production, decay, loss, neglect, deadline или absence penalty. Visible-unfocused/occluded runtime продолжает safe 1x simulation; minimized/OS-suspended runtime может pause/slow без restore burst.
 4. Fresh First Day Storage содержит `Protein Packet x2` и `Packaging Bag x2`. First Day расходует по одной единице; Day 2 получает persisted remainder `x1/x1`. Transition не создаёт refill/reward/resource event.
@@ -951,10 +961,10 @@ User-owner current-versus-later scope clarification accepted 2026-07-13:
 
 - **Current:** restore the Steam/Desktop base visual presentation to the canonical reconciliation targets: D-011 as the full main-strip scene target, the `approved_art_files/` library as the approved visual-language/scale/quality reference set, and the accepted Labrador direction/identity pair. This work may exercise only mechanics already present in the accepted runtime.
 - The approved Mill may be included literally as a **static decorative object**. It does not become a gameplay entity and creates no mechanic, task, resource, output, reward, input or production responsibility. No approved decorative image may imply new gameplay authority by appearance alone.
-- The first living dog remains Labrador. The minimum desired living read is a Labrador calmly walking back and forth. Exact current status: `NEEDS_MANIFEST_AMENDMENT`. No new vocabulary row is needed: reuse existing start/walk/stop/turn, but the signed A–G manifest currently allows locomotion only under station selector C. Before executable binding, a bounded selector amendment requires Game Design, Producer/PM and Technical/Codex re-sign, followed by a separate accepted/executable Codex brief.
+- The first living dog remains Labrador. The minimum desired living read is a Labrador calmly walking back and forth. Selector H records this bounded presentation route while retaining exactly the same 12 rows. Game Design, Producer/PM and Technical/Codex exact-file readbacks accept manifest SHA `d8f1a9fc9226588097eb7bdfc162b6eff520ef42605b369ba25f906daa52ae56`; exact current status is `SIGNED_GD_PM_TECHNICAL / NOT_RUNTIME_EXECUTABLE`. Existing start/walk/stop/turn are presentation transitions only, not new gameplay states. The Art source is now accepted, but runtime binding still requires a separate accepted/executable Codex brief.
 - Ambient-walk guardrails are fail-closed: no current/queued Labrador task; allowed only before TripTask while an order is offered or after Day 2 in Quiet Cooperative; `ready_to_send` calm wait wins; forbidden during authoritative trip/task/delivery, restore and save failure/retry; a player gate cancels the presentation before transition; the presentation creates zero gameplay/save/progression output.
 - Dachshund/cart is not critical and is not a current implementation requirement.
-- The current sequence is: Art reconciliation brief/package → PM/User acceptance → bounded Art source wave without runtime/code mutation → separate Codex integration brief → runtime evidence, independent Art review and explicit user review.
+- Final Art source package is accepted as `ACCEPTED_SOURCE_INPUT / RUNTIME_NOT_YET_EXECUTABLE` under `STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1__PM_User_Source_Acceptance.md`. P1 Labrador/Kitchen/Mill advisories are accepted as-is for one bounded integration trial; final user acceptance remains after actual runtime captures. Art owns approved-file promotion. A separate Codex integration brief is only `PREPARED_FOR_TECHNICAL_PREFLIGHT / NOT_EXECUTABLE` until Technical handback and later PM activation.
 - There is no v6 patch loop. R48-05B/object transfer, rooms, onboarding and background/minimize/performance work are not current work. They remain later/open gates and are neither cancelled nor activated by this clarification.
 - **Later product direction/backlog:** cart; bicycle; small-truck driver; large-truck bed passenger; school desk; library reading; lab chemistry; blackboard teaching; rocking-chair reading; sleeping; playing with another dog; tail chasing; and a broader catalogue of dog-life states. This is not current scope or implementation authority. Game Design owns future detailed semantics/selectors/catalogue; PM records only the product direction and current-versus-later boundary.
 
@@ -963,6 +973,507 @@ Canonical sources:
 ```text
 02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
 02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Scope_Lock_v1.md
+```
+
+---
+
+### D-024 — Steam/Desktop responsive meadow, field and viewport contract
+
+Дата: 2026-07-14
+Kind: `product/game design/technical boundary`
+Area: `Steam/Desktop`
+Status: `accepted / MECHANICAL_GATE_FAILED_PRE_NATIVE / UNSEALED / CAPTURE_HOLD`
+
+Summary:
+
+> PlayerBoot сохраняет 100% usable-width viewport, а Shelter meadow покрывает
+> видимую и игровую ширину бесшовным горизонтальным tile-модулем без stretch,
+> crop или tails. Gameplay field и viewport независимы; справа всегда остаётся
+> спокойный небилдабельный резерв.
+
+Decision:
+
+1. Четыре показанных пользователю Labrador/building/meadow visual принимаются
+   как положительное visual direction. Это не runtime Art PASS, shipping approval
+   или разрешение на broad pixel loop; exact byte-level mapping/promotion остаётся
+   отдельной Art-owned записью.
+2. Meadow нельзя неравномерно растягивать. Оно должно быть seam-safe горизонтально
+   tileable Shelter pattern/module, повторяемым до полного покрытия visible/world
+   width без seam, black tail или transparent tail.
+3. `gameplay field bounds`, `buildable bounds` и `viewport bounds` — независимые
+   контракты. Если field уже viewport, meadow продолжается до края viewport, но
+   внешняя область небилдабельна и исключена из dog idle/selector-H activity.
+4. Если viewport уже gameplay field, включается горизонтальный mouse-drag pan.
+   Это presentation/navigation surface с нулевым progression output; точные
+   input/zoom/coordinate правила требуют подписей Game Design и Technical.
+5. При каждом zoom справа сохраняется примерно 15% viewport-width пустого meadow:
+   без зданий и dog activity. Это композиционный/future-controls reserve; текущим
+   решением никакие будущие controls не создаются.
+6. Сразу после крайней правой buildable-клетки ставится один static decorative
+   `Fence Boundary Marker`; справа от него строить нельзя и продолжается только
+   tiled meadow. Предпочтён зеркально ориентированный вариант, который Art обязан
+   предоставить отдельным authored positive-coordinate mirrored source/export.
+   Runtime negative scale запрещён. Marker не имеет input/task/resource/output/
+   reward/progression/collision/gameplay authority и не является новой gameplay
+   entity или mechanic.
+7. CQ Hero Town screenshot служит только layout illustration границы buildable
+   поля, продолжающегося meadow и viewport edge. Нельзя копировать CQ pixels,
+   style, UI, buildings, characters, mechanics или density.
+8. Scroll/buildable/dog-exclusion/zoom contracts подписывают Producer/PM, Game
+   Design и Technical. Implementation возможна только по отдельному принятому
+   Codex brief.
+9. Additive Art amendment прошёл `PAUSED` → signed owner gates → explicit
+   `ART_RESUME` → `SOURCE_AMENDMENT_READY` → bounded PM/User source acceptance.
+   Пакет теперь frozen. Separate Codex integration mechanically completed the
+   accepted D-024 scope. Current evidence is an honest unsealed 32-file partial
+   tree; bounded runner atomicity correction is active and capture remains HOLD
+   until correction/review/PM/ACK gates in the active brief are complete.
+10. R48-05B/object transfer, rooms, onboarding, background/minimize/performance,
+    новые mechanics/entities и broad pixel regeneration остаются вне scope.
+
+Supersedes:
+
+- unique authored full-width meadow and the former `do not tile-copy` clause;
+- fixed 2992×224 player window;
+- centered or right-aligned 2992 lane with transparent gutters;
+- any black/transparent side tail.
+
+Repeated buildings/anchors are still forbidden: only the meadow pattern repeats.
+No non-uniform stretch or crop is allowed.
+
+Owner-gate closure 2026-07-14:
+
+- Game Design contract SHA
+  `e103d836427e3bb5054a183149dd97b095e91b5a4195c752ac5f4da19a00854c`
+  and GD Current Memory SHA
+  `d3c393df311e85bdd8f133c40f5be189bafc64db17de3f6dcd1b6230c096d563`
+  are signed.
+- Game Design additionally accepted `offscreen_left = -160` solely as the
+  pre-existing hidden D-013 TripTask absence sentinel for Dachshund/Bicycle; it
+  is not visible meadow/world/buildable/station/A–H/idle space.
+- Technical/Codex returned `SIGNED_TECHNICAL_READBACK`: gameplay field remains
+  `[0,1740]`, reserve target is `p=0.15`, tile and marker are source-only inputs,
+  pan/zoom is non-persisted presentation, and no PlayerBoot/platform/checkpoint/
+  profile/game-system change is required.
+- The retained Art thread is explicitly resumed under the external PM record,
+  still `SOURCE_ONLY / NOT_RUNTIME_EXECUTABLE`.
+
+Activation/status record:
+
+```text
+03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Responsive_Meadow_Left_Cluster_Amendment_v1__PM_Activation_Status.md
+```
+
+---
+
+### D-025 — macOS-first development sequence and visual-capture authority
+
+Дата: 2026-07-14
+Kind: `product/process/technical boundary`
+Area: `Steam/Desktop`
+Status: `accepted`
+
+Clarified by: `D-027 — Blocker revalidation and user approval for material workaround routes`
+
+Summary:
+
+> Shelter Steam/Desktop разрабатывается, собирается, проверяется и принимается
+> на macOS до отдельного предрелизного решения. Текущие визуальные доказательства
+> получают только штатным self-capture Godot или, когда нужен системный контекст,
+> через macOS Screenshot UI / Computer Use.
+
+Decision:
+
+1. Windows и macOS остаются будущими целевыми платформами продукта. Текущий
+   active implementation/QA/evidence/acceptance target до pre-release — только
+   macOS.
+2. Windows полностью исключён из текущих implementation, QA, evidence, warning,
+   blocker и acceptance queues. Отсутствие Windows hardware/parity не создаёт
+   `WARN`, не блокирует PASS и не должно называться
+   `CROSS_PLATFORM_WARN_WINDOWS_PENDING`.
+3. Только отдельная явная Producer/PM pre-release activation может открыть
+   Windows compatibility/port/smoke/certification wave. Это sequencing decision,
+   а не отмена будущего Windows target.
+4. Для визуального evidence разрешены ровно два штатных пути:
+   - предпочтительный Godot self-capture через существующие
+     `get_viewport().get_texture().get_image().save_png(...)`, State Connector
+     `capture.screenshot`, 10-second / 2 FPS PNG sequence
+     `capture.video.start` и профильный capture/test runner;
+   - macOS Screenshot UI через Computer Use, только когда нужен весь desktop,
+     native window frame или другой системный контекст вне Godot viewport.
+5. Третьего/ad-hoc capture path нет. Headless/dummy output без настоящего
+   framebuffer, механический log вместо изображения и новый capture subsystem
+   запрещены. Shell/terminal surface, из которого запускается существующий
+   runner, не является отдельным capture path. Исторический launch failure не
+   считается текущим без bounded revalidation по D-027. Если оба разрешённых
+   evidence path действительно недоступны в текущем environment, evidence
+   остаётся честно `BLOCKED / UNSEALED`.
+6. Screenshot production и native input/passthrough verification — разные
+   требования. Mechanical/native macOS input/passthrough проверяется там, где это
+   доступно, но не требует external desktop screenshot и не создаёт новый
+   platform scope.
+7. D-024 может закрыть текущую evidence/acceptance wave только на macOS. Старый
+   AppKit/HIServices abort относится точно к Godot `4.5.1` из
+   `/Users/barsulka/Downloads/Godot.app`, parent `Codex/ChatGPT`, до
+   Godot/project initialization. Это historical version/environment evidence,
+   а не runtime/product failure и не доказательство против текущего Steam Godot
+   `4.7` или обычного shell launch.
+8. После runner atomicity correction, independent review, PM Phase 2 и нового
+   literal capture ACK пользователь разрешил D-024 direct shell launch
+   существующего runner в logged-in macOS GUI session. Runner вызывает Steam
+   Godot `4.7` без `--headless` и создаёт штатный internal self-capture. GoLand
+   и Terminal.app не являются launch requirements. До этих gates capture
+   остаётся `HOLD / UNSEALED`; новая capture system не создаётся.
+
+Supersedes for current sequencing:
+
+- D-023 wording that tied the current readiness claim to a later Windows smoke;
+- D-024 brief/evidence clauses requiring Windows parity or a Windows warning;
+- roadmap/current-status items keeping Windows as a current open gate;
+- universal external desktop/window screenshot requirements when Godot
+  self-capture already proves the requested game image.
+
+Related authority:
+
+```text
+AGENTS.md
+steam/AGENTS.md
+04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md
+```
+
+---
+
+### D-026 — MCP-first source-derived context bridge
+
+Дата: 2026-07-15
+Kind: `process/dev tooling`
+Area: `docs/Codex/MCP`
+Status: `accepted / implemented / independent review PASS / daily default active`
+
+Clarifies: `D-021 — ChatGPT Work local project and Shelter MCP boundary`
+
+Summary:
+
+> MCP-first source-derived routine bootstrap; local source docs remain authority
+> and exact fallback; knowledge failure is capability-local and must not disable
+> runtime/capture/control.
+
+Decision:
+
+1. Когда локальный Shelter MCP доступен и его source-derived knowledge health
+   равен `current`, routine bootstrap и первичная context routing по умолчанию
+   идут через компактный детерминированный
+   `shelter_context_bundle(role, area, task, max_bytes)`.
+2. Bundle выводится из канонических Markdown source docs по запросу. Локальные
+   source docs остаются project memory и authority; MCP не создаёт отдельную или
+   вручную поддерживаемую вторую память текущих фактов.
+3. Direct source read обязателен при unavailable/non-current MCP, явном
+   `fallback`, omission/truncation, exact brief / Accepted ADR / normative
+   contract, конфликте/parser failure и при редактировании самого source doc.
+4. Source-derived snapshot должен быть детерминированным, иметь stable ordering,
+   whole-file и block hashes и защищаться от изменения source во время чтения.
+   Persistent/generated cache в первой версии не создаётся.
+5. Default bundle budget — 24 KiB, hard cap — 64 KiB по фактическому encoded
+   `StructuredContent`; text `Content` остаётся коротким и не дублирует большой
+   payload.
+6. Enabled legacy knowledge projections должны использовать тот же source
+   snapshot. Неперенесённый knowledge tool обязан explicit-fail и не может
+   возвращать static stale facts.
+7. Knowledge parsing/health failure является capability-local. В той же MCP
+   server session runtime, capture и control registration/listing остаются
+   доступными.
+8. `read_shelter_bootstrap_context` сохраняется как legacy full-source fallback,
+   а не ежедневный default.
+9. MCP остаётся domain-specific adapter: generic fs/shell/search, AI summary,
+   embeddings/vector DB, network service и новые dependencies не добавляются.
+10. Решение не меняет Godot/runtime/gameplay/art/capture contracts, Steam scope
+    или product decisions.
+
+Historical root cause resolved by the implementation:
+
+```text
+Decision: accepted and active.
+Pre-D-026 MCP globally validated a drifted manually maintained static catalog before server/tool registration.
+The implementation removed static current-fact mirrors/fingerprints and the global startup knowledge gate.
+Enabled knowledge projections now use source-derived snapshots; same-session runtime/capture/control isolation passes.
+```
+
+Current rollout status:
+
+```text
+Implementation: complete; four-finding remediation independently verified.
+Local checks: unit/race/vet/build, root+nested STDIO, Codex MCP list/get and non-interactive one-call smoke PASS.
+Independent re-review: PASS; the prior two P1 acceptance failures and two P2 compatibility/routing defects were reproduced and closed, with no new P0/P1/P2 or compatibility regressions.
+Remediated P1 scope: low-budget/error encoded-byte accounting; source-conflict health/fallback semantics.
+Remediated P2 scope: legacy decision-kind compatibility; deterministic task routing semantics.
+Final D-026 acceptance and daily-default rollout: active; healthy shelter_context_bundle is the routine bootstrap/context-routing default.
+Direct source reads: authority and exact fallback under the documented unavailable/non-current, fallback, omission/truncation, exact-contract, conflict/parser-failure and source-editing conditions.
+Non-blocking residuals: first remote CI run; no generic semantic conflict detector by accepted governance boundary; honest fallback/omissions when a 4 KiB budget cannot carry the requested context.
+Remaining D-026 blockers: none.
+Next project step: the already-governed D-024 capture-only macOS self-capture, evidence seal and Art/user review wave.
+```
+
+Related:
+
+```text
+PROJECTS_RULES.md
+AGENTS.md
+README.md
+00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
+04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__Source_Derived_MCP_Context_Bridge_v1.md
+```
+
+---
+
+### D-027 — Blocker revalidation and user approval for material workaround routes
+
+Дата: 2026-07-16
+Kind: `process/governance`
+Area: `all roles/Codex`
+Status: `accepted`
+
+Clarified by: `D-029 — Observable and graceful Godot subprocess lifecycle`
+
+Clarifies: `D-003`, `D-014`, `D-016` and the blocker-handling part of `D-025`.
+
+Summary:
+
+> Historical/environment/version blockers are evidence for bounded current
+> revalidation, not automatically current truth. A material workaround may be
+> investigated and proposed, but it cannot be adopted or operationalized
+> without explicit user agreement.
+
+Decision:
+
+1. Исторический, environmental или version-specific blocker — это evidence /
+   lead, а не автоматически активная истина текущего checkout.
+2. Перед тем как считать его активным, агент обязан перепроверить текущий
+   checkout, текущий binary/version и текущий execution environment самым
+   маленьким безопасным bounded check.
+3. Если blocker меняет согласованный execution path, acceptance route, tool
+   surface, scope, owner или создаёт существенную/multi-session workaround-
+   работу, точное evidence и варианты показываются пользователю до принятия
+   нового пути.
+4. Агент может безопасно/read-only исследовать и предложить workaround, но не
+   может принять, активировать, реализовать или начать operational use этого
+   workaround без явного пользовательского согласия. Coordinator, PM и Codex
+   не могут изготовить или подменить такое согласие.
+5. Если пользовательское согласие недоступно, изменённый route остаётся
+   `HOLD`; разрешена только безопасная in-scope диагностика без commitment к
+   workaround.
+6. После согласия approval и chosen route фиксируются в active brief/current
+   docs до implementation.
+
+Boundary:
+
+Это правило не применяется к тривиальному обратимому recovery, уже входящему в
+явно разрешённый workflow и не меняющему route, scope или acceptance. Оно не
+запрещает изобретать workaround; оно разделяет proposal и authority to adopt.
+
+Current D-024 application:
+
+- старый pre-project crash относится точно к Godot `4.5.1` из
+  `/Users/barsulka/Downloads/Godot.app`, parent `Codex/ChatGPT`, с abort в
+  HIServices/AppKit до Shelter project/runtime initialization;
+- это historical version/environment evidence, не доказательство текущего
+  blocker для Steam Godot `4.7` или ordinary shell launch;
+- пользователь явно разрешил после runner atomicity correction, independent
+  review, PM Phase 2 и literal capture ACK запускать существующий D-024 runner
+  напрямую через Codex shell/sh в logged-in macOS GUI session; runner запускает
+  Steam Godot `4.7` без `--headless`;
+- GoLand/Terminal.app не являются requirement. Required game evidence остаётся
+  внутренним Godot real-framebuffer self-capture; macOS Screenshot UI /
+  Computer Use используется отдельно только для явно требуемого desktop/native
+  window context и не является launch prerequisite;
+- текущий docs pass не активирует capture: до всех перечисленных gates остаётся
+  `CAPTURE_HOLD / UNSEALED`.
+
+Non-effect:
+
+Решение не меняет product/game/art/runtime meaning, D-024 Contract A, набор
+разрешённых capture paths, runner-only correction ownership или его atomicity
+contract.
+
+Related:
+
+```text
+PROJECTS_RULES.md
+AGENTS.md
+00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
+04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md
+```
+
+---
+
+### D-028 — Steam-managed Godot installation and version authority
+
+Дата: 2026-07-16
+Kind: `process/dev environment`
+Area: `Steam/Desktop/Codex`
+Status: `accepted`
+
+Clarified by: `D-029 — Observable and graceful Godot subprocess lifecycle`
+
+Clarifies: `D-007 — Steam/Desktop engine: Godot` and the engine-selection
+boundary around `D-027`.
+
+Summary:
+
+> Shelter Steam/Desktop local development, QA and evidence use only the Godot
+> installation managed by Steam at the repository-documented Steam path.
+> Agents do not obtain, select, substitute or remove Godot installations on
+> their own.
+
+Decision:
+
+1. Единственный разрешённый local Godot для Shelter Steam/Desktop development,
+   QA и evidence — Steam-managed bundle с authoritative executable path:
+   `$HOME/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot`.
+2. Агент никогда самостоятельно не скачивает, не устанавливает, не обновляет,
+   не распаковывает, не подменяет и не выбирает другой Godot build/version.
+3. Если Steam-managed Godot отсутствует, недоступен, имеет неверную версию или
+   требует update/repair, агент останавливается и просит пользователя выполнить
+   install/update/repair через Steam.
+4. Если найдена любая другая локальная копия, bundle или binary Godot, агент не
+   использует, не удаляет, не перемещает и не помещает её в quarantine/Trash.
+   Он сообщает пользователю точное расположение и просит пользователя удалить
+   копию, чтобы исключить path/version ambiguity.
+5. Нельзя молча fallback-нуться на `PATH`, `Downloads`, `/Applications`,
+   Homebrew, GitHub release, mirror, archive, custom binary или editor-bundled
+   Godot. Переменная `GODOT_BIN`, если разрешена существующим tooling, может
+   разрешаться только в authoritative Steam path из пункта 1.
+6. После выполненного пользователем cleanup, install, update или repair агент
+   заново читает точный Steam binary path и version до продолжения работы.
+7. Это правило выбирает engine/tool authority, но не запрещает direct shell/sh
+   launch. Прямой запуск authoritative Steam-managed binary или существующего
+   runner разрешён, когда его допускают active brief и literal ACK.
+
+Non-effect:
+
+- решение не меняет product/game/art/runtime/capture semantics;
+- оно не создаёт новый capture path и не изменяет D-024;
+- оно не даёт агенту authority удалять или перемещать найденные установки;
+- оно не переписывает D-027: revalidation и user-approval gate для material
+  workaround routes продолжают действовать.
+
+Related:
+
+```text
+PROJECTS_RULES.md
+AGENTS.md
+steam/AGENTS.md
+steam/README.md
+```
+
+---
+
+### D-029 — Observable and graceful Godot subprocess lifecycle
+
+Дата: 2026-07-16
+Kind: `process/dev tooling`
+Area: `Steam/Desktop/Codex`
+Status: `accepted`
+
+Clarifies: `D-027 — Blocker revalidation and user approval for material
+workaround routes` and `D-028 — Steam-managed Godot installation and version
+authority`.
+
+Technical authority: `ADR-0004 — Godot Child Observability And Graceful
+Termination`.
+
+Summary:
+
+> Godot subprocesses are observable and fail loud without being crashed by
+> their wrappers. Raw stdout/stderr and the exact child outcome are retained;
+> finite tests reach natural exit, long-lived processes use bounded graceful
+> termination, and errors are repaired rather than hidden or allowlisted.
+
+Decision:
+
+1. Перед spawn project-owned wrapper обязан fail-closed проверить exact
+   D-028 Steam-managed binary and current version, canonical Shelter Steam
+   project с `project.godot` и разрешённый fixed operation profile/argv.
+   Arbitrary executable, argv, shell/eval, foreign/duplicate `--path` и binary
+   fallback запрещены.
+2. Project-wide narrow supervisor использует только profiles `version`,
+   `import`, `script-check`, `scene-test`, `scene-capture` и
+   `ordinary-player`. Test fake child доступен только как imported unit seam,
+   не как public arbitrary-process CLI.
+3. Raw stdout и stderr child сохраняются полностью, раздельно и append-only до
+   matching/classification, зеркалируются live и сопровождаются ordered events.
+   Удаление единственного raw log, stdout-only capture, silent truncation или
+   redirect/suppression запрещены.
+4. Child process verdict и diagnostic verdict независимы. Result явно хранит
+   normal exit code либо terminating signal number/name, а также отдельные
+   diagnostic matches и seal eligibility; wrapper result не подменяет исходный
+   child outcome.
+5. `ERROR` не убивает finite test. Child доходит до natural exit; после этого
+   diagnostic `FAIL` блокирует capture, manifest, seal и promotion, даже если
+   process verdict равен `PASS` и позднее появился PASS marker.
+6. Long-lived child останавливается только в последовательности:
+   project/control quit с ACK → bounded grace → exact-PID `SIGTERM` → bounded
+   grace. Если PID всё ещё жив, результат — `BLOCKED_CHILD_STILL_RUNNING` с
+   сохранёнными PID/logs; `SIGKILL`, `SIGABRT` и hard-kill escalation нет.
+7. Ошибки нельзя hiding/suppress/relabel/blanket-allowlist или маскировать
+   environment changes. Исправляется причина. Текущая CA/certificate error
+   остаётся real/unresolved и блокирует capture/seal до технического fix.
+8. ADR-0003 recovery proof не имеет исключения: historical `kill -9` /
+   `OS.kill` заменяется нефатальными authored intermediate snapshots/failpoints
+   и свежим clean verifier process. Persistence/save/schema/gameplay semantics
+   не меняются.
+9. D-024 внедряет этот contract только в свой exact called chain. Broad wrapper
+   migration, если понадобится, требует отдельного tooling brief и не
+   активируется этим решением.
+
+Current implementation-route clarification, explicitly approved by the user on
+2026-07-16 under D-027:
+
+1. D-024/D-029 не реализуют native `SIGTERM` bridge, GDExtension или
+   platform-specific signal handler. Отсутствие внешней доставки
+   `NOTIFICATION_WM_CLOSE_REQUEST` не является основанием для такого scope.
+2. Always-present `PlayerBoot` / lifecycle owner получает один общий
+   project-owned graceful-shutdown routine. Реальное оконное/macOS событие
+   `NOTIFICATION_WM_CLOSE_REQUEST` вызывает этот routine; при необходимости
+   project может отключить `auto_accept_quit`, чтобы завершение прошло через
+   тот же контролируемый boundary.
+3. Общий routine прекращает приём новых действий, использует существующую
+   persistence boundary, завершает только допустимый pending persistence/flush,
+   выдаёт diagnostic/ACK и штатно вызывает `SceneTree.quit(0)`. Save/schema,
+   checkpoint, gameplay и product meaning не меняются.
+4. Automation не синтезирует `NOTIFICATION_WM_CLOSE_REQUEST` извне. Только при
+   exact flag `--shelter-observer-control-v1` узкий test-only one-shot trigger
+   читает `user://d029-observer-control/quit.request` под validated isolated
+   HOME и вызывает тот же общий graceful-shutdown routine.
+5. Exact request bytes — `SHELTER_CONTROL_QUIT\n`; stale/collision до spawn —
+   preflight rc `70`; malformed bytes — diagnostic `FAIL` без quit. Без exact
+   flag нет polling, control-file поведения или runtime change.
+6. Project ACK — exact line `shelter_project_quit_ack=true`, после которой
+   выполняется bounded deferred/frame flush и natural exit `0`.
+7. Exact-PID `SIGTERM` остаётся только bounded supervisor fallback после
+   failed/missing project ACK. Такой fallback возвращает rc `74`, делает
+   evidence ineligible и не является штатным PASS. Если child пережил второй
+   bounded grace, остаются rc `75`, `BLOCKED_CHILD_STILL_RUNNING`, PID и логи;
+   `SIGKILL`/`SIGABRT` нет.
+8. Текущая CA/certificate error остаётся real/unresolved/not allowlisted. Любое
+   повторение блокирует capture/manifest/seal/promotion.
+
+Non-effect:
+
+- решение не меняет product/game/art/runtime/capture semantics;
+- оно не создаёт новый capture path и не разрешает capture до active brief/ACK;
+- оно не разрешает alternate Godot binary, dependency, network или trust-store
+  mutation;
+- atomic stage/promote-or-restore evidence contract D-024 сохраняется.
+
+Related:
+
+```text
+PROJECTS_RULES.md
+AGENTS.md
+steam/AGENTS.md
+steam/README.md
+docs/repo/adr/0004-godot-child-observability-and-graceful-termination.md
+04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md
 ```
 
 ---
@@ -987,6 +1498,99 @@ Examples:
 ---
 
 ## 4. Changelog
+
+### 2026-07-16 — D-029 user-approved project graceful-shutdown route
+
+- Зафиксирован один общий project-owned graceful-shutdown routine в
+  always-present PlayerBoot/lifecycle owner для реального WM-close и узкого
+  flag-gated test-only control-file trigger.
+- Отклонён native SIGTERM bridge в текущем D-024/D-029 scope; supervisor
+  SIGTERM сохранён только как rc `74` ineligible fallback после failed/missing
+  project ACK, без SIGKILL/SIGABRT.
+- Зафиксированы exact control path/request/ACK, fail-closed stale/malformed
+  semantics и отсутствие polling/behavior change без exact test flag.
+- Сохранены unresolved CA gate, D-024 capture HOLD и неизменные
+  product/gameplay/save/schema/capture contracts.
+
+### 2026-07-16 — D-029 observable and graceful Godot subprocess lifecycle
+
+- Accepted full raw stdout/stderr retention, live visibility and separate
+  process/diagnostic verdicts for Godot subprocesses.
+- Required finite tests to reach natural exit after `ERROR` and long-lived
+  children to use quit/ACK → bounded grace → exact-PID SIGTERM → bounded grace,
+  with no SIGKILL/SIGABRT or hard-kill escalation.
+- Kept the current CA/certificate error unresolved and fail-loud; repair rather
+  than suppression/allowlisting is required before capture/seal.
+- Replaced fatal recovery proof with nonfatal authored snapshots/failpoints and
+  a fresh clean verifier process without changing ADR-0003 persistence meaning.
+
+### 2026-07-16 — D-028 Steam-managed Godot authority
+
+- Accepted the Steam-managed Godot installation as the only local engine/tool
+  authority for Shelter Steam/Desktop development, QA and evidence, using the
+  repository-documented Steam executable path.
+- Prohibited agent download/install/update/substitution, silent fallback to
+  other binaries and agent removal/movement of discovered Godot copies.
+- Required user-operated Steam install/update/repair or removal of other local
+  copies, followed by exact Steam path/version re-read before work continues.
+- Preserved direct shell/sh launch of the Steam-managed binary when an active
+  brief and literal ACK allow it; no product/runtime/capture meaning changed.
+
+### 2026-07-16 — D-027 blocker revalidation / user-approved routes
+
+- Accepted historical/environment/version blockers as evidence requiring a
+  smallest-safe current revalidation, not automatically active truth.
+- Separated safe workaround investigation/proposal from adoption,
+  implementation and operational use, which require explicit user agreement
+  for material route/scope/acceptance changes.
+- Clarified D-025 without changing its two-path visual-evidence contract:
+  D-024 may later use the existing runner through direct Codex shell/sh with
+  Steam Godot 4.7; GoLand/Terminal.app is not a requirement.
+- Kept D-024 on `CAPTURE_HOLD / UNSEALED` until runner correction, independent
+  review, PM Phase 2 and a new literal capture ACK.
+
+### 2026-07-15 — D-026 final reviewer PASS / daily default active
+
+- Recorded independent re-review `PASS`, closure of the prior two P1 and two P2 findings and absence of new P0/P1/P2 or compatibility regressions.
+- Activated healthy `shelter_context_bundle` as the routine bootstrap/context-routing default without changing source authority or exact fallback conditions.
+- Closed D-026 blockers, preserved first remote CI and the accepted semantic/4 KiB fallback boundaries as non-blocking residuals, and returned the current next step to the already-governed D-024 capture-only wave.
+
+### 2026-07-15 — D-026 remediation local PASS / re-review pending
+
+- Recorded the four independent-review findings as fixed locally and the complete local/client matrix as PASS.
+- Advanced the only current next step to independent re-review without changing the accepted D-026 meaning.
+- Kept final acceptance/daily-default rollout pending and direct source fallback active until reviewer PASS.
+
+### 2026-07-15 — D-026 post-implementation review status
+
+- Kept the accepted D-026 meaning/history intact and recorded that its source-derived implementation now exists.
+- Recorded happy-path local PASS but independent review `BLOCKED` on two P1 and two P2 defects.
+- Deferred final acceptance/daily-default rollout until remediation and reviewer PASS; direct source fallback remains active.
+
+### 2026-07-15 — D-026 accepted
+
+- Accepted MCP-first source-derived routine bootstrap as a clarification of D-021 without rewriting D-021 history.
+- Kept local source docs as authority and exact fallback.
+- Classified knowledge failure as capability-local and activated a separate Codex implementation brief.
+
+### 2026-07-14 — D-024 owner gates signed / explicit Art resume
+
+- Accepted exact Game Design and Technical readbacks without runtime authority.
+- Reconciled the hidden D-013 left sentinel as absence-state, not visible exterior activity.
+- Issued a separate source-only `ART_RESUME` to the retained Art owner; source acceptance and Codex/runtime remain later gates.
+
+### 2026-07-14 — D-024 responsive meadow / field / viewport authority
+
+- Accepted the four shown visual directions without authorizing a broad pixel loop.
+- Replaced unique full-width meadow with seam-safe horizontal meadow tiling.
+- Split gameplay/buildable/viewport bounds, required mouse-drag pan when needed and reserved about 15% empty meadow at the right at every zoom.
+- Added the static decorative positive-scale mirrored Fence Boundary Marker and kept Art paused pending GD, Technical and a later explicit PM resume.
+
+### 2026-07-13 — Art source accepted / integration brief prepared
+
+- Accepted the final source package as exact bounded input; resolved the three P1 advisories as accept-as-is for an integration trial while retaining final runtime user review.
+- Pinned the current visible roster/order, static decorative Mill, Labrador-only living roster, provenance route and Sheet A exclusion in the external PM activation record.
+- Closed selector H owner readbacks and prepared, but did not activate, the separate runtime integration brief.
 
 ### 2026-07-13 — D-023 current graphics / later dog-life boundary
 

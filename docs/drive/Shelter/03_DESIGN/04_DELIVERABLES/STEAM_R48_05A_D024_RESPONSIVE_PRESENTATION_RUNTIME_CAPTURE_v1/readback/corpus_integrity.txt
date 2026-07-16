@@ -1,0 +1,3 @@
+existing_41_import_sidecars=UNCHANGED
+new_sidecars=2
+final_corpus=43_png+43_import

@@ -15,11 +15,11 @@ No final gameplay architecture, production art, charity flow, Steam integration,
 ## Technology
 
 - Engine: Godot 4.x.
-- Verified local engine: `4.7.stable.steam.5b4e0cb0f`.
+- Verified local engine: `4.7.1.stable.steam.a13da4feb`.
 - Initial gameplay language: GDScript.
 - C# or GDExtension should be introduced only for a concrete need such as Steamworks, native desktop window APIs, or performance-critical subsystems.
 
-Default Steam Godot binary on this machine:
+Authoritative Steam-managed Godot binary on this machine:
 
 ```sh
 $HOME/Library/Application\ Support/Steam/steamapps/common/Godot\ Engine/Godot.app/Contents/MacOS/Godot
@@ -31,6 +31,50 @@ For scripts, prefer:
 export GODOT_BIN="$HOME/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot"
 tools/check-godot.sh
 ```
+
+Godot selection is fail-closed under D-028:
+
+- local development, QA and evidence use only the Steam-managed binary at the
+  path above;
+- do not download, install, self-update, unpack, substitute or select another
+  Godot build/version;
+- do not fall back to `PATH`, Downloads, Applications, Homebrew, GitHub
+  releases, mirrors/archives, custom binaries or editor-bundled Godot;
+- if the Steam installation is absent, unavailable, the wrong version or needs
+  repair/update, stop and ask the user to fix it through Steam;
+- if another local Godot is found, do not use, delete, move or quarantine it;
+  tell the user and ask them to remove it;
+- after user cleanup/update, re-read the exact Steam path and version before
+  continuing.
+
+`GODOT_BIN` may only resolve to the authoritative Steam path above. Direct
+shell/sh launch of that binary remains allowed when an active brief and literal
+ACK authorize it.
+
+D-029 adds a fail-closed subprocess lifecycle contract. The accepted narrow
+supervisor path is:
+
+```text
+tools/observe-godot-process.py
+```
+
+It is not operational authority until the active D-024 implementation and
+independent-review gates pass. Its CLI is limited to fixed project-owned
+profiles (`version`, `import`, `script-check`, `scene-test`, `scene-capture`,
+`ordinary-player`); it must not accept an arbitrary executable, argv or shell.
+
+Every supervised Godot child must retain separate append-only raw stdout and
+stderr, mirror both live, and publish explicit process and diagnostic verdicts.
+An `ERROR` never kills a finite test: the child reaches natural exit, then a
+diagnostic failure blocks capture, manifest, seal and promotion.
+
+Long-lived children stop only through project/control quit acknowledgement,
+bounded grace, exact-PID `SIGTERM`, and a second bounded grace. A surviving
+child is reported as blocked with its PID and logs; the wrapper never sends
+`SIGKILL` or `SIGABRT`. Errors are repaired, not hidden or allowlisted. The
+current CA/certificate error remains unresolved. Persistence recovery uses
+nonfatal authored snapshots/failpoints plus a fresh clean verifier process; no
+`kill -9` / `OS.kill` exception exists.
 
 ## Play
 
@@ -48,7 +92,9 @@ first durable First Day checkpoint; later launches offer calm `Продолжи�
 
 `play.sh` accepts no arguments. It never loads fixtures or dev saves, starts no
 connector/control server, enables no capture/debug mode, and applies no speed
-override. Set `GODOT_BIN` when Godot is not installed at the default path.
+override. If the authoritative Steam Godot is not available at its documented
+path, stop and ask the user to install/update/repair it through Steam; do not
+redirect `GODOT_BIN` to another installation.
 
 ## Develop
 

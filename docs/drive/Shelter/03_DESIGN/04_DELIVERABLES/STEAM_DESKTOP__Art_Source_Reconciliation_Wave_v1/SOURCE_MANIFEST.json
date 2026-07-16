@@ -1,0 +1,1203 @@
+{
+  "art_verdict": "SOURCE_RECONCILED",
+  "art_warning": "ART_WARN_PENDING_USER_SOURCE_REVIEW",
+  "canvas": {
+    "dog": [
+      512,
+      320
+    ],
+    "dog_identity_height_px": 225,
+    "dog_root": [
+      256,
+      280
+    ],
+    "world": [
+      2992,
+      224
+    ],
+    "world_baseline_y": 211,
+    "world_first_alpha_row": 20
+  },
+  "date": "2026-07-13",
+  "exclusions": [
+    "runtime/code/import/capture mutation",
+    "object transfer",
+    "new mechanic/task/resource/output/input",
+    "new room or gameplay entity",
+    "Dachshund/cart literal behavior",
+    "bicycle choreography",
+    "Dog House/Greenhouse literal roster",
+    "global style or palette lock",
+    "Sheet A any reuse"
+  ],
+  "generated_originals": {
+    "labrador_locomotion_sheet__flattened_original.png": {
+      "editable_layered_master": false,
+      "path": "references/generated_originals/labrador_locomotion_sheet__flattened_original.png",
+      "sha256": "fe67c60b752ae80d590a40ccbdfd60d3cb5c4d9037e3738e2eef73184cdc5ad6"
+    },
+    "labrador_work_sheet__flattened_original.png": {
+      "editable_layered_master": false,
+      "path": "references/generated_originals/labrador_work_sheet__flattened_original.png",
+      "sha256": "9c6379cdd893a76fbd01318efe5c92705f0ef0772e1e2481bf5740d5d570577c"
+    },
+    "world_asset_sheet__flattened_original.png": {
+      "editable_layered_master": false,
+      "path": "references/generated_originals/world_asset_sheet__flattened_original.png",
+      "sha256": "ede0519364aa6146c1ff3f0ae3143b9f902d8b9fb0bc1cdde27dbe93d3cf0f9e"
+    },
+    "world_meadow_plate__flattened_original.png": {
+      "editable_layered_master": false,
+      "path": "references/generated_originals/world_meadow_plate__flattened_original.png",
+      "sha256": "0b206080265c405bb59a00a16491b3cabe596500def0de4dab38cb9f5dfe9924"
+    }
+  },
+  "labrador": {
+    "actor_id": "dog.labrador_intro",
+    "facing_policy": "authored_both_positive_coordinate",
+    "identity": "natural warm golden adult Labrador; approved Watering + user-owner three-view reconciliation",
+    "physical_turn": [
+      "turn_right_to_left_mid",
+      "turn_left_to_right_mid"
+    ],
+    "pose_coverage_A_H": {
+      "A": [
+        "idle_neutral_right",
+        "ambient_attentive_left"
+      ],
+      "B": [
+        "wait_calm_left",
+        "ambient_attentive_right"
+      ],
+      "C": [
+        "locomotion_start_right",
+        "walk_support_a_right",
+        "walk_support_b_right",
+        "locomotion_stop_right",
+        "locomotion_start_left",
+        "walk_support_a_left",
+        "walk_support_b_left",
+        "locomotion_stop_left"
+      ],
+      "D": [
+        "approach_right",
+        "approach_left",
+        "contact_align_right",
+        "contact_align_left"
+      ],
+      "E": [
+        "kitchen_work_right",
+        "kitchen_work_left"
+      ],
+      "F": [
+        "packing_work_right",
+        "packing_work_left"
+      ],
+      "G": [
+        "packing_focus_right",
+        "packing_focus_left"
+      ],
+      "H": [
+        "ambient_attentive_right",
+        "ambient_attentive_left",
+        "locomotion_start_right",
+        "walk_support_a_right",
+        "walk_support_b_right",
+        "locomotion_stop_right",
+        "locomotion_start_left",
+        "walk_support_a_left",
+        "walk_support_b_left",
+        "locomotion_stop_left",
+        "turn_right_to_left_mid",
+        "turn_left_to_right_mid"
+      ]
+    },
+    "poses": {
+      "ambient_attentive_left": {
+        "alpha_bounds_identity": [
+          113,
+          55,
+          399,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/ambient_attentive_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/ambient_attentive_left/ambient_attentive_left_master.ora",
+        "muzzle_contact_pivot": [
+          119,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "ambient_attentive_right": {
+        "alpha_bounds_identity": [
+          116,
+          55,
+          397,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/ambient_attentive_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/ambient_attentive_right/ambient_attentive_right_master.ora",
+        "muzzle_contact_pivot": [
+          391,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "approach_left": {
+        "alpha_bounds_identity": [
+          94,
+          55,
+          418,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/approach_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/approach_left/approach_left_master.ora",
+        "muzzle_contact_pivot": [
+          100,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "approach_right": {
+        "alpha_bounds_identity": [
+          79,
+          55,
+          433,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/approach_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/approach_right/approach_right_master.ora",
+        "muzzle_contact_pivot": [
+          427,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "contact_align_left": {
+        "alpha_bounds_identity": [
+          101,
+          55,
+          412,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/contact_align_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/contact_align_left/contact_align_left_master.ora",
+        "muzzle_contact_pivot": [
+          107,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "contact_align_right": {
+        "alpha_bounds_identity": [
+          89,
+          55,
+          423,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/contact_align_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/contact_align_right/contact_align_right_master.ora",
+        "muzzle_contact_pivot": [
+          417,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "idle_neutral_right": {
+        "alpha_bounds_identity": [
+          101,
+          55,
+          411,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/idle_neutral_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/idle_neutral_right/idle_neutral_right_master.ora",
+        "muzzle_contact_pivot": [
+          405,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "kitchen_work_left": {
+        "alpha_bounds_identity": [
+          141,
+          55,
+          372,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/kitchen_work_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/kitchen_work_left/kitchen_work_left_master.ora",
+        "muzzle_contact_pivot": [
+          147,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "kitchen_work_right": {
+        "alpha_bounds_identity": [
+          138,
+          55,
+          374,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/kitchen_work_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/kitchen_work_right/kitchen_work_right_master.ora",
+        "muzzle_contact_pivot": [
+          368,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "locomotion_start_left": {
+        "alpha_bounds_identity": [
+          94,
+          55,
+          419,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/locomotion_start_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/locomotion_start_left/locomotion_start_left_master.ora",
+        "muzzle_contact_pivot": [
+          100,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "locomotion_start_right": {
+        "alpha_bounds_identity": [
+          88,
+          55,
+          425,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/locomotion_start_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/locomotion_start_right/locomotion_start_right_master.ora",
+        "muzzle_contact_pivot": [
+          419,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "locomotion_stop_left": {
+        "alpha_bounds_identity": [
+          100,
+          55,
+          413,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/locomotion_stop_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/locomotion_stop_left/locomotion_stop_left_master.ora",
+        "muzzle_contact_pivot": [
+          106,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "locomotion_stop_right": {
+        "alpha_bounds_identity": [
+          99,
+          55,
+          413,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/locomotion_stop_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/locomotion_stop_right/locomotion_stop_right_master.ora",
+        "muzzle_contact_pivot": [
+          407,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "packing_focus_left": {
+        "alpha_bounds_identity": [
+          54,
+          55,
+          459,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/packing_focus_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/packing_focus_left/packing_focus_left_master.ora",
+        "muzzle_contact_pivot": [
+          60,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "packing_focus_right": {
+        "alpha_bounds_identity": [
+          52,
+          55,
+          460,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/packing_focus_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/packing_focus_right/packing_focus_right_master.ora",
+        "muzzle_contact_pivot": [
+          454,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "packing_work_left": {
+        "alpha_bounds_identity": [
+          91,
+          55,
+          422,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/packing_work_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/packing_work_left/packing_work_left_master.ora",
+        "muzzle_contact_pivot": [
+          97,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "packing_work_right": {
+        "alpha_bounds_identity": [
+          90,
+          55,
+          422,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/packing_work_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/packing_work_right/packing_work_right_master.ora",
+        "muzzle_contact_pivot": [
+          416,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "turn_left_to_right_mid": {
+        "alpha_bounds_identity": [
+          127,
+          55,
+          385,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/turn_left_to_right_mid/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/turn_left_to_right_mid/turn_left_to_right_mid_master.ora",
+        "muzzle_contact_pivot": [
+          379,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "turn_right_to_left_mid": {
+        "alpha_bounds_identity": [
+          142,
+          55,
+          370,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/turn_right_to_left_mid/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/turn_right_to_left_mid/turn_right_to_left_mid_master.ora",
+        "muzzle_contact_pivot": [
+          148,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "wait_calm_left": {
+        "alpha_bounds_identity": [
+          102,
+          55,
+          411,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/wait_calm_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/wait_calm_left/wait_calm_left_master.ora",
+        "muzzle_contact_pivot": [
+          108,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "walk_support_a_left": {
+        "alpha_bounds_identity": [
+          79,
+          55,
+          434,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/walk_support_a_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/walk_support_a_left/walk_support_a_left_master.ora",
+        "muzzle_contact_pivot": [
+          85,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "walk_support_a_right": {
+        "alpha_bounds_identity": [
+          76,
+          55,
+          437,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/walk_support_a_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/walk_support_a_right/walk_support_a_right_master.ora",
+        "muzzle_contact_pivot": [
+          431,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "walk_support_b_left": {
+        "alpha_bounds_identity": [
+          82,
+          55,
+          431,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "left",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/walk_support_b_left/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/walk_support_b_left/walk_support_b_left_master.ora",
+        "muzzle_contact_pivot": [
+          88,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      },
+      "walk_support_b_right": {
+        "alpha_bounds_identity": [
+          76,
+          55,
+          436,
+          280
+        ],
+        "canvas": [
+          512,
+          320
+        ],
+        "facing": "right",
+        "ground_baseline_y": 280,
+        "identity_export": "exports/labrador/poses/walk_support_b_right/identity_rgba.png",
+        "identity_height_px": 225,
+        "master": "source/labrador/poses/walk_support_b_right/walk_support_b_right_master.ora",
+        "muzzle_contact_pivot": [
+          430,
+          138
+        ],
+        "root_pivot": [
+          256,
+          280
+        ],
+        "source_kind": "EDITABLE_LAYERED_RASTER_DERIVATIVE_OF_DECLARED_FLATTENED_GENERATED_ORIGINAL",
+        "working_paw_pivot": [
+          256,
+          280
+        ]
+      }
+    },
+    "selector_H_art_presentation_proposal": {
+      "cadence_note": "unhurried even calm-worker visual rhythm; proposal only, no selector/state/runtime authority",
+      "dwell_seconds_range": [
+        4.5,
+        8.0
+      ],
+      "physical_turn_seconds": 0.44,
+      "route_x_world": [
+        480,
+        2380
+      ],
+      "start_seconds": 0.18,
+      "station_contact_exclusion_zones": [
+        [
+          1228,
+          45,
+          1443,
+          207
+        ],
+        [
+          1677,
+          75,
+          1843,
+          207
+        ]
+      ],
+      "stop_settle_seconds": 0.24,
+      "two_support_walk_cycle_seconds": 0.82
+    },
+    "selector_H_status": "SIGNED_GD_PM_TECHNICAL__VISUAL_SOURCE_COVERAGE_ONLY__NO_RUNTIME_BINDING"
+  },
+  "owner": "Art Director + Visual Production owner",
+  "package_id": "STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1",
+  "reference_hashes": {
+    "d011": "bde69388b337f1b7b158f35958a3a740953d58816bffd4d51fff5920d54ae508",
+    "kitchen": "7b6703d65a2ab0f5af99769bbe5b025f6ffb85a83fb38e04f04d153e18b7b98a",
+    "labrador_user_three_view": "5cfffc7a32717346183b035feb00b4d429f7197381513758c831c4e69a3db1c6",
+    "labrador_watering": "b7f116605d27bf551fb0b4319c579671b9a0f696fa0d097fe221cf1b439e04d7",
+    "mill": "70b193ddaf403ee8bb885278bb2ea8cfaecdc818486dfd3c33753436042cf1f5",
+    "storage": "fb0bc903f15203923e5251a271ebf6dbaf2f9b2ccdb4a850cc48d6fcac1e741a",
+    "v5_a": "5a19f0e92590b896d5197824297237ecf8d98f2237471e039943c8829fc6eba9"
+  },
+  "runtime_art_pass": false,
+  "schema_version": "shelter.art_source_reconciliation.v1",
+  "semantic_order": [
+    "Road/Bicycle",
+    "Storage",
+    "Kitchen",
+    "Packing",
+    "Van"
+  ],
+  "shadow_and_occlusion": {
+    "dog": "dog.shadow.local is separate in every dog ORA",
+    "front_fence": "pause-only foreground span; excluded from Kitchen/Packing contact corridors",
+    "station_front_lip": "may hide distal contacting paw tips only; never muzzle/head/chest/torso",
+    "world": "broad ground belongs to meadow layers; generated local asset contact tuft is isolated in each asset ORA"
+  },
+  "sheet_a_reuse": "ZERO",
+  "source_review_advisories": [
+    "Labrador collar/coat reads slightly shaggy or Golden-like against the user-owner three-view; user/PM must choose whether the liked generated direction is accepted as-is or receives a later bounded identity grade.",
+    "Kitchen facade preserves the detailed approved Kitchen v2.1 direction; user/PM must choose between this authority and a lower-detail D-011 service-opening interpretation.",
+    "Mill uses the approved static Utility Prop direction at 188 px review height; user/PM must explicitly accept its mass or request a bounded scale change."
+  ],
+  "source_to_runtime_envelope": {
+    "binding_authority": "NONE_IN_THIS_PACKAGE",
+    "full_width_zoom": 1.7195402298850575,
+    "negative_scale_allowed": false,
+    "physical_turn_source_required": true,
+    "projected_non_shadow_height_px": 92.8551724137931,
+    "trial_uniform_positive_scale": 0.24
+  },
+  "static_decorative_insert": "Approved Mill as non-interactive Utility Prop",
+  "status": "SOURCE_RECONCILED__ART_WARN_PENDING_USER_SOURCE_REVIEW__SOURCE_ONLY__NOT_RUNTIME_EXECUTABLE",
+  "toolchain": {
+    "builder": "tools/build_package.py",
+    "numpy": "2.3.5",
+    "pillow": "12.2.0",
+    "python": "3.12.13"
+  },
+  "world": {
+    "placements": {
+      "world.anchor.bicycle_static": {
+        "asset": "bicycle",
+        "baseline_y": 207,
+        "bounds": [
+          244,
+          127,
+          356,
+          207
+        ],
+        "source_master": "source/world/assets/bicycle/bicycle_master.ora"
+      },
+      "world.anchor.road_sign": {
+        "asset": "road_sign",
+        "baseline_y": 207,
+        "bounds": [
+          102,
+          125,
+          157,
+          207
+        ],
+        "source_master": "source/world/assets/road_sign/road_sign_master.ora"
+      },
+      "world.building.kitchen": {
+        "asset": "kitchen",
+        "baseline_y": 207,
+        "bounds": [
+          1228,
+          45,
+          1443,
+          207
+        ],
+        "source_master": "source/world/assets/kitchen/kitchen_master.ora"
+      },
+      "world.building.storage": {
+        "asset": "storage",
+        "baseline_y": 207,
+        "bounds": [
+          492,
+          49,
+          729,
+          207
+        ],
+        "source_master": "source/world/assets/storage/storage_master.ora"
+      },
+      "world.depth.shrub_cluster.left": {
+        "asset": "shrub_depth",
+        "baseline_y": 198,
+        "bounds": [
+          342,
+          120,
+          478,
+          198
+        ],
+        "source_master": "source/world/assets/shrub_depth/shrub_depth_master.ora"
+      },
+      "world.depth.shrub_cluster.mid": {
+        "asset": "shrub_depth",
+        "baseline_y": 198,
+        "bounds": [
+          1117,
+          126,
+          1243,
+          198
+        ],
+        "source_master": "source/world/assets/shrub_depth/shrub_depth_master.ora"
+      },
+      "world.depth.shrub_cluster.right": {
+        "asset": "shrub_depth",
+        "baseline_y": 198,
+        "bounds": [
+          2090,
+          118,
+          2230,
+          198
+        ],
+        "source_master": "source/world/assets/shrub_depth/shrub_depth_master.ora"
+      },
+      "world.endpoint.van": {
+        "asset": "van_endpoint",
+        "baseline_y": 207,
+        "bounds": [
+          2292,
+          91,
+          2507,
+          207
+        ],
+        "source_master": "source/world/assets/van_endpoint/van_endpoint_master.ora"
+      },
+      "world.fence.back_span.left": {
+        "asset": "fence_segments",
+        "baseline_y": 201,
+        "bounds": [
+          743,
+          149,
+          907,
+          201
+        ],
+        "source_master": "source/world/assets/fence_segments/fence_segments_master.ora"
+      },
+      "world.fence.back_span.right": {
+        "asset": "fence_segments",
+        "baseline_y": 201,
+        "bounds": [
+          2174,
+          153,
+          2325,
+          201
+        ],
+        "source_master": "source/world/assets/fence_segments/fence_segments_master.ora"
+      },
+      "world.fence.front_span.pause_only": {
+        "asset": "fence_segments",
+        "baseline_y": 215,
+        "bounds": [
+          2654,
+          179,
+          2767,
+          215
+        ],
+        "source_master": "source/world/assets/fence_segments/fence_segments_master.ora"
+      },
+      "world.utility.mill_static": {
+        "asset": "mill_static",
+        "baseline_y": 207,
+        "bounds": [
+          901,
+          19,
+          1019,
+          207
+        ],
+        "source_master": "source/world/assets/mill_static/mill_static_master.ora"
+      },
+      "world.utility.packing": {
+        "asset": "packing_utility",
+        "baseline_y": 207,
+        "bounds": [
+          1677,
+          75,
+          1843,
+          207
+        ],
+        "source_master": "source/world/assets/packing_utility/packing_utility_master.ora"
+      }
+    },
+    "stations": {
+      "object.kitchen": {
+        "allowed_facing": {
+          "from_left": "right",
+          "from_right": "left"
+        },
+        "approach_root": {
+          "left": [
+            1073,
+            211
+          ],
+          "right": [
+            1598,
+            211
+          ]
+        },
+        "category": "Building",
+        "contact_align_root": {
+          "left": [
+            1194,
+            211
+          ],
+          "right": [
+            1475,
+            211
+          ]
+        },
+        "exit_root": {
+          "left": [
+            1073,
+            211
+          ],
+          "right": [
+            1598,
+            211
+          ]
+        },
+        "front_occlusion_owner": "packing front lip or kitchen service sill may cover distal contacting paw tips only; never muzzle/head/chest/torso",
+        "ground_baseline_y": 211,
+        "head_paw_contact_plane": [
+          1245,
+          110,
+          1426,
+          173
+        ],
+        "measured_source_contact": {
+          "from_left_muzzle_plane_overlap_px": 2.0,
+          "from_right_muzzle_plane_overlap_px": 2.0,
+          "rule": "muzzle edge is 2 px inside the source contact plane; working paw must remain within the same plane"
+        },
+        "physical_turn_before_approach_on_direction_change": true,
+        "shadow_owner": "station asset contact_tuft_shadow; broad ground belongs to world meadow",
+        "source_status": "PROPOSED_ART_MAPPING_ONLY__NO_RUNTIME_CONTRACT_MUTATION",
+        "work_root": {
+          "left": [
+            1198,
+            211
+          ],
+          "right": [
+            1471,
+            211
+          ]
+        },
+        "world_bounds": [
+          1228,
+          45,
+          1443,
+          207
+        ]
+      },
+      "object.packing_table": {
+        "allowed_facing": {
+          "from_left": "right",
+          "from_right": "left"
+        },
+        "approach_root": {
+          "left": [
+            1522,
+            211
+          ],
+          "right": [
+            1998,
+            211
+          ]
+        },
+        "category": "Utility Prop",
+        "contact_align_root": {
+          "left": [
+            1619,
+            211
+          ],
+          "right": [
+            1900,
+            211
+          ]
+        },
+        "exit_root": {
+          "left": [
+            1522,
+            211
+          ],
+          "right": [
+            1998,
+            211
+          ]
+        },
+        "front_occlusion_owner": "packing front lip or kitchen service sill may cover distal contacting paw tips only; never muzzle/head/chest/torso",
+        "ground_baseline_y": 211,
+        "head_paw_contact_plane": [
+          1690,
+          128,
+          1830,
+          179
+        ],
+        "measured_source_contact": {
+          "from_left_muzzle_plane_overlap_px": 2.0,
+          "from_right_muzzle_plane_overlap_px": 2.0,
+          "rule": "muzzle edge is 2 px inside the source contact plane; working paw must remain within the same plane"
+        },
+        "physical_turn_before_approach_on_direction_change": true,
+        "shadow_owner": "station asset contact_tuft_shadow; broad ground belongs to world meadow",
+        "source_status": "PROPOSED_ART_MAPPING_ONLY__NO_RUNTIME_CONTRACT_MUTATION",
+        "work_root": {
+          "left": [
+            1623,
+            211
+          ],
+          "right": [
+            1896,
+            211
+          ]
+        },
+        "world_bounds": [
+          1677,
+          75,
+          1843,
+          207
+        ]
+      }
+    }
+  }
+}
