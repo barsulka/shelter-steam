@@ -2,9 +2,9 @@
 
 Дата создания: 2026-07-12
 
-Обновлено: 2026-07-16
+Обновлено: 2026-07-18
 
-Статус: active execution roadmap / R48-01 + R48-02 + R48-03 completed PASS / R48-05A TECHNICAL_MECHANICAL_PASS / D-029+D-024 REMEDIATION IMPLEMENTED / INDEPENDENT_NO_GODOT_REVIEW_PASS / P0=0 P1=0 P2=0 / CAPTURE_BLOCKED / EVIDENCE_HOLD / UNSEALED / NEW LITERAL BOUNDED REAL-RUN ACK REQUIRED
+Статус: active execution roadmap / R48-01 + R48-02 + R48-03 completed PASS / R48-05A TECHNICAL_MECHANICAL_PASS / D-029+D-024 REMEDIATION IMPLEMENTED / PLAYER_PROFILE_PRE_FLUSH_CORRECTION_IMPLEMENTED / FOCUSED_FRESH_PROCESS_GATE_PASS / FULL_CAPTURE_NOT_ACTIVATED / CAPTURE_HOLD / EVIDENCE_HOLD / UNSEALED / NEW LITERAL FULL-CAPTURE ACK REQUIRED
 
 Владелец: Producer / Project Manager
 
@@ -54,14 +54,15 @@ R-29 не был фиктивной работой: он доказал прич
 6. `DONE / SOURCE_AMENDMENT_READY` — retained Art thread completed the 51-file package; ledger 50/50 and QA 48/48 PASS.
 7. `DONE / ACCEPTED_SOURCE_INPUT` — PM/User source acceptance is bounded to one runtime integration trial; final runtime acceptance remains open.
 8. `DONE / SIGNED_TECHNICAL_PREFLIGHT` — exact additive topology, 3840 cap, input/passthrough and KEY_H resolution accepted.
-9. `DONE / INDEPENDENT_NO_GODOT_REVIEW_PASS` — exact D-029/D-024 eight-file observability, graceful-stop and atomic-runner remediation is implemented; independent re-review reproduces all no-Godot gates with `P0=0 / P1=0 / P2=0`. Contract A is unchanged and current whole brief SHA is K `ccb81f8a…`.
-10. `NEXT / NEW_USER_COORDINATOR_DECISION_AND_LITERAL_BOUNDED_REAL_RUN_ACK_REQUIRED` — PM sync activates nothing. The 32-file canonical evidence root remains HOLD/UNSEALED with exact tree `4ca49b1d…`; only a new ACK naming A/K, final eight hashes, pinned evidence and exact writer/scope may authorize real Steam Godot/runtime/control/capture. CA recurrence is diagnostic FAIL/rc73 and STOP before capture/seal.
-11. R48-05B, rooms, onboarding, background/minimize/performance and broad dog-life work remain later/backlog. Windows compatibility/port/smoke/certification is a separate pre-release wave, not current scope.
+9. `DONE / INDEPENDENT_NO_GODOT_REVIEW_PASS` — exact D-029/D-024 eight-file observability, graceful-stop and atomic-runner remediation is implemented; independent re-review reproduces all no-Godot gates with `P0=0 / P1=0 / P2=0`.
+10. `DONE / PLAYER_PROFILE_CORRECTION_AND_FOCUSED_GATE_PASS` — the pre-flush correction is implemented, and fresh `snapshot-create after_temp_write` plus fresh `snapshot-inspect expected no_valid_profile` pass with supervisor rc0/process PASS/diagnostic PASS. Contract A is unchanged and current whole brief SHA is M `f2d26e…`.
+11. `NEXT / NEW_USER_COORDINATOR_DECISION_AND_LITERAL_FULL_CAPTURE_ACK_REQUIRED` — PM sync activates nothing. The 32-file canonical evidence root remains HOLD/UNSEALED with exact tree `4ca49b1d…`; only a new ACK naming A/M, final governed pins, pinned evidence, exact writer/scope and authorized retained-stage disposition may authorize one full runner attempt. CA/editor_data/AppKit are historical/not current blockers and remain not allowlisted; recurrence is diagnostic FAIL/rc73 and STOP before capture/seal.
+12. R48-05B, rooms, onboarding, background/minimize/performance and broad dog-life work remain later/backlog. Windows compatibility/port/smoke/certification is a separate pre-release wave, not current scope.
 ```
 
 Это изменение порядка не отменяет D-023, accepted runtime causality или будущие Program gates. D-024 требует seam-safe horizontal meadow tile без non-uniform stretch/crop/tails, независимые gameplay/buildable/viewport bounds, horizontal drag pan при узком viewport и примерно 15% пустого meadow reserve справа при каждом zoom. Сразу после крайней buildable-клетки стоит static decorative `Fence Boundary Marker`; Art предоставляет отдельный positive-coordinate mirrored source/export, runtime negative scale запрещён. Marker не имеет collision/input/gameplay authority.
 
-Source-reconciled R48-05A implementation is completed at Technical/Mechanical level. D-024 source QA, bounded PM/User source acceptance, Technical preflight and mechanical implementation are complete. The subsequent D-029/D-024 observability/atomic-runner remediation is implemented and independently no-Godot reviewed PASS. No real-run writer is active; real Steam Godot 4.7.1, Continue runtime, actual PlayerBoot control ACK, GUI/capture/manifest/seal/promotion and final player-facing Art/user acceptance remain pending a new literal bounded real-run ACK.
+Source-reconciled R48-05A implementation is completed at Technical/Mechanical level. D-024 source QA, bounded PM/User source acceptance, Technical preflight and mechanical implementation are complete. The subsequent D-029/D-024 observability/atomic-runner remediation and player-profile correction are implemented; the focused fresh-process gate is PASS. No full-capture writer is active. The focused headless Steam Godot scene-test has run, while the full runner, Continue/full runtime, actual PlayerBoot control ACK, GUI/native capture, 27 PNG, manifest, seal, promotion and final player-facing Art/user acceptance remain pending a new literal full-capture ACK.
 
 ---
 
@@ -1056,10 +1057,11 @@ Focused/unfocused/minimized cadence and 30–60 minute performance evidence rema
 6. `DONE / SOURCE_AMENDMENT_READY` — exact meadow tile, mirrored-positive marker and responsive QA/hash handback complete.
 7. `DONE / ACCEPTED_SOURCE_INPUT` — bounded runtime-trial source acceptance recorded; final runtime user/Art acceptance remains open.
 8. `DONE / SIGNED_TECHNICAL_PREFLIGHT` — exact file topology and runtime contracts accepted.
-9. `DONE / INDEPENDENT_NO_GODOT_REVIEW_PASS` — exact eight-file D-029/D-024 observability and atomic-runner remediation is implemented and independently reproduced with `P0=0 / P1=0 / P2=0`; Contract A is unchanged, brief K is `ccb81f8a…`, evidence remains 32 files/no seal/tree `4ca49b1d…`.
-10. `NEXT / NEW_LITERAL_BOUNDED_REAL_RUN_ACK_REQUIRED` — user/coordinator decides whether to proceed and issues a new literal ACK naming A/K, final eight hashes, pinned evidence tree and exact writer/scope. PM docs sync does not activate Godot/runtime/control/capture; CA remains real/unresolved/not allowlisted and recurrence is rc73/STOP before capture/seal.
-11. `LATER / PRE_RELEASE_ONLY` — Windows compatibility/port/smoke/certification opens only through a separate Producer/PM activation and is not a current WARN or blocker.
-12. Do not start v6, R48-05B/object transfer, rooms, onboarding or background/minimize/performance. Broad dog-life catalogue remains later.
+9. `DONE / INDEPENDENT_NO_GODOT_REVIEW_PASS` — exact eight-file D-029/D-024 observability and atomic-runner remediation is implemented and independently reproduced with `P0=0 / P1=0 / P2=0`.
+10. `DONE / PLAYER_PROFILE_CORRECTION_AND_FOCUSED_GATE_PASS` — exact correction hashes are `cbc2eddf…` / `94cfed68…`; fresh create/inspect results `8442e0a2…` / `4784d87…` pass with rc0/process PASS/diagnostic PASS. Contract A is unchanged, brief M is `f2d26e…`, evidence remains 32 files/no seal/tree `4ca49b1d…`.
+11. `NEXT / NEW_LITERAL_FULL_CAPTURE_ACK_REQUIRED` — user/coordinator decides whether to proceed and issues a new literal ACK naming A/M, final governed pins, pinned evidence tree, exact writer/scope and authorized retained-stage disposition. PM docs sync does not activate the full runner/runtime/control/capture; CA/editor_data/AppKit are historical/not current blockers and remain not allowlisted, with recurrence rc73/STOP before capture/seal.
+12. `LATER / PRE_RELEASE_ONLY` — Windows compatibility/port/smoke/certification opens only through a separate Producer/PM activation and is not a current WARN or blocker.
+13. Do not start v6, R48-05B/object transfer, rooms, onboarding or background/minimize/performance. Broad dog-life catalogue remains later.
 
 ---
 
@@ -1078,6 +1080,12 @@ tools/dev-vertical-slice.sh player-prototype --runtime-load-fixture=second_day_a
 ---
 
 ## 19. Changelog
+
+### 2026-07-18 — player-profile focused gate PASS / full-capture ACK next
+
+- Recorded the bounded pre-flush correction and exact fresh create/inspect gate as supervisor rc0/process PASS/diagnostic PASS; advanced authority to unchanged Contract A plus brief M `f2d26e…`.
+- Kept focused diagnostics at 18 files/PNG0/no seal/tree `39ea48e8…`, canonical evidence at 32 files/no seal/tree `4ca49b1d…` and the retained failed stage at 144 files/no seal/tree `00116ac0…`; neither diagnostic root is promotable.
+- Made a new user/coordinator decision plus literal full-capture ACK with exact writer/scope and failed-stage disposition the only next gate. Full runner/runtime/control/native capture/27 PNG/manifest/seal/promotion and final Art/user acceptance remain open; R48-05B and later scope remain untouched.
 
 ### 2026-07-16 — D-029/D-024 no-Godot remediation review PASS / real-run ACK next
 

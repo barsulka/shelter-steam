@@ -1,8 +1,17 @@
 # 01_CURRENT_STATUS
 
-Обновлено: 2026-07-16
+Обновлено: 2026-07-21
 Статус: active current status
 Владелец: Producer / Project Manager
+
+---
+
+## Актуализация 2026-07-21
+
+- Полный ordinary-Terminal D-024 capture завершён и запечатан как техническое/mechanical evidence состояния **до D-030**. Этот pack не является доказательством текущего D-030-вида и не означает финальную Art/user acceptance.
+- D-030 реализован: approved meadow period закреплён за 26 клетками, старое растянутое поле удалено, масштабируется вся игровая сцена, высота полосы следует zoom, а непрозрачная игровая поверхность принимает клики. Exact Steam Godot проверки и обычный PlayerBoot route проходят.
+- Пользовательская проверка текущего D-030 результата: «уже более-менее»; финальный art lock не заявлен.
+- Следующая отдельная, уже сформулированная пользовательская правка после этого checkpoint: изменить meadow period с 26 на 13 клеток и увеличить здания вдвое на каждом zoom-level. Она намеренно не смешивается с текущим коммитом.
 
 ---
 
@@ -36,14 +45,14 @@ First Day MVP закрыт на уровне prototype/product-language proof.
 D-022 Day 2 same-chain Warm Food Delivery variation завершена на уровне prototype/product-language/runtime-evidence.
 R-29 закрыт / PASS.
 D-023 First Day + Day 2 player journey scope lock принят.
-D-029/D-024 observability, graceful-stop and atomic-runner remediation implemented; independent no-Godot review PASS with P0=0/P1=0/P2=0. Capture remains BLOCKED / EVIDENCE_HOLD / UNSEALED until a new user/coordinator decision and literal bounded real-run ACK.
+D-029/D-024 observability, graceful-stop and atomic-runner remediation implemented; independent no-Godot review PASS with P0=0/P1=0/P2=0. The player-profile pre-flush correction is implemented and its focused fresh-process gate is PASS with supervisor rc0/process PASS/diagnostic PASS. Full capture remains NOT_ACTIVATED / EVIDENCE_HOLD / UNSEALED until a new user/coordinator decision and literal full-capture ACK.
 D-025 фиксирует macOS-only development/QA/acceptance до отдельной pre-release Windows activation и ровно два разрешённых visual-capture path.
 ```
 
 Главная текущая задача:
 
 ```text
-R48-00 accepted. R48-01A, R48-02A, R48-02B and R48-03 completed/PASS. Source-reconciled R48-05A integration is `TECHNICAL_MECHANICAL_PASS`; final runtime presentation/user acceptance remains open. D-029/D-024 is `D029_D024_OBSERVABILITY_ATOMIC_RUNNER_REMEDIATION_IMPLEMENTED / INDEPENDENT_NO_GODOT_REVIEW_PASS / P0=0 / P1=0 / P2=0 / CAPTURE_BLOCKED / EVIDENCE_HOLD / UNSEALED`: Contract A is `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`, current whole brief SHA K is `ccb81f8a7f881ad078dad54bcd811dad2616aa36f843b2bee0ca67c2487d26ed`, and the canonical evidence root is unchanged at 32 files/no seal/tree `4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378`. PM sync activates nothing; a bounded real run requires a new user/coordinator decision and literal ACK. Windows is not a current gate, WARN or blocker.
+R48-00 accepted. R48-01A, R48-02A, R48-02B and R48-03 completed/PASS. Source-reconciled R48-05A integration is `TECHNICAL_MECHANICAL_PASS`; final runtime presentation/user acceptance remains open. D-024 current state is `PLAYER_PROFILE_PRE_FLUSH_CORRECTION_IMPLEMENTED / FOCUSED_FRESH_PROCESS_GATE_PASS / SUPERVISOR_RC0 / PROCESS_PASS / DIAGNOSTIC_PASS / FULL_CAPTURE_NOT_ACTIVATED / CAPTURE_HOLD / EVIDENCE_HOLD / UNSEALED`: Contract A is `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`, current whole brief SHA M is `f2d26ebde2f27dde1c75cd82304d30f850b015834ed780947fbb6972bb111130`, and the canonical evidence root is unchanged at 32 files/no seal/tree `4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378`. PM sync activates nothing; full capture requires a new user/coordinator decision and literal full-capture ACK. Windows is not a current gate, WARN or blocker.
 ```
 
 Актуальный вход в Steam-контекст:
@@ -163,7 +172,7 @@ NOT production art. NOT final visual style. NOT shipping UX. NOT final animation
 Next scope:
 
 ```text
-D-023 selects First 48 Hours Playable. Source-reconciled integration is mechanically complete but not runtime-Art/user accepted. D-024 exact tile/marker integration and regressions pass; D-029 observability/atomic-runner remediation is implemented and independently no-Godot reviewed PASS. The 32-file canonical evidence root remains HOLD/UNSEALED with no `HASHES.sha256`. Real Steam Godot 4.7.1, Continue runtime scenarios, actual PlayerBoot control ACK, GUI/capture/manifest/seal/promotion and final Art/user review remain not run. The next gate is a new user/coordinator decision and literal bounded real-run ACK naming A/K, final eight hashes, pinned evidence tree and exact writer/scope.
+D-023 selects First 48 Hours Playable. Source-reconciled integration is mechanically complete but not runtime-Art/user accepted. D-024 exact tile/marker integration and regressions pass; D-029 observability/atomic-runner remediation and the player-profile pre-flush correction are implemented. The focused fresh-process Steam-Godot gate passed with rc0/process PASS/diagnostic PASS. The 32-file canonical evidence root remains HOLD/UNSEALED with no `HASHES.sha256`. The full runner, Continue/full runtime scenarios, actual PlayerBoot control ACK, GUI/native capture, 27 PNG, manifest, seal, promotion and final Art/user review remain not run. The next gate is a new user/coordinator decision and literal full-capture ACK naming A/M, final governed pins, pinned evidence tree, exact writer/scope and authorized failed-stage disposition.
 ```
 
 Current-versus-later boundary:
@@ -302,7 +311,7 @@ Do not read by default:
 Workflow / Codex:
 
 ```text
-D-021 local Work/Codex migration is complete. D-029/D-024 observability and atomic-runner remediation is implemented and independently no-Godot reviewed `PASS` (`P0=0 / P1=0 / P2=0`); evidence remains `CAPTURE_BLOCKED / HOLD / UNSEALED`. Contract A is `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`; current brief SHA K is `ccb81f8a7f881ad078dad54bcd811dad2616aa36f843b2bee0ca67c2487d26ed`. PM sync activates nothing. Wait for a new user/coordinator decision and literal bounded real-run ACK naming A/K, final eight hashes, pinned 32-file tree and exact writer/scope.
+D-021 local Work/Codex migration is complete. D-029/D-024 observability and atomic-runner remediation is independently reviewed `PASS`, the player-profile pre-flush correction is implemented, and the focused fresh-process gate is `PASS` (`rc0 / process PASS / diagnostic PASS`); evidence remains `CAPTURE_HOLD / HOLD / UNSEALED`. Contract A is `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`; current brief SHA M is `f2d26ebde2f27dde1c75cd82304d30f850b015834ed780947fbb6972bb111130`. PM sync activates nothing. Wait for a new user/coordinator decision and literal full-capture ACK naming A/M, final governed pins, pinned 32-file tree, exact writer/scope and authorized failed-stage disposition.
 ```
 
 Current MCP note:
@@ -313,13 +322,13 @@ The prior two P1 and two P2 findings are closed with no new P0/P1/P2 or compatib
 Unit/race/vet/build, root+nested STDIO, Codex MCP list/get and non-interactive one-call smoke pass.
 Direct source reads remain authority/exact fallback for unavailable/non-current MCP, fallback, omission/truncation, exact brief/ADR/normative contract, conflict/parser failure and source editing.
 Non-blocking residuals: first remote CI observation; the accepted no-generic-semantic-detector boundary; honest fallback/omissions when a 4 KiB budget cannot carry the requested context.
-Next project step: user/coordinator decision and new literal bounded real-run ACK under D-024 §0H. Real runtime/control/capture remains not run; CA stays real/unresolved/not allowlisted and any recurrence is rc73/STOP before capture/seal.
+Next project step: user/coordinator decision and new literal full-capture ACK under D-024 §0J. The focused headless scene-test ran and passed; the full runner/runtime/control/native capture remains not run. CA/editor_data/AppKit are historical and not current blockers, remain not allowlisted, and any recurrence is rc73/STOP before capture/seal.
 ```
 
 Product / Game Design:
 
 ```text
-D-022 implemented and accepted; R-29 closed / PASS. R48-05A source-reconciled runtime is technical/mechanical PASS. D-029/D-024 remediation is implemented and independently no-Godot reviewed PASS; capture remains BLOCKED/HOLD/UNSEALED and final runtime Art/user acceptance remains pending. The only next gate is a new user/coordinator decision and literal bounded real-run ACK; no automatic run follows docs sync. Windows validation is deferred to a separate pre-release wave and is not current work. R48-05B, rooms, onboarding and background work stay later.
+D-022 implemented and accepted; R-29 closed / PASS. R48-05A source-reconciled runtime is technical/mechanical PASS. D-029/D-024 remediation and the player-profile correction are implemented; the focused fresh-process gate is PASS. Full capture remains NOT_ACTIVATED/HOLD/UNSEALED and final runtime Art/user acceptance remains pending. The only next gate is a new user/coordinator decision and literal full-capture ACK; no automatic run follows docs sync. Windows validation is deferred to a separate pre-release wave and is not current work. R48-05B, rooms, onboarding and background work stay later.
 ```
 
 Completed/accepted and current prepared Codex briefs:
@@ -330,7 +339,7 @@ docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Player_Save_Store_
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Runtime_Safe_Checkpoints_And_Continue_v1.md
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_World_And_First_Living_Dog_v1.md
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Accepted_Art_Source_And_Labrador_H_Runtime_Integration_v1.md
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md — D029/D024 REMEDIATION IMPLEMENTED / INDEPENDENT NO-GODOT REVIEW PASS / P0=0 P1=0 P2=0 / CAPTURE BLOCKED / EVIDENCE HOLD / UNSEALED — Contract A 4f956a… / brief K ccb81f8a… / new literal bounded real-run ACK required
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md — PLAYER-PROFILE CORRECTION IMPLEMENTED / FOCUSED FRESH-PROCESS GATE PASS / rc0 / PROCESS PASS / DIAGNOSTIC PASS / FULL CAPTURE NOT ACTIVATED / EVIDENCE HOLD / UNSEALED — Contract A 4f956a… / brief M f2d26e… / new literal full-capture ACK required
 docs/drive/Shelter/04_DEVELOPMENT/SHELTER_WORKFLOW__Codex_Brief__Source_Derived_MCP_Context_Bridge_v1.md — ACCEPTED / IMPLEMENTED / INDEPENDENT REVIEW PASS / DAILY DEFAULT ACTIVE
 ```
 
@@ -349,6 +358,12 @@ Keep BOOTSTRAP_CONTEXT, SUPERSEDED_MAP, STEAM_DESKTOP__CURRENT_CONTEXT and CODEX
 ---
 
 ## Changelog
+
+### 2026-07-18 — D-024 player-profile focused gate PASS / full capture HOLD
+
+- Recorded final correction hashes `cbc2eddf…` / `94cfed68…` and exact fresh `snapshot-create` plus fresh `snapshot-inspect expected no_valid_profile` results as supervisor rc0/process PASS/diagnostic PASS.
+- Advanced current authority to unchanged Contract A plus whole brief SHA M `f2d26e…`; focused diagnostics remain 18 files/PNG0/no seal/tree `39ea48e8…`, while canonical evidence remains 32 files/no seal/tree `4ca49b1d…` and the failed stage remains 144 files/no seal/tree `00116ac0…`.
+- Kept full runner/runtime/control/native capture/27 PNG/manifest/seal/promotion and Art/user acceptance not run. CA/editor_data/AppKit are historical/not current blockers and remain not allowlisted; a new literal full-capture ACK with failed-stage disposition is the sole next gate.
 
 ### 2026-07-16 — D-029/D-024 remediation independently reviewed PASS / capture HOLD
 

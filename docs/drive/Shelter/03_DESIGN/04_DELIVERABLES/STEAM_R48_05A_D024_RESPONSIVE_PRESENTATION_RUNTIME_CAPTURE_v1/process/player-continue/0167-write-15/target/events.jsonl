@@ -1,0 +1,30 @@
+{"argv": ["/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot", "--headless", "--path", "/Users/barsulka/GolandProjects/shelter/shelter/steam", "--scene", "res://tests/player_continue/player_continue_test_runner.tscn", "--", "--continue-test-phase=write", "--continue-test-base=user://player-tests/r48-02b-79160/failed-barrier-15", "--continue-test-sequence=15"], "event": "spawn_requested", "profile": "scene-test", "sequence": 1, "timestamp": "2026-07-20T16:32:09.998217Z"}
+{"event": "child_started", "pid": 61338, "sequence": 2, "timestamp": "2026-07-20T16:32:10.000788Z"}
+{"byte_count": 69, "event": "stream_bytes", "sequence": 3, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.025691Z"}
+{"byte_count": 1, "event": "stream_bytes", "sequence": 4, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.050159Z"}
+{"byte_count": 35, "event": "stream_bytes", "sequence": 5, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.406341Z"}
+{"byte_count": 475, "event": "stream_bytes", "sequence": 6, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.429310Z"}
+{"byte_count": 286, "event": "stream_bytes", "sequence": 7, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.467027Z"}
+{"byte_count": 172, "event": "stream_bytes", "sequence": 8, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.479737Z"}
+{"byte_count": 366, "event": "stream_bytes", "sequence": 9, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.515747Z"}
+{"byte_count": 285, "event": "stream_bytes", "sequence": 10, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.565605Z"}
+{"byte_count": 356, "event": "stream_bytes", "sequence": 11, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.603384Z"}
+{"byte_count": 156, "event": "stream_bytes", "sequence": 12, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.615814Z"}
+{"byte_count": 415, "event": "stream_bytes", "sequence": 13, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.653648Z"}
+{"byte_count": 311, "event": "stream_bytes", "sequence": 14, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.703831Z"}
+{"byte_count": 73, "event": "stream_bytes", "sequence": 15, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.741511Z"}
+{"byte_count": 121, "event": "stream_bytes", "sequence": 16, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.754168Z"}
+{"byte_count": 217, "event": "stream_bytes", "sequence": 17, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.788824Z"}
+{"byte_count": 211, "event": "stream_bytes", "sequence": 18, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.801534Z"}
+{"byte_count": 111, "event": "stream_bytes", "sequence": 19, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.837622Z"}
+{"byte_count": 216, "event": "stream_bytes", "sequence": 20, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.849020Z"}
+{"byte_count": 73, "event": "stream_bytes", "sequence": 21, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.886782Z"}
+{"byte_count": 179, "event": "stream_bytes", "sequence": 22, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.899479Z"}
+{"byte_count": 121, "event": "stream_bytes", "sequence": 23, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.937155Z"}
+{"byte_count": 68, "event": "stream_bytes", "sequence": 24, "stream": "stdout", "timestamp": "2026-07-20T16:32:10.949790Z"}
+{"byte_count": 124, "event": "stream_bytes", "sequence": 25, "stream": "stdout", "timestamp": "2026-07-20T16:32:11.024983Z"}
+{"byte_count": 298, "event": "stream_bytes", "sequence": 26, "stream": "stdout", "timestamp": "2026-07-20T16:32:11.037650Z"}
+{"byte_count": 52, "event": "stream_bytes", "sequence": 27, "stream": "stdout", "timestamp": "2026-07-20T16:32:11.087419Z"}
+{"event": "stream_tail_stopped", "sequence": 28, "stream": "stderr", "timestamp": "2026-07-20T16:32:11.123121Z"}
+{"event": "stream_tail_stopped", "sequence": 29, "stream": "stdout", "timestamp": "2026-07-20T16:32:11.133473Z"}
+{"diagnostic_verdict": "PASS", "event": "child_complete", "pid": 61338, "process_verdict": "PASS", "sequence": 30, "supervisor_rc": 0, "timestamp": "2026-07-20T16:32:11.133839Z"}

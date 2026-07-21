@@ -16,18 +16,29 @@ const MAX_TICK_STEPS_PER_FRAME := 4
 const WORLD_WIDTH := 1740.0
 const AUTHORED_WORLD_WIDTH := 1740.0
 const SOURCE_WORLD_WIDTH := 2992.0
-const SOURCE_WORLD_TO_RUNTIME := WORLD_WIDTH / SOURCE_WORLD_WIDTH
+const SOURCE_WORLD_TO_RUNTIME := AUTHORED_WORLD_WIDTH / SOURCE_WORLD_WIDTH
+const FIELD_CELL_WORLD_SIZE := 32.0
+const D030_MEADOW_PATTERN_CELLS := 26
+const D030_MEADOW_PATTERN_WORLD_WIDTH := FIELD_CELL_WORLD_SIZE * D030_MEADOW_PATTERN_CELLS
+const D030_MEADOW_SOURCE_TO_WORLD := 0.5
+const D030_MOUSE_SAMPLE_SCREEN_PX := 4.0
 const D024_PRESENTATION_PATH := "res://resources/prototypes/vertical_slice/d024_responsive_presentation_v1.json"
-const D024_MEADOW_TEXTURE_PATH := "res://assets/prototypes/vertical_slice/authored/world/responsive/meadow_tile_rgba_748x224.png"
+const D024_MEADOW_TEXTURE_PATH := "res://assets/prototypes/vertical_slice/authored/world/responsive/meadow_pattern_26_cells_1664x941.png"
 const D024_MARKER_TEXTURE_PATH := "res://assets/prototypes/vertical_slice/authored/world/responsive/fence_boundary_marker_rgba.png"
 const D024_GAMEPLAY_FRACTION := 0.85
 const D024_EXTERIOR_RESERVE_FRACTION := 0.15
 const D024_ZOOM_MAX_MULTIPLIER := 1.05
 const D024_DRAG_THRESHOLD_SCREEN_PX := 8.0
-const D024_MEADOW_SOURCE_SIZE := Vector2(748.0, 224.0)
-const D024_MEADOW_TILE_WORLD_WIDTH := 435.0
-const D024_MEADOW_SOURCE_BASELINE_Y := 211.0
-const D024_MATERIAL_SOURCE_TOP_Y := 20.0
+const D024_MEADOW_SOURCE_SIZE := Vector2(1664.0, 941.0)
+const D024_MEADOW_TILE_WORLD_WIDTH := D030_MEADOW_PATTERN_WORLD_WIDTH
+const D024_MEADOW_SOURCE_BASELINE_Y := 916.0
+const D024_MATERIAL_SOURCE_TOP_Y := 523.0
+const D030_GAMEPLAY_GROUND_SOURCE_Y := 803.0
+const D030_WINDOW_VERTICAL_PADDING := 12.0
+# The lowest non-transparent source pixel varies by up to five rows across the
+# 1664-pixel period. Put that variation below the viewport rather than exposing
+# the transparent tail as a white fringe.
+const D030_MEADOW_BOTTOM_OVERSCAN_SCREEN_PX := 5.0
 const D024_MARKER_SOURCE_SIZE := Vector2(174.0, 106.0)
 const D024_MARKER_SOURCE_PIVOT := Vector2(0.0, 105.0)
 const D024_MARKER_WORLD_ROOT := Vector2(1740.0, 122.7072192513369)
@@ -53,8 +64,8 @@ const CONTROL_VIDEO_CAPTURE_SECONDS := 10.0
 const CONTROL_VIDEO_CAPTURE_FPS := 2.0
 const CONTROL_VIDEO_CAPTURE_FRAME_INTERVAL := 1.0 / CONTROL_VIDEO_CAPTURE_FPS
 
-const ZOOM_LEVELS := [0.75, 1.0, 1.25, 1.5]
-const ZOOM_LABELS := ["75", "100", "125", "150"]
+const ZOOM_LEVELS := [0.5, 1.0, 1.5, 2.0]
+const ZOOM_LABELS := ["50", "100", "150", "200"]
 
 const ASSET_PATHS := {
     "road_sign": "res://assets/prototypes/vertical_slice/semantic/utility_props/road_sign.png",
@@ -211,6 +222,8 @@ var _d024_meadow_texture: Texture2D
 var _d024_marker_texture: Texture2D
 var _d024_meadow_load_count := 0
 var _d024_marker_load_count := 0
+var _d030_meadow_alpha_top := PackedInt32Array()
+var _d024_marker_used_rect := Rect2()
 var _d024_ready := false
 var _d024_pan_candidate := false
 var _d024_pan_active := false
@@ -218,6 +231,7 @@ var _d024_pan_start_screen := Vector2.ZERO
 var _d024_pan_start_camera_x := 0.0
 var _authored_world_layers: Array[Dictionary] = []
 var _authored_labrador_poses: Dictionary = {}
+var _authored_labrador_used_rects: Dictionary = {}
 var _labrador_render_state: Dictionary = {
     "lane": "suppressed",
     "selector": "",
@@ -599,14 +613,15 @@ func test_labrador_visual_snapshot() -> Dictionary:
 
 
 func test_d024_contract_for_viewport(viewport_size: Vector2, use_zoom_max: bool, camera_at_right: bool) -> Dictionary:
-    var zoom_min := _d024_zoom_min(viewport_size.x)
-    var zoom_fit_max := _d024_zoom_fit_max(viewport_size.y)
-    var zoom_max := _d024_zoom_max(viewport_size)
+    var zoom_min := float(ZOOM_LEVELS[0])
+    var zoom_fit_max := float(ZOOM_LEVELS[ZOOM_LEVELS.size() - 1])
+    var zoom_max := float(ZOOM_LEVELS[ZOOM_LEVELS.size() - 1])
     var zoom := zoom_max if use_zoom_max else zoom_min
     var camera_max := _d024_camera_max_for(viewport_size.x, zoom)
     var camera_x := camera_max if camera_at_right else 0.0
     var baseline := _d024_baseline_for_viewport(viewport_size, zoom)
-    var source_scale := SOURCE_WORLD_TO_RUNTIME * zoom
+    var meadow_baseline := viewport_size.y
+    var source_scale := D030_MEADOW_SOURCE_TO_WORLD * zoom
     var field_boundary_screen_x := (WORLD_WIDTH - camera_x) * zoom
     var visible_world_max := camera_x + viewport_size.x / zoom
     var first_tile := int(floor(camera_x / D024_MEADOW_TILE_WORLD_WIDTH))
@@ -623,8 +638,8 @@ func test_d024_contract_for_viewport(viewport_size: Vector2, use_zoom_max: bool,
         "reserve_fraction": (viewport_size.x - field_boundary_screen_x) / viewport_size.x,
         "baseline": baseline,
         "material_y": [
-            baseline - (D024_MEADOW_SOURCE_BASELINE_Y - D024_MATERIAL_SOURCE_TOP_Y) * source_scale,
-            baseline + (D024_MEADOW_SOURCE_SIZE.y - D024_MEADOW_SOURCE_BASELINE_Y) * source_scale,
+            meadow_baseline - (D024_MEADOW_SOURCE_BASELINE_Y - D024_MATERIAL_SOURCE_TOP_Y) * source_scale,
+            meadow_baseline + (D024_MEADOW_SOURCE_SIZE.y - D024_MEADOW_SOURCE_BASELINE_Y) * source_scale,
         ],
         "tile_range": [first_tile, last_tile],
         "marker": {
@@ -650,6 +665,9 @@ func test_d024_presentation_snapshot() -> Dictionary:
         "world_width": WORLD_WIDTH,
         "source_world_width": SOURCE_WORLD_WIDTH,
         "source_world_to_runtime": SOURCE_WORLD_TO_RUNTIME,
+        "meadow_pattern_cells": D030_MEADOW_PATTERN_CELLS,
+        "meadow_pattern_world_width": D030_MEADOW_PATTERN_WORLD_WIDTH,
+        "meadow_source_to_world": D030_MEADOW_SOURCE_TO_WORLD,
         "view_mode": _view_mode,
         "viewport_size": _viewport_size(),
         "zoom_index": _zoom_index,
@@ -683,7 +701,7 @@ func test_d024_presentation_snapshot() -> Dictionary:
 
 func test_d024_set_player_framing(use_zoom_max: bool, camera_at_right: bool) -> Dictionary:
     _apply_view_mode("player_prototype")
-    _zoom_index = 2 if use_zoom_max else 1
+    _zoom_index = ZOOM_LEVELS.size() - 1 if use_zoom_max else 1
     _camera_x = _camera_max_x() if camera_at_right else 0.0
     _update_ui()
     _apply_mouse_passthrough()
@@ -972,16 +990,17 @@ func test_advance_player_to_next_checkpoint_expecting_persistence_failure(max_ti
 func _consume_expected_test_checkpoint_persistence_failure(checkpoint_kind: String, commit_result: Dictionary) -> bool:
     if _test_expected_checkpoint_persistence_failure.is_empty():
         return false
+    var retained_commit_result: Dictionary = commit_result.duplicate(true)
     var armed := _test_expected_checkpoint_persistence_failure.duplicate(true)
     _test_expected_checkpoint_persistence_failure.clear()
     _test_observed_checkpoint_persistence_failure.clear()
     _test_last_checkpoint_persistence_result.clear()
-    var store_result := commit_result.get("store_result", {}) as Dictionary
+    var store_result := retained_commit_result.get("store_result", {}) as Dictionary
     var staged_checkpoint := _player_staged_checkpoint.duplicate(true)
     var staged_journey := staged_checkpoint.get("journey", {}) as Dictionary
     var durable_checkpoint := _player_last_committed_checkpoint.duplicate(true)
     var exact_match := (
-        str(commit_result.get("error", "")) == "checkpoint_persistence_failed"
+        str(retained_commit_result.get("error", "")) == "checkpoint_persistence_failed"
         and str(store_result.get("error", "")) == "injected_failure:before_validation"
         and str(store_result.get("failpoint", "")) == "before_validation"
         and _player_checkpoint_sequence == int(armed["starting_sequence"])
@@ -995,7 +1014,7 @@ func _consume_expected_test_checkpoint_persistence_failure(checkpoint_kind: Stri
     if not exact_match:
         return false
     _test_observed_checkpoint_persistence_failure = {
-        "failure_result": commit_result.duplicate(true),
+        "failure_result": retained_commit_result,
         "durable_checkpoint": durable_checkpoint,
         "durable_checkpoint_kind": _player_checkpoint_kind,
         "durable_checkpoint_sequence": _player_checkpoint_sequence,
@@ -1541,16 +1560,16 @@ func _d024_screen_point_is_pan_ground(screen_position: Vector2) -> bool:
     var viewport_size := _viewport_size()
     if screen_position.x < 0.0 or screen_position.x > viewport_size.x:
         return false
-    if screen_position.y < _d024_ground_capture_top() or screen_position.y > viewport_size.y:
+    if screen_position.y < _d030_meadow_screen_top(screen_position.x) or screen_position.y > viewport_size.y:
         return false
-    var world_x := _screen_to_world_x(screen_position.x)
-    return world_x >= 0.0 and world_x <= WORLD_WIDTH
+    return true
 
 
 func _draw() -> void:
     var baseline := _field_baseline()
 
-    _draw_d024_meadow(baseline)
+    _draw_d024_meadow(_meadow_baseline())
+    _draw_field_cells(baseline)
     _draw_authored_world_back(baseline)
     _draw_transport(baseline)
     _draw_authored_world_middle(baseline)
@@ -1703,6 +1722,8 @@ func _load_d024_presentation() -> void:
     _d024_marker_texture = null
     _d024_meadow_load_count = 0
     _d024_marker_load_count = 0
+    _d030_meadow_alpha_top = PackedInt32Array()
+    _d024_marker_used_rect = Rect2()
 
     var raw := FileAccess.get_file_as_string(D024_PRESENTATION_PATH)
     var parsed: Variant = JSON.parse_string(raw)
@@ -1726,6 +1747,11 @@ func _load_d024_presentation() -> void:
     if _d024_marker_texture.get_size() != D024_MARKER_SOURCE_SIZE:
         push_error("D-024 boundary marker texture size drift: %s" % str(_d024_marker_texture.get_size()))
         return
+    _d030_meadow_alpha_top = _alpha_top_profile(_d024_meadow_texture)
+    _d024_marker_used_rect = _texture_used_rect(_d024_marker_texture)
+    if _d030_meadow_alpha_top.size() != int(D024_MEADOW_SOURCE_SIZE.x):
+        push_error("D-030 meadow alpha profile failed")
+        return
     _d024_ready = true
 
 
@@ -1736,7 +1762,8 @@ func _validate_d024_presentation_config(config: Dictionary) -> bool:
     var render_order := config.get("render_order", []) as Array
     var expected_order := [
         "meadow_tile",
-        "static_00_09",
+        "cell_grid",
+        "static_09_road_sign",
         "standalone_bicycle",
         "static_11_15",
         "actors",
@@ -1751,6 +1778,8 @@ func _validate_d024_presentation_config(config: Dictionary) -> bool:
         and is_equal_approx(float(field.get("gameplay_fraction", -1.0)), D024_GAMEPLAY_FRACTION)
         and is_equal_approx(float(field.get("exterior_reserve_fraction", -1.0)), D024_EXTERIOR_RESERVE_FRACTION)
         and is_equal_approx(float(material.get("tile_world_width", -1.0)), D024_MEADOW_TILE_WORLD_WIDTH)
+        and int(material.get("pattern_cells", 0)) == D030_MEADOW_PATTERN_CELLS
+        and is_equal_approx(float(material.get("source_to_world", -1.0)), D030_MEADOW_SOURCE_TO_WORLD)
         and str(material.get("repeat_axis", "")) == "x_only"
         and int(material.get("load_count", 0)) == 1
         and not bool(material.get("mipmaps", true))
@@ -1787,11 +1816,13 @@ func _load_authored_world_layers() -> void:
             "file": file_name,
             "index": layer_index,
             "texture": texture,
+            "used_rect": _texture_used_rect(texture),
         })
 
 
 func _load_authored_labrador_poses() -> void:
     _authored_labrador_poses.clear()
+    _authored_labrador_used_rects.clear()
     var pose_dirs := DirAccess.get_directories_at(AUTHORED_LABRADOR_POSE_ROOT)
     pose_dirs.sort()
     for pose_id in pose_dirs:
@@ -1801,6 +1832,7 @@ func _load_authored_labrador_poses() -> void:
             push_error("Could not load authored Labrador identity composite: %s" % pose_id)
             continue
         _authored_labrador_poses[pose_id] = texture
+        _authored_labrador_used_rects[pose_id] = _texture_used_rect(texture)
 
 
 func _reset_world_state() -> void:
@@ -2322,7 +2354,9 @@ func _target_window_size() -> Vector2i:
         return target_size
 
     if _companion_mode:
-        return Vector2i(maxi(MIN_SIZE.x, usable_rect.size.x), clampi(target_size.y, MIN_SIZE.y, usable_rect.size.y))
+        var meadow_height := (D024_MEADOW_SOURCE_BASELINE_Y - D024_MATERIAL_SOURCE_TOP_Y) * D030_MEADOW_SOURCE_TO_WORLD * _zoom()
+        var zoomed_height := ceili(meadow_height + D030_WINDOW_VERTICAL_PADDING)
+        return Vector2i(maxi(MIN_SIZE.x, usable_rect.size.x), clampi(maxi(target_size.y, zoomed_height), MIN_SIZE.y, usable_rect.size.y))
 
     var max_width: int = maxi(MIN_SIZE.x, usable_rect.size.x - (WINDOW_MARGIN * 2))
     var max_height: int = maxi(MIN_SIZE.y, usable_rect.size.y - (WINDOW_MARGIN * 2))
@@ -2355,6 +2389,10 @@ func _process(delta: float) -> void:
 
 func _start_auto_quit_timeout() -> void:
     await get_tree().create_timer(_auto_quit_seconds).timeout
+    if _view_mode == "player_prototype" and not _auto_play:
+        print("d030_player_smoke=passed zoom=%s window_size=%s" % [ZOOM_LABELS[_zoom_index], DisplayServer.window_get_size(WINDOW_ID)])
+        get_tree().quit(0)
+        return
     if _chain_complete:
         get_tree().quit(0)
         return
@@ -3954,7 +3992,7 @@ func _current_task_label() -> String:
 
 func _draw_authored_world_back(baseline: float) -> void:
     for layer in _authored_world_layers:
-        if int(layer.get("index", -1)) <= 9:
+        if int(layer.get("index", -1)) == 9:
             _draw_authored_world_layer(layer, baseline)
 
 
@@ -3962,7 +4000,7 @@ func _draw_d024_meadow(baseline: float) -> void:
     if not _d024_ready or _d024_meadow_texture == null:
         return
     var zoom := _zoom()
-    var render_scale := SOURCE_WORLD_TO_RUNTIME * zoom
+    var render_scale := D030_MEADOW_SOURCE_TO_WORLD * zoom
     var visible_world_min := _camera_x
     var visible_world_max := _camera_x + _visible_world_width()
     var first_tile := int(floor(visible_world_min / D024_MEADOW_TILE_WORLD_WIDTH))
@@ -3972,6 +4010,21 @@ func _draw_d024_meadow(baseline: float) -> void:
     for tile_index in range(first_tile, last_tile + 1):
         draw_texture(_d024_meadow_texture, Vector2(float(tile_index) * D024_MEADOW_SOURCE_SIZE.x, 0.0))
     draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+
+
+func _draw_field_cells(baseline: float) -> void:
+    var zoom := _zoom()
+    var viewport_size := _viewport_size()
+    var cell_top := maxf(0.0, baseline - (112.0 * zoom))
+    var first_cell := maxi(0, floori(_camera_x / FIELD_CELL_WORLD_SIZE))
+    var last_cell := mini(ceili(WORLD_WIDTH / FIELD_CELL_WORLD_SIZE), ceili((_camera_x + _visible_world_width()) / FIELD_CELL_WORLD_SIZE))
+    draw_line(Vector2(maxf(0.0, _world_to_screen_x(0.0)), cell_top), Vector2(minf(viewport_size.x, _world_to_screen_x(WORLD_WIDTH)), cell_top), Color(0.19, 0.14, 0.07, 0.28), maxf(1.0, zoom * 0.65))
+    for cell_index in range(first_cell, last_cell + 1):
+        var screen_x := _world_to_screen_x(float(cell_index) * FIELD_CELL_WORLD_SIZE)
+        if screen_x < -1.0 or screen_x > viewport_size.x + 1.0:
+            continue
+        var alpha := 0.38 if cell_index % D030_MEADOW_PATTERN_CELLS == 0 else 0.20
+        draw_line(Vector2(screen_x, cell_top), Vector2(screen_x, viewport_size.y), Color(0.17, 0.12, 0.06, alpha), maxf(1.0, zoom * 0.55))
 
 
 func _draw_authored_world_middle(baseline: float) -> void:
@@ -4816,58 +4869,59 @@ func _field_baseline() -> float:
     return maxf(148.0, _viewport_size().y - 36.0)
 
 
+func _meadow_baseline() -> float:
+    if _view_mode == "player_prototype":
+        # Keep the last opaque source row just beyond the viewport edge so
+        # linear filtering can never expose a one-pixel transparent/white gap.
+        return _viewport_size().y + D030_MEADOW_BOTTOM_OVERSCAN_SCREEN_PX
+    return _field_baseline()
+
+
 func _viewport_size() -> Vector2:
     var window_size := DisplayServer.window_get_size(WINDOW_ID)
     return Vector2(maxf(size.x, float(window_size.x)), maxf(size.y, float(window_size.y)))
 
 
 func _zoom() -> float:
-    if _view_mode == "player_prototype":
-        return _d024_player_zoom_for_viewport(_viewport_size(), _zoom_index)
     return float(ZOOM_LEVELS[_zoom_index])
 
 
 func _d024_zoom_min(viewport_width: float) -> float:
-    return D024_GAMEPLAY_FRACTION * viewport_width / WORLD_WIDTH
+    return float(ZOOM_LEVELS[0])
 
 
 func _d024_zoom_fit_max(viewport_height: float) -> float:
-    return viewport_height / ((D024_MEADOW_SOURCE_SIZE.y - D024_MATERIAL_SOURCE_TOP_Y) * SOURCE_WORLD_TO_RUNTIME)
+    return float(ZOOM_LEVELS[ZOOM_LEVELS.size() - 1])
 
 
 func _d024_zoom_max(viewport_size: Vector2) -> float:
-    return minf(D024_ZOOM_MAX_MULTIPLIER * _d024_zoom_min(viewport_size.x), _d024_zoom_fit_max(viewport_size.y))
+    return float(ZOOM_LEVELS[ZOOM_LEVELS.size() - 1])
 
 
 func _d024_player_zoom_for_viewport(viewport_size: Vector2, zoom_index: int) -> float:
-    var zoom_min := _d024_zoom_min(viewport_size.x)
-    if zoom_index <= 1:
-        return zoom_min
-    return maxf(zoom_min, _d024_zoom_max(viewport_size))
+    return float(ZOOM_LEVELS[clampi(zoom_index, 0, ZOOM_LEVELS.size() - 1)])
 
 
 func _d024_baseline_for_viewport(viewport_size: Vector2, zoom: float) -> float:
-    var source_scale := SOURCE_WORLD_TO_RUNTIME * zoom
-    var minimum := (D024_MEADOW_SOURCE_BASELINE_Y - D024_MATERIAL_SOURCE_TOP_Y) * source_scale
-    var maximum := viewport_size.y - (D024_MEADOW_SOURCE_SIZE.y - D024_MEADOW_SOURCE_BASELINE_Y) * source_scale
-    return clampf(viewport_size.y - 36.0, minimum, maximum)
+    return viewport_size.y - (D024_MEADOW_SOURCE_BASELINE_Y - D030_GAMEPLAY_GROUND_SOURCE_Y) * D030_MEADOW_SOURCE_TO_WORLD * zoom
 
 
 func _d024_camera_max_for(viewport_width: float, zoom: float) -> float:
-    return maxf(0.0, WORLD_WIDTH - D024_GAMEPLAY_FRACTION * (viewport_width / zoom))
+    return maxf(0.0, WORLD_WIDTH - (viewport_width / zoom))
 
 
 func _camera_max_x() -> float:
-    if _view_mode == "player_prototype":
-        return _d024_camera_max_for(_viewport_size().x, _zoom())
     return maxf(WORLD_WIDTH - _visible_world_width(), 0.0)
 
 
 func _set_zoom_index(index: int) -> void:
     _zoom_index = clampi(index, 0, ZOOM_LEVELS.size() - 1)
-    _camera_x = _clamped_camera_x(_camera_x)
-    _apply_mouse_passthrough()
-    queue_redraw()
+    if is_inside_tree():
+        _apply_window_settings()
+    else:
+        _camera_x = _clamped_camera_x(_camera_x)
+        _apply_mouse_passthrough()
+        queue_redraw()
 
 
 func _pan(direction: float) -> void:
@@ -4943,7 +4997,7 @@ func _interactive_mouse_polygon() -> PackedVector2Array:
 
 func _d024_ground_capture_top() -> float:
     return clampf(
-        _field_baseline() - (D024_MEADOW_SOURCE_BASELINE_Y - D024_MATERIAL_SOURCE_TOP_Y) * SOURCE_WORLD_TO_RUNTIME * _zoom(),
+        _meadow_baseline() - (D024_MEADOW_SOURCE_BASELINE_Y - D024_MATERIAL_SOURCE_TOP_Y) * D030_MEADOW_SOURCE_TO_WORLD * _zoom(),
         0.0,
         _viewport_size().y
     )
@@ -4951,58 +5005,106 @@ func _d024_ground_capture_top() -> float:
 
 func _d024_player_mouse_polygon() -> PackedVector2Array:
     var viewport_size := _viewport_size()
-    var field_left := clampf(_world_to_screen_x(0.0), 0.0, viewport_size.x)
-    var field_right := clampf(_world_to_screen_x(WORLD_WIDTH), 0.0, viewport_size.x)
-    var control_rects: Array[Rect2] = []
-    for control in _interactive_controls():
-        if control == null or not control.visible:
-            continue
-        var raw_rect := Rect2(control.global_position, control.size).grow(MOUSE_PASSTHROUGH_PADDING)
-        var clipped_position := Vector2(maxf(0.0, raw_rect.position.x), maxf(0.0, raw_rect.position.y))
-        var clipped_end := Vector2(minf(field_right, raw_rect.end.x), minf(viewport_size.y, raw_rect.end.y))
-        if clipped_end.x > clipped_position.x and clipped_end.y > clipped_position.y:
-            control_rects.append(Rect2(clipped_position, clipped_end - clipped_position))
-
-    if _camera_max_x() <= 0.0:
-        if control_rects.is_empty():
-            return PackedVector2Array()
-        var control_bounds := control_rects[0]
-        for index in range(1, control_rects.size()):
-            control_bounds = control_bounds.merge(control_rects[index])
-        return PackedVector2Array([
-            control_bounds.position,
-            Vector2(control_bounds.end.x, control_bounds.position.y),
-            control_bounds.end,
-            Vector2(control_bounds.position.x, control_bounds.end.y),
-        ])
-
-    var intervals: Array[Dictionary] = []
-    if field_right > field_left:
-        _add_mouse_interval(intervals, field_left, field_right, _d024_ground_capture_top(), field_right, viewport_size.y)
-
-    for rect in control_rects:
-        _add_mouse_interval(intervals, rect.position.x, minf(rect.end.x, field_right), rect.position.y, field_right, viewport_size.y)
-
-    var merged := _merged_mouse_intervals(intervals)
-    if merged.is_empty():
-        return PackedVector2Array()
-
+    var content_rects := _d030_visible_content_rects()
     var points := PackedVector2Array()
-    var first_x := float((merged[0] as Dictionary)["x1"])
-    points.append(Vector2(first_x, viewport_size.y))
-    var cursor_x := first_x
-    for interval in merged:
-        var x1 := float(interval["x1"])
-        var x2 := float(interval["x2"])
-        var top := float(interval["top"])
-        if x1 > cursor_x:
-            points.append(Vector2(cursor_x, viewport_size.y))
-            points.append(Vector2(x1, viewport_size.y))
-        points.append(Vector2(x1, top))
-        points.append(Vector2(x2, top))
-        points.append(Vector2(x2, viewport_size.y))
-        cursor_x = x2
+    points.append(Vector2(0.0, viewport_size.y))
+    var sample_x := 0.0
+    while sample_x < viewport_size.x:
+        var top := _d030_meadow_screen_top(sample_x)
+        for rect in content_rects:
+            if sample_x >= rect.position.x and sample_x <= rect.end.x:
+                top = minf(top, rect.position.y)
+        points.append(Vector2(sample_x, clampf(top, 0.0, viewport_size.y)))
+        sample_x += D030_MOUSE_SAMPLE_SCREEN_PX
+    var final_top := _d030_meadow_screen_top(viewport_size.x)
+    for rect in content_rects:
+        if viewport_size.x >= rect.position.x and viewport_size.x <= rect.end.x:
+            final_top = minf(final_top, rect.position.y)
+    points.append(Vector2(viewport_size.x, clampf(final_top, 0.0, viewport_size.y)))
+    points.append(Vector2(viewport_size.x, viewport_size.y))
     return points
+
+
+func _d030_meadow_screen_top(screen_x: float) -> float:
+    if _d030_meadow_alpha_top.is_empty():
+        return _d024_ground_capture_top()
+    var world_x := _screen_to_world_x(screen_x)
+    var local_world_x := fposmod(world_x, D030_MEADOW_PATTERN_WORLD_WIDTH)
+    var source_x := clampi(floori(local_world_x / D030_MEADOW_SOURCE_TO_WORLD), 0, _d030_meadow_alpha_top.size() - 1)
+    var source_y := _d030_meadow_alpha_top[source_x]
+    var source_scale := D030_MEADOW_SOURCE_TO_WORLD * _zoom()
+    return _meadow_baseline() + (float(source_y) - D024_MEADOW_SOURCE_BASELINE_Y) * source_scale - MOUSE_PASSTHROUGH_PADDING
+
+
+func _d030_visible_content_rects() -> Array[Rect2]:
+    var rects: Array[Rect2] = []
+    var zoom := _zoom()
+    var authored_scale := SOURCE_WORLD_TO_RUNTIME * zoom
+    var authored_origin := Vector2(_world_to_screen_x(0.0), _field_baseline() - AUTHORED_WORLD_BASELINE_Y * authored_scale)
+    for layer in _authored_world_layers:
+        if int(layer.get("index", -1)) <= 8:
+            continue
+        var used_rect := layer.get("used_rect", Rect2()) as Rect2
+        if used_rect.has_area():
+            rects.append(Rect2(authored_origin + used_rect.position * authored_scale, used_rect.size * authored_scale).grow(MOUSE_PASSTHROUGH_PADDING))
+
+    var labrador := _dogs.get("labrador_intro", {}) as Dictionary
+    var pose_id := str(_labrador_render_state.get("pose_id", "idle_neutral_right"))
+    var labrador_used_rect := _authored_labrador_used_rects.get(pose_id, Rect2()) as Rect2
+    if bool(labrador.get("visible", true)) and labrador_used_rect.has_area():
+        var world_x := float(_labrador_render_state.get("actor_world_x", labrador.get("x", 0.0))) + float(_labrador_render_state.get("station_offset_x", 0.0))
+        var labrador_scale := LABRADOR_SOURCE_TO_WORLD * zoom
+        var labrador_origin := Vector2(_world_to_screen_x(world_x), _field_baseline()) - LABRADOR_SOURCE_ROOT * labrador_scale
+        rects.append(Rect2(labrador_origin + labrador_used_rect.position * labrador_scale, labrador_used_rect.size * labrador_scale).grow(MOUSE_PASSTHROUGH_PADDING))
+
+    var dachshund := _dogs.get("dachshund_intro", {}) as Dictionary
+    if bool(dachshund.get("visible", true)):
+        rects.append(Rect2(_world_to_screen_x(float(dachshund.get("x", 0.0))) - 66.0 * zoom, _field_baseline() - 94.0 * zoom, 132.0 * zoom, 94.0 * zoom).grow(MOUSE_PASSTHROUGH_PADDING))
+
+    if _transport_visible:
+        rects.append(Rect2(_world_to_screen_x(_transport_x) - 78.0 * zoom, _field_baseline() - 102.0 * zoom, 156.0 * zoom, 102.0 * zoom).grow(MOUSE_PASSTHROUGH_PADDING))
+
+    if _d024_marker_used_rect.has_area():
+        var marker_scale := SOURCE_WORLD_TO_RUNTIME * zoom
+        var marker_origin := Vector2(_world_to_screen_x(D024_MARKER_WORLD_ROOT.x), _field_baseline()) - D024_MARKER_SOURCE_PIVOT * marker_scale
+        rects.append(Rect2(marker_origin + _d024_marker_used_rect.position * marker_scale, _d024_marker_used_rect.size * marker_scale).grow(MOUSE_PASSTHROUGH_PADDING))
+
+    for control in _interactive_controls():
+        if control != null and control.visible:
+            rects.append(Rect2(control.global_position, control.size).grow(MOUSE_PASSTHROUGH_PADDING))
+    return rects
+
+
+func _texture_used_rect(texture: Texture2D) -> Rect2:
+    if texture == null:
+        return Rect2()
+    var image: Image = texture.get_image()
+    if image == null or image.is_empty():
+        return Rect2()
+    if image.is_compressed():
+        image.decompress()
+    var used_rect: Rect2i = image.get_used_rect()
+    return Rect2(Vector2(used_rect.position), Vector2(used_rect.size))
+
+
+func _alpha_top_profile(texture: Texture2D) -> PackedInt32Array:
+    var profile := PackedInt32Array()
+    if texture == null:
+        return profile
+    var image: Image = texture.get_image()
+    if image == null or image.is_empty():
+        return profile
+    if image.is_compressed():
+        image.decompress()
+    profile.resize(image.get_width())
+    for x in image.get_width():
+        var top := image.get_height()
+        for y in image.get_height():
+            if image.get_pixel(x, y).a >= 0.125:
+                top = y
+                break
+        profile[x] = top
+    return profile
 
 
 func _interactive_controls() -> Array[Control]:

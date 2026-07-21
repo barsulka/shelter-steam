@@ -1,12 +1,12 @@
 # STEAM_DESKTOP — Responsive Meadow Amendment v1 — PM Activation Status
 
 Дата: 2026-07-14
-Обновлено: 2026-07-16
-Статус: `D029_D024_OBSERVABILITY_ATOMIC_RUNNER_REMEDIATION_IMPLEMENTED / INDEPENDENT_NO_GODOT_REVIEW_PASS / P0=0 / P1=0 / P2=0 / CAPTURE_BLOCKED / EVIDENCE_HOLD / UNSEALED / BOUNDED_REAL_RUN_REQUIRES_NEW_USER_COORDINATOR_DECISION_AND_LITERAL_ACK / FINAL_RUNTIME_ART_USER_ACCEPTANCE_PENDING`
+Обновлено: 2026-07-18
+Статус: `PLAYER_PROFILE_PRE_FLUSH_CORRECTION_IMPLEMENTED / FOCUSED_FRESH_PROCESS_GATE_PASS / SUPERVISOR_RC0 / PROCESS_PASS / DIAGNOSTIC_PASS / FULL_CAPTURE_NOT_ACTIVATED / CAPTURE_HOLD / EVIDENCE_HOLD / UNSEALED / FINAL_RUNTIME_ART_USER_ACCEPTANCE_PENDING`
 Владелец authority: User Owner / Producer / Project Manager
 Art source owner: thread `019f5ad9-79c0-7b82-9964-3491f93bb7ff` — source handback complete; no active write ownership
 Historical initial runtime integration writer: thread `019f5ce4-e63c-7d33-a586-d2d3031c8610`; ownership window released
-Current writer: none; the completed D-029/D-024 remediation writer was thread `019f6604-8ac6-7871-85c8-2c858a2240f3`, and a later bounded real-run writer/scope must be named by a new literal ACK
+Current writer: none; the completed D-029/D-024 remediation/correction writer was thread `019f6604-8ac6-7871-85c8-2c858a2240f3`, and any later full-capture writer/scope must be named by a new literal ACK
 D-024 current authority: immutable Contract A `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`
 Package:
 `docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_DESKTOP__Art_Source_Responsive_Meadow_Left_Cluster_Amendment_v1/`
@@ -29,10 +29,12 @@ open. Technical preflight is signed and §12 activates the new Codex brief as
 The initial mechanical and later authority-tool correction waves remain
 historical in §12–§14. The subsequent D-029/D-024 observability, graceful-stop
 and atomic-runner remediation is implemented and independently reviewed
-`PASS` without launching Godot (`P0=0 / P1=0 / P2=0`). Capture is still not
-active: the 32-file canonical evidence root remains `HOLD / UNSEALED`, and a
-bounded real run requires a new user/coordinator decision and literal ACK.
-Current factual state is recorded in §15.
+`PASS` (`P0=0 / P1=0 / P2=0`). The later player-profile pre-flush correction
+is implemented and its two-process focused ordinary-Terminal gate is `PASS`.
+Capture is still not active: the 32-file canonical evidence root remains
+`HOLD / UNSEALED`, and a full runner attempt requires a new user/coordinator
+decision and literal full-capture ACK. Current factual state is recorded in
+§16; §15 remains history.
 
 ## 2. Exact product rule
 
@@ -165,8 +167,11 @@ D-024 authority record — DONE
 → D-029/D-024 observability + atomic-runner remediation — IMPLEMENTED
 → independent no-Godot re-review — PASS / P0=0 / P1=0 / P2=0
 → PM factual sync / whole brief SHA K — DONE
-→ new user/coordinator decision + literal bounded real-run ACK naming A/K/final eight/pinned evidence/writer/scope — REQUIRED / EVIDENCE HOLD
-→ bounded Steam Godot 4.7.1 runtime/control/capture attempt — ONLY AFTER NEW ACK
+→ player-profile pre-flush correction — IMPLEMENTED
+→ focused fresh-process ordinary-Terminal gate — PASS / rc0 / PROCESS PASS / DIAGNOSTIC PASS
+→ PM §0J factual sync / whole brief SHA M — DONE
+→ new user/coordinator decision + literal full-capture ACK naming A/M/final pins/pinned evidence/writer/scope/failed-stage disposition — REQUIRED / EVIDENCE HOLD
+→ full Steam Godot 4.7.1 runtime/control/capture attempt — ONLY AFTER NEW ACK
 → immutable seal + independent Art/user runtime review — AFTER CAPTURE
 ```
 
@@ -616,3 +621,63 @@ The sole next gate is a new user/coordinator decision and literal bounded
 real-run ACK naming unchanged A, current brief K, the final eight hashes, the
 pinned 32-file evidence tree and exact writer/scope. No automatic launch follows
 this documentation sync.
+
+## 16. Player-profile focused fresh-process gate PASS / full capture ACK required — 2026-07-18
+
+Current factual verdict:
+
+```text
+PLAYER_PROFILE_PRE_FLUSH_CORRECTION_IMPLEMENTED
+FOCUSED_FRESH_PROCESS_GATE_PASS
+SUPERVISOR_RC0
+PROCESS_PASS
+DIAGNOSTIC_PASS
+FULL_CAPTURE_NOT_ACTIVATED
+CAPTURE_HOLD
+EVIDENCE_HOLD
+UNSEALED
+FINAL_RUNTIME_ART_USER_ACCEPTANCE_PENDING
+```
+
+Current authority and implementation:
+
+```text
+authority_contract_sha256_A=4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf
+current_whole_brief_sha256_M=f2d26ebde2f27dde1c75cd82304d30f850b015834ed780947fbb6972bb111130
+current_brief_section_0J_sha256=9335f62b600578d8d935fd3e3a76722434c54efc6cf0d66df4909cdb9f10fcf3
+test_player_profile_store_sha256=cbc2eddf7e4048a9beb071e3b6b525baecfbcd71bdd3417ec617e7604b01dc65
+capture_runner_sha256=94cfed6865ecdbd7b6b1a93ebc5228cbfb7e8702406cb3071408514dc0e4aa9d
+```
+
+The exact fresh `snapshot-create after_temp_write` result is
+`8442e0a2419b6fb072eb6078017d817c69715b5298e0ee2691e84c7769bcdb1e`.
+The separately spawned `snapshot-inspect expected no_valid_profile` result is
+`4784d87ace632d3cb9a767f67004efcc663e816b83165875a5ec2b3d9b162662`.
+Both used exact Steam Godot `4.7.1.stable.steam.a13da4feb` and returned
+supervisor rc `0`, process `PASS`, diagnostic `PASS`, empty matches, exit `0`,
+finalized raw logs and dead child PID. Focused diagnostic root:
+
+```text
+files=18
+png=0
+seal=absent
+tree=39ea48e8a185459b6475d1574847710dd0a44caacaf430df62fe02b350e9b647
+```
+
+Canonical evidence remains exactly 32 files, PNG `0`, no seal and tree
+`4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378`.
+The retained failed stage remains exactly 144 files, PNG `0`, no seal and tree
+`00116ac0280ffc72c5f3db3961857c8f3ed815447cc65095d2dc29d5a80badcf`.
+Neither diagnostic root is promotable evidence.
+
+CA/certificate, `editor_data`, AppKit and HIServices are historical observations
+and are not current blockers: they were absent from the 13/14 ordinary-Terminal
+run and this focused gate. They remain not allowlisted; any recurrence is
+diagnostic FAIL, supervisor rc `73` and `STOP` before capture/seal.
+
+This PM sync activates nothing. The full runner, Continue/full runtime matrix,
+actual PlayerBoot control ACK, native/GUI self-capture, 27 PNG, manifest, seal,
+promotion and final Art/user review remain not run. Only a new literal
+full-capture ACK naming A/M, final governed pins, the canonical tree, exact
+writer/scope and authorized failed-stage disposition may activate one attempt.
+There is no automatic retry.

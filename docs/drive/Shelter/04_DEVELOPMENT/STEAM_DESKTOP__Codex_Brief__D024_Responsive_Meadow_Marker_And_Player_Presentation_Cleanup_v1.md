@@ -1,8 +1,8 @@
 # STEAM_DESKTOP — Codex Brief — D-024 Responsive Meadow, Marker and Player Presentation Cleanup v1
 
 Дата: 2026-07-14
-Обновлено: 2026-07-16
-Статус: `D029_D024_OBSERVABILITY_ATOMIC_RUNNER_REMEDIATION_IMPLEMENTED / INDEPENDENT_NO_GODOT_REVIEW_PASS / P0=0 / P1=0 / P2=0 / CAPTURE_BLOCKED / EVIDENCE_HOLD / UNSEALED / BOUNDED_REAL_RUN_REQUIRES_NEW_USER_COORDINATOR_DECISION_AND_LITERAL_ACK / FINAL_RUNTIME_ART_USER_ACCEPTANCE_PENDING`
+Обновлено: 2026-07-20
+Статус: `DIRECT_GATE_ALIAS_CORRECTION_IMPLEMENTED / TEMP_DEBUG_REMOVED / NO_GODOT_MATRIX_PASS / ORDINARY_TERMINAL_FOCUSED_THEN_FULL_SCRIPT_PREPARED / USER_RUN_PENDING / FOCUSED_PASS_REQUIRED_BEFORE_FULL_RUNNER / CANONICAL_UNCHANGED / CAPTURE_HOLD / UNSEALED / BOUNDED_RETRIES_USER_AUTHORIZED / REPO_LOCAL_TMP_ONLY / NO_BLIND_LOOP / FINAL_RUNTIME_ART_USER_ACCEPTANCE_PENDING`
 Milestone: `R48-05A bounded responsive-presentation correction trial`
 Владелец brief: Producer / Project Manager
 Technical preflight owner: thread `019f57a6-da0c-7e00-a40e-a2e768247436`
@@ -11,11 +11,20 @@ Initial implementation owner: exactly one Codex writer, thread
 The prior runner-only mechanical-gate/atomic-evidence correction is historical
 in §0C. The D-029/D-024 implementation writer was exactly thread
 `019f6604-8ac6-7871-85c8-2c858a2240f3`; the final exact eight-file no-Godot
-result and independent review PASS are recorded in §0H. This PM factual-sync
-wave activates no writer, Godot process, runtime check, capture or evidence
-action. The prior GUI capture ACK is consumed; capture and canonical evidence
-remain on HOLD pending a new user/coordinator decision and literal bounded
-real-run ACK.
+result and independent review PASS are recorded in §0H. The subsequent bounded
+real run and its single pre-native player-profile failure are historical in
+§0I. The exact two-file correction and focused fresh-process PASS are recorded
+in §0J. The consumed Codex-host attempt is governed by §0K. The first
+ordinary-Terminal preparation and its consumed pre-Godot locale-sensitive
+preflight are recorded in §0L. The locale-stable replacement route and its
+consumed Continue failure are recorded in §0M. The current arity correction
+and standing bounded-retry authority are recorded in §0N. Its exact four-file
+arity correction and no-Godot matrix are now PASS. Exact execution writer
+remains thread `019f6604-8ac6-7871-85c8-2c858a2240f3`; the §0N repo-local
+diagnostic move and ordinary-Terminal focused-Continue then full-runner script
+preparation are PASS. Canonical evidence remains on HOLD until the user starts
+that prepared execution from ordinary macOS Terminal. The consumed focused
+result and current bounded predicate diagnosis are governed by §0O.
 Рекомендуемый уровень рассуждений: **очень высокий**
 
 ---
@@ -1689,6 +1698,1258 @@ Until that ACK, status remains `CAPTURE_BLOCKED / EVIDENCE_HOLD / UNSEALED` and
 final runtime Art/user acceptance remains pending. A later authorized run must
 stop on any CA recurrence or other process/diagnostic failure without capture,
 manifest, seal or promotion.
+
+Recommended Codex reasoning: **очень высокий**.
+
+## 0I. Player-profile pre-flush snapshot correction — current authority
+
+Classification: bounded D-024 execution-tooling/test correction after the
+user-authorized ordinary Terminal real run exposed one pre-native persistence
+proof failure. This same brief remains the sole D-024 authority. D-024, D-029,
+Accepted ADR-0003 and Accepted ADR-0004 remain unchanged; immutable Contract A
+remains byte-identical. This section supersedes only the active/current run
+status and next-gate wording in §0H. All earlier sections remain intact as
+history.
+
+Current factual state:
+
+```text
+external_terminal_bounded_real_run=13/14 GOVERNED TARGETS PASS
+failure=PLAYER_PROFILE_SNAPSHOT_INSPECT_AFTER_TEMP_WRITE_EXPECTED_NO_VALID_PROFILE
+failure_verdict=DIAGNOSTIC_FAIL_RC73
+status=CORRECTION_AUTHORIZED / CAPTURE_HOLD / UNSEALED
+implementation_writer=019f6604-8ac6-7871-85c8-2c858a2240f3
+code_activation=NONE FROM THIS DOCS WAVE
+godot_or_capture_activation=NONE FROM THIS DOCS WAVE
+expected_old_whole_brief_sha256_K=ccb81f8a7f881ad078dad54bcd811dad2616aa36f843b2bee0ca67c2487d26ed
+authority_contract_sha256_A=4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf
+```
+
+The external ordinary Terminal run used the accepted current Steam Godot
+`4.7.1` route and reached thirteen of fourteen governed targets. The prior
+CA/certificate, `editor_data`, AppKit and HIServices blockers were absent from
+this run and are **not current blockers**. Historical files or text that retain
+them remain provenance only.
+
+The only current failure was the fresh-process player-profile
+`snapshot-inspect` after `after_temp_write`: the wrapper intentionally expected
+`no_valid_profile`, the test returned diagnostic failure, and the observer
+reported rc `73`. No PNG, capture manifest, `HASHES.sha256`, seal, promotion or
+canonical evidence mutation occurred.
+
+Failure evidence is retained and must never be represented as PASS:
+
+```text
+failed_stage=docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.3Gpub9
+failed_stage_files=144
+failed_stage_png=0
+failed_stage_seal=absent
+failed_stage_tree_sha256=00116ac0280ffc72c5f3db3961857c8f3ed815447cc65095d2dc29d5a80badcf
+canonical_evidence_files=32
+canonical_evidence_seal=absent
+canonical_evidence_tree_sha256=4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378
+```
+
+### Exact root cause and preserved semantic boundary
+
+D-029 correctly removed fatal process interruption from the proof. The
+replacement `snapshot-create` process, however, wrote the full candidate with
+`FileAccess.store_buffer`; ordinary object/process cleanup then closed the file
+normally. That normal close made the temporary candidate complete and valid
+before the fresh verifier ran.
+
+The wrapper's `no_valid_profile` expectation is an intentional historical
+**pre-flush interruption** proof, not a stale string. Replacing it with
+`temp_available` is forbidden: doing so would collapse the pre-flush boundary
+into the already-covered after-flush/readback cases and weaken the recovery
+proof required by ADR-0003 and ADR-0004.
+
+The ordinary in-process failure matrix remains correct and unchanged:
+`after_temp_write` followed by graceful close yields `temp_available`. The
+fresh-process authored snapshot must instead materialize a deterministic
+nonempty strict prefix so it proves the distinct pre-flush corrupt-candidate
+boundary without killing or crashing Godot.
+
+### Exact implementation ownership and scope
+
+Only after a separate literal coordinator code activation, exactly writer
+`019f6604-8ac6-7871-85c8-2c858a2240f3` may change exactly these two files from
+the guarded state below:
+
+```text
+fa4a13db9f2ee9ddca46e03451cc9114e3daf82d71fc269e8b9a2781777951d5  steam/tests/persistence/test_player_profile_store.gd
+f2c59eb1c13f67d44f3b6803a0706a7ca8d9ad8994b05254b14b944bf0d2e01f  steam/tools/capture-d024-responsive-presentation.sh
+```
+
+This PM docs wave does not activate that writer. No third implementation file
+is authorized.
+
+### Exact implementation contract
+
+In the `snapshot-create` phase only, and only after the exact
+`injected_failure:after_temp_write` result under the validated isolated
+`user://player-tests` namespace:
+
+1. read the complete temporary candidate produced by the existing store path;
+2. require its byte size to be greater than `1` and require the complete
+   candidate to be valid before materialization;
+3. deterministically choose a nonempty strict-prefix length bounded to
+   `[1, complete_size - 1]`;
+4. overwrite the temp file with exactly that prefix, flush and close naturally;
+5. read the temp back and prove exact prefix bytes, size and SHA-256;
+6. prove the materialized candidate is schema-invalid/corrupt; and
+7. retain the exact authored-snapshot marker used by the fresh verifier.
+
+The `snapshot-inspect` assertion failure must add safe deterministic context:
+expected status, actual status and bounded candidate classifications. It must
+never log the raw player-profile payload.
+
+The ordinary `_test_failure_matrix` expectation remains exactly
+`after_temp_write=temp_available`. The unchanged wrapper remains exactly
+`run_snapshot_create after_temp_write no_valid_profile`. No allowlist,
+suppression, hard kill or expectation weakening is authorized.
+
+The runner may change only the pin for
+`steam/tests/persistence/test_player_profile_store.gd` to the proven final
+implementation SHA. No other runner behavior, pin or evidence logic may change.
+
+### Explicit no-touch
+
+The following guards and surfaces remain no-touch:
+
+```text
+1fa0af9b0c02aa89d6a7745dabda483041ea252e6a9d039ddb0c7f7b4f582f04  steam/tools/test-player-profile-store.sh
+5428a6d3e319b21ca0a40612cbabdd13fbf59cef147a0e9f08ed3f67b059219f  steam/scripts/persistence/player_profile_store.gd
+```
+
+Also no-touch: observer and its schema/tests, PlayerBoot, gameplay, save and
+checkpoint format, production profile paths, scenes, assets, validators,
+dependencies, docs/current status, canonical evidence, the retained failed
+stage and every implementation file outside the exact two-file scope.
+
+### No-Godot implementation acceptance
+
+The code wave launches no Godot process. It must prove:
+
+1. pre-write brief/code/evidence guards and exact two-file scope;
+2. static reachability of the materializer only from `snapshot-create` after
+   exact `injected_failure:after_temp_write`;
+3. complete-candidate validation followed by deterministic nonempty strict
+   prefix, natural flush/close, exact readback/size/hash and corrupt/schema-
+   invalid proof;
+4. preserved dual expectations: ordinary graceful-close matrix remains
+   `temp_available`, while the fresh producer-to-verifier wrapper remains
+   `no_valid_profile`;
+5. preserved fresh producer → fresh verifier ordering and exact marker;
+6. no raw profile payload in assertion diagnostics and no hard-kill path;
+7. the runner changes only the one test-file pin exactly once;
+8. `bash -n` PASS for the runner and unchanged wrapper;
+9. focused observer suite remains `22/22 PASS`;
+10. validator `--authority-only` returns exact Contract A and normal validator
+    PASSes;
+11. full/scoped diff checks and staged-empty PASS; and
+12. canonical evidence and retained failed-stage file counts, seal/PNG absence
+    and tree hashes remain exact.
+
+After implementation, an independent read-only reviewer must reproduce the
+complete no-Godot matrix and return PASS. Capture remains HOLD through review.
+
+### Later focused real gate and stop conditions
+
+Only after implementation PASS, independent review PASS and another literal
+coordinator ACK may the existing ordinary Terminal route run one **focused**
+player-profile gate with fresh observer roots and isolated HOME:
+
+1. fresh `snapshot-create after_temp_write`; then
+2. fresh `snapshot-inspect expected no_valid_profile`.
+
+Both processes must return rc `0`, process PASS and diagnostic PASS. The
+focused gate does not authorize full capture, manifest, seal or promotion. A
+full capture may be considered only after focused PASS, PM factual sync and a
+separate later literal ACK; there is no automatic retry.
+
+`STOP` on any need for a third file, production store/schema/save/gameplay or
+checkpoint-format change, wrapper expectation change, observer-policy change,
+raw payload logging, hard kill, Contract A drift, canonical/failed-stage
+evidence drift, Godot launch during the code wave or any attempt to treat the
+retained failed stage as promotable PASS evidence.
+
+Recommended Codex reasoning: **очень высокий**.
+
+## 0J. Player-profile focused fresh-process gate PASS — current authority
+
+Classification: factual completion update under the existing D-024 §0I
+correction contract and D-029 / Accepted ADR-0004 nonfatal fresh-process
+recovery proof. No new decision, ADR or implementation brief is created. This
+section supersedes only the active/current status and next-gate wording in
+§0I. Immutable Contract A and §§0E–0I remain byte-identical history.
+
+Current factual state:
+
+```text
+status=PLAYER_PROFILE_PRE_FLUSH_CORRECTION_IMPLEMENTED / FOCUSED_FRESH_PROCESS_GATE_PASS / SUPERVISOR_RC0 / PROCESS_PASS / DIAGNOSTIC_PASS
+full_capture=NOT_ACTIVATED
+capture=HOLD
+evidence=HOLD / UNSEALED
+final_runtime_art_user_acceptance=PENDING
+current_writer=NONE
+pm_sync_activation=NONE
+expected_old_whole_brief_sha256_L=c963ac863092fbbcd37f11c44a9cc0a8df4df271137795a61e11e47fb45c3380
+authority_contract_sha256_A=4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf
+```
+
+The exact two-file correction authorized in §0I is present locally:
+
+```text
+cbc2eddf7e4048a9beb071e3b6b525baecfbcd71bdd3417ec617e7604b01dc65  steam/tests/persistence/test_player_profile_store.gd
+94cfed6865ecdbd7b6b1a93ebc5228cbfb7e8702406cb3071408514dc0e4aa9d  steam/tools/capture-d024-responsive-presentation.sh
+```
+
+The no-touch wrapper and production store remain exact:
+
+```text
+1fa0af9b0c02aa89d6a7745dabda483041ea252e6a9d039ddb0c7f7b4f582f04  steam/tools/test-player-profile-store.sh
+5428a6d3e319b21ca0a40612cbabdd13fbf59cef147a0e9f08ed3f67b059219f  steam/scripts/persistence/player_profile_store.gd
+```
+
+### Focused ordinary-Terminal result
+
+The user ran exactly one approved focused gate from ordinary macOS Terminal:
+
+```text
+/bin/bash /private/tmp/shelter-d024-focused-gate.sh
+```
+
+It used fresh isolated paths:
+
+```text
+root=/private/tmp/shelter-d024-focused.Texa8f
+HOME=/private/tmp/shelter-d024-focused.Texa8f/home
+test_base=user://player-tests/d024-focused-Texa8f
+```
+
+The first fresh process authored the exact `after_temp_write` snapshot:
+
+```text
+phase=snapshot-create
+process_result_sha256=8442e0a2419b6fb072eb6078017d817c69715b5298e0ee2691e84c7769bcdb1e
+supervisor=rc0 / PASS
+process=PASS / exit 0 / signal null / PID not alive
+diagnostic=PASS / matches=[]
+raw_logs_finalized=true
+capture_manifest_seal_eligible=true
+stdout_bytes=125
+stdout_sha256=d2b37674f584c9224800f3412e6b5c949c522e33f58b8c589517ef4d1169f6b2
+stderr_bytes=0
+stderr_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+events_sha256=655e6ef09d37eedb4697ab17ef39b804b006465374b8b6fcdb7b9ad34c85a223
+marker=player_profile_store_test=passed phase=snapshot-create
+```
+
+The second, separately spawned fresh process inspected the same isolated base
+with the exact expected status `no_valid_profile`:
+
+```text
+phase=snapshot-inspect
+expected_status=no_valid_profile
+process_result_sha256=4784d87ace632d3cb9a767f67004efcc663e816b83165875a5ec2b3d9b162662
+supervisor=rc0 / PASS
+process=PASS / exit 0 / signal null / PID not alive
+diagnostic=PASS / matches=[]
+raw_logs_finalized=true
+capture_manifest_seal_eligible=true
+stdout_bytes=126
+stdout_sha256=7aa2e74503435ade4c70f68934faf32a0fc3e146aabaaa5542d7f74afb41b7a5
+stderr_bytes=0
+stderr_sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+events_sha256=49153c2169fe70ea3ebdbf8954205235329cdad4be2d4c19a17ba57706b285e4
+marker=player_profile_store_test=passed phase=snapshot-inspect
+```
+
+Both processes used the exact D-028 Steam-managed Godot
+`4.7.1.stable.steam.a13da4feb`, the canonical project, validated argv and the
+fresh isolated HOME. No CA, `editor_data`, AppKit, HIServices, parse or other
+governed `ERROR` diagnostic occurred.
+
+The focused result root is diagnostic evidence only, not a D-024 capture or
+promotion source:
+
+```text
+focused_root_files=18
+focused_root_png=0
+focused_root_seal=absent
+focused_root_tree_sha256=39ea48e8a185459b6475d1574847710dd0a44caacaf430df62fe02b350e9b647
+```
+
+### Evidence and blocker truth
+
+The canonical and retained failed-stage boundaries remain unchanged:
+
+```text
+canonical_evidence_files=32
+canonical_evidence_png=0
+canonical_evidence_seal=absent
+canonical_evidence_tree_sha256=4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378
+failed_stage_files=144
+failed_stage_png=0
+failed_stage_seal=absent
+failed_stage_tree_sha256=00116ac0280ffc72c5f3db3961857c8f3ed815447cc65095d2dc29d5a80badcf
+```
+
+The previous CA/certificate, `editor_data`, AppKit and HIServices observations
+are historical environment evidence and are **not current blockers**: they were
+absent from both the ordinary-Terminal 13/14 run and this focused gate. They are
+not declared technically resolved or allowlisted. Any recurrence remains an
+exact retained diagnostic `FAIL`, supervisor rc `73` and `STOP` before capture,
+manifest, seal or promotion.
+
+### Full-capture boundary and next gate
+
+This focused PASS does not run or accept the full D-024 runner, full runtime or
+Continue matrix, actual PlayerBoot control ACK, native/GUI self-capture, the 27
+required PNG, capture manifest, seal, promotion or final Art/user review. All
+remain `NOT RUN` / `PENDING`.
+
+This PM factual sync activates nothing. Only a new user/coordinator decision
+and literal **full-capture ACK** may authorize one full runner attempt. That ACK
+must name:
+
+1. unchanged Contract A and the then-current whole-file brief SHA;
+2. the final governed implementation pins, including the two correction hashes
+   above;
+3. the exact canonical 32-file tree digest;
+4. one exact writer and bounded full-capture scope; and
+5. an authorized disposition for the retained failed stage, because the runner
+   correctly hard-stops while that sibling exists.
+
+The failed stage may be moved only by the later explicitly authorized execution
+owner to an announced unique `/private/tmp` diagnostic path with byte-identical
+file count/tree/seal/PNG readback. It is never deleted, reused, promoted or
+represented as PASS by this sync. The focused root likewise remains diagnostic
+evidence only. There is no automatic full-capture retry.
+
+`STOP` on any missing literal ACK field, concurrent drift, Contract A or
+canonical-evidence drift, unapproved stage cleanup/move, different Godot binary,
+diagnostic recurrence, expanded writer/scope or attempt to infer final runtime
+Art/user acceptance from the focused persistence PASS.
+
+Recommended Codex reasoning: **очень высокий**.
+
+## 0K. Exact-one-attempt full-capture ACK and local-tmp disposition — current authority
+
+Classification: user-approved D-024 execution activation under the existing
+product/game/art/runtime meaning. No new decision, ADR or brief is created.
+This section supersedes only the active/current full-capture HOLD and retained-
+stage disposition wording in §0J. Immutable Contract A and §§0E–0J remain
+byte-identical history.
+
+The user's literal approval is:
+
+> Разрешаю один полный D-024 capture и перенос retained failed stage в
+> локальный уникальный tmp, а если не получится — то в уникальный
+> /private/tmp.
+
+This approval is consumed only by exactly one invocation of the governed full
+D-024 runner. The exact execution writer remains:
+
+```text
+019f6604-8ac6-7871-85c8-2c858a2240f3
+```
+
+No other writer or parallel capture process is authorized. This PM docs wave
+records authority only and does not move diagnostics, launch Godot, invoke the
+runner, mutate evidence, commit or push.
+
+Current activation state:
+
+```text
+full_capture_ack=RECORDED
+authorized_runner_attempts=1
+runner_attempts_started=0
+execution_writer=019f6604-8ac6-7871-85c8-2c858a2240f3
+pre_launch_stage_disposition=REQUIRED
+preferred_disposition=UNIQUE_IGNORED_REPO_LOCAL_TMP
+fallback_disposition=UNIQUE_PRIVATE_TMP_ONLY_BEFORE_ANY_SOURCE_MUTATION
+retry=FORBIDDEN
+expected_old_whole_brief_sha256_M=f2d26ebde2f27dde1c75cd82304d30f850b015834ed780947fbb6972bb111130
+authority_contract_sha256_A=4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf
+```
+
+### Exact pre-launch guards
+
+Before any move or runner invocation, the execution writer must re-read this
+section and prove every guard below:
+
+```text
+cbc2eddf7e4048a9beb071e3b6b525baecfbcd71bdd3417ec617e7604b01dc65  steam/tests/persistence/test_player_profile_store.gd
+94cfed6865ecdbd7b6b1a93ebc5228cbfb7e8702406cb3071408514dc0e4aa9d  steam/tools/capture-d024-responsive-presentation.sh
+1880d4fe829708d8aba3dbc2e7d9cc43c669e151fb94a1dd818e6ce505a91502  steam/tools/observe-godot-process.py
+ae242d6e90d9be5baa783a1836c1188370bcfc66580d19b6391232a1e47ef44f  steam/tests/tools/test_observe_godot_process.py
+da8abbe8fcfe3c792235fba3eb71bf1a45f414c465f6972bb6c4486c10773f8f  steam/tests/player_continue/test_player_continue.gd
+dac832c2d861a16ad74ba4fb5bdaebaa045b5f63984b9a5be74d45f348fb60fd  steam/scripts/player/player_boot.gd
+c09235f051a686fd358fb86baa697f3fb7ce80ef2781207bf55f3bded9cf8104  steam/tests/launch_surfaces/test_player_boot.gd
+2620fdb6f2f57331e49859ab9530a7476ab6449a3a52cfb986a3d4f787cf17f2  steam/tools/validate-d024-responsive-presentation.py
+025e4e55ecc39ca48ad89803e9ff5eaf857e80f20baa9a83a2218a8aab763051  steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd
+```
+
+Canonical evidence must still read:
+
+```text
+files=32
+png=0
+capture_manifest=0
+HASHES.sha256=absent
+tree_sha256=4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378
+```
+
+Any brief/Contract A/implementation/canonical guard drift, staged path,
+concurrent writer or unexpected transient sibling is `STOP` before source
+mutation or runner invocation.
+
+### Retained failed-stage disposition
+
+The exact retained failed stage is:
+
+```text
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.3Gpub9
+```
+
+Its mandatory pre-move and post-move byte-identical readback is:
+
+```text
+files=144
+png=0
+capture_manifest=0
+HASHES.sha256=absent
+tree_sha256=00116ac0280ffc72c5f3db3961857c8f3ed815447cc65095d2dc29d5a80badcf
+```
+
+Preferred route: choose and announce one unique, previously absent destination
+under the present ignored repo-local directory:
+
+```text
+/Users/barsulka/GolandProjects/shelter/shelter/tmp/
+```
+
+The current preflight proves this directory exists, is not a symlink and is
+ignored by the repository rule `.gitignore: tmp/`. A suitable destination must
+remain inside that directory, be unique, be absent before the operation and
+must not resemble a live deliverables stage/rollback sibling.
+
+`/private/tmp` is permitted only as an announced unique fallback if the local
+repo `tmp/` route fails preflight **before any mutation of the retained source
+begins**. If a local move begins or reports success, any failed count/hash/
+seal/PNG/manifest readback is immediate `STOP`: preserve all diagnostics and do
+not cascade to `/private/tmp`, retry, copy, delete or invent another route.
+
+The source path may disappear only as part of the single move that yields a
+verified destination. The move is not successfully complete until the exact
+destination path, 144-file count, PNG/manifest/seal absence and tree hash above
+all pass and the original source path is proved absent. If the source has
+disappeared but any destination readback mismatches, `STOP` with no fallback or
+second operation. Announce the exact verified destination before launch. The
+moved diagnostics remain ignored, retained, immutable and never a PASS,
+promotion or canonical-evidence source.
+
+### Exact one-attempt runner activation
+
+Only after the retained-stage move and all readbacks pass, the exact writer may
+enter `steam/` and invoke exactly once:
+
+```text
+./tools/capture-d024-responsive-presentation.sh capture
+```
+
+The existing runner must use only the exact D-028 Steam-managed Godot route and
+its governed D-029 observer. Starting this command consumes the one authorized
+attempt even if preflight, a child process, diagnostics, atomic promotion or a
+later acceptance gate fails. There is no automatic or manual retry under this
+ACK.
+
+Any process failure, nonzero supervisor result, diagnostic match, CA/error
+recurrence, atomicity failure, runtime/test/capture mismatch, unexpected PID,
+wrong Godot path/version, missing output or evidence drift is `STOP`. Retain all
+logs/stages; do not suppress, allowlist, repair in place, clean up or adopt a
+workaround under this authority.
+
+### Success boundary
+
+Runner exit `0` alone is insufficient. Before any Art/user readiness claim, the
+execution handback must prove all of the following from the promoted canonical
+root:
+
+1. exact required `27 PNG` game-evidence corpus;
+2. exact capture manifest, provenance and complete governed ledger;
+3. all implementation/no-touch guards and process/diagnostic verdicts;
+4. no transient deliverables stage/rollback sibling;
+5. immutable `HASHES.sha256` seal and full seal verification;
+6. atomic promotion with no rollback residue; and
+7. the exact canonical post-promotion contract, file count and tree digest.
+
+Only that complete successful evidence handback may proceed to independent
+Art/user review. It does not self-grant final visual acceptance. Failure at any
+point remains `BLOCKED / UNSEALED` or the runner's exact fail-closed state.
+
+No commit or push is authorized in this wave.
+
+Recommended Codex reasoning: **очень высокий**.
+
+## 0L. Ordinary-Terminal full-capture route — current authority
+
+Classification: user-approved bounded D-024 execution-route continuation under
+D-027, D-028 and D-029. No new product/game/art/runtime meaning, decision, ADR
+or brief is created. This section supersedes only the active/current execution
+status and route wording in §0K. Immutable Contract A and §§0E–0K remain
+byte-identical history.
+
+The user's new literal approval is:
+
+> Разрешаю перенести stage.8NZiHD в уникальный repo-local tmp и подготовить
+> один полный D-024 запуск через обычный Terminal.
+
+### Consumed §0K attempt and current state
+
+The §0K Codex-host full-runner attempt is consumed. It reached the import child,
+which exited `0` with process verdict `PASS`, but the observer returned
+diagnostic verdict `FAIL`, supervisor rc `73` and seal eligibility `false`.
+The exact retained diagnostic matches are:
+
+```text
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+ERROR: Cannot save file '/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/editor_data/editor_settings-4.7.tres'.
+   at: save (scene/resources/resource_format_text.cpp:1768)
+ERROR: Error saving editor settings to /Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/editor_data/editor_settings-4.7.tres
+   at: save (editor/settings/editor_settings.cpp:1525)
+```
+
+The attempt stopped before PNG, capture manifest, `HASHES.sha256`, seal,
+promotion or Art/user review. No diagnostic is allowlisted or suppressed. The
+current state is:
+
+```text
+previous_codex_host_attempt=CONSUMED / BLOCKED / UNSEALED
+import_process=PASS / EXIT_0
+import_diagnostic=FAIL / RC73
+canonical_evidence=UNCHANGED / HOLD
+ordinary_terminal_preparation=AUTHORIZED / NOT_STARTED
+ordinary_terminal_user_attempts_authorized=1
+ordinary_terminal_user_attempts_started=0
+retry=FORBIDDEN
+execution_writer=019f6604-8ac6-7871-85c8-2c858a2240f3
+expected_old_whole_brief_sha256_N=8b61a981b3eefd52fb04718837430017983277c5565570cea27438271358abd7
+authority_contract_sha256_A=4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf
+```
+
+This PM amendment activates neither preparation nor execution. A separate
+literal coordinator activation may authorize only the exact writer above to
+perform the move and script preparation below. Preparation itself does not
+launch Godot, invoke the runner or consume the new attempt. Only the user's
+manual invocation of the prepared script from ordinary macOS Terminal consumes
+that attempt.
+
+### Exact retained-stage disposition
+
+The source is exactly:
+
+```text
+docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.8NZiHD
+files=40
+png=0
+capture_manifest=0
+HASHES.sha256=absent
+tree_sha256=f6c73fa7524d2877e2d1bfdb2367a67769e05aea19e5a19f8466389335bd9f04
+```
+
+The preparer may move this source exactly once to one announced unique,
+previously absent ignored destination strictly under:
+
+```text
+/Users/barsulka/GolandProjects/shelter/shelter/tmp/
+```
+
+The destination must read back byte-identically with the exact file, PNG,
+manifest, seal and tree values above; the source must then be absent; and the
+deliverables directory must contain zero matching stage/rollback siblings.
+The moved tree remains ignored diagnostics only and is never a promotion
+source or PASS evidence. No `/private/tmp` fallback is required or authorized
+by this approval. Any move/readback/source-removal/transient mismatch is
+immediate `STOP` with no retry, copy, deletion, cleanup or alternate route.
+
+### Exact governed pre-preparation guards
+
+Before moving the stage or writing the script, the preparer must revalidate the
+new final whole-file SHA of this brief published with §0L, Contract A through
+the authority validator, root `AGENTS.md` SHA
+`3a1c6d5318d113d0f69174168ee09303d32d1b89b65638d9c80f816f5a26fb13`,
+the exact current source tree above, the canonical evidence contract below and
+all governed implementation pins:
+
+```text
+cbc2eddf7e4048a9beb071e3b6b525baecfbcd71bdd3417ec617e7604b01dc65  steam/tests/persistence/test_player_profile_store.gd
+94cfed6865ecdbd7b6b1a93ebc5228cbfb7e8702406cb3071408514dc0e4aa9d  steam/tools/capture-d024-responsive-presentation.sh
+1880d4fe829708d8aba3dbc2e7d9cc43c669e151fb94a1dd818e6ce505a91502  steam/tools/observe-godot-process.py
+ae242d6e90d9be5baa783a1836c1188370bcfc66580d19b6391232a1e47ef44f  steam/tests/tools/test_observe_godot_process.py
+da8abbe8fcfe3c792235fba3eb71bf1a45f414c465f6972bb6c4486c10773f8f  steam/tests/player_continue/test_player_continue.gd
+dac832c2d861a16ad74ba4fb5bdaebaa045b5f63984b9a5be74d45f348fb60fd  steam/scripts/player/player_boot.gd
+c09235f051a686fd358fb86baa697f3fb7ce80ef2781207bf55f3bded9cf8104  steam/tests/launch_surfaces/test_player_boot.gd
+2620fdb6f2f57331e49859ab9530a7476ab6449a3a52cfb986a3d4f787cf17f2  steam/tools/validate-d024-responsive-presentation.py
+025e4e55ecc39ca48ad89803e9ff5eaf857e80f20baa9a83a2218a8aab763051  steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd
+```
+
+Canonical evidence must remain:
+
+```text
+files=32
+png=0
+capture_manifest=0
+HASHES.sha256=absent
+tree_sha256=4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378
+```
+
+### Exact script-preparation contract
+
+After the verified stage move, the preparer may create exactly one unique,
+previously absent executable ignored shell script under repo-local `tmp/`. The
+exact path and SHA-256 must be announced to the coordinator and user. The
+script is intended only for `/bin/bash` launched manually by the user from
+ordinary macOS Terminal and must fail closed before the runner by validating:
+
+1. the final whole-file brief SHA published after this amendment;
+2. Contract A through `validate-d024-responsive-presentation.py
+   --authority-only`;
+3. exact root `AGENTS.md`, all nine governed implementation pins and the
+   canonical evidence contract above;
+4. zero deliverables stage/rollback siblings;
+5. the exact D-028 Steam-managed binary and version
+   `4.7.1.stable.steam.a13da4feb`; and
+6. absence of concurrent Godot, capture-runner or observer processes using a
+   bounded check that excludes the checking process itself.
+
+After and only after every preflight passes, the script must enter `steam/` and
+invoke exactly once:
+
+```text
+./tools/capture-d024-responsive-presentation.sh capture
+```
+
+It must record and print the runner return code and exit with that same code.
+It contains no configurable or arbitrary executable/argv, shell/eval surface,
+retry, fallback, suppression, allowlist, cleanup, commit or push. Creating or
+validating the script is not a runner invocation and does not consume the
+authorized attempt; the user's manual start does.
+
+### Execution and success boundary
+
+Once the user starts the script, any error, supervisor rc `73`, nonzero runner
+result, process/diagnostic/CA/editor-settings recurrence, runtime/capture or
+atomicity failure is `STOP / NO_RETRY`. Retain exact diagnostics; do not adopt a
+workaround, suppress a match, clean up, rerun or promote a partial tree.
+
+Runner exit `0` is insufficient. Success still requires exact `27 PNG`, the
+governed capture manifest/provenance/full ledger, all no-touch and diagnostic
+gates, immutable `HASHES.sha256` seal verification, atomic canonical promotion,
+zero transient siblings and the exact canonical post-promotion contract before
+independent Art/user review. Final visual acceptance is never self-granted.
+
+No commit or push is authorized.
+
+Recommended Codex reasoning: **очень высокий**.
+
+## 0M. Locale-stable ordinary-Terminal replacement attempt — current authority
+
+Classification: user-approved bounded correction of the §0L preparation
+script after its first manual invocation stopped before any Godot process.
+This section supersedes only the active/current attempt count, script-preflight
+implementation and next-step wording in §0L. Contract A and §0E–§0L remain
+byte-identical history; product, gameplay, runtime, capture, evidence and
+D-029 diagnostic semantics do not change.
+
+The user's literal approval is:
+
+> Разрешаю тебе всё везде.
+
+For this D-024 route the coordinator applies that broad approval narrowly as
+exactly one locale-stable replacement ordinary-Terminal attempt. It is not an
+unbounded retry, suppression, alternate-binary, cleanup or workaround grant.
+
+### Consumed first Terminal attempt and exact diagnosis
+
+The first §0L script was manually started exactly once from ordinary macOS
+Terminal and created its immutable sentinel, but failed its read-only canonical
+preflight before the Steam Godot version probe or runner invocation:
+
+```text
+old_prep_root=/Users/barsulka/GolandProjects/shelter/shelter/tmp/d024-ordinary-terminal-prep-d2e8eb7e-9547-473f-802f-5479fe92d5b3
+old_script_sha256=6a5820bb29529eecd8b2d3dacf65bb4defd0d512139fcb563a3d2fe1a400fb86
+old_sentinel=present
+reported_tree_sha256=bdfea92f6029b60922a0d4ba9f65aa0099315df2303abdfb78d1d03f54214bfc
+godot_processes_started=0
+runner_invocations=0
+deliverables_transient_siblings=0
+```
+
+The exact cause is the old script's unpinned `/usr/bin/sort -z` inside its
+tree-hash function. The same unchanged canonical 32-file input produces:
+
+```text
+LC_ALL=C tree_sha256=4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378
+LC_ALL=en_US.UTF-8 tree_sha256=bdfea92f6029b60922a0d4ba9f65aa0099315df2303abdfb78d1d03f54214bfc
+LC_ALL=ru_RU.UTF-8 tree_sha256=bdfea92f6029b60922a0d4ba9f65aa0099315df2303abdfb78d1d03f54214bfc
+```
+
+The runner and existing canonical contract use `LC_ALL=C`. Therefore this was
+a false canonical-drift verdict in the temporary preparation script, not an
+evidence mutation. Current canonical readback remains exactly:
+
+```text
+files=32
+png=0
+capture_manifest=0
+HASHES.sha256=absent
+tree_sha256=4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378
+```
+
+The old script, prep root and sentinel are retained unchanged as diagnostics
+and must never be edited, removed or invoked again.
+
+### Exact replacement preparation
+
+The exact preparer/execution writer remains:
+
+```text
+019f6604-8ac6-7871-85c8-2c858a2240f3
+```
+
+The preparer may create one new unique, previously absent executable script
+under ignored repo-local `tmp/`. No `/tmp` or `/private/tmp` fallback is
+authorized or needed. Preparation may read the repository and canonical
+evidence, but must not launch Godot, invoke the runner, create a deliverables
+stage, alter either retained archive, mutate canonical evidence, commit or
+push.
+
+The new script must preserve the fixed §0L binary, project, argv, authority,
+implementation-pin, process-census and success contracts, with these exact
+corrections:
+
+1. its tree hash must use `LC_ALL=C /usr/bin/sort -z` at the sorting boundary;
+2. preparation must prove the function returns the accepted canonical digest
+   under `LC_ALL=C`, `en_US.UTF-8` and `ru_RU.UTF-8` caller environments;
+3. every read-only repository, authority, implementation, canonical,
+   transient and process-census preflight must complete before attempt
+   consumption;
+4. the atomic attempt sentinel is created only after those checks pass and
+   immediately before the first Steam Godot version probe;
+5. after sentinel creation, any version, census, runner, process, diagnostic,
+   capture, seal or promotion failure is `STOP / NO_RETRY`;
+6. the old prep root/sentinel and both retained repo-local diagnostic archives
+   remain no-touch.
+
+The script must pin the whole-file SHA published after this §0M amendment,
+Contract A through `--authority-only`, root `AGENTS.md`, all nine governed
+implementation hashes and the canonical 32-file tree exactly as in §0L. It
+must accept no arguments and require exact absolute invocation from ordinary
+Apple Terminal with TTY stdin/stdout/stderr. Its only runner call remains:
+
+```text
+./tools/capture-d024-responsive-presentation.sh capture
+```
+
+### Replacement-attempt boundary
+
+Creating and validating the replacement script does not launch Godot or
+consume the replacement attempt. Only the new script's atomic sentinel, after
+all read-only preflights pass, consumes the one authorized attempt. The user
+then manually invokes the announced absolute script exactly once.
+
+Any pre-sentinel failure is `STOP` for diagnosis and must not be followed by an
+automatic retry or script mutation. Any post-sentinel failure consumes the
+attempt. There is no automatic runner retry, fallback, diagnostic suppression,
+allowlist, cleanup or alternate execution route.
+
+Full success remains the unchanged Contract A boundary: exact 27 PNG,
+governed manifest/provenance/full ledger, complete process and diagnostic PASS,
+immutable seal, atomic promotion, zero transient siblings and exact canonical
+post-promotion verification before independent Art/user review. Runner exit 0
+alone never grants visual acceptance.
+
+No commit or push is authorized by this execution section.
+
+Recommended Codex reasoning: **очень высокий**.
+
+## 0N. PlayerBoot failpoint-forwarding arity correction and standing bounded retries — current authority
+
+Classification: user-approved bounded D-024 test/tool correction after the
+locale-stable ordinary-Terminal attempt passed its preflight and reached the
+real Continue matrix. This section supersedes only the active failure, retry
+count, correction scope and next-route wording in §0M. Contract A and
+§0E–§0M remain byte-identical history. Persistence, checkpoint, gameplay,
+runtime, capture and evidence semantics remain unchanged.
+
+The user's new literal approval is:
+
+> Разрешаю всё. Любое количество ретраев любых скриптов.
+
+For this active D-024 route that approval removes the need for a new literal
+user ACK after every newly diagnosed and corrected blocker. It does not
+authorize a blind automatic loop, concurrent attempts, error suppression,
+allowlisting, hard kill, alternate Godot, evidence fabrication, destructive
+cleanup or retry without first retaining and diagnosing the preceding result.
+Each actual invocation remains one bounded attempt and uses a fresh diagnostic
+root or runner stage.
+
+### Exact consumed attempt and current failure
+
+The locale-stable replacement script was invoked exactly once and reached the
+governed Continue matrix. Its sentinel is retained. The runner stopped before
+native capture with exactly one non-PASS process result:
+
+```text
+failed_stage=docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.0RBzl4
+failed_stage_files=1680
+failed_stage_png=0
+failed_stage_manifest=0
+failed_stage_seal=absent
+failed_stage_tree_sha256=22c7bc7043a78dbfecf360af017ab29198d20c5e2467527dff5618e5b694ab8f
+process_results=412
+process_results_pass=411
+process_results_fail=1
+failed_result=process/player-continue/0162-snapshot-failed-barrier-1/target/process-result.json
+failed_result_sha256=5853183dcc0e127a404ca2b6045c7391d2ec758bfdbb8c1f15ad93db297397bd
+failed_supervisor_rc=73
+failed_process_verdict=FAIL
+failed_diagnostic_verdict=FAIL
+failed_exit_code=1
+failed_signal=null
+failed_pid_alive=false
+```
+
+The exact first diagnostic is:
+
+```text
+SCRIPT ERROR: Invalid call to function 'configure_test_failpoint (via call)' in base 'RefCounted (ShelterPlayerProfileStore)'. Expected 1 argument(s).
+          at: ShelterPlayerBoot.configure_test_store_failpoint (res://scripts/player/player_boot.gd:157)
+```
+
+The following nineteen Continue assertions are cascading failures after that
+first rejected call, not nineteen independent root causes. Current process
+logs contain no CA, editor-settings, AppKit or HIServices diagnostic. Historical
+copies of those strings inside baseline evidence files remain provenance only.
+
+Canonical evidence is unchanged and remains:
+
+```text
+files=32
+png=0
+capture_manifest=0
+HASHES.sha256=absent
+tree_sha256=4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378
+```
+
+### Confirmed root cause and exact four-file correction scope
+
+The nonfatal D-029 migration changed the store signature to exactly one
+argument:
+
+```text
+func configure_test_failpoint(failpoint: String) -> Dictionary
+```
+
+Continue correctly calls `PlayerBoot.configure_test_store_failpoint` with one
+argument. `PlayerBoot` still forwards an obsolete second `false` at exactly
+three store callsites: startup application, clear and configure. Godot rejects
+the dynamic call before the failpoint body runs.
+
+The exact current guards and authorized byte-change scope are:
+
+```text
+dac832c2d861a16ad74ba4fb5bdaebaa045b5f63984b9a5be74d45f348fb60fd  steam/scripts/player/player_boot.gd
+ae242d6e90d9be5baa783a1836c1188370bcfc66580d19b6391232a1e47ef44f  steam/tests/tools/test_observe_godot_process.py
+2620fdb6f2f57331e49859ab9530a7476ab6449a3a52cfb986a3d4f787cf17f2  steam/tools/validate-d024-responsive-presentation.py
+94cfed6865ecdbd7b6b1a93ebc5228cbfb7e8702406cb3071408514dc0e4aa9d  steam/tools/capture-d024-responsive-presentation.sh
+```
+
+No fifth tracked implementation file may change for this correction. Exact
+no-touch guards include:
+
+```text
+5428a6d3e319b21ca0a40612cbabdd13fbf59cef147a0e9f08ed3f67b059219f  steam/scripts/persistence/player_profile_store.gd
+da8abbe8fcfe3c792235fba3eb71bf1a45f414c465f6972bb6c4486c10773f8f  steam/tests/player_continue/test_player_continue.gd
+c09235f051a686fd358fb86baa697f3fb7ce80ef2781207bf55f3bded9cf8104  steam/tests/launch_surfaces/test_player_boot.gd
+```
+
+The correction is exact:
+
+1. remove only the obsolete `, false` argument from the three PlayerBoot
+   calls to `configure_test_failpoint`;
+2. add one source-sensitive stdlib regression proving the store signature has
+   one required argument, PlayerBoot has exactly three one-argument dynamic
+   forwarding calls and no two-argument forwarding call, while Continue's
+   public adapter calls remain one-argument;
+3. update the validator's exact PlayerBoot pin to the resulting hash; and
+4. update only the affected PlayerBoot, observer-test and validator pins in
+   the capture runner, then publish all four final hashes.
+
+No observer diagnostic policy, store behavior, failpoint identity, Continue
+assertion, persistence schema, gameplay path, production save path or graceful
+shutdown behavior may change.
+
+The authorized correction is implemented with these exact final hashes:
+
+```text
+09a544fc3c1a6ad5defd7ffe3c3b1f83ab6ed2033f03e0618022e63f63914275  steam/scripts/player/player_boot.gd
+d638ce50bf5eb584c5d50592b1af36a3d95ce2e2ea150f3f9ac0f8cfd19b4526  steam/tests/tools/test_observe_godot_process.py
+2618815935c32349c2365b12267dd63b6138dc403ff85ea1dcddf54c4c281a4c  steam/tools/validate-d024-responsive-presentation.py
+c20d7b5803be377eb5257b37fbb150593d088db4c57d5a1129c5b2fc2bf84265  steam/tools/capture-d024-responsive-presentation.sh
+```
+
+The source-sensitive regression first failed only on the three obsolete
+two-argument forwards while the other 22 observer tests passed. After removing
+only those arguments, the same suite passed `23/23`. Python compile, both
+validators, runner/wrapper shell syntax, the exact arity contract,
+no-hard-kill/no-allowlist scans, diff-check and staged-empty gates also pass.
+No Godot process was launched for this correction and canonical evidence
+remains byte-identical.
+
+The retained failed stage was moved once, without fallback, to the exact
+ignored repo-local diagnostics path:
+
+```text
+/Users/barsulka/GolandProjects/shelter/shelter/tmp/d024-retained-failed-stage-f9c97a37-6dc6-4afa-810e-e4641e65eaf8
+files=1680
+png=0
+capture_manifest=0
+HASHES.sha256=absent
+tree_sha256=22c7bc7043a78dbfecf360af017ab29198d20c5e2467527dff5618e5b694ab8f
+```
+
+The original deliverables source is absent and the deliverables directory now
+has zero D-024 stage/rollback siblings. The archive remains immutable
+diagnostics and is never a promotion source.
+
+The unique ignored ordinary-Terminal script is prepared at:
+
+```text
+/Users/barsulka/GolandProjects/shelter/shelter/tmp/d024-ordinary-terminal-retry-a967bd02-2a65-40c8-9bf2-a6184b7988a0/run-d024-focused-then-capture-once.sh
+```
+
+Its attempt sentinel is absent and no Godot process or runner invocation was
+performed during preparation. Its final SHA is published in the direct
+execution handoff after pinning this section's resulting whole-brief hash.
+
+### Required correction and retry gates
+
+Before any new Godot process:
+
+1. reproduce the tight static RED from the retained failure and old guards;
+2. after the patch, require the same loop to return GREEN and the new unit
+   regression to pass;
+3. require the observer suite to pass with exactly one additional test over
+   the prior `22/22` matrix;
+4. require authority-only and normal D-024 validators, Python compile, shell
+   syntax, no-hard-kill/no-allowlist scans, full/scoped diff-check and staged
+   empty;
+5. prove the actual tracked correction scope is exactly four files and the
+   canonical tree is unchanged;
+6. move the retained `.stage.0RBzl4` once to a unique ignored repo-local
+   `tmp/` destination with exact 1680-file/tree/PNG/manifest/seal readback and
+   leave zero deliverables transient siblings.
+
+After those gates, a new unique ordinary-Terminal script may first run one
+focused Continue fixture `write sequence=1`, then the previously failing
+`snapshot-failed-barrier sequence=1` target on the same isolated base through
+the fixed public observer. Both processes must satisfy exact process PASS,
+diagnostic PASS, supervisor rc `0`, exit `0`, finalized raw logs and their
+required phase PASS markers. Only then may the same manual script invoke the
+full D-024 runner once. A focused failure stops before the full runner. A
+full-runner failure retains its new stage and returns for diagnosis; the
+standing user approval allows a later newly prepared bounded retry without
+another user ACK after the corresponding source/brief correction.
+
+The Terminal script contains no automatic retry loop, arbitrary executable or
+argv, suppression, allowlist, cleanup, commit or push. It uses repo-local
+`tmp/` only and preserves every previous prep root, sentinel and retained
+diagnostic archive.
+
+Full success remains exact 27 PNG, governed manifest/provenance/full ledger,
+all process and diagnostic PASS, immutable seal, atomic promotion, zero
+transient siblings and canonical post-promotion verification before independent
+Art/user review. Final visual acceptance is not self-granted.
+
+No commit or push is authorized by this section.
+
+Recommended Codex reasoning: **очень высокий**.
+
+## 0O. Focused Continue exact-match predicate diagnosis — current authority
+
+Classification: bounded, test-only diagnosis after the §0N prepared script was
+manually started in ordinary macOS Terminal. This section supersedes only the
+active result, diagnostic scope and next-run wording in §0N. Contract A and
+§0E–§0N remain immutable history. It changes no persistence, checkpoint,
+gameplay, capture, evidence or product meaning.
+
+### Consumed focused result
+
+The §0N script passed every repository/binary/authority/canonical preflight and
+its `write sequence=1` fixture target passed with supervisor rc `0`, process
+`PASS` and diagnostic `PASS`. The following
+`snapshot-failed-barrier sequence=1` target reached the real runtime failpoint
+but returned rc `73`. The script stopped before the full runner exactly as
+required.
+
+```text
+focused_root=/Users/barsulka/GolandProjects/shelter/shelter/tmp/d024-ordinary-terminal-retry-a967bd02-2a65-40c8-9bf2-a6184b7988a0/focused
+focused_files=16
+focused_png=0
+focused_tree_sha256=cbdd663a1123da9ba3844502947b839424f4cca6b7e30ec4e184454ec9c19585
+write_result_sha256=3cbedec5496b0ce8eae6d63133b6ab97e3f6cbedcc9c2a3b5074f2cdd7bd5562
+snapshot_result_sha256=2bb54125c4288b2c0b972d75cb29d79cde48dfc0e800f190803e17d91b3f00d1
+snapshot_stdout_sha256=21e7be3d0bae54877d3dae57f722a8498c55da8a82c534f1e3ad08669b5bb29c
+snapshot_stderr_sha256=d378e16c809a9fa9092a33a9fa6aecc8b5ab9d7bda0e6a2664378afeb3ee5250
+snapshot_supervisor_rc=73
+snapshot_process_verdict=FAIL
+snapshot_diagnostic_verdict=FAIL
+snapshot_exit_code=1
+snapshot_signal=null
+snapshot_pid_alive=false
+full_runner_invocations=0
+deliverables_transient_siblings=0
+```
+
+The exact failpoint marker exists under the isolated test base, the preceding
+profile is retained at cursor `1`, and the old arity diagnostic is absent.
+Therefore the §0N arity correction is effective. The new first assertion says
+only that the armed test-only consumer did not accept the real result; thirteen
+following assertions are cascading because the seam currently discards the
+exact predicate mismatch before returning.
+
+### Exact diagnostic scope
+
+The current runtime guard is:
+
+```text
+025e4e55ecc39ca48ad89803e9ff5eaf857e80f20baa9a83a2218a8aab763051  steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd
+```
+
+Only this one tracked implementation file may change for the diagnostic wave.
+Add one temporary test-only print inside
+`_consume_expected_test_checkpoint_persistence_failure` when and only when an
+armed expectation fails its exact conjunction. Its prefix is exactly
+`[DEBUG-d024-persistence-consumer]` and its value is a bounded Dictionary
+containing only:
+
+- each boolean predicate result;
+- actual/expected checkpoint kind and sequence;
+- outer error, nested store error and failpoint identity;
+- barrier state and the two structural equality booleans.
+
+It must never print a checkpoint/profile/envelope payload, canonical bytes,
+raw save contents or production path. Unarmed production behavior and its
+existing `push_error` remain unchanged. Exact-match behavior remains unchanged;
+this wave diagnoses but does not weaken, accept or fix a mismatch.
+
+No other tracked file may change. In particular PlayerBoot, profile store,
+Continue test, observer, validator and capture runner stay at their current
+accepted hashes. The temporary runtime hash is pinned only by a new ignored
+repo-local diagnostic script; the full runner is forbidden while that hash
+differs from its current pin.
+
+The bounded diagnostic instrumentation is implemented at:
+
+```text
+c0e92ed164347bf13f84a7f57c1db6f34a536f4825c391ac88c07b70c56fbba7  steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd
+```
+
+The observer suite remains `23/23` PASS; authority-only and normal D-024
+validators, bounded-field static scan, diff-check and staged-empty also pass.
+No Godot process was launched for this instrumentation.
+
+### Diagnostic retry
+
+After no-Godot static checks, prepare one new unique ignored repo-local
+ordinary-Terminal script. It uses a fresh isolated HOME/base and runs only:
+
+1. Continue `write sequence=1`;
+2. Continue `snapshot-failed-barrier sequence=1` on the same base.
+
+The expected diagnostic target remains rc `73`; success of this diagnostic
+wave means its raw stdout contains the single bounded debug record and raw
+stderr retains the fail-loud assertions. It must not invoke the D-024 runner,
+create/move a deliverables stage, capture, manifest, seal or promote anything.
+All artifacts remain under repo-local `tmp/`; `/tmp` and `/private/tmp` are not
+used.
+
+The unique ignored diagnostic script is prepared at:
+
+```text
+/Users/barsulka/GolandProjects/shelter/shelter/tmp/d024-consumer-diagnostic-retry-04320286-5471-45ae-82d0-bf7b33ceacba/run-d024-consumer-diagnostic-once.sh
+```
+
+Its sentinel is absent. Preparation does not invoke Godot or the D-024 runner.
+
+After readback, remove every `[DEBUG-d024-persistence-consumer]` line, record
+the exact false predicate, implement the smallest test-only correction under a
+new current brief update, add a source-sensitive regression and prepare the
+next focused PASS route. The standing user approval in §0N authorizes that
+bounded sequence without a new user ACK, but still forbids a blind loop,
+suppression, allowlist, hard kill or full runner before focused PASS.
+
+Canonical evidence remains exactly 32 files, no PNG/manifest/seal and tree
+`4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378`.
+No commit or push is authorized by this section.
+
+Recommended Codex reasoning: **очень высокий**.
+
+## 0P. Direct-gate persistence-result alias correction — current authority
+
+Classification: bounded test-only correction after the exact §0O predicate
+diagnostic completed in ordinary macOS Terminal. This section supersedes only
+the active diagnostic/result/scope/next wording in §0O. Contract A and
+§0E–§0O remain immutable history. No persistence, checkpoint, store, schema,
+save, gameplay, capture, evidence or product meaning changes.
+
+### Retained diagnosis
+
+The §0O script completed exactly its two fixed targets and never invoked the
+full D-024 runner. `write sequence=1` passed. The expected rc `73`
+`snapshot-failed-barrier sequence=1` target retained exactly one bounded
+predicate vector:
+
+```text
+outer_error_matches=false
+store_error_matches=false
+store_failpoint_matches=false
+durable_sequence_matches=true
+barrier_matches=true
+checkpoint_kind_matches=true
+staged_kind_matches=true
+staged_sequence_matches=true
+staged_checkpoint_matches=true
+durable_checkpoint_matches=true
+outer_error=""
+store_error=""
+store_failpoint=""
+expected_sequence=2
+actual_sequence=1
+expected_kind=first_day_route_confirmed
+actual_kind=first_day_route_confirmed
+staged_sequence=2
+staged_kind=first_day_route_confirmed
+barrier_failed=true
+```
+
+Exact retained evidence:
+
+```text
+diagnostic_root=/Users/barsulka/GolandProjects/shelter/shelter/tmp/d024-consumer-diagnostic-retry-04320286-5471-45ae-82d0-bf7b33ceacba/observe
+files=16
+tree_sha256=1738dd6ad23e692d1c63b8dcb6f05e041895c3db6acead097e5e552dc8f65c74
+write_result_sha256=641ff821a3e0313a4fb6feefac3c9225aa31e87bce723ca30789b32eec8bb472
+snapshot_result_sha256=f456c74be851d8f155ebf4c9a2c7a99058034c90cf8df35b16257c4dcd8dab75
+snapshot_stdout_sha256=a6bf4e92c8af1461dbdc37374fa7caca798496adb19b6e9e614be490d756f51b
+snapshot_stderr_sha256=d378e16c809a9fa9092a33a9fa6aecc8b5ab9d7bda0e6a2664378afeb3ee5250
+snapshot_events_sha256=e6121ec3e15c46d44f896484bd2fe9e2326945d110f63070558cc4df812adb65
+snapshot_supervisor_rc=73
+snapshot_process_verdict=FAIL
+snapshot_diagnostic_verdict=FAIL
+snapshot_exit_code=1
+snapshot_signal=null
+snapshot_pid_alive=false
+full_runner_invocations=0
+```
+
+The exact state, barrier, kind, sequence, staged golden and durable golden all
+match. Only the three fields read from `commit_result` are empty. The confirmed
+cause is GDScript reference aliasing in the test-only consumer: the direct-gate
+fallback passes `_test_last_checkpoint_persistence_result` itself as the
+`Dictionary` argument, then the consumer clears that member before reading the
+argument. Both names refer to the same Dictionary, so the argument becomes
+empty. The task-completion path uses a separate local result and does not expose
+this alias.
+
+### Exact implementation scope
+
+Expected-current guards before this correction:
+
+```text
+c0e92ed164347bf13f84a7f57c1db6f34a536f4825c391ac88c07b70c56fbba7  steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd
+d638ce50bf5eb584c5d50592b1af36a3d95ce2e2ea150f3f9ac0f8cfd19b4526  steam/tests/tools/test_observe_godot_process.py
+c20d7b5803be377eb5257b37fbb150593d088db4c57d5a1129c5b2fc2bf84265  steam/tools/capture-d024-responsive-presentation.sh
+```
+
+Only these three tracked implementation files may change:
+
+1. in `_consume_expected_test_checkpoint_persistence_failure`, deep-duplicate
+   the incoming `commit_result` before clearing any one-shot member;
+2. use that retained duplicate for the complete exact conjunction and the
+   accepted structured observation;
+3. remove every `[DEBUG-d024-persistence-consumer]` byte and all temporary
+   named diagnostic predicates while restoring the original exact conjunction;
+4. extend the existing source-sensitive observer regression to require that
+   the duplicate occurs before `_test_last_checkpoint_persistence_result.clear()`,
+   that all result reads and the structured observation use the retained
+   duplicate, and that the temporary debug prefix is absent;
+5. update only the resulting runtime and observer-test pins in the D-024
+   runner and report its new hash.
+
+The exact conjunction must not be weakened. The outer error remains
+`checkpoint_persistence_failed`; the nested store error remains
+`injected_failure:before_validation`; the failpoint remains
+`before_validation`; every durable/barrier/staged/golden predicate remains
+required. PlayerBoot, PlayerProfileStore, Continue test, schema, codec,
+observer policy and production paths are no-touch.
+
+The exact correction is implemented and pinned at:
+
+```text
+731480093ea8d18d2f7282ab99b3a0507bf2d809d4cfbe1f6dc98d1adfc929c4  steam/scripts/prototypes/vertical_slice/vertical_slice_demo.gd
+ba00d6d5658e6fbcd5fd8a45b695ad8a466d50b9acab0efd2a56ce44d07f72dc  steam/tests/tools/test_observe_godot_process.py
+2df209f50fe3a83d5b4ecd2375bd216245b79231d01e075e243d327df7e03cd0  steam/tools/capture-d024-responsive-presentation.sh
+```
+
+The source-sensitive alias reconstruction is RED for clear-before-read and
+GREEN for duplicate-before-clear. The complete observer suite is `23/23` PASS;
+authority-only and normal validators, runner/wrapper syntax, debug-prefix
+absence, hard-stop scan, diff-check and staged-empty all pass. No Godot process
+was launched for this correction.
+
+### Acceptance and next execution
+
+Before real Godot:
+
+- source-sensitive alias RED reconstruction and post-fix GREEN;
+- no `[DEBUG-d024-persistence-consumer]` occurrence in tracked Steam source;
+- observer fake/static suite PASS with warnings as errors;
+- authority-only and normal D-024 validators PASS;
+- runner syntax, exact pin counts, no-hard-kill/no-allowlist scan, diff-check
+  and staged-empty PASS;
+- canonical evidence remains exactly 32 files, no PNG/manifest/seal and tree
+  `4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378`;
+- deliverables transient siblings remain zero.
+
+After those checks, prepare a fresh unique ignored repo-local ordinary-Terminal
+script. It must first run the same `write sequence=1` and
+`snapshot-failed-barrier sequence=1` targets under a fresh HOME/base. Only if
+both return supervisor rc `0`, process `PASS`, diagnostic `PASS` and exact phase
+markers may that same user-started script invoke the full D-024 runner once.
+Any focused or full-runner failure retains diagnostics and stops without blind
+loop, suppression, allowlist, hard kill or alternate route. All temporary
+artifacts use repo-local `tmp/`; `/tmp` and `/private/tmp` are not used.
+
+That script is prepared at:
+
+```text
+/Users/barsulka/GolandProjects/shelter/shelter/tmp/d024-ordinary-terminal-retry-f1dcf929-cfb6-4224-a72b-6e0b6402bed9/run-d024-focused-then-capture.sh
+```
+
+Its sentinel, HOME, focused output and deliverables transient stage are absent
+at preparation handoff. Preparation invokes neither Godot nor the D-024 runner.
+
+The user's standing bounded-retry authorization remains sufficient for this
+correction and fresh Terminal route; preparation itself launches no Godot.
+Final Art/user acceptance is never self-granted.
+
+No commit or push is authorized by this section.
 
 Recommended Codex reasoning: **очень высокий**.
 

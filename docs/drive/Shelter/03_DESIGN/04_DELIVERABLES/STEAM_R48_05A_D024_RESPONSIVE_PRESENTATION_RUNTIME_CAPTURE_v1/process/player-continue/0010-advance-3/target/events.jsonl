@@ -1,0 +1,13 @@
+{"argv": ["/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot", "--headless", "--path", "/Users/barsulka/GolandProjects/shelter/shelter/steam", "--scene", "res://tests/player_continue/player_continue_test_runner.tscn", "--", "--continue-test-phase=advance", "--continue-test-base=user://player-tests/r48-02b-79160/cursor-3", "--continue-test-sequence=3"], "event": "spawn_requested", "profile": "scene-test", "sequence": 1, "timestamp": "2026-07-20T16:29:29.851063Z"}
+{"event": "child_started", "pid": 87374, "sequence": 2, "timestamp": "2026-07-20T16:29:29.854161Z"}
+{"byte_count": 69, "event": "stream_bytes", "sequence": 3, "stream": "stdout", "timestamp": "2026-07-20T16:29:29.890773Z"}
+{"byte_count": 1, "event": "stream_bytes", "sequence": 4, "stream": "stdout", "timestamp": "2026-07-20T16:29:29.903675Z"}
+{"byte_count": 48, "event": "stream_bytes", "sequence": 5, "stream": "stdout", "timestamp": "2026-07-20T16:29:30.330257Z"}
+{"byte_count": 198, "event": "stream_bytes", "sequence": 6, "stream": "stdout", "timestamp": "2026-07-20T16:29:30.330463Z"}
+{"byte_count": 277, "event": "stream_bytes", "sequence": 7, "stream": "stdout", "timestamp": "2026-07-20T16:29:30.330530Z"}
+{"byte_count": 192, "event": "stream_bytes", "sequence": 8, "stream": "stdout", "timestamp": "2026-07-20T16:29:30.341636Z"}
+{"byte_count": 89, "event": "stream_bytes", "sequence": 9, "stream": "stdout", "timestamp": "2026-07-20T16:29:30.391837Z"}
+{"byte_count": 53, "event": "stream_bytes", "sequence": 10, "stream": "stdout", "timestamp": "2026-07-20T16:29:30.404570Z"}
+{"event": "stream_tail_stopped", "sequence": 11, "stream": "stderr", "timestamp": "2026-07-20T16:29:30.497494Z"}
+{"event": "stream_tail_stopped", "sequence": 12, "stream": "stdout", "timestamp": "2026-07-20T16:29:30.504184Z"}
+{"diagnostic_verdict": "PASS", "event": "child_complete", "pid": 87374, "process_verdict": "PASS", "sequence": 13, "supervisor_rc": 0, "timestamp": "2026-07-20T16:29:30.504799Z"}

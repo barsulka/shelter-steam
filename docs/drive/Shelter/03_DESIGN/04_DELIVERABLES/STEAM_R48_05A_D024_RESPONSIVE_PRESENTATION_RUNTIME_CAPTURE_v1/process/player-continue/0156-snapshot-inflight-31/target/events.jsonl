@@ -1,0 +1,58 @@
+{"argv": ["/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot", "--headless", "--path", "/Users/barsulka/GolandProjects/shelter/shelter/steam", "--scene", "res://tests/player_continue/player_continue_test_runner.tscn", "--", "--continue-test-phase=snapshot-inflight", "--continue-test-base=user://player-tests/r48-02b-79160/inflight-31", "--continue-test-sequence=31"], "event": "spawn_requested", "profile": "scene-test", "sequence": 1, "timestamp": "2026-07-20T16:31:58.687645Z"}
+{"event": "child_started", "pid": 61152, "sequence": 2, "timestamp": "2026-07-20T16:31:58.690148Z"}
+{"byte_count": 69, "event": "stream_bytes", "sequence": 3, "stream": "stdout", "timestamp": "2026-07-20T16:31:58.713151Z"}
+{"byte_count": 1, "event": "stream_bytes", "sequence": 4, "stream": "stdout", "timestamp": "2026-07-20T16:31:58.738348Z"}
+{"byte_count": 35, "event": "stream_bytes", "sequence": 5, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.104796Z"}
+{"byte_count": 475, "event": "stream_bytes", "sequence": 6, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.130055Z"}
+{"byte_count": 116, "event": "stream_bytes", "sequence": 7, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.167787Z"}
+{"byte_count": 342, "event": "stream_bytes", "sequence": 8, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.180561Z"}
+{"byte_count": 366, "event": "stream_bytes", "sequence": 9, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.228784Z"}
+{"byte_count": 89, "event": "stream_bytes", "sequence": 10, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.266557Z"}
+{"byte_count": 196, "event": "stream_bytes", "sequence": 11, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.279348Z"}
+{"byte_count": 312, "event": "stream_bytes", "sequence": 12, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.317192Z"}
+{"byte_count": 200, "event": "stream_bytes", "sequence": 13, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.329796Z"}
+{"byte_count": 211, "event": "stream_bytes", "sequence": 14, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.366540Z"}
+{"byte_count": 204, "event": "stream_bytes", "sequence": 15, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.379311Z"}
+{"byte_count": 106, "event": "stream_bytes", "sequence": 16, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.417064Z"}
+{"byte_count": 205, "event": "stream_bytes", "sequence": 17, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.429830Z"}
+{"byte_count": 73, "event": "stream_bytes", "sequence": 18, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.465175Z"}
+{"byte_count": 121, "event": "stream_bytes", "sequence": 19, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.477893Z"}
+{"byte_count": 428, "event": "stream_bytes", "sequence": 20, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.526346Z"}
+{"byte_count": 155, "event": "stream_bytes", "sequence": 21, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.571992Z"}
+{"byte_count": 172, "event": "stream_bytes", "sequence": 22, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.584432Z"}
+{"byte_count": 114, "event": "stream_bytes", "sequence": 23, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.621999Z"}
+{"byte_count": 138, "event": "stream_bytes", "sequence": 24, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.634761Z"}
+{"byte_count": 77, "event": "stream_bytes", "sequence": 25, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.671929Z"}
+{"byte_count": 112, "event": "stream_bytes", "sequence": 26, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.683506Z"}
+{"byte_count": 124, "event": "stream_bytes", "sequence": 27, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.770854Z"}
+{"byte_count": 298, "event": "stream_bytes", "sequence": 28, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.783581Z"}
+{"byte_count": 379, "event": "stream_bytes", "sequence": 29, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.870985Z"}
+{"byte_count": 29, "event": "stream_bytes", "sequence": 30, "stream": "stdout", "timestamp": "2026-07-20T16:31:59.920148Z"}
+{"byte_count": 48, "event": "stream_bytes", "sequence": 31, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.041290Z"}
+{"byte_count": 724, "event": "stream_bytes", "sequence": 32, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.087123Z"}
+{"byte_count": 116, "event": "stream_bytes", "sequence": 33, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.124939Z"}
+{"byte_count": 390, "event": "stream_bytes", "sequence": 34, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.137856Z"}
+{"byte_count": 266, "event": "stream_bytes", "sequence": 35, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.185521Z"}
+{"byte_count": 148, "event": "stream_bytes", "sequence": 36, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.198264Z"}
+{"byte_count": 133, "event": "stream_bytes", "sequence": 37, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.234439Z"}
+{"byte_count": 297, "event": "stream_bytes", "sequence": 38, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.247254Z"}
+{"byte_count": 312, "event": "stream_bytes", "sequence": 39, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.283518Z"}
+{"byte_count": 200, "event": "stream_bytes", "sequence": 40, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.296405Z"}
+{"byte_count": 415, "event": "stream_bytes", "sequence": 41, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.342754Z"}
+{"byte_count": 150, "event": "stream_bytes", "sequence": 42, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.390119Z"}
+{"byte_count": 161, "event": "stream_bytes", "sequence": 43, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.401502Z"}
+{"byte_count": 73, "event": "stream_bytes", "sequence": 44, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.438565Z"}
+{"byte_count": 314, "event": "stream_bytes", "sequence": 45, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.451326Z"}
+{"byte_count": 261, "event": "stream_bytes", "sequence": 46, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.501067Z"}
+{"byte_count": 167, "event": "stream_bytes", "sequence": 47, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.513911Z"}
+{"byte_count": 375, "event": "stream_bytes", "sequence": 48, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.558593Z"}
+{"byte_count": 212, "event": "stream_bytes", "sequence": 49, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.608578Z"}
+{"byte_count": 235, "event": "stream_bytes", "sequence": 50, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.621355Z"}
+{"byte_count": 125, "event": "stream_bytes", "sequence": 51, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.657412Z"}
+{"byte_count": 209, "event": "stream_bytes", "sequence": 52, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.667731Z"}
+{"byte_count": 97, "event": "stream_bytes", "sequence": 53, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.716749Z"}
+{"byte_count": 124, "event": "stream_bytes", "sequence": 54, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.767193Z"}
+{"byte_count": 119, "event": "stream_bytes", "sequence": 55, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.779804Z"}
+{"event": "stream_tail_stopped", "sequence": 56, "stream": "stderr", "timestamp": "2026-07-20T16:32:00.879139Z"}
+{"event": "stream_tail_stopped", "sequence": 57, "stream": "stdout", "timestamp": "2026-07-20T16:32:00.879428Z"}
+{"diagnostic_verdict": "PASS", "event": "child_complete", "pid": 61152, "process_verdict": "PASS", "sequence": 58, "supervisor_rc": 0, "timestamp": "2026-07-20T16:32:00.879734Z"}

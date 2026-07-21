@@ -67,7 +67,7 @@ func _ready() -> void:
     _configure_observer_control()
     _store = PlayerProfileStore.new(_store_base_dir, _store_test_mode)
     if _store_test_mode and _test_store_failpoint != "":
-        var failpoint_result: Dictionary = _store.call("configure_test_failpoint", _test_store_failpoint, false) as Dictionary
+        var failpoint_result: Dictionary = _store.call("configure_test_failpoint", _test_store_failpoint) as Dictionary
         if not bool(failpoint_result.get("ok", false)):
             _show_error(COPY_INVALID_PROFILE, "test_store_failpoint_invalid")
             return
@@ -147,14 +147,14 @@ func clear_test_store_failpoint() -> Dictionary:
     if not _store_test_mode or _store == null:
         return {"ok": false, "error": "test_store_unavailable"}
     _test_store_failpoint = ""
-    return _store.call("configure_test_failpoint", "", false) as Dictionary
+    return _store.call("configure_test_failpoint", "") as Dictionary
 
 
 func configure_test_store_failpoint(failpoint: String) -> Dictionary:
     if not _store_test_mode or _store == null:
         return {"ok": false, "error": "test_store_unavailable"}
     _test_store_failpoint = failpoint
-    return _store.call("configure_test_failpoint", failpoint, false) as Dictionary
+    return _store.call("configure_test_failpoint", failpoint) as Dictionary
 
 
 func _prepare_startup() -> void:

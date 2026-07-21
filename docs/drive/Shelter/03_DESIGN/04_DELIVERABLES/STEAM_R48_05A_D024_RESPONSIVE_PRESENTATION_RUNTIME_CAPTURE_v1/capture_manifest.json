@@ -1,0 +1,21 @@
+{
+  "schema": "shelter.d024-runtime-evidence.v1",
+  "date": "2026-07-14",
+  "git_commit": "556c9cc561c87977b3a3d79b80ffc5f201551835",
+  "technical_result": "PASS / TECHNICAL_MECHANICAL_ONLY",
+  "runtime_art_review": "PENDING",
+  "user_acceptance": "PENDING",
+  "macos_native": "PASS",
+  "authority_contract_scheme": "raw-bytes-between-markers-v1",
+  "authority_contract_sha256": "4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf",
+  "brief_file_sha256_at_capture": "cc6d7fa778b85eebd6d6307dba33efa52518aa62911287dd15ee0d9c7dd5c669",
+  "source_acceptance_sha256": "eab92cb51a84361ba48036fed760ebbcdbfac59afe8b3b7d824dd42e84856079",
+  "source_package_hashes_sha256": "220a9532f54b8f8ae813f32ac02ef28e35a5d2bde6ded318ecb08a43319e43bf",
+  "a_h_manifest_sha256": "d8f1a9fc9226588097eb7bdfc162b6eff520ef42605b369ba25f906daa52ae56",
+  "runtime_corpus": {"png": 43, "import_sidecars": 43},
+  "notes": [
+    "No production player profile was used; all player checks ran under an isolated temporary HOME.",
+    "Game imagery is captured by Godot from a real GUI framebuffer; no external desktop capture is required.",
+    "Runtime Art and final user review remain external pending gates."
+  ]
+}

@@ -1,0 +1,14 @@
+{"argv": ["/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot", "--path", "/Users/barsulka/GolandProjects/shelter/shelter/steam", "--", "--shelter-observer-control-v1"], "event": "spawn_requested", "profile": "ordinary-player", "sequence": 1, "timestamp": "2026-07-20T16:32:59.308761Z"}
+{"event": "child_started", "pid": 62664, "sequence": 2, "timestamp": "2026-07-20T16:32:59.313366Z"}
+{"byte_count": 69, "event": "stream_bytes", "sequence": 3, "stream": "stdout", "timestamp": "2026-07-20T16:32:59.385250Z"}
+{"byte_count": 70, "event": "stream_bytes", "sequence": 4, "stream": "stdout", "timestamp": "2026-07-20T16:32:59.457192Z"}
+{"byte_count": 1, "event": "stream_bytes", "sequence": 5, "stream": "stdout", "timestamp": "2026-07-20T16:32:59.580620Z"}
+{"byte_count": 35, "event": "stream_bytes", "sequence": 6, "stream": "stdout", "timestamp": "2026-07-20T16:32:59.969338Z"}
+{"byte_count": 485, "event": "stream_bytes", "sequence": 7, "stream": "stdout", "timestamp": "2026-07-20T16:32:59.991413Z"}
+{"event": "readiness_result", "observed": true, "sequence": 8, "timestamp": "2026-07-20T16:33:00.002900Z"}
+{"event": "project_control_quit_requested", "pid": 62664, "request_path": "user://d029-observer-control/quit.request", "request_sha256": "a3486a2fbc2b6c5de5debdff760a7f2c1d9342709f25acc0ce2408d6289fc118", "sequence": 9, "timestamp": "2026-07-20T16:33:00.003330Z"}
+{"byte_count": 159, "event": "stream_bytes", "sequence": 10, "stream": "stdout", "timestamp": "2026-07-20T16:33:00.015952Z"}
+{"event": "project_control_quit_acknowledged", "pid": 62664, "sequence": 11, "timestamp": "2026-07-20T16:33:00.028481Z"}
+{"event": "stream_tail_stopped", "sequence": 12, "stream": "stderr", "timestamp": "2026-07-20T16:33:00.112181Z"}
+{"event": "stream_tail_stopped", "sequence": 13, "stream": "stdout", "timestamp": "2026-07-20T16:33:00.112457Z"}
+{"diagnostic_verdict": "PASS", "event": "child_complete", "pid": 62664, "process_verdict": "PASS", "sequence": 14, "supervisor_rc": 0, "timestamp": "2026-07-20T16:33:00.112735Z"}

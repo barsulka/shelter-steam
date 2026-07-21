@@ -1,0 +1,6 @@
+{"argv": ["/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot", "--version"], "event": "spawn_requested", "profile": "version", "sequence": 1, "timestamp": "2026-07-20T16:32:06.686787Z"}
+{"event": "child_started", "pid": 61309, "sequence": 2, "timestamp": "2026-07-20T16:32:06.689288Z"}
+{"event": "stream_tail_stopped", "sequence": 3, "stream": "stderr", "timestamp": "2026-07-20T16:32:06.713821Z"}
+{"byte_count": 29, "event": "stream_bytes", "sequence": 4, "stream": "stdout", "timestamp": "2026-07-20T16:32:06.714667Z"}
+{"event": "stream_tail_stopped", "sequence": 5, "stream": "stdout", "timestamp": "2026-07-20T16:32:06.714752Z"}
+{"diagnostic_verdict": "PASS", "event": "child_complete", "pid": 61309, "process_verdict": "PASS", "sequence": 6, "supervisor_rc": 0, "timestamp": "2026-07-20T16:32:06.714915Z"}

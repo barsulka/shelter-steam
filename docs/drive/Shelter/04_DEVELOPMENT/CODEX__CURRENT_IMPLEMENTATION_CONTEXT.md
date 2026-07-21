@@ -1,10 +1,19 @@
 # CODEX — Current Implementation Context
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-16
+Обновлено: 2026-07-21
 Статус: active current-summary
 Владелец: Codex / Project Manager
 Назначение: короткий актуальный dev/Codex вход без перечитывания всего `CODEX_STATUS.md` и старых brief-файлов.
+
+---
+
+## Current override — 2026-07-21
+
+- Sealed D-024 capture pack успешно получен через ordinary macOS Terminal и остаётся техническим/mechanical evidence pre-D-030 состояния, а не текущим D-030 visual proof.
+- Активная runtime-реализация теперь следует D-030: fixed 26-cell meadow period, no stretch, whole-game zoom, dynamic strip height, alpha-aware click surface, удалённый legacy stretched field и grounded world objects. Exact Steam Godot checks PASS.
+- Пользователь просмотрел текущий результат; оценка «уже более-менее». Final Art/user acceptance пока не фиксируется.
+- Следующий отдельный implementation slice после checkpoint: 26→13 meadow cells и buildings ×2 на каждом zoom-level. D-030 brief/decision должны быть изменены вместе с этой будущей реализацией, не задним числом в текущем checkpoint.
 
 ---
 
@@ -49,7 +58,7 @@ GitHub Actions CI validates the MCP without starting Godot/runtime.
 First Day MVP is locked at prototype/product-language level.
 D-022 Day 2 same-chain Warm Food Delivery is implemented and verified at prototype/product-language/runtime-evidence level.
 D-029/D-024 observability, graceful-stop and atomic-runner remediation is implemented and independently no-Godot reviewed PASS with P0=0/P1=0/P2=0.
-D-024 current status: D029_D024_OBSERVABILITY_ATOMIC_RUNNER_REMEDIATION_IMPLEMENTED / INDEPENDENT_NO_GODOT_REVIEW_PASS / CAPTURE_BLOCKED / EVIDENCE_HOLD / UNSEALED / NEW USER_COORDINATOR DECISION AND LITERAL BOUNDED REAL-RUN ACK REQUIRED.
+D-024 current status: PLAYER_PROFILE_PRE_FLUSH_CORRECTION_IMPLEMENTED / FOCUSED_FRESH_PROCESS_GATE_PASS / SUPERVISOR_RC0 / PROCESS_PASS / DIAGNOSTIC_PASS / FULL_CAPTURE_NOT_ACTIVATED / CAPTURE_HOLD / EVIDENCE_HOLD / UNSEALED / FINAL_RUNTIME_ART_USER_ACCEPTANCE_PENDING.
 ```
 
 Active roadmap / current task:
@@ -57,7 +66,7 @@ Active roadmap / current task:
 ```text
 Product roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
 Current product task: source-reconciled R48-05A integration is local Technical/Mechanical PASS; independent runtime Art and explicit user review are pending
-Current D-024 gate: Contract A 4f956a… / brief K ccb81f8a… / exact final eight implementation hashes / pinned 32-file tree 4ca49b1d…; no writer is active and PM sync authorizes no real run
+Current D-024 gate: Contract A 4f956a… / brief M f2d26e… / final correction hashes cbc2eddf… + 94cfed68… / focused fresh-process PASS / pinned 32-file tree 4ca49b1d…; no writer is active and PM sync authorizes no full runner
 Completed workflow/MCP task: ChatGPT Work And Local MCP Migration v1
 Completed workflow/MCP task: Source-Derived MCP Context Bridge v1 — independent review PASS / daily default active
 ```
@@ -93,7 +102,7 @@ old completed briefs, full CODEX_STATUS.md, old runtime captures, superseded sim
 Next best step:
 
 ```text
-Wait for a new user/coordinator decision. Only a new literal bounded real-run ACK naming A/K, all final eight hashes, the pinned 32-file evidence tree and exact writer/scope may authorize Steam Godot/runtime/control/capture. This PM sync activates nothing; no later MCP slice is assigned, and R48-05B/parent closure remain out of scope.
+Wait for a new user/coordinator decision. Only a new literal full-capture ACK naming A/M, final governed implementation pins, the pinned 32-file evidence tree, exact writer/scope and authorized retained-stage disposition may authorize one full runner attempt. This PM sync activates nothing; no later MCP slice is assigned, and R48-05B/parent closure remain out of scope.
 ```
 
 ---
@@ -162,7 +171,7 @@ Current Steam/Desktop product state:
 First Day MVP locked at prototype/product-language level.
 D-022 complete same-chain Day 2 variation is implemented with green runtime/native evidence.
 R48-01A clean PlayerBoot entry, R48-02A profile-store foundation, R48-02B First Day safe-checkpoint Continue and R48-03 organic persisted Day 2 return are implemented/PASS.
-The strict player journey spans 33 restart-safe cursors through Quiet Cooperative. Source-reconciled R48-05A is local Technical/Mechanical PASS: runtime width `1740`, source width `2992`, exact `1740/2992` conversion, 16 static layers `00–09,11–16`, one Bicycle slot, 24 Labrador identity composites and exact `41 PNG + 41` imports. One positive-scale `0.24` Labrador lane provides exact A–H, both station sides/turns and derived/non-persisted H with zero mechanics/transfer/output. D-024 exact `43 PNG + 43 .import` responsive presentation passes, and the D-029/D-024 exact eight-file observability/atomic-runner remediation is implemented plus independently no-Godot reviewed PASS (`P0=0 / P1=0 / P2=0`). Contract A remains `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`, current brief SHA K is `ccb81f8a7f881ad078dad54bcd811dad2616aa36f843b2bee0ca67c2487d26ed`, while the 32-file evidence root remains HOLD/UNSEALED. Real Steam Godot/runtime/control/capture and independent Art/user acceptance are pending a new literal bounded real-run ACK; Codex granted no runtime Art PASS. v1-v5/source and the evidence pack are immutable, R48-05B stays separate, and R48-04A remains deferred.
+The strict player journey spans 33 restart-safe cursors through Quiet Cooperative. Source-reconciled R48-05A is local Technical/Mechanical PASS: runtime width `1740`, source width `2992`, exact `1740/2992` conversion, 16 static layers `00–09,11–16`, one Bicycle slot, 24 Labrador identity composites and exact `41 PNG + 41` imports. One positive-scale `0.24` Labrador lane provides exact A–H, both station sides/turns and derived/non-persisted H with zero mechanics/transfer/output. D-024 exact `43 PNG + 43 .import` responsive presentation passes; the D-029/D-024 observability/atomic-runner remediation and player-profile pre-flush correction are implemented, and the focused fresh-process gate is rc0/process PASS/diagnostic PASS. Contract A remains `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`, current brief SHA M is `f2d26ebde2f27dde1c75cd82304d30f850b015834ed780947fbb6972bb111130`, while the 32-file evidence root remains HOLD/UNSEALED. The focused headless scene-test ran; full runner/runtime/control/native capture and independent Art/user acceptance await a new literal full-capture ACK. Codex granted no runtime Art PASS. v1-v5/source and the evidence pack are immutable, R48-05B stays separate, and R48-04A remains deferred.
 ```
 
 Current visual-language evidence:
@@ -213,8 +222,9 @@ Implemented across completed Codex tasks:
 - Source-reconciled R48-05A world and Labrador runtime: exact 41-file source-equal asset topology, 41 verified Godot sidecars, no layer 10, one Bicycle, one Labrador render lane and exact A–H derived presentation.
 - Source/runtime validator, both animation-pipeline skill validators and immutable evidence with actual macOS desktop, native `2992x224`, `216/144/96`, checker/black, First Day/Day 2/Quiet Cooperative, both turns/sides and H cancellation/recovery trace.
 - D-024 responsive-presentation mechanical integration: seam-safe tiled meadow, independent field/viewport, bounded drag pan, right reserve, authored-positive boundary marker and exact `43 PNG + 43 .import` regression PASS.
-- D-024 raw-bytes Contract A plus current whole brief K `ccb81f8a7f881ad078dad54bcd811dad2616aa36f843b2bee0ca67c2487d26ed`.
+- D-024 raw-bytes Contract A plus current whole brief M `f2d26ebde2f27dde1c75cd82304d30f850b015834ed780947fbb6972bb111130` and §0J `9335f62b600578d8d935fd3e3a76722434c54efc6cf0d66df4909cdb9f10fcf3`.
 - D-029/D-024 narrow Steam-Godot observer, direct append-only raw stdout/stderr, project-owned graceful quit/control ACK, bounded exact-PID SIGTERM fallback, no-hard-kill/no-CA-allowlist policy, fail-loud expected-persistence seam and atomic staged runner. Independent no-Godot re-review reproduced authority-only/normal validator PASS, observer `22/22`, shell syntax and exact eight-path/pin/`17 -> 18` gates with `P0=0 / P1=0 / P2=0`.
+- Player-profile pre-flush correction at test `cbc2eddf7e4048a9beb071e3b6b525baecfbcd71bdd3417ec617e7604b01dc65` and runner `94cfed6865ecdbd7b6b1a93ebc5228cbfb7e8702406cb3071408514dc0e4aa9d`; fresh create/inspect results `8442e0a2…` / `4784d87…` pass with supervisor rc0/process PASS/diagnostic PASS.
 - Shelter MCP repo/document tooling v1/v2.
 - Shelter MCP source-derived context bridge: parse-on-request snapshots, exact current excerpts, file/block hashes, explicit 4 KiB minimum, deterministic 24 KiB default / 64 KiB hard-cap bundle, fixed-point bounded error envelopes and capability-local knowledge errors.
 - Fixed-keyword implementation/decision/handoff/context-routing priority without AI/free search/arbitrary paths, plus fail-closed legacy decision-kind mapping to `product|technical|process|documentation|ethics`.
@@ -290,9 +300,9 @@ docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_R48_05A_D024_RESPONSIVE_PRESE
 It remains exactly 32 files, no `HASHES.sha256`, tree digest
 `4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378`
 and `EVIDENCE_HOLD / UNSEALED`. PM sync activates nothing. Do not launch Godot,
-the runner or mutate evidence before a new user/coordinator decision and
-literal bounded real-run ACK naming A/K, final eight hashes, pinned evidence
-and exact writer/scope.
+the full runner or mutate evidence before a new user/coordinator decision and
+literal full-capture ACK naming A/M, final governed pins, pinned evidence,
+exact writer/scope and authorized retained-stage disposition.
 
 Latest First Day visual proof pack:
 
@@ -369,7 +379,7 @@ Do not reconstruct current state by reading every old brief.
 - First GitHub Actions run still needs to confirm hosted-runner/action availability; no runtime smoke belongs in this CI job.
 - D-026 is final independent-review `PASS`, daily-default MCP-first routing is active and remaining blockers are none. Direct source remains authority/exact fallback for non-current/truncated output, exact briefs/Accepted ADRs/normative contracts, semantic conflicts/parser failures and source editing; non-blocking residuals are the first remote CI run, the accepted absence of an automatic semantic governance-conflict detector and honest 4 KiB fallback/omissions.
 - R48-05A v1-v5/source and the new source-reconciled evidence pack are immutable. The new integration passes local Technical/Mechanical gates only; runtime Art and explicit user review remain pending. Existing resource/cue primitives plus `Show UI` are an explicit review risk, not a Technical failure or resolved prototype claim. One early H-turn frame carries an evidence-local redraw WARN; use the separate full turn frames and subsequent native frame for review.
-- D-029/D-024 remediation and independent no-Godot review are PASS with no remaining P0/P1/P2, but capture is inactive. Real Steam Godot 4.7.1, Continue runtime, actual PlayerBoot control ACK, GUI/capture/manifest/seal/promotion remain not run; evidence stays 32 files/HOLD/UNSEALED. CA remains real/unresolved/not allowlisted and recurrence is diagnostic FAIL/rc73/STOP. The next gate is a new user/coordinator decision plus literal bounded real-run ACK, not automatic activation.
+- D-029/D-024 remediation and independent no-Godot review are PASS with no remaining P0/P1/P2; the player-profile correction and focused fresh-process gate are also PASS, but full capture is inactive. A focused headless Steam-Godot scene-test ran; the full runner, Continue/full runtime, actual PlayerBoot control ACK, GUI/native capture/manifest/seal/promotion remain not run and evidence stays 32 files/HOLD/UNSEALED. CA/editor_data/AppKit are historical/not current blockers and remain not allowlisted; recurrence is diagnostic FAIL/rc73/STOP. The next gate is a new user/coordinator decision plus literal full-capture ACK, not automatic activation.
 
 ---
 
@@ -381,7 +391,7 @@ Completed D-026 implementation/review authority:
 SHELTER_WORKFLOW__Codex_Brief__Source_Derived_MCP_Context_Bridge_v1.md
 ```
 
-The task removed manually maintained current-fact memory, added the budgeted source-derived bundle and isolated knowledge failures from runtime/capture/control. Its four-finding remediation is independently reviewed `PASS`, daily-default rollout is active and no later MCP implementation slice is assigned. D-029/D-024 remediation is also independently no-Godot reviewed PASS; the next project gate is a new user/coordinator decision and literal bounded real-run ACK naming A/K, final eight hashes, pinned evidence and exact writer/scope. PM sync activates no run.
+The task removed manually maintained current-fact memory, added the budgeted source-derived bundle and isolated knowledge failures from runtime/capture/control. Its four-finding remediation is independently reviewed `PASS`, daily-default rollout is active and no later MCP implementation slice is assigned. D-029/D-024 remediation, player-profile correction and focused gate are PASS; the next project gate is a new user/coordinator decision and literal full-capture ACK naming A/M, final governed pins, pinned evidence, exact writer/scope and authorized retained-stage disposition. PM sync activates no full runner.
 
 Completed previous workflow/tooling slice:
 
@@ -411,7 +421,7 @@ Implemented scope:
 Current handoff boundary:
 
 ```text
-R-29 and R48-03 are closed/PASS. Source-reconciled R48-05A is Technical/Mechanical PASS, and D-029/D-024 observability/atomic-runner remediation is independently no-Godot reviewed PASS. D-024 evidence remains 32 files/HOLD/UNSEALED and final runtime Art/user review is pending. The only next gate is a new user/coordinator decision and literal bounded real-run ACK naming A/K, final eight hashes, pinned tree and exact writer/scope; PM sync activates nothing. Do not start R48-05B or close parent R48-A/R48-05 from this handoff.
+R-29 and R48-03 are closed/PASS. Source-reconciled R48-05A is Technical/Mechanical PASS; D-029/D-024 observability/atomic-runner remediation, player-profile correction and focused fresh-process gate are PASS. D-024 evidence remains 32 files/HOLD/UNSEALED and final runtime Art/user review is pending. The only next gate is a new user/coordinator decision and literal full-capture ACK naming A/M, final governed pins, pinned tree, exact writer/scope and authorized retained-stage disposition; PM sync activates nothing. Do not start R48-05B or close parent R48-A/R48-05 from this handoff.
 Any production art/animation/world proof or later product slice requires its own accepted brief.
 ```
 
@@ -438,6 +448,12 @@ Suggested reasoning level for Codex if assigned:
 ---
 
 ## 10. Changelog
+
+### 2026-07-18 — D-024 player-profile focused gate PASS / full capture HOLD
+
+- Recorded final correction hashes `cbc2eddf…` / `94cfed68…` and focused fresh create/inspect results `8442e0a2…` / `4784d87…` as rc0/process PASS/diagnostic PASS.
+- Advanced current authority to unchanged Contract A, brief M `f2d26e…` and §0J `9335f6…`; retained focused/canonical/failed-stage trees `39ea48e8…` / `4ca49b1d…` / `00116ac0…` unchanged.
+- Kept full runner/runtime/control/native capture/27 PNG/manifest/seal/promotion and Art/user acceptance not run. CA/editor_data/AppKit are historical/not current blockers and remain not allowlisted; a literal full-capture ACK with failed-stage disposition is the next gate.
 
 ### 2026-07-16 — D-029/D-024 remediation independently no-Godot reviewed PASS
 

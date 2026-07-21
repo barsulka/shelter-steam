@@ -1,0 +1,48 @@
+{
+  "HOME": "/private/tmp/shelter-d024-runtime-home",
+  "argv": [
+    "/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot",
+    "--version"
+  ],
+  "binary": "/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot",
+  "capture_manifest_seal_eligible": true,
+  "cwd": "/Users/barsulka/GolandProjects/shelter/shelter/steam",
+  "diagnostic_matches": [],
+  "diagnostic_verdict": "PASS",
+  "elapsed_seconds": 0.028621,
+  "end_timestamp": "2026-07-20T16:29:12.215174Z",
+  "exact_pid_sigterm_sent_at": null,
+  "exit_code": 0,
+  "expected_version": "4.7.1.stable.steam.a13da4feb",
+  "final_exact_pid_alive": false,
+  "imported_test_seam": false,
+  "pid": 65094,
+  "process_verdict": "PASS",
+  "profile": "version",
+  "project": "/Users/barsulka/GolandProjects/shelter/shelter/steam",
+  "project_control_quit_acknowledged": false,
+  "project_control_quit_acknowledged_at": null,
+  "project_control_quit_request_path": null,
+  "project_control_quit_request_sha256": null,
+  "project_control_quit_requested_at": null,
+  "project_godot_sha256": "475402f3792ce3e95e86c72cbe4c03a1da749760b7c691cfa6a01cefb3609dc6",
+  "raw_logs_finalized": true,
+  "ready_observed": true,
+  "requested_stop_method": "none",
+  "schema": "shelter.godot-process-result.v1",
+  "start_timestamp": "2026-07-20T16:29:12.186553Z",
+  "stderr": {
+    "byte_count": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stdout": {
+    "byte_count": 29,
+    "sha256": "96357d5afcc3d481d1aac4328fc4c61b4c6f28ddbb21b733f3563366dd8d8c0f"
+  },
+  "supervisor_rc": 0,
+  "supervisor_rc_name": "PASS",
+  "terminating_signal_name": null,
+  "terminating_signal_number": null,
+  "version": "4.7.1.stable.steam.a13da4feb",
+  "version_verified": true
+}

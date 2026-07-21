@@ -1,6 +1,6 @@
 # 02_DECISIONS — Shelter Decision Log
 
-Обновлено: 2026-07-16
+Обновлено: 2026-07-20
 Статус: active knowledge / decision log
 Владелец: Producer / Project Manager
 Назначение: хранить принятые долгоживущие решения Shelter. История обсуждений, handoff и evidence живут в History-документах.
@@ -61,6 +61,7 @@ For implementation history, use CODEX_CURRENT_STATUS.md / CODEX_STATUS.md and re
 | D-027 | Blocker revalidation and user approval for material workaround routes | process/governance | all roles/Codex | accepted |
 | D-028 | Steam-managed Godot installation and version authority | process/dev environment | Steam/Desktop/Codex | accepted |
 | D-029 | Observable and graceful Godot subprocess lifecycle | process/dev tooling | Steam/Desktop/Codex | accepted |
+| D-030 | Fixed 26-cell meadow period, whole-game zoom and alpha click surface | product/art/technical boundary | Steam/Desktop | accepted |
 
 ---
 
@@ -1478,6 +1479,51 @@ docs/repo/adr/0004-godot-child-observability-and-graceful-termination.md
 
 ---
 
+### D-030 — Fixed 26-cell meadow period, whole-game zoom and alpha click surface
+
+Дата: 2026-07-20
+Kind: `product/art/technical boundary`
+Area: `Steam/Desktop`
+Status: `accepted`
+
+Summary:
+
+> Один approved meadow-период навсегда покрывает ровно 26 логических клеток.
+> Период замощает окно без растяжения, а Up/Down масштабирует всю игру вместе.
+
+Decision:
+
+1. Логическая клетка имеет размер `32` world units. Один approved meadow-период
+   покрывает ровно `26` клеток, то есть `832` world units.
+2. Approved source рассчитан на zoom `200%`: после симметричного crop по 4 px
+   слева и справа его ширина равна `1664 px = 26 × 32 × 2`. Горизонтальное
+   растяжение или fit-to-window запрещены.
+3. Число `26` меняется только отдельным explicit решением и только вместе с
+   новым approved redraw, нарисованным под новое число клеток.
+4. Левый и правый края периода должны быть бесшовными. Поле покрывает видимую
+   ширину повторением этого периода; resize меняет только видимый extent.
+5. Zoom ladder фиксирован: `50% / 100% / 150% / 200%`, default `100%`.
+   Up/Down масштабирует одновременно поле, клетки, здания, props и собак.
+6. Высота companion window не фиксирована в пикселях: она следует высоте
+   zoomed meadow/content, оставаясь внутри macOS usable screen rect. Поле
+   примыкает к нижней границе окна и не закрывает зарезервированные Dock/menu
+   bar области.
+7. Старые растянутые terrain/background layers не рисуются поверх approved
+   meadow. Gameplay-объекты и собаки используют поверхность approved meadow как
+   общий ground baseline.
+8. Непрозрачные пиксели meadow, зданий, props, собак и UI принимают pointer.
+   Только фактически прозрачная часть borderless window пропускает pointer в
+   macOS.
+
+Related:
+
+```text
+04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D030_Fixed_26_Cell_Meadow_Zoom_And_Click_Surface_v1.md
+03_DESIGN/04_DELIVERABLES/approved_art_files/STEAM_DESKTOP__meadow_source_plate_v1__approved_direction.png
+```
+
+---
+
 ## 3. Open / proposed items not fixed here
 
 These are not decisions in this file. Track them in:
@@ -1498,6 +1544,16 @@ Examples:
 ---
 
 ## 4. Changelog
+
+### 2026-07-20 — D-030 fixed 26-cell meadow and whole-game zoom
+
+- Навсегда зафиксирован approved meadow-период `26 × 32 = 832` world units и
+  `1664 px` при zoom `200%`; изменение числа клеток требует нового redraw.
+- Приняты tile-without-stretch, whole-game zoom `50/100/150/200`, динамическая
+  высота companion window и общий ground baseline для объектов и собак.
+- Зафиксировано alpha-based pointer поведение: видимый контент кликабелен,
+  только прозрачная область пропускает pointer в macOS.
+- Старые растянутые terrain layers исключены из active rendering.
 
 ### 2026-07-16 — D-029 user-approved project graceful-shutdown route
 

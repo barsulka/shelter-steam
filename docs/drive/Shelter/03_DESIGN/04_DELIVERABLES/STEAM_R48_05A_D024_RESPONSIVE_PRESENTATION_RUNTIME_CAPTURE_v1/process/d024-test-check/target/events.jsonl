@@ -1,0 +1,7 @@
+{"argv": ["/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot", "--headless", "--path", "/Users/barsulka/GolandProjects/shelter/shelter/steam", "--check-only", "--script", "res://tests/vertical_slice_visual/test_d024_responsive_presentation.gd"], "event": "spawn_requested", "profile": "script-check", "sequence": 1, "timestamp": "2026-07-20T16:28:54.876351Z"}
+{"event": "child_started", "pid": 48999, "sequence": 2, "timestamp": "2026-07-20T16:28:54.878567Z"}
+{"byte_count": 69, "event": "stream_bytes", "sequence": 3, "stream": "stdout", "timestamp": "2026-07-20T16:28:54.902636Z"}
+{"byte_count": 1, "event": "stream_bytes", "sequence": 4, "stream": "stdout", "timestamp": "2026-07-20T16:28:54.927870Z"}
+{"event": "stream_tail_stopped", "sequence": 5, "stream": "stdout", "timestamp": "2026-07-20T16:28:55.125153Z"}
+{"event": "stream_tail_stopped", "sequence": 6, "stream": "stderr", "timestamp": "2026-07-20T16:28:55.127432Z"}
+{"diagnostic_verdict": "PASS", "event": "child_complete", "pid": 48999, "process_verdict": "PASS", "sequence": 7, "supervisor_rc": 0, "timestamp": "2026-07-20T16:28:55.127661Z"}

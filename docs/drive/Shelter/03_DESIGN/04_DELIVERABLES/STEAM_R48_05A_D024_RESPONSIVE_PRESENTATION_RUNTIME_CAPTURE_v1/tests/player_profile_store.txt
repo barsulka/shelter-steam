@@ -1,13 +1,225 @@
-steam/tools/test-player-profile-store.sh: line 116: 24816 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-create --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 116: 24834 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-create --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 116: 24852 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-create --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 116: 24870 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-create --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 116: 24888 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-create --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 86: 24915 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-update --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 86: 24942 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-update --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 86: 24969 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-update --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 86: 24999 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-update --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 86: 25026 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-update --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 86: 25053 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-update --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-steam/tools/test-player-profile-store.sh: line 86: 25081 Killed: 9               "$GODOT_BIN" --headless --path "$ROOT_DIR" --scene res://tests/persistence/player_profile_store_test_runner.tscn -- --persistence-test-phase=kill-update --persistence-test-base="$base" --persistence-test-failpoint="$failpoint" > "$kill_log" 2>&1
-player profile store tests passed (full + restart + killed create/update matrices)
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=assert-absent
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0001-assert-absent/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+Unicode parsing error, some characters were replaced with � (U+FFFD): Invalid UTF-8 leading byte (ff)
+player_profile_store_test=passed phase=full
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0002-full/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=restart-write
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0003-restart-write/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=restart-read
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0004-restart-read/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-create
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0005-snapshot-create/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0006-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-create
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0007-snapshot-create/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0008-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-create
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0009-snapshot-create/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0010-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-create
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0011-snapshot-create/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0012-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-create
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0013-snapshot-create/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0014-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-baseline
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0015-snapshot-baseline/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-update
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0016-snapshot-update/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0017-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-baseline
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0018-snapshot-baseline/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-update
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0019-snapshot-update/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0020-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-baseline
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0021-snapshot-baseline/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-update
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0022-snapshot-update/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0023-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-baseline
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0024-snapshot-baseline/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-update
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0025-snapshot-update/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0026-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-baseline
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0027-snapshot-baseline/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-update
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0028-snapshot-update/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0029-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-baseline
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0030-snapshot-baseline/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-update
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0031-snapshot-update/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0032-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-baseline
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0033-snapshot-baseline/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-update
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0034-snapshot-update/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=snapshot-inspect
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0035-snapshot-inspect/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=cleanup
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0036-cleanup/target/process-result.json
+godot_process_supervisor_rc=0
+4.7.1.stable.steam.a13da4feb
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+player_profile_store_test=passed phase=assert-absent
+godot_process_result=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store/0037-assert-absent/target/process-result.json
+godot_process_supervisor_rc=0
+player profile store tests passed (full + restart + nonfatal authored create/update snapshot matrices)
+godot_process_diagnostics=/Users/barsulka/GolandProjects/shelter/shelter/docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/.STEAM_R48_05A_D024_RESPONSIVE_PRESENTATION_RUNTIME_CAPTURE_v1.stage.tkTuIH/process/player-profile-store

@@ -65,10 +65,13 @@ func _run() -> void:
             _expect(_failpoint != "", "snapshot create requires a failpoint")
             _expect_ok(store.configure_test_failpoint(_failpoint), "configure nonfatal create snapshot failpoint")
             var result := store.store_profile(_fields(94), PlayerProfileStore.CREATE_AUTHORITY)
+            var actual_error := str(result.get("error", ""))
             _expect(
-                str(result.get("error", "")) == "injected_failure:%s" % _failpoint,
+                actual_error == "injected_failure:%s" % _failpoint,
                 "snapshot create reaches exact nonfatal failpoint"
             )
+            if _failpoint == "after_temp_write" and actual_error == "injected_failure:after_temp_write":
+                _materialize_after_temp_write_snapshot(store)
         "snapshot-inspect":
             var store := PlayerProfileStore.new(_base_dir, true)
             _expect(_failpoint != "", "snapshot inspection requires expected failpoint")
@@ -78,7 +81,15 @@ func _run() -> void:
                 _expect(FileAccess.get_file_as_string(marker_path) == _failpoint, "reach marker identifies exact named failpoint")
             var inspection := store.inspect_profile_candidates()
             if _expected_status != "":
-                _expect(str(inspection.get("status", "")) == _expected_status, "authored transaction snapshot has expected deterministic status")
+                var actual_status := str(inspection.get("status", ""))
+                _expect(
+                    actual_status == _expected_status,
+                    "authored transaction snapshot status mismatch: expected=%s actual=%s candidate_classifications=%s" % [
+                        _expected_status,
+                        actual_status,
+                        _candidate_classification_summary(inspection),
+                    ]
+                )
             else:
                 _expect(str(inspection.get("selected_source", "")) != "", "valid profile candidate survives authored update snapshot")
             if str(inspection.get("selected_source", "")) != "":
@@ -408,6 +419,101 @@ func _fields(sequence: int, payload: Dictionary = {"marker": "test"}) -> Diction
             "iso8601_utc": "2026-07-12T00:00:00Z",
         },
     }
+
+
+func _materialize_after_temp_write_snapshot(store) -> void:
+    if not _is_safe_test_path(_base_dir):
+        _fail("refused pre-flush snapshot materialization outside isolated test prefix")
+        return
+
+    var paths: Dictionary = store.paths()
+    var temp_path := str(paths.get("temp", ""))
+    if str(paths.get("base_dir", "")) != _base_dir or temp_path != "%s/profile.tmp" % _base_dir:
+        _fail("pre-flush snapshot paths do not match the validated isolated test base")
+        return
+
+    var marker_path := "%s/%s" % [_base_dir, PlayerProfileStore.TEST_FAILPOINT_MARKER]
+    if not FileAccess.file_exists(marker_path) or FileAccess.get_file_as_string(marker_path) != "after_temp_write":
+        _fail("pre-flush snapshot requires the exact after_temp_write reach marker")
+        return
+    if not FileAccess.file_exists(temp_path):
+        _fail("pre-flush snapshot requires the complete temporary candidate")
+        return
+
+    var complete_bytes := FileAccess.get_file_as_bytes(temp_path)
+    if complete_bytes.size() <= 1:
+        _fail("pre-flush snapshot complete candidate must contain more than one byte")
+        return
+    var complete_validation := _schema.decode_and_validate_bytes(complete_bytes)
+    if not bool(complete_validation.get("ok", false)) or str(complete_validation.get("classification", "")) != "valid":
+        _fail("pre-flush snapshot complete candidate failed schema validation")
+        return
+    var complete_inspection: Dictionary = store.inspect_profile_candidates()
+    var complete_candidates := complete_inspection.get("candidates", {}) as Dictionary
+    var complete_temp := complete_candidates.get("temp", {}) as Dictionary
+    if (
+        str(complete_inspection.get("status", "")) != "temp_available"
+        or str(complete_temp.get("classification", "")) != "valid"
+        or int(complete_temp.get("byte_size", -1)) != complete_bytes.size()
+    ):
+        _fail("pre-flush snapshot complete candidate failed store inspection")
+        return
+
+    var prefix_size := clampi(int(complete_bytes.size() / 2), 1, complete_bytes.size() - 1)
+    var expected_prefix := complete_bytes.slice(0, prefix_size)
+    var expected_hash := _sha256_bytes(expected_prefix)
+    if expected_prefix.is_empty() or expected_prefix.size() >= complete_bytes.size() or expected_hash.length() != 64:
+        _fail("pre-flush snapshot could not derive the deterministic strict prefix")
+        return
+
+    var temp_file := FileAccess.open(temp_path, FileAccess.WRITE)
+    if temp_file == null:
+        _fail("pre-flush snapshot could not open the temporary candidate")
+        return
+    temp_file.store_buffer(expected_prefix)
+    temp_file.flush()
+    var write_error := temp_file.get_error()
+    temp_file = null
+    if write_error != OK:
+        _fail("pre-flush snapshot prefix write failed with code=%d" % write_error)
+        return
+
+    var materialized_bytes := FileAccess.get_file_as_bytes(temp_path)
+    var materialized_hash := _sha256_bytes(materialized_bytes)
+    _expect(materialized_bytes == expected_prefix, "pre-flush snapshot readback is byte-exact")
+    _expect(materialized_bytes.size() == prefix_size, "pre-flush snapshot readback has the exact prefix size")
+    _expect(materialized_hash == expected_hash and materialized_hash.length() == 64, "pre-flush snapshot readback has the exact SHA-256")
+
+    var truncated_validation := _schema.decode_and_validate_bytes(materialized_bytes)
+    _expect(not bool(truncated_validation.get("ok", true)), "pre-flush snapshot prefix is schema-invalid")
+    _expect(str(truncated_validation.get("classification", "")) == "corrupt", "pre-flush snapshot prefix has corrupt schema classification")
+    var truncated_inspection := PlayerProfileStore.new(_base_dir, true).inspect_profile_candidates()
+    var truncated_candidates := truncated_inspection.get("candidates", {}) as Dictionary
+    var truncated_temp := truncated_candidates.get("temp", {}) as Dictionary
+    _expect(str(truncated_inspection.get("status", "")) == "no_valid_profile", "pre-flush snapshot has no valid profile candidate")
+    _expect(str(truncated_temp.get("classification", "")) == "corrupt", "pre-flush snapshot temp candidate is corrupt")
+    _expect(FileAccess.get_file_as_string(marker_path) == "after_temp_write", "pre-flush snapshot retains the exact failpoint marker")
+
+
+func _sha256_bytes(bytes: PackedByteArray) -> String:
+    var context := HashingContext.new()
+    if context.start(HashingContext.HASH_SHA256) != OK:
+        return ""
+    if context.update(bytes) != OK:
+        return ""
+    return context.finish().hex_encode()
+
+
+func _candidate_classification_summary(inspection: Dictionary) -> String:
+    var candidates := inspection.get("candidates", {}) as Dictionary
+    var bounded: Array[String] = []
+    for source in ["primary", "backup", "temp"]:
+        var candidate := candidates.get(source, {}) as Dictionary
+        var classification := str(candidate.get("classification", "missing"))
+        if classification not in ["absent", "valid", "corrupt", "incompatible"]:
+            classification = "unexpected"
+        bounded.append("%s=%s" % [source, classification])
+    return ",".join(bounded)
 
 
 func _write_valid(path: String, fields: Dictionary) -> void:

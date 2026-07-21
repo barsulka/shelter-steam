@@ -1,0 +1,14 @@
+{"argv": ["/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot", "--headless", "--path", "/Users/barsulka/GolandProjects/shelter/shelter/steam", "--scene", "res://tests/player_continue/player_continue_test_runner.tscn", "--", "--continue-test-phase=snapshot-inflight", "--continue-test-base=user://player-tests/r48-02b-79160/inflight-3", "--continue-test-sequence=3"], "event": "spawn_requested", "profile": "scene-test", "sequence": 1, "timestamp": "2026-07-20T16:31:07.105745Z"}
+{"event": "child_started", "pid": 11590, "sequence": 2, "timestamp": "2026-07-20T16:31:07.108253Z"}
+{"byte_count": 69, "event": "stream_bytes", "sequence": 3, "stream": "stdout", "timestamp": "2026-07-20T16:31:07.133021Z"}
+{"byte_count": 1, "event": "stream_bytes", "sequence": 4, "stream": "stdout", "timestamp": "2026-07-20T16:31:07.155780Z"}
+{"byte_count": 35, "event": "stream_bytes", "sequence": 5, "stream": "stdout", "timestamp": "2026-07-20T16:31:07.540318Z"}
+{"byte_count": 475, "event": "stream_bytes", "sequence": 6, "stream": "stdout", "timestamp": "2026-07-20T16:31:07.565584Z"}
+{"byte_count": 116, "event": "stream_bytes", "sequence": 7, "stream": "stdout", "timestamp": "2026-07-20T16:31:07.590559Z"}
+{"byte_count": 257, "event": "stream_bytes", "sequence": 8, "stream": "stdout", "timestamp": "2026-07-20T16:31:07.603269Z"}
+{"byte_count": 85, "event": "stream_bytes", "sequence": 9, "stream": "stdout", "timestamp": "2026-07-20T16:31:07.603421Z"}
+{"byte_count": 174, "event": "stream_bytes", "sequence": 10, "stream": "stdout", "timestamp": "2026-07-20T16:31:07.650163Z"}
+{"byte_count": 117, "event": "stream_bytes", "sequence": 11, "stream": "stdout", "timestamp": "2026-07-20T16:31:07.663002Z"}
+{"event": "stream_tail_stopped", "sequence": 12, "stream": "stderr", "timestamp": "2026-07-20T16:31:07.747060Z"}
+{"event": "stream_tail_stopped", "sequence": 13, "stream": "stdout", "timestamp": "2026-07-20T16:31:07.748419Z"}
+{"diagnostic_verdict": "PASS", "event": "child_complete", "pid": 11590, "process_verdict": "PASS", "sequence": 14, "supervisor_rc": 0, "timestamp": "2026-07-20T16:31:07.748665Z"}

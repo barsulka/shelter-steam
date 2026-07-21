@@ -1,0 +1,24 @@
+Godot Engine v4.7.1.stable.steam.a13da4feb - https://godotengine.org
+
+vertical_slice_event=player_checkpoint_restored
+demo=steam_vertical_slice
+display_server=headless
+os=macOS
+screen_count=0
+screen_index=-1
+screen_usable_rect=[P: (0, 0), S: (0, 0)]
+window_size=(0, 0)
+flag_always_on_top=false
+flag_borderless=false
+flag_transparent=false
+click_through_empty=true
+timing_scale=0.72
+task_types=TripTask, UnloadTask, CarryTask, CookTask, PackTask, LoadVanTask, DeliveryTask, EquipItemTask, IdleTask
+active_order_id=order.second_warm_delivery_careful_pack
+active_chain_run_id=run.day2.second_warm_delivery
+vertical_slice_event=delivery_complete
+vertical_slice_event=active_order_status_changed
+vertical_slice_event=active_chain_state_changed
+vertical_slice_event=day2_progress_note_revealed
+vertical_slice_event=day2_curiosity_question_revealed
+player_continue_test=passed phase=retry-cursor sequence=31

@@ -9,6 +9,7 @@ import importlib.util
 import io
 import json
 import os
+import re
 import signal
 import subprocess
 import sys
@@ -465,6 +466,38 @@ class ObserveGodotProcessTests(unittest.TestCase):
         self.assertNotIn("_commit_player_checkpoint", continue_test)
         self.assertGreaterEqual(continue_test.count("test_advance_player_to_next_checkpoint"), 3)
 
+    def test_player_profile_failpoint_forwarding_arity_matches_store(self) -> None:
+        store = (observer.STEAM_DIR / "scripts/persistence/player_profile_store.gd").read_text()
+        player_boot = (observer.STEAM_DIR / "scripts/player/player_boot.gd").read_text()
+        continue_test = (observer.STEAM_DIR / "tests/player_continue/test_player_continue.gd").read_text()
+
+        signature = re.search(
+            r"^func configure_test_failpoint\(([^)]*)\) -> Dictionary:",
+            store,
+            re.MULTILINE,
+        )
+        self.assertIsNotNone(signature)
+        store_parameters = [
+            parameter.strip()
+            for parameter in signature.group(1).split(",")
+            if parameter.strip()
+        ]
+        self.assertEqual(store_parameters, ["failpoint: String"])
+
+        forwarded = re.findall(
+            r'_store\.call\("configure_test_failpoint",\s*([^\n]+?)\) as Dictionary',
+            player_boot,
+        )
+        self.assertEqual(len(forwarded), 3)
+        self.assertTrue(all("," not in arguments for arguments in forwarded), forwarded)
+
+        public_calls = re.findall(
+            r'boot\.call\("configure_test_store_failpoint",\s*([^\n]+?)\) as Dictionary',
+            continue_test,
+        )
+        self.assertEqual(len(public_calls), 5)
+        self.assertTrue(all("," not in arguments for arguments in public_calls), public_calls)
+
     def test_expected_persistence_failure_seam_is_scoped_exact_and_fail_loud_by_default(self) -> None:
         runtime = (observer.STEAM_DIR / "scripts/prototypes/vertical_slice/vertical_slice_demo.gd").read_text()
         continue_test = (observer.STEAM_DIR / "tests/player_continue/test_player_continue.gd").read_text()
@@ -495,6 +528,15 @@ class ObserveGodotProcessTests(unittest.TestCase):
         consumer_start = runtime.index(consumer_signature)
         consumer_end = runtime.index("\n\nfunc ", consumer_start + len(consumer_signature))
         consumer = runtime[consumer_start:consumer_end]
+        retained_result_line = "var retained_commit_result: Dictionary = commit_result.duplicate(true)"
+        last_result_clear = "_test_last_checkpoint_persistence_result.clear()"
+        self.assertIn(retained_result_line, consumer)
+        self.assertLess(consumer.index(retained_result_line), consumer.index(last_result_clear))
+        self.assertIn('retained_commit_result.get("error", "")', consumer)
+        self.assertIn('retained_commit_result.get("store_result", {})', consumer)
+        self.assertIn('"failure_result": retained_commit_result', consumer)
+        self.assertNotRegex(consumer, r"(?<!retained_)commit_result\.get\(\"error\", \"\"\)")
+        self.assertNotIn("[DEBUG-" + "d024-persistence-consumer]", runtime)
         for token in (
             '"checkpoint_persistence_failed"',
             '"injected_failure:before_validation"',

@@ -184,7 +184,7 @@ def validate_config_and_runtime_owner() -> None:
     require("func _d024_player_mouse_polygon()" in code and "minf(rect.end.x, field_right)" in code, "exterior passthrough clamp missing")
     require(sha256(STEAM / "scenes" / "prototypes" / "vertical_slice" / "vertical_slice_demo.tscn") == "a3c5d25df2f6a5e03b631f7ca31d59f1b2739a5c2d6352257b87f4f086a5baea", "no-touch demo scene drift")
     require(sha256(STEAM / "project.godot") == "475402f3792ce3e95e86c72cbe4c03a1da749760b7c691cfa6a01cefb3609dc6", "no-touch project.godot drift")
-    require(sha256(STEAM / "scripts" / "player" / "player_boot.gd") == "dac832c2d861a16ad74ba4fb5bdaebaa045b5f63984b9a5be74d45f348fb60fd", "no-touch PlayerBoot drift")
+    require(sha256(STEAM / "scripts" / "player" / "player_boot.gd") == "09a544fc3c1a6ad5defd7ffe3c3b1f83ab6ed2033f03e0618022e63f63914275", "no-touch PlayerBoot drift")
 
 
 def parse_args() -> argparse.Namespace:

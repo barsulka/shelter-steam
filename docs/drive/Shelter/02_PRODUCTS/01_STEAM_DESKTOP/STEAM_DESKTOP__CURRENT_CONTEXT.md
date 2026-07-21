@@ -1,10 +1,19 @@
 # STEAM_DESKTOP — Current Context
 
 Дата создания: 2026-07-07
-Обновлено: 2026-07-16
+Обновлено: 2026-07-21
 Статус: active current-summary
 Владелец: Producer / Game Designer / Project Manager
 Назначение: короткий актуальный вход в Steam/Desktop контекст без перечитывания всей истории design, Codex, captures и handoff.
+
+---
+
+## Current override — 2026-07-21
+
+- D-024 full ordinary-Terminal capture завершён и sealed как pre-D-030 technical/mechanical evidence; он не является текущим D-030 visual proof и не выдаёт final Art/user acceptance.
+- D-030 fixed 26-cell meadow/whole-game zoom/dynamic-height/alpha-click correction реализован и проверен на exact Steam Godot route. Старое растянутое поле больше не является runtime surface.
+- Прямая пользовательская оценка текущего вида: «уже более-менее»; это не финальный art lock.
+- Следующая отдельная правка после checkpoint: explicit 26→13 cell amendment и здания ×2 на каждом zoom-level. До отдельной реализации текущий зафиксированный D-030 контракт остаётся 26 клеток.
 
 ---
 
@@ -34,7 +43,7 @@ First Day MVP locked at prototype/product-language level.
 D-022 Day 2 same-chain Warm Food Delivery variation is complete at prototype/product-language/runtime-evidence level.
 R-29 is closed / PASS.
 D-023 First Day + Day 2 player journey scope lock is accepted.
-D-029/D-024 observability, graceful-stop and atomic-runner remediation is implemented and independently no-Godot reviewed PASS (P0=0/P1=0/P2=0); capture remains BLOCKED / EVIDENCE_HOLD / UNSEALED pending a new user/coordinator decision and literal bounded real-run ACK.
+D-029/D-024 observability, graceful-stop and atomic-runner remediation is implemented and independently no-Godot reviewed PASS (P0=0/P1=0/P2=0). The player-profile pre-flush correction is implemented and its focused fresh-process gate is PASS with supervisor rc0/process PASS/diagnostic PASS; full capture remains NOT_ACTIVATED / EVIDENCE_HOLD / UNSEALED pending a new user/coordinator decision and literal full-capture ACK.
 D-025 makes the active development/QA/evidence/acceptance phase macOS-only and limits visual capture to two approved paths.
 ```
 
@@ -42,7 +51,7 @@ Active roadmap / current task:
 
 ```text
 Active roadmap: STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
-Current task: source-reconciled R48-05A is `TECHNICAL_MECHANICAL_PASS`; final runtime Art/user acceptance remains open. D-029/D-024 is `D029_D024_OBSERVABILITY_ATOMIC_RUNNER_REMEDIATION_IMPLEMENTED / INDEPENDENT_NO_GODOT_REVIEW_PASS / P0=0 / P1=0 / P2=0 / CAPTURE_BLOCKED / EVIDENCE_HOLD / UNSEALED`. Contract A is `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`, current brief SHA K is `ccb81f8a7f881ad078dad54bcd811dad2616aa36f843b2bee0ca67c2487d26ed`, and evidence remains 32 files/no seal/tree `4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378`. PM sync activates nothing; bounded real execution requires a new user/coordinator decision and literal ACK.
+Current task: source-reconciled R48-05A is `TECHNICAL_MECHANICAL_PASS`; final runtime Art/user acceptance remains open. D-024 is `PLAYER_PROFILE_PRE_FLUSH_CORRECTION_IMPLEMENTED / FOCUSED_FRESH_PROCESS_GATE_PASS / SUPERVISOR_RC0 / PROCESS_PASS / DIAGNOSTIC_PASS / FULL_CAPTURE_NOT_ACTIVATED / CAPTURE_HOLD / EVIDENCE_HOLD / UNSEALED`. Contract A is `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`, current brief SHA M is `f2d26ebde2f27dde1c75cd82304d30f850b015834ed780947fbb6972bb111130`, and evidence remains 32 files/no seal/tree `4ca49b1d9cd0616d434eb534464087c75cebcd4972122356ad9197ec59cdd378`. PM sync activates nothing; full capture requires a new user/coordinator decision and literal full-capture ACK.
 ```
 
 Current decisions:
@@ -75,7 +84,7 @@ old captures, old completed briefs, old handoff, full CODEX_STATUS.md, supersede
 Next best step:
 
 ```text
-Wait for a new user/coordinator decision. Only a new literal bounded real-run ACK naming unchanged Contract A, brief SHA K, final eight implementation hashes, pinned 32-file evidence tree and exact writer/scope may authorize Steam Godot/runtime/control/capture. This docs sync activates nothing; CA recurrence is diagnostic FAIL/rc73 and STOP before capture/seal.
+Wait for a new user/coordinator decision. Only a new literal full-capture ACK naming unchanged Contract A, brief SHA M, final governed implementation pins, pinned 32-file evidence tree, exact writer/scope and authorized retained-stage disposition may authorize one full runner attempt. This docs sync activates nothing. CA/editor_data/AppKit are historical/not current blockers and remain not allowlisted; recurrence is diagnostic FAIL/rc73 and STOP before capture/seal.
 ```
 
 ---
@@ -134,12 +143,12 @@ docs/drive/Shelter/00_START_HERE/02_DECISIONS.md
 
 ## 3. Current Steam status
 
-Current state as of 2026-07-16:
+Current state as of 2026-07-18:
 
 ```text
 First Day MVP is locked at prototype/product-language level.
 Day 2 is complete at prototype/product-language/runtime-evidence level; R-29 is closed / PASS.
-D-023 separately selects `First 48 Hours Playable`; R48-01A, accepted ADR-0003/R48-02A, R48-02B and R48-03 are complete/PASS. Source-reconciled R48-05A is Technical/Mechanical PASS. D-024 source amendment/integration is accepted for the bounded trial, and the D-029/D-024 observability/atomic-runner remediation is implemented plus independently no-Godot reviewed PASS with P0=0/P1=0/P2=0. Capture remains BLOCKED/HOLD/UNSEALED; real Steam Godot 4.7.1, Continue runtime, actual PlayerBoot control ACK, GUI/capture/manifest/seal/promotion and final runtime Art/user acceptance are not run. The next gate is a new user/coordinator decision and literal bounded real-run ACK. Runtime/gameplay remains no-touch. Parent R48-A/R48-05 stays PARTIAL/WARN. R48-05B, rooms, onboarding and R48-04A are later, not current.
+D-023 separately selects `First 48 Hours Playable`; R48-01A, accepted ADR-0003/R48-02A, R48-02B and R48-03 are complete/PASS. Source-reconciled R48-05A is Technical/Mechanical PASS. D-024 source amendment/integration is accepted for the bounded trial; D-029/D-024 observability/atomic-runner remediation and the player-profile pre-flush correction are implemented, and the focused fresh-process Steam-Godot gate is PASS. Full capture remains NOT_ACTIVATED/HOLD/UNSEALED; the full runner, Continue/full runtime, actual PlayerBoot control ACK, GUI/native capture, 27 PNG, manifest, seal, promotion and final runtime Art/user acceptance are not run. The next gate is a new user/coordinator decision and literal full-capture ACK with retained-stage disposition. Runtime/gameplay remains no-touch. Parent R48-A/R48-05 stays PARTIAL/WARN. R48-05B, rooms, onboarding and R48-04A are later, not current.
 ```
 
 Important caveat:
@@ -398,7 +407,7 @@ docs/drive/Shelter/00_START_HERE/SUPERSEDED_MAP.md
 Current product/design boundary:
 
 ```text
-R-29 and R48-03 are closed/PASS. Source-reconciled R48-05A is Technical/Mechanical PASS; final player-facing Art/user verdict remains open. D-024 presentation is mechanically green, and the D-029/D-024 observability/atomic-runner remediation is independently no-Godot reviewed PASS with P0=0/P1=0/P2=0. Capture stays BLOCKED/HOLD/UNSEALED. Current next is a new user/coordinator decision and literal bounded real-run ACK naming A/K, final eight hashes, pinned 32-file evidence tree and exact writer/scope; PM sync activates no Godot/runtime/control/capture.
+R-29 and R48-03 are closed/PASS. Source-reconciled R48-05A is Technical/Mechanical PASS; final player-facing Art/user verdict remains open. D-024 presentation is mechanically green, D-029/D-024 observability/atomic-runner remediation is independently no-Godot reviewed PASS, and the player-profile correction plus focused fresh-process gate are PASS. Full capture stays NOT_ACTIVATED/HOLD/UNSEALED. Current next is a new user/coordinator decision and literal full-capture ACK naming A/M, final governed pins, pinned 32-file evidence tree, exact writer/scope and authorized retained-stage disposition; PM sync activates no full runner/runtime/control/capture.
 ```
 
 Completed/accepted and current prepared implementation briefs:
@@ -408,7 +417,7 @@ docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Playable_Main_Scen
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Runtime_Safe_Checkpoints_And_Continue_v1.md
 docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Accepted_Art_Source_And_Labrador_H_Runtime_Integration_v1.md
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md — D029/D024 REMEDIATION IMPLEMENTED / INDEPENDENT NO-GODOT REVIEW PASS / P0=0 P1=0 P2=0 / CAPTURE BLOCKED / EVIDENCE HOLD / UNSEALED — Contract A 4f956a… / brief K ccb81f8a… / new literal bounded real-run ACK required
+docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D024_Responsive_Meadow_Marker_And_Player_Presentation_Cleanup_v1.md — PLAYER-PROFILE CORRECTION IMPLEMENTED / FOCUSED FRESH-PROCESS GATE PASS / rc0 / PROCESS PASS / DIAGNOSTIC PASS / FULL CAPTURE NOT ACTIVATED / EVIDENCE HOLD / UNSEALED — Contract A 4f956a… / brief M f2d26e… / new literal full-capture ACK required
 ```
 
 Suggested Codex reasoning level:
@@ -431,6 +440,12 @@ Do not expand into:
 ---
 
 ## 11. Changelog
+
+### 2026-07-18 — D-024 focused fresh-process gate PASS / full capture HOLD
+
+- Recorded final player-profile correction hashes `cbc2eddf…` / `94cfed68…` and the fresh create/inspect result hashes `8442e0a2…` / `4784d87…` as rc0/process PASS/diagnostic PASS.
+- Advanced current authority to unchanged Contract A plus brief M `f2d26e…`; focused diagnostics remain 18 files/PNG0/no seal/tree `39ea48e8…`, canonical evidence remains 32 files/no seal/tree `4ca49b1d…`, and the failed stage remains 144 files/no seal/tree `00116ac0…`.
+- Full runner/runtime/control/native capture/27 PNG/manifest/seal/promotion and Art/user acceptance remain not run. CA/editor_data/AppKit are historical/not current blockers and remain not allowlisted. Only a new literal full-capture ACK with failed-stage disposition may continue.
 
 ### 2026-07-16 — D-029/D-024 remediation independent no-Godot PASS / capture HOLD
 

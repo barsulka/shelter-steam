@@ -1,0 +1,10 @@
+{"argv": ["/Users/barsulka/Library/Application Support/Steam/steamapps/common/Godot Engine/Godot.app/Contents/MacOS/Godot", "--headless", "--path", "/Users/barsulka/GolandProjects/shelter/shelter/steam", "--scene", "res://tests/player_continue/player_continue_test_runner.tscn", "--", "--continue-test-phase=advance", "--continue-test-base=user://player-tests/r48-02b-79160/inflight-29", "--continue-test-sequence=29"], "event": "spawn_requested", "profile": "scene-test", "sequence": 1, "timestamp": "2026-07-20T16:31:58.002988Z"}
+{"event": "child_started", "pid": 61125, "sequence": 2, "timestamp": "2026-07-20T16:31:58.005352Z"}
+{"byte_count": 69, "event": "stream_bytes", "sequence": 3, "stream": "stdout", "timestamp": "2026-07-20T16:31:58.030292Z"}
+{"byte_count": 1, "event": "stream_bytes", "sequence": 4, "stream": "stdout", "timestamp": "2026-07-20T16:31:58.055475Z"}
+{"byte_count": 581, "event": "stream_bytes", "sequence": 5, "stream": "stdout", "timestamp": "2026-07-20T16:31:58.458521Z"}
+{"byte_count": 209, "event": "stream_bytes", "sequence": 6, "stream": "stdout", "timestamp": "2026-07-20T16:31:58.471262Z"}
+{"byte_count": 54, "event": "stream_bytes", "sequence": 7, "stream": "stdout", "timestamp": "2026-07-20T16:31:58.519009Z"}
+{"event": "stream_tail_stopped", "sequence": 8, "stream": "stderr", "timestamp": "2026-07-20T16:31:58.545781Z"}
+{"event": "stream_tail_stopped", "sequence": 9, "stream": "stdout", "timestamp": "2026-07-20T16:31:58.555317Z"}
+{"diagnostic_verdict": "PASS", "event": "child_complete", "pid": 61125, "process_verdict": "PASS", "sequence": 10, "supervisor_rc": 0, "timestamp": "2026-07-20T16:31:58.555620Z"}

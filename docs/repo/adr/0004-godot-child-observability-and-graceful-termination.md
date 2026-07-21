@@ -17,13 +17,14 @@ Related implementation authority:
 
 Implementation status: the exact D-029/D-024 observability, project-owned
 graceful-shutdown and atomic-runner remediation is implemented and independently
-reviewed `PASS` without launching Godot (`P0=0 / P1=0 / P2=0`). Capture remains
-`BLOCKED / EVIDENCE_HOLD / UNSEALED`: PM factual sync activates nothing, and a
-bounded real run requires a new user/coordinator decision plus literal ACK under
-the active brief. Real Steam Godot/runtime/control/capture/seal acceptance is
-not implied by the no-Godot PASS. The CA diagnostic remains
-`REAL / UNRESOLVED / NOT ALLOWLISTED`; recurrence is diagnostic FAIL/rc `73`
-and stops before capture or seal.
+reviewed `PASS` (`P0=0 / P1=0 / P2=0`). The later D-024 §0I player-profile
+pre-flush correction is implemented, and the exact two-process fresh
+`snapshot-create` → `snapshot-inspect expected no_valid_profile` gate passed in
+ordinary macOS Terminal with supervisor rc `0`, process `PASS` and diagnostic
+`PASS`. Capture remains `BLOCKED / EVIDENCE_HOLD / UNSEALED`: PM factual sync
+activates nothing, and the full runner requires a new user/coordinator decision
+plus literal full-capture ACK under the active brief. The focused persistence
+PASS does not imply runtime/control/capture/seal or Art/user acceptance.
 
 ## Context
 
@@ -36,9 +37,11 @@ route explicitly forbids project wrappers from inducing Godot crashes or hard
 kills.
 
 The current Steam-managed Godot is
-`4.7.1.stable.steam.a13da4feb`. A CA/certificate diagnostic has been observed
-and remains real and unresolved. It cannot be hidden, suppressed or classified
-as benign merely to continue capture.
+`4.7.1.stable.steam.a13da4feb`. A CA/certificate diagnostic was historically
+observed, is not declared resolved and cannot be hidden, suppressed or
+classified as benign merely to continue capture. It was absent from the later
+ordinary-Terminal and focused fresh-process runs and is not a current blocker;
+any recurrence remains a governed diagnostic failure.
 
 The project needs one narrow, deterministic subprocess boundary that retains
 complete evidence, keeps process and diagnostic results independent, allows
@@ -212,10 +215,11 @@ native bridge, `SIGKILL` or `SIGABRT` is introduced.
 
 ### 7. Diagnostic failure and evidence eligibility
 
-The current CA/certificate error is real and unresolved. It is not allowlisted,
-suppressed, hidden, environment-masked, renamed benign or accepted as harmless.
-Any recurrence is retained exactly, produces diagnostic failure and blocks
-capture, manifest, seal and promotion.
+The historically observed CA/certificate error is not declared resolved. It is
+not allowlisted, suppressed, hidden, environment-masked, renamed benign or
+accepted as harmless. Its absence from the current ordinary-Terminal runs means
+it is not a current blocker; any recurrence is retained exactly, produces
+diagnostic failure and blocks capture, manifest, seal and promotion.
 
 The same rule applies to any governed error match. The source, environment or
 tool cause must be repaired and the bounded gate rerun. Logging an error is not
