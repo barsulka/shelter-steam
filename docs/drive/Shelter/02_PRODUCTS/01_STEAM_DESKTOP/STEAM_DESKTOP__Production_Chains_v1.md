@@ -14,7 +14,7 @@ Roadmap task: R-12 — Buildings & Production Chains
 - `STEAM_DESKTOP__Dog_Progression_Model_v1.md`
 - `STEAM_DESKTOP__Ability_Source_Loop_v1.md`
 - `STEAM_DESKTOP__Ability_Catalog_v1.md`
-- `STEAM_DESKTOP__Vertical_Slice_Contract_v1.md`
+- D-009/D-013 and the implemented Vertical Slice regression baseline
 - `STEAM_DESKTOP__Task_Flow_Contract_v1.md`
 - `STEAM_DESKTOP__Object_Contract_v1.md`
 - D-009, D-010, D-013, D-018, D-019

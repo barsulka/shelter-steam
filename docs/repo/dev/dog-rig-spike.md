@@ -4,9 +4,8 @@
 
 This spike checks whether Shelter can assemble one dog as modular Godot runtime parts, replay shared motion grammar, attach an object to a socket, and make small personality offsets visible without drawing a full frame-by-frame animation set.
 
-Source brief:
-
-- `docs/drive/Shelter/04_DEVELOPMENT/DOG_RIG_SPIKE_v0_BRIEF.md`
+The completed spike briefs are retained in Git history. This file records the
+technical prototype surface still present in the checkout.
 
 ## Current Implementation
 

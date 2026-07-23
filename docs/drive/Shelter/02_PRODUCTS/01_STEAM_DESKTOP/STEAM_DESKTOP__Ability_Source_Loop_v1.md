@@ -10,7 +10,7 @@ Roadmap task: R-10 — Ability Source Loop
 Основано на:
 
 - `STEAM_DESKTOP__Dog_Progression_Model_v1.md`
-- `STEAM_DESKTOP__Game_Systems_Roadmap_v1.md`
+- `STEAM_DESKTOP__Game_Design_Roadmap_v2.md` for current activation boundaries
 - `docs/drive/Shelter/00_START_HERE/02_DECISIONS.md` — D-010, D-018, D-019
 
 ---

@@ -219,7 +219,6 @@ mcp/internal/sheltermcp/*parser*_test.go or *context_bundle*_test.go — new as 
 mcp/README.md
 docs/repo/status/CODEX_CURRENT_STATUS.md
 docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
-docs/repo/status/CODEX_STATUS.md
 ```
 
 Новый test filename можно выбрать в указанной папке, но production scope нельзя
@@ -335,16 +334,16 @@ persistent/generated knowledge cache
   exact fallback conditions.
 - `CODEX_CURRENT_STATUS.md` и `CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md`
   показывают фактический PASS/RED, а не план как завершённый результат.
-- `docs/repo/status/CODEX_STATUS.md` получает подробную chronological entry:
-  root cause, exact changes, tests/smokes, bundle byte counts/hashes, capability
-  isolation result, files changed и remaining limitations.
+- Final handback сохраняет root cause, exact changes, tests/smokes, bundle byte
+  counts/hashes, capability isolation result, files changed и remaining
+  limitations; current status остаётся краткой текущей правдой.
 
 ---
 
 ## 8. Required checks — exact handback matrix
 
-Все команды запускать из указанного cwd; записать exact command/result в
-`CODEX_STATUS.md` и final handback.
+Все команды запускать из указанного cwd; записать exact command/result в final
+handback и обновить current status только при изменении текущей правды.
 
 ### Go
 
@@ -453,4 +452,3 @@ Codex возвращает coordinator напрямую:
 
 Implementation нельзя объявлять complete, пока весь §7 и §8 не пройден и
 current/status docs не отражают фактический результат.
-

@@ -1,4 +1,17 @@
 approval_policy = "never"
+default_permissions = "shelter-workspace-system-temp"
+
+[permissions.shelter-workspace-system-temp]
+description = "Shelter workspace plus macOS system temp; no network."
+extends = ":workspace"
+
+[permissions.shelter-workspace-system-temp.filesystem]
+":tmpdir" = "write"
+":slash_tmp" = "write"
+
+[permissions.shelter-workspace-system-temp.network]
+enabled = false
+
 [mcp_servers.shelter]
 command = "/bin/sh"
 args = ["-c", 'exec "$(git rev-parse --show-toplevel)/mcp/run.sh"']

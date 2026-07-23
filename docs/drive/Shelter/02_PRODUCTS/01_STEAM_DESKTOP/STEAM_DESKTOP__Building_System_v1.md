@@ -13,8 +13,9 @@ Roadmap task: R-12 — Buildings & Production Chains
 - `STEAM_DESKTOP__Dog_Progression_Model_v1.md`
 - `STEAM_DESKTOP__Ability_Source_Loop_v1.md`
 - `STEAM_DESKTOP__Ability_Catalog_v1.md`
-- `STEAM_DESKTOP__Game_Systems_Roadmap_v1.md`
-- `docs/drive/Shelter/03_DESIGN/01_REFERENCES/screenshots/room_window_references/README.md`
+- `STEAM_DESKTOP__Game_Design_Roadmap_v2.md` for current activation boundaries
+- current room-panel visual is an open user/Art input; superseded screenshot
+  notes remain in Git history
 - D-009, D-010, D-018, D-019
 
 ---

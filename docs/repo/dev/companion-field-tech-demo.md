@@ -183,4 +183,4 @@ Important CQ findings for this demo:
 - Clicking an object visibly selects it or opens a tiny placeholder panel.
 - Clicking intentionally empty pass-through space is tested and documented.
 - Companion mode avoids covering the macOS system panel/menu bar.
-- At least one multi-monitor placement test is recorded in `docs/repo/status/CODEX_STATUS.md`.
+- At least one multi-monitor placement test is recorded in `docs/repo/status/CODEX_CURRENT_STATUS.md`.

@@ -617,7 +617,8 @@ dog stands -> looks at bag -> walks to bag -> picks up bag -> walks carrying bag
 
 ### Art task B — Dog Shape Pack v1
 
-Сделать 8 mixed shelter dog shapes по `DOG_SHAPE_PACK_v1_BRIEF.md`.
+Любая будущая mixed-shape production wave требует нового accepted brief;
+completed Dog Shape Pack planning remains in Git history.
 
 ### Tech task C — Dog Rig Spike v0
 

@@ -86,7 +86,7 @@ shelter_context_bundle(role, area, task, max_bytes)
 ```text
 docs/repo/status/CODEX_CURRENT_STATUS.md — короткий текущий dev-status.
 docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md — compressed implementation context.
-docs/repo/status/CODEX_STATUS.md — detailed chronological history log, not bootstrap.
+docs/repo/status/CODEX_STATUS.md — fixed-path no-write compatibility stub; current state lives only in CODEX_CURRENT_STATUS.md.
 docs/repo/adr/README.md — индекс действующих архитектурных решений.
 ```
 
@@ -112,7 +112,11 @@ Knowledge by task.
 History only for evidence / regression / archaeology.
 ```
 
-Не восстанавливай проект через все старые briefs, capture packs, handoff и long logs, если задача не требует evidence/regression/archaeology.
+Superseded/history Markdown по умолчанию удаляется из checkout и остаётся в Git
+history. В checkout сохраняются только Accepted ADR, обязательный authority/routing,
+validator/hash-required immutable evidence и действительно используемые regression
+contracts. Не восстанавливай проект через старые briefs, capture packs, handoff или
+long logs, если exact evidence/regression task не требует сохранённого исключения.
 
 Не говори, что документ прочитан, если ты не открывал его через доступный тебе механизм доступа к локальным файлам проекта и пользователь не предоставлял его содержимое в чате.
 ## 4. Роли и зоны ответственности

@@ -10,7 +10,7 @@ Roadmap task: R-15 — Economy & Balance Foundations
 Основано на:
 
 - `docs/drive/Shelter/00_START_HERE/03_PROJECT_PHILOSOPHY.md`
-- `STEAM_DESKTOP__Game_Systems_Roadmap_v1.md`
+- `STEAM_DESKTOP__Game_Design_Roadmap_v2.md` for current activation boundaries
 - `STEAM_DESKTOP__Dog_Progression_Model_v1.md`
 - `STEAM_DESKTOP__Ability_Source_Loop_v1.md`
 - `STEAM_DESKTOP__Ability_Catalog_v1.md`

@@ -1,6 +1,6 @@
 # 02_DECISIONS — Shelter Decision Log
 
-Обновлено: 2026-07-20
+Обновлено: 2026-07-22
 Статус: active knowledge / decision log
 Владелец: Producer / Project Manager
 Назначение: хранить принятые долгоживущие решения Shelter. История обсуждений, handoff и evidence живут в History-документах.
@@ -16,7 +16,7 @@ Default use:
 ```text
 Read by task when decisions are needed.
 For quick entry, use BOOTSTRAP_CONTEXT.md and current-context docs first.
-For implementation history, use CODEX_CURRENT_STATUS.md / CODEX_STATUS.md and relevant handoff.
+For current implementation state, use CODEX_CURRENT_STATUS.md. Older history is in Git.
 ```
 
 Правило cleanup:
@@ -53,15 +53,19 @@ For implementation history, use CODEX_CURRENT_STATUS.md / CODEX_STATUS.md and re
 | D-019 | Game Design Systems Workbench over live Godot runtime | technical/process | Steam/Codex | accepted |
 | D-020 | Project Philosophy / Shelter Constitution | philosophy/product | all | accepted |
 | D-021 | ChatGPT Work local project and Shelter MCP boundary | process/dev tooling | docs/Codex/MCP | accepted |
-| D-022 | Steam/Desktop Day 2 executable scope lock | product/game design | Steam | accepted |
-| D-023 | Steam/Desktop First Day + Day 2 player journey scope lock | product/game design | Steam | accepted |
-| D-024 | Steam/Desktop responsive meadow, field and viewport contract | product/game design/technical boundary | Steam | accepted / mechanical gate failed pre-native / unsealed / capture hold |
+| D-022 | Steam/Desktop Day 2 executable scope lock | product/game design | Steam | accepted prior scope / future reference |
+| D-023 | Steam/Desktop First Day + Day 2 player journey scope lock | product/game design | Steam | future reference / current priority superseded by D-031 |
+| D-024 | Steam/Desktop responsive meadow, field and viewport contract | product/game design/technical boundary | Steam | accepted / implemented / sealed pre-D-030 evidence |
 | D-025 | macOS-first development sequence and visual-capture authority | product/process/technical boundary | Steam | accepted |
 | D-026 | MCP-first source-derived context bridge | process/dev tooling | docs/Codex/MCP | accepted / implemented / independent review PASS / daily default active |
 | D-027 | Blocker revalidation and user approval for material workaround routes | process/governance | all roles/Codex | accepted |
 | D-028 | Steam-managed Godot installation and version authority | process/dev environment | Steam/Desktop/Codex | accepted |
 | D-029 | Observable and graceful Godot subprocess lifecycle | process/dev tooling | Steam/Desktop/Codex | accepted |
 | D-030 | Fixed 26-cell meadow period, whole-game zoom and alpha click surface | product/art/technical boundary | Steam/Desktop | accepted |
+| D-031 | Visual Shell Lock → Interactive Shelter Shell | product/art/game-design boundary | Steam/Desktop | accepted / current sequence / static selected-H PASS |
+| D-032 | Versioned current presentation regression profile after D-030 | technical/QA authority boundary | Steam/Desktop | accepted / checkpoint-2 prerequisite |
+| D-033 | macOS native-quantized dynamic height and exact client-area readback | technical/QA authority boundary | Steam/Desktop | accepted / amendment pending independent verification |
+| D-034 | Selected-H finite projected canvas and exact render/pointer equivalence | product/art/technical/QA boundary | Steam/Desktop | accepted / active-brief amendments pending independent verification |
 
 ---
 
@@ -608,11 +612,8 @@ A draft synthesis is not another role’s real position. A role has spoken only 
 
 RFC is not a decision by itself. It becomes decision only after Producer synthesis / user acceptance and updates to long-lived docs.
 
-First RFC:
-
-```text
-06_SESSIONS_AND_HANDOFFS/cross_role_sessions/2026-06-29__cross_role_rfc__codex_task_boundaries_steam_vertical_slice.md
-```
+Prior RFC detail is retained in Git history after its accepted rule was folded
+into this decision and the role documents.
 
 ---
 
@@ -639,12 +640,8 @@ Codex must return questions to:
 
 This does not add scope. It clarifies implementation boundaries for locked Steam Vertical Slice.
 
-Related:
-
-```text
-STEAM_DESKTOP__Codex_Implementation_Brief__Vertical_Slice_v1.md
-cross-role RFC on Codex task boundaries
-```
+Prior Vertical Slice brief/RFC detail is retained in Git history. The active
+implementation rule is D-017 plus `PROJECTS_RULES.md` / `AGENTS.md`.
 
 ---
 
@@ -717,11 +714,9 @@ Update:
 
 Standalone Systems Simulator direction is cancelled and replaced by Godot State Connector / Workbench over live Godot.
 
-Superseded:
-
-```text
-docs/drive/Shelter/99_ARCHIVE/STEAM_DESKTOP__Codex_Brief__Systems_Simulator_v0__SUPERSEDED_BY_GODOT_STATE_CONNECTOR.md
-```
+The superseded simulator brief is available through Git history. Current
+implementation authority is the live Godot runtime plus the accepted brief
+required for each new Codex task.
 
 Related:
 
@@ -862,128 +857,51 @@ README.md
 ---
 
 ### D-022 — Steam/Desktop Day 2 executable scope lock
-
++
 Дата: 2026-07-11
 Kind: `product/game design`
 Area: `Steam/Desktop`
-Status: `accepted`
-
+Status: `accepted prior scope / future reference`
++
 Summary:
-
-> Следующий executable slice — Day 2 Return и одна полностью завершаемая вариация существующей Warm Food Delivery. Вчерашняя забота остаётся видимой; знакомая физическая цепочка повторяется с одним careful-packing моментом Лабрадора и спокойным завершением.
-
-Decision:
-
-1. Вторая поставка проходит end to end, а не останавливается на availability: payload → unload → carry → Kitchen/Food Mix → Packing Table/Food Bag → LoadVan → player-confirmed DeliveryTask → completed.
-2. Используются существующие `route.oat_farm_intro`, Basket Bicycle, resource family и станции; новый маршрут, chain, ресурс, station или recipe не добавляются.
-3. Return сохраняет postcard, equipped slippers, Dachshund memory и packing note First Day; production save/calendar/day rollover не реализуются — continuity доказывается deterministic fixture/capture.
-4. Единственная новая вариация — читаемый Labrador careful-packing cue внутри существующего PackTask. Он не создаёт quality system, habit unlock или числовой bonus.
-5. После completion появляется небольшая progress note, а не вторая полноценная postcard/reward cadence. Только затем становится доступен optional question `Как паковать мягче?` как future promise, не active research/choice/habit state.
-6. Slice не меняет production art/animation architecture, window semantics, desktop-platform integration, monetization, charity claims или ethics boundaries.
-7. Результат является Day 2 product-language/repeatable-loop proof, но не доказывает production persistence, shipping desktop readiness или реальный retention KPI.
-
-Accepted implementation-contract clarification:
-
-1. `second_day_after_first_delivery` разделяет immutable `first_day_history` и единственные активные `active_order` / `active_chain`; legacy top-level flags допустимы только как one-way projections активного Day 2 state и не являются источником Day 1 history.
-2. `first_day_history` сохраняет completed First Day order, postcard, reward, chain, life-moment, equipped slippers, Dachshund memory, next-day hint и packing-note facts. `active_order.id = order.second_warm_delivery_careful_pack`; `active_chain.template_id = chain.warm_food_delivery_intro`, `run_id = run.day2.second_warm_delivery`.
-3. Fixture кладёт в Storage ровно `Protein Packet x1` и `Packaging Bag x1`, но не Oat/Pumpkin/Food Mix/Food Bag. Это deterministic existing-stock precondition только для fixture, не refill/replenishment, economy, save или route reward.
-4. Day 2 order проходит строго `offered → route_suggested → missing_resources → resources_available → production_in_progress → packed → loaded → sent → completed`; `sent` наступает после player confirmation / создания DeliveryTask, `completed` — только после `delivery_complete`.
-5. TripTask, downstream tasks and capture events получают `active_order.id`. Это узкая параметризация прежнего First-Day hardcoding; поведение `order.first_warm_delivery` не меняется.
-6. Day 2 PackTask остаётся существующим task type и детерминированно назначается Лабрадору; careful-packing cue/event появляется только в `in_progress`.
-7. Для `order.second_warm_delivery_careful_pack` completion не создаёт `postcard_created`, `reward_created` или `EquipItemTask`. Active Order наблюдает `delivery_complete`, владеет non-reward response state и последовательно раскрывает small progress note на существующем Van-side postcard-board cue, затем optional question на существующем Packing Table note cue. First Day Postcard/Slippers flow остаётся неизменным.
-
-Exact fixture/state/event surface and object/task ownership are normative in the related First Week Direction, Task Flow Contract, Object Contract and canonical Codex brief.
-
-Canonical brief:
-
-```text
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Day_2_Return_And_Second_Warm_Delivery_v1.md
-```
-
-Related:
-
-```text
-02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Week_Direction_v1.md
-02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Game_Design_Roadmap_v2.md
-00_START_HERE/03_OPEN_QUESTIONS.md
-```
-
++
+> Day 2 was defined as a causally continuous second warm-delivery session with
+> persisted Day 1 consequences, no hidden refill and no fixture shortcut.
++
+Current relationship:
++
+D-022 remains a regression/future contract for the already implemented
+causality and persistence baseline. It is not an active milestone or routing
+source. D-031 controls current sequencing; detailed prior scope is available in
+Git history.
++
 ---
-
++
 ### D-023 — Steam/Desktop First Day + Day 2 player journey scope lock
-
++
 Дата: 2026-07-12
 Kind: `product/game design`
 Area: `Steam/Desktop`
-Status: `accepted`
-
+Status: `accepted prior scope / current priority superseded by D-031`
++
 Summary:
-
-> Следующий executable program превращает уже доказанные First Day и Day 2 сценарии в один обычный player journey: clean launch, спокойное влияние без microtask duty, player save/Continue, одноразовый session-based return, первый living Labrador, одна inspectable Kitchen и тихое продолжение после Day 2.
-
-Decision:
-
-1. `First 48 Hours` — внутреннее имя программы. Canonical readiness claim текущей macOS-only development phase: `macOS-only internal First Day + Day 2 playable (session-based continuation, prototype visual level; not Steam/release ready)`. Windows validation не является текущим условием этого claim; его sequencing определяется D-025.
-2. Narrative Day 2 начинается ровно один раз при первом обычном `Continue` после fully-complete First Day; wall clock, timezone, real calendar и elapsed closed-app time не продвигают день.
-3. Закрытая игра frozen: нет offline simulation, catch-up, resource/reward production, decay, loss, neglect, deadline или absence penalty. Visible-unfocused/occluded runtime продолжает safe 1x simulation; minimized/OS-suspended runtime может pause/slow без restore burst.
-4. Fresh First Day Storage содержит `Protein Packet x2` и `Packaging Bag x2`. First Day расходует по одной единице; Day 2 получает persisted remainder `x1/x1`. Transition не создаёт refill/reward/resource event.
-5. Exact required gameplay input budget: First Day — start trip, confirm dispatch, equip slippers; Day 2 — start trip, confirm dispatch. Dog-owned unload/carry/cook/pack/load microtasks требуют ноль подтверждений; irreversible gates ждут бессрочно.
-6. First Day считается полностью завершённым только после delivery completion, postcard life moment, equipped slippers, added memory и next-visit hint. До этой границы restart продолжает First Day и не создаёт Day 2.
-7. После Day 2 принимается вариант A — `Quiet Cooperative`: completed First Day/Day 2 history and persistent traces remain immutable, active order/chain slots are empty, safe idle/wait/rest ambience continues. Это не repeatable order, Day 3 или новая progression system.
-8. Первый living runtime character — Labrador (`P0`). Первая inspectable room — Kitchen (`P1`) и остаётся обязательным Program DoD. Room uses one same-window detail surface over the same runtime, does not duplicate the dog and adds no mechanics.
-9. Player persistence uses versioned `user://` save, strict validation, transactional replace plus recovery and safe checkpoints. Exact in-flight task resume не входит без отдельного idempotency contract.
-10. `steam/play.sh` запускает только обычную игру тем же semantic route, что F5/internal export. `steam/dev.sh` — developer dispatcher для fixtures, connector/control, captures и diagnostics. Player path не принимает dev fixture/control/debug/time semantics.
-11. Authored visual source и imported runtime evidence — разные maturity stages. PREVIEW_RESEARCH_ONLY Sheet A/B не являются runtime assets; standalone demo не закрывает playable Art DoD.
-12. First Week остаётся направлением, а не семью реализованными днями. First Month, Day 3+, repeatable order generator, full dog vocabulary, multiple rooms, research/habits/economy, production style lock и Steam/release integration остаются out of scope.
-
-Accepted user choices:
-
-```text
-A — Quiet Cooperative after Day 2.
-A — Kitchen remains mandatory P1 in Program DoD.
-A — First 48 Hours remains an internal roadmap name; readiness uses First Day + Day 2 / two-session language.
-```
-
-Implementation relationship:
-
-- `R48-01` player entry and `R48-02` persistence may be designed in parallel but close as a joint acceptance gate; shared-checkout implementation is sequential under one integrator.
-- D-022 task/order/resource causality remains authoritative. Player continuation must implement an idempotent same-runtime transition and MUST NOT load the Day 2 fixture from player path.
-- Every Codex implementation wave requires a separate accepted brief.
-
-Execution clarification accepted 2026-07-12 after cross-role owner preflight:
-
-- `R48-05A` delivers the authored world plus living Labrador P0-B/P0-D foundation without object transfer. Its successful bounded result is `PASS` for R48-05A and only `PARTIAL / WARN` for parent R48-A/R48-05.
-- `R48-05B / P0-C` later delivers exactly one named owner-approved object transfer. Only its PASS closes the remaining carry/contact/attach/detach gate and permits full R48-A/R48-05 PASS.
-- Start, stop and physical turn are accepted only inside the bounded Labrador proof as presentation transitions derived from authoritative runtime phase/target/facing data; they are not new gameplay states and do not globally promote the proposed vocabulary.
-- A separate source-only Art Package wave may prepare authored world, layered Labrador and Kitchen/Packing anchor inputs before runtime implementation. Source-ready Art maturity is not runtime Art PASS and does not activate Codex by itself.
-- The split changes execution order, not D-023 scope. One accepted transfer remains mandatory for full Program DoD; exact `3 + 2`, resource provenance, Quiet Cooperative and later R48-04A remain unchanged.
-
-User-owner current-versus-later scope clarification accepted 2026-07-13:
-
-- **Current:** restore the Steam/Desktop base visual presentation to the canonical reconciliation targets: D-011 as the full main-strip scene target, the `approved_art_files/` library as the approved visual-language/scale/quality reference set, and the accepted Labrador direction/identity pair. This work may exercise only mechanics already present in the accepted runtime.
-- The approved Mill may be included literally as a **static decorative object**. It does not become a gameplay entity and creates no mechanic, task, resource, output, reward, input or production responsibility. No approved decorative image may imply new gameplay authority by appearance alone.
-- The first living dog remains Labrador. The minimum desired living read is a Labrador calmly walking back and forth. Selector H records this bounded presentation route while retaining exactly the same 12 rows. Game Design, Producer/PM and Technical/Codex exact-file readbacks accept manifest SHA `d8f1a9fc9226588097eb7bdfc162b6eff520ef42605b369ba25f906daa52ae56`; exact current status is `SIGNED_GD_PM_TECHNICAL / NOT_RUNTIME_EXECUTABLE`. Existing start/walk/stop/turn are presentation transitions only, not new gameplay states. The Art source is now accepted, but runtime binding still requires a separate accepted/executable Codex brief.
-- Ambient-walk guardrails are fail-closed: no current/queued Labrador task; allowed only before TripTask while an order is offered or after Day 2 in Quiet Cooperative; `ready_to_send` calm wait wins; forbidden during authoritative trip/task/delivery, restore and save failure/retry; a player gate cancels the presentation before transition; the presentation creates zero gameplay/save/progression output.
-- Dachshund/cart is not critical and is not a current implementation requirement.
-- Final Art source package is accepted as `ACCEPTED_SOURCE_INPUT / RUNTIME_NOT_YET_EXECUTABLE` under `STEAM_DESKTOP__Art_Source_Reconciliation_Wave_v1__PM_User_Source_Acceptance.md`. P1 Labrador/Kitchen/Mill advisories are accepted as-is for one bounded integration trial; final user acceptance remains after actual runtime captures. Art owns approved-file promotion. A separate Codex integration brief is only `PREPARED_FOR_TECHNICAL_PREFLIGHT / NOT_EXECUTABLE` until Technical handback and later PM activation.
-- There is no v6 patch loop. R48-05B/object transfer, rooms, onboarding and background/minimize/performance work are not current work. They remain later/open gates and are neither cancelled nor activated by this clarification.
-- **Later product direction/backlog:** cart; bicycle; small-truck driver; large-truck bed passenger; school desk; library reading; lab chemistry; blackboard teaching; rocking-chair reading; sleeping; playing with another dog; tail chasing; and a broader catalogue of dog-life states. This is not current scope or implementation authority. Game Design owns future detailed semantics/selectors/catalogue; PM records only the product direction and current-versus-later boundary.
-
-Canonical sources:
-
-```text
-02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
-02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Scope_Lock_v1.md
-```
-
++
+> First Day and Day 2 established the two-session runtime/persistence baseline.
++
+Current relationship:
++
+The implemented state/save/causality behavior remains regression coverage and
+future product material. It does not define current visuals, active scope or
+next step. The current sequence is Visual Shell Lock → Interactive Shelter
+Shell under D-031; detailed D-023 history is recovered from Git.
++
 ---
-
 ### D-024 — Steam/Desktop responsive meadow, field and viewport contract
 
 Дата: 2026-07-14
 Kind: `product/game design/technical boundary`
 Area: `Steam/Desktop`
-Status: `accepted / MECHANICAL_GATE_FAILED_PRE_NATIVE / UNSEALED / CAPTURE_HOLD`
+Status: `accepted / implemented / sealed technical-mechanical pre-D-030 evidence`
 
 Summary:
 
@@ -1023,12 +941,11 @@ Decision:
 8. Scroll/buildable/dog-exclusion/zoom contracts подписывают Producer/PM, Game
    Design и Technical. Implementation возможна только по отдельному принятому
    Codex brief.
-9. Additive Art amendment прошёл `PAUSED` → signed owner gates → explicit
-   `ART_RESUME` → `SOURCE_AMENDMENT_READY` → bounded PM/User source acceptance.
-   Пакет теперь frozen. Separate Codex integration mechanically completed the
-   accepted D-024 scope. Current evidence is an honest unsealed 32-file partial
-   tree; bounded runner atomicity correction is active and capture remains HOLD
-   until correction/review/PM/ACK gates in the active brief are complete.
+9. Additive Art amendment прошёл owner gates и source acceptance. Separate Codex
+   integration завершил D-024, а sealed capture pack сохранил точное техническое
+   evidence. D-030 позже заменил presentation baseline; D-024 brief и pack
+   остаются неизменяемым hash/validator-required regression contract, а не
+   current visual target.
 10. R48-05B/object transfer, rooms, onboarding, background/minimize/performance,
     новые mechanics/entities и broad pixel regeneration остаются вне scope.
 
@@ -1119,12 +1036,10 @@ Decision:
    Godot/project initialization. Это historical version/environment evidence,
    а не runtime/product failure и не доказательство против текущего Steam Godot
    `4.7` или обычного shell launch.
-8. После runner atomicity correction, independent review, PM Phase 2 и нового
-   literal capture ACK пользователь разрешил D-024 direct shell launch
-   существующего runner в logged-in macOS GUI session. Runner вызывает Steam
-   Godot `4.7` без `--headless` и создаёт штатный internal self-capture. GoLand
-   и Terminal.app не являются launch requirements. До этих gates capture
-   остаётся `HOLD / UNSEALED`; новая capture system не создаётся.
+8. После runner correction/review/PM/ACK пользователь разрешил D-024 direct
+   shell launch. Он завершён и sealed как technical-mechanical evidence; новая
+   capture system не создавалась. D-031 теперь задаёт отдельный user-owned visual
+   acceptance route.
 
 Supersedes for current sequencing:
 
@@ -1211,7 +1126,7 @@ Final D-026 acceptance and daily-default rollout: active; healthy shelter_contex
 Direct source reads: authority and exact fallback under the documented unavailable/non-current, fallback, omission/truncation, exact-contract, conflict/parser-failure and source-editing conditions.
 Non-blocking residuals: first remote CI run; no generic semantic conflict detector by accepted governance boundary; honest fallback/omissions when a 4 KiB budget cannot carry the requested context.
 Remaining D-026 blockers: none.
-Next project step: the already-governed D-024 capture-only macOS self-capture, evidence seal and Art/user review wave.
+Next project step: D-031 selected-H runtime integration and direct user live-matrix gate.
 ```
 
 Related:
@@ -1286,8 +1201,8 @@ Current D-024 application:
   внутренним Godot real-framebuffer self-capture; macOS Screenshot UI /
   Computer Use используется отдельно только для явно требуемого desktop/native
   window context и не является launch prerequisite;
-- текущий docs pass не активирует capture: до всех перечисленных gates остаётся
-  `CAPTURE_HOLD / UNSEALED`.
+- D-024 gates later completed and the pack is sealed technical-mechanical
+  evidence; this decision does not grant current D-031 visual acceptance.
 
 Non-effect:
 
@@ -1524,6 +1439,264 @@ Related:
 
 ---
 
+### D-031 — Visual Shell Lock → Interactive Shelter Shell
+
+Дата: 2026-07-21
+Kind: `product/art/game-design boundary`
+Area: `Steam/Desktop`
+Status: `accepted / current sequence / static selected-H USER_ACCEPTED`
+
+Summary:
+
+> Текущий milestone — Visual Shell Lock; следующий — Interactive Shelter Shell.
+> Day 1 / Day 2 и производство остаются будущими слоями, а пользователь является
+> единственным финальным visual gate.
+
+Decision:
+
+1. Visual Shell Lock охватывает весь текущий roster поляны плюс Labrador,
+   совместную гармонию принятых Shelter assets, масштабы и расположение поляны,
+   зданий и подземной части, default camera, все четыре zoom и min/default/max
+   размеры окна. CQ Hero Town — референс гармонии, но не источник копируемых
+   pixels/assets/UX. Legacy fences, polygon dogs и artifacts должны быть удалены
+   из runtime отдельной implementation-wave.
+2. Art exploration идёт пачками 3–5 существенно разных статических композиций.
+   Пользователь лично выбирает вариант, затем лично принимает live scene на
+   window/zoom matrix. Автоматические проверки дают только техническое evidence.
+   Любое изменение после lock требует нового user approval.
+3. Interactive Shelter Shell реализует живую, но ещё непроизводящую оболочку:
+   idle/walk/react dogs; entity badges/cards; один fixed rooms panel над поляной;
+   горизонтальное перемещение зданий в единственном middle building-cell layer;
+   front dogs/routes и back environment/decor; сохранение manual pan, zoom и
+   edge auto-pan. Полный interaction/move/rooms contract живёт в текущем roadmap.
+4. Один move работает как необратимая после confirm транзакция: source и
+   destination зарезервированы до завершения, occupants выходят примерно через
+   100 ms, jobs/state freeze и восстанавливаются, все free dogs участвуют, один
+   dog атомарно переносит один box. Box count по footprint cells:
+   `1→3, 2→5, 3→8, 4→10, 5→12, 6→15`; footprint `7+` запрещён.
+5. Move должен переживать save/reload. Hide-with-eye не останавливает simulation;
+   закрытие приложения замораживает её. После финальной доставки дом появляется
+   на destination, source исчезает, assigned workers возвращаются и продолжают
+   frozen work, остальные остаются idle снаружи.
+6. Gameplay/economy разрешены параллельно только under the hood и не могут менять
+   locked visible scene или UX без отдельного approval. Browser, Mobile, новый
+   MCP и инфраструктурное расширение заморожены до приятного playable shell.
+7. Manual acceptance cadence:
+   `composition batch → chosen live scene → cards → move → rooms → integrated shell`.
+
+Current gate state (2026-07-22): selected H GRID32 received direct user
+`USER_ACCEPTED / PASS` as the static composition. Faithful runtime integration,
+the full live window/zoom matrix and the final user live lock remain open. Exact
+implementation authority is the selected-H Codex brief; static acceptance does
+not authorize cards, move, rooms or gameplay expansion.
+
+Relationships:
+
+- D-023 Day 1 / Day 2 не отменён как будущий product material, но больше не
+  задаёт current routing.
+- D-024 сохраняется как immutable hash/validator-bound regression evidence.
+- D-030 задаёт реализованный technical presentation baseline, который должен
+  preserve selected H in live Visual Shell Lock; D-030 сам по себе не является
+  текущим visual approval.
+
+Canonical current contract:
+
+```text
+02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Game_Design_Roadmap_v2.md
+03_DESIGN/00_VISUAL_DIRECTION/STEAM_DESKTOP__Visual_Production_Roadmap_v1.md
+```
+
+---
+
+### D-032 — Versioned current presentation regression profile after D-030
+
+Дата: 2026-07-22
+Kind: `technical/QA authority boundary`
+Area: `Steam/Desktop`
+Status: `accepted / checkpoint-2 prerequisite`
+
+Summary:
+
+> D-024 остаётся неизменяемым evidence старого pre-D-030 presentation
+> contract. Текущие D-030/D-031 semantics проверяет отдельный versioned
+> D-030/Selected-H mechanical regression profile.
+
+Decision:
+
+1. D-024 fixed runner, test, normal validator и capture workflow применимы как
+   immutable pre-D-030 evidence для записанного sealed runtime. D-024 authority
+   digest, brief, pack, hashes и protected runner/test/validator/capture bytes
+   не меняются.
+2. D-030 и D-031 задают current presentation semantics: `26 / 832 / 1664`,
+   zoom `50/100/150/200`, dynamic macOS height, current camera/pan без
+   искусственного `15%` reserve, visible-alpha pointer и selected-H contract.
+3. Current acceptance использует один отдельно versioned mechanical regression
+   profile под неизменённым governed `ordinary-player` supervisor. Existing
+   `observe-godot-process.py`, его fixed profile/argv и D-024 helper/test regions
+   не изменяются; новый generic tooling/control/capture route не создаётся.
+4. Если старый D-024 profile фактически запускают против current runtime, его
+   `FAIL`/diagnostics остаются ineligible, не suppress, не allowlist и не
+   считаются `PASS`. Этот запуск не является current applicability gate.
+5. Checkpoint 1 остаётся `USER_ACCEPTED / PASS`. Checkpoint 2 остаётся `HOLD`,
+   пока новый brief не пройдёт independent docs/brief verification и activation,
+   профиль не будет реализован, а его current pre-checkpoint-2 gate не получит
+   independent mechanical `PASS`.
+6. После Checkpoint 2 тот же current profile обязан быть повторно применён к
+   полной `min/default/max × 50/100/150/200` live matrix. Mechanical verdict,
+   visual critic и прямой user visual verdict остаются разными gates.
+
+Implementation authority candidate:
+
+```text
+04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D030_Selected_H_Current_Presentation_Regression_Profile_v1.md
+```
+
+---
+
+### D-033 — macOS native-quantized dynamic height and exact client-area readback
+
+Дата: 2026-07-22
+Kind: `technical/QA authority boundary`
+Area: `Steam/Desktop`
+Status: `accepted / D-032 amendment pending independent verification`
+
+Summary:
+
+> D-032 сохраняет dynamic-height semantics, но округляет требуемую высоту вверх
+> до native pixel quantum максимального macOS backing scale и требует точного
+> client-area readback без допуска `±1`.
+
+Decision:
+
+1. Для stable launch display topology профиль записывает полный список
+   `DisplayServer.screen_get_scale(i)`. `q` равен их целому максимуму; любой
+   non-integral scale или topology/scale drift во время governed run означает
+   fail-closed `STOP`.
+2. Для каждого zoom высота вычисляется точно:
+
+   ```text
+   content   = 480 × 1740 / 2992 × zoom
+   required  = max(180, ceil(content))
+   usable_q  = floor(usable_height / q) × q
+   requested = min(ceil(required / q) × q, usable_q)
+   ```
+
+   Если `usable_q < required`, accepted composition не помещается и профиль
+   останавливается без crop, scale change или workaround.
+3. Height component `content_scale_size` и native window request получают
+   `requested`. После settle фактический client-area
+   `DisplayServer.window_get_size` обязан точно равняться request. Viewport и
+   capture dimensions, а также selected-H Y-origin выводятся из actual readback.
+4. Каждый state записывает `content`, `required`, полный scale list, `q`,
+   `usable_q`, `requested` и `actual`. Generic `±1`, retry-to-pass, suppression
+   и allowlist запрещены.
+5. На текущем host `q=2`, поэтому ladder height равен
+   `180 / 280 / 420 / 560`; `min × 150%` использует exact `420` и сохраняет
+   полный content extent.
+6. Выполненный запрос `419` с readback `418` остаётся реальным governed
+   `FAIL`/ineligible evidence и никогда не становится retroactive `PASS`.
+   D-024 current-run boundary D-032 не меняется.
+7. Поправка к active D-032 brief сначала получает independent docs/brief
+   verification и отдельную coordinator re-authorization. До этого
+   implementation continuation и Checkpoint 2 остаются `HOLD`. После
+   re-authorization прежняя implementation session может менять только D-032
+   seam и validator; runner, observer, protected D-024 bytes, tooling и assets
+   остаются неизменными.
+8. Checkpoint 1 остаётся `USER_ACCEPTED / PASS`; full live Visual Shell Lock
+   остаётся open; Checkpoint 2 остаётся `NOT STARTED / HOLD` до полного current
+   profile implementation и independent mechanical `PASS`.
+
+Related:
+
+```text
+04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D030_Selected_H_Current_Presentation_Regression_Profile_v1.md
+docs/repo/status/CODEX_CURRENT_STATUS.md
+```
+
+---
+
+### D-034 — Selected-H finite projected canvas and exact render/pointer equivalence
+
+Дата: 2026-07-22
+Kind: `product/art/technical/QA boundary`
+Area: `Steam/Desktop`
+Status: `accepted / active-brief amendments pending independent verification`
+
+Summary:
+
+> Для Selected-H projected canonical canvas является единственным render/pointer
+> domain. Внешний viewport остаётся прозрачным и click-through, а validator
+> доказывает точное visible-alpha/pointer coverage без требования заполнить окно.
+
+Decision:
+
+1. Canonical design X-domain остаётся half-open `[0,2992)`. Для каждого actual
+   viewport `projected_canvas_interval` равен точной проекции этого domain,
+   пересечённой с viewport. Для `default × 50%` это `[0,870)`.
+2. Selected-H render и pointer domains точно равны
+   `projected_canvas_interval`. Background, earth, grid и roster clipping не
+   позволяет whole-tile или любому другому render output выйти за projected
+   canonical canvas. Arbitrary composition extension запрещён.
+3. Viewport exterior вне projected canvas остаётся фактически прозрачным и
+   click-through. Внутри domain каждый фактически visible-alpha pixel/column
+   покрыт pointer surface, а прозрачное небо выше local alpha top пропускает
+   pointer. Visible alpha без pointer и pointer в true exterior запрещены.
+4. Общая render/pointer boundary точная: sampled-lattice approximation и
+   `4 px` tapered edge недопустимы.
+5. Current validator проверяет per-column/per-alpha equivalence, а не глобальное
+   `sampled_top_max < viewport_height`, `opaque_content_clickable=true` для
+   каждого viewport column или требование заполнить viewport opaque content.
+   Каждый state записывает:
+
+   ```text
+   projected_canvas_interval
+   visible_alpha_x_intervals
+   pointer_content_x_intervals
+   transparent_exterior_x_intervals
+   uncovered_visible_alpha_pixels = 0
+   uncovered_visible_alpha_columns = 0
+   exterior_clickable_pixels = 0
+   exterior_clickable_columns = 0
+   ```
+
+6. Negative fixtures обязаны отвергать current whole-tile overdraw, visible
+   alpha без pointer, pointer в exterior и tapered boundary. Legitimate exterior
+   sentinel равный viewport height обязан приниматься.
+7. D-030 full-width tiling narrowly superseded только для Selected-H low-zoom
+   exterior. Для `default × 50%` exact render/pointer interval равен `[0,870)`,
+   transparent exterior — `[870,1280)`. D-030 visible-alpha pointer rule,
+   D-033 height contract и D-024 applicability boundary не меняются.
+8. Retained complete 12-state ordinary-player process/matrix остаётся evidence,
+   но executed strict-validator `FAIL` реален, ineligible и никогда не становится
+   retroactive `PASS`. Checkpoint 1 остаётся `USER_ACCEPTED / PASS`; default ×
+   `50%` ранее не принимался; full live Visual Shell Lock остаётся open;
+   Checkpoint 2 остаётся `NOT STARTED / HOLD`.
+9. До independent verification поправок active D-032/Selected-H briefs и
+   отдельной coordinator re-authorization implementation continuation запрещён.
+   После неё та же implementation session может менять только bounded
+   Selected-H render/pointer/seam в `vertical_slice_demo.gd` и current D-032
+   validator. Runner, observer, protected D-024 bytes, tooling, assets,
+   gameplay/save и Checkpoint 2 остаются неизменными.
+
+Approval provenance:
+
+> “Одобряю Route 1: для Selected‑H считать projected canonical canvas
+> единственным render/pointer domain, клиповать whole‑tile overdraw за его
+> границей, оставлять внешний transparent interval click‑through и валидировать
+> точное совпадение visible alpha с pointer без глобального требования заполнить
+> viewport; оформить D‑034 и поправки active D‑032/Selected‑H briefs, продолжить
+> только после независимой проверки документов и coordinator re‑authorization”
+
+Related:
+
+```text
+04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__D030_Selected_H_Current_Presentation_Regression_Profile_v1.md
+04_DEVELOPMENT/STEAM_DESKTOP__Codex_Brief__Selected_H_Visual_Shell_Runtime_Integration_And_Live_Matrix_v1.md
+docs/repo/status/CODEX_CURRENT_STATUS.md
+```
+
+---
+
 ## 3. Open / proposed items not fixed here
 
 These are not decisions in this file. Track them in:
@@ -1543,158 +1716,12 @@ Examples:
 
 ---
 
-## 4. Changelog
+## 4. Current update
 
-### 2026-07-20 — D-030 fixed 26-cell meadow and whole-game zoom
+### 2026-07-22 — selected H static Visual Shell Lock
 
-- Навсегда зафиксирован approved meadow-период `26 × 32 = 832` world units и
-  `1664 px` при zoom `200%`; изменение числа клеток требует нового redraw.
-- Приняты tile-without-stretch, whole-game zoom `50/100/150/200`, динамическая
-  высота companion window и общий ground baseline для объектов и собак.
-- Зафиксировано alpha-based pointer поведение: видимый контент кликабелен,
-  только прозрачная область пропускает pointer в macOS.
-- Старые растянутые terrain layers исключены из active rendering.
-
-### 2026-07-16 — D-029 user-approved project graceful-shutdown route
-
-- Зафиксирован один общий project-owned graceful-shutdown routine в
-  always-present PlayerBoot/lifecycle owner для реального WM-close и узкого
-  flag-gated test-only control-file trigger.
-- Отклонён native SIGTERM bridge в текущем D-024/D-029 scope; supervisor
-  SIGTERM сохранён только как rc `74` ineligible fallback после failed/missing
-  project ACK, без SIGKILL/SIGABRT.
-- Зафиксированы exact control path/request/ACK, fail-closed stale/malformed
-  semantics и отсутствие polling/behavior change без exact test flag.
-- Сохранены unresolved CA gate, D-024 capture HOLD и неизменные
-  product/gameplay/save/schema/capture contracts.
-
-### 2026-07-16 — D-029 observable and graceful Godot subprocess lifecycle
-
-- Accepted full raw stdout/stderr retention, live visibility and separate
-  process/diagnostic verdicts for Godot subprocesses.
-- Required finite tests to reach natural exit after `ERROR` and long-lived
-  children to use quit/ACK → bounded grace → exact-PID SIGTERM → bounded grace,
-  with no SIGKILL/SIGABRT or hard-kill escalation.
-- Kept the current CA/certificate error unresolved and fail-loud; repair rather
-  than suppression/allowlisting is required before capture/seal.
-- Replaced fatal recovery proof with nonfatal authored snapshots/failpoints and
-  a fresh clean verifier process without changing ADR-0003 persistence meaning.
-
-### 2026-07-16 — D-028 Steam-managed Godot authority
-
-- Accepted the Steam-managed Godot installation as the only local engine/tool
-  authority for Shelter Steam/Desktop development, QA and evidence, using the
-  repository-documented Steam executable path.
-- Prohibited agent download/install/update/substitution, silent fallback to
-  other binaries and agent removal/movement of discovered Godot copies.
-- Required user-operated Steam install/update/repair or removal of other local
-  copies, followed by exact Steam path/version re-read before work continues.
-- Preserved direct shell/sh launch of the Steam-managed binary when an active
-  brief and literal ACK allow it; no product/runtime/capture meaning changed.
-
-### 2026-07-16 — D-027 blocker revalidation / user-approved routes
-
-- Accepted historical/environment/version blockers as evidence requiring a
-  smallest-safe current revalidation, not automatically active truth.
-- Separated safe workaround investigation/proposal from adoption,
-  implementation and operational use, which require explicit user agreement
-  for material route/scope/acceptance changes.
-- Clarified D-025 without changing its two-path visual-evidence contract:
-  D-024 may later use the existing runner through direct Codex shell/sh with
-  Steam Godot 4.7; GoLand/Terminal.app is not a requirement.
-- Kept D-024 on `CAPTURE_HOLD / UNSEALED` until runner correction, independent
-  review, PM Phase 2 and a new literal capture ACK.
-
-### 2026-07-15 — D-026 final reviewer PASS / daily default active
-
-- Recorded independent re-review `PASS`, closure of the prior two P1 and two P2 findings and absence of new P0/P1/P2 or compatibility regressions.
-- Activated healthy `shelter_context_bundle` as the routine bootstrap/context-routing default without changing source authority or exact fallback conditions.
-- Closed D-026 blockers, preserved first remote CI and the accepted semantic/4 KiB fallback boundaries as non-blocking residuals, and returned the current next step to the already-governed D-024 capture-only wave.
-
-### 2026-07-15 — D-026 remediation local PASS / re-review pending
-
-- Recorded the four independent-review findings as fixed locally and the complete local/client matrix as PASS.
-- Advanced the only current next step to independent re-review without changing the accepted D-026 meaning.
-- Kept final acceptance/daily-default rollout pending and direct source fallback active until reviewer PASS.
-
-### 2026-07-15 — D-026 post-implementation review status
-
-- Kept the accepted D-026 meaning/history intact and recorded that its source-derived implementation now exists.
-- Recorded happy-path local PASS but independent review `BLOCKED` on two P1 and two P2 defects.
-- Deferred final acceptance/daily-default rollout until remediation and reviewer PASS; direct source fallback remains active.
-
-### 2026-07-15 — D-026 accepted
-
-- Accepted MCP-first source-derived routine bootstrap as a clarification of D-021 without rewriting D-021 history.
-- Kept local source docs as authority and exact fallback.
-- Classified knowledge failure as capability-local and activated a separate Codex implementation brief.
-
-### 2026-07-14 — D-024 owner gates signed / explicit Art resume
-
-- Accepted exact Game Design and Technical readbacks without runtime authority.
-- Reconciled the hidden D-013 left sentinel as absence-state, not visible exterior activity.
-- Issued a separate source-only `ART_RESUME` to the retained Art owner; source acceptance and Codex/runtime remain later gates.
-
-### 2026-07-14 — D-024 responsive meadow / field / viewport authority
-
-- Accepted the four shown visual directions without authorizing a broad pixel loop.
-- Replaced unique full-width meadow with seam-safe horizontal meadow tiling.
-- Split gameplay/buildable/viewport bounds, required mouse-drag pan when needed and reserved about 15% empty meadow at the right at every zoom.
-- Added the static decorative positive-scale mirrored Fence Boundary Marker and kept Art paused pending GD, Technical and a later explicit PM resume.
-
-### 2026-07-13 — Art source accepted / integration brief prepared
-
-- Accepted the final source package as exact bounded input; resolved the three P1 advisories as accept-as-is for an integration trial while retaining final runtime user review.
-- Pinned the current visible roster/order, static decorative Mill, Labrador-only living roster, provenance route and Sheet A exclusion in the external PM activation record.
-- Closed selector H owner readbacks and prepared, but did not activate, the separate runtime integration brief.
-
-### 2026-07-13 — D-023 current graphics / later dog-life boundary
-
-- Made canonical base-visual reconciliation plus existing mechanics the current priority.
-- Allowed the approved Mill only as a static decorative object and kept Labrador as the first living dog.
-- Moved the broad dog-life catalogue, R48-05B, rooms, onboarding and background work out of the current queue without cancelling them.
-- Fixed the staged Art → PM/User → Art source → Codex brief → runtime review sequence and prohibited a v6 patch loop.
-
-### 2026-07-12 — D-023 execution clarification / R48-05A + R48-05B
-
-- Accepted the visible-progress split: no-transfer R48-05A first, one named transfer R48-05B later.
-- Kept full R48-A/R48-05 and Program DoD open until R48-05B PASS.
-- Authorized a separate source-only Art Package wave after document synchronization.
-
-### 2026-07-12 — D-023 accepted
-
-- Accepted the First Day + Day 2 player-journey program and user choices A/A/A.
-- Locked session-based continuation, frozen closed-app state, exact `3 + 2` input budget, persisted `x2/x2 → x1/x1` reserve, Labrador P0, Kitchen P1 and Quiet Cooperative.
-- Kept calendar/offline progression, Day 3+, First Month, full animation vocabulary, production art and Steam/release work outside the program.
-
-### 2026-07-11 — D-022 accepted
-
-- Locked the narrow Day 2 executable slice as one fully completable same-chain Warm Food Delivery variation.
-- Added the fixture-only history/active-state split, static existing-stock precondition, active-order event parameterization, deterministic Labrador PackTask ownership and the non-reward Day 2 feedback exception.
-- Kept save/calendar, new systems, active habit/research, production art/rig and platform semantics out of scope.
-
-### 2026-07-10 — D-021 accepted
-
-- Зафиксирован переход к локальному проекту ChatGPT Work/Codex поверх текущего checkout.
-- Разделены прямой файловый доступ Work/Codex и локальный domain-specific Shelter MCP.
-- Техническая очистка вынесена в отдельный Codex brief без изменения product/game/art решений.
-
-### 2026-07-07 — decision log cleanup
-
-- Converted `02_DECISIONS.md` into a structured decision log.
-- Added metadata, read policy and decision index.
-- Preserved D-001..D-020 meanings while reducing historical narrative.
-- Moved open/proposed items to `03_OPEN_QUESTIONS.md` references.
-- Normalized D-012 and moved the overlay asset taxonomy update into D-011 where it belongs.
-
-### 2026-06-30 — D-020 accepted
-
-- Project Philosophy / Shelter Constitution accepted.
-
-### 2026-06-29 — process and implementation-boundary decisions
-
-- Role boundaries, RFC workflow, Codex task briefs, Vertical Slice proof split and Workbench-over-Godot direction accepted.
-
-### 2026-06-24/25 — initial product decisions
-
-- Initial product family, Godot, Browser loop, Steam co-op, dog trait model, visual direction candidate, shared world and resource trips accepted.
+- User issued full static acceptance for selected H GRID32.
+- Current gate advanced from composition exploration to bounded runtime
+  integration and live matrix; Interactive Shelter Shell remains next.
+- Exact source/geometry/depth/grid/pivot contract is routed through one Codex
+  brief; no gameplay or later-shell scope was activated.

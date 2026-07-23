@@ -12,7 +12,7 @@ Roadmap task: R-14 — Activities Catalog
 - `STEAM_DESKTOP__Dog_Progression_Model_v1.md`
 - `STEAM_DESKTOP__Ability_Source_Loop_v1.md`
 - `STEAM_DESKTOP__Ability_Catalog_v1.md`
-- `STEAM_DESKTOP__Game_Systems_Roadmap_v1.md`
+- `STEAM_DESKTOP__Game_Design_Roadmap_v2.md` for current activation boundaries
 - D-009, D-010, D-018, D-019
 
 ---

@@ -6,7 +6,7 @@
 Статус: active v1 / D-022 Day 2 + D-023 player-journey synchronization accepted
 Продукт: Steam/Desktop idle always-on-top strip  
 Обязателен для: Game Designer, Codex  
-Основано на: `STEAM_DESKTOP__Vertical_Slice_Contract_v1.md`, `STEAM_DESKTOP__Object_Contract_v1.md`, D-009, D-010, D-011, D-012, D-013
+Основано на: `STEAM_DESKTOP__Object_Contract_v1.md`, D-009, D-010, D-011, D-012, D-013 и implemented Vertical Slice regression baseline
 
 ## 0. Purpose
 

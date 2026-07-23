@@ -10,8 +10,9 @@ Roadmap task: R-09 — Dog Progression Model
 Основано на:
 
 - `docs/drive/Shelter/00_START_HERE/02_DECISIONS.md` — D-010, D-018, D-019
-- `STEAM_DESKTOP__Game_Systems_Roadmap_v1.md`
-- `STEAM_DESKTOP__Vertical_Slice_Contract_v1.md`
+- `STEAM_DESKTOP__Game_Design_Roadmap_v2.md` for current activation boundaries
+- implemented Vertical Slice behavior is regression baseline; its superseded
+  planning contract remains in Git history
 - `STEAM_DESKTOP__Object_Contract_v1.md`
 - `STEAM_DESKTOP__Task_Flow_Contract_v1.md`
 - `docs/repo/dev/godot-state-connector.md`

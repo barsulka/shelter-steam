@@ -58,8 +58,9 @@ supervisor path is:
 tools/observe-godot-process.py
 ```
 
-It is not operational authority until the active D-024 implementation and
-independent-review gates pass. Its CLI is limited to fixed project-owned
+This supervisor path is implemented and independently reviewed; D-024 is sealed
+as pre-D-030 technical-mechanical evidence, while post-D-030 visual acceptance
+follows the current user-owned route. Its CLI is limited to fixed project-owned
 profiles (`version`, `import`, `script-check`, `scene-test`, `scene-capture`,
 `ordinary-player`); it must not accept an arbitrary executable, argv or shell.
 
@@ -253,7 +254,8 @@ F5/`play.sh` evidence is a separately declared manual internal-profile check.
 - `scripts/` - GDScript files.
 - `../docs/repo/adr/` - architecture decisions.
 - `../docs/repo/dev/` - development notes and technical spikes.
-- `../docs/repo/status/CODEX_STATUS.md` - Codex working status after meaningful tasks.
+- `../docs/repo/status/CODEX_CURRENT_STATUS.md` - current Codex working status after meaningful tasks.
+- `../docs/repo/status/CODEX_STATUS.md` - exact-path compatibility stub; do not add new status entries.
 
 ## Validation
 

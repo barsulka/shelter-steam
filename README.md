@@ -15,7 +15,7 @@ This repository is organized as a small monorepo:
 - `AGENTS.md` — repository-level rules for agents working in this repo.
 - `steam/AGENTS.md` — Steam/Desktop-specific Godot rules.
 - `steam/README.md` — Steam/Desktop project setup and validation.
-- `docs/repo/status/CODEX_STATUS.md` — shared development status and Codex working log.
+- `docs/repo/status/CODEX_CURRENT_STATUS.md` — current shared development status.
 - `docs/repo/adr/README.md` — index of accepted architecture decisions.
 
 ## Current Layout
@@ -62,4 +62,4 @@ Steam/Desktop must stay separate from Browser Extension UX. It is a Windows/macO
 
 ## After Significant Work
 
-Update the relevant local documentation. For development tasks, update `docs/repo/status/CODEX_STATUS.md` or provide a ready-to-paste status block.
+Update the relevant local documentation. For development tasks, update `docs/repo/status/CODEX_CURRENT_STATUS.md` or provide a ready-to-paste status block. Superseded/history Markdown normally remains only in Git history; fixed-path or immutable evidence exceptions are documented in the repository governance files.

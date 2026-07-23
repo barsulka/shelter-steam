@@ -18,7 +18,7 @@ Determine what Godot 4.x can do directly for Shelter's desktop companion-window 
 
 ## Spike Output
 
-Record the result in `docs/repo/dev/` and update `docs/repo/status/CODEX_STATUS.md` with:
+Record the result in `docs/repo/dev/` and update `docs/repo/status/CODEX_CURRENT_STATUS.md` with:
 
 - Godot settings and APIs tested.
 - macOS result.

@@ -6,7 +6,8 @@
 Продукт: Steam/Desktop idle always-on-top strip  
 Связанные документы:
 
-- `02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Vertical_Slice_Contract_v1.md`
+- current Object/Task Flow contracts and the implemented Vertical Slice
+  regression baseline
 - `02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Object_Contract_v1.md`
 - `02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Task_Flow_Contract_v1.md`
 

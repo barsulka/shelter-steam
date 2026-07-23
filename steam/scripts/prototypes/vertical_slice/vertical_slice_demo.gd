@@ -22,6 +22,50 @@ const D030_MEADOW_PATTERN_CELLS := 26
 const D030_MEADOW_PATTERN_WORLD_WIDTH := FIELD_CELL_WORLD_SIZE * D030_MEADOW_PATTERN_CELLS
 const D030_MEADOW_SOURCE_TO_WORLD := 0.5
 const D030_MOUSE_SAMPLE_SCREEN_PX := 4.0
+const SELECTED_H_CANVAS_SIZE := Vector2(2992.0, 480.0)
+const SELECTED_H_BACKGROUND_PIXEL_SHA256 := "840bbc58cf4205835e6498c0eb4b29ff0dccedba944d0d470081f35fad6db5bc"
+const SELECTED_H_TREE_LAYER_PIXEL_SHA256 := "1bb781811215eb409b20c39e90ce467de264b5e83548679f82d9bc191a6c9620"
+const SELECTED_H_LOWER_LAYER_PIXEL_SHA256 := "ff5564e4188fcc8b0662140a0139d519068ff4f42e1145e12b06b5bd771e273a"
+const SELECTED_H_MEADOW_SOURCE_SHA256 := "3816aa11aa7cd0b8e6f46d857d0ec89badd08597122439150403de39f4298203"
+const SELECTED_H_TREE_UNIFORM_SCALE := 0.78
+const SELECTED_H_TREE_TILE_SIZE := Vector2(1298.0, 734.0)
+const SELECTED_H_TREE_TILE_ORIGINS := [-210, 1088, 2386]
+const SELECTED_H_TREE_SCALED_ORIGIN_Y := -229.0
+const SELECTED_H_TREE_PROJECTED_SOURCE_Y := Vector2(179.0, 309.0)
+const SELECTED_H_TREE_SOURCE_RECT := Rect2(
+    0.0,
+    (SELECTED_H_TREE_PROJECTED_SOURCE_Y.x - SELECTED_H_TREE_SCALED_ORIGIN_Y) / SELECTED_H_TREE_UNIFORM_SCALE,
+    1664.0,
+    (SELECTED_H_TREE_PROJECTED_SOURCE_Y.y - SELECTED_H_TREE_PROJECTED_SOURCE_Y.x) / SELECTED_H_TREE_UNIFORM_SCALE
+)
+const SELECTED_H_TREE_DEST_Y := 216.0
+const SELECTED_H_TREE_DEST_HEIGHT := 130.0
+const SELECTED_H_LOWER_UNIFORM_SCALE := 0.62
+const SELECTED_H_LOWER_TILE_SIZE := Vector2(1032.0, 583.0)
+const SELECTED_H_LOWER_TILE_ORIGINS := [-167, 865, 1897, 2929]
+const SELECTED_H_LOWER_SCALED_ORIGIN_Y := -82.0
+const SELECTED_H_LOWER_DEST_Y := 346.0
+const SELECTED_H_LOWER_DEST_HEIGHT := 134.0
+const SELECTED_H_LOWER_SOURCE_RECT := Rect2(
+    0.0,
+    (SELECTED_H_LOWER_DEST_Y - SELECTED_H_LOWER_SCALED_ORIGIN_Y) / SELECTED_H_LOWER_UNIFORM_SCALE,
+    1664.0,
+    SELECTED_H_LOWER_DEST_HEIGHT / SELECTED_H_LOWER_UNIFORM_SCALE
+)
+const SELECTED_H_EARTH_BAND := Vector2(416.0, 480.0)
+const SELECTED_H_GRID_BAND := Vector2(441.0, 473.0)
+const SELECTED_H_GRID_BOUNDARIES := [
+    0, 115, 230, 345, 460, 575, 690, 805, 920, 1035, 1150, 1265, 1380,
+    1496, 1611, 1726, 1841, 1956, 2071, 2186, 2301, 2416, 2531, 2646,
+    2761, 2876, 2992,
+]
+const SELECTED_H_GRID_OCCUPIED := [4, 5, 6, 7, 9, 10, 13, 14, 15, 16, 17, 18, 19]
+const SELECTED_H_GRID_INSET := 2.0
+const SELECTED_H_EMPTY_FILL := Color(117.0 / 255.0, 117.0 / 255.0, 117.0 / 255.0, 204.0 / 255.0)
+const SELECTED_H_EMPTY_STROKE := Color(158.0 / 255.0, 158.0 / 255.0, 158.0 / 255.0, 204.0 / 255.0)
+const SELECTED_H_OCCUPIED_FILL := Color(107.0 / 255.0, 235.0 / 255.0, 61.0 / 255.0, 209.0 / 255.0)
+const SELECTED_H_OCCUPIED_STROKE := Color(151.0 / 255.0, 241.0 / 255.0, 119.0 / 255.0, 209.0 / 255.0)
+const SELECTED_H_GRID_OVERLAY_PIXEL_SHA256 := "b5ecdbcc3793fef6acd7b2d9929583a1454fbbc58eeb3f897d28f9ca325ef7dc"
 const D024_PRESENTATION_PATH := "res://resources/prototypes/vertical_slice/d024_responsive_presentation_v1.json"
 const D024_MEADOW_TEXTURE_PATH := "res://assets/prototypes/vertical_slice/authored/world/responsive/meadow_pattern_26_cells_1664x941.png"
 const D024_MARKER_TEXTURE_PATH := "res://assets/prototypes/vertical_slice/authored/world/responsive/fence_boundary_marker_rgba.png"
@@ -63,6 +107,10 @@ const CONTROL_CAPTURE_DIR := "res://.runtime/godot_state_connector/control_captu
 const CONTROL_VIDEO_CAPTURE_SECONDS := 10.0
 const CONTROL_VIDEO_CAPTURE_FPS := 2.0
 const CONTROL_VIDEO_CAPTURE_FRAME_INTERVAL := 1.0 / CONTROL_VIDEO_CAPTURE_FPS
+const D032_CURRENT_PROFILE_SCHEMA := "shelter.d030-selected-h-current-presentation.v1"
+const D032_CURRENT_PROFILE_GATE := "pre-checkpoint-2"
+const D032_CURRENT_PROFILE_USER_ROOT := "user://d030-selected-h-current-presentation-v1"
+const D032_OBSERVER_CONTROL_FLAG := "--shelter-observer-control-v1"
 
 const ZOOM_LEVELS := [0.5, 1.0, 1.5, 2.0]
 const ZOOM_LABELS := ["50", "100", "150", "200"]
@@ -225,6 +273,19 @@ var _d024_marker_load_count := 0
 var _d030_meadow_alpha_top := PackedInt32Array()
 var _d024_marker_used_rect := Rect2()
 var _d024_ready := false
+var _selected_h_checkpoint_route_enabled := false
+var _selected_h_checkpoint_one_ready := false
+var _selected_h_grid_visible := true
+var _selected_h_alpha_top_design := PackedInt32Array()
+var _selected_h_pointer_top_screen := PackedInt32Array()
+var _selected_h_pointer_profile_viewport := Vector2i.ZERO
+var _selected_h_pointer_profile_origin := Vector2.ZERO
+var _selected_h_pointer_profile_scale := 0.0
+var _selected_h_pointer_refresh_generation := 0
+var _selected_h_pointer_refresh_pending := false
+var _selected_h_last_draw_bindings: Array[String] = []
+var _selected_h_last_draw_frame := -1
+var _d032_current_profile_running := false
 var _d024_pan_candidate := false
 var _d024_pan_active := false
 var _d024_pan_start_screen := Vector2.ZERO
@@ -404,6 +465,9 @@ func _ready() -> void:
     else:
         _read_user_args()
     _load_textures()
+    if not _validate_selected_h_checkpoint_one_contract():
+        set_process(false)
+        return
     _systems_runtime.reset_runtime_state()
     _reset_world_state()
     var player_import_result := {"ok": true}
@@ -431,6 +495,31 @@ func _ready() -> void:
         _materialize_player_pending_intents(_player_checkpoint_kind)
         if _player_checkpoint_kind == "day2_delivery_response":
             _day2_completion_beat_remaining = DAY2_COMPLETION_BEAT_SECONDS
+
+    if _selected_h_checkpoint_route_active():
+        await get_tree().process_frame
+        var pointer_refresh := _selected_h_refresh_pointer_profile_from_viewport()
+        if not bool(pointer_refresh.get("ok", false)):
+            push_error("Selected-H pointer profile refresh failed: %s" % JSON.stringify(pointer_refresh))
+            set_process(false)
+            return
+        _apply_mouse_passthrough()
+        if _d032_current_profile_requested():
+            var d032_result := await _d032_write_current_presentation_matrix()
+            if not bool(d032_result.get("ok", false)):
+                push_error("d030_selected_h_current_presentation=FAIL detail=%s" % JSON.stringify(d032_result))
+                set_process(false)
+                return
+            print(
+                "d030_selected_h_current_presentation=ready_for_independent_verification schema=%s gate=%s states=%d captures=%d record=%s"
+                % [
+                    D032_CURRENT_PROFILE_SCHEMA,
+                    D032_CURRENT_PROFILE_GATE,
+                    int(d032_result.get("state_count", 0)),
+                    int(d032_result.get("capture_count", 0)),
+                    str(d032_result.get("record_path", "")),
+                ]
+            )
 
     var report := _build_report()
     for line in report:
@@ -650,6 +739,1014 @@ func test_d024_contract_for_viewport(viewport_size: Vector2, use_zoom_max: bool,
             "interactive": false,
         },
     }
+
+
+func test_selected_h_checkpoint_one_set_grid_visible(visible: bool) -> Dictionary:
+    _selected_h_grid_visible = visible
+    queue_redraw()
+    return test_selected_h_checkpoint_one_snapshot()
+
+
+func test_selected_h_checkpoint_one_snapshot() -> Dictionary:
+    var legacy_surfaces := _selected_h_legacy_surface_snapshot()
+    var render_state := _selected_h_render_snapshot()
+    var dependency_state := _selected_h_runtime_dependency_snapshot()
+    return {
+        "ready": _selected_h_checkpoint_one_ready,
+        "checkpoint": 1,
+        "view_mode": _view_mode,
+        "grid_visible": _selected_h_grid_visible,
+        "design_canvas": [int(SELECTED_H_CANVAS_SIZE.x), int(SELECTED_H_CANVAS_SIZE.y)],
+        "design_to_world": SOURCE_WORLD_TO_RUNTIME,
+        "zoom_percent": int(round(_zoom() * 100.0)),
+        "camera_x": _camera_x,
+        "window_profile": "default",
+        "required_window_width": NORMAL_SIZE.x,
+        "actual_window_size": DisplayServer.window_get_size(WINDOW_ID),
+        "design_origin_screen": _selected_h_design_origin_screen(),
+        "screen_scale": _selected_h_screen_scale(),
+        "semantic_bands": {
+            "trees": [216, 346],
+            "back_lawn": [346, 367],
+            "path": [367, 405],
+            "foreground_lawn": [405, 416],
+            "earth": [416, 480],
+        },
+        "background": {
+            "accepted_pixel_sha256": SELECTED_H_BACKGROUND_PIXEL_SHA256,
+            "tree_pixel_sha256": SELECTED_H_TREE_LAYER_PIXEL_SHA256,
+            "lower_pixel_sha256": SELECTED_H_LOWER_LAYER_PIXEL_SHA256,
+            "tree_uniform_scale": SELECTED_H_TREE_UNIFORM_SCALE,
+            "tree_tile_size": SELECTED_H_TREE_TILE_SIZE,
+            "tree_tile_origins": SELECTED_H_TREE_TILE_ORIGINS,
+            "tree_projected_source_y": SELECTED_H_TREE_PROJECTED_SOURCE_Y,
+            "tree_destination_y": [int(SELECTED_H_TREE_DEST_Y), int(SELECTED_H_TREE_DEST_Y + SELECTED_H_TREE_DEST_HEIGHT)],
+            "lower_uniform_scale": SELECTED_H_LOWER_UNIFORM_SCALE,
+            "lower_tile_size": SELECTED_H_LOWER_TILE_SIZE,
+            "lower_tile_origins": SELECTED_H_LOWER_TILE_ORIGINS,
+            "lower_preserved_y": [int(SELECTED_H_LOWER_DEST_Y), int(SELECTED_H_LOWER_DEST_Y + SELECTED_H_LOWER_DEST_HEIGHT)],
+        },
+        "grid": {
+            "band": [int(SELECTED_H_GRID_BAND.x), int(SELECTED_H_GRID_BAND.y)],
+            "visible_rows": [441, 472],
+            "height": 32,
+            "earth_margins": [25, 7],
+            "boundaries": SELECTED_H_GRID_BOUNDARIES,
+            "occupied": SELECTED_H_GRID_OCCUPIED,
+            "inset": SELECTED_H_GRID_INSET,
+            "empty_fill_rgba8": [117, 117, 117, 204],
+            "empty_stroke_rgba8": [158, 158, 158, 204],
+            "empty_stroke_width": 2,
+            "occupied_fill_rgba8": [107, 235, 61, 209],
+            "occupied_stroke_rgba8": [151, 241, 119, 209],
+            "occupied_stroke_width": 3,
+            "overlay_pixel_sha256": SELECTED_H_GRID_OVERLAY_PIXEL_SHA256,
+            "full_canvas_difference_bbox": [2, 441, 2990, 473],
+            "full_canvas_difference_pixels": 92416,
+        },
+        "ui": _selected_h_ui_snapshot(),
+        "pointer": _selected_h_pointer_snapshot(),
+        "legacy_active_surfaces": int(legacy_surfaces["total"]),
+        "legacy_surface_breakdown": legacy_surfaces,
+        "render": render_state,
+        "legacy_visual_draws_active": int(render_state["legacy_draw_bindings"]),
+        "roster_draws_active": int(render_state["roster_draw_bindings"]),
+        "runtime_dependencies": dependency_state,
+        "tmp_runtime_dependency": int(dependency_state["tmp_dependency_count"]) > 0,
+    }
+
+
+func _selected_h_legacy_surface_snapshot() -> Dictionary:
+    var semantic_texture_bindings := 0
+    for value in _textures.values():
+        if value is Texture2D:
+            semantic_texture_bindings += 1
+    var marker_bindings := 1 if _d024_marker_texture != null else 0
+    var authored_world_bindings := _authored_world_layers.size()
+    var labrador_pose_bindings := _authored_labrador_poses.size()
+    var old_pointer_profile_bindings := 1 if not _d030_meadow_alpha_top.is_empty() else 0
+    var old_pointer_record_bindings := 0
+    for record in _selected_h_pointer_surface_records():
+        if str(record.get("kind", "")).begins_with("legacy."):
+            old_pointer_record_bindings += 1
+    var total := (
+        semantic_texture_bindings
+        + marker_bindings
+        + authored_world_bindings
+        + labrador_pose_bindings
+        + old_pointer_profile_bindings
+        + old_pointer_record_bindings
+    )
+    return {
+        "total": total,
+        "semantic_texture_bindings": semantic_texture_bindings,
+        "marker_bindings": marker_bindings,
+        "authored_world_bindings": authored_world_bindings,
+        "labrador_pose_bindings": labrador_pose_bindings,
+        "old_pointer_profile_bindings": old_pointer_profile_bindings,
+        "old_pointer_record_bindings": old_pointer_record_bindings,
+        "d024_contract_ready": _d024_ready,
+        "d024_presentation_entries": _d024_presentation.size(),
+    }
+
+
+func _selected_h_render_snapshot() -> Dictionary:
+    var roster_ids := [
+        "storage", "mill_static", "kitchen", "packing_utility",
+        "road_sign", "bicycle", "van_endpoint", "labrador",
+    ]
+    var roster_draw_bindings := 0
+    var legacy_draw_bindings := 0
+    for binding_id in _selected_h_last_draw_bindings:
+        if binding_id in roster_ids:
+            roster_draw_bindings += 1
+        if binding_id.begins_with("legacy."):
+            legacy_draw_bindings += 1
+    return {
+        "observed_frame": _selected_h_last_draw_frame,
+        "draw_bindings": _selected_h_last_draw_bindings.duplicate(),
+        "background_observed": "selected_h.background" in _selected_h_last_draw_bindings,
+        "grid_observed": "selected_h.grid" in _selected_h_last_draw_bindings,
+        "roster_draw_bindings": roster_draw_bindings,
+        "legacy_draw_bindings": legacy_draw_bindings,
+    }
+
+
+func _selected_h_active_resource_paths() -> Array[String]:
+    var paths: Array[String] = []
+    _selected_h_append_texture_path(paths, _d024_meadow_texture)
+    _selected_h_append_texture_path(paths, _d024_marker_texture)
+    for value in _textures.values():
+        _selected_h_append_texture_path(paths, value as Texture2D)
+    for layer in _authored_world_layers:
+        _selected_h_append_texture_path(paths, layer.get("texture", null) as Texture2D)
+    for value in _authored_labrador_poses.values():
+        _selected_h_append_texture_path(paths, value as Texture2D)
+    paths.sort()
+    return paths
+
+
+func _selected_h_append_texture_path(paths: Array[String], texture: Texture2D) -> void:
+    if texture == null:
+        return
+    var resource_path := texture.resource_path
+    if resource_path != "" and resource_path not in paths:
+        paths.append(resource_path)
+
+
+func _selected_h_runtime_dependency_snapshot() -> Dictionary:
+    var active_paths := _selected_h_active_resource_paths()
+    var tmp_paths: Array[String] = []
+    for resource_path in active_paths:
+        if resource_path.begins_with("tmp/") or resource_path.begins_with("res://../tmp/") or resource_path.contains("/tmp/"):
+            tmp_paths.append(resource_path)
+    return {
+        "active_resource_paths": active_paths,
+        "active_resource_count": active_paths.size(),
+        "tmp_dependency_paths": tmp_paths,
+        "tmp_dependency_count": tmp_paths.size(),
+    }
+
+
+func _selected_h_ui_snapshot() -> Dictionary:
+    var visible_controls: Array[String] = []
+    for control in _interactive_controls():
+        if control != null and control.is_visible_in_tree():
+            visible_controls.append(str(control.name))
+    var visible_cards: Array[String] = []
+    for value in [_order_card, _route_card, _dog_card, _postcard_card, _debug_card]:
+        var card := value as Control
+        if card != null and card.is_visible_in_tree():
+            visible_cards.append(str(card.name))
+    return {
+        "ui_hidden": _ui_hidden,
+        "visible_controls": visible_controls,
+        "visible_control_count": visible_controls.size(),
+        "visible_cards": visible_cards,
+        "visible_card_count": visible_cards.size(),
+    }
+
+
+func _selected_h_pointer_snapshot() -> Dictionary:
+    var viewport_size := Vector2i(
+        int(round(_viewport_size().x)),
+        int(round(_viewport_size().y))
+    )
+    var top_y_by_column: Array[int] = []
+    var pointer_columns := PackedInt32Array()
+    for screen_x in viewport_size.x:
+        var top := clampi(
+            int(round(_selected_h_screen_top(float(screen_x) + 0.5))),
+            0,
+            viewport_size.y
+        )
+        top_y_by_column.append(top)
+        if top < viewport_size.y:
+            pointer_columns.append(screen_x)
+    var records := _selected_h_pointer_surface_records()
+    var legacy_records := 0
+    for record in records:
+        if str(record.get("kind", "")).begins_with("legacy."):
+            legacy_records += 1
+    var projected := _selected_h_projected_canvas_interval()
+    var projected_pixels := _selected_h_projected_canvas_pixel_interval()
+    return {
+        "surface_records": records,
+        "surface_record_count": records.size(),
+        "legacy_surface_record_count": legacy_records,
+        "selected_alpha_profile_samples": _selected_h_alpha_top_design.size(),
+        "old_d030_alpha_profile_samples": _d030_meadow_alpha_top.size(),
+        "polygon_point_count": _interactive_mouse_polygon().size(),
+        "projected_canvas_interval": [projected.x, projected.y],
+        "projected_canvas_pixel_interval": [projected_pixels.x, projected_pixels.y],
+        "pointer_content_x_intervals": _selected_h_columns_to_intervals(pointer_columns),
+        "top_y_by_column": top_y_by_column,
+        "boundary_sample_step_px": 1,
+        "boundary_taper_columns": 0,
+        "exact_projected_boundary": true,
+    }
+
+
+func _selected_h_columns_to_intervals(columns: PackedInt32Array) -> Array:
+    var intervals: Array = []
+    if columns.is_empty():
+        return intervals
+    var start := columns[0]
+    var previous := columns[0]
+    for index in range(1, columns.size()):
+        var value := columns[index]
+        if value != previous + 1:
+            intervals.append([start, previous + 1])
+            start = value
+        previous = value
+    intervals.append([start, previous + 1])
+    return intervals
+
+
+func _selected_h_exterior_intervals(viewport_width: int, projected_pixels: Vector2i) -> Array:
+    var intervals: Array = []
+    if projected_pixels.x > 0:
+        intervals.append([0, projected_pixels.x])
+    if projected_pixels.y < viewport_width:
+        intervals.append([projected_pixels.y, viewport_width])
+    return intervals
+
+
+# D-032 current-presentation evidence seam. It is reachable only through the
+# already-governed ordinary-player observer flag, never through normal play.
+# The seam reads the permanent Selected-H state, uses the existing viewport
+# capture mechanism, and restores default/100/camera0/GRID before reporting.
+func _d032_current_profile_requested() -> bool:
+    return (
+        _player_session_configured
+        and _selected_h_checkpoint_route_active()
+        and OS.get_cmdline_user_args().count(D032_OBSERVER_CONTROL_FLAG) == 1
+    )
+
+
+func _d032_write_current_presentation_matrix() -> Dictionary:
+    if _d032_current_profile_running:
+        return {"ok": false, "error": "profile_already_running"}
+    _d032_current_profile_running = true
+    var was_processing := is_processing()
+    set_process(false)
+
+    var launch_display_topology := _d032_display_topology_snapshot()
+    if not bool(launch_display_topology.get("ok", false)):
+        _d032_current_profile_running = false
+        set_process(was_processing)
+        return launch_display_topology
+
+    var global_root := ProjectSettings.globalize_path(D032_CURRENT_PROFILE_USER_ROOT)
+    if DirAccess.dir_exists_absolute(global_root):
+        _d032_current_profile_running = false
+        set_process(was_processing)
+        return {"ok": false, "error": "evidence_root_already_exists", "path": global_root}
+    var mkdir_error := DirAccess.make_dir_recursive_absolute(global_root)
+    if mkdir_error != OK:
+        _d032_current_profile_running = false
+        set_process(was_processing)
+        return {"ok": false, "error": "evidence_root_create_failed", "error_code": mkdir_error}
+
+    var checkpoint_before := player_checkpoint_snapshot()
+    var events_before := _systems_runtime.event_snapshots(500)
+    var states: Array[Dictionary] = []
+    var capture_count := 0
+    var profiles := ["min", "default", "max"]
+    for window_profile in profiles:
+        for zoom_index in ZOOM_LEVELS.size():
+            var state_result := await _d032_capture_current_matrix_state(
+                str(window_profile),
+                zoom_index,
+                global_root,
+                launch_display_topology
+            )
+            if not bool(state_result.get("ok", false)):
+                _d032_restore_current_profile_default()
+                await get_tree().process_frame
+                _d032_current_profile_running = false
+                set_process(was_processing)
+                return state_result
+            states.append(state_result["state"] as Dictionary)
+            capture_count += 2
+
+    _d032_restore_current_profile_default()
+    await get_tree().process_frame
+    await get_tree().process_frame
+
+    var final_topology_result := _d032_verify_display_topology(launch_display_topology)
+    if not bool(final_topology_result.get("ok", false)):
+        _d032_current_profile_running = false
+        set_process(was_processing)
+        return final_topology_result
+
+    var checkpoint_after := player_checkpoint_snapshot()
+    var events_after := _systems_runtime.event_snapshots(500)
+    var checkpoint_unchanged := JSON.stringify(checkpoint_before, "", true) == JSON.stringify(checkpoint_after, "", true)
+    var events_unchanged := JSON.stringify(events_before, "", true) == JSON.stringify(events_after, "", true)
+    if not checkpoint_unchanged or not events_unchanged:
+        _d032_current_profile_running = false
+        set_process(was_processing)
+        return {
+            "ok": false,
+            "error": "presentation_probe_emitted_gameplay_output",
+            "checkpoint_unchanged": checkpoint_unchanged,
+            "events_unchanged": events_unchanged,
+        }
+
+    var document := _d032_current_profile_document(
+        states,
+        checkpoint_before,
+        checkpoint_after,
+        events_before,
+        events_after,
+        launch_display_topology
+    )
+    var record_path := "%s/matrix.json" % global_root
+    var record_part_path := "%s.part" % record_path
+    var record_file := FileAccess.open(record_part_path, FileAccess.WRITE)
+    if record_file == null:
+        _d032_current_profile_running = false
+        set_process(was_processing)
+        return {"ok": false, "error": "matrix_record_open_failed"}
+    record_file.store_string(JSON.stringify(document, "  ", true, true) + "\n")
+    record_file.close()
+    var rename_error := DirAccess.rename_absolute(record_part_path, record_path)
+    if rename_error != OK:
+        _d032_current_profile_running = false
+        set_process(was_processing)
+        return {"ok": false, "error": "matrix_record_finalize_failed", "error_code": rename_error}
+
+    _d032_current_profile_running = false
+    set_process(was_processing)
+    return {
+        "ok": true,
+        "state_count": states.size(),
+        "capture_count": capture_count,
+        "record_path": record_path,
+    }
+
+
+func _d032_capture_current_matrix_state(
+    window_profile: String,
+    zoom_index: int,
+    global_root: String,
+    launch_display_topology: Dictionary
+) -> Dictionary:
+    var topology_before := _d032_verify_display_topology(launch_display_topology)
+    if not bool(topology_before.get("ok", false)):
+        return topology_before
+    var apply_result := await _d032_apply_current_matrix_state(
+        window_profile,
+        zoom_index,
+        launch_display_topology
+    )
+    if not bool(apply_result.get("ok", false)):
+        return apply_result
+
+    _selected_h_grid_visible = true
+    queue_redraw()
+    await get_tree().process_frame
+    await get_tree().process_frame
+    var state_id := "%s-%s" % [window_profile, ZOOM_LABELS[zoom_index]]
+    var grid_capture := await _d032_save_current_profile_png(global_root, "%s-grid.png" % state_id)
+    if not bool(grid_capture.get("ok", false)):
+        return grid_capture
+    var grid_snapshot := test_selected_h_checkpoint_one_snapshot()
+    var topology_after_grid := _d032_verify_display_topology(launch_display_topology)
+    if not bool(topology_after_grid.get("ok", false)):
+        return topology_after_grid
+
+    _selected_h_grid_visible = false
+    queue_redraw()
+    await get_tree().process_frame
+    await get_tree().process_frame
+    var clean_capture := await _d032_save_current_profile_png(global_root, "%s-clean.png" % state_id)
+    if not bool(clean_capture.get("ok", false)):
+        return clean_capture
+    var clean_snapshot := test_selected_h_checkpoint_one_snapshot()
+    var topology_after_clean := _d032_verify_display_topology(launch_display_topology)
+    if not bool(topology_after_clean.get("ok", false)):
+        return topology_after_clean
+    if grid_capture["alpha_top_by_column"] != clean_capture["alpha_top_by_column"]:
+        return {
+            "ok": false,
+            "error": "grid_clean_visible_alpha_profile_mismatch",
+            "state_id": state_id,
+        }
+
+    var pan_probe := _d032_current_pan_probe()
+    _selected_h_grid_visible = true
+    _camera_x = 0.0
+    _apply_mouse_passthrough()
+    queue_redraw()
+
+    var state := _d032_current_matrix_state_record(
+        state_id,
+        window_profile,
+        zoom_index,
+        apply_result,
+        grid_snapshot,
+        clean_snapshot,
+        grid_capture,
+        clean_capture,
+        pan_probe
+    )
+    var d034_assertion := _d034_assert_current_matrix_state(state)
+    if not bool(d034_assertion.get("ok", false)):
+        return d034_assertion
+    return {"ok": true, "state": state}
+
+
+func _d032_apply_current_matrix_state(
+    window_profile: String,
+    zoom_index: int,
+    launch_display_topology: Dictionary
+) -> Dictionary:
+    if window_profile not in ["min", "default", "max"]:
+        return {"ok": false, "error": "unsupported_window_profile", "window_profile": window_profile}
+    _zoom_index = clampi(zoom_index, 0, ZOOM_LEVELS.size() - 1)
+    var usable_rect := DisplayServer.screen_get_usable_rect(_target_screen)
+    if usable_rect.size.x < MIN_SIZE.x or usable_rect.size.y < MIN_SIZE.y:
+        return {"ok": false, "error": "usable_rect_too_small", "usable_rect": str(usable_rect)}
+    var profile_width := MIN_SIZE.x
+    if window_profile == "default":
+        profile_width = NORMAL_SIZE.x
+    elif window_profile == "max":
+        profile_width = usable_rect.size.x
+    var q := int(launch_display_topology["q"])
+    var content := SELECTED_H_CANVAS_SIZE.y * SOURCE_WORLD_TO_RUNTIME * _zoom()
+    var required := maxi(MIN_SIZE.y, ceili(content))
+    var usable_q := floori(float(usable_rect.size.y) / float(q)) * q
+    if usable_q < required:
+        return {
+            "ok": false,
+            "error": "native_quantized_usable_height_too_small",
+            "window_profile": window_profile,
+            "zoom_percent": int(round(_zoom() * 100.0)),
+            "content": content,
+            "required": required,
+            "q": q,
+            "usable_height": usable_rect.size.y,
+            "usable_q": usable_q,
+        }
+    var requested := mini(ceili(float(required) / float(q)) * q, usable_q)
+    var target_size := Vector2i(profile_width, requested)
+    get_window().content_scale_size = target_size
+    get_window().content_scale_factor = 1.0
+    DisplayServer.window_set_size(target_size, WINDOW_ID)
+    DisplayServer.window_set_position(
+        Vector2i(usable_rect.position.x, usable_rect.position.y + usable_rect.size.y - target_size.y),
+        WINDOW_ID
+    )
+    _camera_x = 0.0
+    _layout_ui()
+    _apply_mouse_passthrough()
+    queue_redraw()
+    await get_tree().process_frame
+    await get_tree().process_frame
+    await get_tree().process_frame
+    var settled_topology := _d032_verify_display_topology(launch_display_topology)
+    if not bool(settled_topology.get("ok", false)):
+        return settled_topology
+    var actual_size := DisplayServer.window_get_size(WINDOW_ID)
+    if actual_size != target_size:
+        return {
+            "ok": false,
+            "error": "window_size_readback_mismatch",
+            "window_profile": window_profile,
+            "zoom_percent": int(round(_zoom() * 100.0)),
+            "expected": [target_size.x, target_size.y],
+            "actual": [actual_size.x, actual_size.y],
+        }
+    return {
+        "ok": true,
+        "profile_width": profile_width,
+        "dynamic_height": requested,
+        "actual_window_size": [actual_size.x, actual_size.y],
+        "usable_rect": [usable_rect.position.x, usable_rect.position.y, usable_rect.size.x, usable_rect.size.y],
+        "height_contract": {
+            "content": content,
+            "required": required,
+            "scale_list": launch_display_topology["scale_list"],
+            "q": q,
+            "usable_q": usable_q,
+            "requested": requested,
+            "actual": [actual_size.x, actual_size.y],
+        },
+    }
+
+
+func _d032_display_topology_snapshot() -> Dictionary:
+    var screen_count := DisplayServer.get_screen_count()
+    if screen_count <= 0:
+        return {"ok": false, "error": "display_topology_empty", "screen_count": screen_count}
+    var scale_list: Array[float] = []
+    var maximum_scale := 0.0
+    for screen_index in screen_count:
+        var scale := DisplayServer.screen_get_scale(screen_index)
+        if scale <= 0.0 or scale != floorf(scale):
+            return {
+                "ok": false,
+                "error": "display_scale_non_integral",
+                "screen_index": screen_index,
+                "scale": scale,
+            }
+        scale_list.append(scale)
+        maximum_scale = maxf(maximum_scale, scale)
+    return {
+        "ok": true,
+        "screen_count": screen_count,
+        "scale_list": scale_list,
+        "q": int(maximum_scale),
+    }
+
+
+func _d032_verify_display_topology(launch_display_topology: Dictionary) -> Dictionary:
+    var current := _d032_display_topology_snapshot()
+    if not bool(current.get("ok", false)):
+        return {
+            "ok": false,
+            "error": "display_topology_invalid_during_run",
+            "launch": launch_display_topology,
+            "current": current,
+        }
+    if (
+        int(current["screen_count"]) != int(launch_display_topology["screen_count"])
+        or current["scale_list"] != launch_display_topology["scale_list"]
+        or int(current["q"]) != int(launch_display_topology["q"])
+    ):
+        return {
+            "ok": false,
+            "error": "display_topology_or_scale_drift",
+            "launch": launch_display_topology,
+            "current": current,
+        }
+    return {"ok": true}
+
+
+func _d032_save_current_profile_png(global_root: String, file_name: String) -> Dictionary:
+    var image := get_viewport().get_texture().get_image()
+    if image == null or image.is_empty():
+        return {"ok": false, "error": "capture_viewport_unavailable", "file": file_name}
+    var pointer_refresh := _selected_h_refresh_pointer_profile_from_image(image)
+    if not bool(pointer_refresh.get("ok", false)):
+        return pointer_refresh
+    _apply_mouse_passthrough()
+    var d034_metrics := _d034_image_profile_metrics(image)
+    if not bool(d034_metrics.get("ok", false)):
+        return d034_metrics
+    var final_path := "%s/%s" % [global_root, file_name]
+    var part_path := "%s.part" % final_path
+    var save_error := image.save_png(part_path)
+    if save_error != OK:
+        return {"ok": false, "error": "capture_save_failed", "file": file_name, "error_code": save_error}
+    var rename_error := DirAccess.rename_absolute(part_path, final_path)
+    if rename_error != OK:
+        return {"ok": false, "error": "capture_finalize_failed", "file": file_name, "error_code": rename_error}
+    return {
+        "ok": true,
+        "file": file_name,
+        "width": image.get_width(),
+        "height": image.get_height(),
+        "format": "png",
+        "alpha_top_by_column": d034_metrics["alpha_top_by_column"],
+        "visible_alpha_x_intervals": d034_metrics["visible_alpha_x_intervals"],
+        "render_exterior_alpha_pixels": d034_metrics["render_exterior_alpha_pixels"],
+        "render_exterior_alpha_columns": d034_metrics["render_exterior_alpha_columns"],
+    }
+
+
+func _d034_image_profile_metrics(image: Image) -> Dictionary:
+    var width := image.get_width()
+    var height := image.get_height()
+    var projected_pixels := _selected_h_projected_canvas_pixel_interval()
+    var alpha_top_by_column: Array[int] = []
+    var visible_columns := PackedInt32Array()
+    var exterior_alpha_pixels := 0
+    var exterior_alpha_columns := 0
+    for screen_x in width:
+        var alpha_top := height
+        var exterior_column_alpha_pixels := 0
+        var is_exterior := screen_x < projected_pixels.x or screen_x >= projected_pixels.y
+        for screen_y in height:
+            if image.get_pixel(screen_x, screen_y).a <= 0.0:
+                continue
+            if alpha_top == height:
+                alpha_top = screen_y
+            if not is_exterior:
+                break
+            exterior_column_alpha_pixels += 1
+        alpha_top_by_column.append(alpha_top)
+        if alpha_top < height:
+            visible_columns.append(screen_x)
+        if exterior_column_alpha_pixels > 0:
+            exterior_alpha_pixels += exterior_column_alpha_pixels
+            exterior_alpha_columns += 1
+    return {
+        "ok": true,
+        "alpha_top_by_column": alpha_top_by_column,
+        "visible_alpha_x_intervals": _selected_h_columns_to_intervals(visible_columns),
+        "render_exterior_alpha_pixels": exterior_alpha_pixels,
+        "render_exterior_alpha_columns": exterior_alpha_columns,
+    }
+
+
+func _d032_current_pan_probe() -> Dictionary:
+    var checkpoint_before := player_checkpoint_snapshot()
+    var events_before := _systems_runtime.event_snapshots(500)
+    var camera_max := _camera_max_x()
+    var viewport_size := _viewport_size()
+    var probe := {
+        "threshold_screen_px": D024_DRAG_THRESHOLD_SCREEN_PX,
+        "camera_max": camera_max,
+        "eligible": camera_max > 0.0,
+        "below_threshold_consumed": false,
+        "below_threshold_release_consumed": false,
+        "above_threshold_consumed": false,
+        "above_threshold_release_consumed": false,
+        "camera_after_above_threshold": 0.0,
+        "negative_clamp": _clamped_camera_x(-1.0),
+        "overflow_clamp": _clamped_camera_x(camera_max + 1000.0),
+    }
+    if camera_max > 0.0:
+        var projected := _selected_h_projected_canvas_interval()
+        var probe_x := clampf(viewport_size.x * 0.5, projected.x, maxf(projected.x, projected.y - 1.0))
+        var start := Vector2(
+            probe_x,
+            minf(viewport_size.y - 1.0, _selected_h_screen_top(probe_x) + 4.0)
+        )
+        if not _d024_begin_pan_candidate(start):
+            probe["eligible"] = false
+            probe["probe_error"] = "opaque_ground_start_rejected"
+        else:
+            probe["below_threshold_consumed"] = _d024_update_pan(start + Vector2(-7.0, 0.0))
+            probe["below_threshold_release_consumed"] = _d024_end_pan()
+            if _d024_begin_pan_candidate(start):
+                probe["above_threshold_consumed"] = _d024_update_pan(start + Vector2(-9.0, 0.0))
+                probe["camera_after_above_threshold"] = _camera_x
+                probe["above_threshold_release_consumed"] = _d024_end_pan()
+            else:
+                probe["probe_error"] = "second_opaque_ground_start_rejected"
+    _camera_x = 0.0
+    _apply_mouse_passthrough()
+    var checkpoint_after := player_checkpoint_snapshot()
+    var events_after := _systems_runtime.event_snapshots(500)
+    probe["checkpoint_unchanged"] = JSON.stringify(checkpoint_before, "", true) == JSON.stringify(checkpoint_after, "", true)
+    probe["events_unchanged"] = JSON.stringify(events_before, "", true) == JSON.stringify(events_after, "", true)
+    probe["release_no_click"] = (
+        not bool(probe["below_threshold_release_consumed"])
+        and (not bool(probe["eligible"]) or bool(probe["above_threshold_release_consumed"]))
+    )
+    return probe
+
+
+func _d032_current_matrix_state_record(
+    state_id: String,
+    window_profile: String,
+    zoom_index: int,
+    apply_result: Dictionary,
+    grid_snapshot: Dictionary,
+    clean_snapshot: Dictionary,
+    grid_capture: Dictionary,
+    clean_capture: Dictionary,
+    pan_probe: Dictionary
+) -> Dictionary:
+    var viewport_size := _viewport_size()
+    var pointer := grid_snapshot["pointer"] as Dictionary
+    var grid_render := grid_snapshot["render"] as Dictionary
+    var clean_render := clean_snapshot["render"] as Dictionary
+    var ui := grid_snapshot["ui"] as Dictionary
+    var dependencies := grid_snapshot["runtime_dependencies"] as Dictionary
+    var d034_equivalence := _d034_render_pointer_equivalence(
+        pointer,
+        grid_capture,
+        clean_capture,
+        int(round(viewport_size.x)),
+        int(round(viewport_size.y))
+    )
+    return {
+        "id": state_id,
+        "window_profile": window_profile,
+        "zoom_percent": int(round(_zoom() * 100.0)),
+        "profile_width": int(apply_result["profile_width"]),
+        "dynamic_height_expected": int(apply_result["dynamic_height"]),
+        "actual_window_size": apply_result["actual_window_size"],
+        "viewport_size": [int(round(viewport_size.x)), int(round(viewport_size.y))],
+        "usable_rect": apply_result["usable_rect"],
+        "height_contract": apply_result["height_contract"],
+        "camera": {
+            "default_x": 0.0,
+            "actual_x": float(grid_snapshot["camera_x"]),
+            "max_x": _camera_max_x(),
+            "visible_world_width": viewport_size.x / _zoom(),
+            "extent_mode": "visible-extent-no-reserve",
+            "default_reset": is_zero_approx(float(grid_snapshot["camera_x"])),
+            "pan_probe": pan_probe,
+        },
+        "transform": {
+            "design_canvas": [int(SELECTED_H_CANVAS_SIZE.x), int(SELECTED_H_CANVAS_SIZE.y)],
+            "design_to_world": SOURCE_WORLD_TO_RUNTIME,
+            "screen_scale": float(grid_snapshot["screen_scale"]),
+            "design_origin_screen": _d032_vector2_array(grid_snapshot["design_origin_screen"] as Vector2),
+        },
+        "projected_canvas_interval": d034_equivalence["projected_canvas_interval"],
+        "visible_alpha_x_intervals": d034_equivalence["visible_alpha_x_intervals"],
+        "pointer_content_x_intervals": d034_equivalence["pointer_content_x_intervals"],
+        "transparent_exterior_x_intervals": d034_equivalence["transparent_exterior_x_intervals"],
+        "render_exterior_alpha_pixels": d034_equivalence["render_exterior_alpha_pixels"],
+        "render_exterior_alpha_columns": d034_equivalence["render_exterior_alpha_columns"],
+        "uncovered_visible_alpha_pixels": d034_equivalence["uncovered_visible_alpha_pixels"],
+        "uncovered_visible_alpha_columns": d034_equivalence["uncovered_visible_alpha_columns"],
+        "exterior_clickable_pixels": d034_equivalence["exterior_clickable_pixels"],
+        "exterior_clickable_columns": d034_equivalence["exterior_clickable_columns"],
+        "transparent_sky_pointer_pixels": d034_equivalence["transparent_sky_pointer_pixels"],
+        "transparent_sky_pointer_columns": d034_equivalence["transparent_sky_pointer_columns"],
+        "pointer": {
+            "mode": "visible-alpha-content",
+            "surface_record_count": int(pointer["surface_record_count"]),
+            "legacy_surface_record_count": int(pointer["legacy_surface_record_count"]),
+            "selected_alpha_profile_samples": int(pointer["selected_alpha_profile_samples"]),
+            "old_d030_alpha_profile_samples": int(pointer["old_d030_alpha_profile_samples"]),
+            "polygon_point_count": int(pointer["polygon_point_count"]),
+            "top_y_by_column": pointer["top_y_by_column"],
+            "boundary_sample_step_px": int(pointer["boundary_sample_step_px"]),
+            "boundary_taper_columns": int(pointer["boundary_taper_columns"]),
+            "exact_projected_boundary": bool(pointer["exact_projected_boundary"]),
+        },
+        "permanent_state": {
+            "ui_hidden": bool(ui["ui_hidden"]),
+            "visible_control_count": int(ui["visible_control_count"]),
+            "visible_card_count": int(ui["visible_card_count"]),
+            "legacy_active_surfaces": int(grid_snapshot["legacy_active_surfaces"]),
+            "legacy_visual_draws_active": int(grid_snapshot["legacy_visual_draws_active"]),
+            "roster_runtime_expected": false,
+            "roster_draws_active": int(grid_snapshot["roster_draws_active"]),
+            "active_resource_count": int(dependencies["active_resource_count"]),
+            "active_resource_paths": dependencies["active_resource_paths"],
+            "tmp_runtime_dependency": bool(grid_snapshot["tmp_runtime_dependency"]),
+            "tmp_dependency_count": int(dependencies["tmp_dependency_count"]),
+        },
+        "captures": {
+            "grid": {
+                "file": str(grid_capture["file"]),
+                "width": int(grid_capture["width"]),
+                "height": int(grid_capture["height"]),
+                "grid_visible": bool(grid_snapshot["grid_visible"]),
+                "draw_bindings": grid_render["draw_bindings"],
+            },
+            "clean": {
+                "file": str(clean_capture["file"]),
+                "width": int(clean_capture["width"]),
+                "height": int(clean_capture["height"]),
+                "grid_visible": bool(clean_snapshot["grid_visible"]),
+                "draw_bindings": clean_render["draw_bindings"],
+            },
+        },
+    }
+
+
+func _d034_render_pointer_equivalence(
+    pointer: Dictionary,
+    grid_capture: Dictionary,
+    clean_capture: Dictionary,
+    viewport_width: int,
+    viewport_height: int
+) -> Dictionary:
+    var projected := _selected_h_projected_canvas_interval()
+    var projected_pixels := _selected_h_projected_canvas_pixel_interval()
+    var pointer_tops := pointer["top_y_by_column"] as Array
+    var visible_tops := clean_capture["alpha_top_by_column"] as Array
+    var uncovered_pixels := 0
+    var uncovered_columns := 0
+    var exterior_clickable_pixels := 0
+    var exterior_clickable_columns := 0
+    var transparent_sky_pointer_pixels := 0
+    var transparent_sky_pointer_columns := 0
+    for screen_x in viewport_width:
+        var pointer_top := int(pointer_tops[screen_x])
+        var visible_top := int(visible_tops[screen_x])
+        if visible_top < pointer_top:
+            uncovered_pixels += pointer_top - visible_top
+            uncovered_columns += 1
+        elif pointer_top < visible_top:
+            transparent_sky_pointer_pixels += visible_top - pointer_top
+            transparent_sky_pointer_columns += 1
+        if screen_x < projected_pixels.x or screen_x >= projected_pixels.y:
+            if pointer_top < viewport_height:
+                exterior_clickable_pixels += viewport_height - pointer_top
+                exterior_clickable_columns += 1
+    return {
+        "projected_canvas_interval": [projected.x, projected.y],
+        "visible_alpha_x_intervals": clean_capture["visible_alpha_x_intervals"],
+        "pointer_content_x_intervals": pointer["pointer_content_x_intervals"],
+        "transparent_exterior_x_intervals": _selected_h_exterior_intervals(viewport_width, projected_pixels),
+        "render_exterior_alpha_pixels": (
+            int(grid_capture["render_exterior_alpha_pixels"])
+            + int(clean_capture["render_exterior_alpha_pixels"])
+        ),
+        "render_exterior_alpha_columns": maxi(
+            int(grid_capture["render_exterior_alpha_columns"]),
+            int(clean_capture["render_exterior_alpha_columns"])
+        ),
+        "uncovered_visible_alpha_pixels": uncovered_pixels,
+        "uncovered_visible_alpha_columns": uncovered_columns,
+        "exterior_clickable_pixels": exterior_clickable_pixels,
+        "exterior_clickable_columns": exterior_clickable_columns,
+        "transparent_sky_pointer_pixels": transparent_sky_pointer_pixels,
+        "transparent_sky_pointer_columns": transparent_sky_pointer_columns,
+    }
+
+
+func _d034_assert_current_matrix_state(state: Dictionary) -> Dictionary:
+    var viewport_width := int((state["viewport_size"] as Array)[0])
+    var projected_pixels := _selected_h_projected_canvas_pixel_interval()
+    var expected_content_intervals: Array = []
+    if projected_pixels.y > projected_pixels.x:
+        expected_content_intervals.append([projected_pixels.x, projected_pixels.y])
+    var expected_exterior := _selected_h_exterior_intervals(viewport_width, projected_pixels)
+    var zero_counters := [
+        "render_exterior_alpha_pixels",
+        "render_exterior_alpha_columns",
+        "uncovered_visible_alpha_pixels",
+        "uncovered_visible_alpha_columns",
+        "exterior_clickable_pixels",
+        "exterior_clickable_columns",
+        "transparent_sky_pointer_pixels",
+        "transparent_sky_pointer_columns",
+    ]
+    for counter in zero_counters:
+        if int(state[counter]) != 0:
+            return {
+                "ok": false,
+                "error": "d034_equivalence_counter_nonzero",
+                "state_id": state["id"],
+                "counter": counter,
+                "value": state[counter],
+            }
+    if (
+        state["visible_alpha_x_intervals"] != expected_content_intervals
+        or state["pointer_content_x_intervals"] != expected_content_intervals
+        or state["transparent_exterior_x_intervals"] != expected_exterior
+    ):
+        return {
+            "ok": false,
+            "error": "d034_interval_equivalence_mismatch",
+            "state_id": state["id"],
+            "expected_content": expected_content_intervals,
+            "visible": state["visible_alpha_x_intervals"],
+            "pointer": state["pointer_content_x_intervals"],
+            "expected_exterior": expected_exterior,
+            "exterior": state["transparent_exterior_x_intervals"],
+        }
+    var pointer := state["pointer"] as Dictionary
+    if (
+        int(pointer["boundary_sample_step_px"]) != 1
+        or int(pointer["boundary_taper_columns"]) != 0
+        or not bool(pointer["exact_projected_boundary"])
+    ):
+        return {
+            "ok": false,
+            "error": "d034_pointer_boundary_not_exact",
+            "state_id": state["id"],
+        }
+    return {"ok": true}
+
+
+func _d032_current_profile_document(
+    states: Array[Dictionary],
+    checkpoint_before: Dictionary,
+    checkpoint_after: Dictionary,
+    events_before: Array[Dictionary],
+    events_after: Array[Dictionary],
+    launch_display_topology: Dictionary
+) -> Dictionary:
+    return {
+        "schema": D032_CURRENT_PROFILE_SCHEMA,
+        "gate": D032_CURRENT_PROFILE_GATE,
+        "profile": "d030-selected-h-current-presentation",
+        "roster_runtime_expected": false,
+        "display_topology": {
+            "screen_count": int(launch_display_topology["screen_count"]),
+            "scale_list": launch_display_topology["scale_list"],
+            "q": int(launch_display_topology["q"]),
+            "stable": true,
+        },
+        "runtime_contract": {
+            "logical_cell_world": FIELD_CELL_WORLD_SIZE,
+            "period_cells": D030_MEADOW_PATTERN_CELLS,
+            "period_world": D030_MEADOW_PATTERN_WORLD_WIDTH,
+            "source_period_px": 1664,
+            "source_period_zoom_percent": 200,
+            "horizontal_fit_or_stretch": false,
+            "world_width": WORLD_WIDTH,
+            "source_design_width": SOURCE_WORLD_WIDTH,
+            "source_world_to_runtime": SOURCE_WORLD_TO_RUNTIME,
+            "zoom_ladder_percent": [50, 100, 150, 200],
+            "default_zoom_percent": 100,
+            "companion_height_mode": "dynamic-bounded-by-usable-rect",
+            "fixed_height_px": null,
+            "artificial_exterior_reserve_fraction": 0.0,
+            "presentation_persisted": false,
+            "drag_threshold_screen_px": D024_DRAG_THRESHOLD_SCREEN_PX,
+            "release_no_click": true,
+        },
+        "selected_h_contract": {
+            "design_canvas": [2992, 480],
+            "canonical_design_x_interval": [0, 2992],
+            "render_pointer_domain": "projected-canonical-canvas",
+            "viewport_exterior": "transparent-click-through",
+            "pointer_boundary_sample_step_px": 1,
+            "semantic_bands": {
+                "trees": [216, 346],
+                "back_lawn": [346, 367],
+                "path": [367, 405],
+                "foreground_lawn": [405, 416],
+                "earth": [416, 480],
+            },
+            "background_pixel_sha256": SELECTED_H_BACKGROUND_PIXEL_SHA256,
+            "tree_layer_pixel_sha256": SELECTED_H_TREE_LAYER_PIXEL_SHA256,
+            "lower_layer_pixel_sha256": SELECTED_H_LOWER_LAYER_PIXEL_SHA256,
+            "grid_overlay_pixel_sha256": SELECTED_H_GRID_OVERLAY_PIXEL_SHA256,
+            "grid_band": [441, 473],
+            "grid_boundaries": SELECTED_H_GRID_BOUNDARIES,
+            "grid_occupied": SELECTED_H_GRID_OCCUPIED,
+            "grid_inset": SELECTED_H_GRID_INSET,
+            "grid_empty_fill_rgba8": [117, 117, 117, 204],
+            "grid_empty_stroke_rgba8": [158, 158, 158, 204],
+            "grid_empty_stroke_width": 2,
+            "grid_occupied_fill_rgba8": [107, 235, 61, 209],
+            "grid_occupied_stroke_rgba8": [151, 241, 119, 209],
+            "grid_occupied_stroke_width": 3,
+            "render_order": [
+                "storage", "mill_static", "kitchen", "packing_utility",
+                "road_sign", "bicycle", "van_endpoint", "labrador",
+            ],
+            "depth_exclusive_alpha_bottom": {
+                "rear": 367,
+                "middle": 386,
+                "front": 402,
+                "rear_to_middle_gap": 19,
+                "middle_to_front_gap": 16,
+            },
+            "building_integer_pivot_x": {
+                "storage": 690,
+                "mill_static": 1150,
+                "kitchen": 1726,
+                "packing_utility": 2128,
+            },
+            "y_authority": "exclusive-visible-alpha-bottom",
+            "positive_design_integer_snap": "floor-footprint-midpoint",
+        },
+        "presentation_output_probe": {
+            "checkpoint_before": checkpoint_before,
+            "checkpoint_after": checkpoint_after,
+            "event_count_before": events_before.size(),
+            "event_count_after": events_after.size(),
+            "checkpoint_unchanged": JSON.stringify(checkpoint_before, "", true) == JSON.stringify(checkpoint_after, "", true),
+            "events_unchanged": JSON.stringify(events_before, "", true) == JSON.stringify(events_after, "", true),
+            "checkpoint_contains_presentation_fields": (
+                checkpoint_before.has("camera_x")
+                or checkpoint_before.has("zoom")
+                or checkpoint_before.has("window_profile")
+            ),
+        },
+        "states": states,
+    }
+
+
+func _d032_restore_current_profile_default() -> void:
+    _zoom_index = 1
+    _camera_x = 0.0
+    _selected_h_grid_visible = true
+    _apply_window_settings()
+    _update_ui()
+    _apply_mouse_passthrough()
+    queue_redraw()
+
+
+func _d032_vector2_array(value: Vector2) -> Array[float]:
+    return [value.x, value.y]
 
 
 func test_d024_presentation_snapshot() -> Dictionary:
@@ -1560,12 +2657,17 @@ func _d024_screen_point_is_pan_ground(screen_position: Vector2) -> bool:
     var viewport_size := _viewport_size()
     if screen_position.x < 0.0 or screen_position.x > viewport_size.x:
         return false
-    if screen_position.y < _d030_meadow_screen_top(screen_position.x) or screen_position.y > viewport_size.y:
+    var content_top := _selected_h_screen_top(screen_position.x) if _selected_h_checkpoint_route_active() else _d030_meadow_screen_top(screen_position.x)
+    if screen_position.y < content_top or screen_position.y > viewport_size.y:
         return false
     return true
 
 
 func _draw() -> void:
+    if _selected_h_checkpoint_route_active():
+        _draw_selected_h_checkpoint_one()
+        return
+
     var baseline := _field_baseline()
 
     _draw_d024_meadow(_meadow_baseline())
@@ -1580,6 +2682,118 @@ func _draw() -> void:
     _draw_resource_tokens(baseline)
     _draw_first_day_readability_cues(baseline)
     _draw_world_state_labels(baseline)
+
+
+func _draw_selected_h_checkpoint_one() -> void:
+    _selected_h_last_draw_bindings.clear()
+    _selected_h_last_draw_frame = Engine.get_process_frames()
+    if not _selected_h_checkpoint_one_ready or _d024_meadow_texture == null:
+        return
+    _draw_selected_h_background()
+    _selected_h_last_draw_bindings.append("selected_h.background")
+    if _selected_h_grid_visible:
+        _draw_selected_h_grid()
+        _selected_h_last_draw_bindings.append("selected_h.grid")
+
+
+func _draw_selected_h_background() -> void:
+    for tile_origin in SELECTED_H_TREE_TILE_ORIGINS:
+        _draw_selected_h_texture_region(
+            Rect2(
+                float(tile_origin),
+                SELECTED_H_TREE_DEST_Y,
+                SELECTED_H_TREE_TILE_SIZE.x,
+                SELECTED_H_TREE_DEST_HEIGHT
+            ),
+            SELECTED_H_TREE_SOURCE_RECT
+        )
+    for tile_origin in SELECTED_H_LOWER_TILE_ORIGINS:
+        _draw_selected_h_texture_region(
+            Rect2(
+                float(tile_origin),
+                SELECTED_H_LOWER_DEST_Y,
+                SELECTED_H_LOWER_TILE_SIZE.x,
+                SELECTED_H_LOWER_DEST_HEIGHT
+            ),
+            SELECTED_H_LOWER_SOURCE_RECT
+        )
+
+
+func _draw_selected_h_texture_region(design_rect: Rect2, source_rect: Rect2) -> void:
+    var clipped := _selected_h_clipped_texture_region(design_rect, source_rect)
+    if clipped.is_empty():
+        return
+    var destination := _selected_h_design_rect_to_screen(clipped["design_rect"] as Rect2)
+    draw_texture_rect_region(
+        _d024_meadow_texture,
+        destination,
+        clipped["source_rect"] as Rect2,
+        Color.WHITE,
+        false,
+        true
+    )
+
+
+func _selected_h_clipped_texture_region(design_rect: Rect2, source_rect: Rect2) -> Dictionary:
+    var canvas_rect := Rect2(Vector2.ZERO, SELECTED_H_CANVAS_SIZE)
+    var clipped_design := design_rect.intersection(canvas_rect)
+    if not clipped_design.has_area() or design_rect.size.x <= 0.0 or design_rect.size.y <= 0.0:
+        return {}
+    var relative_position := Vector2(
+        (clipped_design.position.x - design_rect.position.x) / design_rect.size.x,
+        (clipped_design.position.y - design_rect.position.y) / design_rect.size.y
+    )
+    var relative_size := Vector2(
+        clipped_design.size.x / design_rect.size.x,
+        clipped_design.size.y / design_rect.size.y
+    )
+    return {
+        "design_rect": clipped_design,
+        "source_rect": Rect2(
+            source_rect.position + source_rect.size * relative_position,
+            source_rect.size * relative_size
+        ),
+    }
+
+
+func _draw_selected_h_grid() -> void:
+    for cell_index in range(SELECTED_H_GRID_BOUNDARIES.size() - 1):
+        var left := float(SELECTED_H_GRID_BOUNDARIES[cell_index]) + SELECTED_H_GRID_INSET
+        var right := float(SELECTED_H_GRID_BOUNDARIES[cell_index + 1]) - SELECTED_H_GRID_INSET - 1.0
+        var occupied := cell_index in SELECTED_H_GRID_OCCUPIED
+        var fill := SELECTED_H_OCCUPIED_FILL if occupied else SELECTED_H_EMPTY_FILL
+        var stroke := SELECTED_H_OCCUPIED_STROKE if occupied else SELECTED_H_EMPTY_STROKE
+        var stroke_width := 3.0 if occupied else 2.0
+        _draw_selected_h_grid_cell(
+            Rect2(left, SELECTED_H_GRID_BAND.x, right - left + 1.0, SELECTED_H_GRID_BAND.y - SELECTED_H_GRID_BAND.x),
+            fill,
+            stroke,
+            stroke_width
+        )
+
+
+func _draw_selected_h_grid_cell(design_rect: Rect2, fill: Color, stroke: Color, stroke_width: float) -> void:
+    var destination := _selected_h_design_rect_to_screen(design_rect)
+    var screen_stroke := stroke_width * _selected_h_screen_scale()
+    draw_rect(destination, fill, true)
+    draw_rect(Rect2(destination.position, Vector2(destination.size.x, screen_stroke)), stroke, true)
+    draw_rect(
+        Rect2(
+            Vector2(destination.position.x, destination.end.y - screen_stroke),
+            Vector2(destination.size.x, screen_stroke)
+        ),
+        stroke,
+        true
+    )
+    draw_rect(Rect2(destination.position, Vector2(screen_stroke, destination.size.y)), stroke, true)
+    draw_rect(
+        Rect2(
+            Vector2(destination.end.x - screen_stroke, destination.position.y),
+            Vector2(screen_stroke, destination.size.y)
+        ),
+        stroke,
+        true
+    )
 
 
 func _read_user_args() -> void:
@@ -1702,8 +2916,17 @@ func _read_user_args() -> void:
             _runtime_load_local_save = true
 
 
+func _selected_h_checkpoint_route_active() -> bool:
+    return _selected_h_checkpoint_route_enabled
+
+
 func _load_textures() -> void:
     _textures.clear()
+    _selected_h_checkpoint_route_enabled = _view_mode == "player_prototype"
+    if _selected_h_checkpoint_route_enabled:
+        _ui_hidden = true
+        _load_selected_h_checkpoint_one_texture()
+        return
     _load_d024_presentation()
     for asset_id in ASSET_PATHS.keys():
         var path := str(ASSET_PATHS[asset_id])
@@ -1713,6 +2936,104 @@ func _load_textures() -> void:
         _textures[asset_id] = texture
     _load_authored_world_layers()
     _load_authored_labrador_poses()
+
+
+func _load_selected_h_checkpoint_one_texture() -> void:
+    _d024_ready = false
+    _d024_presentation.clear()
+    _d024_meadow_texture = null
+    _d024_marker_texture = null
+    _d024_meadow_load_count = 0
+    _d024_marker_load_count = 0
+    _d030_meadow_alpha_top = PackedInt32Array()
+    _d024_marker_used_rect = Rect2()
+    _authored_world_layers.clear()
+    _authored_labrador_poses.clear()
+    _authored_labrador_used_rects.clear()
+    _selected_h_alpha_top_design = PackedInt32Array()
+    _selected_h_pointer_top_screen = PackedInt32Array()
+    _selected_h_pointer_profile_viewport = Vector2i.ZERO
+    _selected_h_pointer_profile_origin = Vector2.ZERO
+    _selected_h_pointer_profile_scale = 0.0
+
+    _d024_meadow_texture = load(D024_MEADOW_TEXTURE_PATH) as Texture2D
+    if _d024_meadow_texture == null:
+        push_error("Selected-H meadow source failed to load")
+        return
+    _d024_meadow_load_count = 1
+    if _d024_meadow_texture.get_size() != D024_MEADOW_SOURCE_SIZE:
+        push_error("Selected-H meadow source size drift: %s" % str(_d024_meadow_texture.get_size()))
+        return
+    _selected_h_alpha_top_design = _build_selected_h_alpha_top_design(_d024_meadow_texture)
+    if _selected_h_alpha_top_design.size() != int(SELECTED_H_CANVAS_SIZE.x):
+        push_error("Selected-H alpha-top profile failed")
+
+
+func _build_selected_h_alpha_top_design(texture: Texture2D) -> PackedInt32Array:
+    var profile := PackedInt32Array()
+    var image: Image = texture.get_image()
+    if image == null or image.is_empty():
+        return profile
+    if image.is_compressed():
+        image.decompress()
+    profile.resize(int(SELECTED_H_CANVAS_SIZE.x))
+    for design_x in range(int(SELECTED_H_CANVAS_SIZE.x)):
+        var alpha_top := int(SELECTED_H_CANVAS_SIZE.y)
+        for design_y in range(int(SELECTED_H_TREE_DEST_Y), int(SELECTED_H_CANVAS_SIZE.y)):
+            if _selected_h_background_alpha_at_design(image, design_x, design_y) >= 0.125:
+                alpha_top = design_y
+                break
+        profile[design_x] = alpha_top
+    return profile
+
+
+func _selected_h_background_alpha_at_design(image: Image, design_x: int, design_y: int) -> float:
+    if design_y >= int(SELECTED_H_TREE_DEST_Y) and design_y < int(SELECTED_H_TREE_DEST_Y + SELECTED_H_TREE_DEST_HEIGHT):
+        return _selected_h_layer_alpha_at_design(
+            image,
+            design_x,
+            design_y,
+            SELECTED_H_TREE_TILE_ORIGINS,
+            SELECTED_H_TREE_TILE_SIZE.x,
+            SELECTED_H_TREE_DEST_Y,
+            SELECTED_H_TREE_DEST_HEIGHT,
+            SELECTED_H_TREE_SOURCE_RECT
+        )
+    if design_y >= int(SELECTED_H_LOWER_DEST_Y) and design_y < int(SELECTED_H_LOWER_DEST_Y + SELECTED_H_LOWER_DEST_HEIGHT):
+        return _selected_h_layer_alpha_at_design(
+            image,
+            design_x,
+            design_y,
+            SELECTED_H_LOWER_TILE_ORIGINS,
+            SELECTED_H_LOWER_TILE_SIZE.x,
+            SELECTED_H_LOWER_DEST_Y,
+            SELECTED_H_LOWER_DEST_HEIGHT,
+            SELECTED_H_LOWER_SOURCE_RECT
+        )
+    return 0.0
+
+
+func _selected_h_layer_alpha_at_design(
+        image: Image,
+        design_x: int,
+        design_y: int,
+        tile_origins: Array,
+        tile_width: float,
+        destination_y: float,
+        destination_height: float,
+        source_rect: Rect2
+) -> float:
+    for raw_origin in tile_origins:
+        var tile_origin := float(raw_origin)
+        var sample_x := float(design_x) + 0.5
+        if sample_x < tile_origin or sample_x >= tile_origin + tile_width:
+            continue
+        var source_x := source_rect.position.x + ((sample_x - tile_origin) / tile_width) * source_rect.size.x
+        var source_y := source_rect.position.y + ((float(design_y) + 0.5 - destination_y) / destination_height) * source_rect.size.y
+        var pixel_x := clampi(floori(source_x), 0, image.get_width() - 1)
+        var pixel_y := clampi(floori(source_y), 0, image.get_height() - 1)
+        return image.get_pixel(pixel_x, pixel_y).a
+    return 0.0
 
 
 func _load_d024_presentation() -> void:
@@ -1753,6 +3074,59 @@ func _load_d024_presentation() -> void:
         push_error("D-030 meadow alpha profile failed")
         return
     _d024_ready = true
+
+
+func _validate_selected_h_checkpoint_one_contract() -> bool:
+    _selected_h_checkpoint_one_ready = false
+    var selected_route := _selected_h_checkpoint_route_active()
+    var route_source_ready := _d024_ready
+    if selected_route:
+        route_source_ready = (
+            _d024_meadow_texture != null
+            and _d024_meadow_load_count == 1
+            and _d024_marker_texture == null
+            and _d024_marker_load_count == 0
+            and _textures.is_empty()
+            and _authored_world_layers.is_empty()
+            and _authored_labrador_poses.is_empty()
+            and _authored_labrador_used_rects.is_empty()
+            and _selected_h_alpha_top_design.size() == int(SELECTED_H_CANVAS_SIZE.x)
+        )
+    var valid: bool = (
+        route_source_ready
+        and _d024_meadow_texture != null
+        and _d024_meadow_texture.get_size() == D024_MEADOW_SOURCE_SIZE
+        and FileAccess.get_sha256(D024_MEADOW_TEXTURE_PATH) == SELECTED_H_MEADOW_SOURCE_SHA256
+        and SELECTED_H_CANVAS_SIZE == Vector2(2992.0, 480.0)
+        and is_equal_approx(SOURCE_WORLD_TO_RUNTIME, 1740.0 / 2992.0)
+        and is_equal_approx(SELECTED_H_TREE_UNIFORM_SCALE, 0.78)
+        and SELECTED_H_TREE_TILE_SIZE == Vector2(1298.0, 734.0)
+        and SELECTED_H_TREE_TILE_ORIGINS == [-210, 1088, 2386]
+        and SELECTED_H_TREE_PROJECTED_SOURCE_Y == Vector2(179.0, 309.0)
+        and is_equal_approx(SELECTED_H_TREE_SOURCE_RECT.size.y * SELECTED_H_TREE_UNIFORM_SCALE, SELECTED_H_TREE_DEST_HEIGHT)
+        and is_equal_approx(SELECTED_H_LOWER_UNIFORM_SCALE, 0.62)
+        and SELECTED_H_LOWER_TILE_SIZE == Vector2(1032.0, 583.0)
+        and SELECTED_H_LOWER_TILE_ORIGINS == [-167, 865, 1897, 2929]
+        and is_equal_approx(SELECTED_H_LOWER_SOURCE_RECT.size.y * SELECTED_H_LOWER_UNIFORM_SCALE, SELECTED_H_LOWER_DEST_HEIGHT)
+        and SELECTED_H_EARTH_BAND == Vector2(416.0, 480.0)
+        and SELECTED_H_GRID_BAND == Vector2(441.0, 473.0)
+        and int(SELECTED_H_GRID_BAND.y - SELECTED_H_GRID_BAND.x) == 32
+        and int(SELECTED_H_GRID_BAND.x - SELECTED_H_EARTH_BAND.x) == 25
+        and int(SELECTED_H_EARTH_BAND.y - SELECTED_H_GRID_BAND.y) == 7
+        and SELECTED_H_GRID_BOUNDARIES.size() == 27
+        and SELECTED_H_GRID_BOUNDARIES.front() == 0
+        and SELECTED_H_GRID_BOUNDARIES.back() == 2992
+        and SELECTED_H_GRID_OCCUPIED == [4, 5, 6, 7, 9, 10, 13, 14, 15, 16, 17, 18, 19]
+    )
+    if not valid:
+        push_error("Selected-H checkpoint-one presentation contract drift")
+        return false
+    for boundary_index in range(SELECTED_H_GRID_BOUNDARIES.size() - 1):
+        if int(SELECTED_H_GRID_BOUNDARIES[boundary_index]) >= int(SELECTED_H_GRID_BOUNDARIES[boundary_index + 1]):
+            push_error("Selected-H grid boundaries are not strictly increasing")
+            return false
+    _selected_h_checkpoint_one_ready = true
+    return true
 
 
 func _validate_d024_presentation_config(config: Dictionary) -> bool:
@@ -2353,6 +3727,13 @@ func _target_window_size() -> Vector2i:
     if usable_rect.size.x <= 0 or usable_rect.size.y <= 0:
         return target_size
 
+    if _selected_h_checkpoint_route_active():
+        var selected_h_height := ceili(SELECTED_H_CANVAS_SIZE.y * _selected_h_screen_scale())
+        return Vector2i(
+            NORMAL_SIZE.x,
+            clampi(maxi(MIN_SIZE.y, selected_h_height), MIN_SIZE.y, usable_rect.size.y)
+        )
+
     if _companion_mode:
         var meadow_height := (D024_MEADOW_SOURCE_BASELINE_Y - D024_MATERIAL_SOURCE_TOP_Y) * D030_MEADOW_SOURCE_TO_WORLD * _zoom()
         var zoomed_height := ceili(meadow_height + D030_WINDOW_VERTICAL_PADDING)
@@ -2371,6 +3752,12 @@ func _start_timers() -> void:
 
 
 func _process(delta: float) -> void:
+    if (
+        _selected_h_checkpoint_route_active()
+        and not _d032_current_profile_running
+        and not _selected_h_pointer_profile_matches_current_transform()
+    ):
+        _selected_h_schedule_pointer_profile_refresh()
     _tick_accumulator += delta
     var tick_budget := MAX_TICK_STEPS_PER_FRAME
     while _tick_accumulator >= TICK_SECONDS and tick_budget > 0:
@@ -2601,14 +3988,15 @@ func _apply_view_mode(mode: String) -> void:
             _show_debug_overlay = false
             _show_semantic_labels = false
             _show_performance_hud = false
+            _ui_hidden = _player_session_configured or _selected_h_checkpoint_route_enabled
         _:
             _view_mode = "qa"
             _compact_ui = false
             _show_debug_overlay = true
             _show_semantic_labels = true
             _show_performance_hud = true
+            _ui_hidden = false
 
-    _ui_hidden = false
     if _order_label != null:
         _update_ui()
     queue_redraw()
@@ -4855,6 +6243,120 @@ func _world_to_screen_x(world_x: float) -> float:
     return (world_x - _camera_x) * _zoom()
 
 
+func _selected_h_screen_scale() -> float:
+    return SOURCE_WORLD_TO_RUNTIME * _zoom()
+
+
+func _selected_h_design_origin_screen() -> Vector2:
+    var screen_scale := _selected_h_screen_scale()
+    return Vector2(
+        -_camera_x * _zoom(),
+        _viewport_size().y - SELECTED_H_CANVAS_SIZE.y * screen_scale
+    )
+
+
+func _selected_h_design_rect_to_screen(design_rect: Rect2) -> Rect2:
+    return Rect2(
+        _selected_h_design_origin_screen() + design_rect.position * _selected_h_screen_scale(),
+        design_rect.size * _selected_h_screen_scale()
+    )
+
+
+func _selected_h_projected_canvas_interval() -> Vector2:
+    var viewport_width := _viewport_size().x
+    var origin_x := _selected_h_design_origin_screen().x
+    var projected_end_x := origin_x + SELECTED_H_CANVAS_SIZE.x * _selected_h_screen_scale()
+    return Vector2(
+        clampf(origin_x, 0.0, viewport_width),
+        clampf(projected_end_x, 0.0, viewport_width)
+    )
+
+
+func _selected_h_projected_canvas_pixel_interval() -> Vector2i:
+    var projected := _selected_h_projected_canvas_interval()
+    return Vector2i(
+        clampi(floori(projected.x), 0, int(round(_viewport_size().x))),
+        clampi(ceili(projected.y), 0, int(round(_viewport_size().x)))
+    )
+
+
+func _selected_h_pointer_profile_matches_current_transform() -> bool:
+    var viewport_size := Vector2i(
+        int(round(_viewport_size().x)),
+        int(round(_viewport_size().y))
+    )
+    return (
+        _selected_h_pointer_top_screen.size() == viewport_size.x
+        and _selected_h_pointer_profile_viewport == viewport_size
+        and _selected_h_pointer_profile_origin.is_equal_approx(_selected_h_design_origin_screen())
+        and is_equal_approx(_selected_h_pointer_profile_scale, _selected_h_screen_scale())
+    )
+
+
+func _selected_h_refresh_pointer_profile_from_viewport() -> Dictionary:
+    var image := get_viewport().get_texture().get_image()
+    if image == null or image.is_empty():
+        return {"ok": false, "error": "selected_h_pointer_viewport_unavailable"}
+    return _selected_h_refresh_pointer_profile_from_image(image)
+
+
+func _selected_h_refresh_pointer_profile_from_image(image: Image) -> Dictionary:
+    var viewport_size := Vector2i(
+        int(round(_viewport_size().x)),
+        int(round(_viewport_size().y))
+    )
+    if image.get_width() != viewport_size.x or image.get_height() != viewport_size.y:
+        return {
+            "ok": false,
+            "error": "selected_h_pointer_image_size_mismatch",
+            "expected": [viewport_size.x, viewport_size.y],
+            "actual": [image.get_width(), image.get_height()],
+        }
+    var profile := PackedInt32Array()
+    profile.resize(viewport_size.x)
+    profile.fill(viewport_size.y)
+    var projected_pixels := _selected_h_projected_canvas_pixel_interval()
+    for screen_x in range(projected_pixels.x, projected_pixels.y):
+        for screen_y in viewport_size.y:
+            if image.get_pixel(screen_x, screen_y).a > 0.0:
+                profile[screen_x] = screen_y
+                break
+    _selected_h_pointer_top_screen = profile
+    _selected_h_pointer_profile_viewport = viewport_size
+    _selected_h_pointer_profile_origin = _selected_h_design_origin_screen()
+    _selected_h_pointer_profile_scale = _selected_h_screen_scale()
+    return {
+        "ok": true,
+        "projected_canvas_interval": _selected_h_projected_canvas_interval(),
+        "projected_canvas_pixel_interval": projected_pixels,
+        "top_y_by_column": profile,
+    }
+
+
+func _selected_h_schedule_pointer_profile_refresh() -> void:
+    if (
+        not _selected_h_checkpoint_route_active()
+        or not is_inside_tree()
+        or _selected_h_pointer_refresh_pending
+    ):
+        return
+    _selected_h_pointer_refresh_pending = true
+    _selected_h_pointer_refresh_generation += 1
+    _selected_h_refresh_pointer_profile_after_draw.call_deferred(_selected_h_pointer_refresh_generation)
+
+
+func _selected_h_refresh_pointer_profile_after_draw(generation: int) -> void:
+    await get_tree().process_frame
+    _selected_h_pointer_refresh_pending = false
+    if generation != _selected_h_pointer_refresh_generation or not _selected_h_checkpoint_route_active():
+        return
+    var result := _selected_h_refresh_pointer_profile_from_viewport()
+    if not bool(result.get("ok", false)):
+        push_error("Selected-H deferred pointer profile refresh failed: %s" % JSON.stringify(result))
+        return
+    _apply_mouse_passthrough()
+
+
 func _screen_to_world_x(screen_x: float) -> float:
     return _camera_x + screen_x / _zoom()
 
@@ -4954,6 +6456,8 @@ func _apply_mouse_passthrough() -> void:
 
 
 func _interactive_mouse_polygon() -> PackedVector2Array:
+    if _selected_h_checkpoint_route_active():
+        return _selected_h_player_mouse_polygon()
     if _view_mode == "player_prototype":
         return _d024_player_mouse_polygon()
 
@@ -4993,6 +6497,72 @@ func _interactive_mouse_polygon() -> PackedVector2Array:
     points.append(Vector2(viewport_size.x, viewport_size.y))
     points.append(Vector2(0.0, viewport_size.y))
     return points
+
+
+func _selected_h_player_mouse_polygon() -> PackedVector2Array:
+    var viewport_size := _viewport_size()
+    var projected := _selected_h_projected_canvas_interval()
+    if projected.y <= projected.x:
+        return PackedVector2Array()
+    var points := PackedVector2Array()
+    var first_column := clampi(floori(projected.x), 0, int(round(viewport_size.x)) - 1)
+    var last_column_exclusive := clampi(ceili(projected.y), 0, int(round(viewport_size.x)))
+    if last_column_exclusive <= first_column:
+        return PackedVector2Array()
+    var first_top := _selected_h_screen_top(float(first_column) + 0.5)
+    points.append(Vector2(projected.x, viewport_size.y))
+    points.append(Vector2(projected.x, first_top))
+    var current_top := first_top
+    for screen_x in range(first_column, last_column_exclusive):
+        var column_right := minf(projected.y, float(screen_x + 1))
+        points.append(Vector2(column_right, current_top))
+        if screen_x + 1 < last_column_exclusive:
+            var next_top := _selected_h_screen_top(float(screen_x + 1) + 0.5)
+            if not is_equal_approx(next_top, current_top):
+                points.append(Vector2(column_right, next_top))
+                current_top = next_top
+    points.append(Vector2(projected.y, viewport_size.y))
+    return points
+
+
+func _selected_h_screen_top(screen_x: float) -> float:
+    var viewport_size := _viewport_size()
+    var screen_scale := _selected_h_screen_scale()
+    if screen_scale <= 0.0 or _selected_h_alpha_top_design.is_empty():
+        return viewport_size.y
+    var projected := _selected_h_projected_canvas_interval()
+    if screen_x < projected.x or screen_x >= projected.y:
+        return viewport_size.y
+    if _selected_h_pointer_profile_matches_current_transform():
+        var screen_column := clampi(
+            floori(screen_x),
+            0,
+            _selected_h_pointer_top_screen.size() - 1
+        )
+        return float(_selected_h_pointer_top_screen[screen_column])
+    var design_x := (screen_x - _selected_h_design_origin_screen().x) / screen_scale
+    if design_x < 0.0 or design_x >= SELECTED_H_CANVAS_SIZE.x:
+        return viewport_size.y
+    var profile_index := clampi(floori(design_x), 0, _selected_h_alpha_top_design.size() - 1)
+    var design_top := _selected_h_alpha_top_design[profile_index]
+    if design_top >= int(SELECTED_H_CANVAS_SIZE.y):
+        return viewport_size.y
+    return clampf(
+        floorf(_selected_h_design_origin_screen().y + float(design_top) * screen_scale),
+        0.0,
+        viewport_size.y
+    )
+
+
+func _selected_h_pointer_surface_records() -> Array[Dictionary]:
+    var records: Array[Dictionary] = []
+    if _selected_h_alpha_top_design.size() == int(SELECTED_H_CANVAS_SIZE.x):
+        records.append({
+            "kind": "selected_h.alpha_top_profile",
+            "samples": _selected_h_alpha_top_design.size(),
+            "source": D024_MEADOW_TEXTURE_PATH,
+        })
+    return records
 
 
 func _d024_ground_capture_top() -> float:
@@ -6972,6 +8542,7 @@ func _build_report() -> Array[String]:
         "screen_index=%s" % screen,
         "screen_usable_rect=%s" % DisplayServer.screen_get_usable_rect(screen),
         "window_size=%s" % DisplayServer.window_get_size(WINDOW_ID),
+        "selected_h_checkpoint_one=%s" % JSON.stringify(test_selected_h_checkpoint_one_snapshot()),
         "flag_always_on_top=%s" % DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_ALWAYS_ON_TOP, WINDOW_ID),
         "flag_borderless=%s" % DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, WINDOW_ID),
         "flag_transparent=%s" % DisplayServer.window_get_flag(DisplayServer.WINDOW_FLAG_TRANSPARENT, WINDOW_ID),

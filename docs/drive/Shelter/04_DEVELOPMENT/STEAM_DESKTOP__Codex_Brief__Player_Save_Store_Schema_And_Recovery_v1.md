@@ -59,11 +59,13 @@ Read every other Accepted ADR relevant to save/snapshot/runtime contracts. If a 
 
 ```text
 docs/drive/Shelter/00_START_HERE/02_DECISIONS.md
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Scope_Lock_v1.md
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_48_Hours_Playable_Roadmap_v1.md
+docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Game_Design_Roadmap_v2.md
 docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Task_Flow_Contract_v1.md
 docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__Object_Contract_v1.md
 ```
+
+D-022/D-023 persistence behavior remains the regression baseline; superseded
+First 48 Hours planning detail is available through Git history.
 
 ### Existing implementation
 
@@ -352,7 +354,6 @@ steam/tools/test-player-profile-store.sh               # optional thin runner on
 steam/README.md
 docs/repo/dev/player-profile-persistence.md             # new
 docs/repo/status/CODEX_CURRENT_STATUS.md
-docs/repo/status/CODEX_STATUS.md
 docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
 ```
 

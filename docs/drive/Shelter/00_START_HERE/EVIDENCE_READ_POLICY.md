@@ -1,159 +1,81 @@
-# EVIDENCE_READ_POLICY — Shelter History / Capture Packs
+# EVIDENCE_READ_POLICY — retained exact evidence only
 
-Дата создания: 2026-07-07
+Обновлено: 2026-07-21
 Статус: active documentation governance
 Владелец: Project Manager / Knowledge Base Maintainer
-Назначение: центральная политика чтения evidence/capture/archive документов, если сами исторические файлы нельзя или нецелесообразно массово редактировать.
+Назначение: ограничить evidence в checkout только действующими exact consumers.
 
 ---
 
-## 0. Main rule
+## Main rule
 
-Evidence, capture packs, old review packs, old completed briefs and archive docs are **History**, not Current Memory.
+Evidence/history не читается на bootstrap и обычно живёт только в Git history.
+В checkout остаётся evidence, если удаление/изменение ломает exact validator,
+hash ledger, sealed pack, runtime reference или реально используемый regression
+route.
 
-Default rule:
+## Retained exact classes
 
-```text
-Do not read evidence/history on bootstrap.
-Read evidence/history only for proof, review, regression, audit, archaeology or dispute resolution.
-```
+1. D-024 immutable brief Contract A and sealed runtime pack.
+   - consumers: `steam/tools/validate-d024-responsive-presentation.py`,
+     `steam/tools/capture-d024-responsive-presentation.sh`, runtime config;
+   - Contract A: `4f956a077d0a93575ef7b518fd0aa9fb409392a08fd4a48190364795bc9b5cbf`;
+   - sealed brief SHA: `cc6d7fa778b85eebd6d6307dba33efa52518aa62911287dd15ee0d9c7dd5c669`;
+   - sealed ledger: 2066 entries, verified 2026-07-21.
+2. Labrador/R48 source reconciliation Markdown and manifests pinned by
+   `validate-labrador-r48-05a.py`, runtime JSON or package `HASHES.sha256`.
+3. Responsive meadow source/acceptance Markdown pinned by D-024 validator and
+   package ledger.
+4. Accepted ADR under `docs/repo/adr/`.
+5. Evidence/readme paths still directly consumed by current runtime/regression
+   scripts or immutable manifests.
+6. Fixed source routes required by current MCP parser until a separate MCP
+   code-migration wave.
+7. `STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3` README/manifest only: current
+   `TestSupersededAndGCProjectionsReadCurrentMap` requires the exact v1→v3
+   supersession projection. This is regression compatibility, not current Art
+   evidence; v1/v2 Markdown is removed.
+8. `STEAM_DESKTOP__Codex_Brief__Player_Save_Store_Schema_And_Recovery_v1.md`:
+   retained as the normative save/recovery regression contract directly linked
+   from Accepted ADR-0003; its mutable product routing now points to D-031/current
+   roadmap rather than deleted First 48 Hours plans.
 
-For current project state use:
+Do not edit retained bytes for clarity. Put current interpretation in current
+docs.
 
-```text
-docs/drive/Shelter/00_START_HERE/BOOTSTRAP_CONTEXT.md
-docs/drive/Shelter/00_START_HERE/01_CURRENT_STATUS.md
-docs/drive/Shelter/00_START_HERE/05_DOCUMENTATION_GOVERNANCE.md
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
-docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
-docs/repo/status/CODEX_CURRENT_STATUS.md
-```
+## Immutable inbound-reference exceptions
 
----
+No redirect stubs are kept for deleted history. Some retained exact bytes still
+name deleted paths, and those references must not be rewritten:
 
-## 1. Capture packs
+- the hash-manifested Playable World brief names prior First 48 Hours, Vertical
+  Slice and World/Room planning docs;
+- D-024 sealed readback and responsive amendment activation record contain
+  historical First 48 Hours path/hash observations;
+- the hash-pinned accepted Art integration brief and package readback name the
+  completed Art-source PM activation record;
+- the manifest-hashed Approved Library names the completed generated-originals
+  promotion record;
+- the MCP regression test uses the absent v1 visible-review path as lookup input
+  and requires the retained v3 README/manifest as its current projection.
 
-All directories under:
+The deleted targets are recovered from Git. Their names inside immutable evidence
+do not make them current routes and do not justify stubs.
 
-```text
-docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/
-```
+Any retained instruction to read, write or update `CODEX_STATUS.md` inside an
+Accepted ADR or hash-pinned historical brief/evidence is immutable chronology,
+not an actionable route. Current actors use `CODEX_CURRENT_STATUS.md`; the stub
+accepts no new entries.
 
-are evidence/history unless a current-context document explicitly says otherwise.
+## Current interpretation
 
-They can be used for:
+D-024/R48 evidence proves historical mechanical/provenance facts. It does not
+grant current Art/user acceptance and does not override Visual Shell Lock.
+`PENDING`, `HOLD` and `UNSEALED` inside the retained D-024 brief, ADR or activation
+record describe pre-seal chronology; current D-024 truth is the sealed pre-D-030
+technical-mechanical pack and the post-D-030 user-owned visual route.
 
-- visual proof;
-- state proof;
-- regression comparison;
-- Art Director / UX review;
-- implementation acceptance evidence;
-- historical reconstruction.
+## Reading
 
-They should not be used as first-entry context for a new session.
-
----
-
-## 2. Current First Day evidence
-
-For First Day MVP visual-language evidence, use latest v3 first:
-
-```text
-docs/drive/Shelter/03_DESIGN/04_DELIVERABLES/STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v3/
-docs/drive/Shelter/04_DEVELOPMENT/STEAM_DESKTOP__Art_UX_Review__First_Day_MVP_v3.md
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__First_Day_MVP_Lock_And_Next_Scope_Decision_v1.md
-```
-
-Older packs:
-
-```text
-STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v1/
-STEAM_FIRST_DAY_MVP_VISIBLE_REVIEW_v2/
-```
-
-are regression/history only.
-
----
-
-## 3. Vertical Slice Art QA packs
-
-These packs are evidence/history only:
-
-```text
-STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v1/
-STEAM_VERTICAL_SLICE_ART_QA_CAPTURE_v2/
-```
-
-Use them only when investigating earlier visual QA, regression or historical implementation context.
-
-They are not the current visual-language source for First Day.
-
----
-
-## 4. Semantic asset packs
-
-Semantic asset packs under deliverables are reference/evidence. They may inform implementation or taxonomy, but they are not current product state by themselves.
-
-Before reading them, check:
-
-```text
-docs/drive/Shelter/02_PRODUCTS/01_STEAM_DESKTOP/STEAM_DESKTOP__CURRENT_CONTEXT.md
-docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
-```
-
----
-
-## 5. Archive docs
-
-Files under:
-
-```text
-docs/drive/Shelter/99_ARCHIVE/
-```
-
-are archive/history by default.
-
-They are not active specs unless a current-context or decision document explicitly revives them.
-
-Known example:
-
-```text
-STEAM_DESKTOP__Codex_Brief__Systems_Simulator_v0__SUPERSEDED_BY_GODOT_STATE_CONNECTOR.md
-```
-
-This is superseded by D-018/D-019 and the Godot State Connector / Workbench-over-live-Godot direction.
-
----
-
-## 6. Completed Codex briefs
-
-Completed Codex briefs in:
-
-```text
-docs/drive/Shelter/04_DEVELOPMENT/
-```
-
-are History after completion unless explicitly marked active/prepared.
-
-For current implementation state, prefer:
-
-```text
-docs/repo/status/CODEX_CURRENT_STATUS.md
-docs/drive/Shelter/04_DEVELOPMENT/CODEX__CURRENT_IMPLEMENTATION_CONTEXT.md
-```
-
-For detailed history, use:
-
-```text
-docs/repo/status/CODEX_STATUS.md
-```
-
----
-
-## 7. Changelog
-
-### 2026-07-07 — v1 created
-
-- Added central read policy for capture packs, evidence, old reviews, archive docs and completed briefs.
-- Clarified that historical deliverables should not be read during bootstrap.
-- Pointed First Day evidence to v3 as the latest current proof pack.
+Open retained evidence only for exact validation, regression, provenance,
+audit or archaeology. Use current-context for project direction.
